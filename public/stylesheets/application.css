@@ -18,6 +18,37 @@ body{
 .floatleft{float:left !important;}
 .headertitle{font-weight:bold;}
 
+div#toptoolbar{
+	background-color: #000;
+	height: 25px;
+	overflow: hidden;
+	padding: 0 5px 0 5px;
+	position: relative;
+	white-space: nowrap;
+}
+
+div.toptoolbarbtn{
+	float:left;
+	font-size: 12px;
+	color: #fff;
+	line-height: 25px;
+	cursor: pointer;
+	padding: 1px 5px 0 5px;	
+}
+div.toptoolbarbtn a:link, div.toptoolbarbtn a:visited, div.toptoolbarbtn a:hover{color: #fff; text-decoration: none;}
+div.toptoolbarbtn:hover{background: url("/images/toptoolbar_bg_over.gif") repeat-x scroll 0 0 #000;}
+div.toptoolbarbtn:active{background: none repeat-x scroll 0 0 #666666;}
+
+div.toptoolbarsep{
+	border: 1px solid #000;
+	background-color: #4D4D4D;
+	width: 1px;
+	height: 23px;
+	font-size: 1px;
+	float:left;
+	margin: 1px 5px 0 5px;	
+}
+
 div.jumpbutton {
 	background: url("/images/NavButton_slice.gif") repeat-x scroll 0 0 #C9E1F1;
 	border-color: #818181 #909090 #909090;
