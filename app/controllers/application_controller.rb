@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :all
+  #ajax请求不使用layout
+  layout proc{ |c| c.request.xhr? ? false : "application" }
 
   # filters
   # user_setup 从session中取得用户,如果session中没有[:user_id]则什么也不做
