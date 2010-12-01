@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  theme :default
   protect_from_forgery
   helper :all
   #ajax请求不使用layout

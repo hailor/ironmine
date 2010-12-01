@@ -43,7 +43,7 @@ div.toptoolbarbtn{
 	padding: 1px 5px 0 5px;	
 }
 div.toptoolbarbtn a:link, div.toptoolbarbtn a:visited, div.toptoolbarbtn a:hover{color: #fff; text-decoration: none;}
-div.toptoolbarbtn:hover{background: url("/images/toptoolbar_bg_over.gif") repeat-x scroll 0 0 #000;}
+div.toptoolbarbtn:hover{background: url("../images/toptoolbar_bg_over.gif") repeat-x scroll 0 0 #000;}
 div.toptoolbarbtn:active{background: none repeat-x scroll 0 0 #666666;}
 
 div.toptoolbarsep{
@@ -57,7 +57,7 @@ div.toptoolbarsep{
 }
 
 div.jumpbutton {
-	background: url("/images/NavButton_slice.gif") repeat-x scroll 0 0 #C9E1F1;
+	background: url("../images/NavButton_slice.gif") repeat-x scroll 0 0 #C9E1F1;
 	border-color: #818181 #909090 #909090;
 	border-style: solid;
 	border-width: 1px;
@@ -82,7 +82,7 @@ div.jumpfield {
 
 table.topmenu{width: 100%;}
 table.topmenu tr.buttonrow td.button{
-	background: url("/images/top_gradient.gif") repeat-x scroll 0 0 #ccddee;
+	background: url("../images/top_gradient.gif") repeat-x scroll 0 0 #ccddee;
 	font-size: 1em;
 	text-align: center;
 	vertical-align: middle;
@@ -114,7 +114,7 @@ table.topmenu tr.buttonrow td.button a:hover {
 	text-decoration: none;
 }
 table.topmenu tr.buttonrow td.buttonend{
-	background: url("/images/top_gradient.gif") repeat-x scroll 0 0 #CCDDEE;
+	background: url("../images/top_gradient.gif") repeat-x scroll 0 0 #CCDDEE;
 	border-bottom: medium none;
 	border-top: 0px solid #ffffff;
 	width: auto;
@@ -155,25 +155,24 @@ table.leftnavigation{
 div.container {padding-bottom: 5px;}
 div.container div.containerheader{ background: none repeat scroll 0 0 #99BBDD; height:25px; line-height: 25px; padding: 0px 20px 0px 20px;}
 div.container div.containerfooter{ background: none repeat scroll 0 0 #d4d2d0; height:25px; line-height: 25px; padding: 0px 20px 0px 20px;}
-div.container div.colorheader{background: url("/images/containerheader_bg.gif") repeat-x scroll 0 0 #AACCEE !important;}
+div.container div.colorheader{background: url("../images/containerheader_bg.gif") repeat-x scroll 0 0 #AACCEE !important;}
 
 div.button {
-	background: url("/images/button_background_gold.gif") repeat-x scroll center bottom #EDEBCA;
+	background: url("../images/button_background_gold.gif") repeat-x scroll center bottom #EDEBCA;
 	border: 1px solid #888888;
 	float: left;
 	margin-left: 6px;
 	margin-top: 1px;
-	line-height: 25px;
+    line-height: 20px;
 }
-div.button:hover {background: url("/images/button_background_hover.gif") repeat-x scroll center bottom #EDEBCA;}
+div.button:hover {background: url("../images/button_background_hover.gif") repeat-x scroll center bottom #EDEBCA;}
 div.disable{ background: none repeat scroll #EDEBE2 !important;}
 div.disable a{ color: #6E6E6E !important;line-height: 20px;}
-div.button {}
 div.button a {
 	text-decoration: none;
 	color:#000;
 	display: inline-block;
-	padding: 0px 8px;
+	padding: 0 8px;
 	height: 20px;
 	line-height: 20px;
 }
@@ -183,7 +182,9 @@ table.tabtable{
 	width:100%;
 }
 table.tabtable td, table.tabtable th{
-	vertical-align: middle;
+    height: 0;
+    line-height: 0;
+    vertical-align: middle;
 }
 td.tabbody, td.tabbody a{
 	font-weight: bold;

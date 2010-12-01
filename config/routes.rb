@@ -14,4 +14,7 @@ Ironmine::Application.routes.draw do
     match '/lookup_types/get_current_language(.:format)'=>"lookup_types#get_current_language",:via=>:get
     match '/lookup_types/:id(.:format)/multilingual_update'=>"lookup_types#multilingual_update",:via=>:put
   end
+
+  match '/demo(/index)' => 'demo#index'
+  themes_for_rails
 end
