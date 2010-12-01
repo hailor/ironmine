@@ -1,0 +1,2 @@
+module Irm::LookupTypesHelper
+end

@@ -17,7 +17,7 @@ ActionView::Helpers::AssetTagHelper.register_javascript_expansion :defaults=>%w(
 #扩展ActionRecord::Base,实现数据保存时自动给created_by与updated_by赋值
 ActiveRecord::Base.send(:include,Irm::SetWho)
 #扩展ActionRecord::Base,自动生成scope query,active和instance方法active?
-#ActiveRecord::Base.send(:include,Irm::QueryExtend)
+ActiveRecord::Base.send(:include,Irm::QueryExtend)
 #扩展link_to,url_for,增加权限验证
 #ActionView::Base.send(:include,Irm::UrlHelper)
 

@@ -101,7 +101,7 @@ module Ironmine
           end
         end
 
-        def usabel_language
+        def usable_language
           Ironmine::Acts::Multilingual::USABLE_LANGUAGE.call
           #Irm::Language.active.installed.query_code.collect(&:language_code)
         end

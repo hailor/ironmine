@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   # layout_setup 检查设置窗口的运行模式，wmode,设置页面布局
   before_filter :user_setup
   before_filter :permission_setup
-  before_filter :check_if_login_required
+  #before_filter :check_if_login_required
   before_filter :set_localization
   before_filter :layout_setup
 

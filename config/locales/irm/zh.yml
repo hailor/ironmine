@@ -1,2 +1,67 @@
 zh:
   irm: "irm"
+  #=========================usual custom=======================#
+  errors:
+    already_exists_in_service_center: 邮箱地址在当前服务中心中已经被某个人员使用过
+  access_denied: 访问 {{permission}} 被拒绝!
+  invalid_invitation_key: 无效的邀请验证码！
+  #公用按钮
+  cancel: 取消
+  next: 下一步
+  last: 返回上一步
+  or: 或者
+  show: 查看
+  edit: 编辑
+  delete: 删除
+  back: 返回
+  disable: 失效
+  done: 完成
+  loading: 加载中...
+  apply: 应用
+  clear: 清除
+  save: 保存
+  confirm: 确认
+  update: 更新
+  create: 创建
+  add: 添加
+  multilingual: 多语言
+  active: 是否可用
+  copy:  复制
+  processing: 处理中...
+  button_add_file: 添加文件
+  more: 更多
+  #常用语句
+  notice_account_invalid_creditentials: 用户名或密码错误
+  successfully_updated: 已经成功更新数据
+  successfully_created: 已经成功创建新数据
+  successfully_copyed:  已经成功复制数据
+  successfully_deleted:  已经成功删除数据
+  failed_updated: 更新数据失败
+  failed_created: 创建数据失败
+  failed_copyed:  复制数据失败
+  failed_deleted:  删除数据失败
+  label_delete_confirm: 你确定要删除该条数据吗?
+  label_no_data: 没有找到数据
+  #=========================end usual custom=======================#
+  #=========================    irm lookup_types_controller=====================#
+  label_lookup_types: 快速编码类型
+  label_lookup_level: 快速编码级别
+  label_meaning: 含义
+  label_description: 描述
+  label_lookup_code: 快速编码
+  label_start_date_active: 生效日期
+  label_end_date_active: 失效日期
+  label_active_flag: 是否可用
+  label_global_level: 系统级
+  label_extended_level: 可扩展
+  label_user_level: 用户级
+  label_add_another_lookup_value: 增加新的快速编码值
+  label_delete_last_lookup_value: 删除最后一行的快速编码值
+  label_new_lookup_type: 新建快速编码
+  label_irm_lookup_type_lookup_type: 快速编码类型
+  label_irm_lookup_type_meaning: 含义
+  lable_irm_lookup_type_editing_multilingual: 编辑多语言
+  label_irm_lookup_value_lookup_code: 快速编码
+  label_irm_lookup_value_meaning: 含义
+  label_irm_lookup_type_description: 描述
+  #=========================end irm lookup_types_controller================#
