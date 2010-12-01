@@ -1,0 +1,38 @@
+<table class="multilingual">
+  <tr>
+    <th class="current_language">
+      <%=t(:label_multilingual_language)%>
+    </th>
+    <%main_data.multilingual_options[:columns].each do |attr|%>
+      <th>
+        <%=t("label_#{f.object_name}_#{attr}")%>
+      </th>
+    <%end%>
+    <th>
+      <%=t(:label_multilingual_source_lang)%>
+    </th>
+  </tr>
+  <tr>
+  <%= f.fields_for main_data.multilingual_options[:lang_relation].to_sym,:normal=>true do |tl_f|%>
+    <%= tl_f.hidden_field :source_lang,:value=>local_language_code%>
+    <tr>
+      <td class="current_language">
+        <%=language_code_meaning(tl_f.object.language)%>
+      </td>
+      <%main_data.multilingual_options[:columns].each do |attr|%>
+        <td >
+          <% if main_data.multilingual_options[:required].include?(attr.to_sym)%>
+            <%= tl_f.text_field attr.to_sym,:normal=>true,:required=>true,:size=>40%>
+          <%else%>
+            <%= tl_f.text_field attr.to_sym,:normal=>true,:size=>40%>
+          <%end%>
+        </td>
+      <%end%>
+      <td>
+         <span class="source_lang">
+           <%=text_field_tag :source_lang,language_code_meaning(tl_f.object.source_lang),:readonly=>"readonly"%>
+         </span>
+      </td>
+    </tr>
+  <%end%>
+</table>

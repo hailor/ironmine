@@ -1,0 +1,16 @@
+== Welcome to Ironmine
+
+config step
+
+1,\config\database.yml
+  development:
+    adapter: mysql
+    encoding: utf8
+    reconnect: false
+    database: irm_dev
+    pool: 5
+    username: root
+    password: root
+    host: localhost
+2,create schema xxxx default character set utf8;
+3,rake db:migrate

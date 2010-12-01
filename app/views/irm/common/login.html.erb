@@ -1,0 +1,6 @@
+<h1>Login 登陆</h1>
+<% Irm::Company.query_by_language("zh").each do |c|%>
+    <h1><%= c[:name] %></h1>
+<% end%>
+<%= t(:hello) %>
+<%= echo %>

@@ -1,0 +1,12 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*
+.idea
+db/schema.rb
+verdor/cache/**
+public/upload/**
+Gemfile.lock
+Gemfile
+**/Thumbs.db
+index
