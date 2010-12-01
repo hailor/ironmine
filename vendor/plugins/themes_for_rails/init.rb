@@ -1,0 +1,1 @@
+require "themes_for_rails"

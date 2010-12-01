@@ -1,0 +1,221 @@
+h1. Theme For Rails (3 and hopefully later)
+
+h2. Features list / Wish list
+
+* Support for adding themes which includes stylesheets, javascripts, views and layouts. 
+
+<pre>
+$app_root
+  themes/
+    [theme_name]
+      images/
+      stylesheets/
+      javascripts/
+      views/           <- you can override application views
+        layouts/         <- layout .rhtml or .liquid templates
+</pre>
+
+h2. Instructions
+
+Add themes_for_rails to your Gemfile.
+
+<pre>
+gem 'themes_for_rails'
+</pre>
+
+Add themes_for_rails to your config/routes.rb
+
+<pre>
+MySuperDuperApp::Application.routes.draw do
+  # ...
+  themes_for_rails
+  # ...
+end
+</pre>
+
+h3. And then?
+
+Now you'll be able to use themes like this:
+
+Inside method, for some explicit action:
+
+<pre>
+class MyController < ApplicationController
+  def show
+    theme "purple"
+  end
+end
+</pre>
+
+Or at class level definition, in order to set a theme for more than one action. I think this is is prettier, and less invasive. 
+
+<pre>
+class MyController < ApplicationController
+  theme "purple" # all actions will use this theme
+  def show
+    ...
+  end
+end
+</pre>
+
+You could also enable a theme for some actions only
+
+<pre>
+class MyController < ApplicationController
+  theme "purple", :only => :show
+  def show
+    # with theme
+  end
+  def edit
+    # no theme
+  end
+end
+</pre>
+
+As a plus, you could do this to defer theme name resolution to a method: 
+
+<pre>
+class MyController < ApplicationController
+  theme :theme_resolver
+  # ...
+private
+  def theme_resolver
+    current_user.theme # or anything else that return a string. 
+  end
+end
+</pre>
+
+As a general rule, when passing a String, that becomes the theme name, but when a Symbol is sent, it gets treated as method message. 
+
+h3. Url Helpers
+
+In your views you should be able to access your assets like this (given the theme 'default' is set):
+
+<pre>
+current_theme_image_path('logo.png')   # => /themes/default/images/logo.png
+current_theme_stylesheet_path('style') # => /themes/default/stylesheets/logo.css
+current_theme_javascript_path('app')   # => /themes/default/stylesheets/app.js
+</pre>
+
+Or a given theme:
+
+<pre>
+current_theme_image_path('logo.png', 'purple')   # => /themes/purple/images/logo.png
+</pre>
+
+In your application views, there are theme specific helper tags 
+available to you. For ERb templates they are:
+
+<pre>
+theme_image_tag
+theme_image_path
+theme_javascript_include_tag
+theme_javascript_path
+theme_stylesheet_link_tag
+theme_stylesheet_path  
+</pre>
+
+h2. Generators
+
+For now, it only creates the theme folder.
+
+<pre>
+rails generate theme_for_rails:install  
+</pre>
+
+Inside the themes folder, it create a structure for my_theme.
+
+<pre>
+rails generate theme_for_rails:theme my_theme  
+</pre>
+
+h2. Changing things
+
+At least for now, you can change the ThemesForRails base dir in your app, in the corresponding environment file, or in your application.rb file. Do it like this:
+
+<pre>
+KillerApp::Application.configure do
+  #
+  
+  config.themes_for_rails.base_dir = File.join(Rails.root, "skins")
+
+  #...
+end
+</pre>
+
+Thanks to matheusca, now you can change the name of the theme's dir.
+
+<pre>
+KillerApp::Application.configure do
+  #
+  
+  config.themes_for_rails.themes_dir = "another_themes"
+
+  #...
+end
+</pre>
+
+
+h2. Another way to change things
+
+If you don't like this approach and prefer something more like an initializer file, you could create one an put something like this. 
+
+<pre>
+# Rails.root/config/initializers/themes_for_rails.rb (for instance)
+ThemesForRails.config do |config|
+  #
+  config.themes_dir = 'another_themes'
+  # ...
+end
+</pre>
+
+
+
+h2. Notes and Warnings.
+
+If you are running an app in production mode, and you get the static files with no content, is because you don't have X-senfile enabled at your web server. 
+
+You can do two things:
+
+comment out this line in your production.rb file:
+
+config.action_dispatch.x_sendfile_header = "X-Sendfile"
+
+or 
+
+configure your web server to use it. :)
+
+
+h2. Documentation
+
+"Read it here":http://rubydoc.info/github/lucasefe/themes_for_rails/master/frames
+
+h2. Ideas
+
+* Add ThemesForRails::Railtie for configuration, so we selectively set the plugin on or off. Also to be able to change several settings. 
+* -Add routes to allow access to the theme's static resources (js and cs), unless cached on public folder by capistrano / rake.-
+* -Extend Action View path in order to make the views accessible. Same for the layouts.-
+* More tests ford edge cases. Now I am only testing the happy paths. 
+
+h2. Things to remember.
+
+* -Final version should be a gem. Initialization hooks doesn't work when using this as a plugin (vendor/plugins).-
+* -Research about testing this kind of gem. I really don't have a clue.- Testing in place!
+* I should probably load the theme list at start time, to be able to consult it as needed. I am gonna need that when dealing with runtime  theme selection. Many themes are going to be used simultaneously, so I have to be able to switch view paths as fast as I can. 
+
+h2. Rails 2 Support
+
+This gem only works with Rails 3 (duh). If you want the same exactly behavior, but for Rails 2.x, go "here":http://github.com/jystewart/theme_support .
+
+
+h2. Running tests
+
+<pre>
+gem install bundler
+bundle install
+rake
+</pre>
+
+h2. Authors and contributors
+
+* lucasefe
