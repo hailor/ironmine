@@ -163,17 +163,16 @@ div.button {
 	float: left;
 	margin-left: 6px;
 	margin-top: 1px;
-	line-height: 25px;
+    line-height: 20px;
 }
 div.button:hover {background: url("../images/button_background_hover.gif") repeat-x scroll center bottom #EDEBCA;}
 div.disable{ background: none repeat scroll #EDEBE2 !important;}
 div.disable a{ color: #6E6E6E !important;line-height: 20px;}
-div.button {}
 div.button a {
 	text-decoration: none;
 	color:#000;
 	display: inline-block;
-	padding: 0px 8px;
+	padding: 0 8px;
 	height: 20px;
 	line-height: 20px;
 }
@@ -183,7 +182,9 @@ table.tabtable{
 	width:100%;
 }
 table.tabtable td, table.tabtable th{
-	vertical-align: middle;
+    height: 0;
+    line-height: 0;
+    vertical-align: middle;
 }
 td.tabbody, td.tabbody a{
 	font-weight: bold;
