@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="stylesheets/application.css"></link>
+<title>Ironmine</title>
+</head>
+
+<body>
+    <div id="toptoolbar">
+    	<div class="floatleft">
+        	<div class="toptoolbarbtn">
+            	<div>我的工作空间</div>
+            </div>
+        	<div class="toptoolbarsep"></div>
+            <div class="toptoolbarbtn">
+            	<div>搜索</div>
+            </div>
+            <div class="toptoolbarsep"></div>
+            <div class="toptoolbarbtn">
+            	<div>历史记录</div>
+            </div>
+        </div>
+        <div class="floatright">
+            <div class="toptoolbarbtn"><a href="javascript:void(0);">ivanmarkliu</a></div>
+            <div class="toptoolbarsep"></div>   
+            <div class="toptoolbarbtn">退出系统</div>
+            <div class="toptoolbarsep"></div>  
+            <div class="toptoolbarbtn">帮助</div>                             	
+        </div>
+    </div>
+    <form>
+    	<div class="titlebar">
+        	<div class="jumpbutton"><a id="quickJump" href="javascript:void(0);">转至</a></div>
+            <div class="jumpfield">跳转至ID：<input id="idsString" class="jumptofield" type="text" maxlength="16" size="12" value=""></div>
+            <div class="sectiontitle">我的工作空间</div>
+        </div>
+    </form>
+    <div></div>
+    
+    <table class="topmenu" cellspacing="0">
+    	<tbody>
+	        <tr class="buttonrow">
+            	<td class="button selected">
+                	<a href="javascript:void(0);"><img width="25" height="20" border="0" src="images/my_page.gif"><br>我的页面</a>
+                </td>
+                <td class="verticalseparatornoborder"><img width="1" height="40" border="0" src="images/white.gif"></td>
+                <td class="button">
+                	<a href="javascript:void(0);"><img width="25" height="20" border="0" src="images/dashboard.gif"><br>统计数据</a>
+                </td>
+                <td class="verticalseparatornoborder"><img width="1" height="40" border="0" src="images/white.gif"></td>
+                <td class="button">
+                	<a href="javascript:void(0);"><img width="25" height="20" border="0" src="images/all_projects.gif"><br>项目</a>
+                </td>
+                <td class="verticalseparatornoborder"><img width="1" height="40" border="0" src="images/white.gif"></td>
+                <td class="button">
+                	<a href="javascript:void(0);"><img width="25" height="20" border="0" src="images/monitoring.gif"><br>监控</a>
+                </td>
+                <td class="verticalseparatornoborder"><img width="1" height="40" border="0" src="images/white.gif"></td>
+                <td class="button">
+                	<a href="javascript:void(0);"><img width="25" height="20" border="0" src="images/my_settings.gif"><br>我的设置</a>
+                </td>
+                <td class="verticalseparatornoborder"><img width="1" height="40" border="0" src="images/white.gif"></td>
+                <td class="buttonend"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="breadcrumbs"><a href="javascript:void(0);">首页</a> > <a href="javascript:void(0);">高级管理</a> > <strong>新建文件</strong> </div>
+    <div id="main">
+    	<table width="100%" cellspacing="0" cellpadding="4" border="0">
+        	<tr>
+            	<td width="250" valign="top">
+                	<div id="leftnavigations">
+                        <table width="250" cellpadding="0" cellspacing="0">
+                            <tbody>
+                                <tr><td>
+                                    <div>                                
+                                        <table class="leftnavigation" cellspacing="0">
+                                            <tbody>
+                                                <tr class="navigationheader">
+                                                    <td>我的项目</td>
+                                                </tr>
+                                                <tr class="navigationbody">
+                                                    <td>
+                                                        <a href="javascript:void(0);">GMCC</a>
+                                                        <br>
+                                                        <a href="javascript:void(0);">上海松下</a>                                                    
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div>                                
+                                        <table class="leftnavigation" cellspacing="0">
+                                            <tbody>
+                                                <tr class="navigationheader">
+                                                    <td>公告栏</td>
+                                                </tr>
+                                                <tr class="navigationbody">
+                                                    <td>
+                                                        <a href="javascript:void(0);">MIS上线公告</a>
+                                                        <br>
+                                                        <a href="javascript:void(0);">合同系统停机通知</a>                                                    
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>                                
+                                </td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td width="87%" valign="top">
+                <div class="containers">
+                <div class="container">
+                <table id="filter">
+                	<tbody>
+                    	<tr><td>过滤依据:&nbsp;<select><option>我的所有项目</option><option>GMCC</option></select></td><td><div class="button"><a href="javascript:void(0);">应用过滤器</a></div></td></tr>
+                    </tbody>
+                </table>
+                </div>        
+
+                
+				<div class="container">
+                    <div class="containerheader colorheader">
+                    	<div class="floatleft headertitle">查看数据</div>
+                    </div>
+                    <table class="twocolumnstable" cellspacing="0">
+                    	<tr>
+                        	<td class="twocolumn">
+                               <table class="itemdetailtable">
+                               	<tr><td class="itemdetailtablelabel">用户名:</td><td>ivanmarkliu</td></tr>
+                                <tr><td class="itemdetailtablelabel">全称:</td><td>ivanmarkliu</td></tr>
+                                <tr><td class="itemdetailtablelabel">电子邮件:</td><td>ivanmarkliu@gmail.com</td></tr> 
+                                <tr><td class="itemdetailtablelabel">状态:</td><td>活动</td></tr>                                                                
+                                <tr><td class="itemdetailtablelabel">日期格式:</td><td>MM/dd/yyyy h:mm a z</td></tr>                                                      
+                               </table>                        
+                            </td>
+                        	<td class="twocolumn" cellspacing="0">
+                               <table class="itemdetailtable">
+                               	<tr><td class="itemdetailtablelabel">用户名:</td><td>ivanmarkliu</td></tr>
+                                <tr><td class="itemdetailtablelabel">全称:</td><td>ivanmarkliu</td></tr>
+                                <tr><td class="itemdetailtablelabel">电子邮件:</td><td>ivanmarkliu@gmail.com</td></tr> 
+                                <tr><td class="itemdetailtablelabel">状态:</td><td>活动</td></tr>                                                                           
+                               </table>                        
+                            </td> 
+                            <td width="20%">&nbsp;</td>                      
+                        </tr>
+                    </table>
+                    <div class="containerfooter">
+                    	<div class="button floatright"><a href="javascript:void(0);">编辑</a></div>
+                        <div class="button floatright"><a href="javascript:void(0);">更改密码</a></div>     
+                        <div class="button floatright disable"><a href="javascript:void(0);">查看全部</a></div>              
+                    </div>
+                </div>                      
+
+				      
+                                        
+                <div class="container">
+                	<table class="tabtable" cellspacing="0" cellpadding="0" border="0">
+                    	<tbody><tr>
+                        	<td><img width="9px" height="21px" src="images/first_active_tab.gif"></td>
+                            <td class="tabbody" width="0" background="images/tab_active_middle.gif">
+                            	<a href="javascript:void(0);">角色</a>
+                           	</td>
+                            <td><img width="19px" height="21px" src="images/active_inactive_tab.gif"></td>
+                            <td class="tabbody" width="0" background="images/tab_inactive_middle.gif">
+                            	<a href="javascript:void(0);">角色权限设置</a>
+                            </td>
+                            <td><img width="19px" height="21px" src="images/inactive_last_tab.gif"></td>
+                            <td width="100%" background="images/horiz_notab_background.gif"></td>
+                        </tr></tbody>
+                    </table>
+                    <div class="containerheader">
+                    	<div class="floatleft headertitle">所有数据</div>
+                    	<div class="button floatright"><a href="javascript:void(0);">过滤</a></div>
+                        <div class="button floatright"><a href="javascript:void(0);">查看全部</a></div>
+                    </div>
+                    <div id="gridbox" style="width:100%; height:200px; background-color:white;"></div>
+                    <div class="containerfooter">
+                    	<div class="button floatright"><a href="javascript:void(0);">新建</a></div>
+                        <div class="button floatright"><a href="javascript:void(0);">删除</a></div>     
+                        <div class="button floatright disable"><a href="javascript:void(0);">查看全部</a></div>                                            
+                    </div>
+                </div>
+                
+				<div class="container">
+                    <div class="containerheader">
+                    	<div class="floatleft headertitle">新增数据</div>
+                    	<div class="button floatright"><a href="javascript:void(0);">过滤</a></div>
+                        <div class="button floatright"><a href="javascript:void(0);">查看全部</a></div>
+                    </div>
+                    <table class="paddedtable" cellspacing="0">
+                        <tbody>
+                            <tr><td class="paddedtablelabel">名称:<span class="textrequired">*</span></td><td><input class="titledesc inputrequired" type="text" size="50"></td></tr>
+                            <tr><td class="paddedtablelabel">描述:</td><td><textarea class="titledesc" rows="5" cols="50"></textarea></td></tr> 
+                        </tbody>
+                    </table>
+                    <div class="containerfooter">
+                    	<div class="button floatright"><a href="javascript:void(0);">新建</a></div>
+                        <div class="button floatright"><a href="javascript:void(0);">删除</a></div>    
+                        <div class="button floatright disable"><a href="javascript:void(0);">查看全部</a></div>             
+                    </div>
+                </div>  
+                </div>                                  
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
