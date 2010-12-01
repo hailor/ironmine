@@ -3,9 +3,9 @@
 #main{
 	
 }
-table, tr, td, th{border-spacing: 0;line-height: 135%;border-collapse:collapse;}
+table, tr, td, th{border-spacing: 0;line-height: 135%;}
 table, td, tr {font-size: 1em;}
-table{padding-top: 0;border-collapse:collapse; border-width: 0; border-spacing: 0;}
+table{padding-top: 0;border-width: 0; border-spacing: 0;}
 
 body{
 	font-size: 12px;
@@ -17,6 +17,13 @@ body{
 .floatright{ float:right !important;}
 .floatleft{float:left !important;}
 .headertitle{font-weight:bold;}
+
+div#banner{
+    
+}
+div#footer{
+    
+}
 
 div#toptoolbar{
 	background-color: #000;
