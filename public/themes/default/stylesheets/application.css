@@ -236,6 +236,7 @@ table.paddedtable td.paddedtablelabel{ width: 130px;}
 input.halfdesc, textarea.halfdesc{width: 300px;}
 input.titledesc, textarea.titledesc{width: 630px;}
 .inputrequired{background-color:#FF9;}
+.inputdisable{background-color:#CCC;}
 
 span.textrequired{color:#990000;}
 
