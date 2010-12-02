@@ -1,0 +1,21 @@
+<h1>Listing product_modules</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @product_modules.each do |product_module| %>
+  <tr>
+    <td><%= link_to 'Show', product_module %></td>
+    <td><%= link_to 'Edit', edit_product_module_path(product_module) %></td>
+    <td><%= link_to 'Destroy', product_module, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Product module', new_product_module_path %>

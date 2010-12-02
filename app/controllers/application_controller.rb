@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   theme :default
   protect_from_forgery
   helper :all
+  #ajax请求不使用layout
+  layout proc{ |c| c.request.xhr? ? false : "application" }
 
   # filters
   # user_setup 从session中取得用户,如果session中没有[:user_id]则什么也不做
@@ -13,7 +15,7 @@ class ApplicationController < ActionController::Base
   # layout_setup 检查设置窗口的运行模式，wmode,设置页面布局
   before_filter :user_setup
   before_filter :permission_setup
-#  before_filter :check_if_login_required
+  #before_filter :check_if_login_required
   before_filter :set_localization
   before_filter :layout_setup
 

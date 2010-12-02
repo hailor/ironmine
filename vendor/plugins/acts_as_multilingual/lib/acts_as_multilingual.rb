@@ -5,6 +5,10 @@ module Ironmine
         base.extend ClassMethods
       end
 
+      def USABLE_LANGUAGE
+         ['zh','en']
+      end
+
       module ClassMethods
         # acts_as_multilingual
         # acts_as_multilingual传入一个hash做参数，参数分为四部分
@@ -91,7 +95,7 @@ module Ironmine
           end
 
           if needed_create_mult
-            usabel_language.each do |language|
+            usable_language.each do |language|
               mult = self.send(multilingual_options[:lang_relation].to_sym).build(data.merge({:language=>language,:source_lang=>::I18n.locale}))
               mult.save
             end
@@ -101,7 +105,7 @@ module Ironmine
           end
         end
 
-        def usabel_language
+        def usable_language
           Ironmine::Acts::Multilingual::USABLE_LANGUAGE.call
           #Irm::Language.active.installed.query_code.collect(&:language_code)
         end

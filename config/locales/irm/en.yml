@@ -1,2 +1,67 @@
 en:
   eva: "hello"
+  #=========================usual custom=======================#
+  errors:
+    already_exists_in_service_center: Email is token by someone in current ServiceCenter
+  access_denied: Access {{permission}} Deny!
+  invalid_invitation_key: Invalid invitation key!
+  #usual button
+  cancel: Cancel
+  next: Next Step
+  last: Back To Last Step
+  or: or
+  show: Show
+  edit: Edit
+  delete: Delete
+  back: Back
+  disable: Disable
+  done: Done
+  loading: loading...
+  apply: Apply
+  clear: Clear
+  save: Save
+  update: Update
+  create: Create
+  confirm: Confirm
+  active: Active
+  add: Add
+  copy:  Copy
+  multilingual: Multilingual
+  processing: Processing...
+  button_add_file: Add File
+  more: More
+  #usual words
+  notice_account_invalid_creditentials: User or Password Error
+  successfully_updated: Successfully Updated
+  successfully_created: Successfully Created
+  successfully_copyed:  Successfully Copyed
+  successfully_deleted: Successfully Deleted
+  failed_updated: Failed Updated
+  failed_created: Failed Created
+  failed_copyed:  Failed Copyed
+  failed_deleted:  Failed Deleted
+  label_delete_confirm: Are you sure to delete this record?
+  label_no_data: No Data
+  #=========================end usual custom=======================#
+  #=========================    irm lookup_types_controller=======================#
+  label_lookup_types: Lookup Type
+  label_lookup_level: Lookup Level
+  label_meaning: Meaning
+  label_description: Description
+  label_start_date_active: Start Date Active
+  label_end_date_active: End Date Active
+  label_global_level: Golbal
+  label_extended_level: Extended
+  label_user_level: User
+  label_add_another_lookup_value: add another lookup value
+  label_delete_last_lookup_value: delete last lookup value
+  label_new_lookup_type: New Lookup Type
+  label_irm_lookup_type_lookup_type: Lookup Type
+  label_irm_lookup_type_meaning: Meaning
+  label_irm_lookup_value_lookup_code: Lookup Code
+  label_irm_lookup_value_meaning: Meaning
+  lable_irm_lookup_type_editing_multilingual: Edit Language
+  label_irm_lookup_value_lookup_code: Lookup code
+  label_irm_lookup_value_meaning: Meaning
+  label_irm_lookup_type_description: Description
+  #=========================end irm lookup_types_controller=======================#
