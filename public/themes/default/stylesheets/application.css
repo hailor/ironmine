@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 #main{
-	
+
 }
 table, tr, td, th{border-spacing: 0;line-height: 135%;}
 table, td, tr {font-size: 1em;}
@@ -9,20 +9,50 @@ table{padding-top: 0;border-width: 0; border-spacing: 0;}
 
 body{
 	font-size: 12px;
-	line-height: 1.125em;	
+	line-height: 1.125em;
 }
 
 .titlebar {background: #DDDDDD;margin: -1px 0 0;padding: 9px 10px;}
 .sectiontitle {color: #222222;font-weight: bold;}
 .floatright{ float:right !important;}
 .floatleft{float:left !important;}
-.headertitle{font-weight:bold;}
+.headertitle{font-weight:bold; float:left;}
+
+div.sysmsgbox, div.sysmsgdetail{
+    background: none repeat scroll 0 0 #fff1a8;
+    padding: 1px 10px 1px 10px;
+    text-align: center;
+    display: inline-block;
+    font-weight: bold;
+    word-wrap:break-word;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -moz-binding: url('ellipsis.xml#ellipsis');  /*兼容Firefox，调用ellipsis.xml文件，注意ellipsis.xml文件路径*/
+}
+
+div.sysmsgbox{
+    max-width: 300px;
+    max-height: 16px;
+}
+
+div.sysmsgdetail a{
+    padding: 1px 8px 1px 0;
+}
+
+div.msgcontainer{
+    position:absolute;
+    text-align: center;
+    z-index: 10;
+    top: 113px;
+    left: 480px;
+}
 
 div#banner{
-    
+
 }
 div#footer{
-    
+
 }
 
 div#toptoolbar{
@@ -40,7 +70,7 @@ div.toptoolbarbtn{
 	color: #fff;
 	line-height: 25px;
 	cursor: pointer;
-	padding: 1px 5px 0 5px;	
+	padding: 1px 5px 0 5px;
 }
 div.toptoolbarbtn a:link, div.toptoolbarbtn a:visited, div.toptoolbarbtn a:hover{color: #fff; text-decoration: none;}
 div.toptoolbarbtn:hover{background: url("../images/toptoolbar_bg_over.gif") repeat-x scroll 0 0 #000;}
@@ -53,7 +83,7 @@ div.toptoolbarsep{
 	height: 23px;
 	font-size: 1px;
 	float:left;
-	margin: 1px 5px 0 5px;	
+	margin: 1px 5px 0 5px;
 }
 
 div.jumpbutton {
