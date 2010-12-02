@@ -17,7 +17,7 @@ ActionView::Helpers::AssetTagHelper.register_javascript_expansion :defaults=>%w(
 #扩展ActionRecord::Base,实现数据保存时自动给created_by与updated_by赋值
 ActiveRecord::Base.send(:include,Irm::SetWho)
 #扩展ActionRecord::Base,自动生成scope query,active和instance方法active?
-#ActiveRecord::Base.send(:include,Irm::QueryExtend)
+ActiveRecord::Base.send(:include,Irm::QueryExtend)
 #扩展link_to,url_for,增加权限验证
 #ActionView::Base.send(:include,Irm::UrlHelper)
 
@@ -26,7 +26,8 @@ ActiveRecord::Base.send(:include,Irm::SetWho)
 
 #require 'rufus/scheduler'
 # 程序中使用的ironmine中的常量，建议配置型的常量放到此处
-#module Ironmine
+module Irm
+  STORAGE = Irm::DataStorage.instance
    #应用程序是否以多服务中心模式运行
 #   MULTI_SUBDOMAIN = false
 
@@ -41,7 +42,7 @@ ActiveRecord::Base.send(:include,Irm::SetWho)
 #   ATTACHMENT_PATH = ":rails_root/public/upload/:class/:id/:style/:basename.:extension"
 
 #   SCHEDULER = Rufus::Scheduler.start_new
-#end
+end
 
 #配置delayed_job
 #当job执行失败,是否从队列中删除
