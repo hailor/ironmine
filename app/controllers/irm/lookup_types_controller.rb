@@ -40,11 +40,11 @@ class Irm::LookupTypesController < ApplicationController
   # POST /lookup_types
   # POST /lookup_types.xml
   def create
-    @lookup_type = Irm::LookupType.new(params[:lookup_type])
+    @lookup_type = Irm::LookupType.new(params[:irm_lookup_type])
 
     respond_to do |format|
       if @lookup_type.save
-        format.html { redirect_to(@lookup_type, :notice => 'Lookup type was successfully created.') }
+        format.html { render "successful_info" }
         format.xml  { render :xml => @lookup_type, :status => :created, :location => @lookup_type }
       else
         format.html { render :action => "new" }
@@ -80,4 +80,48 @@ class Irm::LookupTypesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def successful_info
+    nil
+  end
+
+  def create_value
+    @lookup_code = params["c0"]
+    @meaning = params["c1"]
+    @description   = params["c2"]
+    @start_date_active = params["c3"]
+    @end_date_active   = params["c4"]
+
+    @mode = params["!nativeeditor_status"]
+
+    @id = params["gr_id"]
+    case @mode
+      when "inserted"
+            @lookup_value = Irm::LookupValue.new({:lookup_type=>'test',
+                                                  :lookup_code=>@lookup_code,
+                                                  :meaning=>@meaning,
+                                                  :description=>@description,
+                                                  :start_date_active=>@start_date_active,
+                                                  :end_date_active => @end_date_active})
+            @lookup_value.save!
+
+            @tid = @lookup_value.id
+        when "deleted"
+            @lookup_value=Irm::LookupValue.find(@id)
+            @lookup_value.destroy
+
+            @tid = @id
+        when "updated"
+            @lookup_value=Irm::LookupValue.find(@id)
+            @lookup_value.lookup_code = @lookup_code
+            @lookup_value.meaning=@meaning
+            @lookup_value.description=@description
+            @lookup_value.start_date_active = @start_date_active
+            @lookup_value.end_date_active = @end_date_active
+            @lookup_value.save!
+
+            @tid = @id
+    end
+  end
+
 end

@@ -53,7 +53,7 @@ function ajaxLink(el) {
    				return false;
    			}
 		}
-		var href=$this.attr("action");
+		var href=$this.attr("href");
 		//if(isIE()) {href = encodeURI(href);}
 		var params={url: href,data:""}
 		var hrefLength=href.indexOf("?");
@@ -77,7 +77,7 @@ function ajaxLink(el) {
 	};
 }
 
-function simpleAjaxLink(el){
+function menuLink(el){
    var identify=0;
 	var $this=$(el);
 	el.onclick=function() {
@@ -91,7 +91,7 @@ function simpleAjaxLink(el){
    				return false;
    			}
 		}
-		var href=$this.attr("action");
+		var href=$this.attr("href");
         var targetDiv= get_target_div(arr.success);
         //jquery ajax loading
         $("#"+targetDiv).load(href,"",function(response, status, xhr) {
@@ -111,6 +111,7 @@ function ajaxSubmit(el) {
 	$(el).click(function() {
 		identify++;
 		var $this=$(this);
+
 		var arr = parseScript($this.attr("script"));
 		var tmp = this;
         //alert($this.attr("script"));
@@ -124,8 +125,7 @@ function ajaxSubmit(el) {
 		var $formElement = $this.parents("form:first");
         //alert($formElement.attr('action'));
 		$formElement.ajaxSubmit(function(data, status) {
-            //alert(data);
-			loadAndRunAction(arr, this, data, identify);
+			loadAndRunAction(arr, tmp, data, identify);
 		});
 		return false;
 	});
@@ -138,12 +138,13 @@ function init(el) {
 	$el.find("*[actionType]").each(function() {
 		i++;
 		var actionType = $(this).attr("actionType");
-        if(actionType == "ajaxLink") {
-			simpleAjaxLink(this);
-		}
-		else if(actionType == "ajaxSubmit") {
+        if(actionType == "menuLink") {
+			menuLink(this);
+		}else if(actionType == "ajaxSubmit") {
 			ajaxSubmit(this);
-		}
+		}else if (actionType == "AjaxLink"){
+            ajaxLink(this);
+        }
 	});
 }
 

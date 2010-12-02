@@ -5,6 +5,8 @@ Ironmine::Application.routes.draw do
     #lookup_types
     match '/lookup_types/new(.:format)'=>"lookup_types#new",:via=>:get
     match '/lookup_types/create(.:format)'=>"lookup_types#create",:via=>:post
+    match '/lookup_types/successful_info(.:format)'=>"lookup_types#successful_info",:via=>:get
+    match '/lookup_types/create_value(.:format)'=>"lookup_types#create_value",:via=>:post
     match '/lookup_types/index(.:format)'=>"lookup_types#index",:via=>:get
     match '/lookup_types/:id/show(.:format)'=>"lookup_types#show",:via=>:get
     match '/lookup_types/:id/edit(.:format)'=>"lookup_types#edit",:via=>:get

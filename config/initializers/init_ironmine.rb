@@ -5,6 +5,8 @@ ActionView::Base.field_error_proc=Proc.new{ |html_tag, instance| "<span class=\"
 
 #将rails 3中默认的javascript prototype库替换成jquery
 ActionView::Helpers::AssetTagHelper.register_javascript_expansion :defaults=>%w(jquery.js rails.js)
+ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ajax_relation=>%w(ajax_util.js jquery.form.js)
+ActionView::Helpers::AssetTagHelper.register_javascript_expansion :dhtmlx=>%w(dhtmlx/dhtmlxcommon.js dhtmlx/dhtmlxwindows.js dhtmlx/dhtmlxgrid.js dhtmlx/dhtmlxlayout.js dhtmlx/dhtmlxcontainer.js dhtmlx/dhtmlxgridcell.js dhtmlx/dhtmlxgrid_excell_link.js dhtmlx/dhtmlxtabbar.js dhtmlx/dhtmlxcalendar.js dhtmlx/dhtmlxdataprocessor.js dhtmlx/dhtmlxgrid_excell_dhxcalendar.js dhtmlx/dhtmlxtabbar_start.js)
 #ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jquery_ui=>%w(jquery-ui.js)
 #ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jquery_date=>%w(jquery.datePicker.js date.js)
 #ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jquery_other=>%w(jquery.loadmask.min.js  jquery.Jcrop.js jquery.json-2.2.min.js fancyzoom.js jquery.progressbar.min.js)
