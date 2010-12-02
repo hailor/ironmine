@@ -28,7 +28,8 @@ ActiveRecord::Base.send(:include,Irm::QueryExtend)
 
 #require 'rufus/scheduler'
 # 程序中使用的ironmine中的常量，建议配置型的常量放到此处
-#module Ironmine
+module Irm
+  STORAGE = Irm::DataStorage.instance
    #应用程序是否以多服务中心模式运行
 #   MULTI_SUBDOMAIN = false
 
@@ -43,7 +44,7 @@ ActiveRecord::Base.send(:include,Irm::QueryExtend)
 #   ATTACHMENT_PATH = ":rails_root/public/upload/:class/:id/:style/:basename.:extension"
 
 #   SCHEDULER = Rufus::Scheduler.start_new
-#end
+end
 
 #配置delayed_job
 #当job执行失败,是否从队列中删除
