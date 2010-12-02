@@ -18,6 +18,11 @@ body{
 .floatleft{float:left !important;}
 .headertitle{font-weight:bold;}
 
+div#sysmessages{
+	background: none repeat scroll 0 0 #fff1a8;
+	color: #000000;
+}
+
 div#banner{
     
 }
