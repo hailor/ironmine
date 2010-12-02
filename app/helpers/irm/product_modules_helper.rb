@@ -1,0 +1,2 @@
+module Irm::ProductModulesHelper
+end
