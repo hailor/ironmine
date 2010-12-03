@@ -135,4 +135,11 @@ class ApplicationController < ActionController::Base
       self.class.layout self.class.default_layout unless self.class.default_layout.eql?(_layout)
     end
   end
+
+  #进行分页，返回分页后的scope和scope的记录的总记录数
+  def paginate(scoped,page,per_page)
+     page||=1
+     per_page||=10
+     [scoped.offset((page.to_i-1)*per_page.to_i).limit(per_page),scoped.count]
+  end
 end

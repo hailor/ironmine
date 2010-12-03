@@ -55,6 +55,7 @@ zh:
   label_global_level: 系统级
   label_extended_level: 可扩展
   label_user_level: 用户级
+  label_status_code: 记录状态
   label_add_another_lookup_value: 增加新的快速编码值
   label_delete_last_lookup_value: 删除最后一行的快速编码值
   label_new_lookup_type: 新建快速编码

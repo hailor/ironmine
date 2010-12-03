@@ -98,7 +98,7 @@ function menuLink(el){
         });
         //init data
         var source = document.getElementById("#"+targetDiv);
-        $(source).find("*[actionType]").each(function() {
+        $(source).find("*[actiontype]").each(function() {
             this.onclick = null;
         });
         init("#" + targetDiv);
@@ -135,14 +135,14 @@ function init(el) {
 	var numload = 0;
 	$el=$(el);
 	var i = 0;
-	$el.find("*[actionType]").each(function() {
+	$el.find("*[actiontype]").each(function() {
 		i++;
-		var actionType = $(this).attr("actionType");
+		var actionType = $(this).attr("actiontype");
         if(actionType == "menuLink") {
 			menuLink(this);
 		}else if(actionType == "ajaxSubmit") {
 			ajaxSubmit(this);
-		}else if (actionType == "AjaxLink"){
+		}else if (actionType == "ajaxLink"){
             ajaxLink(this);
         }
 	});
@@ -251,7 +251,7 @@ function replace(param, data) {
 	}
 	var html=$(targetData).html();
 	var source = document.getElementById(s[0]);
-	$(source).find("*[actionType]").each(function() {
+	$(source).find("*[actiontype]").each(function() {
 		this.onclick = null;
 	});
 	if(html&&html!=""){$(source).html(html);}

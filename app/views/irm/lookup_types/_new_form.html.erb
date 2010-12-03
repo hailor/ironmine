@@ -69,7 +69,7 @@
                     <script type="text/javascript" charset="utf-8">
                     var lookup_value_grid = new dhtmlXGridObject('lookup_value_grid');
                     lookup_value_grid.setHeader("<%=t(:label_irm_lookup_value_lookup_code)%>,<%=t(:label_meaning)%>,<%=t(:label_description)%>,<%=t(:label_start_date_active)%>,<%=t(:label_end_date_active)%>");
-                    lookup_value_grid.setInitWidthsP("15,15,15,15,37");
+                    lookup_value_grid.setInitWidths("100,100,100,100,*");
                     lookup_value_grid.setColTypes("ed,ed,ed,dhxCalendar,dhxCalendar");//set column types
                     lookup_value_grid.setColSorting("str,str,str,date,date");
                     init_grid(lookup_value_grid);
@@ -77,7 +77,7 @@
                     <div class="containerfooter">
                     	<div class="button floatright" id = "id_lookup_code_submit"><a href="#" onclick="saveRow();" ><%= t(:save) %></a></div>
                         <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a></div>
-                        <div class="button floatright" id = "id_add"><a href="#" onclick="addRow(lookup_value_grid);"><%= t(:add) %></a></div>
+                        <div class="button floatright" id = "id_add" onclick="addRow(lookup_value_grid);"><%= t(:add) %></div>
                         <div class="button floatright"><a href="javascript:void(0);" onclick="removeRow(lookup_value_grid);"><%= t(:delete) %></a></div>
                     </div>
     </div>
