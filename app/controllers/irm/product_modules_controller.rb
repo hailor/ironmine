@@ -2,11 +2,11 @@ class Irm::ProductModulesController < ApplicationController
   # GET /product_modules
   # GET /product_modules.xml
   def index
-    @product_modules = Irm::ProductModule.all
-
+    @product_module = Irm::ProductModule.new
+    
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @product_modules }
+      format.xml  { render :xml => @product_module }
     end
   end
 
@@ -79,5 +79,13 @@ class Irm::ProductModulesController < ApplicationController
       format.html { redirect_to(product_modules_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def get_data
+    @product_modules = Irm::ProductModule.multilingual
+
+    respond_to do |format|
+      format.json  {render :json => @product_modules.to_dhtmlxgrid_json(['M', :product_short_name, :name, :description, :installed_flag, :status_code], @product_modules.size) }
+    end    
   end
 end
