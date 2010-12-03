@@ -17,11 +17,11 @@
     <div class="containerfooter">
         <div class="button floatright"><%=link_to t(:new),{:controller=>"irm/lookup_types",:action=>"new"},
                                                             :script=>"/replace(id_user,id_new_person);/",
-                                                            :actiontype=>"ajaxLink"%>
+                                                            :action_type=>"ajaxLink"%>
         </div>
         <div class="button floatright"><%=link_to t(:edit),{:controller=>"irm/lookup_types",:action=>"edit",:id=>8},
                                                             :script=>"/replace(id_user,id_new_person);/",
-                                                            :actiontype=>"ajaxLink"%>
+                                                            :action_type=>"ajaxLink"%>
         </div>
         <div class="button floatright">&nbsp;<%= t(:cancel) %>&nbsp;
         </div>
