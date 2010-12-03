@@ -1,2 +1,6 @@
 zh:
-  hello: "hellw 你好"
+  label_multilingual_language: 语言
+  label_multilingual_source_lang: 来源语言
+  language_code_en: 英语
+  language_code_jp: 日语
+  language_code_zh: 中文
