@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitIrmLanguage < ActiveRecord::Migration
   def self.up
     en_language=Irm::Language.new(:language_code=>'zh',
