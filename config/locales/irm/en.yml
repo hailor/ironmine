@@ -53,6 +53,7 @@ en:
   label_global_level: Golbal
   label_extended_level: Extended
   label_user_level: User
+  label_status_code: Status Code
   label_add_another_lookup_value: add another lookup value
   label_delete_last_lookup_value: delete last lookup value
   label_new_lookup_type: New Lookup Type

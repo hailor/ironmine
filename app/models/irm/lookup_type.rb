@@ -8,4 +8,5 @@ class Irm::LookupType < ActiveRecord::Base
   acts_as_multilingual({:columns =>[:meaning,:description],:required=>[:meaning]})
 
   query_extend
+
 end

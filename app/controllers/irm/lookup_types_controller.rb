@@ -81,6 +81,16 @@ class Irm::LookupTypesController < ApplicationController
     end
   end
 
+  def get_lookup_types
+    @lookup_types = Irm::LookupType.where("1=1")
+
+    respond_to do |format|
+      format.json  {render :json => @admins.to_dhtmlxgrid_json([:lookup_level,:lookup_type,:meaning,:description,:status_code,''],
+                                                                    @lookup_types.size) }
+    end
+  end
+
+  #TODO once for submit all
   def create_value
     lookup_type_id = params[:lookup_type_id]
     @lookup_type = Irm::LookupType.query(lookup_type_id).first
