@@ -251,4 +251,4 @@ div#breadcrumbs{margin: 3px 0 0;padding: 0 0 0 5px;}
 div#breadcrumbs a{	text-decoration: none;	color: #0055DD;}
 div#breadcrumbs a:hover{	text-decoration:underline;	color: #0055DD;}
 
-span.field_with_errors{ border: red solid 1px;}
+.field_with_errors input, .field_with_errors text_area, .field_with_errors select{ border: red solid 2px;}
