@@ -9,12 +9,12 @@
   $(document).ready(function(){
     var div_str = "<div id='multwin' style='display:none'></div>"
     if($('#multwin').length<1){$('body').append(div_str);}
-    $('#multwin',this).load("/win_edit")
+    $('#multwin',this).load("/multilingual_edit")
     dhxWins = new dhtmlXWindows();
     dhxWins.setImagePath("/images/dhtmlx/");
     dhxWins.enableAutoViewport(false);
     dhxWins.attachViewportTo("winVP");
-    var win = dhxWins.createWindow("mutil",36,42,320,200);
+    var win = dhxWins.createWindow("mutil",36,42,588,142);
     win.attachObject('multwin')
 
 

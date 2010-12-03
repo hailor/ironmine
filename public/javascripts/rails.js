@@ -78,8 +78,15 @@ jQuery(function ($) {
         e.preventDefault();
     });
 
+
     if (jQuery.browser.msie){
        $("form[data-remote]").find("input[type='submit'],button[type='submit'],input[name='commit']").live('click',function(e) {
+           $(this).parents("form[data-remote]").callRemote();
+           if(e.preventDefault) e.preventDefault();
+       });
+    }
+    else{
+       $("form[data-remote]").find("a[type='submit']").live('click',function(e) {
            $(this).parents("form[data-remote]").callRemote();
            if(e.preventDefault) e.preventDefault();
        });

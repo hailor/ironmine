@@ -2,8 +2,8 @@ Ironmine::Application.routes.draw do
 
   scope :module => "irm" do
     match 'login'=>'common#login',:as=>:login
-    match 'win_edit'=>'common#win_edit'
-    match 'win_update'=>'common#win_update'
+    match 'multilingual_edit'=>'common#multilingual_edit'
+    match 'multilingual_update'=>'common#multilingual_update'
     #lookup_types
     match '/lookup_types/new(.:format)'=>"lookup_types#new",:via=>:get
     match '/lookup_types/create(.:format)'=>"lookup_types#create",:via=>:post
