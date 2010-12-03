@@ -5,8 +5,8 @@ class InitIrmProduct < ActiveRecord::Migration
                                     :description=>"Ironmine Framework",
                                     :language=>"en",
                                     :source_lang=>"en"})
-    irm_product.product_modules_tls.build({:name=>"Irm基础模块",
-                                    :description=>"Irm基础模块",
+    irm_product.product_modules_tls.build({:name=>"基础模块",
+                                    :description=>"基础模块",
                                     :language=>"zh",
                                     :source_lang=>"en"})
     irm_product.save
