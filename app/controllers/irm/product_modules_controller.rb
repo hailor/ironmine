@@ -85,7 +85,7 @@ class Irm::ProductModulesController < ApplicationController
     @product_modules = Irm::ProductModule.multilingual
 
     respond_to do |format|
-      format.json  {render :json => @product_modules.to_dhtmlxgrid_json([:product_short_name, :name, :description], @product_modules.size) }
+      format.json  {render :json => @product_modules.to_dhtmlxgrid_json(['M', :product_short_name, :name, :description, :installed_flag, :status_code], @product_modules.size) }
     end    
   end
 end
