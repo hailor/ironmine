@@ -249,3 +249,5 @@ table.itemdetailtable td.itemdetailtablelabel{ width: 20%; text-align:right; pad
 div#breadcrumbs{margin: 3px 0 0;padding: 0 0 0 5px;}
 div#breadcrumbs a{	text-decoration: none;	color: #0055DD;}
 div#breadcrumbs a:hover{	text-decoration:underline;	color: #0055DD;}
+
+span.field_with_errors{ border: red solid 1px;}
