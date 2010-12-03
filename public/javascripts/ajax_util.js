@@ -98,7 +98,7 @@ function menuLink(el){
         });
         //init data
         var source = document.getElementById("#"+targetDiv);
-        $(source).find("*[actiontype]").each(function() {
+        $(source).find("*[action_type]").each(function() {
             this.onclick = null;
         });
         init("#" + targetDiv);
@@ -135,9 +135,9 @@ function init(el) {
 	var numload = 0;
 	$el=$(el);
 	var i = 0;
-	$el.find("*[actiontype]").each(function() {
+	$el.find("*[action_type]").each(function() {
 		i++;
-		var actionType = $(this).attr("actiontype");
+		var actionType = $(this).attr("action_type");
         if(actionType == "menuLink") {
 			menuLink(this);
 		}else if(actionType == "ajaxSubmit") {
@@ -251,7 +251,7 @@ function replace(param, data) {
 	}
 	var html=$(targetData).html();
 	var source = document.getElementById(s[0]);
-	$(source).find("*[actiontype]").each(function() {
+	$(source).find("*[action_type]").each(function() {
 		this.onclick = null;
 	});
 	if(html&&html!=""){$(source).html(html);}
