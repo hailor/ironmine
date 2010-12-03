@@ -1,14 +1,14 @@
 <%= form_for(@product_module,:url=>{:action=>"create"}) do |f| %>
    <div id="form_area" class="container">
                 <div class="containerheader">
-                    <div class="floatleft headertitle"><%=t(:label_irm_product_module)%></div>
+                    <div class="floatleft headertitle"><%=t(:label_irm_product_module_edit)%></div>
                 </div>
                 <table class="twocolumnstable" cellspacing="0">
                     <tr>
                         <td class="twocolumn">
                            <table class="itemdetailtable">
                                <tr><td class="itemdetailtablelabel"><%=(t :label_irm_product_module_product_short_name)%>:</td>
-                                <td><%=f.text_field :product_short_name,:size=>40,:required=>true,:irm_uppercase=>true %></td>
+                                <td><%=f.text_field :product_short_name,:size=>40,:required=>true,:irm_uppercase=>true, :readonly=> true %></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_product_module_name)%>:</td>
                               <td><%=f.text_field :name ,:size=>40,:required=>true%></td>
