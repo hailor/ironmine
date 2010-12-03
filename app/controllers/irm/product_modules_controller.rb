@@ -40,11 +40,11 @@ class Irm::ProductModulesController < ApplicationController
   # POST /product_modules
   # POST /product_modules.xml
   def create
-    @product_module = Irm::ProductModule.new(params[:product_module])
+    @product_module = Irm::ProductModule.new(params[:irm_product_module])
 
     respond_to do |format|
       if @product_module.save
-        format.html { redirect_to(@product_module, :notice => 'Product module was successfully created.') }
+        format.html { redirect_to(:action => "index", :notice => (t :successfully_created)) }
         format.xml  { render :xml => @product_module, :status => :created, :location => @product_module }
       else
         format.html { render :action => "new" }

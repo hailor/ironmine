@@ -1,6 +1,6 @@
 module DhtmlxgridJson
   include ActionView::Helpers::JavaScriptHelper
-
+  include ActionView::Helpers
    def to_dhtmlxgrid_json(attributes,total)
     json = ""
     if total > 0

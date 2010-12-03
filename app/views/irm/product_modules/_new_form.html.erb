@@ -33,8 +33,8 @@
                         </tr>
                     </table>
                     <div class="containerfooter">
-                    	<div class="button floatright" ><a id="id_submit" href="<%=url_for(:controller=>"irm/product_modules",:action=>"create")%>" script="/alert('message['successMessage']');after_save_lookup_type();/" actionType="ajaxSubmit"><%= t(:save) %></a></div>
-                        <div class="button floatright"><%= link_to t(:cancel), {:action => "edit", :id => 1}, :script => "/replace(form_area,form_area);/", :actiontype=>"ajaxLink"%></div>
+                    	<div class="button floatright" ><%= link_to t(:save), {}, {:action_type => "ajaxSubmit", :script => "/replace(containers, containers);/"}%></div>
+                        <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(form_area,form_area);/", :action_type=>"ajaxLink"%></div>
                     </div>
           </div>
     <% end %>
