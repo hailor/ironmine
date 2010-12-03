@@ -1,17 +1,17 @@
     <%= form_for(@product_module,:url=>{:action=>"create"}) do |f| %>
        <div class="container">
                     <div class="containerheader">
-                    	<div class="floatleft headertitle"><%=t(:label_lookup_types)%></div>
+                    	<div class="floatleft headertitle"><%=t(:label_irm_product_module)%></div>
                     </div>
                     <table class="twocolumnstable" cellspacing="0">
                     	<tr>
                         	<td class="twocolumn">
                                <table class="itemdetailtable">
                                	<tr><td class="itemdetailtablelabel"><%=(t :label_irm_product_module_product_short_name)%>:</td>
-                                    <td><%=f.text_field :product_short_name,:size=>45,:required=>true,:irm_uppercase=>true %></td>
+                                    <td><%=f.text_field :product_short_name,:size=>40,:required=>true,:irm_uppercase=>true %></td>
                                 </tr>
                                 <tr><td class="itemdetailtablelabel"><%=(t :label_irm_product_module_name)%>:</td>
-                                  <td><%=f.text_field :product_name ,:size=>45,:required=>true%></td>
+                                  <td><%=f.text_field :name ,:size=>40,:required=>true%></td>
                                 </tr>
                                 <tr><td class="itemdetailtablelabel"><%=(t :label_irm_product_module_installed_flag)%>:</td>
                                   <td><%=f.check_box :installed_flag%></td>
@@ -22,14 +22,14 @@
                                <table class="itemdetailtable">
                                 <div id="id_lookup_level">
                                	<tr><td class="itemdetailtablelabel">
-                               	      <%=t(:label_irm_product_module_description)%>
+                               	      <%=t(:label_irm_product_module_description)%>:
                                    </td>
-                                   <td><%= f.text_field :product_description, :cols => 45, :rows => 5%></td>
+                                   <td><%= f.text_area :description, :cols => 40, :rows => 2%></td>
                                 </tr>
                                 </div>
                                </table>
                             </td>
-                            <td width="20%">&nbsp;</td>
+                            <td width="10%"></td>
                         </tr>
                     </table>
                     <div class="containerfooter">
