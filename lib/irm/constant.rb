@@ -2,6 +2,8 @@
 # 如果是需要设置的应该放在config\initializers\init_ironmine.rb文件中，方便修改
 module Irm
   module Constant
+    #数据可用标记
+    ENABLED = "ENABLED"
     #整个系统中进行SYS_YES
     SYS_YES = 'Y'
     SYS_NO = 'N'
