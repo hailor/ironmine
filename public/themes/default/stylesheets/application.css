@@ -235,7 +235,8 @@ table.paddedtable td.paddedtablelabel{ width: 130px;}
 
 input.halfdesc, textarea.halfdesc{width: 300px;}
 input.titledesc, textarea.titledesc{width: 630px;}
-.inputrequired{background-color:#FF9;}
+.inputrequired{background-color:#FFFFCC;}
+.inputdisable{background-color:#CCC;}
 
 span.textrequired{color:#990000;}
 
@@ -243,7 +244,7 @@ table.twocolumnstable{width:100%;border: #cccccc solid; border-width: 0 1px 0 0;
 table.twocolumnstable td.twocolumn{	width: 40%; vertical-align: top; border: #cccccc solid; border-width: 0 0 0 1px; padding-left: 15px;}
 
 table.itemdetailtable{width: 100%;}
-table.itemdetailtable td.itemdetailtablelabel{ width: 130px;}
+table.itemdetailtable td.itemdetailtablelabel{ width: 20%; text-align:right; padding-right: 10px;}
 
 div#breadcrumbs{margin: 3px 0 0;padding: 0 0 0 5px;}
 div#breadcrumbs a{	text-decoration: none;	color: #0055DD;}

@@ -65,3 +65,11 @@ zh:
   label_irm_lookup_value_meaning: 含义
   label_irm_lookup_type_description: 描述
   #=========================end irm lookup_types_controller================#
+  #=========================    irm product_modules_controller=====================#
+  label_irm_product_module: 产品模块
+  label_irm_product_module_list: 产品模块列表
+  label_irm_product_module_product_short_name: 产品简称
+  label_irm_product_module_name: 产品名称
+  label_irm_product_module_description: 描述
+  label_irm_product_module_installed_flag: 是否安装
+  #=========================end irm product_modules_controller================#    

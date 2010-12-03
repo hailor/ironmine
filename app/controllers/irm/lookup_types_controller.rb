@@ -76,16 +76,14 @@ class Irm::LookupTypesController < ApplicationController
     @lookup_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to(lookup_types_url) }
+      format.html { redirect_to(:action=>"index") }
       format.xml  { head :ok }
     end
   end
 
-  def successful_info
-    nil
-  end
-
   def create_value
+    lookup_type_id = params[:lookup_type_id]
+    @lookup_type = Irm::LookupType.query(lookup_type_id).first
     @lookup_code = params["c0"]
     @meaning = params["c1"]
     @description   = params["c2"]
@@ -97,7 +95,7 @@ class Irm::LookupTypesController < ApplicationController
     @id = params["gr_id"]
     case @mode
       when "inserted"
-            @lookup_value = Irm::LookupValue.new({:lookup_type=>'test',
+            @lookup_value = Irm::LookupValue.new({:lookup_type=>@lookup_type,
                                                   :lookup_code=>@lookup_code,
                                                   :meaning=>@meaning,
                                                   :description=>@description,

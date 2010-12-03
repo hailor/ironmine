@@ -1,0 +1,18 @@
+    <div class="container">
+        <div class="containerheader">
+           <div class="floatleft headertitle"><%=t(:label_irm_product_module)%></div>
+        </div>
+        <div id="product_modules_grid" style="width:100%; height:200px; background-color:white;"></div>
+        <script type="text/javascript" charset="utf-8">
+            var lookup_value_grid = new dhtmlXGridObject('lookup_value_grid');
+            lookup_value_grid.setHeader("<%=t(:label_irm_product_module_product_short_name)%>,<%=t(:label_irm_product_module_name)%>,<%=t(:label_irm_product_module_description)%>,<%=t(:label_irm_product_module_installed_flag)%>,<%=t(:active)%>,<%=t(:multilingual)%>");
+            lookup_value_grid.setInitWidthsP("15,15,15,15,37");
+            lookup_value_grid.setColTypes("ed,ed,ed,dhxCalendar,dhxCalendar");//set column types
+            lookup_value_grid.setColSorting("str,str,str,date,date");
+            init_grid(lookup_value_grid);
+        </script>
+        <div class="containerfooter">
+            <div class="button floatright" id = "id_add"><a href="#" onclick="addRow()"><%= t(:add) %></a></div>
+            <div class="button floatright"><a href="javascript:void(0);" onclick="removeRow()"><%= t(:delete) %></a></div>
+        </div>
+    </div>

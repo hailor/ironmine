@@ -59,8 +59,8 @@ eXcell_dhxCalendar.prototype.getDate = function() {
     return null
 };
 eXcell_dhxCalendar.prototype.getValue = function() {
-    if (this.cell._clearCell)
-        return "";
+    //if (this.cell._clearCell)
+    //    return "";
     return this.cell.innerHTML.toString()._dhx_trim()
 };
 eXcell_dhxCalendar.prototype.detach = function() {
