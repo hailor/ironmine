@@ -190,6 +190,7 @@ function parseFunctionJsonParam(jsonId, f, json) {
 function loadAndRunAction(arr, e, data, identify) {
 	var element = document.createElement("div");
 	$(element).html(data);
+    alert('data = '+ data);
 	var jsonEls = $(element).find("*[type=json]");
 	var json = null;
 	var result = "true";

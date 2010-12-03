@@ -45,17 +45,8 @@
                             <td width="20%">&nbsp;</td>
                         </tr>
                     </table>
-                    <script type="text/javascript" charset="utf-8">
-                        function after_save_lookup_type(){
-                            $("#irm_lookup_type_lookup_type").attr('readonly','readonly');
-                            $("input[type=radio]").each(function(){
-                                $(this).attr('disabled','disabled');
-                            });
-                            $("#irm_lookup_type_lookup_type").attr("style","background-color:#CCCCCC;");
-                        }
-                    </script>
                     <div class="containerfooter">
-                    	<div class="button floatright" ><a id="id_submit" href="<%=url_for(:controller=>"irm/lookup_types",:action=>"create")%>" script="/alert('message['successMessage']');after_save_lookup_type();/" actionType="ajaxSubmit"><%= t(:save) %></a></div>
+                    	<div class="button floatright" ><a id="id_submit" href="<%=url_for(:controller=>"irm/lookup_types",:action=>"create")%>" script="/alert('message['successMessage']');after_save_lookup_type();setLookupType(lookup_value_grid,message['lookupType']);/" actionType="ajaxSubmit"><%= t(:save) %></a></div>
                         <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a></div>
                     </div>
           </div>
@@ -65,47 +56,20 @@
                     <div class="containerheader">
                        <div class="floatleft headertitle"><%=t(:label_irm_lookup_value_lookup_code)%></div>
                     </div>
-                    <%= form_tag(url_for(:controller=>"irm/lookup_types",:action=>"create_value"),:id => 'id_lookup_code_form' ) do %>
                     <div id="lookup_value_grid" style="width:100%; height:200px; background-color:white;"></div>
                     <script type="text/javascript" charset="utf-8">
-                            var lookup_value_grid = new dhtmlXGridObject('lookup_value_grid');
-                            lookup_value_grid.setImagePath("/images/dhtmlx/");
-                            lookup_value_grid.setHeader("<%=t(:label_irm_lookup_value_lookup_code)%>,<%=t(:label_irm_lookup_value_meaning)%>,"+
-                                                        "<%=t(:label_irm_lookup_type_description)%>,<%=t(:label_start_date_active)%>,"+
-                                                        "<%=t(:label_end_date_active)%>");
-                            lookup_value_grid.setColumnIds("lookup_code,meaning,description,start_date_active,end_date_active");
-                            lookup_value_grid.setInitWidths("100,100,100,100,*");
-                            lookup_value_grid.setColTypes("ed,ed,ed,dhxCalendar,dhxCalendar");//set column types                            
-                            lookup_value_grid.setSkin("dhx_skyblue");
-                            lookup_value_grid.setDateFormat("%Y-%m-%d");
-                            lookup_value_grid.setColSorting("str,date,date");
-                            lookup_value_grid.init();
-                            var dp = new dataProcessor("<%=url_for(:controller=>"irm/lookup_types",:action=>"create_value")%>");
-                            dp.init(lookup_value_grid);
-                            dp.setUpdateMode("off");
-                            dp.setTransactionMode("POST");                            
-
-                            function addRow() {
-                                var newId = (new Date()).valueOf();
-                                lookup_value_grid.addRow(newId,"",lookup_value_grid.getRowsNum());
-                                lookup_value_grid.selectRow(lookup_value_grid.getRowIndex(newId),false,false,true);
-
-                            }
-                            function removeRow(){
-                                var selId = lookup_value_grid.getSelectedId();
-                                lookup_value_grid.deleteRow(selId);
-                            }
-
-                            function saveRow(){
-                              dp.sendData(); 
-                            }
+                    var lookup_value_grid = new dhtmlXGridObject('lookup_value_grid');
+                    lookup_value_grid.setHeader("<%=t(:label_irm_lookup_value_lookup_code)%>,<%=t(:label_meaning)%>,<%=t(:label_description)%>,<%=t(:label_start_date_active)%>,<%=t(:label_end_date_active)%>");
+                    lookup_value_grid.setInitWidthsP("15,15,15,15,37");
+                    lookup_value_grid.setColTypes("ed,ed,ed,dhxCalendar,dhxCalendar");//set column types
+                    lookup_value_grid.setColSorting("str,str,str,date,date");
+                    init_grid(lookup_value_grid);
                     </script>
                     <div class="containerfooter">
-                    	<div class="button floatright" id = "id_lookup_code_submit"><a href="#" onclick="saveRow()" ><%= t(:save) %></a></div>
+                    	<div class="button floatright" id = "id_lookup_code_submit"><a href="#" onclick="saveRow();" ><%= t(:save) %></a></div>
                         <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a></div>
-                        <div class="button floatright" id = "id_add"><a href="#" onclick="addRow()"><%= t(:add) %></a></div>
-                        <div class="button floatright"><a href="javascript:void(0);" onclick="removeRow()"><%= t(:delete) %></a></div>
+                        <div class="button floatright" id = "id_add"><a href="#" onclick="addRow(lookup_value_grid);"><%= t(:add) %></a></div>
+                        <div class="button floatright"><a href="javascript:void(0);" onclick="removeRow(lookup_value_grid);"><%= t(:delete) %></a></div>
                     </div>
-               <%end%>
     </div>
 </div>
