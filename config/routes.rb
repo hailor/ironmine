@@ -15,6 +15,14 @@ Ironmine::Application.routes.draw do
     match '/lookup_types/:id/multilingual_edit(.:format)'=>"lookup_types#multilingual_edit",:via=>:get
     match '/lookup_types/get_current_language(.:format)'=>"lookup_types#get_current_language",:via=>:get
     match '/lookup_types/:id(.:format)/multilingual_update'=>"lookup_types#multilingual_update",:via=>:put
+
+    #product modules
+    match '/product_modules/index(.:format)' => "product_modules#index", :via => :get
+    match '/product_modules/:id/edit(.:format)' => "product_modules#edit", :via => :get
+    match '/product_modules/:id(.:format)' => "product_modules#update", :via => :put
+    match '/product_modules/new(.:format)' => "product_modules#new", :via => :get
+    match '/product_modules/create(.:format)' => "product_modules#create", :via => :post
+    match '/product_modules/get_data(.:format)' => "product_modules#get_data"
   end
 
   match '/demo(/index)' => 'demo#index'

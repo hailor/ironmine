@@ -3,7 +3,7 @@
 
 $(document).ready(function(){
     $('input[type=text]:not([readonly]):first').focus();
-    $('input[required]:not([readonly]):not([disabled])').css("background-color","#FFFFCC");
+    $('input[required]:not([readonly]):not([disabled])').addClass("inputrequired");
     $('input[readonly]:not([lov])').css("background-color","#CCCCCC");
     //针对于uppercase的属性，强制输入大写
     $('input[irm_uppercase]').keyup(function() {
@@ -14,16 +14,15 @@ $(document).ready(function(){
         if(!this.value==""){
           var reg = /^[A-Z0-9_]*$/;
           if(!reg.test(this.value)){
-            alert("Input data don't match the rule");
-            this.value="";
+            this.value=this.value.replace(/[^\da-z_]/ig,'');
           }
         }
     });
     $('input[irm_numberonly]').keyup(function() {
         this.value = this.value.replace(/[^\d]/g,'')
     });
-    $('textarea[required]:not([readonly]):not([disabled])').css("background-color","#FFFFCC");
-    $('textarea[readonly]').css("background-color","#CCCCCC");
+    $('textarea[required]:not([readonly]):not([disabled])').addClass("inputrequired");
+    $('textarea[readonly]').addClass("inputdisable");
     $('input[type=submit]').css("cursor","pointer");
     init(document);
 });
