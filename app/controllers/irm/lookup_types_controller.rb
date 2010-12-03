@@ -83,10 +83,10 @@ class Irm::LookupTypesController < ApplicationController
 
   def get_lookup_types
     @lookup_types = Irm::LookupType.where("1=1")
-
+    @lookup_types,count = paginate(@lookup_types,1,10)
     respond_to do |format|
-      format.json  {render :json => @admins.to_dhtmlxgrid_json([:lookup_level,:lookup_type,:meaning,:description,:status_code,''],
-                                                                    @lookup_types.size) }
+      format.json  {render :json => @lookup_types.to_dhtmlxgrid_json([:lookup_level,:lookup_type,:meaning,:description,:status_code,'M'],
+                                                                               count) }
     end
   end
 

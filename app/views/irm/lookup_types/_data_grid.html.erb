@@ -2,24 +2,28 @@
     <div class="containerheader">
      <div class="floatleft headertitle"><%=t(:label_irm_lookup_value_lookup_code)%></div>
     </div>
-    <div id="lookup_value_grid" style="width:100%; height:200px; background-color:white;"></div>
+    <div id="id_lookup_type_grid" style="width:100%; height:200px; background-color:white;"></div>
     <script type="text/javascript" charset="utf-8">
-    var lookup_value_grid = new dhtmlXGridObject('lookup_value_grid');
-    lookup_value_grid.setHeader("<%=t(:label_lookup_types)%>,<%=t(:label_irm_lookup_value_lookup_code)%>,<%=t(:label_meaning)%>,"+
+    var lookup_type_grid = new dhtmlXGridObject('id_lookup_type_grid');
+    lookup_type_grid.setHeader("<%=t(:label_lookup_types)%>,<%=t(:label_irm_lookup_value_lookup_code)%>,<%=t(:label_meaning)%>,"+
                                 "<%=t(:label_description)%>,<%=t(:label_status_code)%>,<%=t(:multilingual)%>");
-    lookup_value_grid.setInitWidths("100,100,100,100,100,*");
-    lookup_value_grid.setColTypes("ro,ro,ro,ro,ro,img");//set column types
-    init_grid(lookup_value_grid);
-    lookup_value_grid.load("/lookup_types/get_lookup_types","json");
+    lookup_type_grid.setInitWidths("100,100,100,100,100,*");
+    lookup_type_grid.setColTypes("ro,ro,ro,ro,ro,img");//set column types
+    lookup_type_grid.setPagingSkin("bricks");
+    lookup_type_grid.enablePaging(true, 10, 3, "id_lookup_type_grid");
+    init_grid(lookup_type_grid);
+    lookup_type_grid.load("/lookup_types/get_lookup_types","json");
     </script>
     <div class="containerfooter">
-        <div class="button floatright" id = "id_lookup_code_submit"><a href="#" onclick="saveRow();" ><%= t(:save) %></a>
+        <div class="button floatright"><%=link_to t(:new),{:controller=>"irm/lookup_types",:action=>"new"},
+                                                            :script=>"/replace(id_user,id_new_person);/",
+                                                            :actiontype=>"ajaxLink"%>
         </div>
-        <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a>
+        <div class="button floatright"><%=link_to t(:edit),{:controller=>"irm/lookup_types",:action=>"edit",:id=>8},
+                                                            :script=>"/replace(id_user,id_new_person);/",
+                                                            :actiontype=>"ajaxLink"%>
         </div>
-        <div class="button floatright" id = "id_add"><a href="#" onclick="addRow(lookup_value_grid);"><%= t(:add) %></a>
-        </div>
-        <div class="button floatright"><a href="javascript:void(0);" onclick="removeRow(lookup_value_grid);"><%= t(:delete) %></a>
+        <div class="button floatright">&nbsp;<%= t(:cancel) %>&nbsp;
         </div>
     </div>
 </div>
