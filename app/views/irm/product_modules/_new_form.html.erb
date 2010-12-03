@@ -1,5 +1,5 @@
     <%= form_for(@product_module,:url=>{:action=>"create"}) do |f| %>
-       <div class="container">
+       <div id="form_area" class="container">
                     <div class="containerheader">
                     	<div class="floatleft headertitle"><%=t(:label_irm_product_module)%></div>
                     </div>
@@ -34,7 +34,7 @@
                     </table>
                     <div class="containerfooter">
                     	<div class="button floatright" ><a id="id_submit" href="<%=url_for(:controller=>"irm/product_modules",:action=>"create")%>" script="/alert('message['successMessage']');after_save_lookup_type();/" actionType="ajaxSubmit"><%= t(:save) %></a></div>
-                        <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a></div>
+                        <div class="button floatright"><%= link_to t(:cancel), {:action => "edit", :id => 1}, :script => "/replace(form_area,form_area);/", :actiontype=>"ajaxLink"%></div>
                     </div>
           </div>
     <% end %>

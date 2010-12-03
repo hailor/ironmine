@@ -1,13 +1,13 @@
-    <div class="container">
+    <div id="data_area" class="container">
         <div class="containerheader">
-           <div class="floatleft headertitle"><%=t(:label_irm_product_module)%></div>
+           <div class="floatleft   headertitle"><%=t(:label_irm_product_module_list)%></div>
         </div>
-        <div id="product_modules_grid" style="width:100%; height:200px; background-color:white;"></div>
+        <div id="product_modules_grid" class="datagrid"></div>
         <script type="text/javascript" charset="utf-8">
             var product_modules_grid = new dhtmlXGridObject('product_modules_grid');
             product_modules_grid.setHeader(" , <%=t(:label_irm_product_module_product_short_name)%>,<%=t(:label_irm_product_module_name)%>,<%=t(:label_irm_product_module_description)%>,<%=t(:label_irm_product_module_installed_flag)%>,<%=t(:active)%>,<%=t(:multilingual)%>");
-            product_modules_grid.setInitWidths("20, 40,40,60,15,15,12");
-            product_modules_grid.setColTypes("ed,ed,ed,ed,ed,ed,ed");//set column types
+            product_modules_grid.setInitWidths("20,100,100,200,80,80,50");
+            product_modules_grid.setColTypes("ch,ro,ro,ro,ro,ro,ro");//set column types
             product_modules_grid.setColSorting("str,str,str,str,str,str,str");
             init_grid(product_modules_grid);
             product_modules_grid.load("/product_modules/get_data.json","json");
