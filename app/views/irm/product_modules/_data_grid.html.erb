@@ -10,6 +10,7 @@
             product_modules_grid.setColTypes("ed,ed,ed,ed,ed,ed");//set column types
             product_modules_grid.setColSorting("str,str,str,str,str,str");
             init_grid(product_modules_grid);
+            product_modules_grid.load("/product_modules/get_data.json","json");
         </script>
         <div class="containerfooter">
             <div class="button floatright" id = "id_add"><a href="#"><%= t(:add) %></a></div>

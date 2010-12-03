@@ -66,3 +66,6 @@ end
 #    require "#{p.product_short_name.downcase}/init"
 #  end
 #end
+
+require "dhtmlx_grid.rb"
+Array.send :include, DhtmlxgridJson

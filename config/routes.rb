@@ -22,6 +22,7 @@ Ironmine::Application.routes.draw do
     match '/product_modules/:id(.:format)' => "product_modules#update", :via => :put
     match '/product_modules/new(.:format)' => "product_modules#new", :via => :get
     match '/product_modules/create(.:format)' => "product_modules#create", :via => :post
+    match '/product_modules/get_data(.:format)' => "product_modules#get_data"
   end
 
   match '/demo(/index)' => 'demo#index'
