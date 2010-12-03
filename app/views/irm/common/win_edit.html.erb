@@ -1,0 +1,22 @@
+<%= form_tag({:action=>"win_update"},{:remote=>true,:zone=>"multwin",'data-type'=>'html'}) do %>
+       <h1 style="height:32px">
+           <div class="submit">
+              <%= text_field_tag :name,nil,:required=>true %>
+             <%= submit_tag "submit"%>
+           </div>
+       </h1>
+<%end%>
+<% if @from_update%>
+<h1><%= @from_update %></h1>
+<% end %>
+<script>
+  $(document).ready(function(){
+    $('form[data-remote]').bind("ajax:success",function(data, status, xhr){
+     var target_zone = $(this).attr("zone");
+     
+     if($("#"+target_zone))
+       $("#"+target_zone).html(status)
+  });
+
+  });
+</script>
