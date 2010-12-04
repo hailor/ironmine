@@ -131,6 +131,60 @@ function ajaxSubmit(el) {
 	});
 }
 
+//根据div的提供的属性构造表格对象
+var dhtmlx_grid_array={};
+function ajaxDhtmlxGrid(el){
+   var id = $(el).attr("id");
+   var grid_header = $(el).attr("grid_header");
+   var grid_width = $(el).attr("grid_width");
+   var grid_col_types = $(el).attr("grid_col_types");
+   var grid_paging_skin = $(el).attr("grid_paging_skin");
+   var enable_paging = $(el).attr("enable_paging");
+   var onCheckbox = $(el).attr("onCheckbox");
+   var gird_columnHidden = $(el).attr("gird_columnHidden");
+   var gird_load = $(el).attr("gird_load");
+   var grid = dhtmlx_grid_array[id];
+   if(grid!=null&&grid!=undefined){
+       grid.destructor();
+   }
+   grid = new dhtmlXGridObject(id);
+   if(grid_header!=null&&grid_header!=undefined){
+      grid.setHeader(grid_header);
+   }
+   if(grid_width!=null&&grid_width!=undefined){
+      grid.setInitWidths(grid_width);
+   }
+   if (grid_col_types!=null&&grid_col_types!=undefined){
+      grid.setColTypes(grid_col_types);//set column types
+   }
+   if (enable_paging!=null&&enable_paging!=undefined){
+      var enablePaging = eval("([" + enable_paging + "])");
+      //alert(enablePaging[0] + " " + enablePaging[1] + " " + enablePaging[2] + " " + enablePaging[3] + " " + enablePaging[4] + " " + enablePaging[5]);
+      grid.enablePaging(enablePaging[0], enablePaging[1], enablePaging[2], enablePaging[3], enablePaging[4], enablePaging[5]);
+
+   }
+   if (enable_paging!=null&&enable_paging!=undefined){
+      grid.setPagingSkin(grid_paging_skin);
+   }
+   if (onCheckbox!=null&&onCheckbox!=undefined){
+        //.var fnCheckbox = eval(onCheckbox);
+      grid.attachEvent("onCheckbox", onCheckbox);
+   }
+
+   if (gird_columnHidden!=null&&gird_columnHidden!=undefined){
+      var girdColumnHidden = eval("([" + gird_columnHidden + "])");
+      grid.setColumnHidden(girdColumnHidden[0], girdColumnHidden[1]);
+
+   }
+   init_grid(grid);
+   if (gird_load!=null&&gird_load!=undefined){
+      var girdLoad = eval("([" + gird_load + "])");
+      grid.load(girdLoad[0], girdLoad[1]);
+
+   }
+   dhtmlx_grid_array[id]=grid;
+}
+
 function init(el) {
 	var numload = 0;
 	$el=$(el);
@@ -144,8 +198,11 @@ function init(el) {
 			ajaxSubmit(this);
 		}else if (actionType == "ajaxLink"){
             ajaxLink(this);
+        }else if (actionType== "ajaxDhtmlxGrid"){
+            ajaxDhtmlxGrid(this);
         }
 	});
+    pre_init_partial(el);
 }
 
 function parseScript(script) {
