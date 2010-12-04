@@ -222,3 +222,18 @@ table.itemdetailtable td.itemdetailtablelabel{ width: 130px;}
 div#breadcrumbs{margin: 3px 0 0;padding: 0 0 0 5px;}
 div#breadcrumbs a{	text-decoration: none;	color: #0055DD;}
 div#breadcrumbs a:hover{	text-decoration:underline;	color: #0055DD;}
+
+.dhx_pbox_skyblue {
+    border-color: -moz-use-text-color #C2D5DC #C2D5DC;
+    border-right: 1px solid #C2D5DC;
+    border-style: none solid solid;
+    border-width: 0 1px 1px;
+    font-size: 10px;
+    margin-top: 3px;
+}
+.dhx_pline_skyblue {
+    background-color: white;
+    float: left;
+    margin: -15px 10px 10px;
+    padding: 0 5px;
+}

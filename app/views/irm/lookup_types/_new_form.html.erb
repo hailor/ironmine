@@ -55,7 +55,7 @@
                         }
                     </script>
                     <div class="containerfooter">
-                    	<div class="button floatright" ><a id="id_submit" href="<%=url_for(:controller=>"irm/lookup_types",:action=>"create")%>" script="/alert('message['successMessage']');after_save_lookup_type();setLookupType(lookup_value_grid,message['lookupType']);/" actiontype="ajaxSubmit"><%= t(:save) %></a></div>
+                    	<div class="button floatright" ><a id="id_submit" href="<%=url_for(:controller=>"irm/lookup_types",:action=>"create")%>" script="/alert('message['successMessage']');after_save_lookup_type();setLookupType(lookup_value_grid,message['lookupType']);/" action_type="ajaxSubmit"><%= t(:save) %></a></div>
                         <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a></div>
                     </div>
           </div>
