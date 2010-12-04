@@ -1,5 +1,6 @@
 <div class="container">
-  <%= form_for(@product_module ,:url=>{:action=>"multilingual_update"},"data-type"=>"html",:remote=>true,:html=>{:zone=>"multwin"}) do |f| %>
+  <%= form_for(@product_module ,:url=>{:action=>"multilingual_update"},:remote=>true,:html=>{:zone=>"multwin"}) do |f| %>
+    <%= error_message_for @product_module%>
     <div class="block">
       <%=render :partial=>"multilingual/edit",:locals=>{:f=>f,:main_data=>@product_module} %>
     </div>
