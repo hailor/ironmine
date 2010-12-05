@@ -7,15 +7,21 @@
             var product_modules_grid = new dhtmlXGridObject('product_modules_grid');
             product_modules_grid.setHeader(" , <%=t(:label_irm_product_module_product_short_name)%>,<%=t(:label_irm_product_module_name)%>,<%=t(:label_irm_product_module_description)%>,<%=t(:label_irm_product_module_installed_flag)%>,<%=t(:active)%>,<%=t(:multilingual)%>");
             product_modules_grid.setInitWidths("20,100,100,200,80,80,50");
-            product_modules_grid.setColTypes("ch,link,ro,ro,ro,ro,ro");//set column types
+            product_modules_grid.setColTypes("ch,link,ro,ro,ro,ro,img");//set column types
             product_modules_grid.setColSorting("str,str,str,str,str,str,str");
             init_grid(product_modules_grid);
             product_modules_grid.load('<%= url_for(:action => "get_data", :controller => "irm/product_modules", :format=>:json) %>',
-                                     function(){init('#data_area');}, 'json');
-            
+                                     function(){init('#product_modules_grid');}, 'json');
         </script>
-        <div class="containerfooter">
-            <div class="button floatright" id = "id_add"><a href="#"><%= t(:add) %></a></div>
-            <div class="button floatright"><a href="javascript:void(0);"><%= t(:delete) %></a></div>
-        </div>
+            <div class="containerfooter">
+            <%= form_tag( :controller => 'irm/product_modules', :action => 'enable') do %>
+                <%=hidden_field_tag 'enable_list' %>
+                <div class="button floatright"><%= link_to t(:enable), {}, {:action_type => "ajaxSubmit", :script => "", :onclick => "$('#enable_list').attr('value', product_modules_grid.getCheckedRows(0));"}%></div>
+            <% end %>                  
+            <%= form_tag( :controller => 'irm/product_modules', :action => 'disable') do %>
+                <%=hidden_field_tag 'disable_list' %>
+                <div class="button floatright"><%= link_to t(:disable), {}, {:action_type => "ajaxSubmit", :script => "", :onclick => "$('#disable_list').attr('value', product_modules_grid.getCheckedRows(0));"}%></div>
+            <%  end %>
+            </div>
+
     </div>

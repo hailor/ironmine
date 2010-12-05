@@ -85,7 +85,31 @@ class Irm::ProductModulesController < ApplicationController
     @product_modules = Irm::ProductModule.multilingual
     url_for
     respond_to do |format|
-      format.json  {render :json => @product_modules.to_dhtmlxgrid_json(['M', [:product_short_name, 'irm/product_modules', 'edit', 'id', 'ajaxLink', '/replace(form_area,form_area);/'], :name, :description, :installed_flag, :status_code], @product_modules.size) }
+      format.json  {render :json => @product_modules.to_dhtmlxgrid_json(['0', [:product_short_name, 'irm/product_modules', 'edit', 'id', 'ajaxLink', '/replace(form_area,form_area);/'], :name, :description, :installed_flag, :status_code, 'M'], @product_modules.size) }
     end    
+  end
+
+  def enable
+    @product_modules = Irm::ProductModule.where("id in (?)", params[:enable_list].split(','))
+    puts(@product_modules)
+    @product_modules.each do |p|
+      p.update_attribute(:status_code, Irm::Constant::ENABLED)
+    end
+
+    respond_to do |format|
+      format.html { redirect_to(:action => "index", :notice => (t :successfully_updated)) }
+    end        
+  end
+
+  def disable
+    @product_modules = Irm::ProductModule.where("id in (?)", params[:disable_list].split(','))
+    puts(@product_modules)
+    @product_modules.each do |p|
+      p.update_attribute(:status_code, Irm::Constant::DISABLED)
+    end
+
+    respond_to do |format|
+      format.html { redirect_to(:action => "index", :notice => (t :successfully_updated)) }
+    end           
   end
 end
