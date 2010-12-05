@@ -1,27 +1,38 @@
-<div class="container">
+<div class="container" id="id_lookup_type_gird">
     <div class="containerheader">
      <div class="floatleft headertitle"><%=t(:label_irm_lookup_value_lookup_code)%></div>
     </div>
     <div id="id_lookup_type_grid" style="width:100%; height:200px; background-color:white;"></div>
+    <span id="pagingArea"></span>&nbsp;<span id="infoArea"></span>
+    <span id="recfound"></span>
     <script type="text/javascript" charset="utf-8">
+    var lookupTypeId='';
     var lookup_type_grid = new dhtmlXGridObject('id_lookup_type_grid');
-    lookup_type_grid.setHeader("<%=t(:label_lookup_types)%>,<%=t(:label_irm_lookup_value_lookup_code)%>,<%=t(:label_meaning)%>,"+
+    lookup_type_grid.setHeader("'',#,<%=t(:label_lookup_types)%>,<%=t(:label_irm_lookup_value_lookup_code)%>,<%=t(:label_meaning)%>,"+
                                 "<%=t(:label_description)%>,<%=t(:label_status_code)%>,<%=t(:multilingual)%>");
-    lookup_type_grid.setInitWidths("100,100,100,100,100,*");
-    lookup_type_grid.setColTypes("ro,ro,ro,ro,ro,img");//set column types
-    lookup_type_grid.setPagingSkin("bricks");
-    lookup_type_grid.enablePaging(true, 10, 3, "id_lookup_type_grid");
+    lookup_type_grid.setInitWidths("0,100,100,100,100,100,100,500");
+    lookup_type_grid.setColTypes("ro,ra,ro,ro,ro,ro,ro,img");//set column types
+    lookup_type_grid.setColAlign("center,center,center,center,center,center,center,left");
+    lookup_type_grid.enablePaging(true, 10, null, "pagingArea", true, "infoArea");
     init_grid(lookup_type_grid);
+    lookup_type_grid.setPagingSkin("bricks");
+    lookup_type_grid.attachEvent("onCheckbox", doOnCheck);
+    lookup_type_grid.setColumnHidden(0,true);
     lookup_type_grid.load("/lookup_types/get_lookup_types","json");
-    </script>
+    function doOnCheck(rowId) {
+        var action_temp = $("#id_lookup_types_edit").attr("href").replace(":id",rowId);
+        $("#id_lookup_types_edit").attr("href",action_temp);
+        return true;
+    }
+    </script>    
     <div class="containerfooter">
         <div class="button floatright"><%=link_to t(:new),{:controller=>"irm/lookup_types",:action=>"new"},
                                                             :script=>"/replace(id_user,id_new_person);/",
                                                             :action_type=>"ajaxLink"%>
         </div>
-        <div class="button floatright"><%=link_to t(:edit),{:controller=>"irm/lookup_types",:action=>"edit",:id=>8},
-                                                            :script=>"/replace(id_user,id_new_person);/",
-                                                            :action_type=>"ajaxLink"%>
+        <div class="button floatright"><%=link_to t(:edit),{:controller=>"irm/lookup_types",:action=>"edit",:id=>":id"},
+                                                            :script=>"/replace(id_lookup_type_gird,id_edit_lookup_type);init_lookup_type_edit_grid();init_edit_lookup_type();/",
+                                                            :action_type=>"ajaxLink",:id=>"id_lookup_types_edit"%>
         </div>
         <div class="button floatright">&nbsp;<%= t(:cancel) %>&nbsp;
         </div>

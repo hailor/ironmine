@@ -12,6 +12,9 @@ module DhtmlxgridJson
         attributes.each do |atr|
           value = get_atr_value(elem, atr, couples)
           value = escape_javascript(value) if value and value.is_a? String
+          if atr.to_s=='M'
+            value='/images/multilingual.png'
+          end
           json << %Q("#{value}",)
         end
         json.chop! << "]},"

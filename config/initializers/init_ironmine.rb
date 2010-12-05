@@ -1,13 +1,14 @@
 # 该文件中的代码会在程序启动时自动运行,ironmine项目中需要初始的代码建议都放在此文件中
 
 
-ActionView::Base.field_error_proc=Proc.new{ |html_tag, instance| "<span class=\"field_with_errors\">#{html_tag}</span>".html_safe }
+ActionView::Base.field_error_proc=Proc.new{ |html_tag, instance| "<span class=\"field_with_errors\" title=\"#{instance.error_message}\">#{html_tag}</span>".html_safe }
 
 #将rails 3中默认的javascript prototype库替换成jquery
 ActionView::Helpers::AssetTagHelper.register_javascript_expansion :defaults=>%w(jquery.js rails.js)
 ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ajax_relation=>%w(ajax_util.js jquery.form.js)
 ActionView::Helpers::AssetTagHelper.register_javascript_expansion :dhtmlx=>%w(dhtmlx/dhtmlxcommon.js dhtmlx/dhtmlxwindows.js dhtmlx/dhtmlxlayout.js dhtmlx/dhtmlxcontainer.js dhtmlx/dhtmlxtabbar.js dhtmlx/dhtmlxcalendar.js dhtmlx/dhtmlxtabbar_start.js)
-ActionView::Helpers::AssetTagHelper.register_javascript_expansion :dhtmlx_grid=>%w(dhtmlx/grid/dhtmlxgrid_pgn.js dhtmlx/grid/dhtmlxgrid_json.js dhtmlx/grid/dhtmlxgrid.js dhtmlx/grid/dhtmlxgridcell.js dhtmlx/grid/dhtmlxgrid_excell_link.js dhtmlx/grid/dhtmlxcalendar.js dhtmlx/grid/dhtmlxdataprocessor.js dhtmlx/grid/dhtmlxgrid_excell_dhxcalendar.js)
+ActionView::Helpers::AssetTagHelper.register_javascript_expansion :dhtmlx_grid=>%w(dhtmlx/grid/dhtmlxgrid.js dhtmlx/grid/dhtmlxgridcell.js dhtmlx/grid/dhtmlxgrid_excell_link.js dhtmlx/grid/dhtmlxdataprocessor.js dhtmlx/grid/dhtmlxgrid_excell_dhxcalendar.js dhtmlx/grid/dhtmlxgrid_pgn.js dhtmlx/grid/dhtmlxgrid_json.js)
+ActionView::Helpers::AssetTagHelper.register_javascript_expansion :irm_module=>%w(ironmine_base.js)
 #ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jquery_ui=>%w(jquery-ui.js)
 #ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jquery_date=>%w(jquery.datePicker.js date.js)
 #ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jquery_other=>%w(jquery.loadmask.min.js  jquery.Jcrop.js jquery.json-2.2.min.js fancyzoom.js jquery.progressbar.min.js)

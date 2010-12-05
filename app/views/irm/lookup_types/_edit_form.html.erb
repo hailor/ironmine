@@ -1,0 +1,87 @@
+  <div class="containers" id="id_edit_lookup_type">
+      <%= form_for(@lookup_type,:url=>{:action=>"create"}) do |f| %>
+         <div class="container">
+                      <div class="containerheader colorheader">
+                          <div class="floatleft headertitle"><%=t(:label_lookup_types)%></div>
+                      </div>
+                      <table class="twocolumnstable" cellspacing="0">
+                          <tr>
+                              <td class="twocolumn">
+                                 <table class="itemdetailtable">
+                                     <tr><td class="itemdetailtablelabel"><%=(t :label_lookup_types)%>:</td>
+                                      <td><%=f.text_field :lookup_type,:size=>45,:required=>true,:irm_uppercase=>true %></td>
+                                  </tr>
+                                  <tr><td class="itemdetailtablelabel"><%=(t :label_meaning)%>:</td>
+                                    <td><%=f.text_field :meaning ,:value=>@lookup_type[:meaning],:size=>45,:required=>true%></td>
+                                  </tr>
+                                  <tr><td class="itemdetailtablelabel"><%=(t :label_description)%>:</td>
+                                    <td><%=f.text_field :description,:value=>@lookup_type[:description],:size=>45%></td>
+                                  </tr>
+                                 </table>
+                              </td>
+                              <td class="twocolumn" cellspacing="0">
+                                 <table class="itemdetailtable">
+                                  <div id="id_lookup_level">
+                                     <tr><td class="itemdetailtablelabel"><%=f.radio_button :lookup_level,Irm::Constant::GLOBAL_LOOKUP_LEVEL,:checked => true%>
+                                           <%=t(:label_global_level)%>
+                                     </td>
+                                     <td></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="itemdetailtablelabel"><%=f.radio_button :lookup_level,Irm::Constant::EXTENDED_LOOKUP_LEVEL%>
+                                        <%=t(:label_extended_level)%>
+                                    </td>
+                                    <td></td>
+                                  </tr>
+                                  <tr>
+                                    <td class="itemdetailtablelabel"><%=f.radio_button :lookup_level,Irm::Constant::USER_LOOKUP_LEVEL%>
+                                        <%=t(:label_user_level)%>
+                                    </td>
+                                    <td></td>
+                                  </tr>
+                                  </div>
+                                 </table>
+                              </td>
+                              <td width="20%">&nbsp;</td>
+                          </tr>
+                      </table>
+                      <script type="text/javascript" charset="utf-8">
+                          function init_edit_lookup_type(){
+                              $("#irm_lookup_type_lookup_type").attr('readonly','readonly');
+                              $("input[type=radio]").each(function(){
+                                  $(this).attr('disabled','disabled');
+                              });
+                          }
+                      </script>
+                      <div class="containerfooter">
+                          <div class="button floatright" ><a id="id_submit" href="<%=url_for(:controller=>"irm/lookup_types",:action=>"create")%>" script="/alert('message['successMessage']');after_save_lookup_type();setLookupType(temp_grid,message['lookupType']);/" actiontype="ajaxSubmit"><%= t(:save) %></a></div>
+                          <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a></div>
+                      </div>
+            </div>
+      <% end %>
+
+      <div class="container">
+                      <div class="containerheader">
+                         <div class="floatleft headertitle"><%=t(:label_irm_lookup_value_lookup_code)%></div>
+                      </div>
+                      <div id="lookup_value_grid" style="width:100%; height:200px; background-color:white;"></div>
+                      <script type="text/javascript" charset="utf-8">
+                      var temp_grid;
+                      function init_lookup_type_edit_grid(){
+                          var lookup_value_grid = new dhtmlXGridObject('lookup_value_grid');
+                          lookup_value_grid.setHeader("<%=t(:label_irm_lookup_value_lookup_code)%>,<%=t(:label_meaning)%>,<%=t(:label_description)%>,<%=t(:label_start_date_active)%>,<%=t(:label_end_date_active)%>,<%=t(:multilingual)%>");
+                          lookup_value_grid.setInitWidths("100,100,100,100,100,*");
+                          lookup_value_grid.setColTypes("ed,ed,ed,dhxCalendar,dhxCalendar,img");//set column types
+                          init_grid(lookup_value_grid);
+                          lookup_value_grid.load("get_lookup_values?lookup_type="+"<%=@lookup_type.lookup_type%>","json");
+                          temp_grid = lookup_value_grid;
+                      }                      
+                      </script>
+                      <div class="containerfooter">
+                          <div class="button floatright" id = "id_lookup_code_submit"><a href="#" onclick="saveRow();" ><%= t(:save) %></a></div>
+                          <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a></div>
+                          <div class="button floatright" id = "id_add" onclick="addRow(temp_grid);"><a href="javascript:void(0);"><%= t(:add) %></a></div>
+                          <div class="button floatright"><a href="javascript:void(0);" onclick="removeRow(temp_grid);"><%= t(:delete) %></a></div>
+                      </div>
+      </div>
+  </div>

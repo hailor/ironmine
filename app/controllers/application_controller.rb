@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :all
   #ajax请求不使用layout
-  layout proc{ |c| c.request.xhr? ? false : "application" }
+  layout "application"
 
   # filters
   # user_setup 从session中取得用户,如果session中没有[:user_id]则什么也不做
@@ -128,9 +128,18 @@ class ApplicationController < ActionController::Base
       attr_accessor :default_layout
   end
   def layout_setup
+    #request.env.each do |key,value|
+    #  logger.debug "=========#{key}=========#{value}"
+    #end
+
+    puts "=======#{params[:controller]}====#{params[:action]}=============#{request.env['HTTP_X_REQUESTED_WITH']}==================="
+    puts "=======#{params[:controller]}====#{params[:action]}=============#{params[:format]}==================="
+
     self.class.default_layout ||= _layout
-    if(params[:wmode])
-      self.class.layout params[:wmode]
+    if (params[:wmode])
+      self.class.layout params[:wmode]    
+    elsif request.xhr?||(params[:format]||"").downcase.eql?("js")
+      self.class.layout "xhr"
     else
       self.class.layout self.class.default_layout unless self.class.default_layout.eql?(_layout)
     end

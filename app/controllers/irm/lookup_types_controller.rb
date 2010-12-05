@@ -13,12 +13,6 @@ class Irm::LookupTypesController < ApplicationController
   # GET /lookup_types/1
   # GET /lookup_types/1.xml
   def show
-    @lookup_type = Irm::LookupType.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @lookup_type }
-    end
   end
 
   # GET /lookup_types/new
@@ -83,9 +77,9 @@ class Irm::LookupTypesController < ApplicationController
 
   def get_lookup_types
     @lookup_types = Irm::LookupType.where("1=1")
-    @lookup_types,count = paginate(@lookup_types,1,10)
+    count=@lookup_types.size
     respond_to do |format|
-      format.json  {render :json => @lookup_types.to_dhtmlxgrid_json([:lookup_level,:lookup_type,:meaning,:description,:status_code,'M'],
+      format.json  {render :json => @lookup_types.to_dhtmlxgrid_json([:id,'R',:lookup_level,:lookup_type,:meaning,:description,:status_code,'M'],
                                                                                count) }
     end
   end
@@ -93,7 +87,7 @@ class Irm::LookupTypesController < ApplicationController
   #TODO once for submit all
   def create_value
     lookup_type_id = params[:lookup_type_id]
-    @lookup_type = Irm::LookupType.query(lookup_type_id).first
+    @lookup_type = Irm::LookupType.find(lookup_type_id)
     @lookup_code = params["c0"]
     @meaning = params["c1"]
     @description   = params["c2"]
@@ -105,7 +99,7 @@ class Irm::LookupTypesController < ApplicationController
     @id = params["gr_id"]
     case @mode
       when "inserted"
-            @lookup_value = Irm::LookupValue.new({:lookup_type=>@lookup_type,
+            @lookup_value = Irm::LookupValue.new({:lookup_type=>@lookup_type.lookup_type,
                                                   :lookup_code=>@lookup_code,
                                                   :meaning=>@meaning,
                                                   :description=>@description,
@@ -129,6 +123,15 @@ class Irm::LookupTypesController < ApplicationController
             @lookup_value.save!
 
             @tid = @id
+    end
+  end
+
+  def get_lookup_values
+    lookup_type=params[:lookup_type]
+    lookup_values = Irm::LookupValue.query_by_lookup_type(lookup_type).multilingual
+    respond_to do |format|
+      format.json  {render :json => lookup_values.to_dhtmlxgrid_json([:lookup_code,:meaning,:description,:start_date_active,:end_date_active,'M'],
+                                                                               lookup_values.size) }
     end
   end
 
