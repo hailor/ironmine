@@ -54,7 +54,7 @@ function eXcell_link(cell){
 				valsAr[1] = "href='"+valsAr[1]+"'";
 				if(valsAr.length==3)
 					valsAr[1]+= " target='"+valsAr[2]+"'";
-                if(valsAr.length==4){
+                else if(valsAr.length==4){
                     valsAr[1]+= " action_type='"+valsAr[2]+"'";
                     valsAr[1]+= " script='"+valsAr[3]+"'";
                 }

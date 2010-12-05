@@ -9,13 +9,24 @@ module DhtmlxgridJson
         elem.id ||= index(elem)
         json << %Q({id:"#{elem.id}",data:[)
         couples = elem.attributes.symbolize_keys
+        puts("------------------" + attributes.to_json)
         attributes.each do |atr|
-          value = get_atr_value(elem, atr, couples)
-          value = escape_javascript(value) if value and value.is_a? String
-          if atr.to_s=='M'
-            value='/images/multilingual.png'
+          puts("++++++++++++" + atr.to_json)
+          if atr.is_a? Array
+            value = get_atr_value(elem, atr[0], couples)
+            value = escape_javascript(value) if value and value.is_a? String
+            if atr[0].to_s=='M'
+              value='/images/multilingual.png'
+            end
+            json << %Q("#{value}^#{atr[1]}^#{atr[2]}^test",)
+          else
+            value = get_atr_value(elem, atr, couples)
+            value = escape_javascript(value) if value and value.is_a? String
+            if atr.to_s=='M'
+              value='/images/multilingual.png'
+            end
+            json << %Q("#{value}",)
           end
-          json << %Q("#{value}",)
         end
         json.chop! << "]},"
       end
