@@ -1,6 +1,6 @@
     <div id="data_area" class="container">
         <div class="containerheader">
-           <div class="floatleft   headertitle"><%=t(:label_irm_product_module_list)%></div>
+           <div class="floatleft headertitle"><%=t(:label_irm_product_module_list)%></div>
         </div>
         <div id="product_modules_grid" class="datagrid"></div>
         <script type="text/javascript" charset="utf-8">
@@ -10,7 +10,9 @@
             product_modules_grid.setColTypes("ch,link,ro,ro,ro,ro,ro");//set column types
             product_modules_grid.setColSorting("str,str,str,str,str,str,str");
             init_grid(product_modules_grid);
-            product_modules_grid.load('<%= url_for(:action => "get_data", :controller => "irm/product_modules", :format=>:json) %>', 'json');
+            product_modules_grid.load('<%= url_for(:action => "get_data", :controller => "irm/product_modules", :format=>:json) %>',
+                                     function(){init('#data_area');}, 'json');
+            
         </script>
         <div class="containerfooter">
             <div class="button floatright" id = "id_add"><a href="#"><%= t(:add) %></a></div>

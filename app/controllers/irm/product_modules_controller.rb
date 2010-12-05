@@ -34,7 +34,7 @@ class Irm::ProductModulesController < ApplicationController
 
   # GET /product_modules/1/edit
   def edit
-    @product_module = Irm::ProductModule.find(params[:id])
+    @product_module = Irm::ProductModule.multilingual.find(params[:id])
   end
 
   # POST /product_modules
@@ -59,8 +59,8 @@ class Irm::ProductModulesController < ApplicationController
     @product_module = Irm::ProductModule.find(params[:id])
 
     respond_to do |format|
-      if @product_module.update_attributes(params[:product_module])
-        format.html { redirect_to(@product_module, :notice => 'Product module was successfully updated.') }
+      if @product_module.update_attributes(params[:irm_product_module])
+        format.html { redirect_to(:action => "index", :notice => (t :successfully_updated)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -85,7 +85,7 @@ class Irm::ProductModulesController < ApplicationController
     @product_modules = Irm::ProductModule.multilingual
     url_for
     respond_to do |format|
-      format.json  {render :json => @product_modules.to_dhtmlxgrid_json(['M', [:product_short_name, 'irm/product_modules', 'edit', 'id', 'ajaxLink', '/replace(form_area, form_area);/'], :name, :description, :installed_flag, :status_code], @product_modules.size) }
+      format.json  {render :json => @product_modules.to_dhtmlxgrid_json(['M', [:product_short_name, 'irm/product_modules', 'edit', 'id', 'ajaxLink', '/replace(form_area,form_area);/'], :name, :description, :installed_flag, :status_code], @product_modules.size) }
     end    
   end
 end
