@@ -14,7 +14,9 @@ HTML Link eXcell v.1.0  for dhtmlxGrid
 The corresponding  cell value in XML should be a "^" delimited list of following values:
 1st - Link Text 
 2nd - URL (optional)
-3rd - target (optional, default is _blank)
+//3rd - target (optional, default is _blank)
+3rd - action_type
+4th -script
 
 Samples:
 <cell>Stephen King</cell>
@@ -52,6 +54,10 @@ function eXcell_link(cell){
 				valsAr[1] = "href='"+valsAr[1]+"'";
 				if(valsAr.length==3)
 					valsAr[1]+= " target='"+valsAr[2]+"'";
+                if(valsAr.length==4){
+                    valsAr[1]+= " action_type='"+valsAr[2]+"'";
+                    valsAr[1]+= " script='"+valsAr[3]+"'";
+                }
 				else
 					valsAr[1]+= " target='_blank'";
 			}
