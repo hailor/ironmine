@@ -70,11 +70,16 @@
                        grid_width="100,100,100,100,500"
                        grid_col_types="ed,ed,ed,dhxCalendar,dhxCalendar"
                        grid_load="'get_lookup_values?lookup_type=<%=@lookup_type.lookup_type%>','','json'"></div>
+                      <script type="text/javascript" charset="utf-8">
+                        var edit_lookup_type_id = "<%=@lookup_type.id%>";
+                      </script>
                       <div class="containerfooter">
-                          <div class="button floatright" id = "id_lookup_code_submit"><a href="#" onclick="saveRow();" ><%= t(:save) %></a></div>
-                          <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a></div>
-                          <div class="button floatright" id = "id_add" onclick="addRow('id_edit_lookup_value_grid');"><%=link_to t(:add)%></div>
-                          <div class="button floatright"><a href="javascript:void(0);" onclick="removeRow('id_edit_lookup_value_grid');"><%= t(:delete) %></a></div>
+                          <div class="button floatright" id = "id_lookup_code_submit"onclick="saveEditRow();"><a href="javascript:void(0);" ><%= t(:save) %></a></div>
+                          <div class="button floatright"><%=link_to t(:cancel),{:controller=>"irm/lookup_types",:action=>"index"},
+                                                                              :script=>"/replace(id_lookup_type_index,id_lookup_type_index);/",
+                                                                              :action_type=>"ajaxLink"%></div>
+                          <div class="button floatright" id = "id_add" onclick="addEditRow('id_edit_lookup_value_grid',edit_lookup_type_id);"><a href="javascript:void(0);"><%= t(:add) %></a></div>
+                          <div class="button floatright"><a href="javascript:void(0);" onclick="removeEditRow('id_edit_lookup_value_grid');"><%= t(:delete) %></a></div>
                       </div>
       </div>
   </div>

@@ -10,4 +10,14 @@ class Irm::LookupValue < ActiveRecord::Base
   query_extend
 
   scope :query_by_lookup_type,lambda{|lookup_type|where(:lookup_type=>lookup_type)}
+  scope :query_by_lookup_code,lambda{|lookup_code|where(:lookup_code=>lookup_code)}
+
+  def self.check_lookup_code_exist(lookup_type,lookup_code)
+      if Irm::LookupValue.query_by_lookup_code(lookup_code).
+          query_by_lookup_type(lookup_type).size>0
+         false
+      else
+         true
+      end
+  end
 end

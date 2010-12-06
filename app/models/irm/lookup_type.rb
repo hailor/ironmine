@@ -9,4 +9,6 @@ class Irm::LookupType < ActiveRecord::Base
 
   query_extend
 
+
+
 end

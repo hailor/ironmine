@@ -46,13 +46,12 @@
                         </tr>
                     </table>
                     <script type="text/javascript" charset="utf-8">
-                        function after_save_lookup_type(){
-                            $("#irm_lookup_type_lookup_type").attr('readonly','readonly');
-                            $("input[type=radio]").each(function(){
-                                $(this).attr('disabled','disabled');
-                            });
-                            $("#irm_lookup_type_lookup_type").addClass("inputdisable");
-                        }
+                    function after_save_lookup_type(){
+                       $("#irm_lookup_type_lookup_type").attr('readonly','readonly');
+                       $("input[type=radio]").each(function(){
+                             $(this).attr('disabled','disabled');
+                       });
+                    }
                     </script>
                     <div class="containerfooter">
                     	<div class="button floatright" ><a id="id_submit" href="<%=url_for(:controller=>"irm/lookup_types",:action=>"create")%>" script="/alert('message['successMessage']');after_save_lookup_type();setLookupType('lookup_value_grid',message['lookupType']);/" action_type="ajaxSubmit"><%= t(:save) %></a></div>
@@ -65,13 +64,17 @@
                     <div class="containerheader">
                        <div class="floatleft headertitle"><%=t(:label_irm_lookup_value_lookup_code)%></div>
                     </div>
-                    <div id="lookup_value_grid" style="width:100%; height:200px; background-color:white;" action_type="ajaxDhtmlxGrid"
+                    <div id="lookup_value_grid" style="width:100%; height:200px; background-color:white;"
+                         action_type="ajaxDhtmlxGrid"
                          grid_header="<%=t(:label_irm_lookup_value_lookup_code)%>,<%=t(:label_meaning)%>,<%=t(:label_description)%>,<%=t(:label_start_date_active)%>,<%=t(:label_end_date_active)%>"
-                         grid_width="100,100,100,100,500" grid_col_types="ed,ed,ed,dhxCalendar,dhxCalendar"></div>
+                         grid_width="100,100,100,100,500"
+                         grid_col_types="ed,ed,ed,dhxCalendar,dhxCalendar"></div>
                     <div class="containerfooter">
                     	<div class="button floatright" id = "id_lookup_code_submit"><a href="#" onclick="saveRow();" ><%= t(:save) %></a></div>
-                        <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a></div>
-                        <div class="button floatright" id = "id_add" ><a href="#" onclick="addRow('lookup_value_grid');" ><%=t(:add)%></a></div>
+                        <div class="button floatright"><%=link_to t(:cancel),{:controller=>"irm/lookup_types",:action=>"index"},
+                                                                              :script=>"/replace(id_lookup_type_index,id_lookup_type_index);/",
+                                                                              :action_type=>"ajaxLink"%></div>
+                        <div class="button floatright" id = "id_add" ><a href="javascript:void(0);" onclick="addRow('lookup_value_grid');" ><%=t(:add)%></a></div>
                         <div class="button floatright"><a href="javascript:void(0);" onclick="removeRow('lookup_value_grid');"><%= t(:delete) %></a></div>
                     </div>
     </div>
