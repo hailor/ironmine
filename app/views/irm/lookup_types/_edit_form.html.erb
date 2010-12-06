@@ -1,6 +1,6 @@
   <div class="containers" id="id_edit_lookup_type">
     <%= error_message_for @lookup_type %>
-      <%= form_for(@lookup_type,:url=>{:action=>"create"}) do |f| %>
+      <%= form_for(@lookup_type,:url=>{:action=>"update"}) do |f| %>
          <div class="container">
                       <div class="containerheader colorheader">
                           <div class="floatleft headertitle"><%=t(:label_lookup_types)%></div>
@@ -10,7 +10,9 @@
                               <td class="twocolumn">
                                  <table class="itemdetailtable">
                                     <tr><td class="itemdetailtablelabel"><%=(t :label_lookup_types)%>:</td>
-                                    <td><%=f.text_field :lookup_type,:size=>45,:required=>true,:irm_uppercase=>true,:readonly=>true%></td>
+                                    <td><%=f.text_field :lookup_type,:size=>45,:required=>true,:irm_uppercase=>true,:readonly=>true%>
+                                        <%=f.hidden_field :id%>
+                                    </td>
                                   </tr>
                                   <tr><td class="itemdetailtablelabel"><%=(t :label_meaning)%>:</td>
                                     <td><%=f.text_field :meaning ,:value=>@lookup_type[:meaning],:size=>45,:required=>true%></td>
@@ -47,8 +49,10 @@
                           </tr>
                       </table>
                       <div class="containerfooter">
-                          <div class="button floatright" ><a id="id_submit" href="<%=url_for(:controller=>"irm/lookup_types",:action=>"update")%>" script="/alert('message['successMessage']');setLookupType(temp_grid,message['lookupType']);/" actiontype="ajaxSubmit"><%= t(:save) %></a></div>
-                          <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a></div>
+                          <div class="button floatright" ><%=link_to t(:save),{:controller=>"irm/lookup_types",:action=>"update"}, :script=>"/alert('message['successMessage']');/" ,:action_type=>"ajaxSubmit"%></div>
+                          <div class="button floatright"><%=link_to t(:cancel),{:controller=>"irm/lookup_types",:action=>"index"},
+                                                                              :script=>"/replace(id_lookup_type_index,id_lookup_type_index);/",
+                                                                              :action_type=>"ajaxLink"%></div>
                       </div>
             </div>
       <% end %>

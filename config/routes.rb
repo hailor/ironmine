@@ -15,7 +15,7 @@ Ironmine::Application.routes.draw do
     match '/lookup_types(/index)(.:format)'=>"lookup_types#index",:via=>:get
     match '/lookup_types/:id/show(.:format)'=>"lookup_types#show",:via=>:get
     match '/lookup_types/:id/edit(.:format)'=>"lookup_types#edit",:via=>:get
-    match '/lookup_types/update'=>"lookup_types#update",:via=>:put
+    match '/lookup_types/update'=>"lookup_types#update"
     match '/lookup_types/:id(.:format)'=>"lookup_types#destroy",:via=>:delete
     match '/lookup_types/:id/multilingual_edit(.:format)'=>"lookup_types#multilingual_edit",:via=>:get
     match '/lookup_types/get_current_language(.:format)'=>"lookup_types#get_current_language",:via=>:get

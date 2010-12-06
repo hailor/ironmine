@@ -50,11 +50,11 @@ class Irm::LookupTypesController < ApplicationController
   # PUT /lookup_types/1
   # PUT /lookup_types/1.xml
   def update
-    @lookup_type = Irm::LookupType.find(params[:id])
+    @lookup_type = Irm::LookupType.find(params[:irm_lookup_type][:id])
 
     respond_to do |format|
-      if @lookup_type.update_attributes(params[:lookup_type])
-        format.html { redirect_to(@lookup_type, :notice => 'Lookup type was successfully updated.') }
+      if @lookup_type.update_attributes(params[:irm_lookup_type])
+        format.html { render "update_successful_info"}
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
