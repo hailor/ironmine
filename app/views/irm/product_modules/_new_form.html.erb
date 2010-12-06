@@ -1,4 +1,5 @@
 <div id="form_area" class="container">
+     <%= error_message_for @product_module%>
      <%= form_for(@product_module,:url=>{:action=>"create"}) do |f| %>
             <div class="containerheader">
                 <div class="floatleft headertitle"><%=t(:label_irm_product_module_new)%></div>
