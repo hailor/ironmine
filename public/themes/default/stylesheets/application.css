@@ -20,7 +20,7 @@ body{
 .field_with_errors input, .field_with_errors text_area, .field_with_errors select{ border: red solid 2px;}
 
 div.errormsgbox{
-    background: none repeat scroll 0 0 #fff1a8;
+    background: none repeat scroll 0 0 #FFBBAA;
     text-align: center;
     font-weight: bold;
     word-wrap:break-word;
@@ -30,13 +30,13 @@ div.errormsgbox{
 }
 
 div.succmsgbox{
-    background: none repeat scroll 0 0 #fff1a8;
+    background: none repeat scroll 0 0 #DDFFEB;
     text-align: center;
     font-weight: bold;
     word-wrap:break-word;
     width: 100%;
     margin: 0 0 4px -2px;
-    border: 2px solid green;
+    border: 2px solid #92DD22;
 }
 
 div#banner{
