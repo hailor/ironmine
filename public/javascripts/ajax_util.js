@@ -140,9 +140,9 @@ function ajaxDhtmlxGrid(el){
    var grid_col_types = $(el).attr("grid_col_types");
    var grid_paging_skin = $(el).attr("grid_paging_skin");
    var enable_paging = $(el).attr("enable_paging");
-   var onCheckbox = $(el).attr("onCheckbox");
-   var gird_columnHidden = $(el).attr("gird_columnHidden");
-   var gird_load = $(el).attr("gird_load");
+   var onCheckbox = $(el).attr("grid_checkbox");
+   var grid_column_hidden = $(el).attr("grid_columnHidden");
+   var grid_load = $(el).attr("grid_load");
    var grid = dhtmlx_grid_array[id];
    if(grid!=null&&grid!=undefined){
        grid.destructor();
@@ -171,16 +171,15 @@ function ajaxDhtmlxGrid(el){
       grid.attachEvent("onCheckbox", onCheckbox);
    }
 
-   if (gird_columnHidden!=null&&gird_columnHidden!=undefined){
-      var girdColumnHidden = eval("([" + gird_columnHidden + "])");
-      grid.setColumnHidden(girdColumnHidden[0], girdColumnHidden[1]);
-
+   if (grid_column_hidden!=null&&grid_column_hidden!=undefined){
+      var gridColumnHidden = eval("([" + grid_column_hidden + "])");
+      grid.setColumnHidden(gridColumnHidden[0], gridColumnHidden[1]);
    }
-   init_grid(grid);
-   if (gird_load!=null&&gird_load!=undefined){
-      var girdLoad = eval("([" + gird_load + "])");
-      grid.load(girdLoad[0], girdLoad[1]);
 
+   init_grid(grid);
+   if (grid_load!=null&&grid_load!=undefined){
+      var gridLoad = eval("([" + grid_load + "])");
+      grid.load(gridLoad[0], gridLoad[1], gridLoad[2]);
    }
    dhtmlx_grid_array[id]=grid;
 }
