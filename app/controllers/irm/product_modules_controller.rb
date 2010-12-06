@@ -83,7 +83,6 @@ class Irm::ProductModulesController < ApplicationController
 
   def get_data
     @product_modules = Irm::ProductModule.multilingual
-    url_for
     respond_to do |format|
       format.json  {render :json => @product_modules.to_dhtmlxgrid_json(['0', [:product_short_name, 'irm/product_modules', 'edit', 'id', 'ajaxLink', '/replace(form_area,form_area);/'], :name, :description, :installed_flag, :status_code, 'M'], @product_modules.size) }
     end    
