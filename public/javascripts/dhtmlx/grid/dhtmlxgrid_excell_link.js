@@ -16,7 +16,8 @@ The corresponding  cell value in XML should be a "^" delimited list of following
 2nd - URL (optional)
 //3rd - target (optional, default is _blank)
 3rd - action_type
-4th -script
+4th - script
+5th - view_port
 
 Samples:
 <cell>Stephen King</cell>
@@ -58,6 +59,11 @@ function eXcell_link(cell){
                     valsAr[1]+= " action_type='"+valsAr[2]+"'";
                     valsAr[1]+= " script='"+valsAr[3]+"'";
                 }
+                else if(valsAr.length==5){
+                    valsAr[1]+= " action_type='"+valsAr[2]+"'";
+                    valsAr[1]+= " script='"+valsAr[3]+"'";
+                    valsAr[1]+= " view_port='"+valsAr[4]+"'";
+                }                
 				else
 					valsAr[1]+= " target='_blank'";
 			}

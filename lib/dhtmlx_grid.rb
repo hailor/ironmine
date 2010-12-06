@@ -15,7 +15,7 @@ module DhtmlxgridJson
             if atr[0].to_s=='M'
               value='/images/multilingual.png'
             end
-            json << %Q("#{value}^#{Rails.application.routes.url_helpers.url_for :only_path => true, :controller => atr[1], :action => atr[2], atr[3].to_sym => elem[atr[3].to_sym]}^#{atr[4]}^#{atr[5]}",)
+            json << %Q("#{value}^#{Rails.application.routes.url_helpers.url_for :only_path => true, :controller => atr[1], :action => atr[2], atr[3].to_sym => elem[atr[3].to_sym]}^#{atr[4]}^#{atr[5]}#{'^' + atr[6] if atr.size == 7}",)
           else
             value = get_atr_value(elem, atr, couples)
             value = escape_javascript(value) if value and value.is_a? String
