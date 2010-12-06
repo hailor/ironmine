@@ -9,6 +9,9 @@ class Irm::LookupValue < ActiveRecord::Base
 
   query_extend
 
+  #验证lookup_code在lookup_type下面的唯一性
+  validates_uniqueness_of :lookup_code,:scope=>:lookup_type
+
   scope :query_by_lookup_type,lambda{|lookup_type|where(:lookup_type=>lookup_type)}
   scope :query_by_lookup_code,lambda{|lookup_code|where(:lookup_code=>lookup_code)}
 
