@@ -16,13 +16,11 @@ module ApplicationHelper
      lis<<content_tag(:li,msg,nil,false)
     end
     uls=content_tag(:ul,lis,nil,false)
-    h2s=content_tag(:h2,t(:label_errors),nil,false)
+    h2s=content_tag(:h2,"Errors",nil,false)
     if error_count>0
-#    content_tag(:div,"#{h2s}\n#{uls}",{:id=>"errorexplanation",:class=>"errorexplanation"},false)
-      content_tag("script", raw("alert('123');$('#sysmsgbox').html('<div>#{h2s}\n#{uls}</div>');"))
+    content_tag(:div,"#{h2s}\n#{uls}",{:id=>"errorExplanation",:class=>"errorExplanation"},false)
     else
       nil
     end
   end
-  
 end

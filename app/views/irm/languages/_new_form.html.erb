@@ -1,6 +1,6 @@
 <div id="id_language_new" class="container">
      <%= form_for(@language,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
-      
+
             <div class="containerheader">
                 <div class="floatleft headertitle"><%=t(:label_irm_language_new)%></div>
             </div>
@@ -32,7 +32,7 @@
                 </tr>
             </table>
             <div class="containerfooter">
-                <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/languages",:action=>"create"}, {:action_type => "ajaxSubmit", :script => "/replace(id_general_message,id_general_message);reload_grid('id_language_grid');/"}%></div>
+                <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/languages",:action=>"create"}, {:action_type => "ajaxSubmit", :script => "/replace(sysmsgbox,id_general_message);reload_grid('id_language_grid');/replace(sysmsgbox,id_general_message);"}%></div>
                 <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(form_area,form_area);/", :action_type=>"ajaxLink"%></div>
             </div>
      <% end %>

@@ -36,6 +36,7 @@ class Irm::LanguagesController < ApplicationController
         format.html { render "create_successful_info" }
         format.xml  { render :xml => @language, :status => :created, :location => @language }
       else
+        @error = @language
         format.html { render "error_info" }
         format.xml  { render :xml => @language.errors, :status => :unprocessable_entity }
       end
@@ -61,7 +62,7 @@ class Irm::LanguagesController < ApplicationController
   def get_data
     @languages= Irm::Language.multilingual
     respond_to do |format|
-      format.json {render :json=>@languages.to_dhtmlxgrid_json(['0', [:language_code, 'irm/languages', 'edit', 'id', 'ajaxLink', ''],
+      format.json {render :json=>@languages.to_dhtmlxgrid_json(['0', {:value => :language_code, :controller => 'irm/languages',:action =>  'edit', :id => 'id', :action_type => 'ajaxLink', :script => '/replace(id_language_new,id_language_edit);/'},
                                                                          :description, :installed_flag, :status_code, 'M'], @languages.size)}
     end
   end

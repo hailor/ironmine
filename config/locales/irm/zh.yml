@@ -32,6 +32,7 @@ zh:
   processing: 处理中...
   button_add_file: 添加文件
   more: 更多
+  actionview_instancetag_blank_option: 请选择
   enable: 启用
   disable: 失效
   #常用语句
