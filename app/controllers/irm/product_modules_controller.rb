@@ -81,6 +81,24 @@ class Irm::ProductModulesController < ApplicationController
     end
   end
 
+  def multilingual_edit
+    @product_module = Irm::ProductModule.find(params[:id])
+  end
+
+  def multilingual_update
+    @product_module = Irm::ProductModule.find(params[:id])
+    @product_module.not_auto_mult=true
+    respond_to do |format|
+      if @product_module.update_attributes(params[:irm_product_module])
+        format.html { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
+        format.js { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
+      else
+        format.html { render({:action=>"multilingual_edit"}) }
+        format.js   { render({:action=>"multilingual_edit"}) }
+      end
+    end
+  end
+
   def get_data
     @product_modules = Irm::ProductModule.multilingual
     respond_to do |format|
