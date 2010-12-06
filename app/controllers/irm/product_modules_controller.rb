@@ -63,8 +63,10 @@ class Irm::ProductModulesController < ApplicationController
         format.html { redirect_to(:action => "index", :notice => (t :successfully_updated)) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @product_module.errors, :status => :unprocessable_entity }
+        @error = @product_module
+        format.html { render "error_message" }
+#        format.html { render :action => "edit" }
+#        format.xml  { render :xml => @product_module.errors, :status => :unprocessable_entity }
       end
     end
   end

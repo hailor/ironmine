@@ -1,5 +1,4 @@
    <div id="form_area" class="container">
-     <%= error_message_for @product_module%>
      <%= form_for(@product_module,:url=>{:action=>"update"}) do |f| %>
                 <div class="containerheader">
                     <div class="floatleft headertitle"><%=t(:label_irm_product_module_edit)%> - <%= @product_module.product_short_name%></div>
@@ -37,7 +36,7 @@
                     </tr>
                 </table>
                 <div class="containerfooter">
-                    <div class="button floatright" ><%= link_to t(:save), {}, {:action_type => "ajaxSubmit", :script => "//"}%></div>
+                    <div class="button floatright" ><%= link_to t(:save), {}, {:action_type => "ajaxSubmit", :script => "/alert('123');/replace(sysmsgbox,errormsgbox);alert('11');"}%></div>
                     <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(form_area,form_area);/", :action_type=>"ajaxLink"%></div>
                 </div>
      <% end %>

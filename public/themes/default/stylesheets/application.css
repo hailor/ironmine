@@ -18,34 +18,14 @@ body{
 .floatleft{float:left !important;}
 .headertitle{font-weight:bold; float:left;}
 
-div.sysmsgbox, div.sysmsgdetail{
+div.sysmsgbox{
     background: none repeat scroll 0 0 #fff1a8;
-    padding: 1px 10px 1px 10px;
     text-align: center;
-    display: inline-block;
     font-weight: bold;
     word-wrap:break-word;
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    -moz-binding: url('ellipsis.xml#ellipsis');  /*兼容Firefox，调用ellipsis.xml文件，注意ellipsis.xml文件路径*/
-}
-
-div.sysmsgbox{
-    max-width: 300px;
-    max-height: 16px;
-}
-
-div.sysmsgdetail a{
-    padding: 1px 8px 1px 0;
-}
-
-div.msgcontainer{
-    position:absolute;
-    text-align: center;
-    z-index: 10;
-    top: 113px;
-    left: 480px;
+    width: 100%;
+    margin: 0 0 4px -2px;
+    border: 2px solid red;
 }
 
 div#banner{
