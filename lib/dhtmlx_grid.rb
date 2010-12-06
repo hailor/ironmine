@@ -9,13 +9,13 @@ module DhtmlxgridJson
         json << %Q({id:"#{elem.id}",data:[)
         couples = elem.attributes.symbolize_keys
         attributes.each do |atr|
-          if atr.is_a? Array
-            value = get_atr_value(elem, atr[0], couples)
+          if atr.is_a? Hash
+            value = get_atr_value(elem, atr[:value], couples)
             value = escape_javascript(value) if value and value.is_a? String
-            if atr[0].to_s=='M'
+            if atr[:value].to_s=='M'
               value='/images/multilingual.png'
             end
-            json << %Q("#{value}^#{Rails.application.routes.url_helpers.url_for :only_path => true, :controller => atr[1], :action => atr[2], atr[3].to_sym => elem[atr[3].to_sym]}^#{atr[4]}^#{atr[5]}",)
+            json << %Q("#{value}^#{Rails.application.routes.url_helpers.url_for :only_path => true, :controller => atr[:controller], :action => atr[:action], atr[:id].to_sym => elem[atr[:id].to_sym]}^#{atr[:action_type]}#{('^' + atr[:script]) if atr[:script]}#{('^' + atr[:view_port] )if atr[:view_port]}",)
           else
             value = get_atr_value(elem, atr, couples)
             value = escape_javascript(value) if value and value.is_a? String

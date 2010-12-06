@@ -57,7 +57,7 @@
             	<td class="button selected">
                 	<a href="javascript:void(0);"><img width="25" height="20" border="0" src=<%= theme_image_path('menus/my_page.gif') %>><br>我的页面</a>
                 </td>
-                <td class="verticalseparatornoborder"><img width="1" height="40" border="0" src=<%= theme_image_path('my_white.gif') %>></td>
+                <td class="verticalseparatornoborder"><img width="1" height="40" border="0" src=<%= theme_image_path('white.gif') %>></td>
                 <td class="button">
                 	<a href="javascript:void(0);"><img width="25" height="20" border="0" src=<%= theme_image_path('menus/dashboard.gif') %>><br>统计数据</a>
                 </td>
@@ -126,7 +126,10 @@
                     </div>
                 </td>
                 <td width="87%" valign="top">
+                    <div>
+                    <div id="sysmsgbox"></div>
                     <%= yield %>
+                    </div>
                 </td>
             </tr>
         </table>

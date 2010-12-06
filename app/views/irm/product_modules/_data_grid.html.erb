@@ -3,15 +3,13 @@
            <div class="floatleft headertitle"><%=t(:label_irm_product_module_list)%></div>
         </div>
         <div id="product_modules_grid" class="datagrid" style="width:100%;height:200px;background-color:white;"
-        action_type="ajaxDhtmlxGrid"
-        grid_header=" , <%=t(:label_irm_product_module_product_short_name)%>,<%=t(:label_irm_product_module_name)%>,
-        <%=t(:label_irm_product_module_description)%>,<%=t(:label_irm_product_module_installed_flag)%>,<%=t(:active)%>,<%=t(:multilingual)%>"
-        grid_width="20,100,100,200,80,80,50"
-        grid_col_types="ch,link,ro,ro,ro,ro,img"></div>
-        <script type="text/javascript" charset="utf-8">
-            product_modules_grid.load('<%= url_for(:action => "get_data", :controller => "irm/product_modules", :format=>:json) %>',
-                                     function(){init('#product_modules_grid');}, 'json');
-        </script>
+            action_type="ajaxDhtmlxGrid"
+            grid_header=" , <%=t(:label_irm_product_module_product_short_name)%>,<%=t(:label_irm_product_module_name)%>,
+            <%=t(:label_irm_product_module_description)%>,<%=t(:label_irm_product_module_installed_flag)%>,<%=t(:active)%>,<%=t(:multilingual)%>"
+            grid_width="20,100,100,200,80,80,50"
+            grid_col_types="ch,link,ro,ro,ro,ro,link"
+            grid_load="'<%= url_for(:action => "get_data", :controller => "irm/product_modules", :format=>:json) %>',function(){init('#product_modules_grid');},'json'">
+        </div>
             <div class="containerfooter">
             <%= form_tag( :controller => 'irm/product_modules', :action => 'enable') do %>
                 <%=hidden_field_tag 'enable_list' %>

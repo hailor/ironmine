@@ -199,6 +199,8 @@ function init(el) {
             ajaxLink(this);
         }else if (actionType== "ajaxDhtmlxGrid"){
             ajaxDhtmlxGrid(this);
+        }else if (actionType=="multilingual"){
+            multilingual(this)
         }
 	});
     pre_init_partial(el);

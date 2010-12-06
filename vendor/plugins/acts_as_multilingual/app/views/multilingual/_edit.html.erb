@@ -1,38 +1,54 @@
-<table class="multilingual">
-  <tr>
-    <th class="language">
-      <%=t(:label_multilingual_language)%>
-    </th>
-    <%main_data.multilingual_options[:columns].each do |attr|%>
-      <th>
-        <%=t("label_#{f.object_name}_#{attr}")%>
-      </th>
-    <%end%>
-    <th  class="sourcelang">
-      <%=t(:label_multilingual_source_lang)%>
-    </th>
-  </tr>
-  <tr>
-  <%= f.fields_for main_data.multilingual_options[:lang_relation].to_sym,:normal=>true do |tl_f|%>
-    <%= tl_f.hidden_field :source_lang,:value=>local_language_code%>
+<%= form_for(main_data ,:url=>{:action=>"multilingual_update"},:remote=>true,:html=>{:zone=>"multwin"}) do |f| %>
+  <table class="multilingual">
     <tr>
-      <td class="language">
-        <%=language_code_meaning(tl_f.object.language)%>
-      </td>
+      <th class="language">
+        <%=t(:label_multilingual_language)%>
+      </th>
       <%main_data.multilingual_options[:columns].each do |attr|%>
-        <td >
-          <% if main_data.multilingual_options[:required].include?(attr.to_sym)%>
-            <%= tl_f.text_field attr.to_sym,:normal=>true,:required=>true,:size=>20%>
-          <%else%>
-            <%= tl_f.text_field attr.to_sym,:normal=>true,:size=>40%>
-          <%end%>
-        </td>
+        <th>
+          <%=t("label_#{f.object_name}_#{attr}")%>
+        </th>
       <%end%>
-      <td>
-         <span class="sourcelang">
-           <%=text_field_tag :source_lang,language_code_meaning(tl_f.object.source_lang),:readonly=>"readonly",:size=>10%>
-         </span>
-      </td>
+      <th  class="sourcelang">
+        <%=t(:label_multilingual_source_lang)%>
+      </th>
     </tr>
-  <%end%>
-</table>
+    <tr>
+    <%= f.fields_for main_data.multilingual_options[:lang_relation].to_sym,:normal=>true do |tl_f|%>
+      <tr>
+        <td class="language">
+          <%=language_code_meaning(tl_f.object.language)%>
+        </td>
+        <%main_data.multilingual_options[:columns].each do |attr|%>
+          <td >
+            <% if main_data.multilingual_options[:required].include?(attr.to_sym)%>
+              <%= tl_f.text_field attr.to_sym,:normal=>true,:required=>true,:size=>20%>
+            <%else%>
+              <%= tl_f.text_field attr.to_sym,:normal=>true,:size=>40%>
+            <%end%>
+          </td>
+        <%end%>
+        <td>
+           <span class="sourcelang">
+             <%=text_field_tag :source_lang,language_code_meaning(tl_f.object.source_lang),:readonly=>"readonly",:size=>10%>
+           </span>
+        </td>
+      </tr>
+    <%end%>
+  </table>
+  <div class="containerfooter">
+    <div class="button floatright" ><%=link_to t(:save),{:action=>"multilingual_update"},:href=>"#",:type=>"submit"%></div>
+    <div class="button floatright"><a href="javascript:void(0);" action_type="multilingual_close"><%= t(:cancel) %></a></div>
+  </div>
+<% end %>
+<script>
+  $(document).ready(function(){
+    $('input[type=text]:not([readonly]):first').focus();
+    $('input[required]:not([readonly]):not([disabled])').addClass("inputrequired");
+    $('form[data-remote]:[zone]').bind("ajax:success",function(data, status, xhr){
+      var target_zone = $(this).attr("zone");
+      if($("#"+target_zone))
+        $("#"+target_zone).html(status)
+      });
+  });
+</script>
