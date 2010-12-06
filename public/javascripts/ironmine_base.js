@@ -16,20 +16,23 @@ function init_grid(grid){
     grid.init();
 }
 
-function addRow(grid) {
+function addRow(id) {
+    var grid = dhtmlx_grid_array[id];
     var newId = (new Date()).valueOf();
     grid.addRow(newId,"",grid.getRowsNum());
     grid.selectRow(grid.getRowIndex(newId),false,false,true);
 
 }
-function removeRow(grid){
+function removeRow(id){
+    var grid = dhtmlx_grid_array[id];
     var selId = grid.getSelectedId();
     grid.deleteRow(selId);
 }
 function saveRow(){
   dp.sendData();
 }
-function setLookupType(grid,lookupType){
+function setLookupType(id,lookupType){
+    var grid = dhtmlx_grid_array[id];
     saveLookupType = lookupType;
     dp = new dataProcessor('/lookup_types/create_value?lookup_type_id='+lookupType);
     dp.init(grid);

@@ -80,7 +80,7 @@
                       <div class="containerfooter">
                           <div class="button floatright" id = "id_lookup_code_submit"><a href="#" onclick="saveRow();" ><%= t(:save) %></a></div>
                           <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a></div>
-                          <div class="button floatright" id = "id_add" onclick="addRow(temp_grid);"><a href="javascript:void(0);"><%= t(:add) %></a></div>
+                          <div class="button floatright" id = "id_add" onclick="addRow(temp_grid);"><%=link_to t(:add)%></div>
                           <div class="button floatright"><a href="javascript:void(0);" onclick="removeRow(temp_grid);"><%= t(:delete) %></a></div>
                       </div>
       </div>
