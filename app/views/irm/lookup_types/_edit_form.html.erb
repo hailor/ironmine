@@ -1,4 +1,5 @@
   <div class="containers" id="id_edit_lookup_type">
+    <%= error_message_for @lookup_type %>
       <%= form_for(@lookup_type,:url=>{:action=>"create"}) do |f| %>
          <div class="container">
                       <div class="containerheader colorheader">
@@ -8,8 +9,8 @@
                           <tr>
                               <td class="twocolumn">
                                  <table class="itemdetailtable">
-                                     <tr><td class="itemdetailtablelabel"><%=(t :label_lookup_types)%>:</td>
-                                      <td><%=f.text_field :lookup_type,:size=>45,:required=>true,:irm_uppercase=>true %></td>
+                                    <tr><td class="itemdetailtablelabel"><%=(t :label_lookup_types)%>:</td>
+                                    <td><%=f.text_field :lookup_type,:size=>45,:required=>true,:irm_uppercase=>true,:readonly=>"readonly"%></td>
                                   </tr>
                                   <tr><td class="itemdetailtablelabel"><%=(t :label_meaning)%>:</td>
                                     <td><%=f.text_field :meaning ,:value=>@lookup_type[:meaning],:size=>45,:required=>true%></td>
