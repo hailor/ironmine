@@ -23,6 +23,4 @@ class Irm::CommonController < ApplicationController
       end
     end
   end
-
-
 end

@@ -1,0 +1,41 @@
+   <div id="id_language_edit" class="container">
+     <%= form_for(@language,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+                <div class="containerheader">
+                    <div class="floatleft headertitle"><%=t(:label_irm_language_edit)%> - <%= @language.language_code%></div>
+                </div>
+                <table class="twocolumnstable" cellspacing="0">
+                    <tr>
+                        <td class="twocolumn">
+                           <table class="itemdetailtable">
+                               <tr><td class="itemdetailtablelabel"><%=(t :label_irm_language_language_code)%>:</td>
+                                <td><%=f.text_field :language_code,:size=>40,:readonly=> true ,:normal=>true%></td>
+                            </tr>
+                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_language_installed_flag)%>:</td>
+                              <td><%=f.check_box :installed_flag,:normal=>true%></td>
+                            </tr>
+                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_language_status_code)%>:</td>
+                              <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_for_select(available_status,@language.status_code),:normal=>true%></td>
+                            </tr>                             
+                           </table>
+                        </td>
+                        <td class="twocolumn" cellspacing="0">
+                           <table class="itemdetailtable">
+                            <div id="id_lookup_level">
+                               <tr><td class="itemdetailtablelabel">
+                                     <%=t(:label_irm_language_description)%>:
+                               </td>
+                               <td><%= f.text_area :description, :value => @language[:description], :cols => 40, :rows => 2,:normal=>true%></td>
+                            </tr>
+                            </div>
+                           </table>
+                        </td>
+                        <td width="10%"></td>
+                    </tr>
+                </table>
+                <div class="containerfooter">
+                    <div class="button floatright" ><%= link_to t(:save), {:controller=>"irm/languages",:action=>"update"}, {:action_type => "ajaxSubmit", :script => "/reload_grid('id_language_grid');/"}%></div>
+                    <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}, :script => "/replace(form_area,form_area);/", :action_type=>"ajaxLink"%></div>
+                </div>
+     <% end %>
+   </div>

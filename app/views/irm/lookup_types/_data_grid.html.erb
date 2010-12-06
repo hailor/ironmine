@@ -22,7 +22,7 @@
     </script>
     <div class="containerfooter">
         <div class="button floatright"><%=link_to t(:new),{:controller=>"irm/lookup_types",:action=>"new"},
-                                                           :script=>"/replace(id_lookup_type_gird,id_new_lookup_type);/",
+                                                           :script=>"/replace(id_lookup_type_index,id_new_lookup_type_all);/",
                                                            :action_type=>"ajaxLink"%>
         </div>
         <div class="button floatright"><%=link_to t(:edit),{:controller=>"irm/lookup_types",:action=>"edit",:id=>":id"},
