@@ -1,5 +1,4 @@
 <div class="containers" id="id_new_lookup_type">
-  <%= error_message_for @lookup_type %>
     <%= form_for(@lookup_type,:url=>{:action=>"create"}) do |f| %>
        <div class="container">
                     <div class="containerheader colorheader">
@@ -55,7 +54,7 @@
                           }
                      </script>
                     <div class="containerfooter">
-                    	<div class="button floatright" ><a id="id_submit" href="<%=url_for(:controller=>"irm/lookup_types",:action=>"create")%>" script="/alert('message['successMessage']');after_save_lookup_type();setLookupType(temp_grid,message['lookupType']);/" action_type="ajaxSubmit"><%= t(:save) %></a></div>
+                    	<div class="button floatright" ><a id="id_submit" href="<%=url_for(:controller=>"irm/lookup_types",:action=>"create")%>" script="/alert('message['successMessage']');after_save_lookup_type();setLookupType('lookup_value_grid',message['lookupType']);/" action_type="ajaxSubmit"><%= t(:save) %></a></div>
                         <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a></div>
                     </div>
           </div>
@@ -71,7 +70,7 @@
                          grid_width="100,100,100,100,500"
                          grid_col_types="ed,ed,ed,dhxCalendar,dhxCalendar"></div>
                     <div class="containerfooter">
-                    	<div class="button floatright" id = "id_lookup_code_submit"><a href="#" onclick="saveRow();" ><%= t(:save) %></a></div>
+                    	<div class="button floatright" id = "id_lookup_code_submit"><a href="javascript:void(0);" onclick="saveRow();" ><%= t(:save) %></a></div>
                         <div class="button floatright"><%=link_to t(:cancel),{:controller=>"irm/lookup_types",:action=>"index"},
                                                                               :script=>"/replace(id_lookup_type_index,id_lookup_type_index);/",
                                                                               :action_type=>"ajaxLink"%></div>
