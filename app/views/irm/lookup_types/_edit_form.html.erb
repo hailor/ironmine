@@ -64,24 +64,17 @@
                       <div class="containerheader">
                          <div class="floatleft headertitle"><%=t(:label_irm_lookup_value_lookup_code)%></div>
                       </div>
-                      <div id="lookup_value_grid" style="width:100%; height:200px; background-color:white;"></div>
-                      <script type="text/javascript" charset="utf-8">
-                      var temp_grid;
-                      function init_lookup_type_edit_grid(){
-                          var lookup_value_grid = new dhtmlXGridObject('lookup_value_grid');
-                          lookup_value_grid.setHeader("<%=t(:label_irm_lookup_value_lookup_code)%>,<%=t(:label_meaning)%>,<%=t(:label_description)%>,<%=t(:label_start_date_active)%>,<%=t(:label_end_date_active)%>,<%=t(:multilingual)%>");
-                          lookup_value_grid.setInitWidths("100,100,100,100,100,*");
-                          lookup_value_grid.setColTypes("ed,ed,ed,dhxCalendar,dhxCalendar,img");//set column types
-                          init_grid(lookup_value_grid);
-                          lookup_value_grid.load("get_lookup_values?lookup_type="+"<%=@lookup_type.lookup_type%>","json");
-                          temp_grid = lookup_value_grid;
-                      }                      
-                      </script>
+                      <div id="id_edit_lookup_value_grid" style="width:100%; height:200px; background-color:white;"
+                       action_type="ajaxDhtmlxGrid"
+                       grid_header="<%=t(:label_irm_lookup_value_lookup_code)%>,<%=t(:label_meaning)%>,<%=t(:label_description)%>,<%=t(:label_start_date_active)%>,<%=t(:label_end_date_active)%>"
+                       grid_width="100,100,100,100,500"
+                       grid_col_types="ed,ed,ed,dhxCalendar,dhxCalendar"
+                       grid_load="'get_lookup_values?lookup_type=<%=@lookup_type.lookup_type%>','','json'"></div>
                       <div class="containerfooter">
                           <div class="button floatright" id = "id_lookup_code_submit"><a href="#" onclick="saveRow();" ><%= t(:save) %></a></div>
                           <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a></div>
-                          <div class="button floatright" id = "id_add" onclick="addRow(temp_grid);"><%=link_to t(:add)%></div>
-                          <div class="button floatright"><a href="javascript:void(0);" onclick="removeRow(temp_grid);"><%= t(:delete) %></a></div>
+                          <div class="button floatright" id = "id_add" onclick="addRow('id_edit_lookup_value_grid');"><%=link_to t(:add)%></div>
+                          <div class="button floatright"><a href="javascript:void(0);" onclick="removeRow('id_edit_lookup_value_grid');"><%= t(:delete) %></a></div>
                       </div>
       </div>
   </div>
