@@ -6,7 +6,7 @@ $(document).ready(function(){
 });
 
 function pre_init_partial(el){
-   $(el).find('input[type=text]:not([readonly]):first').focus();
+    $(el).find('input[type=text]:not([readonly]):first').focus();
     $(el).find('input[required]:not([readonly]):not([disabled])').css("background-color","#FFFFCC");
     $(el).find('input[readonly]:not([lov])').css("background-color","#CCCCCC");
     //针对于uppercase的属性，强制输入大写

@@ -1,0 +1,39 @@
+<div id="id_language_new" class="container">
+     <%= form_for(@language,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+      
+            <div class="containerheader">
+                <div class="floatleft headertitle"><%=t(:label_irm_language_new)%></div>
+            </div>
+            <table class="twocolumnstable" cellspacing="0">
+                <tr>
+                    <td class="twocolumn">
+                       <table class="itemdetailtable">
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_language_language_code)%>:</td>
+                            <td><%=f.text_field :language_code,:size=>40,:required=>true,:irm_uppercase=>true,:normal=>true %></td>
+                        </tr>
+                        <tr><td class="itemdetailtablelabel"><%=(t :label_irm_language_installed_flag)%>:</td>
+                          <td><%=f.check_box :installed_flag,:normal=>true%></td>
+                        </tr>
+                       </table>
+                    </td>
+                    <td class="twocolumn" cellspacing="0">
+                       <table class="itemdetailtable">
+                        <div id="id_lookup_level">
+                        <tr><td class="itemdetailtablelabel">
+                              <%=t(:label_irm_language_description)%>:
+                           </td>
+                           <td><%= f.text_area :description, :cols => 40, :rows => 2,:normal=>true%></td>
+                        </tr>
+                        </div>
+                       </table>
+                    </td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+            <div class="containerfooter">
+                <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/languages",:action=>"create"}, {:action_type => "ajaxSubmit", :script => "/replace(id_general_message,id_general_message);reload_grid('id_language_grid');/"}%></div>
+                <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(form_area,form_area);/", :action_type=>"ajaxLink"%></div>
+            </div>
+     <% end %>
+</div>

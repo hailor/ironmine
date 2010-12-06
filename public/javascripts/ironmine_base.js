@@ -43,7 +43,6 @@ function setLookupType(id,lookupType){
 //#=========================start irm/lookup_types/_edit_form.html.erb=======================#
 var dpEdit=""
 function addEditRow(id,lookupTypeId) {
-    alert('11111='+lookupTypeId);
     var grid = dhtmlx_grid_array[id];
     var newId = (new Date()).valueOf();
     grid.addRow(newId,"",grid.getRowsNum());
@@ -63,3 +62,15 @@ function saveEditRow(){
   dpEdit.sendData();
 }
 //#=========================start irm/lookup_types/_new_form.html.erb=======================#
+//#=========================start irm/language/_new_form.html.erb=======================#
+function reload_grid(id){
+   var element = ("#"+id);
+   var grid_load = $(element).attr("grid_load");
+   var grid = dhtmlx_grid_array[id];
+   if (grid_load!=null&&grid_load!=undefined){
+      var gridLoad = eval("([" + grid_load + "])");
+      grid.clearAll();
+      grid.load(gridLoad[0],function(){init(element)},gridLoad[2]);
+   }
+}
+//#=========================end irm/language/_new_form.html.erb=======================#

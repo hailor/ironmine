@@ -179,7 +179,7 @@ function ajaxDhtmlxGrid(el){
    init_grid(grid);
    if (grid_load!=null&&grid_load!=undefined){
       var gridLoad = eval("([" + grid_load + "])");
-      grid.load(gridLoad[0], gridLoad[1], gridLoad[2]);
+      grid.load(gridLoad[0],function(){init(el)},gridLoad[2]);
    }
    dhtmlx_grid_array[id]=grid;
 }

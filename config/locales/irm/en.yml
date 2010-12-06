@@ -67,3 +67,14 @@ en:
   label_irm_lookup_value_meaning: Meaning
   label_irm_lookup_type_description: Description
   #=========================end irm lookup_types_controller=======================#
+  #=========================    irm languages_controller=======================#
+  label_irm_language: Language Module
+  label_irm_language_new: Create Language
+  label_irm_language_edit: Edit Language
+  label_irm_language_list: Language List
+  label_irm_language_language_code: Language Code
+  label_irm_language_name: Name
+  label_irm_language_description: Description
+  label_irm_language_installed_flag: Installed Flag
+  label_irm_language_status_code: Status Code
+  #=========================    irm languages_controller=======================#

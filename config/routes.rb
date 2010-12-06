@@ -13,14 +13,8 @@ Ironmine::Application.routes.draw do
     match '/lookup_types/get_lookup_types(.:format)'=>"lookup_types#get_lookup_types",:via=>:get
     match '/lookup_types/get_lookup_values(.:format)'=>"lookup_types#get_lookup_values",:via=>:get
     match '/lookup_types(/index)(.:format)'=>"lookup_types#index",:via=>:get
-    match '/lookup_types/:id/show(.:format)'=>"lookup_types#show",:via=>:get
     match '/lookup_types/:id/edit(.:format)'=>"lookup_types#edit",:via=>:get
     match '/lookup_types/update'=>"lookup_types#update"
-    match '/lookup_types/:id(.:format)'=>"lookup_types#destroy",:via=>:delete
-    match '/lookup_types/:id/multilingual_edit(.:format)'=>"lookup_types#multilingual_edit",:via=>:get
-    match '/lookup_types/get_current_language(.:format)'=>"lookup_types#get_current_language",:via=>:get
-    match '/lookup_types/:id(.:format)/multilingual_update'=>"lookup_types#multilingual_update",:via=>:put
-
     #product modules
     match '/product_modules/index(.:format)' => "product_modules#index", :via => :get
     match '/product_modules/:id/edit(.:format)' => "product_modules#edit", :via => :get
@@ -30,6 +24,13 @@ Ironmine::Application.routes.draw do
     match '/product_modules/get_data(.:format)' => "product_modules#get_data"
     match '/product_modules/enable(.:format)' => "product_modules#enable", :via => :post
     match '/product_modules/disable(.:format)' => "product_modules#disable", :via => :post
+    #languages
+    match '/languages/index(.:format)' => "languages#index", :via => :get
+    match '/languages/:id/edit(.:format)' => "languages#edit", :via => :get
+    match '/languages/:id(.:format)' => "languages#update", :via => :put
+    match '/languages/new(.:format)' => "languages#new", :via => :get
+    match '/languages/create(.:format)' => "languages#create", :via => :post
+    match '/languages/get_data(.:format)' => "languages#get_data"
   end
 
   match '/demo(/index)' => 'demo#index'

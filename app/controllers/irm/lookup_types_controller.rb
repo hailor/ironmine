@@ -10,11 +10,6 @@ class Irm::LookupTypesController < ApplicationController
     end
   end
 
-  # GET /lookup_types/1
-  # GET /lookup_types/1.xml
-  def show
-  end
-
   # GET /lookup_types/new
   # GET /lookup_types/new.xml
   def new
