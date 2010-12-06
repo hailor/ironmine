@@ -22,19 +22,19 @@
                               <td class="twocolumn" cellspacing="0">
                                  <table class="itemdetailtable">
                                   <div id="id_lookup_level">
-                                     <tr><td class="itemdetailtablelabel"><%=f.radio_button :lookup_level,Irm::Constant::GLOBAL_LOOKUP_LEVEL,:checked => true%>
+                                     <tr><td class="floatleft"><%=f.radio_button :lookup_level,Irm::Constant::GLOBAL_LOOKUP_LEVEL,:checked => true%>
                                            <%=t(:label_global_level)%>
                                      </td>
                                      <td></td>
                                   </tr>
                                   <tr>
-                                    <td class="itemdetailtablelabel"><%=f.radio_button :lookup_level,Irm::Constant::EXTENDED_LOOKUP_LEVEL%>
+                                    <td class="floatleft"><%=f.radio_button :lookup_level,Irm::Constant::EXTENDED_LOOKUP_LEVEL%>
                                         <%=t(:label_extended_level)%>
                                     </td>
                                     <td></td>
                                   </tr>
                                   <tr>
-                                    <td class="itemdetailtablelabel"><%=f.radio_button :lookup_level,Irm::Constant::USER_LOOKUP_LEVEL%>
+                                    <td class="floatleft"><%=f.radio_button :lookup_level,Irm::Constant::USER_LOOKUP_LEVEL%>
                                         <%=t(:label_user_level)%>
                                     </td>
                                     <td></td>
