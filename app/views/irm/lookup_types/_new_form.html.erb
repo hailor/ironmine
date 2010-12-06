@@ -46,16 +46,16 @@
                             <td width="20%">&nbsp;</td>
                         </tr>
                     </table>
-                    <script type="text/javascript" charset="utf-8">
-                    function after_save_lookup_type(){
-                       $("#irm_lookup_type_lookup_type").attr('readonly','readonly');
-                       $("input[type=radio]").each(function(){
-                             $(this).attr('disabled','disabled');
-                       });
-                    }
-                    </script>
+                     <script type="text/javascript" charset="utf-8">
+                          function after_save_lookup_type(){
+                              $("#irm_lookup_type_lookup_type").attr('readonly','readonly');
+                              $("input[type=radio]").each(function(){
+                                  $(this).attr('disabled','disabled');
+                              });
+                          }
+                     </script>
                     <div class="containerfooter">
-                    	<div class="button floatright" ><a id="id_submit" href="<%=url_for(:controller=>"irm/lookup_types",:action=>"create")%>" script="/alert('message['successMessage']');after_save_lookup_type();setLookupType('lookup_value_grid',message['lookupType']);/" action_type="ajaxSubmit"><%= t(:save) %></a></div>
+                    	<div class="button floatright" ><a id="id_submit" href="<%=url_for(:controller=>"irm/lookup_types",:action=>"create")%>" script="/alert('message['successMessage']');after_save_lookup_type();setLookupType(temp_grid,message['lookupType']);/" action_type="ajaxSubmit"><%= t(:save) %></a></div>
                         <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a></div>
                     </div>
           </div>

@@ -10,7 +10,7 @@
                               <td class="twocolumn">
                                  <table class="itemdetailtable">
                                     <tr><td class="itemdetailtablelabel"><%=(t :label_lookup_types)%>:</td>
-                                    <td><%=f.text_field :lookup_type,:size=>45,:required=>true,:irm_uppercase=>true,:readonly=>"readonly"%></td>
+                                    <td><%=f.text_field :lookup_type,:size=>45,:required=>true,:irm_uppercase=>true,:readonly=>true%></td>
                                   </tr>
                                   <tr><td class="itemdetailtablelabel"><%=(t :label_meaning)%>:</td>
                                     <td><%=f.text_field :meaning ,:value=>@lookup_type[:meaning],:size=>45,:required=>true%></td>
@@ -23,19 +23,19 @@
                               <td class="twocolumn" cellspacing="0">
                                  <table class="itemdetailtable">
                                   <div id="id_lookup_level">
-                                     <tr><td class="floatleft"><%=f.radio_button :lookup_level,Irm::Constant::GLOBAL_LOOKUP_LEVEL,:checked => true%>
+                                     <tr><td class="floatleft"><%=f.radio_button :lookup_level,Irm::Constant::GLOBAL_LOOKUP_LEVEL,:checked => true,:disabled=>"disabled"%>
                                            <%=t(:label_global_level)%>
                                      </td>
                                      <td></td>
                                   </tr>
                                   <tr>
-                                    <td class="floatleft"><%=f.radio_button :lookup_level,Irm::Constant::EXTENDED_LOOKUP_LEVEL%>
+                                    <td class="floatleft"><%=f.radio_button :lookup_level,Irm::Constant::EXTENDED_LOOKUP_LEVEL,:disabled=>"disabled"%>
                                         <%=t(:label_extended_level)%>
                                     </td>
                                     <td></td>
                                   </tr>
                                   <tr>
-                                    <td class="floatleft"><%=f.radio_button :lookup_level,Irm::Constant::USER_LOOKUP_LEVEL%>
+                                    <td class="floatleft"><%=f.radio_button :lookup_level,Irm::Constant::USER_LOOKUP_LEVEL,:disabled=>"disabled"%>
                                         <%=t(:label_user_level)%>
                                     </td>
                                     <td></td>
@@ -46,16 +46,8 @@
                               <td width="20%">&nbsp;</td>
                           </tr>
                       </table>
-                      <script type="text/javascript" charset="utf-8">
-                          function init_edit_lookup_type(){
-                              $("#irm_lookup_type_lookup_type").attr('readonly','readonly');
-                              $("input[type=radio]").each(function(){
-                                  $(this).attr('disabled','disabled');
-                              });
-                          }
-                      </script>
                       <div class="containerfooter">
-                          <div class="button floatright" ><a id="id_submit" href="<%=url_for(:controller=>"irm/lookup_types",:action=>"create")%>" script="/alert('message['successMessage']');after_save_lookup_type();setLookupType(temp_grid,message['lookupType']);/" actiontype="ajaxSubmit"><%= t(:save) %></a></div>
+                          <div class="button floatright" ><a id="id_submit" href="<%=url_for(:controller=>"irm/lookup_types",:action=>"update")%>" script="/alert('message['successMessage']');setLookupType(temp_grid,message['lookupType']);/" actiontype="ajaxSubmit"><%= t(:save) %></a></div>
                           <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a></div>
                       </div>
             </div>
