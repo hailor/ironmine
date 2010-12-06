@@ -131,6 +131,59 @@ function ajaxSubmit(el) {
 	});
 }
 
+//根据div的提供的属性构造表格对象
+var dhtmlx_grid_array={};
+function ajaxDhtmlxGrid(el){
+   var id = $(el).attr("id");
+   var grid_header = $(el).attr("grid_header");
+   var grid_width = $(el).attr("grid_width");
+   var grid_col_types = $(el).attr("grid_col_types");
+   var grid_paging_skin = $(el).attr("grid_paging_skin");
+   var enable_paging = $(el).attr("enable_paging");
+   var onCheckbox = $(el).attr("grid_checkbox");
+   var grid_column_hidden = $(el).attr("grid_columnHidden");
+   var grid_load = $(el).attr("grid_load");
+   var grid = dhtmlx_grid_array[id];
+   if(grid!=null&&grid!=undefined){
+       grid.destructor();
+   }
+   grid = new dhtmlXGridObject(id);
+   if(grid_header!=null&&grid_header!=undefined){
+      grid.setHeader(grid_header);
+   }
+   if(grid_width!=null&&grid_width!=undefined){
+      grid.setInitWidths(grid_width);
+   }
+   if (grid_col_types!=null&&grid_col_types!=undefined){
+      grid.setColTypes(grid_col_types);//set column types
+   }
+   if (enable_paging!=null&&enable_paging!=undefined){
+      var enablePaging = eval("([" + enable_paging + "])");
+      //alert(enablePaging[0] + " " + enablePaging[1] + " " + enablePaging[2] + " " + enablePaging[3] + " " + enablePaging[4] + " " + enablePaging[5]);
+      grid.enablePaging(enablePaging[0], enablePaging[1], enablePaging[2], enablePaging[3], enablePaging[4], enablePaging[5]);
+
+   }
+   if (enable_paging!=null&&enable_paging!=undefined){
+      grid.setPagingSkin(grid_paging_skin);
+   }
+   if (onCheckbox!=null&&onCheckbox!=undefined){
+        //.var fnCheckbox = eval(onCheckbox);
+      grid.attachEvent("onCheckbox", onCheckbox);
+   }
+
+   if (grid_column_hidden!=null&&grid_column_hidden!=undefined){
+      var gridColumnHidden = eval("([" + grid_column_hidden + "])");
+      grid.setColumnHidden(gridColumnHidden[0], gridColumnHidden[1]);
+   }
+
+   init_grid(grid);
+   if (grid_load!=null&&grid_load!=undefined){
+      var gridLoad = eval("([" + grid_load + "])");
+      grid.load(gridLoad[0], gridLoad[1], gridLoad[2]);
+   }
+   dhtmlx_grid_array[id]=grid;
+}
+
 function init(el) {
 	var numload = 0;
 	$el=$(el);
@@ -144,8 +197,11 @@ function init(el) {
 			ajaxSubmit(this);
 		}else if (actionType == "ajaxLink"){
             ajaxLink(this);
+        }else if (actionType== "ajaxDhtmlxGrid"){
+            ajaxDhtmlxGrid(this);
         }
 	});
+    pre_init_partial(el);
 }
 
 function parseScript(script) {
@@ -190,7 +246,7 @@ function parseFunctionJsonParam(jsonId, f, json) {
 function loadAndRunAction(arr, e, data, identify) {
 	var element = document.createElement("div");
 	$(element).html(data);
-    alert('data = '+ data);
+//    alert('data = '+ data);
 	var jsonEls = $(element).find("*[type=json]");
 	var json = null;
 	var result = "true";

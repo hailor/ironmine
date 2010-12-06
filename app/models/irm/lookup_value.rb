@@ -8,4 +8,6 @@ class Irm::LookupValue < ActiveRecord::Base
   acts_as_multilingual({:columns =>[:meaning,:description],:required=>[:meaning]})
 
   query_extend
+
+  scope :query_by_lookup_type,lambda{|lookup_type|where(:lookup_type=>lookup_type)}
 end

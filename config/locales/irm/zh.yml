@@ -20,9 +20,11 @@ zh:
   apply: 应用
   clear: 清除
   save: 保存
+  new: 新建
   confirm: 确认
   update: 更新
   create: 创建
+  new: 新建
   add: 添加
   multilingual: 多语言
   active: 是否可用
@@ -30,6 +32,8 @@ zh:
   processing: 处理中...
   button_add_file: 添加文件
   more: 更多
+  enable: 启用
+  disable: 失效
   #常用语句
   notice_account_invalid_creditentials: 用户名或密码错误
   successfully_updated: 已经成功更新数据
@@ -68,6 +72,8 @@ zh:
   #=========================end irm lookup_types_controller================#
   #=========================    irm product_modules_controller=====================#
   label_irm_product_module: 产品模块
+  label_irm_product_module_new: 创建产品模块
+  label_irm_product_module_edit: 编辑产品模块
   label_irm_product_module_list: 产品模块列表
   label_irm_product_module_product_short_name: 产品简称
   label_irm_product_module_name: 产品名称
