@@ -18,8 +18,8 @@ class Irm::CommonController < ApplicationController
         format.html { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
         format.js { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
       else
-        format.html { render({:action=>"multilingual_edit",:format=>"js"}) }
-        format.js   { render({:action=>"multilingual_edit",:format=>"js"}) }
+        format.html { render({:action=>"multilingual_edit"}) }
+        format.js   { render({:action=>"multilingual_edit"}) }
       end
     end
   end

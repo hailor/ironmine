@@ -1,22 +1,3 @@
 <div class="container">
-  <%= form_for(@product_module ,:url=>{:action=>"multilingual_update"},:remote=>true,:html=>{:zone=>"multwin"}) do |f| %>
-    <%= error_message_for @product_module%>
-    <div class="block">
-      <%=render :partial=>"multilingual/edit",:locals=>{:f=>f,:main_data=>@product_module} %>
-    </div>
-    <div class="containerfooter">
-      <div class="button floatright" ><%=link_to t(:save),{:action=>"multilingual_update"},:href=>"#",:type=>"submit"%></div>
-      <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a></div>
-    </div>
-  <% end %>
+   <%=render :partial=>"multilingual/edit",:locals=>{:main_data=>@product_module} %>
 </div>
-<script>
-  $(document).ready(function(){
-    $('form[data-remote]').bind("ajax:success",function(data, status, xhr){
-     var target_zone = $(this).attr("zone");
-     if($("#"+target_zone))
-       $("#"+target_zone).html(status)
-  });
-
-  });
-</script>
