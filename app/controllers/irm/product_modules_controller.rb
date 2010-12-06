@@ -47,8 +47,8 @@ class Irm::ProductModulesController < ApplicationController
         format.html { redirect_to(:action => "index", :notice => (t :successfully_created)) }
         format.xml  { render :xml => @product_module, :status => :created, :location => @product_module }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @product_module.errors, :status => :unprocessable_entity }
+         @error = @product_module
+         format.html { render "error_message" }
       end
     end
   end
@@ -65,8 +65,6 @@ class Irm::ProductModulesController < ApplicationController
       else
         @error = @product_module
         format.html { render "error_message" }
-#        format.html { render :action => "edit" }
-#        format.xml  { render :xml => @product_module.errors, :status => :unprocessable_entity }
       end
     end
   end

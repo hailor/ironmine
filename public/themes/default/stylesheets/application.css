@@ -17,8 +17,9 @@ body{
 .floatright{ float:right !important;}
 .floatleft{float:left !important;}
 .headertitle{font-weight:bold; float:left;}
+.field_with_errors input, .field_with_errors text_area, .field_with_errors select{ border: red solid 2px;}
 
-div.sysmsgbox{
+div.errormsgbox{
     background: none repeat scroll 0 0 #fff1a8;
     text-align: center;
     font-weight: bold;
@@ -26,6 +27,16 @@ div.sysmsgbox{
     width: 100%;
     margin: 0 0 4px -2px;
     border: 2px solid red;
+}
+
+div.succmsgbox{
+    background: none repeat scroll 0 0 #fff1a8;
+    text-align: center;
+    font-weight: bold;
+    word-wrap:break-word;
+    width: 100%;
+    margin: 0 0 4px -2px;
+    border: 2px solid green;
 }
 
 div#banner{
@@ -231,4 +242,3 @@ div#breadcrumbs{margin: 3px 0 0;padding: 0 0 0 5px;}
 div#breadcrumbs a{	text-decoration: none;	color: #0055DD;}
 div#breadcrumbs a:hover{	text-decoration:underline;	color: #0055DD;}
 
-.field_with_errors input, .field_with_errors text_area, .field_with_errors select{ border: red solid 2px;}

@@ -18,7 +18,7 @@ module ApplicationHelper
     uls=content_tag(:ul,lis,nil,false)
     h2s=content_tag(:h2,"Errors",nil,false)
     if error_count>0
-    content_tag(:div,"#{h2s}\n#{uls}",{:id=>"errorExplanation",:class=>"errorExplanation"},false)
+      content_tag(:div,content_tag(:div, raw("#{h2s}\n#{uls}"), {:class=>"errormsgbox"}) ,{:id=>"system_message_box"},false)
     else
       nil
     end
