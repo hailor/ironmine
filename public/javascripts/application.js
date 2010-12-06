@@ -64,9 +64,10 @@ function setLookupType(grid,lookupType){
 //#=========================end irm/lookup_types/_new_form.html.erb=======================#
 
 //#=========================start multilingual=======================#
-jQuery(function ($) {
-    var mulwins;
-    $('a[action_type="multilingual"]').live('click', function (e) {
+var mulwins;
+function multilingual(el){
+  jQuery(function ($) {
+    el.onclick = function (e) {
       e.preventDefault();
       if(!mulwins)
       {
@@ -77,7 +78,7 @@ jQuery(function ($) {
       }
       var div_str = "<div id='multwin' style='display:none'></div>"
       if($('#multwin').length<1){$('body').append(div_str);}
-      
+
       $('#multwin').load($(this).attr('href'));
       var win = mulwins.createWindow("mutilwin",50,50,590,142);
       win.attachObject('multwin');
@@ -87,15 +88,16 @@ jQuery(function ($) {
       win.button('minmax2').hide();
       win.denyResize();
       win.setModal(true);
-    });
-
+    };
+  });
+}
+jQuery(function ($) {
     $('a[action_type="multilingual_close"]').live('click', function (e) {
       if(mulwins)
       {
         mulwins.forEachWindow(function(win){win.close()});
       }
     });
-    
 });
 //#=========================end multilingual=======================#
 
