@@ -4,6 +4,7 @@ module Irm
   module Constant
     #数据可用标记
     ENABLED = "ENABLED"
+    DISABLED = "DISABLED"
     #整个系统中进行SYS_YES
     SYS_YES = 'Y'
     SYS_NO = 'N'
