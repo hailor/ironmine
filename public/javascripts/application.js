@@ -7,8 +7,8 @@ $(document).ready(function(){
 
 function pre_init_partial(el){
    $(el).find('input[type=text]:not([readonly]):first').focus();
-    $(el).find('input[required]:not([readonly]):not([disabled])').css("background-color","#FFFFCC");
-    $(el).find('input[readonly]:not([lov])').css("background-color","#CCCCCC");
+    $(el).find('input[required]:not([readonly]):not([disabled])').addClass("inputrequired");
+    $(el).find('input[readonly]:not([lov])').addClass("inputdisable");
     //针对于uppercase的属性，强制输入大写
     $(el).find('input[irm_uppercase]').keyup(function() {
         this.value=this.value.toUpperCase();
@@ -18,16 +18,15 @@ function pre_init_partial(el){
         if(!this.value==""){
           var reg = /^[A-Z0-9_]*$/;
           if(!reg.test(this.value)){
-            alert("Input data don't match the rule");
-            this.value="";
+            this.value=this.value.replace(/[^\da-z_]/ig,'');
           }
         }
     });
     $(el).find('input[irm_numberonly]').keyup(function() {
         this.value = this.value.replace(/[^\d]/g,'')
     });
-    $(el).find('textarea[required]:not([readonly]):not([disabled])').css("background-color","#FFFFCC");
-    $(el).find('textarea[readonly]').css("background-color","#CCCCCC");
+    $(el).find('textarea[required]:not([readonly]):not([disabled])').addClass("inputrequired");
+    $(el).find('textarea[readonly]').addClass("inputdisable");
     $(el).find('input[type=submit]').css("cursor","pointer");
 }
 
