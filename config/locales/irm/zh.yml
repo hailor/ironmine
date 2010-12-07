@@ -28,6 +28,7 @@ zh:
   add: 添加
   multilingual: 多语言
   active: 是否可用
+  status: 状态
   copy:  复制
   list: 列表
   processing: 处理中...
@@ -121,3 +122,16 @@ zh:
   label_irm_menu_entry_add: 添加子菜单项
   error_irm_menu_entry_permission_sub_menu_at_least_one: 子菜单和页面至少输入一项
   #=========================    end menus_controller=======================#
+  #=========================    irm permissions_controller=======================#
+  label_irm_permission_new: 新建权限
+  label_irm_permission_edit: 编辑权限
+  label_irm_permission_permission_code: 权限编码
+  label_irm_permission_permission_type: 权限类型
+  label_irm_permission_name: 权限名称
+  label_irm_permission_description: 描述
+  label_irm_permission_product_name: 模块
+  label_irm_permission_page_controller: Controller
+  label_irm_permission_page_action: Action
+  label_irm_permission_status_code: 状态
+  label_irm_permission_list: 权限列表
+  #=========================    end permissions_controller=======================#      
