@@ -8,8 +8,19 @@
         <%=t(:label_irm_menu_description)%>,<%=t(:active)%>,<%=t(:multilingual)%>"
         grid_width="20,100,100,200,80,80"
         grid_col_types="ch,link,ro,ro,ro,link"
+        grid_onRowDblClicked="dblClickHandler"
+        grid_OnRowSelected="rowSelectedHandler"
         grid_load="'<%= url_for(:action => "get_data", :controller => "irm/menus", :format=>:json) %>','','json'">
     </div>
+    <script>
+      function dblClickHandler(rId, cInd){
+        alert("dbl click " + rId + "-" + cInd);
+      }
+      function rowSelectedHandler(id, ind){
+        var combo = menus_grid.getCombo(id);
+        alert(combo.toSource());
+      }            
+    </script>
     <div class="containerfooter">
     </div>
 </div>
