@@ -23,4 +23,8 @@ module ApplicationHelper
       nil
     end
   end
+
+  def succ_message_for(msg)
+    content_tag(:div,content_tag(:div, raw(msg), {:class=>"succmsgbox"}) ,{:id=>"system_message_box"},false)
+  end
 end

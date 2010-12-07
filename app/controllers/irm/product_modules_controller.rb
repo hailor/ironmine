@@ -60,8 +60,10 @@ class Irm::ProductModulesController < ApplicationController
 
     respond_to do |format|
       if @product_module.update_attributes(params[:irm_product_module])
-        format.html { redirect_to(:action => "index", :notice => (t :successfully_updated)) }
-        format.xml  { head :ok }
+        flash[:successful_message] = (t :successfully_updated)
+        format.html { render "successful_info" }
+#        format.html { redirect_to(:action => "index", :notice => (t :successfully_updated)) }
+#        format.xml  { head :ok }
       else
         @error = @product_module
         format.html { render "error_message" }
@@ -91,10 +93,8 @@ class Irm::ProductModulesController < ApplicationController
     respond_to do |format|
       if @product_module.update_attributes(params[:irm_product_module])
         format.html { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
-        format.js { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
       else
         format.html { render({:action=>"multilingual_edit"}) }
-        format.js   { render({:action=>"multilingual_edit"}) }
       end
     end
   end
