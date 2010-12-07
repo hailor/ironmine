@@ -68,7 +68,9 @@ var mulwins;
 function multilingual(el){
   jQuery(function ($) {
     el.onclick = function (e) {
-      e.preventDefault();
+      if (!jQuery.browser.msie){
+        e.preventDefault();
+      }
       if(!mulwins)
       {
         mulwins = new dhtmlXWindows();
@@ -88,6 +90,7 @@ function multilingual(el){
       win.button('minmax2').hide();
       win.denyResize();
       win.setModal(true);
+      return false;
     };
   });
 }
