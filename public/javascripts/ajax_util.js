@@ -145,6 +145,7 @@ function ajaxDhtmlxGrid(el){
    var OnRowSelected = $(el).attr("grid_OnRowSelected");
    var onRowDblClicked = $(el).attr("grid_onRowDblClicked");
    var grid_column_hidden = $(el).attr("grid_columnHidden");
+   var grid_attach_Header=$(el).attr("grid_attachHeader");
    var grid_load = $(el).attr("grid_load");
    
    var grid = dhtmlx_grid_array[id];
@@ -191,6 +192,9 @@ function ajaxDhtmlxGrid(el){
    if (grid_column_hidden!=null&&grid_column_hidden!=undefined){
       var gridColumnHidden = eval("([" + grid_column_hidden + "])");
       grid.setColumnHidden(gridColumnHidden[0], gridColumnHidden[1]);
+   }
+   if (grid_attach_Header!=null&&grid_attach_Header!=undefined){
+      grid.attachHeader(grid_attach_Header);
    }
 
    init_grid(grid);

@@ -49,7 +49,7 @@ class Irm::LookupTypesController < ApplicationController
 
     respond_to do |format|
       if @lookup_type.update_attributes(params[:irm_lookup_type])
-        format.html { render "update_successful_info"}
+        format.html { render "successful_info"}
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
