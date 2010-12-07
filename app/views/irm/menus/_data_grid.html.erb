@@ -1,0 +1,15 @@
+<div id="data_area" class="container">
+    <div class="containerheader">
+       <div class="floatleft headertitle"><%=t(:label_irm_menu_list)%></div>
+    </div>
+    <div id="menus_grid" class="datagrid" style="width:100%;height:200px;background-color:white;"
+        action_type="ajaxDhtmlxGrid"
+        grid_header=" , <%=t(:label_irm_menu_menu_code)%>,<%=t(:label_irm_menu_name)%>,
+        <%=t(:label_irm_menu_description)%>,<%=t(:active)%>,<%=t(:multilingual)%>"
+        grid_width="20,100,100,200,80,80"
+        grid_col_types="ch,link,ro,ro,ro,link"
+        grid_load="'<%= url_for(:action => "get_data", :controller => "irm/menus", :format=>:json) %>','','json'">
+    </div>
+    <div class="containerfooter">
+    </div>
+</div>
