@@ -1,5 +1,5 @@
 <div id="form_area" class="container">
-     <%= form_for(@product_module,:url=>{:action=>"create"}) do |f| %>
+     <%= form_for(@product_module,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
             <div class="containerheader">
                 <div class="floatleft headertitle"><%=t(:label_irm_product_module_new)%></div>
             </div>
@@ -14,7 +14,10 @@
                           <td><%=f.text_field :name ,:size=>40,:required=>true%></td>
                         </tr>
                         <tr><td class="itemdetailtablelabel"><%=(t :label_irm_product_module_installed_flag)%>:</td>
-                          <td><%=f.check_box :installed_flag%></td>
+                          <td><%=f.check_box :installed_flag, :value => "Y"%></td>
+                        </tr>
+                        <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
+                          <td><%=f.check_box :active_flag, :value => "Y"%></td>
                         </tr>
                        </table>
                     </td>

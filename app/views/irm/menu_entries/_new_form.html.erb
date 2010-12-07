@@ -1,5 +1,5 @@
 <div id="form_area" class="container">
-     <%= form_for(@menu_entry,:url=>{:action=>"create", :menu_id => @menu.id}) do |f| %>
+     <%= form_for(@menu_entry,:url=>{:action=>"create", :menu_id => @menu.id},:builder => LabellingFormBuilder) do |f| %>
             <div class="containerheader">
                 <div class="floatleft headertitle"><%=t(:label_irm_menu_entry_new)%></div>
             </div>
@@ -31,7 +31,7 @@
                         <tr><td class="itemdetailtablelabel">
                               <%=t(:label_irm_menu_entry_display_sequence)%>:
                            </td>
-                           <td><%= f.text_field :display_sequence, :size=>10%></td>
+                           <td><%= f.text_field :display_sequence, :size=>10, :irm_numberonly => true%></td>
                         </tr>       
                        </table>
                     </td>

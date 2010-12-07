@@ -1,5 +1,5 @@
    <div id="form_area" class="container">
-     <%= form_for(@product_module,:url=>{:action=>"update"}) do |f| %>
+     <%= form_for(@product_module,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
                 <div class="containerheader">
                     <div class="floatleft headertitle"><%=t(:label_irm_product_module_edit)%> - <%= @product_module.product_short_name%></div>
                 </div>
@@ -17,7 +17,7 @@
                               <td><%=f.check_box :installed_flag%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
-                              <td><%=f.check_box :status_code%></td>
+                              <td><%=f.check_box :active_flag%></td>
                             </tr>                             
                            </table>
                         </td>
