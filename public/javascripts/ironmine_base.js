@@ -99,5 +99,6 @@ function processHtmlReplace(returnElement,targetDiv){
 	});
 	if(html&&html!=""){$(source).html(html);}
     init('#'+targetDiv);
+    pre_init_partial("#" + targetDiv);
 }
 //#=========================end irm/language/_new_form.html.erb=======================#
