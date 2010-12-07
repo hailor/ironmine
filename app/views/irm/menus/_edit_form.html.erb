@@ -1,20 +1,17 @@
    <div id="form_area" class="container">
-     <%= form_for(@product_module,:url=>{:action=>"update"}) do |f| %>
+     <%= form_for(@menu,:url=>{:action=>"update"}) do |f| %>
                 <div class="containerheader">
-                    <div class="floatleft headertitle"><%=t(:label_irm_product_module_edit)%> - <%= @product_module.product_short_name%></div>
+                    <div class="floatleft headertitle"><%=t(:label_irm_menu_edit)%> - <%= @menu.menu_code%></div>
                 </div>
                 <table class="twocolumnstable" cellspacing="0">
                     <tr>
                         <td class="twocolumn">
                            <table class="itemdetailtable">
-                               <tr><td class="itemdetailtablelabel"><%=(t :label_irm_product_module_product_short_name)%>:</td>
-                                <td><%=f.text_field :product_short_name,:size=>40,:required=>true,:irm_uppercase=>true, :readonly=> true %></td>
+                               <tr><td class="itemdetailtablelabel"><%=(t :label_irm_menu_menu_code)%>:</td>
+                                <td><%=f.text_field :menu_code,:size=>40,:required=>true,:irm_uppercase=>true, :readonly=> true %></td>
                             </tr>
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_product_module_name)%>:</td>
-                              <td><%=f.text_field :name, :value => @product_module[:name] ,:size=>40,:required=>true%></td>
-                            </tr>
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_product_module_installed_flag)%>:</td>
-                              <td><%=f.check_box :installed_flag%></td>
+                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_menu_name)%>:</td>
+                              <td><%=f.text_field :name, :value => @menu[:name] ,:size=>40,:required=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
                               <td><%=f.check_box :status_code%></td>
@@ -25,9 +22,9 @@
                            <table class="itemdetailtable">
                             <div id="id_lookup_level">
                                <tr><td class="itemdetailtablelabel">
-                                     <%=t(:label_irm_product_module_description)%>:
+                                     <%=t(:label_irm_menu_description)%>:
                                </td>
-                               <td><%= f.text_area :description, :value => @product_module[:description], :cols => 40, :rows => 2%></td>
+                               <td><%= f.text_area :description, :value => @menu[:description], :cols => 40, :rows => 2%></td>
                             </tr>
                             </div>
                            </table>
