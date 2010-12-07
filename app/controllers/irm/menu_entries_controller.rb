@@ -40,7 +40,7 @@ class Irm::MenuEntriesController < ApplicationController
     @menu_entry.menu_code = @menu.menu_code
     respond_to do |format|
       if @menu_entry.save
-        flash[:successful_message] = (t :successfully_updated)
+        flash[:successful_message] = (t :successfully_created)
         format.html { render "successful_info" }
       else
          @error = @menu_entry
@@ -97,8 +97,8 @@ class Irm::MenuEntriesController < ApplicationController
 
     respond_to do |format|
       if @menu_entry.destroy
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+         flash[:successful_message] = (t :successfully_deleted)
+         format.html { render "successful_info" }
       else
          @error = @menu_entry
          format.html { render "error_message" }
