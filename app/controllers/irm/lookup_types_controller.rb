@@ -2,7 +2,7 @@ class Irm::LookupTypesController < ApplicationController
   # GET /lookup_types
   # GET /lookup_types.xml
   def index
-    @lookup_types = Irm::LookupType.all
+   @lookup_type = Irm::LookupType.new
 
     respond_to do |format|
       format.html # index.html.erb
@@ -74,7 +74,7 @@ class Irm::LookupTypesController < ApplicationController
     @lookup_types = Irm::LookupType.multilingual
     count=@lookup_types.size
     respond_to do |format|
-      format.json  {render :json => @lookup_types.to_dhtmlxgrid_json([:id,'R',:lookup_level,:lookup_type,:meaning,:description,:status_code,'M'],
+      format.json  {render :json => @lookup_types.to_dhtmlxgrid_json(['R',:lookup_level,:lookup_type,:meaning,:description,:status_code,'M'],
                                                                                count) }
     end
   end

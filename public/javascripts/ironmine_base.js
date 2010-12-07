@@ -73,4 +73,16 @@ function reload_grid(id){
       grid.load(gridLoad[0],function(){init(element)},gridLoad[2]);
    }
 }
+function processDblClicked(targetDiv,sourceDiv,href,rowId){
+    //ajax
+    var replaceHref=href.replace(":id",rowId);
+    $("#"+targetDiv).load(replaceHref,"",function(response, status, xhr) {
+    });
+    //init data
+    var source = document.getElementById("#"+targetDiv);
+    $(source).find("*[action_type]").each(function() {
+        this.onclick = null;
+    });
+    init("#" + targetDiv);
+}
 //#=========================end irm/language/_new_form.html.erb=======================#

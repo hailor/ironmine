@@ -7,7 +7,7 @@ ActionView::Base.field_error_proc=Proc.new{ |html_tag, instance| "<span class=\"
 ActionView::Helpers::AssetTagHelper.register_javascript_expansion :defaults=>%w(jquery.js rails.js)
 ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ajax_relation=>%w(ajax_util.js jquery.form.js)
 ActionView::Helpers::AssetTagHelper.register_javascript_expansion :dhtmlx=>%w(dhtmlx/dhtmlxcommon.js dhtmlx/dhtmlxwindows.js dhtmlx/dhtmlxlayout.js dhtmlx/dhtmlxcontainer.js dhtmlx/dhtmlxtabbar.js dhtmlx/dhtmlxcalendar.js dhtmlx/dhtmlxtabbar_start.js)
-ActionView::Helpers::AssetTagHelper.register_javascript_expansion :dhtmlx_grid=>%w(dhtmlx/grid/dhtmlxgrid.js dhtmlx/grid/dhtmlxgridcell.js dhtmlx/grid/dhtmlxgrid_excell_link.js dhtmlx/grid/dhtmlxdataprocessor.js dhtmlx/grid/dhtmlxgrid_excell_dhxcalendar.js dhtmlx/grid/dhtmlxgrid_pgn.js dhtmlx/grid/dhtmlxgrid_json.js)
+ActionView::Helpers::AssetTagHelper.register_javascript_expansion :dhtmlx_grid=>%w(dhtmlx/grid/dhtmlxgrid.js dhtmlx/grid/dhtmlxgridcell.js dhtmlx/grid/dhtmlxgrid_excell_link.js dhtmlx/grid/dhtmlxdataprocessor.js dhtmlx/grid/dhtmlxgrid_excell_dhxcalendar.js dhtmlx/grid/dhtmlxgrid_pgn.js dhtmlx/grid/dhtmlxgrid_json.js dhtmlx/grid/dhtmlxgrid_filter.js)
 ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ironmine_base=>%w(ironmine_base.js)
 #ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jquery_ui=>%w(jquery-ui.js)
 #ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jquery_date=>%w(jquery.datePicker.js date.js)

@@ -146,6 +146,7 @@ function ajaxDhtmlxGrid(el){
    var onRowDblClicked = $(el).attr("grid_onRowDblClicked");
    var grid_column_hidden = $(el).attr("grid_columnHidden");
    var grid_load = $(el).attr("grid_load");
+   
    var grid = dhtmlx_grid_array[id];
    if(grid!=null&&grid!=undefined){
        grid.destructor();
