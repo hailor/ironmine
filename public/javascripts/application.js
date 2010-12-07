@@ -3,6 +3,7 @@
 
 $(document).ready(function(){
     init(document);
+    pre_init_partial(document);
 });
 
 function pre_init_partial(el){
