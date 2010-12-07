@@ -104,7 +104,7 @@ class Irm::ProductModulesController < ApplicationController
     respond_to do |format|
       format.json  {render :json => @product_modules.to_dhtmlxgrid_json(['0',
                                                                          {:value => :product_short_name, :controller => 'irm/product_modules',:action =>  'edit', :id => 'id', :action_type => 'ajaxLink', :script => '/replace(form_area,form_area);/'},
-                                                                         :name, :description, :installed_flag, :status_code,
+                                                                         :name, :description, :installed_flag, :active_flag,
                                                                          {:value => 'M', :controller => 'irm/product_modules',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}], @product_modules.size) }
     end    
   end
