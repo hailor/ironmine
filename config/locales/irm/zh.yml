@@ -103,10 +103,14 @@ zh:
   label_irm_menu_name: 名称
   label_irm_menu_description: 描述
 
-  label_irm_menu_sub_menu: 子菜单
-  label_irm_menu_page: 页面
+  label_irm_menu_entry_list: 子菜单项列表
+  label_irm_menu_entry_new: 创建子菜单项
+  label_irm_menu_entry_edit: 编辑子菜单项
+  label_irm_menu_entry_sub_menu: 子菜单
+  label_irm_menu_entry_page: 页面
   label_irm_menu_entry_display_sequence: 显示顺序
   label_irm_menu_entry_display_flag: 显示
   label_irm_menu_entry_prompt: 提示
   label_irm_menu_entry_description: 描述
+  label_irm_menu_entry_add: 添加子菜单项
   #=========================    end menus_controller=======================#

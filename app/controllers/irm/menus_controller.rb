@@ -67,7 +67,7 @@ class Irm::MenusController < ApplicationController
   end
 
   def multilingual_update
-    @menu = Irm::MenuModule.find(params[:id])
+    @menu = Irm::Menu.find(params[:id])
     @menu.not_auto_mult=true
     respond_to do |format|
       if @menu.update_attributes(params[:irm_menu])

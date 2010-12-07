@@ -7,7 +7,7 @@
         grid_header=" , <%=t(:label_irm_menu_menu_code)%>,<%=t(:label_irm_menu_name)%>,
         <%=t(:label_irm_menu_description)%>,<%=t(:active)%>,<%=t(:multilingual)%>"
         grid_width="20,100,100,200,80,80"
-        grid_col_types="ra,link,ro,ro,ro,link"
+        grid_col_types="ra,ro,ro,ro,ro,link"
         grid_onRowDblClicked="dblClickHandler"
         grid_OnRowSelected="rowSelectedHandler"
         grid_load="'<%= url_for(:action => "get_data", :controller => "irm/menus", :format=>:json) %>','','json'">
@@ -17,9 +17,14 @@
             processDblClicked("form_area","form_area","<%= url_for(:action => "edit", :controller => "irm/menus", :id => ":id") %>", rId);
         }
         function rowSelectedHandler(id, ind){
-            alert(dhtmlx_grid_array['menus_grid'].cells(id, ind).getValue());
+            dhtmlx_grid_array['menus_grid'].cells(id, 0).setValue("1");
+            $("#menu_id").attr("value", id);
         }
     </script>
     <div class="containerfooter">
+      <%= form_tag( :controller => 'irm/menu_entries', :action => 'link_edit') do %>
+        <%=hidden_field_tag 'menu_id' %>
+        <div class="button floatright" ><%= link_to t(:label_irm_menu_entry_add), {}, {:action_type => "ajaxSubmit", :script => "/replace(containers,containers);/"}%></div>
+      <%  end %>
     </div>
 </div>
