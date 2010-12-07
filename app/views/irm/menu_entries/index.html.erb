@@ -1,0 +1,8 @@
+
+<div class="containers" id="containers">
+    <%= render 'new_form'%>
+    <%= render 'data_grid'%>
+    <div class="buttonbar">
+        <div class="button floatright"><%= link_to t(:back), {:action => "index", :controller => "irm/menus"}, :script => "/replace(containers,containers);/", :action_type=>"ajaxLink"%></div>        
+    </div>  
+</div>

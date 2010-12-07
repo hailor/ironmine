@@ -1,0 +1,46 @@
+<div id="form_area" class="container">
+     <%= form_for(@menu_entry,:url=>{:action=>"create", :menu_id => @menu.id}) do |f| %>
+            <div class="containerheader">
+                <div class="floatleft headertitle"><%=t(:label_irm_menu_entry_new)%></div>
+            </div>
+            <table class="twocolumnstable" cellspacing="0">
+                <tr>
+                    <td class="twocolumn">
+                       <table class="itemdetailtable">
+                        <tr><td class="itemdetailtablelabel"><%=(t :label_irm_menu_entry_prompt)%>:</td>
+                            <td><%=f.text_field :name,:size=>40,:required=>true %></td>
+                        </tr>
+                        <tr><td class="itemdetailtablelabel"><%=(t :label_irm_menu_entry_sub_menu)%>:</td>
+                          <td><%=f.text_field :sub_menu_code, :size=>40%></td>
+                        </tr>
+                        <tr><td class="itemdetailtablelabel"><%=(t :label_irm_menu_entry_page)%>:</td>
+                          <td><%=f.text_field :permission_code, :size=>40%></td>
+                        </tr>
+                        <tr><td class="itemdetailtablelabel"><%=(t :label_irm_menu_entry_display_flag)%>:</td>
+                          <td><%=f.check_box :display_flag%></td>
+                        </tr>                         
+                       </table>
+                    </td>
+                    <td class="twocolumn" cellspacing="0">
+                       <table class="itemdetailtable">
+                        <tr><td class="itemdetailtablelabel">
+                              <%=t(:label_irm_menu_entry_description)%>:
+                           </td>
+                           <td><%= f.text_area :description, :cols => 40, :rows => 2%></td>
+                        </tr>
+                        <tr><td class="itemdetailtablelabel">
+                              <%=t(:label_irm_menu_entry_display_sequence)%>:
+                           </td>
+                           <td><%= f.text_field :display_sequence, :size=>10%></td>
+                        </tr>       
+                       </table>
+                    </td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+            <div class="containerfooter">
+                <div class="button floatright"><%= link_to t(:save), {}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);reload_grid('menu_entries_grid');/replace(system_message_box,system_message_box);"}%></div>
+                <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(form_area,form_area);/", :action_type=>"ajaxLink"%></div>
+            </div>
+     <% end %>
+</div>

@@ -34,6 +34,26 @@ Ironmine::Application.routes.draw do
     match '/languages/new(.:format)' => "languages#new", :via => :get
     match '/languages/create(.:format)' => "languages#create", :via => :post
     match '/languages/get_data(.:format)' => "languages#get_data"
+    #menus
+    match '/menus(/index)(.:format)' => "menus#index", :via => :get
+    match '/menus/new(.:format)' => "menus#new", :via => :get
+    match '/menus/create(.:format)' => "menus#create", :via => :post
+    match '/menus/get_data(.:format)' => "menus#get_data"
+    match '/menus/:id/edit(.:format)' => "menus#edit", :via => :get
+    match '/menus/:id(.:format)' => "menus#update", :via => :put
+    match '/menus/:id/multilingual_edit(.:format)' => "menus#multilingual_edit", :via => :get
+    match '/menus/:id/multilingual_update(.:format)' => "menus#multilingual_update", :via => :put
+    #menu_entries
+    match '/menu_entries/:menu_id/index(.:format)' => "menu_entries#index", :via => :get
+    match '/menu_entries/:menu_id/new(.:format)' => "menu_entries#new", :via => :get
+    match '/menu_entries/:menu_id/create(.:format)' => "menu_entries#create", :via => :post
+    match '/menu_entries/:menu_id/get_data(.:format)' => "menu_entries#get_data"
+    match '/menu_entries/:id/edit(.:format)' => "menu_entries#edit", :via => :get
+    match '/menu_entries/link_edit(.:format)' => "menu_entries#link_edit", :via => :post
+    match '/menu_entries/:id(.:format)' => "menu_entries#update", :via => :put
+    match '/menu_entries/:id/multilingual_edit(.:format)' => "menu_entries#multilingual_edit", :via => :get
+    match '/menu_entries/:id/multilingual_update(.:format)' => "menu_entries#multilingual_update", :via => :put
+    match '/menu_entries/destroy(.:format)' => "menu_entries#destroy"
   end
 
   match '/demo(/index)' => 'demo#index'

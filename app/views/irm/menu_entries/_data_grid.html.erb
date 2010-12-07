@@ -1,0 +1,31 @@
+<div id="data_area" class="container">
+    <div class="containerheader">
+       <div class="floatleft headertitle"><%=t(:label_irm_menu_entry_list)%></div>
+    </div>
+    <div id="menu_entries_grid" class="datagrid" style="width:100%;height:200px;background-color:white;"
+        action_type="ajaxDhtmlxGrid"
+        grid_header=" , <%=t(:label_irm_menu_entry_display_sequence)%>,<%=t(:label_irm_menu_entry_prompt)%>,
+        <%=t(:label_irm_menu_entry_description)%>,<%=t(:label_irm_menu_entry_sub_menu)%>,<%=t(:label_irm_menu_entry_page)%>,
+        <%= t(:label_irm_menu_entry_display_flag)%>,<%= t(:multilingual)%>"
+        grid_width="20,100,100,200,80,80"
+        grid_col_types="ra,ro,ro,ro,ro,ro,ro,link"
+        grid_onRowDblClicked="dblClickHandler"
+        grid_OnRowSelected="rowSelectedHandler"
+        grid_load="'<%= url_for(:action => "get_data", :controller => "irm/menu_entries", :menu_id => @menu.id, :format=>:json) %>','','json'">
+    </div>
+    <script>
+        function dblClickHandler(rId, cInd){
+            processDblClicked("form_area","form_area","<%= url_for(:action => "edit", :controller => "irm/menu_entries", :id => ":id") %>", rId);
+        }
+        function rowSelectedHandler(id, ind){
+            dhtmlx_grid_array['menu_entries_grid'].cells(id, 0).setValue("1");
+            $("#menu_id").attr("value", dhtmlx_grid_array['menu_entries_grid'].getRowAttribute(id, 'menu_code'));
+        }
+    </script>
+    <div class="containerfooter">
+        <%= form_tag( :controller => 'irm/menu_entries', :action => 'destroy') do %>
+            <%=hidden_field_tag 'delete_list' %>
+            <div class="button floatright"><%= link_to t(:delete), {}, {:action_type => "ajaxSubmit", :script => "/reload_grid('menu_entries_grid');/", :onclick => "$('#delete_list').attr('value', dhtmlx_grid_array['menu_entries_grid'].getSelectedId());"}%></div>
+        <% end %>  
+    </div>
+</div>
