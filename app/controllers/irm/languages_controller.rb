@@ -33,7 +33,8 @@ class Irm::LanguagesController < ApplicationController
 
     respond_to do |format|
       if @language.save
-        format.html { render "create_successful_info" }
+        flash[:successful_message] = (t :successfully_created)
+        format.html { render "successful_info" }
         format.xml  { render :xml => @language, :status => :created, :location => @language }
       else
         @error = @language
@@ -50,9 +51,11 @@ class Irm::LanguagesController < ApplicationController
 
     respond_to do |format|
       if @language.update_attributes(params[:irm_language])
-        format.html { render "update_successful_info" }
+        flash[:successful_message] = (t :successfully_updated)
+        format.html { render "successful_info" }
         format.xml  { head :ok }
       else
+        @error=@language
         format.html { render "error_info" }
         format.xml  { render :xml => @language.errors, :status => :unprocessable_entity }
       end
@@ -62,8 +65,7 @@ class Irm::LanguagesController < ApplicationController
   def get_data
     @languages= Irm::Language.multilingual
     respond_to do |format|
-      format.json {render :json=>@languages.to_dhtmlxgrid_json(['0', {:value => :language_code, :controller => 'irm/languages',:action =>  'edit', :id => 'id', :action_type => 'ajaxLink', :script => '/replace(id_language_new,id_language_edit);/'},
-                                                                         :description, :installed_flag, :status_code, 'M'], @languages.size)}
+      format.json {render :json=>@languages.to_dhtmlxgrid_json(['R',:language_code,:description, :installed_flag, :status_code, 'M'], @languages.size)}
     end
   end
   

@@ -73,24 +73,32 @@ function reload_grid(id){
       grid.load(gridLoad[0],function(){init(element)},gridLoad[2]);
    }
 }
+
+//处理表格的双击事件
 function processDblClicked(targetDiv,sourceDiv,href,rowId){
     //ajax
     var replaceHref=href.replace(":id",rowId);
-    var returnElement="";
+    var returnElement=document.createElement("div");
     $.ajax({
-		    type: "GET",
-			url: replaceHref,
-			cache:false,
-			contentType:"application/x-www-form-urlencoded;charset=UTF-8",
-			success : function(data) {
-			$(returnElement).html(data);
+		  type: "GET",
+	      url: replaceHref,
+		  cache:false,
+		  contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+		  success : function(data) {
+		    $(returnElement).html(data);
+            processHtmlReplace(returnElement,targetDiv)
 	}});
+
+}
+//处理html的replace
+function processHtmlReplace(returnElement,targetDiv){
     var html=$(returnElement).html();
 	var source = document.getElementById(targetDiv);
 	$(source).find("*[action_type]").each(function() {
 		this.onclick = null;
 	});
 	if(html&&html!=""){$(source).html(html);}
-    init(targetDiv);
+    init('#'+targetDiv);
+    pre_init_partial("#" + targetDiv);
 }
 //#=========================end irm/language/_new_form.html.erb=======================#

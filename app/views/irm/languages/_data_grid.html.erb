@@ -8,8 +8,14 @@
         grid_width="20,100,200,80,80,100"
         grid_col_types="ra,link,ro,ro,ro,img"
         grid_align="center,center,center,center,center,center"
+        grid_onRowDblClicked="doOnRowDblClicked"
         grid_load="'<%= url_for(:action => "get_data", :controller => "irm/languages",:format=>:json) %>','','json'">
         </div>
+        <script type="text/javascript" charset="utf-8">
+        function doOnRowDblClicked(rowId,cInd){
+           processDblClicked("id_language_new","",":id/edit",rowId);
+        }
+        </script>
             <div class="containerfooter">
                 <div class="button floatright"><%= link_to t(:edit),:action_type => "ajaxLink", :script => ""%></div>
             </div>
