@@ -1,3 +1,7 @@
-<div style="display:none;" type="json" id="message">
-  {successMessage:'<%=t(:successfully_created)%>', lookupType:'<%=@lookup_type.id%>',result:'true'}
+<div id="">
+   <%= succ_message_for(flash[:successful_message])%>
 </div>
+
+<div style="display:none;" type="json" id="message">
+  {result:'true'}
+ </div>
