@@ -50,6 +50,7 @@ zh:
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=====================#
   label_lookup_types: 快速编码类型
+  label_lookup_types_code: 类型编码
   label_lookup_level: 快速编码级别
   label_meaning: 含义
   label_description: 描述

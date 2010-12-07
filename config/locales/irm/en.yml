@@ -47,6 +47,7 @@ en:
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type
+  label_lookup_types_code: Type Code
   label_lookup_level: Lookup Level
   label_meaning: Meaning
   label_description: Description
