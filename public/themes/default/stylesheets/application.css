@@ -17,35 +17,26 @@ body{
 .floatright{ float:right !important;}
 .floatleft{float:left !important;}
 .headertitle{font-weight:bold; float:left;}
+.field_with_errors input, .field_with_errors text_area, .field_with_errors select{ border: red solid 2px;}
 
-div.sysmsgbox, div.sysmsgdetail{
-    background: none repeat scroll 0 0 #fff1a8;
-    padding: 1px 10px 1px 10px;
+div.errormsgbox{
+    background: none repeat scroll 0 0 #FFBBAA;
     text-align: center;
-    display: inline-block;
     font-weight: bold;
     word-wrap:break-word;
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    -moz-binding: url('ellipsis.xml#ellipsis');  /*兼容Firefox，调用ellipsis.xml文件，注意ellipsis.xml文件路径*/
+    width: 100%;
+    margin: 0 0 4px -2px;
+    border: 2px solid red;
 }
 
-div.sysmsgbox{
-    max-width: 300px;
-    max-height: 16px;
-}
-
-div.sysmsgdetail a{
-    padding: 1px 8px 1px 0;
-}
-
-div.msgcontainer{
-    position:absolute;
+div.succmsgbox{
+    background: none repeat scroll 0 0 #DDFFEB;
     text-align: center;
-    z-index: 10;
-    top: 113px;
-    left: 480px;
+    font-weight: bold;
+    word-wrap:break-word;
+    width: 100%;
+    margin: 0 0 4px -2px;
+    border: 2px solid #92DD22;
 }
 
 div#banner{
@@ -251,4 +242,3 @@ div#breadcrumbs{margin: 3px 0 0;padding: 0 0 0 5px;}
 div#breadcrumbs a{	text-decoration: none;	color: #0055DD;}
 div#breadcrumbs a:hover{	text-decoration:underline;	color: #0055DD;}
 
-.field_with_errors input, .field_with_errors text_area, .field_with_errors select{ border: red solid 2px;}

@@ -6,7 +6,7 @@ $(document).ready(function(){
 });
 
 function pre_init_partial(el){
-   $(el).find('input[type=text]:not([readonly]):first').focus();
+    $(el).find('input[type=text]:not([readonly]):first').focus();
     $(el).find('input[required]:not([readonly]):not([disabled])').addClass("inputrequired");
     $(el).find('input[readonly]:not([lov])').addClass("inputdisable");
     //针对于uppercase的属性，强制输入大写
@@ -29,40 +29,6 @@ function pre_init_partial(el){
     $(el).find('textarea[readonly]').addClass("inputdisable");
     $(el).find('input[type=submit]').css("cursor","pointer");
 }
-
-var saveLookupType="";
-var dp = "";
-function init_grid(grid){
-    grid.setImagePath("/images/dhtmlx/");
-    grid.setSkin("dhx_skyblue");
-    grid.setDateFormat("%Y-%m-%d");
-    grid.init();
-}
-
-function addRow(grid) {
-    alert('1111');
-    var newId = (new Date()).valueOf();
-    grid.addRow(newId,"",grid.getRowsNum());
-    grid.selectRow(grid.getRowIndex(newId),false,false,true);
-
-}
-function removeRow(grid){
-    var selId = grid.getSelectedId();
-    grid.deleteRow(selId);
-}
-function saveRow(){
-  dp.sendData();
-}
-function setLookupType(grid,lookupType){
-    alert('111111111');
-    saveLookupType = lookupType;
-    dp = new dataProcessor('/lookup_types/create_value?lookup_type_id='+lookupType);
-    dp.init(grid);
-    dp.setUpdateMode("off");
-    dp.setTransactionMode("POST");
-}
-//#=========================end irm/lookup_types/_new_form.html.erb=======================#
-
 //#=========================start multilingual=======================#
 var mulwins;
 function multilingual(el){

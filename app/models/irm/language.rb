@@ -4,7 +4,6 @@ class Irm::Language < ActiveRecord::Base
   attr_accessor :description
   has_many :languages_tls,:dependent => :destroy
   acts_as_multilingual({:columns=>[:description],:required=>[]})
-
   
   validates_presence_of :language_code
   validates_uniqueness_of :language_code, :if => Proc.new { |i| !i.language_code.blank? }

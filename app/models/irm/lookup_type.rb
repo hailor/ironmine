@@ -9,4 +9,5 @@ class Irm::LookupType < ActiveRecord::Base
 
   query_extend
 
+  validates_uniqueness_of :lookup_type
 end

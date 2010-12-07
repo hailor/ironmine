@@ -16,12 +16,15 @@ module ApplicationHelper
      lis<<content_tag(:li,msg,nil,false)
     end
     uls=content_tag(:ul,lis,nil,false)
-    h2s=content_tag(:h2,t(:label_errors),nil,false)
+    h2s=content_tag(:h2,"Errors",nil,false)
     if error_count>0
-    content_tag(:div,"#{h2s}\n#{uls}",{:id=>"errorexplanation",:class=>"errorexplanation"},false)
+      content_tag(:div,content_tag(:div, raw("#{h2s}\n#{uls}"), {:class=>"errormsgbox"}) ,{:id=>"system_message_box"},false)
     else
       nil
     end
   end
-  
+
+  def succ_message_for(msg)
+    content_tag(:div,content_tag(:div, raw(msg), {:class=>"succmsgbox"}) ,{:id=>"system_message_box"},false)
+  end
 end

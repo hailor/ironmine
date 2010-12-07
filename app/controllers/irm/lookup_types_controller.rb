@@ -10,11 +10,6 @@ class Irm::LookupTypesController < ApplicationController
     end
   end
 
-  # GET /lookup_types/1
-  # GET /lookup_types/1.xml
-  def show
-  end
-
   # GET /lookup_types/new
   # GET /lookup_types/new.xml
   def new
@@ -28,7 +23,7 @@ class Irm::LookupTypesController < ApplicationController
 
   # GET /lookup_types/1/edit
   def edit
-    @lookup_type = Irm::LookupType.find(params[:id])
+    @lookup_type = Irm::LookupType.multilingual.find(params[:id])
   end
 
   # POST /lookup_types
@@ -50,11 +45,11 @@ class Irm::LookupTypesController < ApplicationController
   # PUT /lookup_types/1
   # PUT /lookup_types/1.xml
   def update
-    @lookup_type = Irm::LookupType.find(params[:id])
+    @lookup_type = Irm::LookupType.find(params[:irm_lookup_type][:id])
 
     respond_to do |format|
-      if @lookup_type.update_attributes(params[:lookup_type])
-        format.html { redirect_to(@lookup_type, :notice => 'Lookup type was successfully updated.') }
+      if @lookup_type.update_attributes(params[:irm_lookup_type])
+        format.html { render "update_successful_info"}
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -76,7 +71,7 @@ class Irm::LookupTypesController < ApplicationController
   end
 
   def get_lookup_types
-    @lookup_types = Irm::LookupType.where("1=1")
+    @lookup_types = Irm::LookupType.multilingual
     count=@lookup_types.size
     respond_to do |format|
       format.json  {render :json => @lookup_types.to_dhtmlxgrid_json([:id,'R',:lookup_level,:lookup_type,:meaning,:description,:status_code,'M'],
@@ -132,6 +127,47 @@ class Irm::LookupTypesController < ApplicationController
     respond_to do |format|
       format.json  {render :json => lookup_values.to_dhtmlxgrid_json([:lookup_code,:meaning,:description,:start_date_active,:end_date_active,'M'],
                                                                                lookup_values.size) }
+    end
+  end
+
+
+  def create_edit_value
+    lookup_type_id = params[:lookup_type_id]
+    @lookup_type = Irm::LookupType.find(lookup_type_id)
+    @lookup_code = params["c0"]
+    @meaning = params["c1"]
+    @description   = params["c2"]
+    @start_date_active = params["c3"]
+    @end_date_active   = params["c4"]
+
+    @mode = params["!nativeeditor_status"]
+
+    @id = params["gr_id"]
+    case @mode
+      when "updated"
+            exist_flag = Irm::LookupValue.check_lookup_code_exist(@lookup_type.lookup_type,@lookup_code)
+            #no exists
+            if exist_flag
+              @lookup_value = Irm::LookupValue.new({:lookup_type=>@lookup_type.lookup_type,
+                                                  :lookup_code=>@lookup_code,
+                                                  :meaning=>@meaning,
+                                                  :description=>@description,
+                                                  :start_date_active=>@start_date_active,
+                                                  :end_date_active => @end_date_active})
+              @lookup_value.save!
+
+              @tid = @lookup_value.id
+            else
+              @lookup_value=Irm::LookupValue.find(@id)
+              @lookup_value.lookup_code = @lookup_code
+              @lookup_value.meaning=@meaning
+              @lookup_value.description=@description
+              @lookup_value.start_date_active = @start_date_active
+              @lookup_value.end_date_active = @end_date_active
+              @lookup_value.save!
+            end
+
+            @tid = @id
     end
   end
 

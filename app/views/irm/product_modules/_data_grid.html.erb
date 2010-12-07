@@ -13,11 +13,11 @@
             <div class="containerfooter">
             <%= form_tag( :controller => 'irm/product_modules', :action => 'enable') do %>
                 <%=hidden_field_tag 'enable_list' %>
-                <div class="button floatright"><%= link_to t(:enable), {}, {:action_type => "ajaxSubmit", :script => "", :onclick => "$('#enable_list').attr('value', product_modules_grid.getCheckedRows(0));"}%></div>
+                <div class="button floatright"><%= link_to t(:enable), {}, {:action_type => "ajaxSubmit", :script => "", :onclick => "$('#enable_list').attr('value', dhtmlx_grid_array['product_modules_grid'].getCheckedRows(0));"}%></div>
             <% end %>                  
             <%= form_tag( :controller => 'irm/product_modules', :action => 'disable') do %>
                 <%=hidden_field_tag 'disable_list' %>
-                <div class="button floatright"><%= link_to t(:disable), {}, {:action_type => "ajaxSubmit", :script => "", :onclick => "$('#disable_list').attr('value', product_modules_grid.getCheckedRows(0));"}%></div>
+                <div class="button floatright"><%= link_to t(:disable), {}, {:action_type => "ajaxSubmit", :script => "", :onclick => "$('#disable_list').attr('value', dhtmlx_grid_array['product_modules_grid'].getCheckedRows(0));"}%></div>
             <%  end %>
             </div>
 
