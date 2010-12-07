@@ -223,6 +223,7 @@ function init(el) {
         }else if (actionType=="multilingual"){
             multilingual(this)
         }
+        pre_init_partial(el);
 	});
 }
 

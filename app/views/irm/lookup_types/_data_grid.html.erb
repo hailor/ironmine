@@ -1,4 +1,5 @@
 <div class="container" id="id_lookup_type_gird">
+   <div id="id_new_lookup_type">
    <%= form_for(@lookup_type,:url=>{:action=>"create"}) do |f| %>
        <div class="container">
                     <div class="containerheader colorheader">
@@ -59,6 +60,7 @@
                     </div>
           </div>
     <% end %>
+    </div>
     <div class="containerheader">
      <div class="floatleft headertitle"><%=t(:label_irm_lookup_value_lookup_code)%></div>
     </div>
@@ -71,6 +73,7 @@
          grid_paging_skin="bricks"
          enable_paging="true, 12, null, 'pagingArea', true, 'infoArea'"
          grid_checkbox="doOnCheck"
+         grid_onRowDblClicked="doOnRowDblClicked"
          grid_attachHeader = "&nbsp;,#select_filter,#text_search,&nbsp;,#cspan,#cspan,#cspan"
          grid_load="'/lookup_types/get_lookup_types','','json'"></div>
     <span id="pagingArea"></span>&nbsp;<span id="infoArea"></span>
@@ -80,6 +83,10 @@
         var action_temp = $("#id_lookup_types_edit").attr("href").replace(":id",rowId);
         $("#id_lookup_types_edit").attr("href",action_temp);
         return true;
+    }
+    function doOnRowDblClicked(rowId,cInd){
+       alert('11111111'+rowId);
+       processDblClicked("id_new_lookup_type","",":id/edit",rowId);
     }
     </script>
     <div class="containerfooter">

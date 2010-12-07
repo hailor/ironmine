@@ -24,6 +24,7 @@ class Irm::LookupTypesController < ApplicationController
   # GET /lookup_types/1/edit
   def edit
     @lookup_type = Irm::LookupType.multilingual.find(params[:id])
+
   end
 
   # POST /lookup_types
