@@ -2,17 +2,21 @@
     <div class="containerheader">
        <div class="floatleft headertitle"><%=t(:label_irm_menu_entry_list)%></div>
     </div>
-    <div id="menu_entries_grid" class="datagrid" style="width:100%;height:200px;background-color:white;"
+    <div id="menu_entries_grid" class="datagrid"
         action_type="ajaxDhtmlxGrid"
         grid_header=" , <%=t(:label_irm_menu_entry_display_sequence)%>,<%=t(:label_irm_menu_entry_prompt)%>,
         <%=t(:label_irm_menu_entry_description)%>,<%=t(:label_irm_menu_entry_sub_menu)%>,<%=t(:label_irm_menu_entry_page)%>,
         <%= t(:label_irm_menu_entry_display_flag)%>,<%= t(:multilingual)%>"
-        grid_width="20,100,100,200,80,80"
+        grid_width="20,100,100,200,80,80,80,80"
         grid_col_types="ra,ro,ro,ro,ro,ro,ro,link"
         grid_onRowDblClicked="dblClickHandler"
         grid_OnRowSelected="rowSelectedHandler"
+        grid_paging_skin="bricks"
+        enable_paging="true, 15, null, 'pagingArea', true, 'infoArea'"
         grid_load="'<%= url_for(:action => "get_data", :controller => "irm/menu_entries", :menu_id => @menu.id, :format=>:json) %>','','json'">
     </div>
+    <span id="pagingArea"></span>&nbsp;<span id="infoArea"></span>
+    <span id="recfound"></span>    
     <script>
         function dblClickHandler(rId, cInd){
             processDblClicked("form_area","form_area","<%= url_for(:action => "edit", :controller => "irm/menu_entries", :id => ":id") %>", rId);

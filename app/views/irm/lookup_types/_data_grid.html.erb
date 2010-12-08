@@ -1,7 +1,8 @@
 <div class="container" id="id_lookup_type_gird">
     <div class="containerheader">
-     <div class="floatleft headertitle"><%=t(:label_list_lookup_types)%></div>
+     <div class="floatleft headertitle"><%=t(:label_irm_lookup_value_lookup_code)%></div>
     </div>
+<<<<<<< HEAD
     <div id="id_lookup_type_grid" style="width:100%; height:305px; background-color:white;"
          action_type="ajaxDhtmlxGrid"
          grid_header=",<%=t(:label_lookup_level)%>,<%=t(:label_lookup_types_code)%>,<%=t(:label_meaning)%>,<%=t(:label_description)%>,<%=t(:label_status_code)%>,<%=t(:multilingual)%>"
@@ -31,9 +32,13 @@
     }
     </script>
     <div class="containerfooter">
-        <div class="button floatright" ><%=link_to t(:label_add_lookup_code),{:controller=>"irm/lookup_types",:action=>"add_code",:id=>":id"},
-                                                   :script=>"/replace(id_lookup_type_index,id_add_lookup_code);/",
-                                                   :action_type=>"ajaxLink",:id=>"id_add_lookup_code"%>
+        <div class="button floatright"><%=link_to t(:new),{:controller=>"irm/lookup_types",:action=>"new"},
+                                                           :script=>"/replace(id_lookup_type_index,id_new_lookup_type_all);/",
+                                                           :action_type=>"ajaxLink"%>
+        </div>
+        <div class="button floatright"><%=link_to t(:edit),{:controller=>"irm/lookup_types",:action=>"edit",:id=>":id"},
+                                                            :script=>"/replace(id_lookup_type_gird,id_edit_lookup_type);init_lookup_type_edit_grid();init_edit_lookup_type();/",
+                                                            :action_type=>"ajaxLink",:id=>"id_lookup_types_edit"%>
         </div>
     </div>
 </div>
