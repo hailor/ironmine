@@ -17,7 +17,7 @@ Ironmine::Application.routes.draw do
     match '/lookup_types/update'=>"lookup_types#update"
     match '/lookup_types/:id/add_code'=>"lookup_types#add_code"
     #product modules
-    match '/product_modules/index(.:format)' => "product_modules#index", :via => :get
+    match '/product_modules(/index)(.:format)' => "product_modules#index", :via => :get
     match '/product_modules/:id/edit(.:format)' => "product_modules#edit", :via => :get
     match '/product_modules/:id(.:format)' => "product_modules#update", :via => :put
     match '/product_modules/new(.:format)' => "product_modules#new", :via => :get
