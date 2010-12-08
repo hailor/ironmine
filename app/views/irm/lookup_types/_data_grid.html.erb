@@ -25,7 +25,7 @@
     function replaceLink(rowId){
        var action_temp="";
        if(rowId!=null&&rowId!=undefined){
-          action_temp = "<%=url_for(:controller=>"irm/lookup_types",:action=>"edit",:id=>":id")%>".replace(":id",rowId);
+          action_temp = "<%=url_for(:controller=>"irm/lookup_types",:action=>"add_code",:id=>":id")%>".replace(":id",rowId);
           $("#id_add_lookup_code").attr("href",action_temp);
        }
     }
