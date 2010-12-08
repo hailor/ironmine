@@ -61,7 +61,7 @@
                        grid_header="<%=t(:label_irm_lookup_value_lookup_code)%>,<%=t(:label_meaning)%>,<%=t(:label_description)%>,<%=t(:label_start_date_active)%>,<%=t(:label_end_date_active)%>"
                        grid_width="100,100,100,100,500"
                        grid_col_types="ed,ed,ed,dhxCalendar,dhxCalendar"
-                       grid_load="'get_lookup_values?lookup_type=<%=@lookup_type.lookup_type%>','','json'"></div>
+                       grid_load="'/lookup_types/get_lookup_values?lookup_type=<%=@lookup_type.lookup_type%>','','json'"></div>
                       <script type="text/javascript" charset="utf-8">
                         var edit_lookup_type_id = "<%=@lookup_type.id%>";
                       </script>
