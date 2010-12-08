@@ -75,7 +75,7 @@ zh:
   label_irm_lookup_value_meaning: 含义
   label_irm_lookup_type_description: 描述
   label_edit_lookup_type: 编辑快速编码类型
-  label_new_lookup_type: 新建快速编码类型
+  label_new_lookup_type: 创建快速编码类型
   label_list_lookup_types: 快速编码类型列表
   label_add_lookup_code: 添加快速编码
   #=========================end irm lookup_types_controller================#
@@ -124,7 +124,7 @@ zh:
   error_irm_menu_entry_permission_sub_menu_at_least_one: 子菜单和页面至少输入一项
   #=========================    end menus_controller=======================#
   #=========================    irm permissions_controller=======================#
-  label_irm_permission_new: 新建权限
+  label_irm_permission_new: 创建权限
   label_irm_permission_edit: 编辑权限
   label_irm_permission_permission_code: 权限编码
   label_irm_permission_permission_type: 权限类型
