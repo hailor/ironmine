@@ -31,13 +31,13 @@ function pre_init_partial(el){
     $(el).find('input[type=submit]').css("cursor","pointer");
 }
 //#=========================start multilingual=======================#
-var mulwins;
-function multilingual(el){
-  jQuery(function ($) {
-    el.onclick = function (e) {
-      if (!jQuery.browser.msie){
+
+jQuery(function ($) {
+    var mulwins;
+    $('a[action_type="multilingual"]').live('click',function (e) {
+      //if (!jQuery.browser.msie){
         e.preventDefault();
-      }
+      //}
       if(!mulwins)
       {
         mulwins = new dhtmlXWindows();
@@ -57,17 +57,14 @@ function multilingual(el){
       win.button('minmax2').hide();
       win.denyResize();
       win.setModal(true);
-      return false;
-    };
-  });
-}
-jQuery(function ($) {
+    });
+    
     $('a[action_type="multilingual_close"]').live('click', function (e) {
       if(mulwins)
       {
         mulwins.forEachWindow(function(win){win.close()});
       }
     });
-});
+  });
 //#=========================end multilingual=======================#
 
