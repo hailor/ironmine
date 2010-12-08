@@ -35,19 +35,13 @@ function pre_init_partial(el){
 jQuery(function ($) {
     var mulwins;
     $('a[action_type="multilingual"]').live('click',function (e) {
-      //if (!jQuery.browser.msie){
-        e.preventDefault();
-      //}
-      if(!mulwins)
-      {
-        mulwins = new dhtmlXWindows();
-        mulwins.setImagePath("/images/dhtmlx/");
-        mulwins.enableAutoViewport(false);
-        mulwins.attachViewportTo($(this).attr('view_port'));
-      }
-      var div_str = "<div id='multwin' style='display:none'></div>"
-      if($('#multwin').length<1){$('body').append(div_str);}
+      e.preventDefault();
+      mulwins = new dhtmlXWindows();
+      mulwins.setImagePath("/images/dhtmlx/");
+      mulwins.enableAutoViewport(false);
+      mulwins.attachViewportTo($(this).attr('view_port'));
 
+      if($('#multwin').length<1){$('body').append("<div id='multwin' style='display:none'></div>");}
       $('#multwin').load($(this).attr('href'));
       var win = mulwins.createWindow("mutilwin",50,50,590,142);
       win.attachObject('multwin');
