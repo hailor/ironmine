@@ -21,7 +21,6 @@
         <div class="floatright">
             <div class="button" id = "btn_save"><a href="javascript:void(0);" onclick="saveEditMenuEntryRow();" ><%= t(:save) %></a></div>
             <div class="button" id = "btn_add" onclick="addMenuEntryEditRow('menu_entries_grid', '<%= @menu.id%>');"><a href="javascript:void(0);"><%= t(:add) %></a></div>
-            <div class="button"><a href="javascript:void(0);" onclick="removeEditMenuEntryRow('menu_entries_grid');"><%= t(:delete) %></a></div>
             <div class="button"><%= link_to t(:cancel), {:action => "index", :controller => "irm/menus"}, :script => "/replace(containers,containers);/", :action_type=>"ajaxLink"%></div>
         </div>
     </div>
