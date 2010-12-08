@@ -69,7 +69,7 @@ function eXcell_link(cell){
 			}
 		}
 
-		this.setCValue("<a "+valsAr[1]+" onclick='(_isIE?event:arguments[0]).cancelBubble = true;'>"+valsAr[0]+"</a>",valsAr);
+		this.setCValue("<a "+valsAr[1]+">"+valsAr[0]+"</a>",valsAr);
 	}
 }
 
