@@ -23,14 +23,14 @@ ActiveRecord::Base.send(:include,Irm::SetWho)
 #扩展ActionRecord::Base,自动生成scope query,active和instance方法active?
 ActiveRecord::Base.send(:include,Irm::QueryExtend)
 #扩展link_to,url_for,增加权限验证
-#ActionView::Base.send(:include,Irm::UrlHelper)
+ActionView::Base.send(:include,Irm::UrlHelper)
 
 
 #Paperclip.options[:command_path] = "E:/Program Files/ImageMagick-6.6.3-Q16"
 
 #require 'rufus/scheduler'
 # 程序中使用的ironmine中的常量，建议配置型的常量放到此处
-module Irm
+module Ironmine
   STORAGE = Irm::DataStorage.instance
    #应用程序是否以多服务中心模式运行
 #   MULTI_SUBDOMAIN = false
@@ -63,11 +63,11 @@ end
 
 
 # 初始化模块数据 ，初始化脚本位于lib/模块/init.rb脚本中
-#Irm::Product.installed.active.each do |p|
-#  if File::exists?(File.join(File.expand_path(File.dirname(__FILE__)), "..","..","lib","#{p.product_short_name.downcase}","init.rb"))
-#    require "#{p.product_short_name.downcase}/init"
-#  end
-#end
+Irm::ProductModule.enabled.each do |p|
+  if File::exists?(File.join(File.expand_path(File.dirname(__FILE__)), "..","..","lib","#{p.product_short_name.downcase}","init.rb"))
+    require "#{p.product_short_name.downcase}/init"
+  end
+end
 
 require "dhtmlx_grid.rb"
 Array.send :include, DhtmlxgridJson

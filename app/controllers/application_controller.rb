@@ -16,21 +16,15 @@ class ApplicationController < ActionController::Base
   before_filter :user_setup
   before_filter :permission_setup
   #before_filter :check_if_login_required
-  before_filter :set_localization
+  before_filter :person_setup
+  before_filter :check_permission
+  before_filter :localization_setup
   before_filter :layout_setup
 
   # 设置当前用户，为下步检查用户是否登录做准备
   def user_setup
     #从session中取得当前user
     Irm::Identity.current = find_current_user
-  end
-
-  # 返回session中的当前用户,如果没有则返回空
-  def find_current_user
-    if session[:user_id]
-      # existing session
-      (Irm::Identity.find(session[:user_id]) rescue nil)
-    end
   end
 
   # 取得当前链接对应的权限
@@ -47,6 +41,102 @@ class ApplicationController < ActionController::Base
      else
         require_login
      end
+  end
+
+  # 设置当前页面访问的人员
+  def person_setup
+    Irm::Person.current = Irm::Person.query_by_identity(Irm::Identity.current.id).first
+  end
+
+  # 检查用户的权限
+  def check_permission
+    if request.xhr?||(params[:format]||"").downcase.eql?("js")
+      true 
+    elsif @current_permission&&Irm::Person.current&&@current_permission.enabled?&&!Irm::Person.current.allow_to?(@current_permission,@current_project)
+        flash[:error]=t(:access_denied,:permission=>@current_permission.to_s)
+        redirect_to( {:controller => 'irm/my', :action => 'page'})
+    end
+  end
+
+  #设置当前用户使用的语言
+  def localization_setup
+    lang = nil
+    if Irm::Identity.current.logged?
+      lang = find_language(Irm::Identity.current.language_code)
+    end
+    lang = params[:_lang]||lang
+    if lang.nil? && request.env['HTTP_ACCEPT_LANGUAGE']
+      accept_lang = parse_qvalues(request.env['HTTP_ACCEPT_LANGUAGE']).first.downcase
+      if !accept_lang.blank?
+        lang = find_language(accept_lang) || find_language(accept_lang.split('-').first)
+      end
+    end
+    set_language_if_valid(lang)
+  end
+
+  #动态设定layout,使用default_layout保存每个controller原有的layout
+  class << self
+      attr_accessor :default_layout
+  end
+  def layout_setup
+    self.class.default_layout ||= _layout
+    if (params[:wmode])
+      self.class.layout params[:wmode]    
+    elsif request.xhr?||(params[:format]||"").downcase.eql?("js")
+      self.class.layout "xhr"
+    else
+      self.class.layout self.class.default_layout unless self.class.default_layout.eql?(_layout)
+    end
+  end
+
+  #===========all controller public method============ 
+
+  # 设置当前用户
+  def logged_user=(user)
+
+    if user && user.is_a?(Irm::Identity)
+      Irm::Identity.current = user
+      session[:user_id] = user.id
+    else
+      Irm::Identity.current = Irm::Identity.anonymous
+      session[:user_id]=nil
+    end
+  end
+
+  #返回默认的页面
+  def redirect_back_or_default(default)
+    #解释back_url从中取得参数
+    back_url = CGI.unescape(params[:back_url].to_s)
+    if !back_url.blank?
+      begin
+        uri = URI.parse(back_url)
+        # do not redirect user to another host or to the login or register page
+        if (uri.relative? || (uri.host == request.host)) && !uri.path.match(%r{/(login|account/register)})
+          redirect_to(back_url)
+          return
+       end
+      rescue URI::InvalidURIError
+        # redirect to default
+      end
+    end
+    redirect_to default
+  end
+
+  #进行分页，返回分页后的scope和scope的记录的总记录数
+  def paginate(scoped,page,per_page)
+     page||=1
+     per_page||=10
+     [scoped.offset((page.to_i-1)*per_page.to_i).limit(per_page),scoped.count]
+  end
+
+
+  private
+  # 返回session中的当前用户,如果没有则返回空
+  def find_current_user
+    if session[:user_id]
+      # existing session
+      (Irm::Identity.find(session[:user_id]) rescue nil)
+    end
   end
 
   # 处理登录，跳转到登录页面
@@ -66,25 +156,6 @@ class ApplicationController < ActionController::Base
     end
     true
   end
-
-  #设置当前用户使用的语言
-  def set_localization
-    lang = nil
-    if Irm::Identity.current.logged?
-      lang = find_language(Irm::Identity.current.language_code)
-    end
-    lang = params[:_lang]||lang
-    if lang.nil? && request.env['HTTP_ACCEPT_LANGUAGE']
-      accept_lang = parse_qvalues(request.env['HTTP_ACCEPT_LANGUAGE']).first.downcase
-      if !accept_lang.blank?
-        lang = find_language(accept_lang) || find_language(accept_lang.split('-').first)
-      end
-    end
-    set_language_if_valid(lang)
-  end
-
-
-
 
   # 解释浏览器传过来的信息,取得对应的语言
   def parse_qvalues(value)
@@ -118,37 +189,10 @@ class ApplicationController < ActionController::Base
   end
   #设定语言
   def set_language_if_valid(lang)
-      if l = find_language(lang)
-        ::I18n.locale = l
-      end
-  end
-
-  #动态设定layout,使用default_layout保存每个controller原有的layout
-  class << self
-      attr_accessor :default_layout
-  end
-  def layout_setup
-    #request.env.each do |key,value|
-    #  logger.debug "=========#{key}=========#{value}"
-    #end
-
-    puts "=======#{params[:controller]}====#{params[:action]}=============#{request.env['HTTP_X_REQUESTED_WITH']}==================="
-    puts "=======#{params[:controller]}====#{params[:action]}=============#{params[:format]}==================="
-
-    self.class.default_layout ||= _layout
-    if (params[:wmode])
-      self.class.layout params[:wmode]    
-    elsif request.xhr?||(params[:format]||"").downcase.eql?("js")
-      self.class.layout "xhr"
-    else
-      self.class.layout self.class.default_layout unless self.class.default_layout.eql?(_layout)
+    if l = find_language(lang)
+      ::I18n.locale = l
     end
   end
 
-  #进行分页，返回分页后的scope和scope的记录的总记录数
-  def paginate(scoped,page,per_page)
-     page||=1
-     per_page||=10
-     [scoped.offset((page.to_i-1)*per_page.to_i).limit(per_page),scoped.count]
-  end
+
 end
