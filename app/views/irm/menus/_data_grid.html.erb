@@ -22,13 +22,18 @@
         }
         function rowSelectedHandler(id, ind){
             dhtmlx_grid_array['menus_grid'].cells(id, 0).setValue("1");
-            $("#menu_id").attr("value", id);
+            replaceLink(id);
+//            $("#menu_id").attr("value", id);
+        }
+        function replaceLink(rowId){
+           var action_temp="";
+           if(rowId!=null&&rowId!=undefined){
+              action_temp = "<%=url_for(:controller=>"irm/menu_entries",:action=>"index",:menu_id=>":id")%>".replace(":id",rowId);
+              $("#add_menu_entry").attr("href",action_temp);
+           }
         }
     </script>
     <div class="containerfooter">
-      <%= form_tag( :controller => 'irm/menu_entries', :action => 'link_edit') do %>
-        <%=hidden_field_tag 'menu_id' %>
-        <div class="button floatright" ><%= link_to t(:label_irm_menu_entry_add), {}, {:action_type => "ajaxSubmit", :script => "/replace(containers,containers);/"}%></div>
-      <%  end %>
+        <div class="button floatright" ><%= link_to t(:label_irm_menu_entry_add), {:controller=>"irm/menu_entries",:action=>"index",:menu_id=>":id"}, {:action_type => "ajaxLink", :script => "/replace(containers,containers);/", :id => "add_menu_entry"}%></div>
     </div>
 </div>

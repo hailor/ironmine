@@ -54,6 +54,7 @@ Ironmine::Application.routes.draw do
     match '/menu_entries/:id/multilingual_edit(.:format)' => "menu_entries#multilingual_edit", :via => :get
     match '/menu_entries/:id/multilingual_update(.:format)' => "menu_entries#multilingual_update", :via => :put
     match '/menu_entries/destroy(.:format)' => "menu_entries#destroy"
+    match '/menu_entries/create_entry(.:format)' => "menu_entries#create_entry", :via => :post
     #permissions
     match '/permissions(/index)(.:format)' => "permissions#index", :via => :get
     match '/permissions/:id/edit(.:format)' => "permissions#edit", :via => :get
