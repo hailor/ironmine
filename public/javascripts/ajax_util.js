@@ -334,7 +334,7 @@ function replace(param, data) {
 		this.onclick = null;
 	});
 	if(html&&html!=""){$(source).html(html);}
-    //("#system_message_box").empty();
+    $("#system_message_box").empty();
 	init("#" + s[0]);
     pre_init_partial("#" + s[0]);
 }

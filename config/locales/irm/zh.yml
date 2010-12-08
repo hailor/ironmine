@@ -52,8 +52,8 @@ zh:
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=====================#
   label_lookup_types: 快速编码类型
-  label_lookup_types_code: 类型编码
-  label_lookup_level: 快速编码级别
+  label_lookup_types_code: 编码
+  label_lookup_level: 范围
   label_meaning: 含义
   label_description: 描述
   label_lookup_code: 快速编码
@@ -70,7 +70,8 @@ zh:
   label_irm_lookup_type_lookup_type: 快速编码类型
   label_irm_lookup_type_meaning: 含义
   lable_irm_lookup_type_editing_multilingual: 编辑多语言
-  label_irm_lookup_value_lookup_code: 快速编码
+  label_irm_lookup_value_lookup_code: 编码
+  label_lookup_code: 快速编码
   label_irm_lookup_value_meaning: 含义
   label_irm_lookup_type_description: 描述
   label_edit_lookup_type: 编辑快速编码类型
