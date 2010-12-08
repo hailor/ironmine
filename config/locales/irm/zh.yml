@@ -135,4 +135,11 @@ zh:
   label_irm_permission_page_action: Action
   label_irm_permission_status_code: 状态
   label_irm_permission_list: 权限列表
-  #=========================    end permissions_controller=======================#      
+  #=========================    end permissions_controller=======================#
+  #=========================    irm global_settings_controller=======================#
+  label_irm_global_setting: 全局设置
+  label_irm_global_setting_theme_name: 主题
+  label_irm_global_setting_timezone: 时区
+  label_irm_global_setting_upload_file_limit: 上传文件大小
+  label_irm_global_setting_logo: 图标
+  #=========================    end global_settings_controller=======================#              
