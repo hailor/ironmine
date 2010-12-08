@@ -13,9 +13,9 @@
                         <tr><td class="itemdetailtablelabel"><%=(t :label_irm_menu_name)%>:</td>
                           <td><%=f.text_field :name ,:size=>40,:required=>true%></td>
                         </tr>
-                        <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
-                          <td><%=f.check_box :active_flag, :value => "Y"%></td>
-                        </tr>
+                            <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
+                              <td><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
+                            </tr>    
                        </table>
                     </td>
                     <td class="twocolumn" cellspacing="0">

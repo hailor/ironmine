@@ -56,7 +56,7 @@ class Irm::MenusController < ApplicationController
                                                                :menu_code,
                                                                :name,
                                                                :description,
-                                                               :active_flag,
+                                                               :status_code,
                                                                {:value => 'M', :controller => 'irm/menus',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}], @menus.size) }
     end    
   end

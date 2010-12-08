@@ -60,6 +60,7 @@ class Irm::MenuEntriesController < ApplicationController
                                                                :sub_menu_code,
                                                                :permission_code,
                                                                :display_flag,
+                                                               :status_code,
                                                                {:value => 'M', :controller => 'irm/menu_entries',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}], @menu_entries.size) }
     end        
   end
