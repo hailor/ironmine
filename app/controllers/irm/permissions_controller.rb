@@ -40,7 +40,7 @@ class Irm::PermissionsController < ApplicationController
   # POST /product_modules
   # POST /product_modules.xml
   def create
-    @permission = Irm::Permission.new(params[:irm_product_module])
+    @permission = Irm::Permission.new(params[:irm_permission])
 
     respond_to do |format|
       if @permission.save
@@ -98,10 +98,10 @@ class Irm::PermissionsController < ApplicationController
   end
 
   def get_data
-    @permissions = Irm::Permission.multilingual
+    @permissions = Irm::Permission.list_all
     respond_to do |format|
-      format.json  {render :json => @permissions.to_dhtmlxgrid_json(['0',:product_module_name,:permission_code,:permission_type,
-                                                                     :name,:description,:page_controller,:page_action,
+      format.json  {render :json => @permissions.to_dhtmlxgrid_json(['0',:product_module_name,:permission_code,
+                                                                     :name,:page_controller,:page_action,
                                                                      :status_code,
                                                                     {:value => 'M', :controller => 'irm/permissions',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
                                                                     ], @permissions.size) }

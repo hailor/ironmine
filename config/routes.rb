@@ -17,7 +17,7 @@ Ironmine::Application.routes.draw do
     match '/lookup_types/update'=>"lookup_types#update"
     match '/lookup_types/:id/add_code'=>"lookup_types#add_code"
     #product modules
-    match '/product_modules/index(.:format)' => "product_modules#index", :via => :get
+    match '/product_modules(/index)(.:format)' => "product_modules#index", :via => :get
     match '/product_modules/:id/edit(.:format)' => "product_modules#edit", :via => :get
     match '/product_modules/:id(.:format)' => "product_modules#update", :via => :put
     match '/product_modules/new(.:format)' => "product_modules#new", :via => :get
@@ -55,7 +55,7 @@ Ironmine::Application.routes.draw do
     match '/menu_entries/:id/multilingual_update(.:format)' => "menu_entries#multilingual_update", :via => :put
     match '/menu_entries/destroy(.:format)' => "menu_entries#destroy"
     #permissions
-    match '/permissions/index(.:format)' => "permissions#index", :via => :get
+    match '/permissions(/index)(.:format)' => "permissions#index", :via => :get
     match '/permissions/:id/edit(.:format)' => "permissions#edit", :via => :get
     match '/permissions/:id(.:format)' => "permissions#update", :via => :put
     match '/permissions/new(.:format)' => "permissions#new", :via => :get
