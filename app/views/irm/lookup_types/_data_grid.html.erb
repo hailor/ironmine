@@ -1,33 +1,39 @@
 <div class="container" id="id_lookup_type_gird">
     <div class="containerheader">
-     <div class="floatleft headertitle"><%=t(:label_irm_lookup_value_lookup_code)%></div>
+     <div class="floatleft headertitle"><%=t(:label_list_lookup_types)%></div>
     </div>
-    <div id="id_lookup_type_grid" style="width:100%; height:200px; background-color:white;" action_type="ajaxDhtmlxGrid"
-                         grid_header="'',#,<%=t(:label_lookup_types)%>,<%=t(:label_irm_lookup_value_lookup_code)%>,<%=t(:label_meaning)%>,<%=t(:label_description)%>,<%=t(:label_status_code)%>,<%=t(:multilingual)%>"
-                         grid_width="0,100,100,100,100,100,100,500" grid_col_types="ro,ra,ro,ro,ro,ro,ro,img"
-                         grid_align="center,center,center,center,center,center,center,left"
-                         grid_paging_skin="bricks"
-                         enable_paging="true, 10, null, 'pagingArea', true, 'infoArea'"
-                         grid_checkbox="doOnCheck"
-                         grid_columnHidden="0,true"
-                         grid_load="'/lookup_types/get_lookup_types','','json'"></div>
+    <div id="id_lookup_type_grid" style="width:100%; height:305px; background-color:white;"
+         action_type="ajaxDhtmlxGrid"
+         grid_header=",<%=t(:label_lookup_level)%>,<%=t(:label_lookup_types_code)%>,<%=t(:label_meaning)%>,<%=t(:label_description)%>,<%=t(:label_status_code)%>,<%=t(:multilingual)%>"
+         grid_width="20,100,100,100,100,100,500"
+         grid_col_types="ra,ro,ro,ro,ro,ro,img"
+         grid_align="center,center,left,left,left,center,left"
+         grid_paging_skin="bricks"
+         enable_paging="true, 12, null, 'pagingArea', true, 'infoArea'"
+         grid_onRowDblClicked="doOnRowDblClicked"
+         grid_checkbox="replaceLink"
+         grid_OnRowSelected="replaceLink"
+         grid_attachHeader = "&nbsp;,#select_filter,#text_search,#text_search,&nbsp;,#cspan,#cspan"
+         grid_load="'/lookup_types/get_lookup_types','','json'"></div>
     <span id="pagingArea"></span>&nbsp;<span id="infoArea"></span>
     <span id="recfound"></span>
-    <script type="text/javascript" charset="utf-8">   
-    function doOnCheck(rowId) {
-        var action_temp = $("#id_lookup_types_edit").attr("href").replace(":id",rowId);
-        $("#id_lookup_types_edit").attr("href",action_temp);
-        return true;
+    <script type="text/javascript" charset="utf-8">
+    function doOnRowDblClicked(rowId,cInd){
+       replaceLink(rowId);
+       processDblClicked("id_new_lookup_type","","<%=url_for(:controller=>"irm/lookup_types",:action=>"edit",:id=>":id")%>",rowId);
+    }
+    function replaceLink(rowId){
+       var action_temp="";
+       if(rowId!=null&&rowId!=undefined){
+          action_temp = "<%=url_for(:controller=>"irm/lookup_types",:action=>"add_code",:id=>":id")%>".replace(":id",rowId);
+          $("#id_add_lookup_code").attr("href",action_temp);
+       }
     }
     </script>
     <div class="containerfooter">
-        <div class="button floatright"><%=link_to t(:new),{:controller=>"irm/lookup_types",:action=>"new"},
-                                                           :script=>"/replace(id_lookup_type_index,id_new_lookup_type_all);/",
-                                                           :action_type=>"ajaxLink"%>
-        </div>
-        <div class="button floatright"><%=link_to t(:edit),{:controller=>"irm/lookup_types",:action=>"edit",:id=>":id"},
-                                                            :script=>"/replace(id_lookup_type_gird,id_edit_lookup_type);init_lookup_type_edit_grid();init_edit_lookup_type();/",
-                                                            :action_type=>"ajaxLink",:id=>"id_lookup_types_edit"%>
+        <div class="button floatright" ><%=link_to t(:label_add_lookup_code),{:controller=>"irm/lookup_types",:action=>"add_code",:id=>":id"},
+                                                   :script=>"/replace(id_lookup_type_index,id_add_lookup_code);/",
+                                                   :action_type=>"ajaxLink",:id=>"id_add_lookup_code"%>
         </div>
     </div>
 </div>

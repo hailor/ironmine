@@ -36,7 +36,7 @@ class CreateModuleMenuTables < ActiveRecord::Migration
       t.string   "sub_menu_code",    :limit=>30
       t.string   "permission_code",  :limit=>30
       t.string   "parameter_value",  :limit=>300
-      t.integer  "display_sequence"
+      t.integer  "display_sequence",  :default => 10
       t.string   "display_flag",     :limit=>1,:default=>"Y"
       t.string   "status_code",      :limit => 30, :default=>"ENABLED"
       t.integer  "created_by"

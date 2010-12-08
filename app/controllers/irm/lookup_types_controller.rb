@@ -2,7 +2,7 @@ class Irm::LookupTypesController < ApplicationController
   # GET /lookup_types
   # GET /lookup_types.xml
   def index
-    @lookup_types = Irm::LookupType.all
+   @lookup_type = Irm::LookupType.new
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class Irm::LookupTypesController < ApplicationController
   # GET /lookup_types/new
   # GET /lookup_types/new.xml
   def new
-    @lookup_type = Irm::LookupType.new
+    @lookup_type = Irm::LookupType.new(:lookup_level=>'USER')
 
     respond_to do |format|
       format.html # new.html.erb
@@ -33,10 +33,12 @@ class Irm::LookupTypesController < ApplicationController
 
     respond_to do |format|
       if @lookup_type.save
+        flash[:successful_message] = (t :successfully_created)
         format.html { render "successful_info" }
         format.xml  { render :xml => @lookup_type, :status => :created, :location => @lookup_type }
       else
-        format.html { render :action => "new" }
+        @error=@lookup_type
+        format.html { render "error_message" }
         format.xml  { render :xml => @lookup_type.errors, :status => :unprocessable_entity }
       end
     end
@@ -49,10 +51,12 @@ class Irm::LookupTypesController < ApplicationController
 
     respond_to do |format|
       if @lookup_type.update_attributes(params[:irm_lookup_type])
-        format.html { render "update_successful_info"}
+        flash[:successful_message] = (t :successfully_updated)
+        format.html { render "successful_info"}
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        @error=@lookup_type
+        format.html { render "error_message" }
         format.xml  { render :xml => @lookup_type.errors, :status => :unprocessable_entity }
       end
     end
@@ -74,7 +78,7 @@ class Irm::LookupTypesController < ApplicationController
     @lookup_types = Irm::LookupType.multilingual
     count=@lookup_types.size
     respond_to do |format|
-      format.json  {render :json => @lookup_types.to_dhtmlxgrid_json([:id,'R',:lookup_level,:lookup_type,:meaning,:description,:status_code,'M'],
+      format.json  {render :json => @lookup_types.to_dhtmlxgrid_json(['R',:lookup_level,:lookup_type,:meaning,:description,:status_code,'M'],
                                                                                count) }
     end
   end
@@ -144,6 +148,16 @@ class Irm::LookupTypesController < ApplicationController
 
     @id = params["gr_id"]
     case @mode
+      when "inserted"
+            @lookup_value = Irm::LookupValue.new({:lookup_type=>@lookup_type.lookup_type,
+                                                  :lookup_code=>@lookup_code,
+                                                  :meaning=>@meaning,
+                                                  :description=>@description,
+                                                  :start_date_active=>@start_date_active,
+                                                  :end_date_active => @end_date_active})
+            @lookup_value.save!
+
+            @tid = @lookup_value.id
       when "updated"
             exist_flag = Irm::LookupValue.check_lookup_code_exist(@lookup_type.lookup_type,@lookup_code)
             #no exists
@@ -171,4 +185,7 @@ class Irm::LookupTypesController < ApplicationController
     end
   end
 
+  def add_code
+    @lookup_type = Irm::LookupType.multilingual.find(params[:id])
+  end
 end

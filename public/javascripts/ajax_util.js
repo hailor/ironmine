@@ -139,10 +139,15 @@ function ajaxDhtmlxGrid(el){
    var grid_width = $(el).attr("grid_width");
    var grid_col_types = $(el).attr("grid_col_types");
    var grid_paging_skin = $(el).attr("grid_paging_skin");
+   var grid_align = $(el).attr("grid_align");
    var enable_paging = $(el).attr("enable_paging");
    var onCheckbox = $(el).attr("grid_checkbox");
+   var OnRowSelected = $(el).attr("grid_OnRowSelected");
+   var onRowDblClicked = $(el).attr("grid_onRowDblClicked");
    var grid_column_hidden = $(el).attr("grid_columnHidden");
+   var grid_attach_Header=$(el).attr("grid_attachHeader");
    var grid_load = $(el).attr("grid_load");
+   
    var grid = dhtmlx_grid_array[id];
    if(grid!=null&&grid!=undefined){
        grid.destructor();
@@ -157,6 +162,9 @@ function ajaxDhtmlxGrid(el){
    if (grid_col_types!=null&&grid_col_types!=undefined){
       grid.setColTypes(grid_col_types);//set column types
    }
+   if (grid_align!=null&&grid_align!=undefined){
+      grid.setColAlign(grid_align);
+   }
    if (enable_paging!=null&&enable_paging!=undefined){
       var enablePaging = eval("([" + enable_paging + "])");
       //alert(enablePaging[0] + " " + enablePaging[1] + " " + enablePaging[2] + " " + enablePaging[3] + " " + enablePaging[4] + " " + enablePaging[5]);
@@ -166,14 +174,27 @@ function ajaxDhtmlxGrid(el){
    if (enable_paging!=null&&enable_paging!=undefined){
       grid.setPagingSkin(grid_paging_skin);
    }
+   //点击checkbox和radio
    if (onCheckbox!=null&&onCheckbox!=undefined){
         //.var fnCheckbox = eval(onCheckbox);
       grid.attachEvent("onCheckbox", onCheckbox);
+   }
+   //选择当前行
+   if (OnRowSelected!=null&&OnRowSelected!=undefined){
+        //.var fnCheckbox = eval(onCheckbox);
+      grid.attachEvent("onRowSelect", OnRowSelected);
+   }
+   //双击当前行
+   if (onRowDblClicked!=null&&onRowDblClicked!=undefined){
+      grid.attachEvent("onRowDblClicked", onRowDblClicked);
    }
 
    if (grid_column_hidden!=null&&grid_column_hidden!=undefined){
       var gridColumnHidden = eval("([" + grid_column_hidden + "])");
       grid.setColumnHidden(gridColumnHidden[0], gridColumnHidden[1]);
+   }
+   if (grid_attach_Header!=null&&grid_attach_Header!=undefined){
+      grid.attachHeader(grid_attach_Header);
    }
 
    init_grid(grid);
@@ -202,8 +223,8 @@ function init(el) {
         }else if (actionType=="multilingual"){
             multilingual(this)
         }
+        pre_init_partial(el);
 	});
-    pre_init_partial(el);
 }
 
 function parseScript(script) {
@@ -313,7 +334,9 @@ function replace(param, data) {
 		this.onclick = null;
 	});
 	if(html&&html!=""){$(source).html(html);}
+    $("#system_message_box").empty();
 	init("#" + s[0]);
+    pre_init_partial("#" + s[0]);
 }
 
 function parseFunction(f, el, identify) {

@@ -1,0 +1,39 @@
+<div id="data_area" class="container">
+    <div class="containerheader">
+       <div class="floatleft headertitle"><%=t(:label_irm_menu_list)%></div>
+    </div>
+    <div id="menus_grid" class="datagrid"
+        action_type="ajaxDhtmlxGrid"
+        grid_header=" , <%=t(:label_irm_menu_menu_code)%>,<%=t(:label_irm_menu_name)%>,
+        <%=t(:label_irm_menu_description)%>,<%=t(:active)%>,<%=t(:multilingual)%>"
+        grid_width="20,100,100,200,80,80"
+        grid_col_types="ra,ro,ro,ro,ro,link"
+        grid_paging_skin="bricks"
+        enable_paging="true, 15, null, 'pagingArea', true, 'infoArea'"
+        grid_onRowDblClicked="dblClickHandler"
+        grid_OnRowSelected="rowSelectedHandler"
+        grid_load="'<%= url_for(:action => "get_data", :controller => "irm/menus", :format=>:json) %>','','json'">
+    </div>
+    <span id="pagingArea"></span>&nbsp;<span id="infoArea"></span>
+    <span id="recfound"></span>  
+    <script>
+        function dblClickHandler(rId, cInd){
+            processDblClicked("form_area","form_area","<%= url_for(:action => "edit", :controller => "irm/menus", :id => ":id") %>", rId);
+        }
+        function rowSelectedHandler(id, ind){
+            dhtmlx_grid_array['menus_grid'].cells(id, 0).setValue("1");
+            replaceLink(id);
+//            $("#menu_id").attr("value", id);
+        }
+        function replaceLink(rowId){
+           var action_temp="";
+           if(rowId!=null&&rowId!=undefined){
+              action_temp = "<%=url_for(:controller=>"irm/menu_entries",:action=>"index",:menu_id=>":id")%>".replace(":id",rowId);
+              $("#add_menu_entry").attr("href",action_temp);
+           }
+        }
+    </script>
+    <div class="containerfooter">
+        <div class="button floatright" ><%= link_to t(:label_irm_menu_entry_add), {:controller=>"irm/menu_entries",:action=>"index",:menu_id=>":id"}, {:action_type => "ajaxLink", :script => "/replace(containers,containers);/", :id => "add_menu_entry"}%></div>
+    </div>
+</div>

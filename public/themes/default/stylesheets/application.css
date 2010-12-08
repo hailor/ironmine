@@ -174,9 +174,10 @@ table.leftnavigation{
 }
 
 div.container {padding-bottom: 5px;}
-div.container div.containerheader{ background: none repeat scroll 0 0 #99BBDD; height:25px; line-height: 25px; padding: 0px 20px 0px 20px;}
-div.container div.containerfooter{ background: none repeat scroll 0 0 #d4d2d0; height:25px; line-height: 25px; padding: 0px 20px 0px 20px;}
+div.container div.containerheader{ background: none repeat scroll 0 0 #99BBDD; height:25px; line-height: 25px; padding: 0 20px 0 20px;}
+div.container div.containerfooter{ background: none repeat scroll 0 0 #d4d2d0; height:25px; line-height: 25px; padding: 0 20px 0 20px;}
 div.container div.colorheader{background: url("../images/containerheader_bg.gif") repeat-x scroll 0 0 #AACCEE !important;}
+div.buttonbar {padding: 0 20px 0 20px;}
 
 div.button {
 	float: left;
@@ -197,7 +198,7 @@ div.button a {
 }
 div.button a:hover{background: url("../images/button_background_hover.gif") repeat-x scroll center bottom #EDEBCA;}
 
-div.datagrid{width:100%; height:200px; background-color:white;}
+div.datagrid{width:100%; height:330px; background-color:white;}
 
 table.tabtable{
 	margin-top: 5px;
