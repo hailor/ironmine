@@ -48,8 +48,8 @@ en:
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type
-  label_lookup_types_code: Type Code
-  label_lookup_level: Lookup Level
+  label_lookup_types_code: Code
+  label_lookup_level: Range
   label_meaning: Meaning
   label_description: Description
   label_start_date_active: Start Date Active
@@ -63,10 +63,10 @@ en:
   label_new_lookup_type: New Lookup Type
   label_irm_lookup_type_lookup_type: Lookup Type
   label_irm_lookup_type_meaning: Meaning
-  label_irm_lookup_value_lookup_code: Lookup Code
   label_irm_lookup_value_meaning: Meaning
   lable_irm_lookup_type_editing_multilingual: Edit Language
-  label_irm_lookup_value_lookup_code: Lookup code
+  label_irm_lookup_value_lookup_code: Code
+  label_lookup_code: Lookup Code
   label_irm_lookup_value_meaning: Meaning
   label_irm_lookup_type_description: Description
   label_edit_lookup_type: Edit Lookup Type
