@@ -31,15 +31,17 @@ class Irm::Permission < ActiveRecord::Base
   }
 
   # 无需登陆即可访问的权限
-  scope :public,lambda{
+  scope :publiced,lambda{
     joins("LEFT OUTER JOIN #{Irm::FunctionMember.table_name} ON #{Irm::FunctionMember.table_name}.permission_code = #{table_name}.permission_code").
     where("#{Irm::FunctionMember.table_name}.function_code = 'PUBLIC_FUNCTION'")
   }
-
-  def public?
-    self.class.public.collect{|p| p.permission_code}.include?(self.permission_code)
+  # 判断是否为公开权限
+  # //TODO 使用缓存
+  def publiced?
+    self.class.publiced.collect{|p| p.permission_code}.include?(self.permission_code)
   end
-
+  # 判断是否登录即可访问的权限
+  # //TODO 使用缓存
   def logined?
     self.class.logined.collect{|p| p.permission_code}.include?(self.permission_code)
   end

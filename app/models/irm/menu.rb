@@ -11,5 +11,7 @@ class Irm::Menu < ActiveRecord::Base
   validates_uniqueness_of :menu_code, :if => Proc.new { |i| !i.menu_code.blank? }
   validates_format_of :menu_code, :with => /^[A-Z0-9_]*$/ ,:if=>Proc.new{|i| !i.menu_code.blank?}
 
+  #加入activerecord的通用方法和scope
+  query_extend
 
 end
