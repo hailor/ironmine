@@ -12,6 +12,11 @@ module Irm
         items[:permissions]
       end
 
+      # 所有权限编码
+      def permission_codes
+        items[:permission_codes]
+      end
+
       #初始化菜单和权限缓存
       def reset_menu
         menus = Irm::Menu.enabled
@@ -76,19 +81,73 @@ module Irm
       end
 
 
+      #通过controller,action取得permission hash
+      def permission_by_url(controller,action)
+        permission_code = permission_codes[Irm::Permission.url_key(controller,action)]
+        permission = nil
+        permission = items[:permissions][permission_code].delete(:options) if permission_code
+        permission
+      end
+
+      def menu_by_code(menu_code)
+        menus[menu_code]
+      end
+
+      # 通过菜单编码取得子菜单项
+      # 在返回子项前进行菜单子项的权限验证
+      def sub_entries_by_menu(menu_code)
+        sub_entries = []
+        menu = menus[menu_code]
+        menu[:menu_entries].each do |me|
+          entries_options = {:menu_code => me[:sub_menu_code],
+                             :entry_type=>"MENU",
+                             :name=>me[::I18n.locale.to_sym][:name],
+                             :description=>me[::I18n.locale.to_sym][:description],
+                             :permission_code=>me[:permission_code]}
+          sub_entries<< entries_options if menu_showable(me)
+        end
+        menu[:menu_entries].each do |pe|
+          entries_options = {:entry_type=>"PERMISSION",
+                             :name=>pe[::I18n.locale.to_sym][:name],
+                             :description=>pe[::I18n.locale.to_sym][:description],
+                             :permission_code=>pe[:permission_code]}
+          sub_entries<< entries_options if check_permission(pe[:permission_code])
+        end
+      end
+
+      # 确定菜单是否可显示
+      def menu_showable(menu_entry)
+        if(menu_entry[:permission_code])
+          check_permission(menu_entry[:permission_code])
+        else
+          menu = menu_by_code(menu_entry[:sub_menu_code])
+          if menu
+            menu[:menu_entries].detect{|me| menu_showable(me)}||menu[:permission_entries].detect{|pe| check_permission(pe[:permission_code])}
+          else
+            true
+          end
+        end
+      end
+
+      # 检查permission的权限
+      def check_permission(permission_code)
+        permission = items[:permissions][permission_code].delete(:options)
+        Irm::PermissionChecker.allow_to?(permission)
+      end
+
       private
       #将数据加载至内存
       def map
-        @items =Irm::STORAGE.get(:menu_manager_items)||{}
+        @items =Ironmine::STORAGE.get(:menu_manager_items)||{}
         if block_given?
           yield @items
         end
-        Irm::STORAGE.put(:menu_manager_items,@items)
+        Ironmine::STORAGE.put(:menu_manager_items,@items)
       end
 
       # 从内存中读取数据
       def items
-        Irm::STORAGE.instance.get(:menu_manager_items)||{}
+        Ironmine::STORAGE.get(:menu_manager_items)||{}
       end
 
     end

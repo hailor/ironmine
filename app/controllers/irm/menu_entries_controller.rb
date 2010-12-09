@@ -1,7 +1,7 @@
 class Irm::MenuEntriesController < ApplicationController
   def index
     @menu_entry = Irm::MenuEntry.new
-    @menu = Irm::Menu.find(params[:menu_id])
+    @menu = Irm::Menu.multilingual.find(params[:menu_id])
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @menu_entry }
@@ -47,6 +47,45 @@ class Irm::MenuEntriesController < ApplicationController
          format.html { render "error_message" }
       end
     end
+  end
+
+  def create_entry
+    menu = Irm::Menu.find(params[:menu_id])
+    display_sequence = params["c1"]
+    name = params["c2"]
+    description   = params["c3"]
+    sub_menu_code = params["c4"]
+    permission_code = params["c5"]
+    display_flag = params["c6"]
+    status_code = params["c7"]
+
+    @mode = params["!nativeeditor_status"]
+
+    @id = params["gr_id"]
+    case @mode
+      when "inserted"
+        @menu_entry = Irm::MenuEntry.new({:company_id => Irm::Company.current.id, :menu_code => menu.menu_code, :sub_menu_code => sub_menu_code, :permission_code => permission_code, :display_sequence => display_sequence,
+                                         :display_flag => display_flag, :status_code => status_code, :name => name, :description => description})
+        @menu_entry.save
+        @id = @menu_entry.id
+        @tid = @menu_entry.id
+      when "updated"
+        exist_flag = Irm::MenuEntry.check_menu_entry_exist(@id)
+        #no exists
+        if !exist_flag
+          @menu_entry = Irm::MenuEntry.new({:company_id => Irm::Company.current.id, :menu_code => menu.menu_code, :sub_menu_code => sub_menu_code, :permission_code => permission_code, :display_sequence => display_sequence,
+                                           :display_flag => display_flag, :status_code => status_code, :name => name, :description => description})
+          @menu_entry.save
+          @id = @menu_entry.id
+          @tid = @menu_entry.id
+        else
+          @menu_entry=Irm::MenuEntry.find(@id)
+          @menu_entry.update_attributes({:menu_code => menu.menu_code, :sub_menu_code => sub_menu_code, :permission_code => permission_code, :display_sequence => display_sequence,
+                                             :display_flag => display_flag, :status_code => status_code, :name => name, :description => description})
+          @id = @menu_entry.id
+          @tid = @menu_entry.id
+        end
+    end    
   end
 
   def get_data

@@ -4,6 +4,48 @@
 <% end%>
 <%= t(:hello) %>
 <%= echo %>
-<div id="winVP" style="position: relative; height: 300px; border: #cecece 1px solid; margin: 10px;">
-  <%=link_to "multilingual",{:action=>"multilingual_edit"},:action_type=>"multilingual",:view_port=>"winVP"%>
-</div>
+<%= allow_to?({:controller=>params[:controller],:action=>params[:action]}) %>
+<input type="text" required="true" style="display:none" id="aa"/>
+<div id="content"></div>
+<script>
+$(document).ready(function(){
+
+$("a").live('click',function(e){
+      alert("running");
+      e.preventDefault();
+  });
+
+
+
+});
+jQuery(function ($) {
+  $('input[required]:not([readonly]):not([disabled])').addClass("inputrequired");    
+});
+function add_a(){
+  var text = "<a href=\"#\" onclick=\"alert('ok')\" type=\"alert\">test</a>";
+  var input="<input type=\"text\" required=\"true\" name=\"aac\"/>";
+  alert("test");
+  $("#content").html(text+input);
+  $("#aa").css("display","block");
+}
+function show_click(e){
+  alert("show click");
+}
+</script>
+<input type="button" value="test" onclick="add_a();"/>
+
+
+
+<div id="gridbox" style="width:503px;height:120px;background-color:white;"></div>
+<script>
+var mygrid = new dhtmlXGridObject('gridbox');
+mygrid.setImagePath("../../codebase/imgs/");
+mygrid.setHeader("Author,Title");
+mygrid.setInitWidths("150,150");
+mygrid.setColAlign("left,left");
+mygrid.setColTypes("ro,link");
+mygrid.setColSorting("str,str");
+mygrid.setSkin("dhx_skyblue");
+mygrid.init();
+mygrid.loadXML("/a.xml");
+</script>

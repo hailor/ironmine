@@ -1809,7 +1809,8 @@ function dhtmlXGridObject(id) {
         this.grid._doClick(e || window.event);
         if (this.grid._sclE)
             this.grid.editCell(e || window.event);
-        (e || event).cancelBubble = true
+        if(!(e ? e.target : event.srcElement).tagName=="A")
+          (e || event).cancelBubble = true
     };
     if (_isMacOS) {
         this.entBox.oncontextmenu = function(e) {

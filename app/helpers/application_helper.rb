@@ -27,4 +27,10 @@ module ApplicationHelper
   def succ_message_for(msg)
     content_tag(:div,content_tag(:div, raw(msg), {:class=>"succmsgbox"}) ,{:id=>"system_message_box"},false)
   end
+
+  # 确认当前用户是否有权限访问链接
+  # 页面上的链接数量太多，采用缓存将页面permission信息存储
+  def allow_to?(url_options={})
+    Irm::PermissionChecker.allow_to?(url_options)
+  end
 end

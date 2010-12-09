@@ -1,0 +1,32 @@
+<div id="menu_entry_show_parent">
+  <%= form_for(@menu,:url=>{},:builder => LabellingFormBuilder) do |f| %>
+             <div class="containerheader">
+                 <div class="floatleft headertitle"><%=t(:label_irm_menu_edit)%> - <%= @menu.menu_code%></div>
+             </div>
+             <table class="twocolumnstable" cellspacing="0">
+                 <tr>
+                     <td class="twocolumn">
+                        <table class="itemdetailtable">
+                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_menu_menu_code)%>:</td>
+                             <td><%=f.text_field :menu_code,:size=>40,:required=>true,:irm_uppercase=>true, :readonly=> true %></td>
+                         </tr>
+                         <tr><td class="itemdetailtablelabel"><%=(t :label_irm_menu_name)%>:</td>
+                           <td><%=f.text_field :name, :value => @menu[:name] ,:size=>40,:required=>true, :readonly=> true %></td>
+                         </tr>
+                        </table>
+                     </td>
+                     <td class="twocolumn" cellspacing="0">
+                        <table class="itemdetailtable">
+                            <tr><td class="itemdetailtablelabel">
+                                  <%=t(:label_irm_menu_description)%>:
+                            </td>
+                            <td><%= f.text_area :description, :value => @menu[:description], :cols => 40, :rows => 1, :readonly=> true %></td>
+                            </tr>
+                        </table>
+                     </td>
+                     <td width="10%"></td>
+                 </tr>
+             </table>
+             <div class="containerfooter"></div>
+  <% end %>
+</div>

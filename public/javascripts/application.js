@@ -31,23 +31,17 @@ function pre_init_partial(el){
     $(el).find('input[type=submit]').css("cursor","pointer");
 }
 //#=========================start multilingual=======================#
-var mulwins;
-function multilingual(el){
-  jQuery(function ($) {
-    el.onclick = function (e) {
-      if (!jQuery.browser.msie){
-        e.preventDefault();
-      }
-      if(!mulwins)
-      {
-        mulwins = new dhtmlXWindows();
-        mulwins.setImagePath("/images/dhtmlx/");
-        mulwins.enableAutoViewport(false);
-        mulwins.attachViewportTo($(this).attr('view_port'));
-      }
-      var div_str = "<div id='multwin' style='display:none'></div>"
-      if($('#multwin').length<1){$('body').append(div_str);}
 
+jQuery(function ($) {
+    var mulwins;
+    $('a[action_type="multilingual"]').live('click',function (e) {
+      e.preventDefault();
+      mulwins = new dhtmlXWindows();
+      mulwins.setImagePath("/images/dhtmlx/");
+      mulwins.enableAutoViewport(false);
+      mulwins.attachViewportTo($(this).attr('view_port'));
+
+      if($('#multwin').length<1){$('body').append("<div id='multwin' style='display:none'></div>");}
       $('#multwin').load($(this).attr('href'));
       var win = mulwins.createWindow("mutilwin",50,50,590,142);
       win.attachObject('multwin');
@@ -57,17 +51,14 @@ function multilingual(el){
       win.button('minmax2').hide();
       win.denyResize();
       win.setModal(true);
-      return false;
-    };
-  });
-}
-jQuery(function ($) {
+    });
+    
     $('a[action_type="multilingual_close"]').live('click', function (e) {
       if(mulwins)
       {
         mulwins.forEachWindow(function(win){win.close()});
       }
     });
-});
+  });
 //#=========================end multilingual=======================#
 
