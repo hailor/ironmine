@@ -32,7 +32,6 @@ class Irm::PermissionsController < ApplicationController
 
   def create
     @permission = Irm::Permission.new(params[:irm_permission])
-    @permission.company_id = Irm::Company.current.id
     respond_to do |format|
       if @permission.save
         flash[:successful_message] = (t :successfully_created)

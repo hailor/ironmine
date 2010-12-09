@@ -33,7 +33,6 @@ class Irm::AuthSourcesController < ApplicationController
   def create
     @auth_source = Irm::AuthSource.new(params[:irm_auth_source])
     @auth_source.company_id = Irm::Company.current.id
-    @auth_source.type = "LDAP"
     respond_to do |format|
       if @auth_source.save
         flash[:successful_message] = (t :successfully_created)
