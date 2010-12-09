@@ -26,7 +26,7 @@ module Ironmine
           # 多语言配置项
           cattr_accessor :multilingual_options,:view_name
           self.multilingual_options = default_options.merge(options)
-          self.view_name = "#{self.name.pluralize}Vl".gsub(/.*::/,"").underscore
+          self.view_name = "#{self.name.pluralize}Vl".gsub(/::/,"_").underscore
           # 多语言lang scope
           # 1，拼接多语言字段的查询字符
           column_str = ""

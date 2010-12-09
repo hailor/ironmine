@@ -14,7 +14,7 @@
                               <td><%=f.text_field :email, :size=>40,:required=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_password)%>:</td>
-                              <td><%=f.text_field :password, :size=>40,:required=>true%></td>
+                              <td><%=f.password_field :password, :size=>40,:required=>true%></td>
                             </tr>
                        </table>
                     </td>
@@ -24,10 +24,10 @@
                               <td><%=f.text_field :full_name, :size=>40,:required=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_language_code)%>:</td>
-                              <p><%= f.select(:language_code, options_for_select(selectable_languages,@identity.language_code)) %> </p>
+                              <td><%= f.select(:language_code, options_for_select(selectable_languages,@identity.language_code)) %> </td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_password_confirmation)%>:</td>
-                              <td><%=f.text_field :password_confirmation, :size=>40,:required=>true%></td>
+                              <td><%=f.password_field :password_confirmation, :size=>40,:required=>true%></td>
                             </tr>
                        </table>
                     </td>
