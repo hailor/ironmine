@@ -13,11 +13,20 @@ class Irm::Identity < ActiveRecord::Base
   validates_length_of :email, :maximum => 60, :allow_nil => true
   validates_presence_of :password,:if=> Proc.new{|identity| identity.hashed_password.blank?&&!identity.is_a?(Irm::AnonymousIdentity)}
   validates_confirmation_of :password, :allow_nil => true,:if=> Proc.new{|identity|identity.hashed_password.blank?||!identity.password.blank?}
+  validates_length_of :password, :maximum => 30,:minimum=>6,:if=> Proc.new{|identity|!identity.password.blank?}
+  attr_accessor :old_password,:password, :password_confirmation
 
+  scope :query_all,lambda{where("#{table_name}.type IS NULL")}
+
+  scope :with_language,lambda{
+    joins("LEFT OUTER JOIN #{Irm::Language.view_name} ON #{Irm::Language.view_name}.language_code=#{table_name}.language_code").
+    select("#{table_name}.*,#{Irm::Language.view_name}.description language_description").
+    where("#{Irm::Language.view_name}.language = ?",I18n.locale)
+  }
 
   def before_save
      #如果password变量值不为空,则修改密码
-     self.hashed_password = Irm::Identity.hash_password(self.password) if self.password
+     self.hashed_password = Irm::Identity.hash_password(self.password) if self.password&&!self.password.blank?
    end
 
    # 返回人员的全名
@@ -106,6 +115,6 @@ class Irm::AnonymousIdentity < Irm::Identity
   # Overrides a few properties
   def logged?; false end
   def admin; false end
-  def name(*args); t(:label_identity_anonymous) end
+  def name(*args); ::I18n.t(:label_identity_anonymous) end
   def email; nil end
 end

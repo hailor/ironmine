@@ -1,6 +1,8 @@
 class Irm::Menu < ActiveRecord::Base
   set_table_name :irm_menus
 
+
+
   #多语言关系
   attr_accessor :name,:description
   has_many :menus_tls,:dependent => :destroy

@@ -1,0 +1,29 @@
+    <div id="data_area" class="container">
+        <div class="containerheader">
+           <div class="floatleft headertitle"><%=t(:label_irm_identity_list)%></div>
+        </div>
+        <div id="identities_grid" class="datagrid"
+            action_type="ajaxDhtmlxGrid"
+            grid_header=" , <%=t(:label_irm_identity_login_name)%>,<%=t(:label_irm_identity_full_name)%>,
+            <%=t(:label_irm_identity_email)%>,<%=t(:label_irm_identity_language_code)%>,<%=t(:label_irm_identity_status_code)%>"
+            grid_width="20,100,100,100,100,80"
+            grid_col_types="ra,ro,ro,ro,ro,ro"
+            grid_onRowDblClicked="dblClickHandler"
+            grid_OnRowSelected="rowSelectedHandler"
+            grid_paging_skin="bricks"
+            enable_paging="true, 15, null, 'pagingArea', true, 'infoArea'"
+            grid_load="'<%= url_for(:action => "get_data", :controller => "irm/identities", :format=>:json) %>',function(){init('#identitys_grid');},'json'">
+        </div>
+        <span id="pagingArea"></span>&nbsp;<span id="infoArea"></span>
+        <span id="recfound"></span>
+        <script>
+            function dblClickHandler(rId, cInd){
+                processDblClicked("form_area","form_area","<%= url_for(:action => "edit", :controller => "irm/identities", :id => ":id") %>", rId);
+            }
+            function rowSelectedHandler(id, ind){
+                dhtmlx_grid_array['identities_grid'].cells(id, 0).setValue("1");
+            }
+        </script>
+        <div class="containerfooter">
+        </div>
+    </div>
