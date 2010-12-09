@@ -45,18 +45,8 @@
                             <td width="20%">&nbsp;</td>
                         </tr>
                     </table>
-                     <script type="text/javascript" charset="utf-8">
-                          function after_save_lookup_type(){
-                              $("#irm_lookup_type_lookup_type").attr('readonly','readonly');
-                              $("#irm_lookup_type_lookup_type").removeClass('inputrequired');
-                              $("#irm_lookup_type_lookup_type").addClass("inputdisable");
-                              $("input[type=radio]").each(function(){
-                                  $(this).attr('disabled','disabled');
-                              });
-                          }
-                     </script>
                     <div class="containerfooter">
-                    	<div class="button floatright" ><%=link_to t(:save),{:controller=>"irm/lookup_types",:action=>"create"}, :script=>"/replace(system_message_box,system_message_box);after_save_lookup_type();reload_grid('id_lookup_type_grid');/replace(system_message_box,system_message_box);" ,:action_type=>"ajaxSubmit"%></div>
+                    	<div class="button floatright" ><%=link_to t(:save),{:controller=>"irm/lookup_types",:action=>"create"}, :script=>"/replace(system_message_box,system_message_box);replace(id_new_lookup_type,id_edit_lookup_type);reload_grid('id_lookup_type_grid');/replace(system_message_box,system_message_box);" ,:action_type=>"ajaxSubmit"%></div>
                         <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a></div>
                     </div>
           </div>

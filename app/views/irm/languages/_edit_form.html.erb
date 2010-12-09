@@ -8,15 +8,16 @@
                         <td class="twocolumn">
                            <table class="itemdetailtable">
                                <tr><td class="itemdetailtablelabel"><%=(t :label_irm_language_language_code)%>:</td>
-                                <td><%=f.text_field :language_code,:size=>40,:readonly=> true ,:normal=>true%></td>
+                                <td><%=f.text_field :language_code,:size=>40,:readonly=> true %></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_language_installed_flag)%>:</td>
-                              <td><%=f.check_box :installed_flag,:normal=>true%></td>
+                              <td><%=f.check_box :installed_flag%></td>
                             </tr>
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_language_status_code)%>:</td>
-                              <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_for_select(available_status,@language.status_code),:normal=>true%></td>
-                            </tr>                             
+                            <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_language_status_code)%>:</td>
+                            <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_status,:lookup_code,:meaning,@condition.status_code)%></td>
+                            </tr>                            
                            </table>
                         </td>
                         <td class="twocolumn" cellspacing="0">
@@ -25,7 +26,7 @@
                                <tr><td class="itemdetailtablelabel">
                                      <%=t(:label_irm_language_description)%>:
                                </td>
-                               <td><%= f.text_area :description, :value => @language[:description], :cols => 40, :rows => 2,:normal=>true%></td>
+                               <td><%= f.text_area :description, :value => @language[:description], :cols => 40, :rows => 2 %></td>
                             </tr>
                             </div>
                            </table>

@@ -34,11 +34,11 @@ class Irm::LanguagesController < ApplicationController
     respond_to do |format|
       if @language.save
         flash[:successful_message] = (t :successfully_created)
-        format.html { render "successful_info" }
+        format.html { render "return" }
         format.xml  { render :xml => @language, :status => :created, :location => @language }
       else
         @error = @language
-        format.html { render "error_info" }
+        format.html { render "irm/common/error_message" }
         format.xml  { render :xml => @language.errors, :status => :unprocessable_entity }
       end
     end
@@ -52,11 +52,11 @@ class Irm::LanguagesController < ApplicationController
     respond_to do |format|
       if @language.update_attributes(params[:irm_language])
         flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+        format.html { render "irm/common/_successful_message" }
         format.xml  { head :ok }
       else
         @error=@language
-        format.html { render "error_info" }
+        format.html { render "irm/common/error_message" }
         format.xml  { render :xml => @language.errors, :status => :unprocessable_entity }
       end
     end

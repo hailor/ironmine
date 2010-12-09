@@ -177,7 +177,7 @@ function ajaxDhtmlxGrid(el){
    //点击checkbox和radio
    if (onCheckbox!=null&&onCheckbox!=undefined){
         //.var fnCheckbox = eval(onCheckbox);
-      grid.attachEvent("onCheckbox", onCheckbox);
+      grid.attachEvent("onCheck", onCheckbox);
    }
    //选择当前行
    if (OnRowSelected!=null&&OnRowSelected!=undefined){
@@ -334,7 +334,7 @@ function replace(param, data) {
 		this.onclick = null;
 	});
 	if(html&&html!=""){$(source).html(html);}
-    $("#system_message_box").empty();
+    //$("#system_message_box").empty();
 	init("#" + s[0]);
     pre_init_partial("#" + s[0]);
 }

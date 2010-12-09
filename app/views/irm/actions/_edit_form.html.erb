@@ -1,0 +1,53 @@
+   <div id="id_action_edit" class="container">
+     <%= form_for(@action,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+                <div class="containerheader">
+                    <div class="floatleft headertitle"><%=t(:label_irm_action_edit)%> - <%= @action.action_code%></div>
+                </div>
+                <table class="twocolumnstable" cellspacing="0">
+                    <tr>
+                        <td class="twocolumn">
+                           <table class="itemdetailtable">
+                            <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_action_entity_code)%>:</td>
+                            <td><%=f.select :entity_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_entity,:lookup_code,:meaning,@action.entity_code),{},{:disabled=>true}%></td>
+                            </tr>
+                            <tr>
+                                <td class="itemdetailtablelabel"><%=(t :label_irm_action_action_code)%>:</td>
+                                <td><%=f.text_field :action_code,:size=>40,:readonly=>"readonly"%></td>
+                            </tr>
+                            <tr>
+                                <td class="itemdetailtablelabel"><%=(t :label_irm_action_name)%>:</td>
+                                <td><%=f.text_field :name,:value=>@action[:name],:size=>40,:required=>true %></td>
+                            </tr>
+                            <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_action_handler)%>:</td>
+                            <td><%=f.text_field :handler,:size=>40,:required=>true %></td>
+                            </tr>
+                            <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_action_status_code)%>:</td>
+                            <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_status,:lookup_code,:meaning,@action.status_code)%></td>
+                            </tr>
+                           </table>
+                        </td>
+                        <td class="twocolumn" cellspacing="0">
+                           <table class="itemdetailtable">
+                            <div id="id_lookup_level">
+                               <tr><td class="itemdetailtablelabel">
+                                     <%=t(:label_irm_action_description)%>:
+                               </td>
+                               <td><%= f.text_area :description, :value => @action[:description], :cols => 40, :rows => 2%></td>
+                            </tr>
+                            </div>
+                           </table>
+                        </td>
+                        <td width="10%"></td>
+                    </tr>
+                </table>
+                <div class="containerfooter">
+                    <div class="button floatright" ><%= link_to t(:save), {:controller=>"irm/actions",:action=>"update"}, {:action_type => "ajaxSubmit", :script => "/reload_grid('id_action_grid');replace(system_message_box,system_message_box);/replace(system_message_box,system_message_box);"}%></div>
+                    <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(id_action_new,id_action_new);/", :action_type=>"ajaxLink"%></div>
+                </div>
+     <% end %>
+   </div>

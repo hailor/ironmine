@@ -85,3 +85,28 @@ en:
   label_irm_language_installed_flag: Installed Flag
   label_irm_language_status_code: Status Code
   #=========================    irm languages_controller=======================#
+  #=========================    irm conditions_controller=======================#
+  label_irm_condition_condition_code: Code
+  label_irm_condition_name: Name
+  label_irm_condition_entity_code: Entity
+  label_irm_condition_description: Description
+  label_irm_condition_status_code: Status Code
+  label_irm_condition_new: New Condition
+  label_irm_condition_edit: Edit Condition
+  label_irm_condition_list: List Condition
+  label_irm_condition_conditions_tls:
+    name: Name
+  #=========================end irm conditions_controller=======================#
+  #=========================    irm actions_controller=======================#
+  label_irm_action_action_code: Code
+  label_irm_action_name: Name
+  label_irm_action_handler: Handler
+  label_irm_action_entity_code: Entity
+  label_irm_action_description: Description
+  label_irm_action_status_code: Status Code
+  label_irm_action_new: New action
+  label_irm_action_edit: Edit action
+  label_irm_action_list: List action
+  label_irm_action_actions_tls:
+    name: Name
+  #=========================end irm actions_controller=======================#

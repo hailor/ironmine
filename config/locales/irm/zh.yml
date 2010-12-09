@@ -135,4 +135,33 @@ zh:
   label_irm_permission_page_action: Action
   label_irm_permission_status_code: 状态
   label_irm_permission_list: 权限列表
-  #=========================    end permissions_controller=======================#      
+  #=========================    end permissions_controller=======================#
+  #=========================    irm conditions_controller=======================#
+  label_irm_condition_condition_code: 编码
+  label_irm_condition_name: 名称
+  label_irm_condition_entity_code: 实体
+  label_irm_script_template_code: 模板
+  label_irm_condition_description: 描述
+  label_irm_condition_status_code: 记录状态
+  label_irm_condition_active_flag: 是否可用
+  label_irm_condition_new: 新建触发条件
+  label_irm_condition_edit: 编辑触发条件
+  label_irm_condition_list: 触发条件列表
+  label_irm_condition_conditions_tls:
+     name: 名称
+  #=========================end irm conditions_controller=======================#
+  #=========================    irm actions_controller=======================#
+  label_irm_action_action_code: 编码
+  label_irm_action_name: 名称
+  label_irm_action_handler: 处理方法
+  label_irm_action_entity_code: 实体
+  label_irm_script_template_code: 模板
+  label_irm_action_description: 描述
+  label_irm_action_status_code: 记录状态
+  label_irm_action_active_flag: 是否可用
+  label_irm_action_new: 新建执行动作
+  label_irm_action_edit: 编辑执行动作
+  label_irm_action_list: 执行动作列表
+  label_irm_action_actions_tls:
+     name: 名称
+  #=========================end irm actions_controller=======================#
