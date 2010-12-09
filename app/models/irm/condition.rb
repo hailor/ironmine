@@ -11,8 +11,7 @@ class Irm::Condition < ActiveRecord::Base
   has_many :conditions_tls,:dependent => :destroy
   acts_as_multilingual
 
-  validates_presence_of :condition_code
-  validates_presence_of :entity_code
+  validates_presence_of :condition_code,:entity_code
   validates_uniqueness_of :condition_code, :if => Proc.new { |i| !i.condition_code.blank? }
   validates_format_of :condition_code, :with => /^[A-Z0-9_]*$/ ,:if=>Proc.new{|i| !i.condition_code.blank?}
 

@@ -8,7 +8,7 @@ class Irm::Action < ActiveRecord::Base
   has_many :actions_tls,:dependent => :destroy
   acts_as_multilingual
 
-  validates_presence_of :action_code,:handler
+  validates_presence_of :action_code,:handler,:entity_code
   validates_uniqueness_of :action_code, :if => Proc.new { |i| !i.action_code.blank? }
   validates_format_of :action_code, :with => /^[A-Z0-9_]*$/ ,:if=>Proc.new{|i| !i.action_code.blank?}
 
