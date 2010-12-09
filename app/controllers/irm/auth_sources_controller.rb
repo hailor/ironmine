@@ -88,9 +88,7 @@ class Irm::AuthSourcesController < ApplicationController
   def get_data
     @auth_sources = Irm::AuthSource.all
     respond_to do |format|
-      format.json  {render :json => @auth_sources.to_dhtmlxgrid_json(['0',:name, :host, :port, :account, :base_dn,:attr_login,:status_code,
-                                                                    {:value => 'M', :controller => 'irm/auth_sources',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
-                                                                    ], @auth_sources.size) }
+      format.json  {render :json => @auth_sources.to_dhtmlxgrid_json(['0',:name, :host, :port, :account, :base_dn,:attr_login,:status_code,], @auth_sources.size) }
     end
   end
 end
