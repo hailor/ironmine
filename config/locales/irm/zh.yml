@@ -75,7 +75,7 @@ zh:
   label_irm_lookup_value_meaning: 含义
   label_irm_lookup_type_description: 描述
   label_edit_lookup_type: 编辑快速编码类型
-  label_new_lookup_type: 新建快速编码类型
+  label_new_lookup_type: 创建快速编码类型
   label_list_lookup_types: 快速编码类型列表
   label_add_lookup_code: 添加快速编码
   #=========================end irm lookup_types_controller================#
@@ -124,7 +124,7 @@ zh:
   error_irm_menu_entry_permission_sub_menu_at_least_one: 子菜单和页面至少输入一项
   #=========================    end menus_controller=======================#
   #=========================    irm permissions_controller=======================#
-  label_irm_permission_new: 新建权限
+  label_irm_permission_new: 创建权限
   label_irm_permission_edit: 编辑权限
   label_irm_permission_permission_code: 权限编码
   label_irm_permission_permission_type: 权限类型
@@ -148,3 +148,30 @@ zh:
   label_irm_identity_status_code: 状态
   label_irm_identity_list: 权限列表
   #=========================    end permissions_controller=======================#
+
+  #=========================    irm global_settings_controller=======================#
+  label_irm_global_setting: 全局设置
+  label_irm_global_setting_theme_name: 主题
+  label_irm_global_setting_timezone: 时区
+  label_irm_global_setting_upload_file_limit: 上传文件大小
+  label_irm_global_setting_logo: 图标
+  #=========================    end global_settings_controller=======================#
+  #=========================    irm auth_sources_controller=======================#
+  label_irm_auth_source_type: 认证源类型
+  label_irm_auth_source_name: 认证源名称
+  label_irm_auth_source_host: 主机
+  label_irm_auth_source_port: 端口
+  label_irm_auth_source_account: 账户
+  label_irm_auth_source_account_password: 密码
+  label_irm_auth_source_base_dn: 基准DN
+  label_irm_auth_source_attr_login: 用户名属性
+  label_irm_auth_source_attr_firstname: 名属性
+  label_irm_auth_source_attr_lastname: 姓属性
+  label_irm_auth_source_attr_email: 电子邮件属性
+  label_irm_auth_source_onthefly_register_flag: 拷贝
+  label_irm_auth_source: 认证源
+  label_irm_auth_source_list: 认证源列表
+  label_irm_auth_source_new: 创建认证源
+  label_irm_auth_source_edit: 编辑认证源
+  #=========================    end auth_sources_controller=======================#
+

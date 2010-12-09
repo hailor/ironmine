@@ -37,7 +37,7 @@ class Irm::MenusController < ApplicationController
 
   def create
     @menu = Irm::Menu.new(params[:irm_menu])
-
+    @menu.company_id = Irm::Company.current.id
     respond_to do |format|
       if @menu.save
         flash[:successful_message] = (t :successfully_updated)

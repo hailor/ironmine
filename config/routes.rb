@@ -64,6 +64,7 @@ Ironmine::Application.routes.draw do
     match '/permissions/:id/multilingual_edit(.:format)' => "permissions#multilingual_edit", :via => :get
     match '/permissions/:id/multilingual_update(.:format)' => "permissions#multilingual_update", :via => :put
     match '/permissions/get_data(.:format)' => "permissions#get_data"
+
     #identities
     match '/identities(/index)(.:format)' => "identities#index", :via => :get
     match '/identities/:id/edit(.:format)' => "identities#edit", :via => :get
@@ -73,6 +74,21 @@ Ironmine::Application.routes.draw do
     match '/identities/:id/multilingual_edit(.:format)' => "identities#multilingual_edit", :via => :get
     match '/identities/:id/multilingual_update(.:format)' => "identities#multilingual_update", :via => :put
     match '/identities/get_data(.:format)' => "identities#get_data"
+
+    #global_settings
+    match '/global_settings/edit(.:format)' => "global_settings#edit", :via => :get
+    match '/global_settings/:id(.:format)' => "global_settings#update", :via => :put
+    match '/global_settings(/index)(.:format)' => "global_settings#index", :via => :get
+    #auth_sources
+    match '/auth_sources(/index)(.:format)' => "auth_sources#index", :via => :get
+    match '/auth_sources/:id/edit(.:format)' => "auth_sources#edit", :via => :get
+    match '/auth_sources/:id(.:format)' => "auth_sources#update", :via => :put
+    match '/auth_sources/new(.:format)' => "auth_sources#new", :via => :get
+    match '/auth_sources/create(.:format)' => "auth_sources#create", :via => :post
+    match '/auth_sources/:id/multilingual_edit(.:format)' => "auth_sources#multilingual_edit", :via => :get
+    match '/auth_sources/:id/multilingual_update(.:format)' => "auth_sources#multilingual_update", :via => :put
+    match '/auth_sources/get_data(.:format)' => "auth_sources#get_data"    
+
   end
 
   match '/demo(/index)' => 'demo#index'

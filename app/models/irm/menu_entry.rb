@@ -6,6 +6,8 @@ class Irm::MenuEntry < ActiveRecord::Base
   has_many :menu_entries_tls,:dependent => :destroy
   acts_as_multilingual
 
+  belongs_to :menu,:foreign_key=>"menu_code",:primary_key => "menu_code"
+  
   # 验证权限编码唯一性
   validates_presence_of :menu_code
 #  validates_presence_of :sub_menu_code, :if => Proc.new { |i| i.permission_code.blank? }
