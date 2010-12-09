@@ -16,7 +16,7 @@
                          <tr><td class="itemdetailtablelabel"><%=(t :label_irm_auth_source_port)%>:</td>
                            <td><%=f.text_field :port,:irm_numberonly=>true%></td>
                          </tr>
-                         <tr><td class="itemdetailtablelabel"><%=(t :status)%>:</td>
+                         <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
                            <td><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
                          </tr>                          
                         </table>

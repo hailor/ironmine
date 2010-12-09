@@ -14,7 +14,7 @@
                               <td><%=f.text_field :name, :value => @menu[:name] ,:size=>40,:required=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
-                              <td><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
+                              <td><%=f.select :active, available_active_status, {:include_blank => false}%></td>
                             </tr>                              
                            </table>
                         </td>

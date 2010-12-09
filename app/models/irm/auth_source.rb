@@ -6,6 +6,7 @@ class Irm::AuthSource < ActiveRecord::Base
 
   validates_presence_of :name, :host, :port, :account,:account_password,:base_dn,:attr_login
   validates_presence_of :attr_firstname,:attr_lastname,:attr_email,:if => Proc.new { |source| Irm::Constant::SYS_YES.eql?(source.onthefly_register_flag) }
+  validates_presence_of :attr_email
   validates_length_of :name, :maximum => 60
   validates_length_of :host, :maximum => 60
   validates_length_of :account, :maximum => 60

@@ -23,7 +23,7 @@
                                 <td><%=f.select :product_id, available_product_modules, {:include_blank => false}%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
-                              <td><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
+                              <td><%=f.select :active, available_active_status, {:include_blank => false}%></td>
                             </tr>                        
                            </table>
                         </td>
