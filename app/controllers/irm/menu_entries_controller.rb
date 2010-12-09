@@ -64,7 +64,7 @@ class Irm::MenuEntriesController < ApplicationController
     @id = params["gr_id"]
     case @mode
       when "inserted"
-        @menu_entry = Irm::MenuEntry.new({:menu_code => menu.menu_code, :sub_menu_code => sub_menu_code, :permission_code => permission_code, :display_sequence => display_sequence,
+        @menu_entry = Irm::MenuEntry.new({:company_id => Irm::Company.current.id, :menu_code => menu.menu_code, :sub_menu_code => sub_menu_code, :permission_code => permission_code, :display_sequence => display_sequence,
                                          :display_flag => display_flag, :status_code => status_code, :name => name, :description => description})
         @menu_entry.save
         @id = @menu_entry.id
@@ -73,7 +73,7 @@ class Irm::MenuEntriesController < ApplicationController
         exist_flag = Irm::MenuEntry.check_menu_entry_exist(@id)
         #no exists
         if !exist_flag
-          @menu_entry = Irm::MenuEntry.new({:menu_code => menu.menu_code, :sub_menu_code => sub_menu_code, :permission_code => permission_code, :display_sequence => display_sequence,
+          @menu_entry = Irm::MenuEntry.new({:company_id => Irm::Company.current.id, :menu_code => menu.menu_code, :sub_menu_code => sub_menu_code, :permission_code => permission_code, :display_sequence => display_sequence,
                                            :display_flag => display_flag, :status_code => status_code, :name => name, :description => description})
           @menu_entry.save
           @id = @menu_entry.id

@@ -1,6 +1,4 @@
 class Irm::PermissionsController < ApplicationController
-  # GET /product_modules
-  # GET /product_modules.xml
   def index
     @permission = Irm::Permission.new
 
@@ -10,8 +8,6 @@ class Irm::PermissionsController < ApplicationController
     end
   end
 
-  # GET /product_modules/1
-  # GET /product_modules/1.xml
   def show
     @permission = Irm::Permission.find(params[:id])
 
@@ -21,8 +17,6 @@ class Irm::PermissionsController < ApplicationController
     end
   end
 
-  # GET /product_modules/new
-  # GET /product_modules/new.xml
   def new
     @permission = Irm::Permission.new
 
@@ -32,16 +26,13 @@ class Irm::PermissionsController < ApplicationController
     end
   end
 
-  # GET /product_modules/1/edit
   def edit
     @permission = Irm::Permission.multilingual.find(params[:id])
   end
 
-  # POST /product_modules
-  # POST /product_modules.xml
   def create
     @permission = Irm::Permission.new(params[:irm_permission])
-
+    @permission.company_id = Irm::Company.current.id
     respond_to do |format|
       if @permission.save
         flash[:successful_message] = (t :successfully_created)
@@ -53,8 +44,6 @@ class Irm::PermissionsController < ApplicationController
     end
   end
 
-  # PUT /product_modules/1
-  # PUT /product_modules/1.xml
   def update
     @permission = Irm::Permission.find(params[:id])
 
@@ -69,8 +58,6 @@ class Irm::PermissionsController < ApplicationController
     end
   end
 
-  # DELETE /product_modules/1
-  # DELETE /product_modules/1.xml
   def destroy
     @permission = Irm::Permission.find(params[:id])
     @permission.destroy
