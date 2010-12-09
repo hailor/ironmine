@@ -83,7 +83,7 @@ module Irm
 
       #通过controller,action取得permission hash
       def permission_by_url(controller,action)
-        permission_code = permission_codes[Irm::Permission.url_key(controller,action).to_sym]
+        permission_code = permission_codes[Irm::Permission.url_key(controller,action)]
         permission = nil
         permission = items[:permissions][permission_code].delete(:options) if permission_code
         permission

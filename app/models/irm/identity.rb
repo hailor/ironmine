@@ -14,6 +14,7 @@ class Irm::Identity < ActiveRecord::Base
   validates_presence_of :password,:if=> Proc.new{|identity| identity.hashed_password.blank?&&!identity.is_a?(Irm::AnonymousIdentity)}
   validates_confirmation_of :password, :allow_nil => true,:if=> Proc.new{|identity|identity.hashed_password.blank?||!identity.password.blank?}
 
+  attr_accessor :old_password,:password, :password_confirmation
 
   def before_save
      #如果password变量值不为空,则修改密码

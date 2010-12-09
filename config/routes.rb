@@ -63,7 +63,16 @@ Ironmine::Application.routes.draw do
     match '/permissions/create(.:format)' => "permissions#create", :via => :post
     match '/permissions/:id/multilingual_edit(.:format)' => "permissions#multilingual_edit", :via => :get
     match '/permissions/:id/multilingual_update(.:format)' => "permissions#multilingual_update", :via => :put
-    match '/permissions/get_data(.:format)' => "permissions#get_data" 
+    match '/permissions/get_data(.:format)' => "permissions#get_data"
+    #identities
+    match '/identities(/index)(.:format)' => "identities#index", :via => :get
+    match '/identities/:id/edit(.:format)' => "identities#edit", :via => :get
+    match '/identities/:id(.:format)' => "identities#update", :via => :put
+    match '/identities/new(.:format)' => "identities#new", :via => :get
+    match '/identities/create(.:format)' => "identities#create", :via => :post
+    match '/identities/:id/multilingual_edit(.:format)' => "identities#multilingual_edit", :via => :get
+    match '/identities/:id/multilingual_update(.:format)' => "identities#multilingual_update", :via => :put
+    match '/identities/get_data(.:format)' => "identities#get_data"
   end
 
   match '/demo(/index)' => 'demo#index'
