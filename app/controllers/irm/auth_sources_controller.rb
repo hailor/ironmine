@@ -27,12 +27,13 @@ class Irm::AuthSourcesController < ApplicationController
   end
 
   def edit
-    @auth_source = Irm::AuthSource.multilingual.find(params[:id])
+    @auth_source = Irm::AuthSource.find(params[:id])
   end
 
   def create
     @auth_source = Irm::AuthSource.new(params[:irm_auth_source])
     @auth_source.company_id = Irm::Company.current.id
+    @auth_source.type = "LDAP"
     respond_to do |format|
       if @auth_source.save
         flash[:successful_message] = (t :successfully_created)
@@ -87,7 +88,7 @@ class Irm::AuthSourcesController < ApplicationController
   def get_data
     @auth_sources = Irm::AuthSource.all
     respond_to do |format|
-      format.json  {render :json => @auth_source.to_dhtmlxgrid_json(['0',:type,:name, :host, :port, :account, :base_dn,:attr_login,:status_code,
+      format.json  {render :json => @auth_sources.to_dhtmlxgrid_json(['0',:name, :host, :port, :account, :base_dn,:attr_login,:status_code,
                                                                     {:value => 'M', :controller => 'irm/auth_sources',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
                                                                     ], @auth_sources.size) }
     end

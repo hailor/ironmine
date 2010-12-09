@@ -4,12 +4,12 @@
         </div>
         <div id="auth_sources_grid" class="datagrid"
             action_type="ajaxDhtmlxGrid"
-            grid_header=" , <%=t(:label_irm_auth_source_type)%>,<%=t(:label_irm_auth_source_name)%>,
+            grid_header=" , <%=t(:label_irm_auth_source_name)%>,
             <%=t(:label_irm_auth_source_host)%>,<%=t(:label_irm_auth_source_port)%>,
             <%=t(:label_irm_auth_source_account)%>,<%=t(:label_irm_auth_source_base_dn)%>,<%=t(:label_irm_auth_source_attr_login)%>,
             <%=t(:status)%>,<%=t(:multilingual)%>"
-            grid_width="20,100,100,100,100,80,80,80,80,80"
-            grid_col_types="ra,ro,ro,ro,ro,ro,ro,ro,ro,link"
+            grid_width="20,100,100,100,80,80,80,80,80"
+            grid_col_types="ra,ro,ro,ro,ro,ro,ro,ro,link"
             grid_onRowDblClicked="dblClickHandler"
             grid_OnRowSelected="rowSelectedHandler"
             grid_paging_skin="bricks"
@@ -20,7 +20,7 @@
         <span id="recfound"></span>
         <script>
             function dblClickHandler(rId, cInd){
-                processDblClicked("form_area","form_area","<%= url_for(:action => "edit", :controller => "irm/auth_sources", :id => ":id") %>", rId);
+                processDblClicked("new_area","form_area","<%= url_for(:action => "edit", :controller => "irm/auth_sources", :id => ":id") %>", rId);
             }
             function rowSelectedHandler(id, ind){
                 dhtmlx_grid_array['auth_sources_grid'].cells(id, 0).setValue("1");
