@@ -68,6 +68,15 @@ Ironmine::Application.routes.draw do
     match '/global_settings/edit(.:format)' => "global_settings#edit", :via => :get
     match '/global_settings/:id(.:format)' => "global_settings#update", :via => :put
     match '/global_settings(/index)(.:format)' => "global_settings#index", :via => :get
+    #auth_sources
+    match '/auth_sources(/index)(.:format)' => "auth_sources#index", :via => :get
+    match '/auth_sources/:id/edit(.:format)' => "auth_sources#edit", :via => :get
+    match '/auth_sources/:id(.:format)' => "auth_sources#update", :via => :put
+    match '/auth_sources/new(.:format)' => "auth_sources#new", :via => :get
+    match '/auth_sources/create(.:format)' => "auth_sources#create", :via => :post
+    match '/auth_sources/:id/multilingual_edit(.:format)' => "auth_sources#multilingual_edit", :via => :get
+    match '/auth_sources/:id/multilingual_update(.:format)' => "auth_sources#multilingual_update", :via => :put
+    match '/auth_sources/get_data(.:format)' => "auth_sources#get_data"    
   end
 
   match '/demo(/index)' => 'demo#index'

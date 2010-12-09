@@ -52,7 +52,7 @@ class Irm::PermissionsController < ApplicationController
         flash[:successful_message] = (t :successfully_updated)
         format.html { render "successful_info" }
       else
-        @error = @product_module
+        @error = @permission
         format.html { render "error_message" }
       end
     end
