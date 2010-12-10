@@ -110,3 +110,19 @@ en:
   label_irm_action_actions_tls:
     name: Name
   #=========================end irm actions_controller=======================#
+  #=========================    irm scripts_controller=======================#
+  label_irm_script_script_code: Code
+  label_irm_script_name: Name
+  label_irm_script_handler: Handler
+  label_irm_script_entity: Entity
+  label_irm_script_template: Template
+  label_irm_script_condition: Condition
+  label_irm_script_action: Action
+  label_irm_script_description: Description
+  label_irm_script_status_code: Status Code
+  label_irm_script_new: New script
+  label_irm_script_edit: Edit script
+  label_irm_script_list: List script
+  label_irm_script_scripts_tls:
+    name: Name
+  #=========================end irm scripts_controller=======================#

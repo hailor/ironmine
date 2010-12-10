@@ -23,7 +23,7 @@ dhtmlXGridObject.prototype._process_json = function(data) {
         else if (typeof data == "string")
             eval("data=" + data + ";")
     } catch (e) {
-        dhtmlxError.throwError("LoadXML", "Incorrect JSON", [(data.xmlDoc || data), this]);
+        //dhtmlxError.throwError("LoadXML", "Incorrect JSON", [(data.xmlDoc || data), this]);
         data = {
             rows : []
         }

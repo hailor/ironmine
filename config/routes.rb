@@ -1,5 +1,4 @@
 Ironmine::Application.routes.draw do
-
   scope :module => "irm" do
     match 'login'=>'common#login',:as=>:login
     match 'multilingual_edit'=>'common#multilingual_edit'
@@ -107,6 +106,16 @@ Ironmine::Application.routes.draw do
     match '/auth_sources/:id/multilingual_edit(.:format)' => "auth_sources#multilingual_edit", :via => :get
     match '/auth_sources/:id/multilingual_update(.:format)' => "auth_sources#multilingual_update", :via => :put
     match '/auth_sources/get_data(.:format)' => "auth_sources#get_data"
+    #scripts
+    match '/scripts(/index)(.:format)' => "scripts#index", :via => :get
+    match '/scripts/:id/edit(.:format)' => "scripts#edit", :via => :get
+    match '/scripts/:id(.:format)' => "scripts#update", :via => :put
+    match '/scripts/:id(.:format)' => "scripts#update", :via => :put
+    match '/scripts/new(.:format)' => "scripts#new", :via => :get
+    match '/scripts/create(.:format)' => "scripts#create", :via => :post
+    match '/scripts/:id/multilingual_edit(.:format)' => "scripts#multilingual_edit", :via => :get
+    match '/scripts/:id/multilingual_update(.:format)' => "scripts#multilingual_update", :via => :put
+    match '/scripts/get_data(.:format)' => "scripts#get_data"
   end
 
   match '/demo(/index)' => 'demo#index'

@@ -130,7 +130,7 @@ function ajaxSubmit(el) {
 		return false;
 	});
 }
-
+//调用dhtmlxtabbar的方法来初始化tabbar
 var dhtmlx_tabbar_array={};
 function ajaxDhtmlxTabbar(el){
     var id = $(el).attr("id");

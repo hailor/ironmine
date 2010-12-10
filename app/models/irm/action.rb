@@ -28,4 +28,5 @@ class Irm::Action < ActiveRecord::Base
                                                          "v2.lookup_type='SYSTEM_STATUS_CODE' AND v2.lookup_code = irm_actions.status_code AND "+
                                                          "v1.language=? AND v2.language=?",language,language)}
 
+
 end

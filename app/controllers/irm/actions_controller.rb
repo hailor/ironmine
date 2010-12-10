@@ -72,9 +72,9 @@ class Irm::ActionsController < ApplicationController
   end
 
   def get_data
-    @conditions= Irm::Action.multilingual.query_wrap_info(I18n::locale)
+    @actions= Irm::Action.multilingual.query_wrap_info(I18n::locale)
     respond_to do |format|
-      format.json {render :json=>@conditions.to_dhtmlxgrid_json(['R',:entity_meaning,:action_code,:name,:description,:handler,:status_meaning, 'M'], @conditions.size)}
+      format.json {render :json=>@actions.to_dhtmlxgrid_json(['R',:entity_meaning,:action_code,:name,:description,:handler,:status_meaning, 'M'], @actions.size)}
     end
   end
 end
