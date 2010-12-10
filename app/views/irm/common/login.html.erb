@@ -1,51 +1,24 @@
-<h1>Login 登陆</h1>
-<% Irm::Company.query_by_language("zh").each do |c|%>
-    <h1><%= c[:name] %></h1>
-<% end%>
-<%= t(:hello) %>
-<%= echo %>
-<%= allow_to?({:controller=>params[:controller],:action=>params[:action]}) %>
-<input type="text" required="true" style="display:none" id="aa"/>
-<div id="content"></div>
-<script>
-$(document).ready(function(){
+<div class="containers" id="containers">
+  <div id="form" class="container">
+    <div class="containerheader">
+      <div class="floatleft headertitle"><%=t(:label_irm_common_login)%></div>
+    </div>
+    <%if flash[:error]%>
+      <div class="errormsgbox">
+        <%=flash[:error]%>
+      </div>
+    <%end%>
+    <% form_tag({:action=> "login"},{:id=>"login_form"}) do %>
+       <table class="paddedtable" cellspacing="0">
+         <tbody>
+             <tr><td class="paddedtablelabel"><%=(t :label_irm_common_username)%></td><td><%=text_field_tag :username,nil, :required=>true%></td></tr>
+             <tr><td class="paddedtablelabel"><%=(t :label_irm_common_password)%></td><td><%=password_field_tag :password, nil,:required=>true%></td></tr>
+         </tbody>
+       </table> 
 
-$("a").live('click',function(e){
-      alert("running");
-      e.preventDefault();
-  });
-
-
-
-});
-jQuery(function ($) {
-  $('input[required]:not([readonly]):not([disabled])').addClass("inputrequired");    
-});
-function add_a(){
-  var text = "<a href=\"#\" onclick=\"alert('ok')\" type=\"alert\">test</a>";
-  var input="<input type=\"text\" required=\"true\" name=\"aac\"/>";
-  alert("test");
-  $("#content").html(text+input);
-  $("#aa").css("display","block");
-}
-function show_click(e){
-  alert("show click");
-}
-</script>
-<input type="button" value="test" onclick="add_a();"/>
-
-
-
-<div id="gridbox" style="width:503px;height:120px;background-color:white;"></div>
-<script>
-var mygrid = new dhtmlXGridObject('gridbox');
-mygrid.setImagePath("../../codebase/imgs/");
-mygrid.setHeader("Author,Title");
-mygrid.setInitWidths("150,150");
-mygrid.setColAlign("left,left");
-mygrid.setColTypes("ro,link");
-mygrid.setColSorting("str,str");
-mygrid.setSkin("dhx_skyblue");
-mygrid.init();
-mygrid.loadXML("/a.xml");
-</script>
+    <div class="containerfooter">
+      <div class="button floatright"><%= link_to t(:label_irm_common_login),{},:type=>"submit"%></div>
+    </div>
+     <%end%>
+  </div>
+</div>  

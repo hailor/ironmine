@@ -16,6 +16,9 @@ class Irm::Identity < ActiveRecord::Base
   validates_length_of :password, :maximum => 30,:minimum=>6,:if=> Proc.new{|identity|!identity.password.blank?}
   attr_accessor :old_password,:password, :password_confirmation
 
+  #加入activerecord的通用方法和scope
+  query_extend
+
   scope :query_all,lambda{where("#{table_name}.type IS NULL")}
 
   scope :with_language,lambda{
@@ -76,11 +79,11 @@ class Irm::Identity < ActiveRecord::Base
      identity = find(:first, :conditions => ["login_name=?", login])
      if identity
        # user is already in local database
-       return nil if !identity.active?
+       return nil if !identity.enabled?
        return nil unless Irm::Identity.hash_password(password) == identity.hashed_password
      end
 
-     identity.update_attribute(:last_login_on, Time.now) if identity && !identity.new_record?
+     identity.update_attribute(:last_login_at, Time.now) if identity && !identity.new_record?
      return identity
      rescue => text
      raise text
@@ -93,7 +96,7 @@ class Irm::Identity < ActiveRecord::Base
      if tokens.size == 1
        token = tokens.first
        if (token.created_on > 7.to_i.day.ago) && token.user && token.user.active?
-         token.user.update_attribute(:last_login_on, Time.now)
+         token.user.update_attribute(:last_login_at, Time.now)
          token.user
        end
      end

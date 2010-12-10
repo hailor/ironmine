@@ -85,3 +85,20 @@ en:
   label_irm_language_installed_flag: Installed Flag
   label_irm_language_status_code: Status Code
   #=========================    irm languages_controller=======================#
+  #=========================    irm common_controller=======================#
+  label_irm_common_login: User login
+  label_irm_common_username: User Name
+  label_irm_common_password: Password
+  #=========================    end common_controller=======================#
+  #=========================    irm identities_controller=======================#
+  label_irm_identity_new: Create Identity
+  label_irm_identity_edit: Edit Identity
+  label_irm_identity_login_name: User name
+  label_irm_identity_password: Password
+  label_irm_identity_password_confirmation: Confirm Password
+  label_irm_identity_full_name: Full Name
+  label_irm_identity_email: Email
+  label_irm_identity_language_code: Language
+  label_irm_identity_status_code: Status
+  label_irm_identity_list: List identity
+  #=========================    end identities_controller=======================#
