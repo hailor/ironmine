@@ -27,7 +27,7 @@ Ironmine::Application.routes.draw do
     match '/product_modules/enable(.:format)' => "product_modules#enable", :via => :post
     match '/product_modules/disable(.:format)' => "product_modules#disable", :via => :post
     #languages
-    match '/languages/index(.:format)' => "languages#index", :via => :get
+    match '/languages(/index)(.:format)' => "languages#index", :via => :get
     match '/languages/:id/edit(.:format)' => "languages#edit", :via => :get
     match '/languages/:id(.:format)' => "languages#update", :via => :put
     match '/languages/new(.:format)' => "languages#new", :via => :get

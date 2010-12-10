@@ -73,10 +73,27 @@ class Irm::ConditionsController < ApplicationController
     end
   end
 
+  def multilingual_edit
+    @condition = Irm::Condition.find(params[:id])
+  end
+
+  def multilingual_update
+    @condition = Irm::Condition.find(params[:id])
+    @condition.not_auto_mult=true
+    respond_to do |format|
+      if @condition.update_attributes(params[:irm_condition])
+        format.html { render({:action=>"multilingual_edit",:format=>"js"}) }
+      else
+        format.html { render({:action=>"multilingual_edit"}) }
+      end
+    end
+  end
+
   def get_data
     @conditions= Irm::Condition.multilingual.query_wrap_info(I18n::locale)
     respond_to do |format|
-      format.json {render :json=>@conditions.to_dhtmlxgrid_json(['R',:entity_meaning,:condition_code,:name,:description, :status_meaning, 'M'], @conditions.size)}
+      format.json {render :json=>@conditions.to_dhtmlxgrid_json(['R',:entity_meaning,:condition_code,:name,:description, :status_meaning,
+                                                             {:value => 'M', :controller => 'irm/conditions',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_condition_list', :script => ''}], @conditions.size)}
     end
   end
 end
