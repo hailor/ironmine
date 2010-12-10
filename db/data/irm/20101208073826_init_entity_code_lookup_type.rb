@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitEntityCodeLookupType < ActiveRecord::Migration
   def self.up
     entity_lookup_type=Irm::LookupType.new(:lookup_level=>'GLOBAL',
