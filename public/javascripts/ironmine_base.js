@@ -1,12 +1,4 @@
 //#=========================start irm/lookup_types/_new_form.html.erb=======================#
-function after_save_lookup_type(){
-   $("#irm_lookup_type_lookup_type").attr('readonly','readonly');
-   $("input[type=radio]").each(function(){
-        $(this).attr('disabled','disabled');
-   });
-   $("#irm_lookup_type_lookup_type").attr("style","background-color:#CCCCCC;");
-}
-
 var saveLookupType="";
 var dp = "";
 function init_grid(grid){
@@ -100,5 +92,12 @@ function processHtmlReplace(returnElement,targetDiv){
 	if(html&&html!=""){$(source).html(html);}
     init('#'+targetDiv);
     pre_init_partial("#" + targetDiv);
+}
+
+//当单击radio的时候，选择当前行;以及当前当前行，选中第一行的radio
+//其中grid_id是当前的创建grid的div的id
+function doSelectRowAndCheckRadio(grid_id,rowId){
+   dhtmlx_grid_array[grid_id].setSelectedRow(rowId);
+   dhtmlx_grid_array[grid_id].cells(rowId,0).setValue("1");
 }
 //#=========================end irm/language/_new_form.html.erb=======================#

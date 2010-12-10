@@ -6,6 +6,7 @@ class Irm::AuthSource < ActiveRecord::Base
 
   validates_presence_of :name, :host, :port, :account,:account_password,:base_dn,:attr_login
   validates_presence_of :attr_firstname,:attr_lastname,:attr_email,:if => Proc.new { |source| Irm::Constant::SYS_YES.eql?(source.onthefly_register_flag) }
+  validates_presence_of :attr_email
   validates_length_of :name, :maximum => 60
   validates_length_of :host, :maximum => 60
   validates_length_of :account, :maximum => 60
@@ -15,7 +16,7 @@ class Irm::AuthSource < ActiveRecord::Base
   validates_length_of :attr_firstname, :maximum => 30, :allow_nil => true
   validates_length_of :attr_lastname, :maximum => 30, :allow_nil => true
   validates_length_of :attr_email, :maximum => 60, :allow_nil => true
-  validates_uniqueness_of :name,:scope=>:service_center_id, :if => Proc.new { |i| !i.name.blank? }
+  validates_uniqueness_of :name,:scope=>:company_id, :if => Proc.new { |i| !i.name.blank? }
   #加入activerecord的通用方法和scope
   query_extend
 

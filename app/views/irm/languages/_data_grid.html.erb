@@ -5,15 +5,20 @@
         <div id="id_language_grid" class="datagrid"
         action_type="ajaxDhtmlxGrid"
         grid_header=" , <%=t(:label_irm_language_language_code)%>,<%=t(:label_irm_language_description)%>,<%=t(:label_irm_language_installed_flag)%>,<%=t(:label_irm_language_status_code)%>,<%=t(:multilingual)%>"
-        grid_width="20,100,200,80,80,100"
+        grid_width="20,100,150,100,100,100"
         grid_col_types="ra,link,ro,ro,ro,img"
         grid_align="center,center,center,center,center,center"
         grid_onRowDblClicked="doOnRowDblClicked"
+        grid_checkbox="selectRowAndRadio"
+        grid_OnRowSelected="selectRowAndRadio"
         grid_load="'<%= url_for(:action => "get_data", :controller => "irm/languages",:format=>:json) %>','','json'">
         </div>
         <script type="text/javascript" charset="utf-8">
         function doOnRowDblClicked(rowId,cInd){
            processDblClicked("id_language_new","",":id/edit",rowId);
+        }
+        function selectRowAndRadio(rowId){
+            doSelectRowAndCheckRadio("id_language_grid",rowId)
         }
         </script>
             <div class="containerfooter">

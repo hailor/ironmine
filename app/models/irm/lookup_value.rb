@@ -23,4 +23,8 @@ class Irm::LookupValue < ActiveRecord::Base
          true
       end
   end
+
+  def meaning
+    self[:meaning]
+  end
 end

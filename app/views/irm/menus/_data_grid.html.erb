@@ -1,4 +1,4 @@
-<div id="data_area" class="container">
+<div id="data_area">
     <div class="containerheader">
        <div class="floatleft headertitle"><%=t(:label_irm_menu_list)%></div>
     </div>
@@ -18,7 +18,7 @@
     <span id="recfound"></span>  
     <script>
         function dblClickHandler(rId, cInd){
-            processDblClicked("form_area","form_area","<%= url_for(:action => "edit", :controller => "irm/menus", :id => ":id") %>", rId);
+            processDblClicked("container1","menu_edit","<%= url_for(:action => "edit", :controller => "irm/menus", :id => ":id") %>", rId);
         }
         function rowSelectedHandler(id, ind){
             dhtmlx_grid_array['menus_grid'].cells(id, 0).setValue("1");

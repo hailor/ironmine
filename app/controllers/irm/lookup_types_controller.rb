@@ -34,11 +34,12 @@ class Irm::LookupTypesController < ApplicationController
     respond_to do |format|
       if @lookup_type.save
         flash[:successful_message] = (t :successfully_created)
-        format.html { render "successful_info" }
+        @lookup_type = Irm::LookupType.multilingual.find(@lookup_type.id)
+        format.html { render "return" }
         format.xml  { render :xml => @lookup_type, :status => :created, :location => @lookup_type }
       else
         @error=@lookup_type
-        format.html { render "error_message" }
+        format.html { render "irm/common/error_message" }
         format.xml  { render :xml => @lookup_type.errors, :status => :unprocessable_entity }
       end
     end
@@ -52,11 +53,11 @@ class Irm::LookupTypesController < ApplicationController
     respond_to do |format|
       if @lookup_type.update_attributes(params[:irm_lookup_type])
         flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info"}
+        format.html { render "irm/common/_successful_message"}
         format.xml  { head :ok }
       else
         @error=@lookup_type
-        format.html { render "error_message" }
+        format.html { render "irm/common/error_message" }
         format.xml  { render :xml => @lookup_type.errors, :status => :unprocessable_entity }
       end
     end
@@ -129,7 +130,7 @@ class Irm::LookupTypesController < ApplicationController
     lookup_type=params[:lookup_type]
     lookup_values = Irm::LookupValue.query_by_lookup_type(lookup_type).multilingual
     respond_to do |format|
-      format.json  {render :json => lookup_values.to_dhtmlxgrid_json([:lookup_code,:meaning,:description,:start_date_active,:end_date_active,'M'],
+      format.json  {render :json => lookup_values.to_dhtmlxgrid_json(['R',:lookup_code,:meaning,:description,:start_date_active,:end_date_active,'M'],
                                                                                lookup_values.size) }
     end
   end

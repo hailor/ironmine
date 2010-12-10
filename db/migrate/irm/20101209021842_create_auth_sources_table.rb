@@ -2,10 +2,10 @@ class CreateAuthSourcesTable < ActiveRecord::Migration
   def self.up
     create_table :irm_auth_sources do |t|
       t.integer "company_id", :null => false
-      t.string   "type", :limit=>30, :null => false
+      t.string   "type", :limit=>30
       t.string   "name", :limit=>150, :null => false
       t.string   "host", :limit=>150
-      t.integer  "post"
+      t.integer  "port"
       t.string   "account", :limit => 60
       t.string   "account_password", :limit => 60
       t.string   "base_dn", :limit => 255

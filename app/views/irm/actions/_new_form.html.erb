@@ -1,0 +1,48 @@
+<div id="id_action_new" class="container">
+     <%= form_for(@action,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+            <div class="containerheader">
+                <div class="floatleft headertitle"><%=t(:label_irm_action_new)%></div>
+            </div>
+            <table class="twocolumnstable" cellspacing="0">
+                <tr>
+                    <td class="twocolumn">
+                       <table class="itemdetailtable">
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_action_entity_code)%>:</td>
+                            <td><%=f.select :entity_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_entity,:lookup_code,:meaning)%></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_action_action_code)%>:</td>
+                            <td><%=f.text_field :action_code,:size=>40,:required=>true,:irm_uppercase=>true%></td>
+                        </tr>                        
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_action_name)%>:</td>
+                            <td><%=f.text_field :name,:size=>40,:required=>true %></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_action_handler)%>:</td>
+                            <td><%=f.text_field :handler,:size=>40,:required=>true %></td>
+                        </tr>
+                       </table>
+                    </td>
+                    <td class="twocolumn" cellspacing="0">
+                       <table class="itemdetailtable">
+                        <div id="id_lookup_level">
+                        <tr><td class="itemdetailtablelabel">
+                              <%=t(:label_irm_action_description)%>:
+                           </td>
+                           <td><%= f.text_area :description, :cols => 40, :rows => 2%></td>
+                        </tr>
+                        </div>
+                       </table>
+                    </td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+            <div class="containerfooter">
+                <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/actions",:action=>"create"}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);reload_grid('id_action_grid');/replace(system_message_box,system_message_box);"}%></div>
+                <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}, :script => "/replace(id_action_index,id_action_index);/", :action_type=>"ajaxLink"%></div>
+            </div>
+     <% end %>
+</div>
