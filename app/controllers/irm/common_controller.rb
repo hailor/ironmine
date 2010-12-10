@@ -54,7 +54,7 @@ class Irm::CommonController < ApplicationController
     #  cookies[:autologin] = { :value => token.value, :expires => 1.year.from_now }
     #end
     #call_hook(:controller_account_success_authentication_after, {:user => user })
-    redirect_back_or_default :controller => 'irm/product_modules', :action => 'index'
+    redirect_back_or_default :controller => 'irm/navigations', :action => 'entrance'
   end
 
   def logout_successful(session_id)

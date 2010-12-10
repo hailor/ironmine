@@ -1,6 +1,7 @@
 Ironmine::Application.routes.draw do
 
   scope :module => "irm" do
+    root :to => "navigations#entrance"
     match 'login'=>'common#login',:as=>:login
     match 'logout'=>'common#logout',:as=>:logout
     #lookup_types

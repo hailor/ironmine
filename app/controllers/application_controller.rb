@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   # layout_setup 检查设置窗口的运行模式，wmode,设置页面布局
   before_filter :user_setup
   before_filter :permission_setup
-  #before_filter :check_if_login_required
+  before_filter :check_if_login_required
   before_filter :person_setup
   before_filter :check_permission
   before_filter :localization_setup
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   # 检查是否需要登录
   def check_if_login_required
     # 如果用户已经登录,则无需登录,否则转向登录页面
-     if Irm::Identity.current.logged?||(@current_permission&&@current_permission.public?)
+     if Irm::Identity.current.logged?||(@current_permission&&@current_permission.publiced?)
        return true
      else
         require_login
