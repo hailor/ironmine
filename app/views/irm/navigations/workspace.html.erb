@@ -1,0 +1,46 @@
+<script>
+  $(document).ready(function(){
+    $('#secondmenu').astab();
+});
+</script>
+<form>
+	<div class="titlebar">
+    	<div class="jumpbutton"><a id="quickJump" href="javascript:void(0);">转至</a></div>
+        <div class="jumpfield">跳转至ID：<input id="idsString" class="jumptofield" type="text" maxlength="16" size="12" value=""></div>
+        <div class="sectiontitle">我的工作空间</div>
+    </div>
+</form>
+<div></div>
+
+<table class="topmenu" cellspacing="0">
+	<tbody id="secondmenu">
+     <tr class="buttonrow jtabcontainer" zone="main">
+        	<td class="button jtabitem">
+            	<a href="/navigations/my_page"><img width="25" height="20" border="0" src=<%= theme_image_path('menus/my_page.gif') %>><br>我的页面</a>
+            </td>
+            <td class="verticalseparatornoborder"><img width="1" height="40" border="0" src=<%= theme_image_path('white.gif') %>></td>
+            <td class="button jtabitem">
+            	<a href="javascript:void(0);"><img width="25" height="20" border="0" src=<%= theme_image_path('menus/dashboard.gif') %>><br>统计数据</a>
+            </td>
+            <td class="verticalseparatornoborder"><img width="1" height="40" border="0" src=<%= theme_image_path('white.gif') %>></td>
+            <td class="button jtabitem">
+            	<a href="javascript:void(0);"><img width="25" height="20" border="0" src=<%= theme_image_path('menus/all_projects.gif') %>><br>项目</a>
+            </td>
+            <td class="verticalseparatornoborder"><img width="1" height="40" border="0" src=<%= theme_image_path('white.gif') %>></td>
+            <td class="button jtabitem">
+            	<a href="javascript:void(0);"><img width="25" height="20" border="0" src=<%= theme_image_path('menus/monitoring.gif') %>><br>监控</a>
+            </td>
+            <td class="verticalseparatornoborder"><img width="1" height="40" border="0" src=<%= theme_image_path('white.gif') %>></td>
+            <td class="button jtabitem  selected">
+            	<a href="/navigations/my_setting"><img width="25" height="20" border="0" src=<%= theme_image_path('menus/my_settings.gif') %>><br>我的设置</a>
+            </td>
+            <td class="verticalseparatornoborder"><img width="1" height="40" border="0" src=<%= theme_image_path('white.gif') %>></td>
+            <td class="buttonend"></td>
+        </tr>
+    </tbody>
+</table>
+<div id="breadcrumbs"><a href="javascript:void(0);">首页</a> > <a href="javascript:void(0);">高级管理</a> > <strong>新建文件</strong> </div>
+
+<div id="main">
+</div>
+<div id="footer" ></div>

@@ -1,0 +1,56 @@
+<script>
+jQuery(function ($) {
+    $.fn.extend({
+        astab: function () {
+            var el      = this,
+                zone    = el.attr('zone');
+            el.find('.jtabcontainer').each(function(){
+              if($(this).attr('zone')){zone = $(this).attr('zone');}
+              $(this).find('.jtabitem').unbind('click');
+              $(this).find('.jtabitem').bind('click',function(e){
+                  var source = ($(this).find('a:first').attr('href')||"").replace(/^\s+|\s+$/g,"");
+                  if(source !='#'&&$('#'+zone).length>0)
+                  {
+                    $('#'+zone).load(source);
+                  }
+                  $(this).addClass('selected');
+                  $(this).siblings('.selected').removeClass('selected');
+                  if(e.preventDefault) e.preventDefault();
+              });
+              $(this).find('.jtabitem.selected:first').length>0? $(this).find('.jtabitem.selected:first').trigger('click') :$(this).find('.jtabitem:first').trigger('click');
+            });
+        }
+    });
+});
+
+$(document).ready(function(){
+    //alert($('.jtabcontainer > .jtabitem').find('a').length);
+    $('#toptoolbar').astab();
+});
+
+</script>
+<div id="banner"></div>
+<div id="toptoolbar" zone="toptoolbarcontent">
+	<div class="floatleft jtabcontainer">
+    	<div class="toptoolbarbtn jtabitem">
+        	<div><a href="/navigations/workspace">我的工作空间</a></div>
+        </div>
+    	<div class="toptoolbarsep"></div>
+        <div class="toptoolbarbtn  jtabitem">
+        	<div><a href="/product_modules/index">搜索</a></div>
+        </div>
+        <div class="toptoolbarsep"></div>
+        <div class="toptoolbarbtn">
+        	<div>历史记录</div>
+        </div>
+    </div>
+    <div class="floatright">
+        <div class="toptoolbarbtn"><a href="javascript:void(0);">ivanmarkliu</a></div>
+        <div class="toptoolbarsep"></div>
+        <div class="toptoolbarbtn">退出系统</div>
+        <div class="toptoolbarsep"></div>
+        <div class="toptoolbarbtn">帮助</div>
+    </div>
+</div>
+<div id="toptoolbarcontent">
+</div>
