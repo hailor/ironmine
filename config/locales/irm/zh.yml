@@ -177,6 +177,7 @@ zh:
   label_irm_identity_language_code: 语言
   label_irm_identity_status_code: 状态
   label_irm_identity_list: 权限列表
+  label_irm_permission_available: 可用的权限
   #=========================    end permissions_controller=======================#
 
   #=========================    irm global_settings_controller=======================#
@@ -204,3 +205,17 @@ zh:
   label_irm_auth_source_new: 创建认证源
   label_irm_auth_source_edit: 编辑认证源
   #=========================    end auth_sources_controller=======================#
+  #=========================    irm functions_controller=======================#
+  label_irm_function: 功能
+  label_irm_function_list: 功能列表
+  label_irm_function_new: 创建功能
+  label_irm_function_edit: 编辑功能
+  label_irm_function_function_code: 功能编码
+  label_irm_function_name: 名称
+  label_irm_function_description: 描述
+  label_irm_function_permission: 管理权限
+  label_irm_function_permission_add: 添加/移除权限
+  label_irm_function_own_permission: 功能拥有的权限
+  label_irm_function_available: 可用的功能
+  #=========================    end functions_controller=======================#
+

@@ -107,6 +107,19 @@ Ironmine::Application.routes.draw do
     match '/auth_sources/:id/multilingual_edit(.:format)' => "auth_sources#multilingual_edit", :via => :get
     match '/auth_sources/:id/multilingual_update(.:format)' => "auth_sources#multilingual_update", :via => :put
     match '/auth_sources/get_data(.:format)' => "auth_sources#get_data"
+    #functions
+    match '/functions(/index)(.:format)' => "functions#index", :via => :get
+    match '/functions/:id/edit(.:format)' => "functions#edit", :via => :get
+    match '/functions/:id(.:format)' => "functions#update", :via => :put
+    match '/functions/new(.:format)' => "functions#new", :via => :get
+    match '/functions/create(.:format)' => "functions#create", :via => :post
+    match '/functions/:id/multilingual_edit(.:format)' => "functions#multilingual_edit", :via => :get
+    match '/functions/:id/multilingual_update(.:format)' => "functions#multilingual_update", :via => :put
+    match '/functions/get_data(.:format)' => "functions#get_data"
+    match '/functions/:function_id/permission_index(.:format)' => "functions#permission_index", :via => :get
+    match '/functions/:function_id/add_permission(.:format)' => "functions#add_permission", :via => :get
+    match '/functions/:function_id/get_own_permissions_data(.:format)' => "functions#get_own_permissions_data", :via => :get
+
   end
 
   match '/demo(/index)' => 'demo#index'
