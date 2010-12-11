@@ -13,4 +13,5 @@ class Irm::Function < ActiveRecord::Base
 
   # 菜单子项
   has_many :function_members,:foreign_key=>"function_code",:primary_key=>"function_code"
+  has_many :permissions, :through => :function_members
 end

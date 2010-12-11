@@ -1,7 +1,7 @@
    <div id="function_edit">
-     <%= form_for(@function,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+     <%= form_for(@function,:url=>{},:builder => LabellingFormBuilder) do |f| %>
                 <div class="containerheader">
-                    <div class="floatleft headertitle"><%=t(:label_irm_function_edit)%> - <%= @function.function_code%></div>
+                    <div class="floatleft headertitle"><%=t(:label_irm_function)%></div>
                 </div>
                 <table class="twocolumnstable" cellspacing="0">
                     <tr>

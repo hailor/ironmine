@@ -118,8 +118,10 @@ Ironmine::Application.routes.draw do
     match '/functions/get_data(.:format)' => "functions#get_data"
     match '/functions/:function_id/permission_index(.:format)' => "functions#permission_index", :via => :get
     match '/functions/:function_id/add_permission(.:format)' => "functions#add_permission", :via => :get
-    match '/functions/:function_id/get_own_permissions_data(.:format)' => "functions#get_own_permissions_data", :via => :get
-
+    match '/functions/:function_id/edit_own_permissions(.:format)' => "functions#edit_own_permissions", :via => :get
+    match '/functions/:function_id/get_own_permissions(.:format)' => "functions#get_own_permissions", :via => :get
+    match '/functions/:function_id/get_available_permissions(.:format)' => "functions#get_available_permissions", :via => :get
+    match '/functions/:function_id/update_permissions(.:format)' => "functions#update_permissions", :via => :post
     # navigations
     match '/navigations/entrance(.:format)' =>'navigations#entrance'
     match '/navigations/workspace(.:format)' =>'navigations#workspace'
