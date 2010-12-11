@@ -85,12 +85,18 @@ jQuery(function ($) {
            if(e.preventDefault) e.preventDefault();
        });
     }
-    else{
-       $("form[data-remote]").find("a[type='submit']").live('click',function(e) {
-           $(this).parents("form[data-remote]").callRemote();
-           if(e.preventDefault) e.preventDefault();
-       });
-    }
+    //else{
+    //   $("form[data-remote]").find("a[type='submit']").live('click',function(e) {
+    //       $(this).parents("form[data-remote]").callRemote();
+    //       if(e.preventDefault) e.preventDefault();
+    //   });
+    //}
+
+
+    $("form").find("a[type='submit']").live('click',function(e) {
+      $(this).parents("form:first").submit();
+      if(e.preventDefault) e.preventDefault();
+    });
 
     $('a[data-remote],input[data-remote]').live('click', function (e) {
         $(this).callRemote();

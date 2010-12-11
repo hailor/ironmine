@@ -61,12 +61,15 @@ end
 #Delayed::Worker.backend=:active_record
 #Delayed::Backend::ActiveRecord::Job.set_table_name(:irm_delayed_jobs)
 
-
-# 初始化模块数据 ，初始化脚本位于lib/模块/init.rb脚本中
-Irm::ProductModule.enabled.each do |p|
-  if File::exists?(File.join(File.expand_path(File.dirname(__FILE__)), "..","..","lib","#{p.product_short_name.downcase}","init.rb"))
-    require "#{p.product_short_name.downcase}/init"
+begin
+  # 初始化模块数据 ，初始化脚本位于lib/模块/init.rb脚本中
+  Irm::ProductModule.enabled.each do |p|
+    if File::exists?(File.join(File.expand_path(File.dirname(__FILE__)), "..","..","lib","#{p.product_short_name.downcase}","init.rb"))
+      require "#{p.product_short_name.downcase}/init"
+    end
   end
+  rescue =>text
+          puts("Init module error :#{text}")
 end
 
 require "dhtmlx_grid.rb"

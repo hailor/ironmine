@@ -177,7 +177,6 @@ zh:
   label_irm_identity_language_code: 语言
   label_irm_identity_status_code: 状态
   label_irm_identity_list: 权限列表
-  label_irm_permission_available: 可用的权限
   #=========================    end permissions_controller=======================#
 
   #=========================    irm global_settings_controller=======================#
@@ -216,6 +215,5 @@ zh:
   label_irm_function_permission: 管理权限
   label_irm_function_permission_add: 添加/移除权限
   label_irm_function_own_permission: 功能拥有的权限
-  label_irm_function_available: 可用的功能
   #=========================    end functions_controller=======================#
 
