@@ -6,6 +6,7 @@ class Irm::Function < ActiveRecord::Base
   has_many :functions_tls,:dependent => :destroy
   acts_as_multilingual
 
+  query_extend
   # 验证编码唯一性
   validates_presence_of :function_code
   validates_uniqueness_of :function_code, :if => Proc.new { |i| !i.function_code.blank? }
@@ -14,4 +15,7 @@ class Irm::Function < ActiveRecord::Base
   # 菜单子项
   has_many :function_members,:foreign_key=>"function_code",:primary_key=>"function_code"
   has_many :permissions, :through => :function_members
+
+  has_many :function_group_members,:foreign_key=>"function_code",:primary_key=>"function_code"
+  has_many :function_groups, :through => :function_group_members  
 end

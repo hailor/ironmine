@@ -216,4 +216,16 @@ zh:
   label_irm_function_permission_add: 添加/移除权限
   label_irm_function_own_permission: 功能拥有的权限
   #=========================    end functions_controller=======================#
+  #=========================    irm function_groups_controller=======================#
+  label_irm_function_group: 功能组
+  label_irm_function_group_list: 功能组列表
+  label_irm_function_group_new: 创建功能组
+  label_irm_function_group_edit: 编辑功能组
+  label_irm_function_group_group_code: 功能组编码
+  label_irm_function_group_name: 名称
+  label_irm_function_group_description: 描述
+  label_irm_function_group_function: 管理功能
+  label_irm_function_group_function_add: 添加/移除功能
+  label_irm_function_group_own_function: 功能组拥有的功能
+  #=========================    end function_groups_controller=======================#  
 

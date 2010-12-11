@@ -122,6 +122,21 @@ Ironmine::Application.routes.draw do
     match '/functions/:function_id/get_own_permissions(.:format)' => "functions#get_own_permissions", :via => :get
     match '/functions/:function_id/get_available_permissions(.:format)' => "functions#get_available_permissions", :via => :get
     match '/functions/:function_id/update_permissions(.:format)' => "functions#update_permissions", :via => :post
+    #function_groups
+    match '/function_groups(/index)(.:format)' => "function_groups#index", :via => :get
+    match '/function_groups/:id/edit(.:format)' => "function_groups#edit", :via => :get
+    match '/function_groups/:id(.:format)' => "function_groups#update", :via => :put
+    match '/function_groups/new(.:format)' => "function_groups#new", :via => :get
+    match '/function_groups/create(.:format)' => "function_groups#create", :via => :post
+    match '/function_groups/:id/multilingual_edit(.:format)' => "function_groups#multilingual_edit", :via => :get
+    match '/function_groups/:id/multilingual_update(.:format)' => "function_groups#multilingual_update", :via => :put
+    match '/function_groups/get_data(.:format)' => "function_groups#get_data"
+    match '/function_groups/:function_group_id/function_index(.:format)' => "function_groups#function_index", :via => :get
+    match '/function_groups/:function_group_id/add_function(.:format)' => "function_groups#add_functions", :via => :get
+    match '/function_groups/:function_group_id/edit_own_functions(.:format)' => "function_groups#edit_own_functions", :via => :get
+    match '/function_groups/:function_group_id/get_own_functions(.:format)' => "function_groups#get_own_functions", :via => :get
+    match '/function_groups/:function_group_id/get_available_functions(.:format)' => "function_groups#get_available_functions", :via => :get
+    match '/function_groups/:function_group_id/update_functions(.:format)' => "function_groups#update_functions", :via => :post
     # navigations
     match '/navigations/entrance(.:format)' =>'navigations#entrance'
     match '/navigations/workspace(.:format)' =>'navigations#workspace'
