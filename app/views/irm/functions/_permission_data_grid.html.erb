@@ -1,0 +1,29 @@
+    <div id="data_area">
+        <div class="containerheader">
+           <div class="floatleft headertitle"><%=t(:label_irm_function_own_permission)%></div>
+        </div>
+        <div id="own_permissions_grid" class="datagrid"
+            action_type="ajaxDhtmlxGrid"
+            grid_header=" , <%=t(:label_irm_permission_permission_code)%>,<%=t(:label_irm_permission_name)%>,
+            <%=t(:label_irm_permission_description)%>,<%= t(:label_irm_permission_page_controller)%>,<%= t(:label_irm_permission_page_action)%>"
+            grid_width="20,100,100,150,100,100"
+            grid_col_types="ra,ro,ro,ro,ro,ro"
+            grid_OnRowSelected="rowSelectedHandler"
+            grid_paging_skin="bricks"
+            enable_paging="true, 15, null, 'pagingArea', true, 'infoArea'"
+            grid_load="'<%= url_for(:action => "get_own_permissions", :controller => "irm/functions", :format=>:json, :function_id => @function.id) %>','','json'">
+        </div>
+        <span id="pagingArea"></span>&nbsp;<span id="infoArea"></span>
+        <span id="recfound"></span>
+        <script>
+            function rowSelectedHandler(id, ind){
+                dhtmlx_grid_array['own_permissions_grid'].cells(id, 0).setValue("1");
+            }
+        </script>
+        <div class="containerfooter">
+          <div class="floatright">
+            <div class="button"><%= link_to t(:label_irm_function_permission_add), {:action => "edit_own_permissions", :function_id => @function.id}, :script => "/replace(container2,edit_own_permissions);/", :action_type=>"ajaxLink"%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}, :script => "/replace(containers,containers);/", :action_type=>"ajaxLink"%></div>
+          </div>
+        </div>
+    </div>

@@ -1,0 +1,78 @@
+<div id="edit_own_permissions">
+    <div class="containerheader">
+       <div class="floatleft headertitle"><%=t(:label_irm_function_permission_add)%></div>
+    </div>
+    <table class="twocolumnstable" cellspacing="0">
+        <tr>
+            <td class="twocolumn">
+               <table class="itemdetailtable">
+                <tr><td>
+                    <div id="own_permissions_grid" class="datagrid"
+                        action_type="ajaxDhtmlxGrid"
+                        grid_header=" , <%=t(:label_irm_permission_permission_code)%>,<%=t(:label_irm_permission_name)%>"
+                        grid_width="20,100,100"
+                        grid_col_types="ch,ro,ro"
+                        grid_OnRowSelected="rowSelectedHandler1"
+                        grid_paging_skin="bricks"
+                        enable_paging="true, 15, null, 'pagingArea1', true, 'infoArea1'"
+                        grid_load="'<%= url_for(:action => "get_own_permissions", :controller => "irm/functions", :format=>:json, :function_id => @function.id) %>','','json'">
+                    </div>
+                    <span id="pagingArea1"></span>&nbsp;<span id="infoArea1"></span>
+                    <script>
+                        function rowSelectedHandler1(id, ind){
+                            dhtmlx_grid_array['own_permissions_grid'].cells(id, 0).setValue("1");
+                        }
+                    </script>
+                </td></tr>
+               </table>
+            </td>
+            <td width="20%">
+              <table>
+                <tr><td><div class="button"><a id="left_to_right" href="#" onclick="move_row('own_permissions_grid', 'get_available_permissions');">>></a></div></td></tr>
+                <tr><td>&nbsp;</td></tr>
+                <tr><td>&nbsp;</td></tr>
+                <tr><td><div class="button"><a id="right_to_left" href="#" onclick="move_row('get_available_permissions', 'own_permissions_grid');"><<</a></div></td></tr>
+                <script>
+                    function move_row(source, target)
+                    {
+                      var rows = dhtmlx_grid_array[source].getCheckedRows(0).split(",");
+                      for(var i=0; i< rows.length; i++)
+                      {
+                        dhtmlx_grid_array[source].moveRow(rows[i], "row_sibling", dhtmlx_grid_array[target].getRowId(0), dhtmlx_grid_array[target]);
+                      }
+                    }
+                </script>
+              </table>
+            </td>
+            <td class="twocolumn" cellspacing="0">
+               <table class="itemdetailtable">
+                <tr><td>
+                    <div id="get_available_permissions" class="datagrid"
+                        action_type="ajaxDhtmlxGrid"
+                        grid_header=" , <%=t(:label_irm_permission_permission_code)%>,<%=t(:label_irm_permission_name)%>"
+                        grid_width="20,100,100"
+                        grid_col_types="ch,ro,ro"
+                        grid_OnRowSelected="rowSelectedHandler2"
+                        grid_paging_skin="bricks"
+                        enable_paging="true, 15, null, 'pagingArea2', true, 'infoArea2'"
+                        grid_load="'<%= url_for(:action => "get_available_permissions", :controller => "irm/functions", :format=>:json, :function_id => @function.id) %>','','json'">
+                    </div>
+                    <span id="pagingArea2"></span>&nbsp;<span id="infoArea2"></span>
+                    <script>
+                        function rowSelectedHandler2(id, ind){
+                            dhtmlx_grid_array['get_available_permissions'].cells(id, 0).setValue("1");
+                        }
+                    </script>
+                </td></tr>
+               </table>
+            </td>
+        </tr>
+    </table>
+    <div class="containerfooter">
+        <%= form_tag({:action => "update_permissions", :function_id => @function.id}) do %>
+            <%= hidden_field_tag 'ids'%>
+            <div class="button floatright"><%= link_to t(:save), {}, :script => "/replace(system_message_box,system_message_box);/", :action_type=>"ajaxSubmit", :onclick => "$('#ids').attr('value', dhtmlx_grid_array['own_permissions_grid'].getAllRowIds(','));"%></div>
+        <% end %>
+        <div class="button floatright"><%= link_to t(:cancel), {:action => "permission_index", :function_id => @function.id}, :script => "/replace(containers,containers);/", :action_type=>"ajaxLink"%></div>
+    </div>
+</div>

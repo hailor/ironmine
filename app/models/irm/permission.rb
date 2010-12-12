@@ -5,6 +5,9 @@ class Irm::Permission < ActiveRecord::Base
   attr_accessor :name,:description
   has_many :permissions_tls,:dependent => :destroy
   acts_as_multilingual
+  
+  has_many :function_members,:foreign_key=>"permission_code",:primary_key=>"permission_code"
+  has_many :functions, :through => :function_members
 
   # 验证权限编码唯一性
   validates_presence_of :permission_code,:page_controller,:page_action
