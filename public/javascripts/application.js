@@ -70,6 +70,24 @@ jQuery(function ($) {
         mulwins.forEachWindow(function(win){win.close()});
       }
     });
+
+    $('#left_to_right').live('click', function (e) {
+        move_row('left_grid', 'right_grid');
+    });
+
+    $('#right_to_left').live('click', function (e) {
+        move_row('right_grid', 'left_grid');
+    });     
   });
 //#=========================end multilingual=======================#
+//#========================== move dhtmlxgrid row ===================
+function move_row(source, target)
+{
+    var rows = dhtmlx_grid_array[source].getCheckedRows(0).split(",");
+    for(var i=0; i< rows.length; i++)
+    {
+        dhtmlx_grid_array[source].moveRow(rows[i], "row_sibling", dhtmlx_grid_array[target].getRowId(0), dhtmlx_grid_array[target]);
+    }
+}
+//#========================= end move dhtmlxgrid row ================
 
