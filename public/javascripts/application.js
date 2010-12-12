@@ -9,6 +9,7 @@ $(document).ready(function(){
 function pre_init_partial(el){
     $(el).find('input[type=text]:not([readonly]):first').focus();
     $(el).find('input[required]:not([readonly]):not([disabled])').addClass("inputrequired");
+
     $(el).find('input[readonly]:not([lov])').addClass("inputdisable");
     //针对于uppercase的属性，强制输入大写
     $(el).find('input[irm_uppercase]').keyup(function() {
@@ -28,6 +29,16 @@ function pre_init_partial(el){
     });
     $(el).find('textarea[required]:not([readonly]):not([disabled])').addClass("inputrequired");
     $(el).find('textarea[readonly]').addClass("inputdisable");
+    
+    $('<span class="textrequired">&nbsp;*</span>').insertAfter($(el).find('input[required]:not([readonly]):not([disabled])'));
+    $(el).find('input[required]:not([readonly]):not([disabled])').removeAttr("required");
+
+    $('<span class="textrequired">&nbsp;*</span>').insertAfter($(el).find('textarea[required]:not([readonly]):not([disabled])'));
+    $(el).find('textarea[required]:not([readonly]):not([disabled])').removeAttr("required");
+
+    $('<span class="textrequired">&nbsp;*</span>').insertAfter($(el).find('select[required]:not([readonly]):not([disabled])'));
+    $(el).find('select[required]:not([readonly]):not([disabled])').removeAttr("required");    
+    
     $(el).find('input[type=submit]').css("cursor","pointer");
 }
 //#=========================start multilingual=======================#
