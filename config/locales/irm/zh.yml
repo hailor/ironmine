@@ -183,7 +183,7 @@ zh:
   label_irm_global_setting: 全局设置
   label_irm_global_setting_theme_name: 主题
   label_irm_global_setting_timezone: 时区
-  label_irm_global_setting_upload_file_limit: 上传文件大小
+  label_irm_global_setting_upload_file_limit: 上传文件大小(KB)
   label_irm_global_setting_logo: 图标
   #=========================    end global_settings_controller=======================#
   #=========================    irm auth_sources_controller=======================#
