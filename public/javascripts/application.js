@@ -10,6 +10,7 @@ $(document).ready(function(){
 function pre_init_partial(el){
     $(el).find('input[type=text]:not([readonly]):first').focus();
     $(el).find('input[required]:not([readonly]):not([disabled])').addClass("inputrequired");
+
     $(el).find('input[readonly]:not([lov])').addClass("inputdisable");
     //针对于uppercase的属性，强制输入大写
     $(el).find('input[irm_uppercase]').keyup(function() {
@@ -29,6 +30,16 @@ function pre_init_partial(el){
     });
     $(el).find('textarea[required]:not([readonly]):not([disabled])').addClass("inputrequired");
     $(el).find('textarea[readonly]').addClass("inputdisable");
+    
+    $('<span class="textrequired">&nbsp;*</span>').insertAfter($(el).find('input[required]:not([readonly]):not([disabled])'));
+    $(el).find('input[required]:not([readonly]):not([disabled])').removeAttr("required");
+
+    $('<span class="textrequired">&nbsp;*</span>').insertAfter($(el).find('textarea[required]:not([readonly]):not([disabled])'));
+    $(el).find('textarea[required]:not([readonly]):not([disabled])').removeAttr("required");
+
+    $('<span class="textrequired">&nbsp;*</span>').insertAfter($(el).find('select[required]:not([readonly]):not([disabled])'));
+    $(el).find('select[required]:not([readonly]):not([disabled])').removeAttr("required");    
+    
     $(el).find('input[type=submit]').css("cursor","pointer");
 }
 //#=========================start multilingual=======================#
@@ -60,6 +71,14 @@ jQuery(function ($) {
         mulwins.forEachWindow(function(win){win.close()});
       }
     });
+
+    $('#left_to_right').live('click', function (e) {
+        move_row('left_grid', 'right_grid');
+    });
+
+    $('#right_to_left').live('click', function (e) {
+        move_row('right_grid', 'left_grid');
+    });     
   });
 
 function cascadeSelect(el){
@@ -87,4 +106,14 @@ function cascadeSelect(el){
   });
 }
 //#=========================end multilingual=======================#
+//#========================== move dhtmlxgrid row ===================
+function move_row(source, target)
+{
+    var rows = dhtmlx_grid_array[source].getCheckedRows(0).split(",");
+    for(var i=0; i< rows.length; i++)
+    {
+        dhtmlx_grid_array[source].moveRow(rows[i], "row_sibling", dhtmlx_grid_array[target].getRowId(0), dhtmlx_grid_array[target]);
+    }
+}
+//#========================= end move dhtmlxgrid row ================
 
