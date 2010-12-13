@@ -100,6 +100,11 @@ zh:
   label_irm_language_installed_flag: 是否按照
   label_irm_language_status_code: 状态编码
   #=========================    irm languages_controller=======================#
+  #=========================    irm common_controller=======================#
+  label_irm_common_login: 登录
+  label_irm_common_username: 用户名
+  label_irm_common_password: 密码
+  #=========================    end common_controller=======================#
   #=========================    irm menus_controller=======================#  
   label_irm_menu: 菜单
   label_irm_menu_new: 创建菜单
@@ -164,7 +169,6 @@ zh:
   label_irm_action_actions_tls:
      name: 名称
   #=========================end irm actions_controller=======================#
-  #=========================    end permissions_controller=======================#      
   #=========================    irm permissions_controller=======================#
   label_irm_identity_new: 新建帐号
   label_irm_identity_edit: 编辑帐号
