@@ -93,11 +93,6 @@ jQuery(function ($) {
     //}
 
 
-    $("form").find("a[type='submit']").live('click',function(e) {
-      $(this).parents("form:first").submit();
-      if(e.preventDefault) e.preventDefault();
-    });
-
     $('a[data-remote],input[data-remote]').live('click', function (e) {
         $(this).callRemote();
         e.preventDefault();
@@ -143,5 +138,43 @@ jQuery(function ($) {
             input.removeAttr('disabled')
                  .val(input.data('enable-with'));
         });
+    });
+});
+
+//扩展jquery
+jQuery(function ($) {
+    $.fn.extend({
+        astab: function () {
+            var el      = this,
+                zone    = el.attr('zone');
+            el.find('.jtabcontainer').each(function(){
+              if($(this).attr('zone')){zone = $(this).attr('zone');}
+              $(this).find('.jtabitem').unbind('click');
+              $(this).find('.jtabitem').bind('click',function(e){
+                  var source = ($(this).find('a:first').attr('href')||"").replace(/^\s+|\s+$/g,"");
+                  if(source !='#'&&$('#'+zone).length>0)
+                  {
+                    $('#'+zone).load(source);
+                  }
+                  $(this).addClass('selected');
+                  $(this).siblings('.selected').removeClass('selected');
+                  if(e.preventDefault) e.preventDefault();
+              });
+              $(this).find('.jtabitem.selected:first').length>0? $(this).find('.jtabitem.selected:first').trigger('click') :$(this).find('.jtabitem:first').trigger('click');
+            });
+        }
+    });
+    $('a[zone]').live('click',function(e){
+        var zone    = $(this).attr('zone');
+        var source = ($(this).attr('href')||"").replace(/^\s+|\s+$/g,"");
+        if(source !='#'&&$('#'+zone).length>0)
+        {
+          $('#'+zone).load(source,function(response, status, xhr) {init('#'+zone);});
+        }
+        if(e.preventDefault) e.preventDefault();
+    });
+    $("form").find("a[type='submit']").live('click',function(e) {
+      $(this).parents("form:first").submit();
+      if(e.preventDefault) e.preventDefault();
     });
 });

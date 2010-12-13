@@ -1,15 +1,5 @@
 <script>
   $(document).ready(function(){
-    $('a[zone]').live('click',function(e){
-        var zone    = $(this).attr('zone');
-        var source = ($(this).attr('href')||"").replace(/^\s+|\s+$/g,"");
-        if(source !='#'&&$('#'+zone).length>0)
-        {
-          $('#'+zone).load(source,function(response, status, xhr) {init('#'+zone);});
-        }        
-        if(e.preventDefault) e.preventDefault();
-    });
-
     $('.functions').find('a[zone]:first').trigger('click');
 });
 </script>
