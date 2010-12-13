@@ -46,6 +46,10 @@ module Irm::QueryExtend
               find(id) rescue nil
             end
 
+            def wrap_name
+              self[:name]
+            end
+
           end
         end
     end

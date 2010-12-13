@@ -1,0 +1,51 @@
+<div id="id_script_new" class="container">
+     <%= form_for(@script,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+            <div class="containerheader">
+                <div class="floatleft headertitle"><%=t(:label_irm_script_new)%></div>
+            </div>
+            <table class="twocolumnstable" cellspacing="0">
+                <tr>
+                    <td class="twocolumn">
+                       <table class="itemdetailtable">
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_script_entity)%>:</td>
+                            <td><%=f.select :entity_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_entity,:lookup_code,:meaning)%></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_script_condition)%>:</td>
+                            <td><%=f.select :condition_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_condition,:condition_code,:wrap_name)%></td>
+                        </tr>                        
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_script_action)%>:</td>
+                            <td><%=f.select :action_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_action,:action_code,:wrap_name)%></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_script_template)%>:</td>
+                            <td><%=f.select :template_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_entity,:lookup_code,:meaning)%></td>
+                        </tr>
+                       </table>
+                    </td>
+                    <td class="twocolumn" cellspacing="0">
+                       <table class="itemdetailtable">
+                        <div id="id_lookup_level">
+                        <tr><td class="itemdetailtablelabel">
+                              <%=t(:label_irm_script_description)%>:
+                           </td>
+                           <td><%= f.text_area :description, :cols => 40, :rows => 2%></td>
+                        </tr>
+                        </div>
+                       </table>
+                    </td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+            <div class="containerfooter">
+                <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/scripts",:action=>"create"}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);reload_grid('id_script_grid');/replace(system_message_box,system_message_box);"}%></div>
+                <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}, :script => "/replace(id_script_index,id_script_index);/", :action_type=>"ajaxLink"%></div>
+            </div>
+     <% end %>
+</div>

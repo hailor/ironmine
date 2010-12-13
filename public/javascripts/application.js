@@ -3,6 +3,7 @@
 
 $(document).ready(function(){
     init(document);
+    cascadeSelect(document)
     pre_init_partial(document);
 });
 
@@ -79,6 +80,31 @@ jQuery(function ($) {
         move_row('right_grid', 'left_grid');
     });     
   });
+
+function cascadeSelect(el){
+  $('select[cascade]').each(function(){
+      $(this).attr("action_temp",$(this).attr("action"));
+      $(this).attr("data-type","json");
+  });
+  $('select[cascade]').bind("ajax:success",function(data, status, xhr){
+      var choice_title = $(this).attr("choice_title");
+      var options = "";
+      if (choice_title!=undefined&&choice_title!=null){
+        options = "<option value=''>--- "+choice_title+" ---</option>";
+      }
+      for(var i in status)
+      {
+        options += "<option value='"+status[i].id+"'>"+status[i].name+"</option>";
+      }
+
+      $("#"+$(this).attr("cascade")).html(options);
+  });
+  $('select[cascade]').change(function (e) {
+    $(this).attr("action",$(this).attr("action_temp").replace(":id",$(this).attr("value")));
+    $(this).callRemote();
+    e.preventDefault();
+  });
+}
 //#=========================end multilingual=======================#
 //#========================== move dhtmlxgrid row ===================
 function move_row(source, target)

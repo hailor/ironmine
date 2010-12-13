@@ -140,7 +140,6 @@ zh:
   label_irm_condition_condition_code: 编码
   label_irm_condition_name: 名称
   label_irm_condition_entity_code: 实体
-  label_irm_script_template_code: 模板
   label_irm_condition_description: 描述
   label_irm_condition_status_code: 记录状态
   label_irm_condition_active_flag: 是否可用
@@ -204,6 +203,23 @@ zh:
   label_irm_auth_source_new: 创建认证源
   label_irm_auth_source_edit: 编辑认证源
   #=========================    end auth_sources_controller=======================#
+  #=========================    irm scripts_controller=======================#
+  label_irm_script_script_code: 编码
+  label_irm_script_name: 名称
+  label_irm_script_handler: 处理方法
+  label_irm_script_entity: 实体
+  label_irm_script_template: 模板
+  label_irm_script_condition: 触发条件
+  label_irm_script_action: 执行动作
+  label_irm_script_description: 描述
+  label_irm_script_status_code: 记录状态
+  label_irm_script_active_flag: 是否可用
+  label_irm_script_new: 新建执行动作
+  label_irm_script_edit: 编辑执行动作
+  label_irm_script_list: 执行动作列表
+  label_irm_script_scripts_tls:
+     name: 名称
+  #=========================end irm scripts_controller=======================#
   #=========================    irm functions_controller=======================#
   label_irm_function: 功能
   label_irm_function_list: 功能列表
@@ -227,5 +243,4 @@ zh:
   label_irm_function_group_function: 管理功能
   label_irm_function_group_function_add: 添加/移除功能
   label_irm_function_group_own_function: 功能组拥有的功能
-  #=========================    end function_groups_controller=======================#  
-
+  #=========================    end function_groups_controller=======================#

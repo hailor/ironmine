@@ -130,6 +130,175 @@ function ajaxSubmit(el) {
 		return false;
 	});
 }
+//调用dhtmlxtabbar的方法来初始化tabbar
+var dhtmlx_tabbar_array={};
+function ajaxDhtmlxTabbar(el){
+    var id = $(el).attr("id");
+    if(id==null && id==undefined){
+       return;
+    }
+    var tabbarMode = $(el).attr("tabbar_mode");
+    var tabbarSkin=$(el).attr("tabbar_skin");
+    var tabbarImagePath=$(el).attr("tabbar_image_path");
+    var tabbarHrefMode=$(el).attr("tabbar_href_mode");
+    var tabbarA1Params=$(el).attr("tabbar_a1_params");
+    var tabbarA2Params=$(el).attr("tabbar_a2_params");
+    var tabbarA3Params=$(el).attr("tabbar_a3_params");
+    var tabbarA4Params=$(el).attr("tabbar_a4_params");
+    var tabbarA5Params=$(el).attr("tabbar_a5_params");
+    var tabbarA1ContentParams=$(el).attr("tabbar_a1_content_params");
+    var tabbarA2ContentParams=$(el).attr("tabbar_a2_content_params");
+    var tabbarA3ContentParams=$(el).attr("tabbar_a3_content_params");
+    var tabbarA4ContentParams=$(el).attr("tabbar_a4_content_params");
+    var tabbarA5ContentParams=$(el).attr("tabbar_a5_content_params");
+    var tabbarActive = $(el).attr("tabbar_active");
+
+    var tabbar = dhtmlx_tabbar_array[id];
+    if(tabbar!=null&&tabbar!=undefined){
+       tabbar.destructor();
+    }
+    if(tabbarMode==null && tabbarMode==undefined){
+        tabbarMode='top';
+    }
+    tabbar = new dhtmlXTabBar(id,tabbarMode);
+    if(tabbarSkin!=null && tabbarSkin!=undefined){
+        tabbar.setSkin(tabbarSkin);
+    }
+    if(tabbarHrefMode!=null && tabbarHrefMode!=undefined){
+        tabbar.setHrefMode(tabbarHrefMode);
+    }
+    if(tabbarImagePath!=null && tabbarImagePath!=undefined){
+        tabbar.setImagePath(tabbarImagePath);
+    }
+    if(tabbarA1Params!=null && tabbarA1Params!=undefined){
+        var evalTabbarA1Params = eval("([" + tabbarA1Params + "])");
+        tabbar.addTab(evalTabbarA1Params[0], evalTabbarA1Params[1], evalTabbarA1Params[2]);
+    }
+    if(tabbarA2Params!=null && tabbarA2Params!=undefined){
+        var evalTabbarA2Params = eval("([" + tabbarA2Params + "])");
+        tabbar.addTab(evalTabbarA2Params[0], evalTabbarA2Params[1], evalTabbarA2Params[2]);
+    }
+    if(tabbarA3Params!=null && tabbarA3Params!=undefined){
+        var evalTabbarA3Params = eval("([" + tabbarA3Params + "])");
+        tabbar.addTab(evalTabbarA3Params[0], evalTabbarA3Params[1], evalTabbarA3Params[2]);
+    }
+    if(tabbarA4Params!=null && tabbarA4Params!=undefined){
+        var evalTabbarA4Params = eval("([" + tabbarA4Params + "])");
+        tabbar.addTab(evalTabbarA4Params[0], evalTabbarA4Params[1], evalTabbarA4Params[2]);
+    }
+    if(tabbarA5Params!=null && tabbarA5Params!=undefined){
+        var evalTabbarA5Params = eval("([" + tabbarA5Params + "])");
+        tabbar.addTab(evalTabbarA5Params[0], evalTabbarA5Params[1], evalTabbarA5Params[2]);
+    }
+    if(tabbarA1ContentParams!=null && tabbarA1ContentParams!=undefined){
+        var evalTabbarA1ContentParams = eval("([" + tabbarA1ContentParams + "])");
+        if(tabbarHrefMode!=null && tabbarHrefMode!=undefined){
+          if(tabbarHrefMode =='ajax-html'||tabbarHrefMode =='ajax'||
+             tabbarHrefMode =='iframes'||tabbarHrefMode =='iframes-on-demand'){
+              if(evalTabbarA1ContentParams[2] == 'COMMON'){
+                tabbar.setContent(evalTabbarA1ContentParams[0], evalTabbarA1ContentParams[1]);
+              }else if(evalTabbarA1ContentParams[2] == 'HTML'){
+                tabbar.setContentHTML(evalTabbarA1ContentParams[0], evalTabbarA1ContentParams[1]);
+              }else{
+                tabbar.setContentHref(evalTabbarA1ContentParams[0], evalTabbarA1ContentParams[1]);
+              }
+          }
+        }else{
+          if(evalTabbarA1ContentParams[2] == 'HTML'){
+             tabbar.setContentHTML(evalTabbarA1ContentParams[0], evalTabbarA1ContentParams[1]);
+          }else{
+              tabbar.setContent(evalTabbarA1ContentParams[0], evalTabbarA1ContentParams[1]);
+          }
+        }
+    }
+    if(tabbarA2ContentParams!=null && tabbarA2ContentParams!=undefined){
+        var evalTabbarA2ContentParams = eval("([" + tabbarA2ContentParams + "])");
+        if(tabbarHrefMode!=null && tabbarHrefMode!=undefined){
+          if(tabbarHrefMode =='ajax-html'||tabbarHrefMode =='ajax'||
+             tabbarHrefMode =='iframes'||tabbarHrefMode =='iframes-on-demand'){
+             if(evalTabbarA2ContentParams[2] == 'COMMON'){
+                tabbar.setContent(evalTabbarA2ContentParams[0], evalTabbarA2ContentParams[1]);
+             }else if(evalTabbarA2ContentParams[2] == 'HTML'){
+                tabbar.setContentHTML(evalTabbarA2ContentParams[0], evalTabbarA2ContentParams[1]);
+             }else{
+                tabbar.setContentHref(evalTabbarA2ContentParams[0], evalTabbarA2ContentParams[1]);
+             }
+          }
+        }else{
+          if(evalTabbarA1ContentParams[2] == 'HTML'){
+             tabbar.setContentHTML(evalTabbarA2ContentParams[0], evalTabbarA2ContentParams[1]);
+          }else{
+              tabbar.setContent(evalTabbarA2ContentParams[0], evalTabbarA2ContentParams[1]);
+          }
+        }
+    }
+    if(tabbarA3ContentParams!=null && tabbarA3ContentParams!=undefined){
+        var evalTabbarA3ContentParams = eval("([" + tabbarA3ContentParams + "])");
+        if(tabbarHrefMode!=null && tabbarHrefMode!=undefined){
+          if(tabbarHrefMode =='ajax-html'||tabbarHrefMode =='ajax'||
+             tabbarHrefMode =='iframes'||tabbarHrefMode =='iframes-on-demand'){
+             if(evalTabbarA3ContentParams[2] == 'COMMON'){
+                tabbar.setContent(evalTabbarA3ContentParams[0], evalTabbarA3ContentParams[1]);
+             }else if(evalTabbarA3ContentParams[2] == 'HTML'){
+                tabbar.setContentHTML(evalTabbarA3ContentParams[0], evalTabbarA3ContentParams[1]);
+             }else{
+                tabbar.setContentHref(evalTabbarA3ContentParams[0], evalTabbarA3ContentParams[1]);
+             }
+          }
+        }else{
+          if(evalTabbarA1ContentParams[2] == 'HTML'){
+             tabbar.setContentHTML(evalTabbarA3ContentParams[0], evalTabbarA3ContentParams[1]);
+          }else{
+              tabbar.setContent(evalTabbarA3ContentParams[0], evalTabbarA3ContentParams[1]);
+          }
+        }
+    }
+    if(tabbarA4ContentParams!=null && tabbarA4ContentParams!=undefined){
+        var evalTabbarA4ContentParams = eval("([" + tabbarA4ContentParams + "])");
+        if(tabbarHrefMode!=null && tabbarHrefMode!=undefined){
+          if(tabbarHrefMode =='ajax-html'||tabbarHrefMode =='ajax'||
+             tabbarHrefMode =='iframes'||tabbarHrefMode =='iframes-on-demand'){
+             if(evalTabbarA4ContentParams[2] == 'COMMON'){
+                tabbar.setContent(evalTabbarA4ContentParams[0], evalTabbarA4ContentParams[1]);
+             }else if(evalTabbarA4ContentParams[2] == 'HTML'){
+                tabbar.setContentHTML(evalTabbarA4ContentParams[0], evalTabbarA4ContentParams[1]);
+             }else{
+                tabbar.setContentHref(evalTabbarA4ContentParams[0], evalTabbarA4ContentParams[1]);
+             }
+          }
+        }else{
+          if(evalTabbarA1ContentParams[2] == 'HTML'){
+             tabbar.setContentHTML(evalTabbarA4ContentParams[0], evalTabbarA4ContentParams[1]);
+          }else{
+              tabbar.setContent(evalTabbarA4ContentParams[0], evalTabbarA4ContentParams[1]);
+          }
+        }
+    }
+    if(tabbarA5ContentParams!=null && tabbarA5ContentParams!=undefined){
+        var evalTabbarA5ContentParams = eval("([" + tabbarA5ContentParams + "])");
+        if(tabbarHrefMode!=null && tabbarHrefMode!=undefined){
+          if(tabbarHrefMode =='ajax-html'||tabbarHrefMode =='ajax'||
+             tabbarHrefMode =='iframes'||tabbarHrefMode =='iframes-on-demand'){
+             if(evalTabbarA5ContentParams[2] == 'COMMON'){
+                tabbar.setContent(evalTabbarA5ContentParams[0], evalTabbarA5ContentParams[1]);
+             }else if(evalTabbarA5ContentParams[2] == 'HTML'){
+                tabbar.setContentHTML(evalTabbarA5ContentParams[0], evalTabbarA5ContentParams[1]);
+             }else{
+                tabbar.setContentHref(evalTabbarA5ContentParams[0], evalTabbarA5ContentParams[1]);
+             }
+          }
+        }else{
+          if(evalTabbarA1ContentParams[2] == 'HTML'){
+             tabbar.setContentHTML(evalTabbarA5ContentParams[0], evalTabbarA5ContentParams[1]);
+          }else{
+              tabbar.setContent(evalTabbarA5ContentParams[0], evalTabbarA5ContentParams[1]);
+          }
+        }
+    }
+    if(tabbarActive!=null && tabbarActive!=undefined){
+        tabbar.setTabActive(tabbarActive);
+    }
+}
 
 //根据div的提供的属性构造表格对象
 var dhtmlx_grid_array={};
@@ -220,6 +389,8 @@ function init(el) {
             ajaxLink(this);
         }else if (actionType== "ajaxDhtmlxGrid"){
             ajaxDhtmlxGrid(this);
+        }else if (actionType== "ajaxDhtmlxTabbar"){
+            ajaxDhtmlxTabbar(this);
         }
         pre_init_partial(el);
 	});

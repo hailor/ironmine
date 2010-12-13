@@ -1,5 +1,4 @@
 Ironmine::Application.routes.draw do
-
   scope :module => "irm" do
     root :to => "navigations#entrance"
     match 'login'=>'common#login',:as=>:login
@@ -28,12 +27,14 @@ Ironmine::Application.routes.draw do
     match '/product_modules/enable(.:format)' => "product_modules#enable", :via => :post
     match '/product_modules/disable(.:format)' => "product_modules#disable", :via => :post
     #languages
-    match '/languages/index(.:format)' => "languages#index", :via => :get
+    match '/languages(/index)(.:format)' => "languages#index", :via => :get
     match '/languages/:id/edit(.:format)' => "languages#edit", :via => :get
     match '/languages/:id(.:format)' => "languages#update", :via => :put
     match '/languages/new(.:format)' => "languages#new", :via => :get
     match '/languages/create(.:format)' => "languages#create", :via => :post
     match '/languages/get_data(.:format)' => "languages#get_data"
+    match '/languages/:id/multilingual_edit(.:format)' => "languages#multilingual_edit", :via => :get
+    match '/languages/:id/multilingual_update(.:format)' => "languages#multilingual_update", :via => :put
     #menus
     match '/menus(/index)(.:format)' => "menus#index", :via => :get
     match '/menus/new(.:format)' => "menus#new", :via => :get
@@ -107,6 +108,16 @@ Ironmine::Application.routes.draw do
     match '/auth_sources/:id/multilingual_edit(.:format)' => "auth_sources#multilingual_edit", :via => :get
     match '/auth_sources/:id/multilingual_update(.:format)' => "auth_sources#multilingual_update", :via => :put
     match '/auth_sources/get_data(.:format)' => "auth_sources#get_data"
+    #scripts
+    match '/scripts(/index)(.:format)' => "scripts#index", :via => :get
+    match '/scripts/:id/edit(.:format)' => "scripts#edit", :via => :get
+    match '/scripts/:id(.:format)' => "scripts#update", :via => :put
+    match '/scripts/:id(.:format)' => "scripts#update", :via => :put
+    match '/scripts/new(.:format)' => "scripts#new", :via => :get
+    match '/scripts/create(.:format)' => "scripts#create", :via => :post
+    match '/scripts/:id/multilingual_edit(.:format)' => "scripts#multilingual_edit", :via => :get
+    match '/scripts/:id/multilingual_update(.:format)' => "scripts#multilingual_update", :via => :put
+    match '/scripts/get_data(.:format)' => "scripts#get_data"
     #functions
     match '/functions(/index)(.:format)' => "functions#index", :via => :get
     match '/functions/:id/edit(.:format)' => "functions#edit", :via => :get

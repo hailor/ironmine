@@ -62,10 +62,27 @@ class Irm::LanguagesController < ApplicationController
     end
   end
 
+  def multilingual_edit
+    @language = Irm::Language.find(params[:id])
+  end
+
+  def multilingual_update
+    @language = Irm::Language.find(params[:id])
+    @language.not_auto_mult=true
+    respond_to do |format|
+      if @language.update_attributes(params[:irm_language])
+        format.html { render({:action=>"multilingual_edit",:format=>"js"}) }
+      else
+        format.html { render({:action=>"multilingual_edit"}) }
+      end
+    end
+  end
+
   def get_data
     @languages= Irm::Language.multilingual
     respond_to do |format|
-      format.json {render :json=>@languages.to_dhtmlxgrid_json(['R',:language_code,:description, :installed_flag, :status_code, 'M'], @languages.size)}
+      format.json {render :json=>@languages.to_dhtmlxgrid_json(['R',:language_code,:description, :installed_flag, :status_code,
+                                                             {:value => 'M', :controller => 'irm/languages',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_language_list', :script => ''}], @languages.size)}
     end
   end
   

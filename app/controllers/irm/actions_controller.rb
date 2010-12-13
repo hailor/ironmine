@@ -71,10 +71,27 @@ class Irm::ActionsController < ApplicationController
     end
   end
 
-  def get_data
-    @conditions= Irm::Action.multilingual.query_wrap_info(I18n::locale)
+  def multilingual_edit
+    @action = Irm::Action.find(params[:id])
+  end
+
+  def multilingual_update
+    @action = Irm::Action.find(params[:id])
+    @action.not_auto_mult=true
     respond_to do |format|
-      format.json {render :json=>@conditions.to_dhtmlxgrid_json(['R',:entity_meaning,:action_code,:name,:description,:handler,:status_meaning, 'M'], @conditions.size)}
+      if @action.update_attributes(params[:irm_action])
+        format.html { render({:action=>"multilingual_edit",:format=>"js"}) }
+      else
+        format.html { render({:action=>"multilingual_edit"}) }
+      end
+    end
+  end
+
+  def get_data
+    @actions= Irm::Action.multilingual.query_wrap_info(I18n::locale)
+    respond_to do |format|
+      format.json {render :json=>@actions.to_dhtmlxgrid_json(['R',:entity_meaning,:action_code,:name,:description,:handler,:status_meaning,
+                                                             {:value => 'M', :controller => 'irm/actions',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_action_list', :script => ''}],@actions.size)}
     end
   end
 end

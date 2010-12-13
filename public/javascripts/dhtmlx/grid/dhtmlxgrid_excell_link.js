@@ -68,7 +68,9 @@ function eXcell_link(cell){
 					valsAr[1]+= " target='_blank'";
 			}
 		}
-
+        if(valsAr[0]=='/images/multilingual.png'){
+           valsAr[0]='<img border="0" src="/images/multilingual.png">';
+        }
 		this.setCValue("<a "+valsAr[1]+">"+valsAr[0]+"</a>",valsAr);
 	}
 }
