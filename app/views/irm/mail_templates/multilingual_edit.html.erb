@@ -28,10 +28,9 @@ $(document).ready(function(){
                       </tr>
                   </tbody>
                 </table>
-                      <div id="id_mail_template_current_language">
-                          <%=render :partial=>"current_language",:locals=>{:current_language_mail_template=>@mail_template}%>
-                      </div>
-
+                <div id="id_mail_template_current_language">
+                   <%=render :partial=>"current_language",:locals=>{:current_language_mail_template=>@mail_template}%>
+                </div>
                 <div class="containerfooter">
                     <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/mail_templates",:action=>"update"}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);/replace(system_message_box,system_message_box);"}%></div>
                     <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}, :script => "/replace(id_mail_template_list,id_mail_template_list);/", :action_type=>"ajaxLink"%></div>
