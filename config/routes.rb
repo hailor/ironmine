@@ -33,6 +33,8 @@ Ironmine::Application.routes.draw do
     match '/languages/new(.:format)' => "languages#new", :via => :get
     match '/languages/create(.:format)' => "languages#create", :via => :post
     match '/languages/get_data(.:format)' => "languages#get_data"
+    match '/languages/:id/multilingual_edit(.:format)' => "languages#multilingual_edit", :via => :get
+    match '/languages/:id/multilingual_update(.:format)' => "languages#multilingual_update", :via => :put
     #menus
     match '/menus(/index)(.:format)' => "menus#index", :via => :get
     match '/menus/new(.:format)' => "menus#new", :via => :get
