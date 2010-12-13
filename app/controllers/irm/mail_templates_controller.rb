@@ -10,17 +10,6 @@ class Irm::MailTemplatesController < ApplicationController
     end
   end
 
-  # GET /mail_templates/1
-  # GET /mail_templates/1.xml
-  def show
-    @mail_template = Irm::MailTemplate.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @mail_template }
-    end
-  end
-
   # GET /mail_templates/new
   # GET /mail_templates/new.xml
   def new
