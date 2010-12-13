@@ -48,7 +48,8 @@ class Irm::ActionsController < ApplicationController
         format.html { render "return" }
         format.xml  { render :xml => @action, :status => :created, :location => @action }
       else
-        format.html { render :action => "new" }
+        @error = @action
+        format.html { render "irm/common/error_message" }
         format.xml  { render :xml => @action.errors, :status => :unprocessable_entity }
       end
     end
@@ -65,7 +66,8 @@ class Irm::ActionsController < ApplicationController
         format.html { render "irm/common/_successful_message" }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        @error = @action
+        format.html { render "irm/common/error_message" }
         format.xml  { render :xml => @action.errors, :status => :unprocessable_entity }
       end
     end

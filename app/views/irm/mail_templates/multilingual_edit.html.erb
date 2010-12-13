@@ -1,0 +1,40 @@
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+  $("input[type=radio]").attr('disabled','disabled');
+  $("select#id_mail_template_multilingual").val("<%=@local_language_code%>");
+  $("select#id_mail_template_multilingual").live('change',function(){
+       var id_value_string = $(this).val();
+       var template_id =  $("#id_mail_template_id").val();
+       var url="/mail_templates/get_current_language";
+       var formData="language_code="+id_value_string+"&id="+template_id;
+       $.get(url, formData);
+       });
+ });
+</script>
+<div class="container" id="id_mail_template_multilingual">
+    <%= form_tag("/mail_templates/#{params[:id]}/multilingual_update",:method=>:put) do %>
+                <div class="containerheader">
+                    <div class="floatleft headertitle"><%=t(:label_irm_mail_template_multilingual_edit)%> - <%= @mail_template.template_code%></div>
+                </div>
+                <%=hidden_field_tag :template_id,@template_id,:id=>"id_mail_template_id"%>
+                <table class="paddedtable" cellspacing="0">
+                    <tbody>
+                      <tr>
+                          <td class="paddedtablelabel"><%=t(:label_irm_mail_template_multilingual)%>:
+                          </td>
+                          <td>
+                            <%=select_tag :language_code,options_for_select(selectable_languages),:id=>"id_mail_template_multilingual"%>
+                          </td>
+                      </tr>
+                  </tbody>
+                </table>
+                      <div id="id_mail_template_current_language">
+                          <%=render :partial=>"current_language",:locals=>{:current_language_mail_template=>@mail_template}%>
+                      </div>
+
+                <div class="containerfooter">
+                    <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/mail_templates",:action=>"update"}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);/replace(system_message_box,system_message_box);"}%></div>
+                    <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}, :script => "/replace(id_mail_template_list,id_mail_template_list);/", :action_type=>"ajaxLink"%></div>
+                </div>
+     <% end %>
+</div>

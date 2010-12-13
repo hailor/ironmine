@@ -153,6 +153,21 @@ Ironmine::Application.routes.draw do
     match '/navigations/workspace(.:format)' =>'navigations#workspace'
     match '/navigations/my_page(.:format)' =>'navigations#my_page'
     match '/navigations/my_setting(.:format)' =>'navigations#my_setting'
+    #mail_templates
+    match '/mail_templates/new(.:format)'=>"mail_templates#new",:via=>:get
+    match '/mail_templates(.:format)'=>"mail_templates#create",:via=>:post
+    match '/mail_templates/copy(.:format)'=>"mail_templates#copy",:via=>:get
+    match '/mail_templates/copy_template(.:format)'=>"mail_templates#copy_template",:via=>:post
+    match '/mail_templates/test_mail_template'=>"mail_templates#test_mail_template"
+    match '/mail_templates(/index)(.:format)'=>"mail_templates#index",:via=>:get
+    match '/mail_templates/:id/show(.:format)'=>"mail_templates#show",:via=>:get
+    match '/mail_templates/:id/edit(.:format)'=>"mail_templates#edit",:via=>:get
+    match '/mail_templates/:id(.:format)'=>"mail_templates#update",:via=>:put
+    match '/mail_templates/:id(.:format)'=>"mail_templates#destroy",:via=>:delete
+    match '/mail_templates/:id/multilingual_edit(.:format)'=>"mail_templates#multilingual_edit",:via=>:get
+    match '/mail_templates/:id/multilingual_update(.:format)'=>"mail_templates#multilingual_update",:via=>:put
+    match '/mail_templates/get_current_language(.:format)'=>"mail_templates#get_current_language",:via=>:get
+    match '/mail_templates/get_data(.:format)' => "mail_templates#get_data"
   end
 
   match '/demo(/index)' => 'demo#index'
