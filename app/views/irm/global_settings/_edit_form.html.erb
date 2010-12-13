@@ -1,5 +1,5 @@
    <div id="global_edit">
-     <%= form_for(@global_setting,:url=>{:action=>"update", :id => @global_setting},:builder => LabellingFormBuilder) do |f| %>
+     <%= form_for(@global_setting,:url=>{:action=>"update", :id => @global_setting, :format => 'js'},:builder => LabellingFormBuilder, :html => {:method => :put, :id => "edit_setting_form", :multipart => true, :target => 'upload_frame'}) do |f| %>
         <div class="containerheader">
             <div class="floatleft headertitle"><%=t(:label_irm_global_setting)%></div>
         </div>
@@ -15,7 +15,7 @@
                   <td><%=f.select :timezone, available_timezone, {:include_blank => false}%></td>
                 </tr>
                 <tr><td class="paddedtablelabel"><%=(t :label_irm_global_setting_logo)%>:</td>
-                  <td><%=f.text_field :logo_file_name, :size=>40%></td>
+                  <td><%=f.file_field :logo%></td>
                 </tr>
             </tbody>
         </table>
@@ -23,4 +23,5 @@
             <div class="button floatright" ><%= link_to t(:save), {}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);/replace(system_message_box,system_message_box);"}%></div>
         </div>
      <% end %>
+    <iframe id='upload_frame' name="upload_frame" style="width:1px;height:1px;border:0px" src="about:blank"></iframe>     
    </div>

@@ -24,6 +24,17 @@ class Irm::GlobalSettingsController < ApplicationController
       if @global_setting.update_attributes(params[:irm_global_setting])
         flash[:successful_message] = (t :successfully_updated)
         format.html { render "successful_info" }
+        format.js do
+          puts("++++++++++++++++++++++ format.js")
+          responds_to_parent do
+            puts("++++++++++++++++++++++ responds_to_parent do")
+            render :update do |page|
+              puts("++++++++++++++++++++++ render update")
+              page.replace_html :logo, image_tag(@global_setting.logo.url(:medium))
+              page[:edit_setting_form].reset
+            end
+          end
+        end
       else
         @error = @global_setting
         format.html { render "error_message" }
