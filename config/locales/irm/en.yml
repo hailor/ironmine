@@ -172,3 +172,15 @@ en:
   label_irm_mail_template_multilingual: Multilingual
   label_irm_mail_template_multilingual_edit: Mutlilingual Edit
   #==================end irm mail_templates_controller=======================#
+  #=========================    irm currencies_controller=======================#
+  label_irm_currency_currency_code: Code
+  label_irm_currency_name: Name
+  label_irm_currency_precision: Precision
+  label_irm_currency_description: Description
+  label_irm_currency_status_code: Status Code
+  label_irm_currency_new: New currency
+  label_irm_currency_edit: Edit currency
+  label_irm_currency_list: List currency
+  label_irm_currency_currencies_tls:
+    name: Name
+  #=========================end irm currencies_controller=======================#

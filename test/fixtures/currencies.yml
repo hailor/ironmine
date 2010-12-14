@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  currency_code: MyString
+  precision: 1
+
+two:
+  currency_code: MyString
+  precision: 1

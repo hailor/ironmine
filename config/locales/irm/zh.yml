@@ -273,3 +273,15 @@ zh:
   label_irm_mail_template_multilingual: 多语言
   label_irm_mail_template_multilingual_edit: 多语言编辑
   #==================end irm mail_templates_controller=======================#
+  #=========================    irm currencies_controller=======================#
+  label_irm_currency_currency_code: 编码
+  label_irm_currency_name: 名称
+  label_irm_currency_precision: 精度
+  label_irm_currency_description: 描述
+  label_irm_currency_status_code: 记录状态
+  label_irm_currency_new: 新建币种
+  label_irm_currency_edit: 编辑币种
+  label_irm_currency_list: 币种列表
+  label_irm_currency_currencies_tls:
+    name: Name
+  #=========================end irm currencies_controller=======================#

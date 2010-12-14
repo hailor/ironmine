@@ -1,0 +1,2 @@
+module Irm::CurrenciesHelper
+end

@@ -1,0 +1,26 @@
+    <div id="id_currency_list" class="container">
+        <div class="containerheader">
+           <div class="floatleft headertitle"><%=t(:label_irm_currency_list)%></div>
+        </div>
+        <div id="id_currency_grid" class="datagrid"
+        action_type="ajaxDhtmlxGrid"
+        grid_header=" , <%=t(:label_irm_currency_currency_code)%>,<%=t(:label_irm_currency_name)%>,<%=t(:label_irm_currency_description)%>,<%=t(:label_irm_currency_precision)%>,<%=t(:label_irm_currency_status_code)%>,<%=t(:multilingual)%>"
+        grid_width="20,100,100,100,150,100,100"
+        grid_col_types="ra,ro,ro,ro,ro,ro,link"
+        grid_align="center,left,left,left,left,center,center"
+        grid_onRowDblClicked="doOnRowDblClicked"
+        grid_checkbox="selectRowAndRadio"
+        grid_OnRowSelected="selectRowAndRadio"
+        grid_load="'<%= url_for(:action => "get_data", :controller => "irm/currencies",:format=>:json) %>','','json'">
+        </div>
+        <script type="text/javascript" charset="utf-8">
+        function doOnRowDblClicked(rowId,cInd){
+           processDblClicked("id_currency_new","","<%= url_for(:action => "edit", :controller => "irm/currencies",:id=>":id")%>",rowId);
+        }
+        function selectRowAndRadio(rowId){
+            doSelectRowAndCheckRadio("id_currency_grid",rowId)
+        }
+        </script>
+            <div class="containerfooter">
+            </div>
+    </div>

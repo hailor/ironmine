@@ -1,4 +1,5 @@
 Ironmine::Application.routes.draw do
+
   scope :module => "irm" do
     root :to => "navigations#entrance"
     match 'login'=>'common#login',:as=>:login
@@ -69,7 +70,6 @@ Ironmine::Application.routes.draw do
     match '/conditions(/index)(.:format)' => "conditions#index", :via => :get
     match '/conditions/:id/edit(.:format)' => "conditions#edit", :via => :get
     match '/conditions/:id(.:format)' => "conditions#update", :via => :put
-    match '/conditions/:id(.:format)' => "conditions#update", :via => :put
     match '/conditions/new(.:format)' => "conditions#new", :via => :get
     match '/conditions/create(.:format)' => "conditions#create", :via => :post
     match '/conditions/:id/multilingual_edit(.:format)' => "conditions#multilingual_edit", :via => :get
@@ -78,7 +78,6 @@ Ironmine::Application.routes.draw do
     #actions
     match '/actions(/index)(.:format)' => "actions#index", :via => :get
     match '/actions/:id/edit(.:format)' => "actions#edit", :via => :get
-    match '/actions/:id(.:format)' => "actions#update", :via => :put
     match '/actions/:id(.:format)' => "actions#update", :via => :put
     match '/actions/new(.:format)' => "actions#new", :via => :get
     match '/actions/create(.:format)' => "actions#create", :via => :post
@@ -168,6 +167,15 @@ Ironmine::Application.routes.draw do
     match '/mail_templates/:id/multilingual_update(.:format)'=>"mail_templates#multilingual_update",:via=>:put
     match '/mail_templates/get_current_language(.:format)'=>"mail_templates#get_current_language",:via=>:get
     match '/mail_templates/get_data(.:format)' => "mail_templates#get_data"
+    #currencies
+    match '/currencies(/index)(.:format)' => "currencies#index", :via => :get
+    match '/currencies/:id/edit(.:format)' => "currencies#edit", :via => :get
+    match '/currencies/:id(.:format)' => "currencies#update", :via => :put
+    match '/currencies/new(.:format)' => "currencies#new", :via => :get
+    match '/currencies/create(.:format)' => "currencies#create", :via => :post
+    match '/currencies/:id/multilingual_edit(.:format)' => "currencies#multilingual_edit", :via => :get
+    match '/currencies/:id/multilingual_update(.:format)' => "currencies#multilingual_update", :via => :put
+    match '/currencies/get_data(.:format)' => "currencies#get_data"
   end
 
   match '/demo(/index)' => 'demo#index'

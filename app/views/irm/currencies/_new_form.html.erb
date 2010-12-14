@@ -1,0 +1,43 @@
+<div id="id_currency_new" class="container">
+     <%= form_for(@currency,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+            <div class="containerheader">
+                <div class="floatleft headertitle"><%=t(:label_irm_currency_new)%></div>
+            </div>
+            <table class="twocolumnstable" cellspacing="0">
+                <tr>
+                    <td class="twocolumn">
+                       <table class="itemdetailtable">
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_currency_currency_code)%>:</td>
+                            <td><%=f.text_field :currency_code,:size=>40,:required=>true,:irm_uppercase=>true%></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_currency_precision)%>:</td>
+                            <td><%=f.text_field :precision,:size=>40,:required=>true,:irm_uppercase=>true%></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_currency_name)%>:</td>
+                            <td><%=f.text_field :name,:size=>40,:required=>true %></td>
+                        </tr>
+                       </table>
+                    </td>
+                    <td class="twocolumn" cellspacing="0">
+                       <table class="itemdetailtable">
+                        <div id="id_lookup_level">
+                        <tr><td class="itemdetailtablelabel">
+                              <%=t(:label_irm_currency_description)%>:
+                           </td>
+                           <td><%= f.text_area :description, :cols => 40, :rows => 2%></td>
+                        </tr>
+                        </div>
+                       </table>
+                    </td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+            <div class="containerfooter">
+                <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/currencies",:action=>"create"}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);reload_grid('id_currency_grid');/replace(system_message_box,system_message_box);"}%></div>
+                <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}, :script => "/replace(id_currency_index,id_currency_index);/", :action_type=>"ajaxLink"%></div>
+            </div>
+     <% end %>
+</div>
