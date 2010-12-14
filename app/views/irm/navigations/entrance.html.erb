@@ -1,27 +1,5 @@
 <script>
-jQuery(function ($) {
-    $.fn.extend({
-        astab: function () {
-            var el      = this,
-                zone    = el.attr('zone');
-            el.find('.jtabcontainer').each(function(){
-              if($(this).attr('zone')){zone = $(this).attr('zone');}
-              $(this).find('.jtabitem').unbind('click');
-              $(this).find('.jtabitem').bind('click',function(e){
-                  var source = ($(this).find('a:first').attr('href')||"").replace(/^\s+|\s+$/g,"");
-                  if(source !='#'&&$('#'+zone).length>0)
-                  {
-                    $('#'+zone).load(source);
-                  }
-                  $(this).addClass('selected');
-                  $(this).siblings('.selected').removeClass('selected');
-                  if(e.preventDefault) e.preventDefault();
-              });
-              $(this).find('.jtabitem.selected:first').length>0? $(this).find('.jtabitem.selected:first').trigger('click') :$(this).find('.jtabitem:first').trigger('click');
-            });
-        }
-    });
-});
+
 
 $(document).ready(function(){
     //alert($('.jtabcontainer > .jtabitem').find('a').length);

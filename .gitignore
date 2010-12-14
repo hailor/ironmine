@@ -7,6 +7,5 @@ db/schema.rb
 verdor/cache/**
 public/upload/**
 Gemfile.lock
-Gemfile
 **/Thumbs.db
 index
