@@ -2,9 +2,9 @@
     <div class="containerheader">
        <div class="floatleft headertitle"><%=t(:label_irm_function_permission_add)%></div>
     </div>
-    <table class="twogridselect" cellspacing="0">
+    <table class="twocolumnform" cellspacing="0">
         <tr>
-          <td class="leftgrid">
+          <td class="left">
             <div id="left_grid" class="datagrid"
                     action_type="ajaxDhtmlxGrid"
                     grid_header=" , <%=t(:label_irm_permission_permission_code)%>,<%=t(:label_irm_permission_name)%>"
@@ -22,7 +22,7 @@
                     }
                 </script>
           </td>
-          <td class="middlebutton">
+          <td class="middle">
               <table cellspacing="0">
                 <tr><td><div class="button"><a id="left_to_right" href="#">>></a></div></td></tr>
                 <tr><td>&nbsp;</td></tr>
@@ -30,7 +30,7 @@
                 <tr><td><div class="button"><a id="right_to_left" href="#" ><<</a></div></td></tr>
               </table>
               </td>
-          <td class="rightgrid">
+          <td class="right">
                 <div id="right_grid" class="datagrid"
                     action_type="ajaxDhtmlxGrid"
                     grid_header=" , <%=t(:label_irm_permission_permission_code)%>,<%=t(:label_irm_permission_name)%>"

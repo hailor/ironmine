@@ -16,6 +16,7 @@ body{
 .sectiontitle {color: #222222;font-weight: bold;}
 .floatright{ float:right !important;}
 .floatleft{float:left !important;}
+.floatcenter{text-align:center !important;}
 .headertitle{font-weight:bold;}
 
 div#sysmessages{

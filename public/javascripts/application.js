@@ -78,7 +78,7 @@ jQuery(function ($) {
 
     $('#right_to_left').live('click', function (e) {
         move_row('right_grid', 'left_grid');
-    });     
+    });
   });
 
 function cascadeSelect(el){

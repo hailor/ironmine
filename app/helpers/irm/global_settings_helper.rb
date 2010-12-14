@@ -11,5 +11,5 @@ module Irm::GlobalSettingsHelper
   end
   def available_themes
     [["default", "default"]]
-  end      
+  end
 end

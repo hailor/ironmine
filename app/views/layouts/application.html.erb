@@ -15,11 +15,13 @@
   <%= javascript_include_tag :dhtmlx %>  
   <%= javascript_include_tag :dhtmlx_grid %>
   <%= javascript_include_tag "dhtmlx/grid/dhtmlxgrid_drag.js" %>
-  <%= javascript_include_tag :ironmine_base %>  
+  <%= javascript_include_tag :ironmine_base %>
+  <%= theme_stylesheet_link_tag "jquery.Jcrop"%>
+  <%= javascript_include_tag "jquery.Jcrop"%>
   <%= theme_stylesheet_link_tag :application%>
   <%= csrf_meta_tag %>
 </head>
-<body>
+<body id="body">
     <div id="banner"></div>
     <div id="toptoolbar">
     	<div class="floatleft">
