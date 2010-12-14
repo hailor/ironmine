@@ -1,6 +1,4 @@
 <script>
-
-
 $(document).ready(function(){
     //alert($('.jtabcontainer > .jtabitem').find('a').length);
     $('#toptoolbar').astab();
@@ -10,17 +8,12 @@ $(document).ready(function(){
 <div id="banner"></div>
 <div id="toptoolbar" zone="toptoolbarcontent">
 	<div class="floatleft jtabcontainer">
+      <%= sub_entries('IRM_ENTRANCE_MENU').each do |menu_item|%>
     	<div class="toptoolbarbtn jtabitem">
-        	<div><a href="/navigations/workspace">我的工作空间</a></div>
+        	<div><%=link_to menu_item[:name],{:controller=>menu_item[:page_controller],:action=>menu_item[:page_action],:menu_code=>menu_item[:menu_code],:menu_entry_id=>menu_item[:menu_entry_id]}%></div>
         </div>
     	<div class="toptoolbarsep"></div>
-        <div class="toptoolbarbtn  jtabitem">
-        	<div><a href="/product_modules/index">搜索</a></div>
-        </div>
-        <div class="toptoolbarsep"></div>
-        <div class="toptoolbarbtn">
-        	<div>历史记录</div>
-        </div>
+      <%end%>
     </div>
     <div class="floatright">
         <div class="toptoolbarbtn"><a href="javascript:void(0);">ivanmarkliu</a></div>

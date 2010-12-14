@@ -153,6 +153,8 @@ Ironmine::Application.routes.draw do
     match '/navigations/workspace(.:format)' =>'navigations#workspace'
     match '/navigations/my_page(.:format)' =>'navigations#my_page'
     match '/navigations/my_setting(.:format)' =>'navigations#my_setting'
+    match '/navigations/admin(.:format)' =>'navigations#admin'
+    match '/navigations/advance_setting(.:format)' =>'navigations#advance_setting'
   end
 
   match '/demo(/index)' => 'demo#index'
