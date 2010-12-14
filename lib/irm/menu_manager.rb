@@ -30,7 +30,7 @@ module Irm
           tmp_menu_entries = m.menu_entries.where("sub_menu_code IS NOT NULL").order(:display_sequence)
           menu_entries = []
           tmp_menu_entries.each do |tm|
-            data = {:sub_menu_code=>tm.sub_menu_code,:permission_code=>tm.permission_code}
+            data = {:menu_entry_id=>tm.id,:sub_menu_code=>tm.sub_menu_code,:permission_code=>tm.permission_code}
             tm.menu_entries_tls.each do |mt|
               data.merge!({mt.language.to_sym=>{:name=>mt.name,:description=>mt.description}})
             end
@@ -40,7 +40,7 @@ module Irm
           tmp_permission_entries = m.menu_entries.where("sub_menu_code IS NULL AND permission_code IS NOT NULL")
           permission_entries = []
           tmp_permission_entries.each do |tp|
-            data = {:permission_code=>tp.permission_code}
+            data = {:menu_entry_id=>tp.id,:permission_code=>tp.permission_code}
             tp.menu_entries_tls.each do |mt|
               data.merge!({mt.language.to_sym=>{:name=>mt.name,:description=>mt.description}})
             end
@@ -49,7 +49,8 @@ module Irm
 
           menu_data = {:menu_entries=>menu_entries,
                        :permission_entries=>permission_entries,
-                       :menu_code=>m.menu_code
+                       :menu_code=>m.menu_code,
+                       :icon=>m.icon
                        }
 
           menus_cache.merge!({m.menu_code=>menu_data})
@@ -85,7 +86,7 @@ module Irm
       def permission_by_url(controller,action)
         permission_code = permission_codes[Irm::Permission.url_key(controller,action)]
         permission = nil
-        permission = items[:permissions][permission_code].delete(:options) if permission_code
+        permission = permissions[permission_code].dup if permission_code
         permission
       end
 
@@ -99,20 +100,24 @@ module Irm
         sub_entries = []
         menu = menus[menu_code]
         menu[:menu_entries].each do |me|
-          entries_options = {:menu_code => me[:sub_menu_code],
+          entries_options = {:menu_entry_id=>me[:menu_entry_id],
+                             :menu_code => me[:sub_menu_code],
                              :entry_type=>"MENU",
+                             :icon=>menu_icon(me[:sub_menu_code]),
                              :name=>me[::I18n.locale.to_sym][:name],
                              :description=>me[::I18n.locale.to_sym][:description],
                              :permission_code=>me[:permission_code]}
-          sub_entries<< entries_options if menu_showable(me)
+          sub_entries<< entries_options.merge!(permission_url_options(me[:permission_code])) if menu_showable(me)
         end
-        menu[:menu_entries].each do |pe|
-          entries_options = {:entry_type=>"PERMISSION",
+        menu[:permission_entries].each do |pe|
+          entries_options = {:menu_entry_id=>pe[:menu_entry_id],
+                             :entry_type=>"PERMISSION",
                              :name=>pe[::I18n.locale.to_sym][:name],
                              :description=>pe[::I18n.locale.to_sym][:description],
                              :permission_code=>pe[:permission_code]}
-          sub_entries<< entries_options if check_permission(pe[:permission_code])
+          sub_entries<< entries_options.merge!(permission_url_options(pe[:permission_code])) if check_permission(pe[:permission_code])
         end
+        sub_entries
       end
 
       # 确定菜单是否可显示
@@ -131,8 +136,19 @@ module Irm
 
       # 检查permission的权限
       def check_permission(permission_code)
-        permission = items[:permissions][permission_code].delete(:options)
-        Irm::PermissionChecker.allow_to?(permission)
+        return true if !permission_code
+        permission = permissions[permission_code].dup
+        Irm::PermissionChecker.allow_to_permission?(permission)
+      end
+
+      # 使用permission_code取得permission中的url 参数
+      def permission_url_options(permission_code)
+        permission = permissions[permission_code]
+        if permission
+          {:page_controller=>permission[:page_controller],:page_action=>permission[:page_action]}
+        else
+          {}
+        end  
       end
 
       private
@@ -148,6 +164,10 @@ module Irm
       # 从内存中读取数据
       def items
         Ironmine::STORAGE.get(:menu_manager_items)||{}
+      end
+
+      def menu_icon(menu_code)
+        menus[menu_code][:icon]
       end
 
     end
