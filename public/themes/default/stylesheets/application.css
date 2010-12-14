@@ -227,18 +227,18 @@ table.paddedtable{
 	border-color: #ccc;
 }
 table.paddedtable, table.paddedtable td{padding: 4px; vertical-align:top; }
-table.paddedtable td.paddedtablelabel{ width: 120px; text-align:right; padding-right: 10px;}
+td.paddedtablelabel{ width: 120px; text-align:right; padding-right: 10px;}
 
-table.twogridselect{
+table.twocolumnform{
     width: 100%;
 	border-style: solid;
 	border-width: 0 1px;
 	border-color: #ccc;
 }
-table.twogridselect td.leftgrid{width: 30%;}
-table.twogridselect td.rightgrid{width: 30%;}
-table.twogridselect td.middlebutton{width: 2%;}
-table.twogridselect td.sep{width: 38%;}
+table.twocolumnform td.left{width: 30%;}
+table.twocolumnform td.right{width: 30%;}
+table.twocolumnform td.middle{width: 2%;}
+table.twocolumnform td.sep{width: 38%;}
 
 
 input.halfdesc, textarea.halfdesc{width: 300px;}

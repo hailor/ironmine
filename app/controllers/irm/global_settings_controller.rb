@@ -22,13 +22,16 @@ class Irm::GlobalSettingsController < ApplicationController
     @global_setting = Irm::GlobalSetting.find(params[:id])
     respond_to do |format|
       if @global_setting.update_attributes(params[:irm_global_setting])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+        nil
       else
         @error = @global_setting
-        format.html { render "error_message" }
+        format.html { render "error_message"}
       end      
     end
   end
 
+  def crop
+    @global_setting = Irm::GlobalSetting.all.first
+    render "crop"
+  end
 end
