@@ -7,4 +7,8 @@ class Irm::ProductModule < ActiveRecord::Base
   #如果语言表里面字段不是name和description的话，需要特别指出
   acts_as_multilingual
   query_extend
+
+  scope :query_by_short_name,lambda{|short_name|
+    where(:product_short_name=>short_name)
+  }
 end
