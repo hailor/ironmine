@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
   def check_permission
     if request.xhr?||(params[:format]||"").downcase.eql?("js")
       true 
-    elsif @current_permission&&Irm::Person.current&&@current_permission.enabled?&&!Irm::Person.current.allow_to?(@current_permission,@current_project)
+    elsif @current_permission&&Irm::Person.current&&@current_permission.enabled?&&!Irm::PermissionChecker.allow_to_permission?(@current_permission)
         flash[:error]=t(:access_denied,:permission=>@current_permission.to_s)
         redirect_to( {:controller => 'irm/my', :action => 'page'})
     end
