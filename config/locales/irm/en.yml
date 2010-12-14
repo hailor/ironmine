@@ -195,3 +195,25 @@ en:
   label_irm_region_regions_tls:
     name: Name
   #=========================end irm regions_controller=======================#
+  #=========================    irm companies_controller=======================#
+  label_irm_company_company_short_name: Short Name
+  label_irm_company_name: Name
+  label_irm_company_company_type: Company Type
+  label_irm_company_description: Description
+  label_irm_company_status_code: Status Code
+  label_irm_company_new: New company
+  label_irm_company_edit: Edit company
+  label_irm_company_list: List company
+  label_irm_company_companies_tls:
+    name: Name
+  label_irm_company_base_info: Base Info
+  label_irm_company_site_info: Site Info
+  label_irm_company_support_group: Support Group
+  label_irm_company_time_zone: Time Zone
+  label_irm_company_hotline: HotLine
+  label_irm_company_cost_center: Cost Center
+  label_irm_company_currency_code: Currency Code
+  label_irm_company_budget_code: Budget Code
+  label_irm_company_home_page: Home Page
+  #=========================end irm companies_controller=======================#
+

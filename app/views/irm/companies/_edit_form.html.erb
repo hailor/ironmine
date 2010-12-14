@@ -1,0 +1,69 @@
+  <div id="id_company_edit">
+  <div class="container">     
+     <%= form_for(@company,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+                <div class="containerheader">
+                    <div class="floatleft headertitle"><%=t(:label_irm_company_edit)%> - <%= @company.short_name%></div>
+                </div>
+                <table class="paddedtable" cellspacing="0">
+                <tbody>
+                  <tr>
+                      <td class="paddedtablelabel"><%=t(:label_irm_company_company_short_name)%>:
+                      </td>
+                      <td>
+                        <%=f.text_field :short_name,:size=>30,:readonly=>"readonly"%>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="paddedtablelabel"><%=t(:label_irm_company_name)%>:
+                      </td>
+                      <td>
+                        <%=f.text_field :name ,:value=>@company[:name],:size=>30,:required=>true%>
+                      </td>
+                  </tr>
+                  <tr>
+                       <td class="paddedtablelabel"><%=(t :label_irm_company_company_type)%>:</td>
+                       <td><%=f.select :company_type,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                          options_from_collection_for_select(available_company_type,:lookup_code,:meaning,@company.company_type)%></td>
+                  </tr>
+                  <tr>
+                       <td class="paddedtablelabel"><%=(t :label_irm_company_status_code)%>:</td>
+                       <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                          options_from_collection_for_select(available_status,:lookup_code,:meaning,@company.status_code)%></td>
+                  </tr>
+                  <tr>
+                      <td class="paddedtablelabel"><%=t(:label_irm_company_description)%>:
+                      </td>
+                      <td>
+                        <%=f.text_field :description ,:value=>@company[:description],:size=>45%>
+                      </td>
+                  </tr>
+                </tbody>
+                </table>
+
+                <div id="a_tabbar" style="width:auto; height:300px;"
+                 action_type="ajaxDhtmlxTabbar"
+                 tabbar_skin="dhx_skyblue"
+                 tabbar_image_path="/images/dhtmlx/"
+                 tabbar_href_mode="ajax-html"
+                 tabbar_a1_params="'a1', '<%=t(:label_irm_company_base_info)%>', '100px'"
+                 tabbar_a2_params="'a2', '<%=t(:label_irm_company_site_info)%>', '100px'"
+                 tabbar_a3_params="'a3', '<%=t(:label_irm_company_support_group)%>', '100px'"
+                 tabbar_a1_content_params="'a1', '/companies/base_info?company_id='+<%=@company.id%>,''"
+                 tabbar_a2_content_params="'a2', 'id_login_access','COMMON'"
+                 tabbar_a3_content_params="'a3', 'id_support_group','COMMON'"
+                 tabbar_active="a1">
+                 </div>
+                <div id="id_login_access" >
+                   Content 3
+                </div>
+                <div id="id_support_group" >
+                    Content 3
+                </div>
+
+                <div class="containerfooter">
+                    <div class="button floatright" ><%= link_to t(:save), {:controller=>"irm/companies",:action=>"update"}, {:action_type => "ajaxSubmit", :script => "/reload_grid('id_company_grid');replace(system_message_box,system_message_box);/replace(system_message_box,system_message_box);"}%></div>
+                    <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(id_company_new,id_company_new);/", :action_type=>"ajaxLink"%></div>
+                </div>
+     <% end %>
+   </div>
+ </div>

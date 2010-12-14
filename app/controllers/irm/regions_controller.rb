@@ -6,7 +6,7 @@ class Irm::RegionsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @regions }
+      format.xml  { render :xml => @region }
     end
   end
 

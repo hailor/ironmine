@@ -185,6 +185,16 @@ Ironmine::Application.routes.draw do
     match '/regions/:id/multilingual_edit(.:format)' => "regions#multilingual_edit", :via => :get
     match '/regions/:id/multilingual_update(.:format)' => "regions#multilingual_update", :via => :put
     match '/regions/get_data(.:format)' => "regions#get_data"
+    #companies
+    match '/companies(/index)(.:format)' => "companies#index", :via => :get
+    match '/companies/:id/edit(.:format)' => "companies#edit", :via => :get
+    match '/companies/:id(.:format)' => "companies#update", :via => :put
+    match '/companies/new(.:format)' => "companies#new", :via => :get
+    match '/companies/create(.:format)' => "companies#create", :via => :post
+    match '/companies/:id/multilingual_edit(.:format)' => "companies#multilingual_edit", :via => :get
+    match '/companies/:id/multilingual_update(.:format)' => "companies#multilingual_update", :via => :put
+    match '/companies/get_data(.:format)' => "companies#get_data"    
+    match '/companies/base_info(.:format)' => "companies#base_info"    
   end
 
   match '/demo(/index)' => 'demo#index'

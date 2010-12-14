@@ -9,6 +9,14 @@ class Irm::Company < ActiveRecord::Base
   validates_presence_of :short_name
   validates_uniqueness_of :short_name,:if => Proc.new { |i| !i.short_name.blank? }
 
+  scope :query_wrap_info,lambda{|language| select("#{table_name}.*,#{Irm::CompaniesTl.table_name}.name,#{Irm::CompaniesTl.table_name}.description,"+
+                                                          "v1.meaning company_type_meaning,v2.meaning status_meaning").
+                                                   joins(",irm_lookup_values_vl v1").
+                                                   joins(",irm_lookup_values_vl v2").
+                                                   where("v1.lookup_type='COMPANY_TYPE' AND v1.lookup_code = #{table_name}.company_type AND "+
+                                                         "v2.lookup_type='SYSTEM_STATUS_CODE' AND v2.lookup_code = #{table_name}.status_code AND "+
+                                                         "v1.language=? AND v2.language=?",language,language)}
+
   #设定当前用户
   def self.current=(company)
     @current_company = company

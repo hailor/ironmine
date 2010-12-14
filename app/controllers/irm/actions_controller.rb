@@ -6,7 +6,7 @@ class Irm::ActionsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @actions }
+      format.xml  { render :xml => @action }
     end
   end
 

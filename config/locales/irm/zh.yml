@@ -296,3 +296,24 @@ zh:
   label_irm_region_regions_tls:
     name: 名称
   #=========================end irm regions_controller=======================#
+  #=========================    irm companies_controller=======================#
+  label_irm_company_company_short_name: 简称
+  label_irm_company_name: 名称
+  label_irm_company_company_type: 公司类型
+  label_irm_company_description: 描述
+  label_irm_company_status_code: 记录状态
+  label_irm_company_new: 新建公司
+  label_irm_company_edit: 编辑公司
+  label_irm_company_list: 公司列表
+  label_irm_company_companies_tls:
+    name: 名称
+  label_irm_company_base_info: 基本信息
+  label_irm_company_site_info: 地点
+  label_irm_company_support_group: 支持组
+  label_irm_company_time_zone: 时区
+  label_irm_company_hotline: 热线
+  label_irm_company_cost_center: 成本中心
+  label_irm_company_currency_code: 币种
+  label_irm_company_budget_code: 预算代码
+  label_irm_company_home_page: 主页
+  #=========================end irm companies_controller=======================#
