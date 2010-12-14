@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class CreateActiveStatusLookupData < ActiveRecord::Migration
   def self.up
     active_lookup_type=Irm::LookupType.new(:lookup_level=>'GLOBAL',
