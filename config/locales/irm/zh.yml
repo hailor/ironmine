@@ -283,5 +283,16 @@ zh:
   label_irm_currency_edit: 编辑币种
   label_irm_currency_list: 币种列表
   label_irm_currency_currencies_tls:
-    name: Name
+    name: 名称
   #=========================end irm currencies_controller=======================#
+  #=========================    irm regions_controller=======================#
+  label_irm_region_region_code: 编码
+  label_irm_region_name: 名称
+  label_irm_region_description: 描述
+  label_irm_region_status_code: 记录状态
+  label_irm_region_new: 新建区域
+  label_irm_region_edit: 编辑区域
+  label_irm_region_list: 区域列表
+  label_irm_region_regions_tls:
+    name: 名称
+  #=========================end irm regions_controller=======================#

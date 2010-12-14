@@ -176,6 +176,15 @@ Ironmine::Application.routes.draw do
     match '/currencies/:id/multilingual_edit(.:format)' => "currencies#multilingual_edit", :via => :get
     match '/currencies/:id/multilingual_update(.:format)' => "currencies#multilingual_update", :via => :put
     match '/currencies/get_data(.:format)' => "currencies#get_data"
+    #regions
+    match '/regions(/index)(.:format)' => "regions#index", :via => :get
+    match '/regions/:id/edit(.:format)' => "regions#edit", :via => :get
+    match '/regions/:id(.:format)' => "regions#update", :via => :put
+    match '/regions/new(.:format)' => "regions#new", :via => :get
+    match '/regions/create(.:format)' => "regions#create", :via => :post
+    match '/regions/:id/multilingual_edit(.:format)' => "regions#multilingual_edit", :via => :get
+    match '/regions/:id/multilingual_update(.:format)' => "regions#multilingual_update", :via => :put
+    match '/regions/get_data(.:format)' => "regions#get_data"
   end
 
   match '/demo(/index)' => 'demo#index'

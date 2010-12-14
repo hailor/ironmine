@@ -184,3 +184,14 @@ en:
   label_irm_currency_currencies_tls:
     name: Name
   #=========================end irm currencies_controller=======================#
+  #=========================    irm regions_controller=======================#
+  label_irm_region_region_code: Code
+  label_irm_region_name: Name
+  label_irm_region_description: Description
+  label_irm_region_status_code: Status Code
+  label_irm_region_new: New region
+  label_irm_region_edit: Edit region
+  label_irm_region_list: List region
+  label_irm_region_regions_tls:
+    name: Name
+  #=========================end irm regions_controller=======================#
