@@ -18,7 +18,7 @@ $(document).ready(function(){
                       </td>
                       <td>
                         <%=f.select :entity_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                    options_from_collection_for_select(available_entity,:lookup_code,:meaning,@mail_template.entity_code),
+                                                    options_from_collection_for_select(available_entity,:lookup_code,:wrap_meaning,@mail_template.entity_code),
                                                     {},{:disabled=>true}%>
                       </td>
                   </tr>

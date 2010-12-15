@@ -5,7 +5,7 @@
                         <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_company_time_zone)%>:</td>
                             <td><%=select_tag :time_zone,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_time_zone,:lookup_code,:meaning,@company_info.time_zone)%></td>
+                                                options_from_collection_for_select(available_time_zone,:lookup_code,:wrap_meaning,@company_info.time_zone)%></td>
                         </tr>
                         <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_company_hotline)%>:</td>
@@ -26,7 +26,7 @@
                         <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_company_status_code)%>:</td>
                             <td><%=select_tag :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_status,:lookup_code,:meaning,@company_info.status_code)%></td>
+                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@company_info.status_code)%></td>
                         </tr>
                         <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_company_currency_code)%>:</td>

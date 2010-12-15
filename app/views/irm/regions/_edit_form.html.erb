@@ -18,7 +18,7 @@
                             <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_region_status_code)%>:</td>
                             <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_status,:lookup_code,:meaning,@region.status_code)%></td>
+                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@region.status_code)%></td>
                             </tr>
                            </table>
                         </td>

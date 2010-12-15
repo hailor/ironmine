@@ -24,7 +24,7 @@ class Irm::LookupValue < ActiveRecord::Base
       end
   end
 
-  def meaning
+  def wrap_meaning
     self[:meaning]
   end
 end

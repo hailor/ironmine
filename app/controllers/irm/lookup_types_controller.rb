@@ -88,11 +88,11 @@ class Irm::LookupTypesController < ApplicationController
   def create_value
     lookup_type_id = params[:lookup_type_id]
     @lookup_type = Irm::LookupType.find(lookup_type_id)
-    @lookup_code = params["c0"]
-    @meaning = params["c1"]
-    @description   = params["c2"]
-    @start_date_active = params["c3"]
-    @end_date_active   = params["c4"]
+    @lookup_code = params["c1"]
+    @meaning = params["c2"]
+    @description   = params["c3"]
+    @start_date_active = params["c4"]
+    @end_date_active   = params["c5"]
 
     @mode = params["!nativeeditor_status"]
 
@@ -139,11 +139,11 @@ class Irm::LookupTypesController < ApplicationController
   def create_edit_value
     lookup_type_id = params[:lookup_type_id]
     @lookup_type = Irm::LookupType.find(lookup_type_id)
-    @lookup_code = params["c0"]
-    @meaning = params["c1"]
-    @description   = params["c2"]
-    @start_date_active = params["c3"]
-    @end_date_active   = params["c4"]
+    @lookup_code = params["c1"]
+    @meaning = params["c2"]
+    @description   = params["c3"]
+    @start_date_active = params["c4"]
+    @end_date_active   = params["c5"]
 
     @mode = params["!nativeeditor_status"]
 
@@ -157,7 +157,7 @@ class Irm::LookupTypesController < ApplicationController
                                                   :start_date_active=>@start_date_active,
                                                   :end_date_active => @end_date_active})
             @lookup_value.save!
-
+            
             @tid = @lookup_value.id
       when "updated"
             exist_flag = Irm::LookupValue.check_lookup_code_exist(@lookup_type.lookup_type,@lookup_code)
@@ -169,7 +169,8 @@ class Irm::LookupTypesController < ApplicationController
                                                   :description=>@description,
                                                   :start_date_active=>@start_date_active,
                                                   :end_date_active => @end_date_active})
-              @lookup_value.save!
+
+              @lookup_value.save
 
               @tid = @lookup_value.id
             else

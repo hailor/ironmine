@@ -10,7 +10,7 @@
                         <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_script_entity)%>:</td>
                             <td><%=f.select :entity_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_entity,:lookup_code,:meaning)%></td>
+                                                options_from_collection_for_select(available_entity,:lookup_code,:wrap_meaning)%></td>
                         </tr>
                         <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_script_condition)%>:</td>
@@ -25,7 +25,7 @@
                         <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_script_template)%>:</td>
                             <td><%=f.select :template_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_entity,:lookup_code,:meaning)%></td>
+                                                options_from_collection_for_select(available_entity,:lookup_code,:wrap_meaning)%></td>
                         </tr>
                        </table>
                     </td>
