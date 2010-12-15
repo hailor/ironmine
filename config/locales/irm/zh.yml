@@ -220,9 +220,9 @@ zh:
   label_irm_script_description: 描述
   label_irm_script_status_code: 记录状态
   label_irm_script_active_flag: 是否可用
-  label_irm_script_new: 新建执行动作
-  label_irm_script_edit: 编辑执行动作
-  label_irm_script_list: 执行动作列表
+  label_irm_script_new: 新建服务宏
+  label_irm_script_edit: 编辑服务宏
+  label_irm_script_list: 执行服务宏
   label_irm_script_scripts_tls:
      name: 名称
   #=========================end irm scripts_controller=======================#
