@@ -171,7 +171,7 @@ zh:
   label_irm_action_actions_tls:
      name: 名称
   #=========================end irm actions_controller=======================#
-  #=========================    irm permissions_controller=======================#
+  #=========================    irm identities_controller=======================#
   label_irm_identity_new: 新建帐号
   label_irm_identity_edit: 编辑帐号
   label_irm_identity_login_name: 登陆用户名
@@ -181,8 +181,14 @@ zh:
   label_irm_identity_email: 电子邮件
   label_irm_identity_language_code: 语言
   label_irm_identity_status_code: 状态
-  label_irm_identity_list: 权限列表
-  #=========================    end permissions_controller=======================#
+  label_irm_identity_list: 帐号列表
+  edit_password: 修改密码
+  label_irm_identity_old_password: 原密码
+  label_irm_identity_new_password: 新密码
+  label_irm_identity_new_password_confirmation: 确认密码
+  label_irm_identity_edit_info: 编辑个人信息
+  label_irm_identity_edit_password: 修改个人密码
+  #=========================    end irm identities_controller=======================#
 
   #=========================    irm global_settings_controller=======================#
   label_irm_global_setting: 全局设置

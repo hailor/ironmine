@@ -101,6 +101,12 @@ en:
   label_irm_identity_language_code: Language
   label_irm_identity_status_code: Status
   label_irm_identity_list: List identity
+  edit_password: Change password
+  label_irm_identity_old_password: Origin password
+  label_irm_identity_new_password: New password
+  label_irm_identity_new_password_confirmation: Confirm Password
+  label_irm_identity_edit_info: Edit personal info
+  label_irm_identity_edit_password: Edit personal password
   #=========================    end identities_controller=======================#
   #=========================    irm conditions_controller=======================#
   label_irm_condition_condition_code: Code
