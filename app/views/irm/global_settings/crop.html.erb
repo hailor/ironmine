@@ -1,5 +1,5 @@
 <div class="container" id="img_container">
-<% form_for @global_setting, :url => {:action=>"update", :id => @global_setting} do |form| %>      
+<% form_for @global_setting, :url => {:action=>"update", :id => @global_setting} do |form| %>
     <table style="width:598px;">
     <tr>
       <td style="width:50%;">&nbsp;</td><td style="width:5%;text-align:center;"><div><%= image_tag @global_setting.logo.url(:original), :id => "crop_box"%></div></td><td style="width:50%;">&nbsp;</td>
@@ -25,7 +25,6 @@
                                 aspectRatio: 1
         });
     }
-    init($("img_container"));
   });
 
 function update_crop(coords) {

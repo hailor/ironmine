@@ -27,7 +27,7 @@
 
           </td>
           <td class="middle" id="preimage">
-            <%= image_tag @global_setting.logo.url(:original)%>
+            <%= image_tag @global_setting.logo.url(:original) + "?" +  Time.new.usec.to_s%>
           </td>
           <td class="sep">
             
@@ -47,7 +47,7 @@
             crop_win.setImagePath("/images/dhtmlx/");
             crop_win.enableAutoViewport(false);
             crop_win.attachViewportTo("body");
-            $('#crop_win').load("/global_settings/crop");
+            $('#crop_win').load("/global_settings/crop", function(){init($("#img_container"))});
             win = crop_win.createWindow("crop_win",50,50,600,400);
             win.attachObject('crop_win');
             win.button('park').hide();
@@ -59,7 +59,7 @@
             var evId = win.attachEvent("onClose", function(win){
                 win.detachEvent(evId);
                 win.close();
-                $('#container1').load("/global_settings/edit.js");
+                $('#container1').load("/global_settings/edit.js", function(){init($("#container1"))});
             });
         }
     }

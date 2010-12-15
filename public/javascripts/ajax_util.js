@@ -122,11 +122,13 @@ function ajaxSubmit(el) {
    				return false;
    			}
 		}
+        alert("before submit");
 		var $formElement = $this.parents("form:first");
         //alert($formElement.attr('action'));
 		$formElement.ajaxSubmit(function(data, status) {
 			loadAndRunAction(arr, tmp, data, identify);
 		});
+        alert("after submit");
 		return false;
 	});
 }
