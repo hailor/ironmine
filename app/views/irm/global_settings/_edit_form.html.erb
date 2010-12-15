@@ -35,7 +35,7 @@
         </tr>
     </table>
     <div class="containerfooter">
-        <div class="button floatright"><%= link_to t(:save), {}, {:action_type => "ajaxSubmit", :script => "/cropwindow();/replace(system_message_box,system_message_box);"}%></div>
+        <div class="button floatright"><%= link_to t(:save), {}, {:action_type => "ajaxSubmit", :script => "/cropwindow();/replace(system_message_box,system_message_box);", :id => "save"}%></div>
     </div>
  <% end %>
 <div id='crop_win' style='display:none'></div>
@@ -47,7 +47,7 @@
             crop_win.setImagePath("/images/dhtmlx/");
             crop_win.enableAutoViewport(false);
             crop_win.attachViewportTo("body");
-            $('#crop_win').load("crop");
+            $('#crop_win').load("/global_settings/crop");
             win = crop_win.createWindow("crop_win",50,50,600,400);
             win.attachObject('crop_win');
             win.button('park').hide();
@@ -59,7 +59,7 @@
             var evId = win.attachEvent("onClose", function(win){
                 win.detachEvent(evId);
                 win.close();
-                $('#container1').load("edit");
+                $('#container1').load("/global_settings/edit.js");
             });
         }
     }
