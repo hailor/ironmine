@@ -21,4 +21,12 @@ module Irm::LookupTypesHelper
     Irm::Action.query_by_status_code("ENABLED").multilingual
   end
 
+  def available_company_type
+    Irm::LookupValue.query_by_lookup_type("COMPANY_TYPE").multilingual
+  end
+
+  def available_time_zone
+    Irm::LookupValue.query_by_lookup_type("TIMEZONE").multilingual
+  end
+
 end

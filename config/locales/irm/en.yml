@@ -143,3 +143,77 @@ en:
   label_irm_script_scripts_tls:
     name: Name
   #=========================end irm scripts_controller=======================#
+  #==================    irm mail_templates_controller=======================#
+  label_irm_mail_template_list: Mail Templates List
+  label_irm_mail_template_entity_code: Entity Code
+  label_irm_mail_template_template_code: Template Code
+  label_irm_mail_template_name: Template Name
+  label_irm_mail_template_description: Description
+  label_irm_mail_template_template_type: Template Type
+  label_irm_mail_template_subject: subject
+  label_irm_mail_template_new: New Mail Template
+  label_irm_mail_template_language_code: Template Language
+  label_irm_mail_template_type: Template Type
+  label_irm_mail_html_template_type: html
+  label_irm_mail_simple_template_type: simple
+  label_irm_mail_template_mail_body: Mail Body
+  label_editing_mail_template: Editing Mail Template
+  label_copy_mail_template: Copy Mail Template
+  label_test_mail_template: Test Mail Template
+  label_irm_mail_template_from: From
+  label_mail_template_plural: Mail Template
+  label_test_mail_template_info: Please input the test mail,and submit.your mailbox will revice,please check it.
+  label_test: Test
+  label_send_mail_successfully:  Successfully_send_mail,please check the your mailbox.
+  label_irm_mail_template_active_flag: Active
+  label_deliver_mail_template_result: The Test Mail have sent,please check the your mail box.
+  label_irm_mail_template_editing_mail_template: Mail Template Multilingual
+  label_irm_mail_template_status_code: Status Code
+  label_irm_mail_template_multilingual: Multilingual
+  label_irm_mail_template_multilingual_edit: Mutlilingual Edit
+  #==================end irm mail_templates_controller=======================#
+  #=========================    irm currencies_controller=======================#
+  label_irm_currency_currency_code: Code
+  label_irm_currency_name: Name
+  label_irm_currency_precision: Precision
+  label_irm_currency_description: Description
+  label_irm_currency_status_code: Status Code
+  label_irm_currency_new: New currency
+  label_irm_currency_edit: Edit currency
+  label_irm_currency_list: List currency
+  label_irm_currency_currencies_tls:
+    name: Name
+  #=========================end irm currencies_controller=======================#
+  #=========================    irm regions_controller=======================#
+  label_irm_region_region_code: Code
+  label_irm_region_name: Name
+  label_irm_region_description: Description
+  label_irm_region_status_code: Status Code
+  label_irm_region_new: New region
+  label_irm_region_edit: Edit region
+  label_irm_region_list: List region
+  label_irm_region_regions_tls:
+    name: Name
+  #=========================end irm regions_controller=======================#
+  #=========================    irm companies_controller=======================#
+  label_irm_company_company_short_name: Short Name
+  label_irm_company_name: Name
+  label_irm_company_company_type: Company Type
+  label_irm_company_description: Description
+  label_irm_company_status_code: Status Code
+  label_irm_company_new: New company
+  label_irm_company_edit: Edit company
+  label_irm_company_list: List company
+  label_irm_company_companies_tls:
+    name: Name
+  label_irm_company_base_info: Base Info
+  label_irm_company_site_info: Site Info
+  label_irm_company_support_group: Support Group
+  label_irm_company_time_zone: Time Zone
+  label_irm_company_hotline: HotLine
+  label_irm_company_cost_center: Cost Center
+  label_irm_company_currency_code: Currency Code
+  label_irm_company_budget_code: Budget Code
+  label_irm_company_home_page: Home Page
+  #=========================end irm companies_controller=======================#
+

@@ -1,4 +1,5 @@
 Ironmine::Application.routes.draw do
+
   scope :module => "irm" do
     root :to => "navigations#entrance"
     match 'login'=>'common#login',:as=>:login
@@ -69,7 +70,6 @@ Ironmine::Application.routes.draw do
     match '/conditions(/index)(.:format)' => "conditions#index", :via => :get
     match '/conditions/:id/edit(.:format)' => "conditions#edit", :via => :get
     match '/conditions/:id(.:format)' => "conditions#update", :via => :put
-    match '/conditions/:id(.:format)' => "conditions#update", :via => :put
     match '/conditions/new(.:format)' => "conditions#new", :via => :get
     match '/conditions/create(.:format)' => "conditions#create", :via => :post
     match '/conditions/:id/multilingual_edit(.:format)' => "conditions#multilingual_edit", :via => :get
@@ -78,7 +78,6 @@ Ironmine::Application.routes.draw do
     #actions
     match '/actions(/index)(.:format)' => "actions#index", :via => :get
     match '/actions/:id/edit(.:format)' => "actions#edit", :via => :get
-    match '/actions/:id(.:format)' => "actions#update", :via => :put
     match '/actions/:id(.:format)' => "actions#update", :via => :put
     match '/actions/new(.:format)' => "actions#new", :via => :get
     match '/actions/create(.:format)' => "actions#create", :via => :post
@@ -156,6 +155,49 @@ Ironmine::Application.routes.draw do
     match '/navigations/my_setting(.:format)' =>'navigations#my_setting'
     match '/navigations/admin(.:format)' =>'navigations#admin'
     match '/navigations/advance_setting(.:format)' =>'navigations#advance_setting'
+    #mail_templates
+    match '/mail_templates/new(.:format)'=>"mail_templates#new",:via=>:get
+    match '/mail_templates(.:format)'=>"mail_templates#create",:via=>:post
+    match '/mail_templates/copy(.:format)'=>"mail_templates#copy",:via=>:get
+    match '/mail_templates/copy_template(.:format)'=>"mail_templates#copy_template",:via=>:post
+    match '/mail_templates/test_mail_template'=>"mail_templates#test_mail_template"
+    match '/mail_templates(/index)(.:format)'=>"mail_templates#index",:via=>:get
+    match '/mail_templates/:id/show(.:format)'=>"mail_templates#show",:via=>:get
+    match '/mail_templates/:id/edit(.:format)'=>"mail_templates#edit",:via=>:get
+    match '/mail_templates/:id(.:format)'=>"mail_templates#update",:via=>:put
+    match '/mail_templates/:id(.:format)'=>"mail_templates#destroy",:via=>:delete
+    match '/mail_templates/:id/multilingual_edit(.:format)'=>"mail_templates#multilingual_edit",:via=>:get
+    match '/mail_templates/:id/multilingual_update(.:format)'=>"mail_templates#multilingual_update",:via=>:put
+    match '/mail_templates/get_current_language(.:format)'=>"mail_templates#get_current_language",:via=>:get
+    match '/mail_templates/get_data(.:format)' => "mail_templates#get_data"
+    #currencies
+    match '/currencies(/index)(.:format)' => "currencies#index", :via => :get
+    match '/currencies/:id/edit(.:format)' => "currencies#edit", :via => :get
+    match '/currencies/:id(.:format)' => "currencies#update", :via => :put
+    match '/currencies/new(.:format)' => "currencies#new", :via => :get
+    match '/currencies/create(.:format)' => "currencies#create", :via => :post
+    match '/currencies/:id/multilingual_edit(.:format)' => "currencies#multilingual_edit", :via => :get
+    match '/currencies/:id/multilingual_update(.:format)' => "currencies#multilingual_update", :via => :put
+    match '/currencies/get_data(.:format)' => "currencies#get_data"
+    #regions
+    match '/regions(/index)(.:format)' => "regions#index", :via => :get
+    match '/regions/:id/edit(.:format)' => "regions#edit", :via => :get
+    match '/regions/:id(.:format)' => "regions#update", :via => :put
+    match '/regions/new(.:format)' => "regions#new", :via => :get
+    match '/regions/create(.:format)' => "regions#create", :via => :post
+    match '/regions/:id/multilingual_edit(.:format)' => "regions#multilingual_edit", :via => :get
+    match '/regions/:id/multilingual_update(.:format)' => "regions#multilingual_update", :via => :put
+    match '/regions/get_data(.:format)' => "regions#get_data"
+    #companies
+    match '/companies(/index)(.:format)' => "companies#index", :via => :get
+    match '/companies/:id/edit(.:format)' => "companies#edit", :via => :get
+    match '/companies/:id(.:format)' => "companies#update", :via => :put
+    match '/companies/new(.:format)' => "companies#new", :via => :get
+    match '/companies/create(.:format)' => "companies#create", :via => :post
+    match '/companies/:id/multilingual_edit(.:format)' => "companies#multilingual_edit", :via => :get
+    match '/companies/:id/multilingual_update(.:format)' => "companies#multilingual_update", :via => :put
+    match '/companies/get_data(.:format)' => "companies#get_data"    
+    match '/companies/base_info(.:format)' => "companies#base_info"
   end
 
   match '/demo(/index)' => 'demo#index'

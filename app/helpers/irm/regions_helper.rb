@@ -1,0 +1,2 @@
+module Irm::RegionsHelper
+end

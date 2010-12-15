@@ -1,0 +1,73 @@
+<div id="id_mail_template_new" class="container">
+     <%= form_for(@mail_template,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+            <div class="containerheader">
+                <div class="floatleft headertitle"><%=t(:label_irm_mail_template_new)%></div>
+            </div>
+            <table class="paddedtable" cellspacing="0">
+            <tbody>
+              <tr>
+                  <td class="paddedtablelabel"><%=t(:label_irm_mail_template_entity_code)%>:
+                  </td>
+                  <td>
+                    <%=f.select :entity_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_entity,:lookup_code,:wrap_meaning)%>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="paddedtablelabel"><%=t(:label_irm_mail_template_template_code)%>:
+                  </td>
+                  <td>
+                    <%=f.text_field :template_code,:size=>30,:required=>true,:irm_uppercase=>true %>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="paddedtablelabel"><%=t(:label_irm_mail_template_name)%>:
+                  </td>
+                  <td>
+                    <%=f.text_field :name ,:size=>45,:required=>true%>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="paddedtablelabel"><%=t(:label_irm_mail_template_description)%>:
+                  </td>
+                  <td>
+                    <%=f.text_field :description ,:size=>80%>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="paddedtablelabel"><%=t(:label_irm_mail_template_subject)%>:
+                  </td>
+                  <td>
+                    <%=f.text_field :subject ,:size=>45,:required=>true%>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="paddedtablelabel"><%=t(:label_irm_mail_template_from)%>:
+                  </td>
+                  <td>
+                    <%=f.text_field :from ,:size=>45,:required=>true%>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="paddedtablelabel"><%=t(:label_irm_mail_template_template_type)%>:
+                  </td>
+                  <td>
+                    <%=f.radio_button :template_type,"html"%><%=t(:label_irm_mail_html_template_type)%>
+                    <%=f.radio_button :template_type,"simple"%><%=t(:label_irm_mail_simple_template_type)%>
+                  </td>
+              </tr>
+              <tr>
+                 <td class="paddedtablelabel"><%=t(:label_irm_mail_template_mail_body)%>:
+                 </td>
+                 <td>
+                   <%=f.text_area :mail_body ,:cols => 85, :rows => 15,:required=>true%>
+                 </td>
+              </tr>
+            </tbody>
+            </table>
+            <div class="containerfooter">
+                <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/mail_templates",:action=>"create"}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);replace(id_mail_template_new,id_mail_template_index);/replace(system_message_box,system_message_box);"}%></div>
+                <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}, :script => "/replace(id_mail_template_list,id_mail_template_list);/", :action_type=>"ajaxLink"%></div>
+            </div>
+     <% end %>
+</div>

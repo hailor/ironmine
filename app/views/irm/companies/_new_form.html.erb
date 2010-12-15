@@ -1,0 +1,50 @@
+<div id="id_company_new" class="container">
+     <%= form_for(@company,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+            <div class="containerheader">
+                <div class="floatleft headertitle"><%=t(:label_irm_company_new)%></div>
+            </div>
+            <table class="twocolumnstable" cellspacing="0">
+                <tr>
+                    <td class="twocolumn">
+                       <table class="itemdetailtable">
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_company_company_short_name)%>:</td>
+                            <td><%=f.text_field :short_name,:size=>40,:required=>true,:irm_uppercase=>true%></td>
+                        </tr>                        
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_company_name)%>:</td>
+                            <td><%=f.text_field :name,:size=>40,:required=>true %></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_company_company_type)%>:</td>
+                            <td><%=f.select :company_type,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_company_type,:lookup_code,:wrap_meaning)%></td>
+                        </tr>
+                       </table>
+                    </td>
+                    <td class="twocolumn" cellspacing="0">
+                       <table class="itemdetailtable">
+                        <div id="id_lookup_level">
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_company_status_code)%>:</td>
+                            <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning)%></td>
+                        </tr>
+                        <tr>
+                          <td class="itemdetailtablelabel">
+                              <%=t(:label_irm_company_description)%>:
+                           </td>
+                           <td><%= f.text_area :description, :cols => 40, :rows => 2%></td>
+                        </tr>
+                        </div>
+                       </table>
+                    </td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+            <div class="containerfooter">
+                <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/companies",:action=>"create"}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);reload_grid('id_company_grid');/replace(system_message_box,system_message_box);"}%></div>
+                <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}, :script => "/replace(id_company_index,id_company_index);/", :action_type=>"ajaxLink"%></div>
+            </div>
+     <% end %>
+</div>

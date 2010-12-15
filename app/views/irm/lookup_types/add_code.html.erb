@@ -60,10 +60,14 @@
                        action_type="ajaxDhtmlxGrid"
                        grid_header=",<%=t(:label_irm_lookup_value_lookup_code)%>,<%=t(:label_meaning)%>,<%=t(:label_description)%>,<%=t(:label_start_date_active)%>,<%=t(:label_end_date_active)%>"
                        grid_width="20,100,150,200,100,500"
-                       grid_col_types="ra,ed,ed,ed,dhxCalendar,dhxCalendar"
+                       grid_col_types="ra,ed,ed,ed,dhxCalendarA,dhxCalendarA"
+                       grid_checkbox="selectRowAndRadio"
                        grid_load="'/lookup_types/get_lookup_values?lookup_type=<%=@lookup_type.lookup_type%>','','json'"></div>
                       <script type="text/javascript" charset="utf-8">
                         var edit_lookup_type_id = "<%=@lookup_type.id%>";
+                        function selectRowAndRadio(rowId){
+                            doSelectRowAndCheckRadio("id_edit_lookup_value_grid",rowId)
+                        }
                       </script>
                       <div class="containerfooter">
                           <div class="button floatright" id = "id_lookup_code_submit"><a href="javascript:void(0);" onclick="saveEditRow();" ><%= t(:save) %></a></div>

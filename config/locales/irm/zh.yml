@@ -250,3 +250,76 @@ zh:
   label_irm_function_group_function_add: 添加/移除功能
   label_irm_function_group_own_function: 功能组拥有的功能
   #=========================    end function_groups_controller=======================#
+  #==================    irm mail_templates_controller=======================#
+  label_irm_mail_template_list: 邮件模板列表
+  label_irm_mail_template_entity_code: 所属实体
+  label_irm_mail_template_template_code: 模板编码
+  label_irm_mail_template_name: 模板名称
+  label_irm_mail_template_description: 描述
+  label_irm_mail_template_template_type: 模板类型
+  label_irm_mail_template_subject: 邮件标题
+  label_irm_mail_template_new: 新建邮件模板
+  label_irm_mail_template_language_code: 模板语言
+  label_irm_mail_template_type: 模板类型
+  label_irm_mail_html_template_type: html
+  label_irm_mail_simple_template_type: 简单
+  label_irm_mail_template_mail_body: 邮件内容
+  label_irm_mail_template_edit: 编辑邮件模板
+  label_copy_mail_template: 复制邮件模板
+  label_test_mail_template: 测试当前邮件模板
+  label_irm_mail_template_from: 发件人
+  label_mail_template_plural: 邮件模板
+  label_test_mail_template_info: 请输入需要测试邮件模板的邮件地址.这样你的邮箱会收到一封测试邮件，请检查收件箱。
+  label_test: 测试
+  label_send_mail_successfully: 邮件发送成功，请检查收件箱。
+  label_irm_mail_template_active_flag: 可用
+  label_deliver_mail_template_result: 邮件发送成功，请检查收件箱。
+  label_irm_mail_template_editing_mail_template: 邮件模板多语言
+  label_irm_mail_template_status_code: 记录状态
+  label_irm_mail_template_multilingual: 多语言
+  label_irm_mail_template_multilingual_edit: 多语言编辑
+  #==================end irm mail_templates_controller=======================#
+  #=========================    irm currencies_controller=======================#
+  label_irm_currency_currency_code: 编码
+  label_irm_currency_name: 名称
+  label_irm_currency_precision: 精度
+  label_irm_currency_description: 描述
+  label_irm_currency_status_code: 记录状态
+  label_irm_currency_new: 新建币种
+  label_irm_currency_edit: 编辑币种
+  label_irm_currency_list: 币种列表
+  label_irm_currency_currencies_tls:
+    name: 名称
+  #=========================end irm currencies_controller=======================#
+  #=========================    irm regions_controller=======================#
+  label_irm_region_region_code: 编码
+  label_irm_region_name: 名称
+  label_irm_region_description: 描述
+  label_irm_region_status_code: 记录状态
+  label_irm_region_new: 新建区域
+  label_irm_region_edit: 编辑区域
+  label_irm_region_list: 区域列表
+  label_irm_region_regions_tls:
+    name: 名称
+  #=========================end irm regions_controller=======================#
+  #=========================    irm companies_controller=======================#
+  label_irm_company_company_short_name: 简称
+  label_irm_company_name: 名称
+  label_irm_company_company_type: 公司类型
+  label_irm_company_description: 描述
+  label_irm_company_status_code: 记录状态
+  label_irm_company_new: 新建公司
+  label_irm_company_edit: 编辑公司
+  label_irm_company_list: 公司列表
+  label_irm_company_companies_tls:
+    name: 名称
+  label_irm_company_base_info: 基本信息
+  label_irm_company_site_info: 地点
+  label_irm_company_support_group: 支持组
+  label_irm_company_time_zone: 时区
+  label_irm_company_hotline: 热线
+  label_irm_company_cost_center: 成本中心
+  label_irm_company_currency_code: 币种
+  label_irm_company_budget_code: 预算代码
+  label_irm_company_home_page: 主页
+  #=========================end irm companies_controller=======================#

@@ -3,9 +3,6 @@ class Irm::Condition < ActiveRecord::Base
 
   has_many :scripts,:foreign_key=>:condition_code,:primary_key=>:condition_code
 
-
-  table_name
-
   #多语言关系
   attr_accessor :name,:description
   has_many :conditions_tls,:dependent => :destroy

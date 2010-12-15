@@ -10,7 +10,7 @@
                             <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_action_entity_code)%>:</td>
                             <td><%=f.select :entity_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_entity,:lookup_code,:meaning,@action.entity_code),{},{:disabled=>true}%></td>
+                                                options_from_collection_for_select(available_entity,:lookup_code,:wrap_meaning,@action.entity_code),{},{:disabled=>true}%></td>
                             </tr>
                             <tr>
                                 <td class="itemdetailtablelabel"><%=(t :label_irm_action_action_code)%>:</td>
@@ -27,7 +27,7 @@
                             <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_action_status_code)%>:</td>
                             <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_status,:lookup_code,:meaning,@action.status_code)%></td>
+                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@action.status_code)%></td>
                             </tr>
                            </table>
                         </td>

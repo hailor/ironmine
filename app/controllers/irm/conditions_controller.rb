@@ -6,7 +6,7 @@ class Irm::ConditionsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @conditions }
+      format.xml  { render :xml => @condition }
     end
   end
 

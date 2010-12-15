@@ -1,0 +1,47 @@
+<table class="twocolumnstable" cellspacing="0">
+                <tr>
+                    <td class="twocolumn">
+                       <table class="itemdetailtable">
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_company_time_zone)%>:</td>
+                            <td><%=select_tag :time_zone,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_time_zone,:lookup_code,:wrap_meaning,@company_info.time_zone)%></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_company_hotline)%>:</td>
+                            <td><%=text_field_tag :hotline,@company_info.hotline,:size=>40,:required=>true %></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_company_cost_center)%>:</td>
+                            <td><%=text_field_tag :cost_center_code,@company_info.cost_center_code,:size=>40,:required=>true %></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_company_home_page)%>:</td>
+                            <td><%=text_field_tag :home_page,@company_info.home_page,:size=>40,:required=>true %></td>
+                        </tr>
+                       </table>
+                    </td>
+                    <td class="twocolumn" cellspacing="0">
+                       <table class="itemdetailtable">
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_company_status_code)%>:</td>
+                            <td><%=select_tag :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@company_info.status_code)%></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_company_currency_code)%>:</td>
+                            <td><%=select_tag :currency_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_currency,:currency_code,:wrap_name,@company_info.currency_code)%></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_company_budget_code)%>:</td>
+                            <td><%=text_field_tag :budget_code,@company_info.budget_code,:size=>40,:required=>true %></td>
+                        </tr>
+                       </table>
+                    </td>
+                    <td width="10%"></td>
+                </tr>
+                <tr>
+
+                </tr>
+            </table>

@@ -10,27 +10,27 @@
                             <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_script_entity)%>:</td>
                             <td><%=f.select :entity_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_entity,:lookup_code,:meaning,@script.entity_code),{},{:disabled=>true}%></td>
+                                                options_from_collection_for_select(available_entity,:lookup_code,:wrap_meaning,@script.entity_code),{},{:disabled=>true}%></td>
                             </tr>
                             <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_script_condition)%>:</td>
                             <td><%=f.select :condition_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_entity,:lookup_code,:meaning)%></td>
+                                                options_from_collection_for_select(available_condition,:lookup_code,:wrap_meaning)%></td>
                             </tr>                        
                             <tr>
                                 <td class="itemdetailtablelabel"><%=(t :label_irm_script_action)%>:</td>
                                 <td><%=f.select :action_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                    options_from_collection_for_select(available_condition,:condition_code,:wrap_name)%></td>
+                                                    options_from_collection_for_select(available_action,:condition_code,:wrap_name)%></td>
                             </tr>
                             <tr>
                                 <td class="itemdetailtablelabel"><%=(t :label_irm_script_template)%>:</td>
                                 <td><%=f.select :template_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                    options_from_collection_for_select(available_action,:action_code,:wrap_name)%></td>
+                                                    options_from_collection_for_select(available_entity,:action_code,:wrap_name)%></td>
                             </tr>
                             <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_script_status_code)%>:</td>
                             <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_status,:lookup_code,:meaning,@script.status_code)%></td>
+                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@script.status_code)%></td>
                             </tr>
                            </table>
                         </td>
