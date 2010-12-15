@@ -122,13 +122,16 @@ function ajaxSubmit(el) {
    				return false;
    			}
 		}
-        alert("before submit");
 		var $formElement = $this.parents("form:first");
         //alert($formElement.attr('action'));
-		$formElement.ajaxSubmit(function(data, status) {
-			loadAndRunAction(arr, tmp, data, identify);
-		});
-        alert("after submit");
+		$formElement.ajaxSubmit({success: function(data, status) {
+                                    loadAndRunAction(arr, tmp, data, identify);
+                                },
+                                error:function(xhr)
+                                {
+                                    loadAndRunActionFailure(arr, tmp);
+                                }
+                           });
 		return false;
 	});
 }
@@ -465,6 +468,10 @@ function loadAndRunAction(arr, e, data, identify) {
     	var fail = parseFunction(arr.fail, e, identify);
     	executeFunctions(fail, element);
     }
+}
+
+function loadAndRunActionFailure(arr, e){
+    executeFunctions(arr.fail, null);
 }
 
 function executeFunctions(script, data) {
