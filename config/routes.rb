@@ -100,9 +100,9 @@ Ironmine::Application.routes.draw do
     match '/identities/update_password(.:format)' => "identities#update_password", :via => :put
 
     #global_settings
-    match '/global_settings/edit(.:format)' => "global_settings#edit", :via => :get
-    match '/global_settings/:id(.:format)' => "global_settings#update", :via => :put
     match '/global_settings(/index)(.:format)' => "global_settings#index", :via => :get
+    match '/global_settings/edit(.:format)' => "global_settings#edit", :via => :get
+    match '/global_settings/:id/update(.:format)' => "global_settings#update"
     match '/global_settings/crop(.:format)' => "global_settings#crop"
     #auth_sources
     match '/auth_sources(/index)(.:format)' => "auth_sources#index", :via => :get

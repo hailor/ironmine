@@ -1,24 +1,34 @@
 <div class="containers" id="containers">
   <div id="form" class="container">
-    <div class="containerheader">
-      <div class="floatleft headertitle"><%=t(:label_irm_common_login)%>(ironmine/123456)</div>
-    </div>
     <%if flash[:error]%>
       <div class="errormsgbox">
         <%=flash[:error]%>
       </div>
     <%end%>
-    <% form_tag({:action=> "login"},{:id=>"login_form"}) do %>
-       <table class="paddedtable" cellspacing="0">
-         <tbody>
-             <tr><td class="paddedtablelabel"><%=(t :label_irm_common_username)%></td><td><%=text_field_tag :username,nil, :required=>true%></td></tr>
-             <tr><td class="paddedtablelabel"><%=(t :label_irm_common_password)%></td><td><%=password_field_tag :password, nil,:required=>true%></td></tr>
-         </tbody>
-       </table> 
+    <table class="leftnavigation" cellspacing="0">
+        <tbody>
+            <tr class="navigationheader">
+                <td><%=t(:label_irm_common_login)%>(ironmine/123456)</td>
+                <td></td>
+            </tr>
+            <tr class="navigationbody">
+                <td class="loginform">
 
-    <div class="containerfooter">
-      <div class="button floatright"><%= link_to t(:label_irm_common_login),{},:type=>"submit"%></div>
-    </div>
-     <%end%>
+            <% form_tag({:action=> "login"},{:id=>"login_form"}) do %>
+               <table class="logintable" cellspacing="0" cellpadding="0">
+                 <tbody>
+                     <tr><td class="loginlabel"><%=(t :label_irm_common_username)%></td><td><%=text_field_tag :username,nil%></td></tr>
+                     <tr><td class="loginlabel"><%=(t :label_irm_common_password)%></td><td><%=password_field_tag :password, nil%></td></tr>
+                     <tr><td class="loginlabel">&nbsp;</td><td><div class="button floatright"><%= link_to t(:label_irm_common_login),{},:type=>"submit"%></div></td></tr>
+                 </tbody>
+               </table>
+             <%end%>
+                </td>
+              <td class="loginicon"><%= image_tag get_global_icon %></td>
+            </tr>
+        </tbody>
+    </table>
+
+
   </div>
 </div>  
