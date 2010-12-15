@@ -1,4 +1,4 @@
-require '/paperclip_processors/cropper'
+require 'paperclip_processors/cropper'
 include Paperclip
 
 class Irm::GlobalSetting < ActiveRecord::Base
