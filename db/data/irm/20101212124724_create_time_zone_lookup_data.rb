@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class CreateTimeZoneLookupData < ActiveRecord::Migration
   def self.up
     timezone_lookup_type=Irm::LookupType.new(:lookup_level=>'GLOBAL',

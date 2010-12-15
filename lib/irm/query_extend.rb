@@ -12,6 +12,10 @@ module Irm::QueryExtend
           class_eval do
             scope :enabled,where("#{table_name}.status_code = ?",Irm::Constant::ENABLED)
 
+            scope :query ,lambda{|id|
+              where("#{table_name}.id = ?",id)
+            }
+
             scope :query_by_company,lambda{|company_id|
               where("#{table_name}.company_id = ?",company_id)
             }
@@ -42,14 +46,9 @@ module Irm::QueryExtend
             }
 
 
-            def query(id)
-              find(id) rescue nil
-            end
-
             def wrap_name
               self[:name]
             end
-
           end
         end
     end
@@ -73,7 +72,18 @@ module Irm::QueryExtend
       end
 
       module ClassMethods
+        def query_by_id(id)
+          super(id) rescue nil
+        end
 
+         #将不符合当前model中的属性删除
+        def crop(options)
+          return {} unless options.is_a?(Hash)
+          options.keys.each do |key|
+            options.delete(key) unless self.respond_to?(key.to_sym)
+          end
+          options
+        end
       end
     end
 end

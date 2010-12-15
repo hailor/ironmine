@@ -98,6 +98,7 @@ Ironmine::Application.routes.draw do
     match '/global_settings/edit(.:format)' => "global_settings#edit", :via => :get
     match '/global_settings/:id(.:format)' => "global_settings#update", :via => :put
     match '/global_settings(/index)(.:format)' => "global_settings#index", :via => :get
+    match '/global_settings/crop(.:format)' => "global_settings#crop"
     #auth_sources
     match '/auth_sources(/index)(.:format)' => "auth_sources#index", :via => :get
     match '/auth_sources/:id/edit(.:format)' => "auth_sources#edit", :via => :get
@@ -152,6 +153,8 @@ Ironmine::Application.routes.draw do
     match '/navigations/workspace(.:format)' =>'navigations#workspace'
     match '/navigations/my_page(.:format)' =>'navigations#my_page'
     match '/navigations/my_setting(.:format)' =>'navigations#my_setting'
+    match '/navigations/admin(.:format)' =>'navigations#admin'
+    match '/navigations/advance_setting(.:format)' =>'navigations#advance_setting'
     #mail_templates
     match '/mail_templates/new(.:format)'=>"mail_templates#new",:via=>:get
     match '/mail_templates(.:format)'=>"mail_templates#create",:via=>:post
@@ -194,7 +197,7 @@ Ironmine::Application.routes.draw do
     match '/companies/:id/multilingual_edit(.:format)' => "companies#multilingual_edit", :via => :get
     match '/companies/:id/multilingual_update(.:format)' => "companies#multilingual_update", :via => :put
     match '/companies/get_data(.:format)' => "companies#get_data"    
-    match '/companies/base_info(.:format)' => "companies#base_info"    
+    match '/companies/base_info(.:format)' => "companies#base_info"
   end
 
   match '/demo(/index)' => 'demo#index'

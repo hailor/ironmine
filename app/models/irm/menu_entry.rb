@@ -14,6 +14,9 @@ class Irm::MenuEntry < ActiveRecord::Base
 #  validates_presence_of :permission_code, :if => Proc.new { |i| i.sub_menu_code.blank? }
   validates_with MenuEntryValidator
 
+  #加入activerecord的通用方法和scope
+  query_extend
+
   scope :query_by_menu_code,lambda{|menu_code|where(:menu_code => menu_code)}
   scope :query_by_id, lambda{|id| where(:id => id)}
   def self.check_menu_entry_exist(id)

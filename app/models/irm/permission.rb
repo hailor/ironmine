@@ -17,6 +17,8 @@ class Irm::Permission < ActiveRecord::Base
   #加入activerecord的通用方法和scope
   query_extend
 
+  before_validation :set_product_id
+
   #通过controller,action确定permission
   scope :position,lambda {|controller,action| where("page_controller = ? AND page_action = ?", controller,action) }
 
@@ -50,6 +52,12 @@ class Irm::Permission < ActiveRecord::Base
   }
 
 
+  def set_product_id
+    product_code = self.page_controller.gsub(/\/.*/, "")
+    product = Irm::ProductModule.query_by_short_name(product_code.upcase).first
+    self.product_id = product.id if product
+  end
+
   # 判断是否为公开权限
   # //TODO 使用缓存
   def publiced?
@@ -68,6 +76,7 @@ class Irm::Permission < ActiveRecord::Base
   end
 
   def self.to_permission(options={})
+    crop(options)
     Irm::Permission.new(options)
   end
 

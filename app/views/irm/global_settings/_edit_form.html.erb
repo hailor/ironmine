@@ -1,26 +1,67 @@
-   <div id="global_edit">
-     <%= form_for(@global_setting,:url=>{:action=>"update", :id => @global_setting},:builder => LabellingFormBuilder) do |f| %>
-        <div class="containerheader">
-            <div class="floatleft headertitle"><%=t(:label_irm_global_setting)%></div>
-        </div>
-        <table class="paddedtable" cellspacing="0">
-            <tbody>
-                <tr><td class="paddedtablelabel"><%=(t :label_irm_global_setting_theme_name)%>:</td>
-                  <td><%=f.select :theme_name, available_themes, {:include_blank => false}%></td>
-                </tr>
-                <tr><td class="paddedtablelabel"><%=(t :label_irm_global_setting_upload_file_limit)%>:</td>
-                  <td><%=f.text_field :upload_file_limit ,:size=>40, :irm_numberonly => true%></td>
-                </tr>
-                <tr><td class="paddedtablelabel"><%=(t :label_irm_global_setting_timezone)%>:</td>
-                  <td><%=f.select :timezone, available_timezone, {:include_blank => false}%></td>
-                </tr>
-                <tr><td class="paddedtablelabel"><%=(t :label_irm_global_setting_logo)%>:</td>
-                  <td><%=f.text_field :logo_file_name, :size=>40%></td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="containerfooter">
-            <div class="button floatright" ><%= link_to t(:save), {}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);/replace(system_message_box,system_message_box);"}%></div>
-        </div>
-     <% end %>
-   </div>
+<div id="global_edit">
+ <%= form_for(@global_setting,:url=>{:action=>"update", :id => @global_setting},:builder => LabellingFormBuilder, :html => {:method => :put, :id => "edit_setting_form", :multipart => true}) do |f| %>
+    <div class="containerheader">
+        <div class="floatleft headertitle"><%=t(:label_irm_global_setting)%></div>
+    </div>
+    <table class="twocolumnform" cellspacing="0">
+        <tr>
+          <td class="left">
+            <table cellspacing="0">
+                <tbody>
+                    <tr><td class="paddedtablelabel"><%=(t :label_irm_global_setting_theme_name)%>:</td>
+                      <td><%=f.select :theme_name, available_themes, {:include_blank => false}%></td>
+                    </tr>
+                    <tr><td class="paddedtablelabel"><%=(t :label_irm_global_setting_upload_file_limit)%>:</td>
+                      <td><%=f.text_field :upload_file_limit ,:size=>40, :irm_numberonly => true%></td>
+                    </tr>
+                    <tr><td class="paddedtablelabel"><%=(t :label_irm_global_setting_timezone)%>:</td>
+                      <td><%=f.select :timezone, available_timezone, {:include_blank => false}%></td>
+                    </tr>
+                    <tr><td class="paddedtablelabel"><%=(t :label_irm_global_setting_logo)%>:</td>
+                      <td><%=f.file_field :logo%></td>
+                    </tr>
+                </tbody>
+            </table>
+          </td>
+          <td class="middle">
+
+          </td>
+          <td class="middle" id="preimage">
+            <%= image_tag @global_setting.logo.url(:original)%>
+          </td>
+          <td class="sep">
+            
+          </td>
+        </tr>
+    </table>
+    <div class="containerfooter">
+        <div class="button floatright"><%= link_to t(:save), {}, {:action_type => "ajaxSubmit", :script => "/cropwindow();/replace(system_message_box,system_message_box);"}%></div>
+    </div>
+ <% end %>
+<div id='crop_win' style='display:none'></div>
+<script type="text/javascript" charset="utf-8">
+    var crop_win,win;
+    function cropwindow(){
+        if($('#crop_win').length > 0){
+            crop_win = new dhtmlXWindows();
+            crop_win.setImagePath("/images/dhtmlx/");
+            crop_win.enableAutoViewport(false);
+            crop_win.attachViewportTo("body");
+            $('#crop_win').load("crop");
+            win = crop_win.createWindow("crop_win",50,50,600,400);
+            win.attachObject('crop_win');
+            win.button('park').hide();
+            win.button('close').hide();
+            win.button('minmax1').hide();
+            win.button('minmax2').hide();
+            win.denyResize();
+            win.setModal(true);
+            var evId = win.attachEvent("onClose", function(win){
+                win.detachEvent(evId);
+                win.close();
+                $('#container1').load("edit");
+            });
+        }
+    }
+</script>
+</div>
