@@ -1,5 +1,5 @@
 <div class="container" id="img_container">
-<% form_for @global_setting, :url => {:action=>"update", :id => @global_setting} do |form| %>      
+<% form_for @global_setting, :url => {:action=>"update", :id => @global_setting} do |form| %>
     <table style="width:598px;">
     <tr>
       <td style="width:50%;">&nbsp;</td><td style="width:5%;text-align:center;"><div><%= image_tag @global_setting.logo.url(:original), :id => "crop_box"%></div></td><td style="width:50%;">&nbsp;</td>
@@ -9,7 +9,7 @@
      <%= form.hidden_field attribute, :id => attribute %>
     <% end %>
 <div class="containerfooter">
-  <div class="button floatleft"><%= link_to t(:cut_image), {}, {:action_type => "ajaxSubmit", :script => "/alert('123');/replace(system_message_box,system_message_box);"}%></div>
+  <div class="button floatleft"><%= link_to t(:cut_image), {}, {:action_type => "ajaxSubmit", :script => "//closeWindow();"}%></div>
   <div class="button floatleft"><a href="javascript:void(0);" onclick="closeWindow();"><%= t :close  %></a></div>
 </div>
  <% end %>

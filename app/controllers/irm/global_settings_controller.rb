@@ -13,6 +13,10 @@ class Irm::GlobalSettingsController < ApplicationController
   # GET /global_settings/1/edit
   def edit
     @global_setting = Irm::GlobalSetting.all.first
+
+    respond_to do |format|
+      format.js { render "edit" }
+    end
   end
 
 

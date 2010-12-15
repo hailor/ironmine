@@ -1,3 +1,8 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.functions').find('a[zone]:first').trigger('click');
+  });
+</script>
 <%= breadcrumbs %>
 <table width="100%" cellspacing="0" cellpadding="4" border="0">
 	<tr>
@@ -42,10 +47,57 @@
                     </tbody>
                 </table>
             </div>
+            <div>
+                                    <table class="leftnavigation" cellspacing="0">
+                                        <tbody>
+                                            <tr class="navigationheader">
+                                                <td>子功能</td>
+                                            </tr>
+                                            <tr class="navigationbody functions">
+                                                <td>
+                                                    <a href="/product_modules/index" zone="system_content">产品模块</a>
+                                                    <br>
+                                                    <a href="/identities" zone="system_content">帐号</a>
+                                                    <br>
+                                                    <a href="/lookup_types/index" zone="system_content">快速编码</a>
+                                                    <br>
+                                                    <a href="/languages/index" zone="system_content">语言信息</a>
+                                                    <br>
+                                                    <a href="/conditions/index" zone="system_content">触发条件</a>
+                                                    <br>
+                                                    <a href="/actions/index" zone="system_content">执行动作</a>
+                                                    <br>
+                                                    <a href="/scripts/index" zone="system_content">服务宏</a>
+                                                    <br>
+                                                    <a href="/mail_templates/index" zone="system_content">邮件模板</a>
+                                                    <br>
+                                                    <a href="/currencies/index" zone="system_content">币种</a>
+                                                    <br>
+                                                    <a href="/regions/index" zone="system_content">区域</a>
+                                                    <br>
+                                                    <a href="/companies/index" zone="system_content">公司</a>
+                                                    <br>
+                                                    <a href="/functions/index" zone="system_content">功能</a>
+                                                    <br>
+                                                    <a href="/function_groups/index" zone="system_content">功能组</a>
+                                                    <br>
+                                                    <a href="/permissions/index" zone="system_content">权限</a>
+                                                    <br>
+                                                    <a href="/menus/index" zone="system_content">菜单</a>
+                                                    <br>
+                                                    <a href="/auth_sources/index" zone="system_content">认证源</a>
+                                                    <br>
+                                                    <a href="/global_settings/index" zone="system_content">全局设置</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
         </td>
         <td width="87%" valign="top">
             <div>
             <div id="system_message_box"></div>
+            <div id="system_content"></div>  
             </div>
         </td>
     </tr>
