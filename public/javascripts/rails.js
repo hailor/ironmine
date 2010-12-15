@@ -41,12 +41,20 @@ jQuery(function ($) {
                             el.trigger('ajax:loading', xhr);
                         },
                         success: function (data, status, xhr) {
+                            // replace zone content with respone data
+                            if(el.attr('zone')){
+                              $('#'+el.attr('zone')).html(data);
+                            }
                             el.trigger('ajax:success', [data, status, xhr]);
                         },
                         complete: function (xhr) {
                             el.trigger('ajax:complete', xhr);
                         },
                         error: function (xhr, status, error) {
+                            // replace zone content with respone data
+                            if(el.attr('zone')){
+                              $('#'+el.attr('zone')).html(error);
+                            }
                             el.trigger('ajax:failure', [xhr, status, error]);
                         }
                     });
@@ -78,7 +86,7 @@ jQuery(function ($) {
         e.preventDefault();
     });
 
-
+    // 修正data-remote在ie中不能正常提交的bug
     if (jQuery.browser.msie){
        $("form[data-remote]").find("input[type='submit'],button[type='submit'],input[name='commit']").live('click',function(e) {
            $(this).parents("form[data-remote]").callRemote();
@@ -162,6 +170,33 @@ jQuery(function ($) {
               });
               $(this).find('.jtabitem.selected:first').length>0? $(this).find('.jtabitem.selected:first').trigger('click') :$(this).find('.jtabitem:first').trigger('click');
             });
+        },
+        cusload: function( url, params, callback ) {
+          var el      = this;
+          var cuscallback,cusparams;
+          if ( params&&$.isFunction( params ) ){
+            cusparams = null;
+            cuscallback = function(data,status,xhr){
+              params.call(data,status,xhr);
+              init(el);
+              pre_init_partial(el);
+            };
+            el.load( url, cuscallback);
+          }else if(params&&callback){
+            cusparams = params;
+            cuscallback = function(data,status,xhr){
+              callback.call(data,status,xhr);
+              init(el);
+              pre_init_partial(el);
+            };
+
+          }else{
+            cuscallback = function(data,status,xhr){
+              init(el);
+              pre_init_partial(el);
+            };
+          }
+          el.load( url,cusparams, cuscallback);
         }
     });
     $('a[zone]').live('click',function(e){
@@ -169,7 +204,7 @@ jQuery(function ($) {
         var source = ($(this).attr('href')||"").replace(/^\s+|\s+$/g,"");
         if(source !='#'&&$('#'+zone).length>0)
         {
-          $('#'+zone).load(source,function(response, status, xhr) {init('#'+zone);});
+          $('#'+zone).cusload(source);
         }
         if(e.preventDefault) e.preventDefault();
     });
@@ -177,4 +212,16 @@ jQuery(function ($) {
       $(this).parents("form:first").submit();
       if(e.preventDefault) e.preventDefault();
     });
+
+    $('div[targetzone]').find("a:not([type]):not([data-confirm]):not([data-remote]):not([zone]:not([type]))").live('click',function(e){
+        var source = ($(this).attr('href')||"").replace(/^\s+|\s+$/g,"");
+        var zone = $(this).parents("div[targetzone]:first");
+        zone = $(zone).attr("targetzone");
+        if(source !='#'&&$('#'+zone).length>0)
+        {
+          $('#'+zone).cusload(source);
+        }        
+        if(e.preventDefault) e.preventDefault();
+    });
+
 });
