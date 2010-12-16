@@ -1,5 +1,4 @@
 Ironmine::Application.routes.draw do
-
   scope :module => "irm" do
     root :to => "navigations#entrance"
     match 'login'=>'common#login',:as=>:login
@@ -201,11 +200,51 @@ Ironmine::Application.routes.draw do
     match '/companies/create(.:format)' => "companies#create", :via => :post
     match '/companies/:id/multilingual_edit(.:format)' => "companies#multilingual_edit", :via => :get
     match '/companies/:id/multilingual_update(.:format)' => "companies#multilingual_update", :via => :put
-    match '/companies/get_data(.:format)' => "companies#get_data"    
+    match '/companies/get_data(.:format)' => "companies#get_data"
     match '/companies/base_info(.:format)' => "companies#base_info"
     #login_records
     match '/login_records(/index)(.:format)' => "login_records#index", :via => :get
     match '/login_records/get_data(.:format)' => "login_records#get_data"
+    #organizations
+    match '/organizations(/index)(.:format)' => "organizations#index", :via => :get
+    match '/organizations/:id/edit(.:format)' => "organizations#edit", :via => :get
+    match '/organizations/:id(.:format)' => "organizations#update", :via => :put
+    match '/organizations/new(.:format)' => "organizations#new", :via => :get
+    match '/organizations/create(.:format)' => "organizations#create", :via => :post
+    match '/organizations/:id/multilingual_edit(.:format)' => "organizations#multilingual_edit", :via => :get
+    match '/organizations/:id/multilingual_update(.:format)' => "organizations#multilingual_update", :via => :put
+    match '/organizations/get_data(.:format)' => "organizations#get_data"
+    match '/organizations/belongs_to(.:format)' => "organizations#belongs_to"
+    #departments
+    match '/departments(/index)(.:format)' => "departments#index", :via => :get
+    match '/departments/:id/edit(.:format)' => "departments#edit", :via => :get
+    match '/departments/:id(.:format)' => "departments#update", :via => :put
+    match '/departments/new(.:format)' => "departments#new", :via => :get
+    match '/departments/create(.:format)' => "departments#create", :via => :post
+    match '/departments/:id/multilingual_edit(.:format)' => "departments#multilingual_edit", :via => :get
+    match '/departments/:id/multilingual_update(.:format)' => "departments#multilingual_update", :via => :put
+    match '/departments/get_data(.:format)' => "departments#get_data"
+    #value_sets
+    match '/value_sets(/index)(.:format)' => "value_sets#index", :via => :get
+    match '/value_sets/new(.:format)' => "value_sets#new", :via => :get
+    match '/value_sets/create(.:format)' => "value_sets#create", :via => :post
+    match '/value_sets/get_data(.:format)' => "value_sets#get_data"
+    match '/value_sets/:id/edit(.:format)' => "value_sets#edit", :via => :get
+    match '/value_sets/:id(.:format)' => "value_sets#update", :via => :put
+    match '/value_sets/:id/multilingual_edit(.:format)' => "value_sets#multilingual_edit", :via => :get
+    match '/value_sets/:id/multilingual_update(.:format)' => "value_sets#multilingual_update", :via => :put
+    #flex_values
+    match '/flex_values/:value_set_id/index(.:format)' => "flex_values#index", :via => :get
+    match '/flex_values/:value_set_id/new(.:format)' => "flex_values#new", :via => :get
+    match '/flex_values/:value_set_id/create(.:format)' => "flex_values#create", :via => :post
+    match '/flex_values/:value_set_id/get_data(.:format)' => "flex_values#get_data"
+    match '/flex_values/:id/edit(.:format)' => "flex_values#edit", :via => :get
+    match '/flex_values/link_edit(.:format)' => "flex_values#link_edit", :via => :post
+    match '/flex_values/:id(.:format)' => "flex_values#update", :via => :put
+    match '/flex_values/:id/multilingual_edit(.:format)' => "flex_values#multilingual_edit", :via => :get
+    match '/flex_values/:id/multilingual_update(.:format)' => "flex_values#multilingual_update", :via => :put
+    match '/flex_values/destroy(.:format)' => "flex_values#destroy"
+    match '/flex_values/create_value(.:format)' => "flex_values#create_value", :via => :post
   end
 
   match '/demo(/index)' => 'demo#index'

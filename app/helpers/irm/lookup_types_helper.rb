@@ -29,4 +29,8 @@ module Irm::LookupTypesHelper
     Irm::LookupValue.query_by_lookup_type("TIMEZONE").multilingual
   end
 
+  def available_mail_template
+    Irm::MailTemplate.query_by_status_code("ENABLED").multilingual
+  end
+
 end

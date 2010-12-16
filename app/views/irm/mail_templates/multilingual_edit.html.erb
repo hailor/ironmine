@@ -11,7 +11,7 @@ $(document).ready(function(){
        });
  });
 </script>
-<div class="container" id="id_mail_template_multilingual">
+<div id="id_mail_template_multilingual">
     <%= form_tag("/mail_templates/#{params[:id]}/multilingual_update",:method=>:put) do %>
                 <div class="containerheader">
                     <div class="floatleft headertitle"><%=t(:label_irm_mail_template_multilingual_edit)%> - <%= @mail_template.template_code%></div>

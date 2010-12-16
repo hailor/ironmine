@@ -1,0 +1,49 @@
+   <div id="id_organization_edit">
+     <%= form_for(@organization,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+                <div class="containerheader">
+                    <div class="floatleft headertitle"><%=t(:label_irm_organization_edit)%> - <%= @organization.short_name%></div>
+                </div>
+                <table class="twocolumnstable" cellspacing="0">
+                    <tr>
+                        <td class="twocolumn">
+                           <table class="itemdetailtable">
+                            <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_organization_company_name)%>:</td>
+                            <td><%=f.select :company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_company,:id,:wrap_name,@organization.company_id),{},{:disabled=>true}%></td>
+                            </tr>
+                            <tr>
+                                <td class="itemdetailtablelabel"><%=(t :label_irm_organization_short_name)%>:</td>
+                                <td><%=f.text_field :short_name,:size=>40,:readonly=>"readonly"%></td>
+                            </tr>
+                            <tr>
+                                <td class="itemdetailtablelabel"><%=(t :label_irm_organization_name)%>:</td>
+                                <td><%=f.text_field :name,:value=>@organization[:name],:size=>40,:required=>true %></td>
+                            </tr>
+                            <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_organization_status_code)%>:</td>
+                            <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@organization.status_code)%></td>
+                            </tr>
+                           </table>
+                        </td>
+                        <td class="twocolumn" cellspacing="0">
+                           <table class="itemdetailtable">
+                            <div id="id_lookup_level">
+                               <tr><td class="itemdetailtablelabel">
+                                     <%=t(:label_irm_organization_description)%>:
+                               </td>
+                               <td><%= f.text_area :description, :value => @organization[:description], :cols => 40, :rows => 2    %></td>
+                            </tr>
+                            </div>
+                           </table>
+                        </td>
+                        <td width="10%"></td>
+                    </tr>
+                </table>
+                <div class="containerfooter">
+                    <div class="button floatright" ><%= link_to t(:save), {:controller=>"irm/organizations",:action=>"update"}, {:action_type => "ajaxSubmit", :script => "/reload_grid('id_organization_grid');replace(system_message_box,system_message_box);/replace(system_message_box,system_message_box);"}%></div>
+                    <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(id_organization_new,id_organization_new);/", :action_type=>"ajaxLink"%></div>
+                </div>
+     <% end %>
+   </div>

@@ -1,4 +1,4 @@
-   <div id="id_condition_edit" class="container">
+   <div id="id_condition_edit">
      <%= form_for(@condition,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
                 <div class="containerheader">
                     <div class="floatleft headertitle"><%=t(:label_irm_condition_edit)%> - <%= @condition.condition_code%></div>

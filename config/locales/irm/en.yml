@@ -229,4 +229,29 @@ en:
   label_irm_login_record_login_at: Login at
   label_irm_login_record_logout_at: Logout at
   #=========================end irm login_records_controller=======================#
+  #=========================    irm organizations_controller=======================#
+  label_irm_organization_company_name: Company Name
+  label_irm_organization_short_name: Code
+  label_irm_organization_name: Name
+  label_irm_organization_description: Description
+  label_irm_organization_status_code: Status Code
+  label_irm_organization_new: New organization
+  label_irm_organization_edit: Edit organization
+  label_irm_organization_list: List organization
+  label_irm_organization_organizations_tls:
+    name: Name
+  #=========================end irm organizations_controller=======================#
+  #=========================    irm departments_controller=======================#
+  label_irm_department_company_name: Company Name
+  label_irm_department_organization_name: Organization Name
+  label_irm_department_short_name: Code
+  label_irm_department_name: Name
+  label_irm_department_description: Description
+  label_irm_department_status_code: Status Code
+  label_irm_department_new: New department
+  label_irm_department_edit: Edit department
+  label_irm_department_list: List department
+  label_irm_department_departments_tls:
+    name: Name
+  #=========================end irm departments_controller=======================#
 

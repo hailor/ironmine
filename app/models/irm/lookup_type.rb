@@ -11,5 +11,7 @@ class Irm::LookupType < ActiveRecord::Base
 
   validates_uniqueness_of :lookup_type
 
-  
+  def wrap_meaning
+    self[:meaning]
+  end
 end

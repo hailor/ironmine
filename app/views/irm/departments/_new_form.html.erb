@@ -1,0 +1,51 @@
+<div id="id_department_new">
+     <%= form_for(@department,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+            <div class="containerheader">
+                <div class="floatleft headertitle"><%=t(:label_irm_department_new)%></div>
+            </div>
+            <table class="twocolumnstable" cellspacing="0">
+                <tr>
+                    <td class="twocolumn">
+                       <table class="itemdetailtable">
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_department_company_name)%>:</td>
+                            <td><%=f.select(:company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_company,:id,:wrap_name),
+                                                {},:action=>url_for(:controller=>"irm/organizations",:action=>"belongs_to",:company_id=>"cascade_id"),:choice_title=>t(:actionview_instancetag_blank_option),
+                                  :cascade=>"organization_select")%></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_department_organization_name)%>:</td>
+                            <td><%=f.select(:organization_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_organization,:id,:wrap_name),{},:id=>"organization_select")%></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_department_short_name)%>:</td>
+                            <td><%=f.text_field :short_name,:size=>40,:required=>true,:irm_uppercase=>true%></td>
+                        </tr>                        
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_department_name)%>:</td>
+                            <td><%=f.text_field :name,:size=>40,:required=>true %></td>
+                        </tr>
+                       </table>
+                    </td>
+                    <td class="twocolumn" cellspacing="0">
+                       <table class="itemdetailtable">
+                        <div id="id_lookup_level">
+                        <tr><td class="itemdetailtablelabel">
+                              <%=t(:label_irm_department_description)%>:
+                           </td>
+                           <td><%= f.text_area :description, :cols => 40, :rows => 2%></td>
+                        </tr>
+                        </div>
+                       </table>
+                    </td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+            <div class="containerfooter">
+                <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/departments",:action=>"create"}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);reload_grid('id_department_grid');/replace(system_message_box,system_message_box);"}%></div>
+                <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}, :script => "/replace(id_department_index,id_department_index);/", :action_type=>"ajaxLink"%></div>
+            </div>
+     <% end %>
+</div>

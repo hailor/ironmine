@@ -31,7 +31,6 @@ module DhtmlxgridJson
     else
       json << "}"
     end
-    puts 'sdfsadf='+json
     json
   end
 
