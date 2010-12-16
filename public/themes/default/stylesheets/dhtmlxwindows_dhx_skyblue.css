@@ -9,7 +9,7 @@
 	top: 0px;
 	abackground-color: #FFFFFF;
 	background-color: #c2d5dc;
-	background-image: url("/images/dhtmlx/dhxwins_dhx_skyblue/active/header_bg.gif");
+	background-image: url("../images/dhtmlx/dhxwins_dhx_skyblue/active/header_bg.gif");
 	background-repeat: repeat-x;
 	background-position: top;
 	border: #a4bed4 1px solid;
@@ -47,7 +47,7 @@
 }
 /* active progress */
 .dhtmlx_skin_dhx_skyblue div.dhtmlx_window_active div.dhtmlx_wins_progress {
-	background-image: url("/images/dhtmlx/dhxwins_dhx_skyblue/active/progress.gif");
+	background-image: url("../images/dhtmlx/dhxwins_dhx_skyblue/active/progress.gif");
 }
 
 
@@ -165,7 +165,7 @@
 	left: 0px;
 	top: 0px;
 	background-color: #dbe6f3;
-	background-image: url("/images/dhtmlx/dhxwins_dhx_skyblue/inactive/header_bg.gif");
+	background-image: url("../images/dhtmlx/dhxwins_dhx_skyblue/inactive/header_bg.gif");
 	background-repeat: repeat-x;
 	background-position: top;
 	border: #c9d9e6 1px solid;
@@ -201,7 +201,7 @@
 }
 /* inactive progress */
 .dhtmlx_skin_dhx_skyblue div.dhtmlx_window_inactive div.dhtmlx_wins_progress {
-	background-image: url("/images/dhtmlx/dhxwins_dhx_skyblue/inactive/progress.gif");
+	background-image: url("../images/dhtmlx/dhxwins_dhx_skyblue/inactive/progress.gif");
 }
 /* inactive butons */
 /* close */
@@ -350,7 +350,7 @@
 	float: left;
 	width: 16px;
 	height: 16px;
-	background-image: url("/images/dhtmlx/dhxwins_dhx_skyblue/buttons.gif");
+	background-image: url("../images/dhtmlx/dhxwins_dhx_skyblue/buttons.gif");
 }
 /*
 .dhtmlx_skin_dhx_skyblue div.dhtmlx_window_main_content {
@@ -436,7 +436,7 @@
 	top: 2px;
 	height: 22px;
 	line-height: 22px;
-	background-image: url("/images/dhtmlx/dhxwins_dhx_skyblue/statusbar_bg.gif");
+	background-image: url("../images/dhtmlx/dhxwins_dhx_skyblue/statusbar_bg.gif");
 	background-repeat: repeat-x;
 	width: auto;
 	padding: 0px 4px;

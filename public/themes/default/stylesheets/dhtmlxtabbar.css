@@ -94,7 +94,7 @@
 }
 
 .dhx_tabbar_zone_dhx_skyblue .dhx_tabbar_row {
-    background-image: url("/images/dhtmlx/dhx_skyblue/bg_top.png" /*tpa=http://www.dhtmlx.com/docs/products/dhtmlxTabbar/codebase/imgs/dhx_skyblue/bg_top.png*/ );
+    background-image: url("../images/dhtmlx/dhx_skyblue/bg_top.png" /*tpa=http://www.dhtmlx.com/docs/products/dhtmlxTabbar/codebase/imgs/dhx_skyblue/bg_top.png*/ );
     border-right: 1px solid #B6CBDD;
     border-left: 1px solid #B6CBDD;
 }
@@ -167,7 +167,7 @@
 }
 
 .dhx_tabbar_zone_bottom .dhx_tabbar_zone_dhx_skyblue .dhx_tabbar_row {
-    background-image: url("/images/dhtmlx/dhx_skyblue/bg_bottom.png" /*tpa=http://www.dhtmlx.com/docs/products/dhtmlxTabbar/codebase/imgs/dhx_skyblue/bg_bottom.png*/ );
+    background-image: url("../images/dhtmlx/dhx_skyblue/bg_bottom.png" /*tpa=http://www.dhtmlx.com/docs/products/dhtmlxTabbar/codebase/imgs/dhx_skyblue/bg_bottom.png*/ );
     background-position: bottom;
 }
 
@@ -211,7 +211,7 @@
 }
 
 .dhx_tabbar_zone_left .dhx_tabbar_zone_dhx_skyblue .dhx_tabbar_row {
-    background-image: url("/images/dhtmlx/dhx_skyblue/bg_left.png" /*tpa=http://www.dhtmlx.com/docs/products/dhtmlxTabbar/codebase/imgs/dhx_skyblue/bg_left.png*/ );
+    background-image: url("../images/dhtmlx/dhx_skyblue/bg_left.png" /*tpa=http://www.dhtmlx.com/docs/products/dhtmlxTabbar/codebase/imgs/dhx_skyblue/bg_left.png*/ );
     border: 1px solid #B6CBDD;
     border-width: 1px 0px 1px 0px;
 }
@@ -262,7 +262,7 @@
 }
 
 .dhx_tabbar_zone_right .dhx_tabbar_zone_dhx_skyblue .dhx_tabbar_row {
-    background-image: url("/images/dhtmlx/dhx_skyblue/bg_right.png" /*tpa=http://www.dhtmlx.com/docs/products/dhtmlxTabbar/codebase/imgs/dhx_skyblue/bg_right.png*/ );
+    background-image: url("../images/dhtmlx/dhx_skyblue/bg_right.png" /*tpa=http://www.dhtmlx.com/docs/products/dhtmlxTabbar/codebase/imgs/dhx_skyblue/bg_right.png*/ );
     background-position: right;
     border: 1px solid #B6CBDD;
     border-width: 1px 0px 1px 0px;
@@ -320,7 +320,7 @@ div.dhxcont_sb_container {
 }
 
 div.dhxcont_sb_container div.dhxcont_statusbar {
-    background-image: url("/images/dhtmlx/dhx_skyblue/dhxlayout_bg_sb.gif" /*tpa=http://www.dhtmlx.com/docs/products/dhtmlxTabbar/codebase/imgs/dhx_skyblue/dhxlayout_bg_sb.gif*/ );
+    background-image: url("../images/dhtmlx/dhx_skyblue/dhxlayout_bg_sb.gif" /*tpa=http://www.dhtmlx.com/docs/products/dhtmlxTabbar/codebase/imgs/dhx_skyblue/dhxlayout_bg_sb.gif*/ );
     position: relative;
     top: 2px;
     height: 22px;
