@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="containerheader">
+      <div class="floatleft headertitle"><%=t(:label_irm_identity_edit)%> - <%= @identity.login_name%></div>
+  </div>
+  <table class="twocolumnstable" cellspacing="0">
+      <tr>
+          <td class="twocolumn">
+             <table class="itemdetailtable">
+                  <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_login_name)%>:</td>
+                    <td><%=@identity.login_name%></td>
+                  </tr>
+                  <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_email)%>:</td>
+                    <td><%=@identity.email%></td>
+                  </tr>
+                  <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_password)%>:</td>
+                    <td><%=@identity.last_login_at%></td>
+                  </tr>
+             </table>
+          </td>
+          <td class="twocolumn" cellspacing="0">
+             <table class="itemdetailtable">
+                  <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_full_name)%>:</td>
+                    <td><%=@identity.full_name%></td>
+                  </tr>
+                  <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_language_code)%>:</td>
+                    <td><%= @identity[:language_description]%> </td>
+                  </tr>
+             </table>
+          </td>
+          <td width="10%"></td>
+      </tr>
+  </table>
+  <div class="containerfooter">
+      <div class="button floatright"><%= link_to t(:edit), {:action => "edit_info"},:zone=>"system_content"%></div>
+      <div class="button floatright" ><%= link_to t(:edit_password), {:action=>"edit_password"},:zone=>"system_content"%></div>
+  </div>
+</div>

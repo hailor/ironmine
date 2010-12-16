@@ -9,8 +9,7 @@
      <%= form.hidden_field attribute, :id => attribute %>
     <% end %>
 <div class="containerfooter">
-  <div class="button floatleft"><%= link_to t(:cut_image), {}, {:action_type => "ajaxSubmit", :script => "//closeWindow();"}%></div>
-  <div class="button floatleft"><a href="javascript:void(0);" onclick="closeWindow();"><%= t :close  %></a></div>
+  <div class="button floatright"><%= link_to t(:cut_image), {}, {:action_type => "ajaxSubmit", :script => "//closeWindow();"}%></div>
 </div>
  <% end %>
 
