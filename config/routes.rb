@@ -202,6 +202,9 @@ Ironmine::Application.routes.draw do
     match '/companies/:id/multilingual_update(.:format)' => "companies#multilingual_update", :via => :put
     match '/companies/get_data(.:format)' => "companies#get_data"
     match '/companies/base_info(.:format)' => "companies#base_info"
+    #login_records
+    match '/login_records(/index)(.:format)' => "login_records#index", :via => :get
+    match '/login_records/get_data(.:format)' => "login_records#get_data"
     #organizations
     match '/organizations(/index)(.:format)' => "organizations#index", :via => :get
     match '/organizations/:id/edit(.:format)' => "organizations#edit", :via => :get
