@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddValueSetPermissions < ActiveRecord::Migration
   def self.up
     irm_value_sets_index = Irm::Permission.new(:permission_code=>'IRM_VALUE_SETS_INDEX',

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddGlobalSettingPermissions < ActiveRecord::Migration
   def self.up
     irm_global_settings_index = Irm::Permission.new(:permission_code=>'IRM_GLOBAL_SETTINGS_INDEX',

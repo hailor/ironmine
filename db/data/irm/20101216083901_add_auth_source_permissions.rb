@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddAuthSourcePermissions < ActiveRecord::Migration
   def self.up
     irm_auth_sources_index = Irm::Permission.new(:permission_code=>'IRM_AUTH_SOURCES_INDEX',

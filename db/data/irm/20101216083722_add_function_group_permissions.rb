@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddFunctionGroupPermissions < ActiveRecord::Migration
   def self.up
     irm_function_groups_index = Irm::Permission.new(:permission_code=>'IRM_FUNCTION_GROUPS_INDEX',

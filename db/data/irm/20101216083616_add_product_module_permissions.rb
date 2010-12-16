@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddProductModulePermissions < ActiveRecord::Migration
   def self.up
     irm_prodcut_modules_index = Irm::Permission.new(:permission_code=>'IRM_PRODUCT_MODULES_INDEX',

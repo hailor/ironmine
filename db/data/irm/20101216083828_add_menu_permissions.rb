@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddMenuPermissions < ActiveRecord::Migration
   def self.up
     irm_menus_index = Irm::Permission.new(:permission_code=>'IRM_MENUS_INDEX',

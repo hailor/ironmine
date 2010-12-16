@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddFunctionPermissions < ActiveRecord::Migration
   def self.up
     irm_functions_index = Irm::Permission.new(:permission_code=>'IRM_FUNCTIONS_INDEX',
