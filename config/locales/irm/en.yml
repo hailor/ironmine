@@ -222,4 +222,16 @@ en:
   label_irm_company_budget_code: Budget Code
   label_irm_company_home_page: Home Page
   #=========================end irm companies_controller=======================#
+  #=========================    irm organizations_controller=======================#
+  label_irm_organization_company_name: Company Name
+  label_irm_organization_short_name: Code
+  label_irm_organization_name: Name
+  label_irm_organization_description: Description
+  label_irm_organization_status_code: Status Code
+  label_irm_organization_new: New organization
+  label_irm_organization_edit: Edit organization
+  label_irm_organization_list: List organization
+  label_irm_organization_organizations_tls:
+    name: Name
+  #=========================end irm organizations_controller=======================#
 

@@ -1,29 +1,29 @@
-   <div id="id_condition_edit">
-     <%= form_for(@condition,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+   <div id="id_organization_edit">
+     <%= form_for(@organization,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
                 <div class="containerheader">
-                    <div class="floatleft headertitle"><%=t(:label_irm_condition_edit)%> - <%= @condition.condition_code%></div>
+                    <div class="floatleft headertitle"><%=t(:label_irm_organization_edit)%> - <%= @organization.short_name%></div>
                 </div>
                 <table class="twocolumnstable" cellspacing="0">
                     <tr>
                         <td class="twocolumn">
                            <table class="itemdetailtable">
                             <tr>
-                            <td class="itemdetailtablelabel"><%=(t :label_irm_condition_entity_code)%>:</td>
-                            <td><%=f.select :entity_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_entity,:lookup_code,:wrap_meaning,@condition.entity_code),{},{:disabled=>true}%></td>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_organization_company_name)%>:</td>
+                            <td><%=f.select :company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_company,:id,:wrap_name,@organization.company_id),{},{:disabled=>true}%></td>
                             </tr>
                             <tr>
-                                <td class="itemdetailtablelabel"><%=(t :label_irm_condition_condition_code)%>:</td>
-                                <td><%=f.text_field :condition_code,:size=>40,:readonly=>"readonly"%></td>
+                                <td class="itemdetailtablelabel"><%=(t :label_irm_organization_short_name)%>:</td>
+                                <td><%=f.text_field :short_name,:size=>40,:readonly=>"readonly"%></td>
                             </tr>
                             <tr>
-                                <td class="itemdetailtablelabel"><%=(t :label_irm_condition_name)%>:</td>
-                                <td><%=f.text_field :name,:value=>@condition[:name],:size=>40,:required=>true %></td>
+                                <td class="itemdetailtablelabel"><%=(t :label_irm_organization_name)%>:</td>
+                                <td><%=f.text_field :name,:value=>@organization[:name],:size=>40,:required=>true %></td>
                             </tr>
                             <tr>
-                            <td class="itemdetailtablelabel"><%=(t :label_irm_condition_status_code)%>:</td>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_organization_status_code)%>:</td>
                             <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@condition.status_code)%></td>
+                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@organization.status_code)%></td>
                             </tr>
                            </table>
                         </td>
@@ -31,9 +31,9 @@
                            <table class="itemdetailtable">
                             <div id="id_lookup_level">
                                <tr><td class="itemdetailtablelabel">
-                                     <%=t(:label_irm_condition_description)%>:
+                                     <%=t(:label_irm_organization_description)%>:
                                </td>
-                               <td><%= f.text_area :description, :value => @condition[:description], :cols => 40, :rows => 2    %></td>
+                               <td><%= f.text_area :description, :value => @organization[:description], :cols => 40, :rows => 2    %></td>
                             </tr>
                             </div>
                            </table>
@@ -42,8 +42,8 @@
                     </tr>
                 </table>
                 <div class="containerfooter">
-                    <div class="button floatright" ><%= link_to t(:save), {:controller=>"irm/conditions",:action=>"update"}, {:action_type => "ajaxSubmit", :script => "/reload_grid('id_condition_grid');replace(system_message_box,system_message_box);/replace(system_message_box,system_message_box);"}%></div>
-                    <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(id_condition_new,id_condition_new);/", :action_type=>"ajaxLink"%></div>
+                    <div class="button floatright" ><%= link_to t(:save), {:controller=>"irm/organizations",:action=>"update"}, {:action_type => "ajaxSubmit", :script => "/reload_grid('id_organization_grid');replace(system_message_box,system_message_box);/replace(system_message_box,system_message_box);"}%></div>
+                    <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(id_organization_new,id_organization_new);/", :action_type=>"ajaxLink"%></div>
                 </div>
      <% end %>
    </div>

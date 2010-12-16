@@ -2,7 +2,7 @@ class Irm::OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.xml
   def index
-    @organizations = Organization.all
+    @organization = Irm::Organization.new
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class Irm::OrganizationsController < ApplicationController
   # GET /organizations/1
   # GET /organizations/1.xml
   def show
-    @organization = Organization.find(params[:id])
+    @organization = Irm::Organization.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +24,7 @@ class Irm::OrganizationsController < ApplicationController
   # GET /organizations/new
   # GET /organizations/new.xml
   def new
-    @organization = Organization.new
+    @organization = Irm::Organization.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,20 +34,22 @@ class Irm::OrganizationsController < ApplicationController
 
   # GET /organizations/1/edit
   def edit
-    @organization = Organization.find(params[:id])
+    @organization = Irm::Organization.multilingual.find(params[:id])
   end
 
   # POST /organizations
   # POST /organizations.xml
   def create
-    @organization = Organization.new(params[:organization])
+    @organization = Irm::Organization.new(params[:irm_organization])
 
     respond_to do |format|
       if @organization.save
-        format.html { redirect_to(@organization, :notice => 'Organization was successfully created.') }
+        flash[:successful_message] = (t :successfully_created)
+        format.html { render "irm/common/_successful_message" }
         format.xml  { render :xml => @organization, :status => :created, :location => @organization }
       else
-        format.html { render :action => "new" }
+        @error = @region
+        format.html { render "irm/common/error_message" }
         format.xml  { render :xml => @organization.errors, :status => :unprocessable_entity }
       end
     end
@@ -56,28 +58,42 @@ class Irm::OrganizationsController < ApplicationController
   # PUT /organizations/1
   # PUT /organizations/1.xml
   def update
-    @organization = Organization.find(params[:id])
+    @organization = Irm::Organization.find(params[:id])
 
     respond_to do |format|
-      if @organization.update_attributes(params[:organization])
-        format.html { redirect_to(@organization, :notice => 'Organization was successfully updated.') }
+      if @organization.update_attributes(params[:irm_organization])
+        flash[:successful_message] = (t :successfully_updated)
+        format.html { render "irm/common/_successful_message" }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        @error = @region
+        format.html { render "irm/common/error_message" }
         format.xml  { render :xml => @organization.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /organizations/1
-  # DELETE /organizations/1.xml
-  def destroy
-    @organization = Organization.find(params[:id])
-    @organization.destroy
+  def multilingual_edit
+    @organization = Irm::Organization.find(params[:id])
+  end
 
+  def multilingual_update
+    @organization = Irm::Organization.find(params[:id])
+    @organization.not_auto_mult=true
     respond_to do |format|
-      format.html { redirect_to(organizations_url) }
-      format.xml  { head :ok }
+      if @organization.update_attributes(params[:irm_organization])
+        format.html { render({:action=>"multilingual_edit",:format=>"js"}) }
+      else
+        format.html { render({:action=>"multilingual_edit"}) }
+      end
+    end
+  end
+
+  def get_data
+    @organizations= Irm::Organization.multilingual.query_wrap_info(I18n::locale)
+    respond_to do |format|
+      format.json {render :json=>@organizations.to_dhtmlxgrid_json(['R',:company_name,:short_name,:name,:description,:status_meaning,
+                                                             {:value => 'M', :controller => 'irm/organizations',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_organization_list', :script => ''}], @organizations.size)}
     end
   end
 end

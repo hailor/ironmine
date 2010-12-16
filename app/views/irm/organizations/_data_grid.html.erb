@@ -1,24 +1,24 @@
-    <div id="id_condition_list">
+    <div id="id_organization_list">
         <div class="containerheader">
-           <div class="floatleft headertitle"><%=t(:label_irm_condition_list)%></div>
+           <div class="floatleft headertitle"><%=t(:label_irm_organization_list)%></div>
         </div>
-        <div id="id_condition_grid" class="datagrid"
+        <div id="id_organization_grid" class="datagrid"
         action_type="ajaxDhtmlxGrid"
-        grid_header=" ,<%=t(:label_irm_condition_entity_code)%>, <%=t(:label_irm_condition_condition_code)%>,<%=t(:label_irm_condition_name)%>,<%=t(:label_irm_condition_description)%>,<%=t(:label_irm_condition_status_code)%>,<%=t(:multilingual)%>"
+        grid_header=" ,<%=t(:label_irm_organization_company_name)%>, <%=t(:label_irm_organization_short_name)%>,<%=t(:label_irm_organization_name)%>,<%=t(:label_irm_organization_description)%>,<%=t(:label_irm_organization_status_code)%>,<%=t(:multilingual)%>"
         grid_width="20,100,100,100,150,100,100"
         grid_col_types="ra,ro,ro,ro,ro,ro,link"
         grid_align="center,left,left,left,left,center,center"
         grid_onRowDblClicked="doOnRowDblClicked"
         grid_checkbox="selectRowAndRadio"
         grid_OnRowSelected="selectRowAndRadio"
-        grid_load="'<%= url_for(:action => "get_data", :controller => "irm/conditions",:format=>:json) %>','','json'">
+        grid_load="'<%= url_for(:action => "get_data", :controller => "irm/organizations",:format=>:json) %>','','json'">
         </div>
         <script type="text/javascript" charset="utf-8">
         function doOnRowDblClicked(rowId,cInd){
-           processDblClicked("id_condition_new","","<%= url_for(:action => "edit", :controller => "irm/conditions",:id=>":id")%>",rowId);
+           processDblClicked("id_organization_new","","<%= url_for(:action => "edit", :controller => "irm/organizations",:id=>":id")%>",rowId);
         }
         function selectRowAndRadio(rowId){
-            doSelectRowAndCheckRadio("id_condition_grid",rowId)
+            doSelectRowAndCheckRadio("id_organization_grid",rowId)
         }
         </script>
             <div class="containerfooter">

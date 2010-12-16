@@ -329,3 +329,15 @@ zh:
   label_irm_company_budget_code: 预算代码
   label_irm_company_home_page: 主页
   #=========================end irm companies_controller=======================#
+  #=========================    irm organizations_controller=======================#
+  label_irm_organization_company_name: 公司名称
+  label_irm_organization_short_name: 组织编码
+  label_irm_organization_name: 组织名称
+  label_irm_organization_description: 描述
+  label_irm_organization_status_code: 状态编码
+  label_irm_organization_new: 新建组织
+  label_irm_organization_edit: 编辑组织
+  label_irm_organization_list: 组织列表
+  label_irm_organization_organizations_tls:
+    name: Name
+  #=========================end irm organizations_controller=======================#

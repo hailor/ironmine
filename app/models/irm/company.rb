@@ -1,6 +1,8 @@
 class Irm::Company < ActiveRecord::Base
   set_table_name :irm_companies
 
+  query_extend
+
   #多语言关系
   attr_accessor :name,:description
   has_many :companies_tls,:dependent => :destroy

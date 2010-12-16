@@ -18,8 +18,10 @@ class Irm::Organization < ActiveRecord::Base
   }
 
   scope :query_wrap_info,lambda{|language| select("#{table_name}.*,#{Irm::OrganizationsTl.table_name}.name,#{Irm::OrganizationsTl.table_name}.description,"+
-                                                          "v1.meaning status_meaning").
+                                                          "v1.meaning status_meaning,v2.name company_name").
                                                    joins(",irm_lookup_values_vl v1").
+                                                   joins(",irm_companies_vl v2").
                                                    where("v1.lookup_type='SYSTEM_STATUS_CODE' AND v1.lookup_code = #{table_name}.status_code AND "+
-                                                         "v1.language=?",language)}
+                                                         "#{table_name}.company_id = v2.id AND v2.language=? AND "+
+                                                         "v1.language=?",language,language)}
 end

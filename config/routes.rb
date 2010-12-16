@@ -1,7 +1,4 @@
 Ironmine::Application.routes.draw do
-
-  resources :organizations
-
   scope :module => "irm" do
     root :to => "navigations#entrance"
     match 'login'=>'common#login',:as=>:login
@@ -204,7 +201,16 @@ Ironmine::Application.routes.draw do
     match '/companies/:id/multilingual_edit(.:format)' => "companies#multilingual_edit", :via => :get
     match '/companies/:id/multilingual_update(.:format)' => "companies#multilingual_update", :via => :put
     match '/companies/get_data(.:format)' => "companies#get_data"    
-    match '/companies/base_info(.:format)' => "companies#base_info"
+    match '/companies/base_info(.:format)' => "companies#base_info"    
+    #organizations
+    match '/organizations(/index)(.:format)' => "organizations#index", :via => :get
+    match '/organizations/:id/edit(.:format)' => "organizations#edit", :via => :get
+    match '/organizations/:id(.:format)' => "organizations#update", :via => :put
+    match '/organizations/new(.:format)' => "organizations#new", :via => :get
+    match '/organizations/create(.:format)' => "organizations#create", :via => :post
+    match '/organizations/:id/multilingual_edit(.:format)' => "organizations#multilingual_edit", :via => :get
+    match '/organizations/:id/multilingual_update(.:format)' => "organizations#multilingual_update", :via => :put
+    match '/organizations/get_data(.:format)' => "organizations#get_data"
   end
 
   match '/demo(/index)' => 'demo#index'
