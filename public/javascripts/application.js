@@ -41,6 +41,7 @@ function pre_init_partial(el){
     $(el).find('select[required]:not([readonly]):not([disabled])').removeAttr("required");    
     
     $(el).find('input[type=submit]').css("cursor","pointer");
+    cascadeSelect(el);
 }
 //#=========================start multilingual=======================#
 
@@ -100,7 +101,7 @@ function cascadeSelect(el){
       $("#"+$(this).attr("cascade")).html(options);
   });
   $('select[cascade]').change(function (e) {
-    $(this).attr("action",$(this).attr("action_temp").replace(":id",$(this).attr("value")));
+    $(this).attr("action",$(this).attr("action_temp").replace("cascade_id",$(this).attr("value")));
     $(this).callRemote();
     e.preventDefault();
   });

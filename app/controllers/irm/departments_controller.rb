@@ -23,7 +23,7 @@ class Irm::DepartmentsController < ApplicationController
 
   # GET /departments/1/edit
   def edit
-    @department = Irm::Department.find(params[:id])
+    @department = Irm::Department.multilingual.find(params[:id])
   end
 
   # POST /departments
@@ -33,10 +33,12 @@ class Irm::DepartmentsController < ApplicationController
 
     respond_to do |format|
       if @department.save
-        format.html { redirect_to(@department, :notice => 'Department was successfully created.') }
+        flash[:successful_message] = (t :successfully_created)
+        format.html { render "irm/common/_successful_message" }
         format.xml  { render :xml => @department, :status => :created, :location => @department }
       else
-        format.html { render :action => "new" }
+        @error = @department
+        format.html { render "irm/common/error_message" }
         format.xml  { render :xml => @department.errors, :status => :unprocessable_entity }
       end
     end
@@ -49,10 +51,12 @@ class Irm::DepartmentsController < ApplicationController
 
     respond_to do |format|
       if @department.update_attributes(params[:irm_department])
-        format.html { redirect_to(@department, :notice => 'Department was successfully updated.') }
+        flash[:successful_message] = (t :successfully_updated)
+        format.html { render "irm/common/_successful_message" }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        @error = @department
+        format.html { render "irm/common/error_message" }
         format.xml  { render :xml => @department.errors, :status => :unprocessable_entity }
       end
     end

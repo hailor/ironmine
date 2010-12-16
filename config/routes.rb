@@ -211,6 +211,7 @@ Ironmine::Application.routes.draw do
     match '/organizations/:id/multilingual_edit(.:format)' => "organizations#multilingual_edit", :via => :get
     match '/organizations/:id/multilingual_update(.:format)' => "organizations#multilingual_update", :via => :put
     match '/organizations/get_data(.:format)' => "organizations#get_data"
+    match '/organizations/belongs_to(.:format)' => "organizations#belongs_to"
     #departments
     match '/departments(/index)(.:format)' => "departments#index", :via => :get
     match '/departments/:id/edit(.:format)' => "departments#edit", :via => :get

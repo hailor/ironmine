@@ -85,4 +85,13 @@ class Irm::OrganizationsController < ApplicationController
                                                              {:value => 'M', :controller => 'irm/organizations',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_organization_list', :script => ''}], @organizations.size)}
     end
   end
+
+  def belongs_to
+    organizations = Irm::Organization.query_by_company_id(::I18n.locale,params[:company_id])
+    respond_to do |format|
+      format.html
+      format.xml  { head :ok }
+      format.js { render :json => organizations.collect{|d| {:id=>d.id,:name=>d[:name]}} }
+    end
+  end
 end

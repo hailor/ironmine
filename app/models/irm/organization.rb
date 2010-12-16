@@ -24,4 +24,10 @@ class Irm::Organization < ActiveRecord::Base
                                                    where("v1.lookup_type='SYSTEM_STATUS_CODE' AND v1.lookup_code = #{table_name}.status_code AND "+
                                                          "#{table_name}.company_id = v2.id AND v2.language=? AND "+
                                                          "v1.language=?",language,language)}
+
+  scope :query_by_company_id,lambda{|language,company_id| select("#{Irm::Organization.table_name}.id,#{Irm::OrganizationsTl.table_name}.name").
+                                                              joins(:organizations_tls).
+                                                              where("#{Irm::OrganizationsTl.table_name}.language=? and " +
+                                                                    "#{Irm::Organization.table_name}.company_id = ?",
+                                                                    language,company_id)}
 end
