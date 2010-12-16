@@ -8,7 +8,7 @@ $(document).ready(function(){
 <div id="banner"></div>
 <div id="toptoolbar" zone="toptoolbarcontent">
 	<div class="floatleft jtabcontainer">
-      <%= sub_entries('IRM_ENTRANCE_MENU').each do |menu_item|%>
+      <% sub_entries('IRM_ENTRANCE_MENU').each do |menu_item|%>
     	<div class="toptoolbarbtn jtabitem">
         	<div><%=link_to menu_item[:name],{:controller=>menu_item[:page_controller],:action=>menu_item[:page_action],:menu_code=>menu_item[:menu_code],:menu_entry_id=>menu_item[:menu_entry_id]}%></div>
         </div>
@@ -16,9 +16,9 @@ $(document).ready(function(){
       <%end%>
     </div>
     <div class="floatright">
-        <div class="toptoolbarbtn"><a href="javascript:void(0);">ivanmarkliu</a></div>
+        <div class="toptoolbarbtn"><a href="javascript:void(0);"><%= Irm::Identity.current.full_name%></a></div>
         <div class="toptoolbarsep"></div>
-        <div class="toptoolbarbtn"><a href="/logout">退出系统</a></div>
+        <div class="toptoolbarbtn"><a href="/logout"><%=t(:label_irm_common_logout)%></a></div>
         <div class="toptoolbarsep"></div>
         <div class="toptoolbarbtn">帮助</div>
     </div>

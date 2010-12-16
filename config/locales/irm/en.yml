@@ -89,6 +89,7 @@ en:
   label_irm_common_login: User login
   label_irm_common_username: User Name
   label_irm_common_password: Password
+  label_irm_common_logout: Logout
   #=========================    end common_controller=======================#
   #=========================    irm identities_controller=======================#
   label_irm_identity_new: Create Identity
@@ -222,4 +223,10 @@ en:
   label_irm_company_budget_code: Budget Code
   label_irm_company_home_page: Home Page
   #=========================end irm companies_controller=======================#
+  #=========================    irm login_records_controller=======================#
+  label_irm_login_record_list: User login records
+  label_irm_login_record_user_ip: User IP
+  label_irm_login_record_login_at: Login at
+  label_irm_login_record_logout_at: Logout at
+  #=========================end irm login_records_controller=======================#
 
