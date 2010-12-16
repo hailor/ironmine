@@ -1,4 +1,4 @@
-<div id="id_script_new" class="container">
+<div id="id_script_new">
      <%= form_for(@script,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
             <div class="containerheader">
                 <div class="floatleft headertitle"><%=t(:label_irm_script_new)%></div>
@@ -25,7 +25,7 @@
                         <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_script_template)%>:</td>
                             <td><%=f.select :template_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_entity,:lookup_code,:wrap_meaning)%></td>
+                                                options_from_collection_for_select(available_mail_template,:template_code,:wrap_name)%></td>
                         </tr>
                        </table>
                     </td>

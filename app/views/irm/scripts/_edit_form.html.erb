@@ -1,4 +1,4 @@
-   <div id="id_script_edit" class="container">
+   <div id="id_script_edit">
      <%= form_for(@script,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
                 <div class="containerheader">
                     <div class="floatleft headertitle"><%=t(:label_irm_script_edit)%></div>
@@ -15,17 +15,17 @@
                             <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_script_condition)%>:</td>
                             <td><%=f.select :condition_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_condition,:lookup_code,:wrap_meaning)%></td>
+                                                options_from_collection_for_select(available_condition,:condition_code,:wrap_name,@script.condition_code)%></td>
                             </tr>                        
                             <tr>
                                 <td class="itemdetailtablelabel"><%=(t :label_irm_script_action)%>:</td>
                                 <td><%=f.select :action_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                    options_from_collection_for_select(available_action,:condition_code,:wrap_name)%></td>
+                                                    options_from_collection_for_select(available_action,:action_code,:wrap_name,@script.action_code)%></td>
                             </tr>
                             <tr>
                                 <td class="itemdetailtablelabel"><%=(t :label_irm_script_template)%>:</td>
                                 <td><%=f.select :template_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                    options_from_collection_for_select(available_entity,:action_code,:wrap_name)%></td>
+                                                    options_from_collection_for_select(available_mail_template,:template_code,:wrap_name,@script.template_code)%></td>
                             </tr>
                             <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_script_status_code)%>:</td>

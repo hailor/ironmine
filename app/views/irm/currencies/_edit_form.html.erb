@@ -1,4 +1,4 @@
-   <div id="id_currency_edit" class="container">
+   <div id="id_currency_edit">
      <%= form_for(@currency,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
                 <div class="containerheader">
                     <div class="floatleft headertitle"><%=t(:label_irm_currency_edit)%> - <%= @currency.currency_code%></div>

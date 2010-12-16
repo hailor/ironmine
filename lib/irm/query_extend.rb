@@ -44,8 +44,6 @@ module Irm::QueryExtend
               { :order => key_part1.to_s+" "+ key_part2.to_s
               }
             }
-
-
             def wrap_name
               self[:name]
             end

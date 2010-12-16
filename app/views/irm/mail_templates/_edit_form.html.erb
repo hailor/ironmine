@@ -1,4 +1,4 @@
-   <div id="id_mail_template_edit" class="container">
+   <div id="id_mail_template_edit">
      <%= form_for(@mail_template,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
                 <div class="containerheader">
                     <div class="floatleft headertitle"><%=t(:label_irm_mail_template_edit)%> - <%= @mail_template.template_code%></div>
@@ -58,7 +58,7 @@
                       </td>
                   </tr>
                   <tr>
-                       <td class="itemdetailtablelabel"><%=(t :label_irm_mail_template_status_code)%>:</td>
+                       <td class="paddedtablelabel"><%=(t :label_irm_mail_template_status_code)%>:</td>
                        <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
                                           options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@mail_template.status_code)%></td>
                        </tr>

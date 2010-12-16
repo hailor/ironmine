@@ -1,5 +1,7 @@
 Ironmine::Application.routes.draw do
 
+  resources :organizations
+
   scope :module => "irm" do
     root :to => "navigations#entrance"
     match 'login'=>'common#login',:as=>:login

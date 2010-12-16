@@ -1,4 +1,4 @@
-   <div id="id_action_edit" class="container">
+   <div id="id_action_edit">
      <%= form_for(@action,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
                 <div class="containerheader">
                     <div class="floatleft headertitle"><%=t(:label_irm_action_edit)%> - <%= @action.action_code%></div>
