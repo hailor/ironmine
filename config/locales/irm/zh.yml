@@ -339,5 +339,18 @@ zh:
   label_irm_organization_edit: 编辑组织
   label_irm_organization_list: 组织列表
   label_irm_organization_organizations_tls:
-    name: Name
+    name: 名称
   #=========================end irm organizations_controller=======================#
+  #=========================    irm departments_controller=======================#
+  label_irm_department_company_name: 公司
+  label_irm_department_organization_name: 组织
+  label_irm_department_short_name: 编码
+  label_irm_department_name: 名称
+  label_irm_department_description: 描述
+  label_irm_department_status_code: 记录状态
+  label_irm_department_new: 新建部门
+  label_irm_department_edit: 编辑部门
+  label_irm_department_list: 部门列表
+  label_irm_department_departments_tls:
+    name: 名称
+  #=========================end irm departments_controller=======================#

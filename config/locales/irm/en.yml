@@ -234,4 +234,17 @@ en:
   label_irm_organization_organizations_tls:
     name: Name
   #=========================end irm organizations_controller=======================#
+  #=========================    irm departments_controller=======================#
+  label_irm_department_company_name: Company Name
+  label_irm_department_organization_name: Organization Name
+  label_irm_department_short_name: Code
+  label_irm_department_name: Name
+  label_irm_department_description: Description
+  label_irm_department_status_code: Status Code
+  label_irm_department_new: New department
+  label_irm_department_edit: Edit department
+  label_irm_department_list: List department
+  label_irm_department_departments_tls:
+    name: Name
+  #=========================end irm departments_controller=======================#
 

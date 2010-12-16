@@ -10,17 +10,6 @@ class Irm::OrganizationsController < ApplicationController
     end
   end
 
-  # GET /organizations/1
-  # GET /organizations/1.xml
-  def show
-    @organization = Irm::Organization.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @organization }
-    end
-  end
-
   # GET /organizations/new
   # GET /organizations/new.xml
   def new
@@ -48,7 +37,7 @@ class Irm::OrganizationsController < ApplicationController
         format.html { render "irm/common/_successful_message" }
         format.xml  { render :xml => @organization, :status => :created, :location => @organization }
       else
-        @error = @region
+        @error = @organization
         format.html { render "irm/common/error_message" }
         format.xml  { render :xml => @organization.errors, :status => :unprocessable_entity }
       end
@@ -66,7 +55,7 @@ class Irm::OrganizationsController < ApplicationController
         format.html { render "irm/common/_successful_message" }
         format.xml  { head :ok }
       else
-        @error = @region
+        @error = @organization
         format.html { render "irm/common/error_message" }
         format.xml  { render :xml => @organization.errors, :status => :unprocessable_entity }
       end
