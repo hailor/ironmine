@@ -323,3 +323,26 @@ zh:
   label_irm_company_budget_code: 预算代码
   label_irm_company_home_page: 主页
   #=========================end irm companies_controller=======================#
+  #=========================    irm value_sets_controller=======================#
+  label_irm_value_set: 值集
+  label_irm_value_set_list: 值集列表
+  label_irm_value_set_new: 创建值集
+  label_irm_value_set_edit: 编辑值集
+  label_irm_value_set_value_set_code: 值集编码
+  label_irm_value_set_name: 值集名称
+  label_irm_value_set_description: 描述
+  label_irm_value_set_validation_type: 验证类型
+  #=========================end irm value_sets_controller=======================#
+  #=========================    irm flex_values_controller=======================#
+  label_irm_flex_value: 值
+  label_irm_flex_value_list: 值列表
+  label_irm_flex_value_new: 创建值
+  label_irm_flex_value_add: 添加值
+  label_irm_flex_value_edit: 编辑值
+  label_irm_flex_value_value_code: 值编码
+  label_irm_flex_value_name: 值名称
+  label_irm_flex_value_description: 描述
+  label_irm_flex_value_position: 显示顺序
+  label_irm_flex_value_start_date_active: 开始生效日期
+  label_irm_flex_value_end_date_active: 截至失效日期
+  #=========================end irm flex_values_controller=======================#  
