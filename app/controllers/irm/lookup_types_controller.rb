@@ -160,7 +160,7 @@ class Irm::LookupTypesController < ApplicationController
             
             @tid = @lookup_value.id
       when "updated"
-            exist_flag = Irm::LookupValue.check_lookup_code_exist(@lookup_type.lookup_type,@lookup_code)
+            exist_flag,lookup_value_id = Irm::LookupValue.check_lookup_code_exist(@lookup_type.lookup_type,@lookup_code)
             #no exists
             if exist_flag
               @lookup_value = Irm::LookupValue.new({:lookup_type=>@lookup_type.lookup_type,
@@ -170,11 +170,11 @@ class Irm::LookupTypesController < ApplicationController
                                                   :start_date_active=>@start_date_active,
                                                   :end_date_active => @end_date_active})
 
-              @lookup_value.save
+              @lookup_value.save!
 
               @tid = @lookup_value.id
             else
-              @lookup_value=Irm::LookupValue.find(@id)
+              @lookup_value=Irm::LookupValue.find(lookup_value_id)
               @lookup_value.lookup_code = @lookup_code
               @lookup_value.meaning=@meaning
               @lookup_value.description=@description
