@@ -1,7 +1,7 @@
 /*SilverLight skin. default*/
 /* Appearance calendar standart view */
 .dhtmlxcalendar {
-    background: url("/images/dhtmlx/calendar/cal_bg_single.gif") no-repeat;
+    background: url("../images/dhtmlx/calendar/cal_bg_single.gif") no-repeat;
     border: 0px solid green;
     font-family: Arial;
     z-index: 99;
@@ -25,7 +25,7 @@
 
 /* Appearance for calendar with time */
 .dhtmlxcalendar_long {
-    background: url("/images/dhtmlx/calendar/cal_bg_single_long.gif") no-repeat;
+    background: url("../images/dhtmlx/calendar/cal_bg_single_long.gif") no-repeat;
     height: 190px;
 }
 
@@ -35,7 +35,7 @@
 
 /* Appearance minimized maximized */
 .dhtmlxcalendar_mini {
-    background: url(/images/dhtmlx/calendar/cal_bg_single_mini.gif) no-repeat;
+    background: url("../images/dhtmlx/calendar/cal_bg_single_mini.gif") no-repeat;
     height: 25px;
     width: 146px;
 }
@@ -75,7 +75,7 @@
     .dhtmlxcalendar .btn_close,
     .dhtmlxcalendar .btn_today,
     .dhtmlxcalendar .btn_clear {
-    background: url(/images/dhtmlx/calendar/btns.gif);
+    background: url("../images/dhtmlx/calendar/btns.gif");
     float: right;
     height: 12px;
     width: 12px;
@@ -124,7 +124,7 @@
 /* Month left button */
 .dhtmlxcalendar .dxcalmonth td.month_btn_left,
     .dhtmlxcalendar .dxcalmonth td.month_btn_right {
-    background: url(/images/dhtmlx/calendar/btns.gif) no-repeat;
+    background: url("../images/dhtmlx/calendar/btns.gif") no-repeat;
     background-position: -60px;
     width: 8px;
 }
@@ -250,13 +250,13 @@ div.dhtmlxcalendar div.planeYear {
 
 /* begin: dhtmlxDblCalendarObject */
 .dhtmlxdblcalendar {
-    background: url(/images/dhtmlx/calendar/cal_bg_double.gif) no-repeat;
+    background: url("../images/dhtmlx/calendar/cal_bg_double.gif") no-repeat;
     z-index: 100;
     padding: 0px;
 }
 
 .dhtmlxdblcalendar .dhtmlxcalendar {
-    background-image: url(/images/dhtmlx/calendar/blank.gif);
+    background-image: url("../images/dhtmlx/calendar/blank.gif");
 }
 
 /* end: dhtmlxDblCalendarObject */
@@ -289,7 +289,7 @@ div.dhtmlxcalendar div.planeYear {
 /* end: dhtmlxRichSelector */
 
 .dhtmlxcalendar_yahoolike {
-    background: url(/images/dhtmlx/calendar/__dhxCal_skin_Yahoolike/cal_bg_single.gif) no-repeat;
+    background: url("../images/dhtmlx/calendar/__dhxCal_skin_Yahoolike/cal_bg_single.gif") no-repeat;
     border: 1px solid gray;
     font-family: Arial, Helvetica, sans-serif;
     font-size: small;
@@ -351,7 +351,7 @@ div.dhtmlxcalendar div.planeYear {
     .dhtmlxcalendar_yahoolike .btn_close,
     .dhtmlxcalendar_yahoolike .btn_today,
     .dhtmlxcalendar_yahoolike .btn_clear {
-    background: url(/images/dhtmlx/calendar/__dhxCal_skin_Yahoolike/btns.gif) no-repeat;
+    background: url("../images/dhtmlx/calendar/__dhxCal_skin_Yahoolike/btns.gif") no-repeat;
     float: right;
     height: 12px;
     width: 12px;
@@ -395,7 +395,7 @@ div.dhtmlxcalendar div.planeYear {
 
 .dhtmlxcalendar_yahoolike .dxcalmonth td.month_btn_left,
     .dhtmlxcalendar_yahoolike .dxcalmonth td.month_btn_right {
-    background: url(/images/dhtmlx/calendar/__dhxCal_skin_Yahoolike/btns.gif) no-repeat;
+    background: url("../images/dhtmlx/calendar/__dhxCal_skin_Yahoolike/btns.gif") no-repeat;
     background-position: -60px 0;
     width: 9px;
 }
