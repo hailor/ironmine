@@ -37,7 +37,7 @@ module Irm
             menu_entries<<data
           end
           # 子权限项
-          tmp_permission_entries = m.menu_entries.where("sub_menu_code IS NULL AND permission_code IS NOT NULL")
+          tmp_permission_entries = m.menu_entries.where("sub_menu_code IS NULL AND permission_code IS NOT NULL").order(:display_sequence)
           permission_entries = []
           tmp_permission_entries.each do |tp|
             data = {:menu_entry_id=>tp.id,:permission_code=>tp.permission_code}
