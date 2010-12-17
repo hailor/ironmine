@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddLoginRecordsPermission < ActiveRecord::Migration
   def self.up
     irm_login_records_index = Irm::Permission.new(:permission_code=>'IRM_LOGIN_RECORDS_INDEX',
