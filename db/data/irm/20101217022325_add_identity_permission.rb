@@ -112,15 +112,7 @@ class AddIdentityPermission < ActiveRecord::Migration
     irm_identities_update_password.permissions_tls.build(:language=>'zh',:name=>'更新个人密码',:description=>'更新个人密码',:source_lang=>'en')
     irm_identities_update_password.permissions_tls.build(:language=>'en',:name=>'Update password',:description=>'Update password',:source_lang=>'en')
     irm_identities_update_password.save
-
-
-    permission_ideitnty = Irm::MenuEntry.new(:menu_code=>'IRM_PERMISSION_MENU',
-                                         :permission_code=>'IRM_IDENTITIES_INDEX',
-                                         :display_sequence=>10,
-                                         :not_auto_mult=>true)
-    permission_ideitnty.menu_entries_tls.build(:language=>'zh',:name=>'帐号',:description=>'帐号',:source_lang=>'en')
-    permission_ideitnty.menu_entries_tls.build(:language=>'en',:name=>'Identity',:description=>'Identity',:source_lang=>'en')
-    permission_ideitnty.save    
+   
 
   end
 
