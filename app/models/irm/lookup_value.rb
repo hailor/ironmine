@@ -16,12 +16,15 @@ class Irm::LookupValue < ActiveRecord::Base
   scope :query_by_lookup_code,lambda{|lookup_code|where(:lookup_code=>lookup_code)}
 
   def self.check_lookup_code_exist(lookup_type,lookup_code)
+     exist_lookup_code=Irm::LookupValue.query_by_lookup_code(lookup_code).
+          query_by_lookup_type(lookup_type)
       if Irm::LookupValue.query_by_lookup_code(lookup_code).
           query_by_lookup_type(lookup_type).size>0
-         false
+         return false,exist_lookup_code.id
       else
-         true
+         return true,0
       end
+
   end
 
   def wrap_meaning

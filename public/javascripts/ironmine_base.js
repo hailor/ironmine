@@ -43,7 +43,6 @@ function addEditRow(id,lookupTypeId) {
     dpEdit.init(grid);
     dpEdit.setUpdateMode("off");
     dpEdit.setTransactionMode("POST");
-
 }
 function removeEditRow(id){
     var grid = dhtmlx_grid_array[id];

@@ -307,6 +307,7 @@ function ajaxDhtmlxTabbar(el){
 
 //根据div的提供的属性构造表格对象
 var dhtmlx_grid_array={};
+//var dhtmlx_data_processor_array={};
 function ajaxDhtmlxGrid(el){
    var id = $(el).attr("id");
    var grid_header = $(el).attr("grid_header");
@@ -321,7 +322,10 @@ function ajaxDhtmlxGrid(el){
    var grid_column_hidden = $(el).attr("grid_columnHidden");
    var grid_attach_Header=$(el).attr("grid_attachHeader");
    var grid_load = $(el).attr("grid_load");
-   
+   //var gridDataProcessorUrl=$(el).attr("grid_data_processor_url");
+   //var gridUpdateMode=$(el).attr("grid_data_processor_update_mode");
+   //var gridTransactionMode=$(el).attr("grid_data_processor_transaction_mode");
+
    var grid = dhtmlx_grid_array[id];
    if(grid!=null&&grid!=undefined){
        grid.destructor();
@@ -376,6 +380,22 @@ function ajaxDhtmlxGrid(el){
       var gridLoad = eval("([" + grid_load + "])");
       grid.load(gridLoad[0],function(){init(el)},gridLoad[2]);
    }
+
+   //if(gridDataProcessorUrl!=null&&gridDataProcessorUrl!=undefined){
+   //    var dataProcessor = dhtmlx_data_processor_array[gridDataProcessorUrl];
+   //    if(dataProcessor!=null&&dataProcessor!=undefined){
+   //        dataProcessor.destructor();
+   //    }
+   //    dataProcessor = new dataProcessor(gridDataProcessorUrl);
+   //    dataProcessor.init(grid);
+   //    if(gridUpdateMode!=null&gridUpdateMode!=undefined){
+   //       dataProcessor.setUpdateMode(gridUpdateMode);
+   //    }
+   //    if(gridTransactionMode!=null&gridTransactionMode!=undefined){
+   //       dataProcessor.setTransactionMode("POST");
+   //    }
+   //    dhtmlx_data_processor_array[gridDataProcessorUrl]=dataProcessor;
+   //}
    dhtmlx_grid_array[id]=grid;
 }
 

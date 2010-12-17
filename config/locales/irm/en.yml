@@ -45,6 +45,7 @@ en:
   failed_deleted:  Failed Deleted
   label_delete_confirm: Are you sure to delete this record?
   label_no_data: No Data
+  label_sub_functions: Functions
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type
