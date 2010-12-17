@@ -63,17 +63,6 @@ class Irm::LookupTypesController < ApplicationController
     end
   end
 
-  # DELETE /lookup_types/1
-  # DELETE /lookup_types/1.xml
-  def destroy
-    @lookup_type = Irm::LookupType.find(params[:id])
-    @lookup_type.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(:action=>"index") }
-      format.xml  { head :ok }
-    end
-  end
 
   def get_lookup_types
     @lookup_types = Irm::LookupType.multilingual

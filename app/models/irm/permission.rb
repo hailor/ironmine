@@ -19,6 +19,9 @@ class Irm::Permission < ActiveRecord::Base
 
   before_validation :set_product_id
 
+  scope :query_by_page_controller,lambda{|page_controller| where("page_controller=?",page_controller)}
+  scope :query_by_page_action,lambda{|page_action| where("page_action=?",page_action)}
+
   #通过controller,action确定permission
   scope :position,lambda {|controller,action| where("page_controller = ? AND page_action = ?", controller,action) }
 
