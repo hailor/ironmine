@@ -5,4 +5,6 @@ class Irm::PermissionsTl < ActiveRecord::Base
 
   validates_presence_of :name
 
+  scope :query_by_permission_id,lambda{|permission_id| where("permission_id=?",permission_id)}
+
 end

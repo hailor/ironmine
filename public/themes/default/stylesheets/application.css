@@ -263,3 +263,6 @@ table.logintable td.loginlabel {text-align: right;}
 table.logintable td{border-width: 0 !important; padding: 10px 0 0 10px !important;}
 td.loginicon {border-width: 1px 1px 1px 0 !important;text-align: center;}
 td.loginform {width: 250px;}
+
+div.meuncontent span.menuitem{display:block;padding-left: 10px;}
+div.menu h2.menutitle{margin-bottom: 5px;}

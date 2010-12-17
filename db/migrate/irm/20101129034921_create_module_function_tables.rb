@@ -17,7 +17,7 @@ class CreateModuleFunctionTables < ActiveRecord::Migration
 
     create_table "irm_permissions_tl", :force => true do |t|
       t.integer   "permission_id", :null=>false
-      t.string    "name",          :limit=>30,:null=>false
+      t.string    "name",          :limit=>60,:null=>false
       t.string    "description",   :limit=>150
       t.string    "language",      :limit=>30
       t.string    "source_lang",   :limit=>30
