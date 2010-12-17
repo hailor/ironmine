@@ -1,1 +1,32 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.functions').find('a[zone]:first').trigger('click');
+  });
+</script>
 <%= breadcrumbs %>
+<table width="100%" cellspacing="0" cellpadding="4" border="0">
+  <tr>
+    <td width="250" valign="top">
+      <div>
+        <table class="leftnavigation" cellspacing="0">
+            <tbody>
+                <tr class="navigationheader">
+                    <td><%= t(:label_sub_functions)%></td>
+                </tr>
+                <tr class="navigationbody functions">
+                    <td>
+                      <%= page_functions(params[:menu_code])%>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </td>
+    <td width="87%" valign="top">
+        <div>
+        <div id="system_message_box"></div>
+        <div id="system_content"></div>
+        </div>
+    </td>
+  </tr>
+</table>
