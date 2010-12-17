@@ -44,7 +44,7 @@ module Irm
             tp.menu_entries_tls.each do |mt|
               data.merge!({mt.language.to_sym=>{:name=>mt.name,:description=>mt.description}})
             end
-            menu_entries<<data
+            permission_entries<<data
           end
 
           menu_data = {:menu_entries=>menu_entries,
