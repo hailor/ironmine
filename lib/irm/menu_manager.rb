@@ -100,6 +100,10 @@ module Irm
         sub_entries = []
         menu = menus[menu_code]
         menu[:menu_entries].each do |me|
+          if(menus[me[:sub_menu_code]].nil?)
+            Rails.logger.warn("Not exists menu:#{me[:sub_menu_code]} or permission:#{me[:permission_code]},Please check!")
+            next
+          end
           entries_options = {:menu_entry_id=>me[:menu_entry_id],
                              :menu_code => me[:sub_menu_code],
                              :entry_type=>"MENU",
@@ -110,6 +114,10 @@ module Irm
           sub_entries<< entries_options.merge!(permission_url_options(me[:permission_code])) if menu_showable(me)
         end
         menu[:permission_entries].each do |pe|
+          if(permissions[pe[:permission_code]].nil?)
+            Rails.logger.warn("Not exists  permission:#{pe[:permission_code]},Please check!")
+            next
+          end
           entries_options = {:menu_entry_id=>pe[:menu_entry_id],
                              :entry_type=>"PERMISSION",
                              :name=>pe[::I18n.locale.to_sym][:name],
@@ -136,7 +144,7 @@ module Irm
 
       # 检查permission的权限
       def check_permission(permission_code)
-        return true if !permission_code
+        return true if permission_code.nil?||permissions[permission_code].nil?
         permission = permissions[permission_code].dup
         Irm::PermissionChecker.allow_to_permission?(permission)
       end
