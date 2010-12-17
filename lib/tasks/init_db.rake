@@ -11,7 +11,7 @@ namespace :db do
   task :migrate => :environment do
     ActiveRecord::Migration.verbose = ENV["VERBOSE"] ? ENV["VERBOSE"] == "true" : true
     product_path = ENV["PRODUCT"] ? "/#{ENV['PRODUCT']}" : "/*"
-    data_table_path = ENV["TABLE"] ? "db/migrate#{product}":"db/*#{product}"
+    data_table_path = ENV["TABLE"] ? "db/migrate#{product_path}":"db/*#{product_path}"
     Irm::Migrator::TableMigrator.migrate(data_table_path, ENV["VERSION"] ? ENV["VERSION"].to_i : nil)
     Rake::Task["db:schema:dump"].invoke if ActiveRecord::Base.schema_format == :ruby
   end
