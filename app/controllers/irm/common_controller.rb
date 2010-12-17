@@ -43,11 +43,11 @@ class Irm::CommonController < ApplicationController
   def successful_authentication(user,session_id)
     # Valid user
     self.logged_user = user
-    #Irm::LoginRecord.create({:identity_id=>user.id,
-    #                         :session_id=>session_id,
-    #                         :user_ip=>request.remote_ip,
-    #                         :user_agent=>request.user_agent,
-    #                         :login_at=>Time.now})
+    Irm::LoginRecord.create({:identity_id=>user.id,
+                             :session_id=>session_id,
+                             :user_ip=>request.remote_ip,
+                             :user_agent=>request.user_agent,
+                             :login_at=>Time.now})
     # generate a key and set cookie if autologin
     #if params[:autologin] && Setting.autologin?
     #  token = Token.create(:user => user, :action => 'autologin')
@@ -58,7 +58,7 @@ class Irm::CommonController < ApplicationController
   end
 
   def logout_successful(session_id)
-     #login_record = Irm::LoginRecord.where(:session_id=>session_id).first
-     #login_record.update_attributes(:logout_at=>Time.now) if login_record
+     login_record = Irm::LoginRecord.where(:session_id=>session_id).first
+     login_record.update_attributes(:logout_at=>Time.now) if login_record
   end
 end

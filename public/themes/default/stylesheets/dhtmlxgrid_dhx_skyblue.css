@@ -1,13 +1,13 @@
 div.gridbox_dhx_skyblue .xhdr{
-	background-image:url(/images/dhtmlx/sky_blue_grid.gif);
+	background-image:url("../images/dhtmlx/sky_blue_grid.gif");
 }
 
 div.gridbox_dhx_skyblue table.hdr tr{
-	background-image:url(/images/dhtmlx/sky_blue_grid.gif);
+	background-image:url("../images/dhtmlx/sky_blue_grid.gif");
 	background-position:0px -1px\9;
 }
 body:nth-of-type(1) div.gridbox_dhx_skyblue table.hdr tr{
-	background-image:url(/images/dhtmlx/sky_blue_grid.gif);
+	background-image:url("../images/dhtmlx/sky_blue_grid.gif");
 	background-position:0px -1px;
 }
 
@@ -68,12 +68,12 @@ div.gridbox_dhx_skyblue table.obj tr.rowselected td{
 	background-color:#FFF1CC;
 	background-repeat:repeat-x;
 	background-position:0px 0px;	
-	background-image:url(/images/dhtmlx/sky_blue_sel2.png);
+	background-image:url("../images/dhtmlx/sky_blue_sel2.png");
 }
 div.gridbox_dhx_skyblue table.obj.row20px tr.rowselected td{
 	background-repeat:repeat-x;
 	background-position:0px 0px;	
-	background-image:url(/images/dhtmlx/sky_blue_sel.png);
+	background-image:url("../images/dhtmlx/sky_blue_sel.png");
 }
 
 div.gridbox_dhx_skyblue table.obj tr.rowselected td.cellselected {
