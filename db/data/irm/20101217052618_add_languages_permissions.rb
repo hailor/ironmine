@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddLanguagesPermissions < ActiveRecord::Migration
   def self.up
     irm_languages_index = Irm::Permission.new(:permission_code=>'IRM_LANGUAGES_INDEX',

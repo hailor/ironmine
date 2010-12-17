@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddConditonsPermissions < ActiveRecord::Migration
   def self.up
     irm_conditions_index = Irm::Permission.new(:permission_code=>'IRM_CONDITIONS_INDEX',

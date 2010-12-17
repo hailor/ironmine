@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddRegionsPermissions < ActiveRecord::Migration
   def self.up
     irm_regions_index = Irm::Permission.new(:permission_code=>'IRM_REGIONS_INDEX',

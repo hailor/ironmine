@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddCurrenciesPermissions < ActiveRecord::Migration
   def self.up
     irm_currencies_index = Irm::Permission.new(:permission_code=>'IRM_CURRENCIES_INDEX',

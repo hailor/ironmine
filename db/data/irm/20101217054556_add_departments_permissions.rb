@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddDepartmentsPermissions < ActiveRecord::Migration
   def self.up
     irm_departments_index = Irm::Permission.new(:permission_code=>'IRM_DEPARTMENTS_INDEX',
