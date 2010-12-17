@@ -67,7 +67,7 @@ class InitAdvanceSettingMenu < ActiveRecord::Migration
     advance_setting_script.save
 
     advance_setting_mail_template = Irm::MenuEntry.new(:menu_code=>'IRM_ADVANCE_SETTING_MENU',
-                                         :permission_code=>'IRM_MAIL_TEMPLATES_INDEX',
+                                         :permission_code=>'IRM_TEMPLATES_INDEX',
                                          :display_sequence=>90,
                                          :not_auto_mult=>true)
     advance_setting_mail_template.menu_entries_tls.build(:language=>'zh',:name=>'邮件模板',:description=>'邮件模板',:source_lang=>'en')
