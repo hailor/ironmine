@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitAdvanceSettingMenu < ActiveRecord::Migration
   def self.up
     advance_setting_menu = Irm::MenuEntry.new(:menu_code=>'IRM_ADVANCE_SETTING_MENU',

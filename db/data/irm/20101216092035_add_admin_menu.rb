@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddAdminMenu < ActiveRecord::Migration
   def self.up
     irm_navigations_base_setting = Irm::Permission.new(:permission_code=>'IRM_NAVIGATIONS_BASE_SETTIN',

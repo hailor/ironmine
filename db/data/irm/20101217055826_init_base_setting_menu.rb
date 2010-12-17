@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitBaseSettingMenu < ActiveRecord::Migration
   def self.up
     organization_company = Irm::MenuEntry.new(:menu_code=>'IRM_ORGANIZATION_MENU',
