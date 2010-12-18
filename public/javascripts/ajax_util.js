@@ -322,6 +322,7 @@ function ajaxDhtmlxGrid(el){
    var grid_column_hidden = $(el).attr("grid_columnHidden");
    var grid_attach_Header=$(el).attr("grid_attachHeader");
    var grid_load = $(el).attr("grid_load");
+   var gridImagePath=$(el).attr("grid_image_path");
    //var gridDataProcessorUrl=$(el).attr("grid_data_processor_url");
    //var gridUpdateMode=$(el).attr("grid_data_processor_update_mode");
    //var gridTransactionMode=$(el).attr("grid_data_processor_transaction_mode");

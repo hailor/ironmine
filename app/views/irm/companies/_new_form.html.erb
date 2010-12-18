@@ -26,11 +26,6 @@
                        <table class="itemdetailtable">
                         <div id="id_lookup_level">
                         <tr>
-                            <td class="itemdetailtablelabel"><%=(t :label_irm_company_status_code)%>:</td>
-                            <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning)%></td>
-                        </tr>
-                        <tr>
                           <td class="itemdetailtablelabel">
                               <%=t(:label_irm_company_description)%>:
                            </td>
