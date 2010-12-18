@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddScriptsPermissions < ActiveRecord::Migration
   def self.up
     irm_scripts_index = Irm::Permission.new(:permission_code=>'IRM_SCRIPTS_INDEX',

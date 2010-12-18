@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddActionsPermissions < ActiveRecord::Migration
   def self.up
     irm_actions_index = Irm::Permission.new(:permission_code=>'IRM_ACTIONS_INDEX',

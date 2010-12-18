@@ -51,6 +51,7 @@ zh:
   failed_deleted:  删除数据失败
   label_delete_confirm: 你确定要删除该条数据吗?
   label_no_data: 没有找到数据
+  label_sub_functions: 功能
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=====================#
   label_lookup_types: 快速编码类型

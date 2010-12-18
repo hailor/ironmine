@@ -12,10 +12,10 @@ module Irm
           options      = args[1] || {}
           html_options = args[2]
           html_options = convert_options_to_data_attributes(options, html_options)
-          url = url_for(options)
 
           options[:controller] ||= params[:controller]
           options[:action] ||= params[:action]
+          url = url_for(options)
           #扩展权限验证,当用户无权访问链接时,隐藏链接
           if(options[:controller]&&options[:action]&&!allow_to?(options))
             if(!html_options['show'])

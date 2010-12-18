@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddLookupTypesPermisssions < ActiveRecord::Migration
   def self.up
     irm_lookup_types_index = Irm::Permission.new(:permission_code=>'IRM_LOOKUP_TYPES_INDEX',

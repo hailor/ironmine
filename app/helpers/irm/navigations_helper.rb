@@ -30,4 +30,29 @@ module Irm::NavigationsHelper
                                             :zone=>"secondtoolbarcontent")).html_safe
     content_tag(:div,links.html_safe,{:class=>"breadcrumbs",:id=>"breadcrumbs"}).html_safe
   end
+
+  def page_functions(menu_code)
+    return nil unless menu_code
+    generate_functions(menu_code)
+  end
+
+  def generate_functions(menu_code)
+    info = ""
+    if menu_code.is_a?(Hash)
+      info << content_tag(:h2,menu_code[:name],{:class=>"menutitle"})
+      menu_code = menu_code[:menu_code]
+    end
+    entries = Irm::MenuManager.sub_entries_by_menu(menu_code)
+    functions = ""
+    entries.each do |e|
+      if(e[:entry_type].eql?("MENU"))
+        functions<<content_tag(:span,generate_functions(e),{:class=>"menuitem"}).html_safe
+      else
+        functions<<content_tag(:span,link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action]},{:zone=>"system_content",:title=>e[:description]}),{:class=>"menuitem"}).html_safe
+      end
+    end
+    info << content_tag(:div,functions.html_safe,{:class=>"meuncontent"})
+    content_tag(:div,info.html_safe,{:class=>"menu"}).html_safe
+  end
+
 end

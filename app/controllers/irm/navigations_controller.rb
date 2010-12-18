@@ -25,6 +25,10 @@ class Irm::NavigationsController < ApplicationController
   def base_setting
 
   end
+  # 管理->基础设置
+  def base_setting
+
+  end
   # 管理->高级设置
   def advance_setting
 

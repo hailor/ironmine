@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddOrganizationsPermissions < ActiveRecord::Migration
   def self.up
     irm_organizations_index = Irm::Permission.new(:permission_code=>'IRM_ORGANIZATIONS_INDEX',
