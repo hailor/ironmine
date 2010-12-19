@@ -49,7 +49,7 @@ private
   end
 
   def identify_browser_opera
-    return unless @user_agent =~ /Opera/
+    return unless @user_agent =~ %r{Opera}
 
     if opera = @products.detect{|product| product[0] == 'Opera'}
       if opera[1].nil?
@@ -64,7 +64,7 @@ private
   end
 
   def identify_browser_chrome
-    return unless @user_agent =~ /Chrome/
+    return unless @user_agent =~ %r{Chrome}
 
     if version = @products.detect{|product| product[0] == 'Version'}
       @browser_version = version[1]
@@ -75,7 +75,7 @@ private
   end
 
   def identify_browser_safari
-    return unless @user_agent =~ /Safari|iPhone/
+    return unless @user_agent =~ %r{Safari|iPhone}
 
     if version = @products.detect{|product| product[0] == 'Version'}
       @browser_version = version[1]
@@ -94,7 +94,7 @@ private
   end
 
   def identify_browser_compatible
-    compatible = /^compatible; ([^\s]+) ([^\s;]+)/
+    compatible = %r{^compatible; ([^\s]+) ([^\s;]+)}
     if browser = @products.detect{|product| product[0] == 'Mozilla' && product[2] =~ compatible}
       # TODO? check_for_cloaked_products(AVANT_BROWSER, CRAZY_BROWSER);
       @browser_version = $2
@@ -109,7 +109,7 @@ private
         @browser_version = first[1]
         @browser_name = 'Netscape'
       else
-        first[2] =~ /rv:([^s]+)/
+        first[2] =~ %r{rv:([^s]+)}
         @browser_version = $1
         @browser_name = first[0]
       end
@@ -135,13 +135,13 @@ private
     return unless element = @comment_elements.detect{|e| e =~ /^win.*\d/i}
     @os_name = 'Windows'
     @os_version = case element
-    when /98/: '98'
-    when /9x 4.90/: 'ME'
-    when /NT 4.0/: 'NT'
-    when /NT 5.0/: '2000'
-    when /NT 5.1/: 'XP'
-    when /NT 6.0/: 'Vista'
-    when /NT 6.1/: '7'
+    when %r{98}: '98'
+    when %r{9x 4.90}: 'ME'
+    when %r{NT 4.0}: 'NT'
+    when %r{NT 5.0}: '2000'
+    when %r{NT 5.1}: 'XP'
+    when %r{NT 6.0}: 'Vista'
+    when %r{NT 6.1}: '7'
     end
   end
 
@@ -149,19 +149,19 @@ private
     return unless element = @comment_elements.detect{|e| e =~ /Mac OS X/} or
                   element = @comment_elements.detect{|e| e =~ /Macintosh/}
     @os_name = case element
-    when /iphone/i
+    when %r{iphone}i
       'iPhone'
     else
       'Mac OS X'
     end
 
-    if element =~ /(10_._.)/
+    if element =~ %r{(10_._.)}
       @os_version = $1.gsub('_','.')
     end
   end
 
   def identify_os_linux
-    return unless element = @comment_elements.detect{|e| e =~ /linux/i}
+    return unless element = @comment_elements.detect{|e| e =~ %r{linux}i}
     @os_name = 'Linux'
   end
 
