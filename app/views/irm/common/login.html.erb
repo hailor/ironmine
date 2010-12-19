@@ -15,6 +15,7 @@
                 <td class="loginform">
 
             <% form_tag({:action=> "login"},{:id=>"login_form"}) do %>
+               <%= back_url_hidden_field_tag %>       
                <table class="logintable" cellspacing="0" cellpadding="0">
                  <tbody>
                      <tr><td class="loginlabel"><%=(t :label_irm_common_username)%></td><td><%=text_field_tag :username,nil%></td></tr>
@@ -31,4 +32,14 @@
 
 
   </div>
-</div>  
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('input').keypress(function(e){
+  	    if(e.which == 13){
+    	    $('form#login_form').submit();
+        }
+    });
+  });
+</script>
