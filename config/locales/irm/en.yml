@@ -229,6 +229,8 @@ en:
   label_irm_login_record_user_ip: User IP
   label_irm_login_record_login_at: Login at
   label_irm_login_record_logout_at: Logout at
+  label_irm_login_record_operate_system: Operate Systme
+  label_irm_login_record_browser: Browser
   #=========================end irm login_records_controller=======================#
   #=========================    irm organizations_controller=======================#
   label_irm_organization_company_name: Company Name

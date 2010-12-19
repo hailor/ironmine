@@ -336,6 +336,8 @@ zh:
   label_irm_login_record_user_ip: 用户IP
   label_irm_login_record_login_at: 登录时间
   label_irm_login_record_logout_at: 退出时间
+  label_irm_login_record_operate_system: 操作系统
+  label_irm_login_record_browser: 浏览器
   #=========================end irm login_records_controller=======================#
   #=========================    irm organizations_controller=======================#
   label_irm_organization_company_name: 公司名称
