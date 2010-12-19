@@ -31,7 +31,7 @@ class Irm::OperationalCatalogsController < ApplicationController
   end
 
   def create
-    @operational_catalog = Irm::Permission.new(params[:irm_operational_catalog])
+    @operational_catalog = Irm::OperationalCatalog.new(params[:irm_operational_catalog])
     respond_to do |format|
       if @operational_catalog.save
         flash[:successful_message] = (t :successfully_created)
@@ -86,7 +86,7 @@ class Irm::OperationalCatalogsController < ApplicationController
   def get_data
     @operational_catalogs = Irm::OperationalCatalog.list_all
     respond_to do |format|
-      format.json  {render :json => @operational_catalogs.to_dhtmlxgrid_json(['0',:catalog_type_name,:catalog_code, :name,:description,:segment1, :segment2, :segment3,:status_code,
+      format.json  {render :json => @operational_catalogs.to_dhtmlxgrid_json(['0',:catalog_type_name,:catalog_code, :name,:segment1_name, :segment2_name, :segment3_name,:status_code,
                                                                     {:value => 'M', :controller => 'irm/operational_catalogs',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
                                                                     ], @operational_catalogs.size) }
     end

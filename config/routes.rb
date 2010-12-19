@@ -246,6 +246,15 @@ Ironmine::Application.routes.draw do
     match '/flex_values/:id/multilingual_update(.:format)' => "flex_values#multilingual_update", :via => :put
     match '/flex_values/destroy(.:format)' => "flex_values#destroy"
     match '/flex_values/create_value(.:format)' => "flex_values#create_value", :via => :post
+    #operational_catalogs
+    match '/operational_catalogs(/index)(.:format)' => "operational_catalogs#index", :via => :get
+    match '/operational_catalogs/new(.:format)' => "operational_catalogs#new", :via => :get
+    match '/operational_catalogs/create(.:format)' => "operational_catalogs#create", :via => :post
+    match '/operational_catalogs/get_data(.:format)' => "operational_catalogs#get_data"
+    match '/operational_catalogs/:id/edit(.:format)' => "operational_catalogs#edit", :via => :get
+    match '/operational_catalogs/:id(.:format)' => "operational_catalogs#update", :via => :put
+    match '/operational_catalogs/:id/multilingual_edit(.:format)' => "operational_catalogs#multilingual_edit", :via => :get
+    match '/operational_catalogs/:id/multilingual_update(.:format)' => "operational_catalogs#multilingual_update", :via => :put    
   end
 
   match '/demo(/index)' => 'demo#index'
