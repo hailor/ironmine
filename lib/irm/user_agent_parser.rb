@@ -135,14 +135,21 @@ private
     return unless element = @comment_elements.detect{|e| e =~ /^win.*\d/i}
     @os_name = 'Windows'
     @os_version = case element
-    when %r{98}: '98'
-    when %r{9x 4.90}: 'ME'
-    when %r{NT 4.0}: 'NT'
-    when %r{NT 5.0}: '2000'
-    when %r{NT 5.1}: 'XP'
-    when %r{NT 6.0}: 'Vista'
-    when %r{NT 6.1}: '7'
-    end
+                    when %r{98}:
+                      '98'
+                    when %r{9x 4.90}:
+                      'ME'
+                    when %r{NT 4.0}:
+                      'NT'
+                    when %r{NT 5.0}:
+                      '2000'
+                    when %r{NT 5.1}:
+                      'XP'
+                    when %r{NT 6.0}:
+                      'Vista'
+                    when %r{NT 6.1}:
+                      '7'
+                 end
   end
 
   def identify_os_mac
