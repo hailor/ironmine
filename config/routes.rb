@@ -160,6 +160,7 @@ Ironmine::Application.routes.draw do
     match '/navigations/admin(.:format)' =>'navigations#admin'
     match '/navigations/advance_setting(.:format)' =>'navigations#advance_setting'
     match '/navigations/base_setting(.:format)' =>'navigations#base_setting'
+    match '/navigations/icm_setting(.:format)' =>'navigations#icm_setting'
     #mail_templates
     match '/mail_templates/new(.:format)'=>"mail_templates#new",:via=>:get
     match '/mail_templates(.:format)'=>"mail_templates#create",:via=>:post
@@ -246,6 +247,15 @@ Ironmine::Application.routes.draw do
     match '/flex_values/:id/multilingual_update(.:format)' => "flex_values#multilingual_update", :via => :put
     match '/flex_values/destroy(.:format)' => "flex_values#destroy"
     match '/flex_values/create_value(.:format)' => "flex_values#create_value", :via => :post
+  end
+
+  scope :module => "icm" do
+    match '/rule_settings(/index)(.:format)' => "rule_settings#index", :via => :get
+    match '/rule_settings/:id/edit(.:format)' => "rule_settings#edit", :via => :get
+    match '/rule_settings/:id(.:format)' => "rule_settings#update", :via => :put
+    match '/rule_settings/new(.:format)' => "rule_settings#new", :via => :get
+    match '/rule_settings/create(.:format)' => "rule_settings#create", :via => :post
+    match '/rule_settings/get_data(.:format)' => "rule_settings#get_data"
   end
 
   match '/demo(/index)' => 'demo#index'

@@ -139,7 +139,7 @@ zh:
   label_irm_permission_permission_type: 权限类型
   label_irm_permission_name: 权限名称
   label_irm_permission_description: 描述
-  label_irm_permission_product_name: 模块
+  icm_rule_settinglabel_irm_permission_product_name: 模块
   label_irm_permission_page_controller: Controller
   label_irm_permission_page_action: Action
   label_irm_permission_status_code: 状态
