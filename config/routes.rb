@@ -14,6 +14,7 @@ Ironmine::Application.routes.draw do
     match '/lookup_types(/index)(.:format)'=>"lookup_types#index",:via=>:get
     match '/lookup_types/:id/edit(.:format)'=>"lookup_types#edit",:via=>:get
     match '/lookup_types/update'=>"lookup_types#update"
+    match '/lookup_types/check_lookup_code'=>"lookup_types#check_lookup_code"
     match '/lookup_types/:id/add_code'=>"lookup_types#add_code"
     #product modules
     match '/product_modules(/index)(.:format)' => "product_modules#index", :via => :get
@@ -246,6 +247,23 @@ Ironmine::Application.routes.draw do
     match '/flex_values/:id/multilingual_update(.:format)' => "flex_values#multilingual_update", :via => :put
     match '/flex_values/destroy(.:format)' => "flex_values#destroy"
     match '/flex_values/create_value(.:format)' => "flex_values#create_value", :via => :post
+    #site_groups
+    match '/site_groups(/index)(.:format)' => "site_groups#index", :via => :get
+    match '/site_groups/:id/edit(.:format)' => "site_groups#edit", :via => :get
+    match '/site_groups/:id(.:format)' => "site_groups#update", :via => :put
+    match '/site_groups/new(.:format)' => "site_groups#new", :via => :get
+    match '/site_groups/create(.:format)' => "site_groups#create", :via => :post
+    match '/site_groups/:id/multilingual_edit(.:format)' => "site_groups#multilingual_edit", :via => :get
+    match '/site_groups/:id/multilingual_update(.:format)' => "site_groups#multilingual_update", :via => :put
+    match '/site_groups/get_data(.:format)' => "site_groups#get_data"
+    match '/site_groups/get_current_group_site(.:format)' => "site_groups#get_current_group_site"
+    match '/site_groups/create_site(.:format)' => "site_groups#create_site"
+    match '/site_groups/:id/add_site(.:format)' => "site_groups#add_site"
+    match '/site_groups/:id/edit_site(.:format)' => "site_groups#edit_site"
+    match '/site_groups/:id/update_site(.:format)' => "site_groups#update_site"
+    match '/site_groups/:id/current_site_group(.:format)' => "site_groups#current_site_group"
+    match '/site_groups/:id/multilingual_site_edit(.:format)' => "site_groups#multilingual_site_edit", :via => :get
+    match '/site_groups/:id/multilingual_site_update(.:format)' => "site_groups#multilingual_site_update", :via => :put
   end
 
   match '/demo(/index)' => 'demo#index'

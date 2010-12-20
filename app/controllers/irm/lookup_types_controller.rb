@@ -179,4 +179,11 @@ class Irm::LookupTypesController < ApplicationController
   def add_code
     @lookup_type = Irm::LookupType.multilingual.find(params[:id])
   end
+
+  def check_lookup_code
+    @flag=Irm::LookupValue.check_lookup_code(params[:lookup_type],params[:lookup_code])
+    respond_to do |format|
+      format.json  { render :json => @flag}
+    end
+  end
 end

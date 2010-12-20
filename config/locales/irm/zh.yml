@@ -384,4 +384,31 @@ zh:
   label_irm_flex_value_position: 显示顺序
   label_irm_flex_value_start_date_active: 开始生效日期
   label_irm_flex_value_end_date_active: 截至失效日期
-  #=========================end irm flex_values_controller=======================#  
+  #=========================end irm flex_values_controller=======================#
+  #=========================    irm site_groups_controller=======================#
+  label_irm_site_group_group_code: 编码
+  label_irm_site_group_region_name: 区域
+  label_irm_site_group_name: 名称
+  label_irm_site_group_create_site: 创建地点
+  label_irm_site_group_edit_site: 编辑地点
+  label_irm_site_group_add_site: 添加地点
+  label_irm_site_group_description: 描述
+  label_irm_site_group_status_code: 记录状态
+  label_irm_site_group_new: 新建地点组
+  label_irm_site_group_edit: 编辑地点组
+  label_irm_site_group_list: 地点组列表
+  label_irm_site_group_site_groups_tls:
+    name: 名称
+  label_irm_site_new: 新建地点
+  label_irm_site_edit: 编辑地点
+  label_irm_site_list: 地点列表
+  label_irm_site_site_code: 地点编码
+  label_irm_site_name: 名称
+  label_irm_site_description: 描述
+  label_irm_site_address_line: 详细地址
+  label_irm_site_country: 国家
+  label_irm_site_city: 城市
+  label_irm_site_postal_code: 邮编
+  label_irm_site_state: 省
+  label_irm_site_timezone_code: 时区
+  #=========================end irm site_groups_controller=======================#

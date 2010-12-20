@@ -1,0 +1,39 @@
+    <div id="id_site_group_list">
+        <div class="containerheader">
+           <div class="floatleft headertitle"><%=t(:label_irm_site_group_list)%></div>
+        </div>
+        <div id="id_site_group_grid" class="datagrid"
+        action_type="ajaxDhtmlxGrid"
+        grid_image_path="/themes/default/images/dhtmlx/"
+        grid_header=" ,<%=t(:label_irm_site_group_region_name)%>,<%=t(:label_irm_site_group_group_code)%>,<%=t(:label_irm_site_group_name)%>,<%=t(:label_irm_site_group_description)%>,<%=t(:label_irm_site_group_status_code)%>,<%=t(:multilingual)%>"
+        grid_width="20,100,100,100,100,150,100"
+        grid_col_types="ra,ro,ro,ro,ro,ro,link"
+        grid_align="center,left,left,left,left,center,left"
+        grid_onRowDblClicked="doOnRowDblClicked"
+        grid_checkbox="replaceLink"
+        grid_OnRowSelected="replaceLink"
+        grid_load="'<%= url_for(:action => "get_data", :controller => "irm/site_groups",:format=>:json) %>','','json'">
+        </div>
+        <script type="text/javascript" charset="utf-8">
+        function doOnRowDblClicked(rowId,cInd){
+           processDblClicked("id_site_group_new","","<%= url_for(:action => "edit", :controller => "irm/site_groups",:id=>":id")%>",rowId);
+        }
+        function replaceLink(rowId){
+           var action_temp="";
+           if(rowId!=null&&rowId!=undefined){
+              action_temp = "<%=url_for(:controller=>"irm/site_groups",:action=>"current_site_group",:id=>":id")%>".replace(":id",rowId);
+              $("#id_add_site").attr("href",action_temp);
+           }
+           doSelectRowAndCheckRadio("id_site_group_grid",rowId)
+        }
+        </script>
+            <div class="containerfooter">
+              <div class="button floatright"><%=link_to t(:label_irm_site_group_add_site) ,
+                                                        {:controller=>"irm/site_groups",
+                                                         :action=>"current_site_group",:id=>":id"},
+                                                        :script => "/replace(id_site_group_index,id_current_site_group);/",
+                                                        :action_type=>"ajaxLink",
+                                                        :id=> "id_add_site"%>
+              </div>
+            </div>
+    </div>

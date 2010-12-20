@@ -27,6 +27,15 @@ class Irm::LookupValue < ActiveRecord::Base
 
   end
 
+  def self.check_lookup_code(lookup_type,lookup_code)
+      if Irm::LookupValue.query_by_lookup_code(lookup_code).
+          query_by_lookup_type(lookup_type).size>0
+         return false
+      else
+         return true
+      end
+  end
+
   def wrap_meaning
     self[:meaning]
   end

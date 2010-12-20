@@ -1,0 +1,49 @@
+   <div id="id_site_group_edit">
+     <%= form_for(@site_group,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+                <div class="containerheader">
+                    <div class="floatleft headertitle"><%=t(:label_irm_site_group_edit)%> - <%= @site_group.group_code%></div>
+                </div>
+                <table class="twocolumnstable" cellspacing="0">
+                    <tr>
+                        <td class="twocolumn">
+                           <table class="itemdetailtable">
+                            <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_site_group_region_name)%>:</td>
+                            <td><%=f.select :region_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_region,:region_code,:wrap_name,@site_group.region_code)%></td>
+                        </tr>
+                            <tr>
+                                <td class="itemdetailtablelabel"><%=(t :label_irm_site_group_group_code)%>:</td>
+                                <td><%=f.text_field :group_code,:size=>40,:readonly=>"readonly"%></td>
+                            </tr>
+                            <tr>
+                                <td class="itemdetailtablelabel"><%=(t :label_irm_site_group_name)%>:</td>
+                                <td><%=f.text_field :name,:value=>@site_group[:name],:size=>40,:required=>true %></td>
+                            </tr>
+                            <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_site_group_status_code)%>:</td>
+                            <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@site_group.status_code)%></td>
+                            </tr>
+                           </table>
+                        </td>
+                        <td class="twocolumn" cellspacing="0">
+                           <table class="itemdetailtable">
+                            <div id="id_lookup_level">
+                               <tr><td class="itemdetailtablelabel">
+                                     <%=t(:label_irm_site_group_description)%>:
+                               </td>
+                               <td><%= f.text_area :description, :value => @site_group[:description], :cols => 40, :rows => 2    %></td>
+                            </tr>
+                            </div>
+                           </table>
+                        </td>
+                        <td width="10%"></td>
+                    </tr>
+                </table>
+                <div class="containerfooter">
+                    <div class="button floatright" ><%= link_to t(:save), {:controller=>"irm/site_groups",:action=>"update"}, {:action_type => "ajaxSubmit", :script => "/reload_grid('id_site_group_grid');replace(system_message_box,system_message_box);/replace(system_message_box,system_message_box);"}%></div>
+                    <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(id_site_group_new,id_site_group_new);/", :action_type=>"ajaxLink"%></div>
+                </div>
+     <% end %>
+   </div>

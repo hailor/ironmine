@@ -1,0 +1,103 @@
+   <div id="id_current_site_group">
+     <div class="container">
+     <%= form_for(@site_group,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+                <div class="containerheader">
+                    <div class="floatleft headertitle"><%=t(:label_irm_site_group_add_site)%> - <%= @site_group.group_code%></div>
+                </div>
+                <table class="twocolumnstable" cellspacing="0">
+                    <tr>
+                        <td class="twocolumn">
+                           <table class="itemdetailtable">
+                            <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_site_group_region_name)%>:</td>
+                            <td><%=f.select :region_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_region,:region_code,:wrap_name,@site_group.region_code),{},{:disabled=>"disabled"}%></td>
+                            </tr>
+                            <tr>
+                                <td class="itemdetailtablelabel"><%=(t :label_irm_site_group_group_code)%>:</td>
+                                <td><%=f.text_field :group_code,:size=>40,:readonly=>"readonly"%></td>
+                            </tr>
+                            <tr>
+                                <td class="itemdetailtablelabel"><%=(t :label_irm_site_group_name)%>:</td>
+                                <td><%=f.text_field :name,:value=>@site_group[:name],:size=>40,:readonly=>"readonly" %></td>
+                            </tr>
+                            <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_site_group_status_code)%>:</td>
+                            <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@site_group.status_code),{},{:disabled=>"disabled"}%></td>
+                            </tr>
+                           </table>
+                        </td>
+                        <td class="twocolumn" cellspacing="0">
+                           <table class="itemdetailtable">
+                            <div id="id_lookup_level">
+                               <tr><td class="itemdetailtablelabel">
+                                     <%=t(:label_irm_site_group_description)%>:
+                               </td>
+                               <td><%= f.text_area :description, :value => @site_group[:description], :cols => 40, :rows => 2 ,:readonly=>"readonly"   %></td>
+                            </tr>
+                            </div>
+                           </table>
+                        </td>
+                        <td width="10%"></td>
+                    </tr>
+                </table>
+                <div class="containerfooter">
+                </div>
+     <% end %>
+   </div>
+   <div id="id_site_list">
+      <div class="container">
+        <div class="containerheader">
+           <div class="floatleft headertitle"><%=t(:label_irm_site_list)%></div>
+        </div>
+        <div id="id_site_grid" class="datagrid"
+        action_type="ajaxDhtmlxGrid"
+        grid_image_path="/themes/default/images/dhtmlx/"
+        grid_header=" ,<%=t(:label_irm_site_site_code)%>,<%=t(:label_irm_site_name)%>,<%=t(:label_irm_site_description)%>,<%=t(:label_irm_site_group_status_code)%>,<%=t(:multilingual)%>"
+        grid_width="20,100,100,150,100,100"
+        grid_col_types="ra,ro,ro,ro,ro,link"
+        grid_align="center,left,left,left,center,left"
+        grid_onRowDblClicked="replaceLink"
+        grid_checkbox="replaceLink"
+        grid_OnRowSelected="replaceLink"
+        grid_load="'<%= url_for(:action => "get_current_group_site", :controller => "irm/site_groups",:id=>@site_group.id) %>','','json'">
+        </div>
+        <script type="text/javascript" charset="utf-8">
+        function replaceLink(rowId){
+           var action_temp="";
+           if(rowId!=null&&rowId!=undefined){
+              action_temp = "<%=url_for(:controller=>"irm/site_groups",:action=>"edit_site",:id=>":id",:site_group_code=>@site_group.group_code,
+                                                        :site_group_id=>@site_group.id)%>".replace(":id",rowId);
+              $("#id_edit_site").attr("href",action_temp);
+           }
+           doSelectRowAndCheckRadio("id_site_grid",rowId)
+        }
+        </script>
+            <div class="containerfooter">
+              <div class="button floatright"><%=link_to t(:label_irm_site_group_create_site) ,
+                                                        {:controller=>"irm/site_groups",
+                                                         :action=>"add_site",:id=>@site_group.id,
+                                                         :site_group_code=>@site_group.group_code,
+                                                         :site_group_id=>@site_group.id},
+                                                        :script => "/replace(id_site_group_index,id_site_new);/",
+                                                        :action_type=>"ajaxLink",
+                                                        :id=> "id_add_site"%>
+              </div>
+              <div class="button floatright"><%=link_to t(:label_irm_site_group_edit_site) ,
+                                                        {:controller=>"irm/site_groups",
+                                                         :action=>"edit_site",:id=>":id",
+                                                        :site_group_code=>@site_group.group_code,
+                                                        :site_group_id=>@site_group.id},
+                                                        :script => "/replace(id_site_group_index,id_site_edit);/",
+                                                        :action_type=>"ajaxLink",
+                                                        :id=> "id_edit_site"%>
+              </div>
+              <div class="button floatright"><%= link_to t(:cancel), {:action => "index"},
+                                                         :script => "/replace(id_site_group_index,id_site_group_index);/",
+                                                         :action_type=>"ajaxLink"%></div>
+
+            </div>
+    </div>
+   </div>
+   </div>

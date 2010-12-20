@@ -33,24 +33,19 @@ function setLookupType(id,lookupType){
 }
 //#=========================end irm/lookup_types/_new_form.html.erb=======================#
 //#=========================start irm/lookup_types/_edit_form.html.erb=======================#
-var dpEdit=""
-function addEditRow(id,lookupTypeId) {
+function addEditRow(id) {
     var grid = dhtmlx_grid_array[id];
     var newId = (new Date()).valueOf();
     grid.addRow(newId,"",grid.getRowsNum());
     grid.selectRow(grid.getRowIndex(newId),false,false,true);
-    dpEdit = new dataProcessor('/lookup_types/create_edit_value?lookup_type_id='+lookupTypeId);
-    dpEdit.init(grid);
-    dpEdit.setUpdateMode("off");
-    dpEdit.setTransactionMode("POST");
 }
 function removeEditRow(id){
     var grid = dhtmlx_grid_array[id];
     var selId = grid.getSelectedId();
     grid.deleteRow(selId);
 }
-function saveEditRow(){
-  dpEdit.sendData();
+function saveGridData(id){
+  dhtmlx_data_processor_array[id].sendData();
 }
 //#=========================start irm/lookup_types/_new_form.html.erb=======================#
 //#=========================start irm/language/_new_form.html.erb=======================#

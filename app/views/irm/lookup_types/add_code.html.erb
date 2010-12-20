@@ -62,19 +62,41 @@
                        grid_width="20,100,150,200,100,100"
                        grid_col_types="ra,ed,ed,ed,dhxCalendarA,dhxCalendarA"
                        grid_checkbox="selectRowAndRadio"
-                       grid_load="'/lookup_types/get_lookup_values?lookup_type=<%=@lookup_type.lookup_type%>','','json'"></div>
+                       grid_load="'/lookup_types/get_lookup_values?lookup_type=<%=@lookup_type.lookup_type%>','','json'"
+                       grid_data_processor_url="/lookup_types/create_edit_value?lookup_type_id=<%=@lookup_type.id%>"
+                       grid_data_processor_update_mode="off"
+                       grid_data_processor_transaction_mode="POST"
+                       grid_enabled_validation="true"
+                       grid_set_col_validators=",AjaxCheckValue,,,,"></div>
                       <script type="text/javascript" charset="utf-8">
-                        var edit_lookup_type_id = "<%=@lookup_type.id%>";
                         function selectRowAndRadio(rowId){
                             doSelectRowAndCheckRadio("id_edit_lookup_value_grid",rowId)
                         }
+                        dhtmlxValidation.isAjaxCheckValue = function(a) {
+                            var result = false;
+                             $.ajax({
+                                 dataType: "json",
+                                 cache: false,
+                                 async:false,
+                                 url: "/lookup_types/check_lookup_code?lookup_type=<%=@lookup_type.lookup_type%>&lookup_code=" + a,
+                                 timeout: 2000,
+                                 error: function(XMLHttpRequest, errorTextStatus, error){
+                                     alert("Failed to submit : "+ errorTextStatus+" ;"+error);
+                                 },
+                                 success: function(data){
+                                     result = data;
+                                     return true;
+                                 }
+                             });
+                            return result;
+                        };
                       </script>
                       <div class="containerfooter">
-                          <div class="button floatright" id = "id_lookup_code_submit"><a href="javascript:void(0);" onclick="saveEditRow();" ><%= t(:save) %></a></div>
+                          <div class="button floatright" id = "id_lookup_code_submit"><a href="javascript:void(0);" onclick="saveGridData('id_edit_lookup_value_grid');" ><%= t(:save) %></a></div>
                           <div class="button floatright"><%=link_to t(:cancel),{:controller=>"irm/lookup_types",:action=>"index"},
                                                                               :script=>"/replace(id_lookup_type_index,id_lookup_type_index);/",
                                                                               :action_type=>"ajaxLink"%></div>
-                          <div class="button floatright" id = "id_add" onclick="addEditRow('id_edit_lookup_value_grid',edit_lookup_type_id);"><a href="javascript:void(0);"><%= t(:add) %></a></div>
+                          <div class="button floatright" id = "id_add" onclick="addEditRow('id_edit_lookup_value_grid');"><a href="javascript:void(0);"><%= t(:add) %></a></div>
                           <div class="button floatright"><a href="javascript:void(0);" onclick="removeEditRow('id_edit_lookup_value_grid');"><%= t(:delete) %></a></div>
                       </div>
       </div>

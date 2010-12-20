@@ -255,4 +255,32 @@ en:
   label_irm_department_departments_tls:
     name: Name
   #=========================end irm departments_controller=======================#
+  #=========================    irm site_groups_controller=======================#
+  label_irm_site_group_group_code: Code
+  label_irm_site_group_region_name: Region Name
+  label_irm_site_group_name: Name
+  label_irm_site_group_description: Description
+  label_irm_site_group_create_site: Create Site
+  label_irm_site_group_add_site: Add Site
+  label_irm_site_group_add_site: Add Site
+  label_irm_site_group_status_code: Status Code
+  label_irm_site_group_new: New Site Group
+  label_irm_site_group_edit: Edit Site Group
+  label_irm_site_group_list: List Site Group
+  label_irm_site_group_create_site: Create Site
+  label_irm_site_group_site_groups_tls:
+    name: Name
+  label_irm_site_new: New Site
+  label_irm_site_edit: Edit Site
+  label_irm_site_list: List Site
+  label_irm_site_site_code: Site Code
+  label_irm_site_name: Name
+  label_irm_site_description: Description
+  label_irm_site_address_line: Address Line
+  label_irm_site_country: Country
+  label_irm_site_city: City
+  label_irm_site_postal_code: Postal Code
+  label_irm_site_state: Province
+  label_irm_site_timezone_code: TimeZone
+  #=========================end irm site_groups_controller=======================#
 

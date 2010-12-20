@@ -29,8 +29,15 @@ module Irm::LookupTypesHelper
     Irm::LookupValue.query_by_lookup_type("TIMEZONE").multilingual
   end
 
-  def available_mail_template
-    Irm::MailTemplate.query_by_status_code("ENABLED").multilingual
+  def available_country
+    Irm::LookupValue.query_by_lookup_type("COUNTRY").multilingual
   end
 
+  def available_province
+    Irm::LookupValue.query_by_lookup_type("PROVINCE").multilingual
+  end
+
+  def available_city
+    Irm::LookupValue.query_by_lookup_type("CITY").multilingual
+  end
 end

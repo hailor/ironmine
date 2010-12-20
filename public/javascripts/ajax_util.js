@@ -307,7 +307,7 @@ function ajaxDhtmlxTabbar(el){
 
 //根据div的提供的属性构造表格对象
 var dhtmlx_grid_array={};
-//var dhtmlx_data_processor_array={};
+var dhtmlx_data_processor_array={};
 function ajaxDhtmlxGrid(el){
    var id = $(el).attr("id");
    var grid_header = $(el).attr("grid_header");
@@ -323,9 +323,13 @@ function ajaxDhtmlxGrid(el){
    var grid_attach_Header=$(el).attr("grid_attachHeader");
    var grid_load = $(el).attr("grid_load");
    var gridImagePath=$(el).attr("grid_image_path");
-   //var gridDataProcessorUrl=$(el).attr("grid_data_processor_url");
-   //var gridUpdateMode=$(el).attr("grid_data_processor_update_mode");
-   //var gridTransactionMode=$(el).attr("grid_data_processor_transaction_mode");
+   var gridSkin=$(el).attr("grid_skin");
+   var gridDateFormat =$(el).attr("grid_date_format"); 
+   var gridDataProcessorUrl=$(el).attr("grid_data_processor_url");
+   var gridUpdateMode=$(el).attr("grid_data_processor_update_mode");
+   var gridTransactionMode=$(el).attr("grid_data_processor_transaction_mode");
+   var gridEnableValidation=$(el).attr("grid_enabled_validation");
+   var gridSetColValidators=$(el).attr("grid_set_col_validators");
 
    var grid = dhtmlx_grid_array[id];
    if(grid!=null&&grid!=undefined){
@@ -368,6 +372,14 @@ function ajaxDhtmlxGrid(el){
       grid.attachEvent("onRowDblClicked", onRowDblClicked);
    }
 
+   if (gridEnableValidation!=null&&gridEnableValidation!=undefined){
+      grid.enableValidation(true,false);
+   }
+
+   if (gridSetColValidators!=null&&gridSetColValidators!=undefined){
+      grid.setColValidators(gridSetColValidators);
+   }
+
    if (grid_column_hidden!=null&&grid_column_hidden!=undefined){
       var gridColumnHidden = eval("([" + grid_column_hidden + "])");
       grid.setColumnHidden(gridColumnHidden[0], gridColumnHidden[1]);
@@ -375,28 +387,38 @@ function ajaxDhtmlxGrid(el){
    if (grid_attach_Header!=null&&grid_attach_Header!=undefined){
       grid.attachHeader(grid_attach_Header);
    }
-
-   init_grid(grid);
+   if (gridImagePath!=null&&gridImagePath!=undefined){
+      grid.setImagePath(gridImagePath);
+   }else{
+      grid.setImagePath("/themes/default/images/dhtmlx/");
+   }
+   if (gridSkin!=null&&gridSkin!=undefined){
+      grid.setSkin(gridSkin);
+   }else{
+      grid.setSkin("dhx_skyblue");
+   }
+   if (gridDateFormat!=null&&gridDateFormat!=undefined){
+      grid.setDateFormat(gridDateFormat);
+   }else{
+      grid.setDateFormat("%Y-%m-%d");
+   }
+   grid.init();
    if (grid_load!=null&&grid_load!=undefined){
       var gridLoad = eval("([" + grid_load + "])");
       grid.load(gridLoad[0],function(){init(el)},gridLoad[2]);
    }
 
-   //if(gridDataProcessorUrl!=null&&gridDataProcessorUrl!=undefined){
-   //    var dataProcessor = dhtmlx_data_processor_array[gridDataProcessorUrl];
-   //    if(dataProcessor!=null&&dataProcessor!=undefined){
-   //        dataProcessor.destructor();
-   //    }
-   //    dataProcessor = new dataProcessor(gridDataProcessorUrl);
-   //    dataProcessor.init(grid);
-   //    if(gridUpdateMode!=null&gridUpdateMode!=undefined){
-   //       dataProcessor.setUpdateMode(gridUpdateMode);
-   //    }
-   //    if(gridTransactionMode!=null&gridTransactionMode!=undefined){
-   //       dataProcessor.setTransactionMode("POST");
-   //    }
-   //    dhtmlx_data_processor_array[gridDataProcessorUrl]=dataProcessor;
-   //}
+   if(gridDataProcessorUrl!=null&&gridDataProcessorUrl!=undefined){
+       var initDataProcessor = new dataProcessor(gridDataProcessorUrl);
+       initDataProcessor.init(grid);
+       if(gridUpdateMode!=null&gridUpdateMode!=undefined){
+          initDataProcessor.setUpdateMode(gridUpdateMode);
+       }
+       if(gridTransactionMode!=null&gridTransactionMode!=undefined){
+          initDataProcessor.setTransactionMode("POST");
+       }
+       dhtmlx_data_processor_array[id]=initDataProcessor;
+   }
    dhtmlx_grid_array[id]=grid;
 }
 
