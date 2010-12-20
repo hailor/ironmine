@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddIcmProductModule < ActiveRecord::Migration
   def self.up
     irm_product = Irm::ProductModule.new({:product_short_name=>"ICM",:installed_flag=>"Y",:not_auto_mult=>true})

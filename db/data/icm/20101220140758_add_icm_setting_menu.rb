@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddIcmSettingMenu < ActiveRecord::Migration
   def self.up
     irm_navigations_icm_setting = Irm::Permission.new(:permission_code=>'IRM_NAVIGATIONS_ICM_SETTING',

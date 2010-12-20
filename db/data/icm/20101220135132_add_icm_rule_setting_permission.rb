@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddIcmRuleSettingPermission < ActiveRecord::Migration
   def self.up
     icm_rule_settings_index = Irm::Permission.new(:permission_code=>'ICM_RULE_SETTINGS_INDEX',

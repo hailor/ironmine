@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddRuleSettingProcessType < ActiveRecord::Migration
   def self.up
     rule_setting_process_type =Irm::LookupType.new(:lookup_level=>'GLOBAL',
