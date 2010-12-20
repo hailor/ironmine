@@ -120,6 +120,7 @@ function move_row(source, target)
     for(var i=0; i< rows.length; i++)
     {
         dhtmlx_grid_array[source].moveRow(rows[i], "row_sibling", dhtmlx_grid_array[target].getRowId(0), dhtmlx_grid_array[target]);
+        alert("!");
     }
 }
 //#========================= end move dhtmlxgrid row ================
