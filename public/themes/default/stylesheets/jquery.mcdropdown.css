@@ -91,7 +91,7 @@ ul.mcdropdown_menu {
 
 ul.mcdropdown_menu ul {
 	display: none;
-	font: 11px Arial, Helvetica, sans-serif;
+	font: 12px Arial, Helvetica, sans-serif;
 	/* float so we can calculate the size of the columns */
 /*
 	float: left;
@@ -120,10 +120,10 @@ ul.mcdropdown_menu {
 	height: 19px;
 */
 	height: auto;
-	background-color: #e1e0e0;
+	background-color: #F2F5F9;
 	padding: 5px 5px;
 	/* define font here for IE6 */
-	font: 11px Arial, Helvetica, sans-serif;
+	font: 12px Arial, Helvetica, sans-serif;
 }
 
 ul.mcdropdown_menu li {
@@ -134,7 +134,7 @@ ul.mcdropdown_menu li {
 ul.mcdropdown_menu li.mc_root {
 	cursor: pointer;
 	white-space: nowrap;
-	color: #666;
+	color: #000;
 	border-top: 1px solid #fff;
 	padding: 2px 20px 2px 6px;
 	margin: 0 10px;
@@ -174,7 +174,7 @@ ul.mcdropdown_menu li:hover.mc_parent {
 }
 
 ul.mcdropdown_menu ul {
-	background: #f0f0f0;
+	background: #F2F5F9;
 	/* add a slight border for better visualization of deep menus */
 	border: 1px solid #d0d0d0;
 	padding-bottom: 10px;
@@ -186,7 +186,7 @@ ul.mcdropdown_menu ul li {
 	background: #f0f0f0;
 	padding-left: 16px !important;
 	border-top: 1px solid #fff;
-	color: #666;
+	color: #000;
 	white-space: nowrap;
 }
 
@@ -247,13 +247,13 @@ ul.mcdropdown_autocomplete {
 	overflow-y: auto;
   clear: both;
 	padding: 5px 10px;
-	background-color: #e1e0e0;
+	background-color: #F2F5F9;
 	z-index: 10000;
 
 	margin: 0px;
 	list-style-type: none;
 	width: 392px;
-	font: 11px Arial, Helvetica, sans-serif;
+	font: 12px Arial, Helvetica, sans-serif;
 }
 
 ul.mcdropdown_autocomplete ul {
@@ -268,10 +268,10 @@ ul.mcdropdown_autocomplete ul li {
 
 ul.mcdropdown_autocomplete li {
   display: block;
-	font: 11px Arial, Helvetica, sans-serif;
+	font: 12px Arial, Helvetica, sans-serif;
 	cursor: pointer;
 	white-space: nowrap;
-	color: #666;
+	color: #000;
 	border-top: 1px solid #fff;
 	padding: 2px 26px 2px 6px;
 }

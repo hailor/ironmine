@@ -62,7 +62,7 @@
 		, hideSpeed: 0                 // the speed of the hideFx
 		, dropShadow: true             // determine whether drop shadows should be shown on the submenus
 		, autoHeight: true             // always uses the lineHeight options (much faster than calculating height)
-		, lineHeight: 19               // the base height of each list item (li) this is normally calculated automatically, but in some cases the value can't be determined and you'll need to set it manually
+		, lineHeight: 20               // the base height of each list item (li) this is normally calculated automatically, but in some cases the value can't be determined and you'll need to set it manually
 		, screenPadding: 10            // the padding to use around the border of the screen -- this is used to make sure items stay on the screen
 		, allowParentSelect: false     // determines if parent items are allowed to be selected (by default only end nodes can be selected)
 		, delim: ":"                   // the delimited to use when showing the display string
