@@ -1,9 +1,12 @@
-    
-                <div id="msgcontainer" class="msgcontainer"><div class="sysmsgbox">输入信息有误用户名必输用户名必输用户名必输用户名必输用户名必输用户名必输用户名必输，必输</div><div class="sysmsgdetail"><a href="javascript:void(0);">详细信息</a><a href="javascript:void(0);">忽略</a></div></div>
                 <div class="container">
                     <table id="filter">
                         <tbody>
-                            <tr><td>过滤依据:&nbsp;<select><option>我的所有项目</option><option>GMCC</option></select></td><td><div class="button"><a href="javascript:void(0);">应用过滤器</a></div></td></tr>
+                            <tr><td>
+                              <div>
+                                <%= generate_demo_drop_down%>
+                        <input type="text" name="category" id="category" value="" span="true"/>
+                    </div>
+                            </td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -64,7 +67,7 @@
                     	<div class="button floatright"><a href="javascript:void(0);">过滤</a></div>
                         <div class="button floatright"><a href="javascript:void(0);">查看全部</a></div>
                     </div>
-                    <div id="gridbox" style="width:100%; height:200px; background-color:white;"></div>
+                    
                     <div class="containerfooter">
                     	<div class="button floatright"><a href="javascript:void(0);">新建</a></div>
                         <div class="button floatright"><a href="javascript:void(0);">删除</a></div>
@@ -90,3 +93,8 @@
                         <div class="button floatright disable"><a href="javascript:void(0);">查看全部</a></div>
                     </div>
                 </div>
+                <script type="text/javascript">
+$(document).ready(function (){
+    $("#category").mcDropdown("#categorymenu");
+});
+</script>

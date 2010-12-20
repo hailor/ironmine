@@ -1,0 +1,50 @@
+<div id="operational_catalog_new">
+     <%= form_for(@operational_catalog,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+            <div class="containerheader">
+                <div class="floatleft headertitle"><%=t(:label_irm_operational_catalog_new)%></div>
+            </div>
+            <table class="twocolumnstable" cellspacing="0">
+                <tr>
+                    <td class="twocolumn">
+                       <table class="itemdetailtable">
+                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_code)%>:</td>
+                              <td><%=f.text_field :catalog_code, :size=>40,:required=>true,:irm_uppercase=>true%></td>
+                            </tr>
+                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_name)%>:</td>
+                              <td><%=f.text_field :name, :size=>40,:required=>true%></td>
+                            </tr>
+                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_type)%>:</td>
+                              <td><%=f.select :catalog_type, available_catalog_types, {:include_blank => false}, :required=>true%></td>
+                            </tr>
+                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_segment1)%>:</td>
+                              <td><%=f.select :segment1, available_segment1, {:include_blank => true}%></td>
+                            </tr>
+                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_segment2)%>:</td>
+                              <td><%=f.select :segment2, available_segment2, {:include_blank => true}%></td>
+                            </tr>
+                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_segment3)%>:</td>
+                                <td><%=f.select :segment3, available_segment3, {:include_blank => true}%></td>
+                            </tr>
+                            <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
+                              <td><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
+                            </tr>
+                       </table>
+                    </td>
+                    <td class="twocolumn" cellspacing="0">
+                       <table class="itemdetailtable">
+                        <tr><td class="itemdetailtablelabel">
+                              <%=t(:label_irm_operational_catalog_description)%>:
+                           </td>
+                           <td><%= f.text_area :description, :cols => 40, :rows => 4%></td>
+                        </tr>
+                       </table>
+                    </td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+            <div class="containerfooter">
+                <div class="button floatright"><%= link_to t(:save), {}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);reload_grid('operational_catalogs_grid');/replace(system_message_box,system_message_box);"}%></div>
+                <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(container1,operational_catalog_new);/", :action_type=>"ajaxLink"%></div>
+            </div>
+     <% end %>
+</div>
