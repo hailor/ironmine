@@ -50,7 +50,7 @@
             </table>
             <div class="containerfooter">
                 <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/companies",:action=>"create_location"}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);reload_grid('id_location_grid');/replace(system_message_box,system_message_box);"}%></div>
-                <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}, :script => "/replace(id_location_index,id_location_index);/", :action_type=>"ajaxLink"%></div>
+                <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}, :script => "/dhxWins1.window('location_win').close();/", :action_type=>"ajaxLink"%></div>
             </div>
      <% end %>
 </div>
