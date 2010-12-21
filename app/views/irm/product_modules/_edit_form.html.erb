@@ -8,10 +8,10 @@
                         <td class="twocolumn">
                            <table class="itemdetailtable">
                                <tr><td class="itemdetailtablelabel"><%=(t :label_irm_product_module_product_short_name)%>:</td>
-                                <td><%=f.text_field :product_short_name,:size=>40,:required=>true,:irm_uppercase=>true, :readonly=> true %></td>
+                                <td><%=f.text_field :product_short_name, :irm_uppercase=>true, :readonly=> true %></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_product_module_name)%>:</td>
-                              <td><%=f.text_field :name, :value => @product_module[:name] ,:size=>40,:required=>true%></td>
+                              <td><%=f.text_field :name, :value => @product_module[:name],:required=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_product_module_installed_flag)%>:</td>
                               <td><%=f.check_box :installed_flag%></td>
@@ -26,7 +26,7 @@
                                <tr><td class="itemdetailtablelabel">
                                      <%=t(:label_irm_product_module_description)%>:
                                </td>
-                               <td><%= f.text_area :description, :value => @product_module[:description], :cols => 40, :rows => 2%></td>
+                               <td><%= f.text_area :description, :value => @product_module[:description], :rows => 4%></td>
                             </tr>
                            </table>
                         </td>

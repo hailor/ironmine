@@ -8,10 +8,10 @@
                         <td class="twocolumn">
                            <table class="itemdetailtable">
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_menu_entry_prompt)%>:</td>
-                                <td><%=f.text_field :name,:size=>40,:required=>true %></td>
+                                <td><%=f.text_field :name, :required=>true %></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_menu_entry_sub_menu)%>:</td>
-                              <td><%=f.text_field :sub_menu_code ,:size=>40,:required=>true%></td>
+                              <td><%=f.text_field :sub_menu_code, :required=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_menu_entry_page)%>:</td>
                               <td><%=f.text_field :permission_code%></td>
@@ -26,12 +26,12 @@
                             <tr><td class="itemdetailtablelabel">
                                   <%=t(:label_irm_menu_entry_description)%>:
                                </td>
-                               <td><%= f.text_area :description, :cols => 40, :rows => 2%></td>
+                               <td><%= f.text_area :description, :rows => 2%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel">
                                   <%=t(:label_irm_menu_entry_display_sequence)%>:
                                </td>
-                               <td><%= f.text_field :display_sequence, :cols => 40, :rows => 2%></td>
+                               <td><%= f.text_field :display_sequence, :size => 10, :irm_numberonly => true%></td>
                             </tr>
                            </table>
                         </td>

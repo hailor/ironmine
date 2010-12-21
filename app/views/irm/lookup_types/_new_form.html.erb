@@ -9,13 +9,13 @@
                         	<td class="twocolumn">
                                <table class="itemdetailtable">
                                	<tr><td class="itemdetailtablelabel"><%=(t :label_lookup_types)%>:</td>
-                                    <td><%=f.text_field :lookup_type,:size=>45,:required=>true,:irm_uppercase=>true %></td>
+                                    <td><%=f.text_field :lookup_type,:required=>true,:irm_uppercase=>true %></td>
                                 </tr>
                                 <tr><td class="itemdetailtablelabel"><%=(t :label_meaning)%>:</td>
-                                  <td><%=f.text_field :meaning ,:size=>45,:required=>true%></td>
+                                  <td><%=f.text_field :meaning,:required=>true%></td>
                                 </tr>
                                 <tr><td class="itemdetailtablelabel"><%=(t :label_description)%>:</td>
-                                  <td><%=f.text_field :description ,:size=>45%></td>
+                                  <td><%=f.text_field :description%></td>
                                 </tr>
                                </table>
                             </td>

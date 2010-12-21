@@ -8,10 +8,10 @@
                         <td class="twocolumn">
                            <table class="itemdetailtable">
                                <tr><td class="itemdetailtablelabel"><%=(t :label_irm_value_set_value_set_code)%>:</td>
-                                <td><%=f.text_field :value_set_code,:size=>40,:required=>true,:irm_uppercase=>true, :readonly=> true %></td>
+                                <td><%=f.text_field :value_set_code, :irm_uppercase=>true, :readonly=> true %></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_value_set_name)%>:</td>
-                              <td><%=f.text_field :name, :value => @value_set[:name] ,:size=>40,:required=>true%></td>
+                              <td><%=f.text_field :name, :value => @value_set[:name],:required=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
                               <td><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
@@ -23,7 +23,7 @@
                                <tr><td class="itemdetailtablelabel">
                                      <%=t(:label_irm_value_set_description)%>:
                                </td>
-                               <td><%= f.text_area :description, :value => @value_set[:description], :cols => 40, :rows => 2%></td>
+                               <td><%= f.text_area :description, :value => @value_set[:description], :rows => 3%></td>
                             </tr>
                            </table>
                         </td>

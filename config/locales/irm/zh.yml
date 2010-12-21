@@ -145,6 +145,7 @@ zh:
   label_irm_permission_page_action: Action
   label_irm_permission_status_code: 状态
   label_irm_permission_list: 权限列表
+  label_irm_permission_product_name: 所属模块
   #=========================    end permissions_controller=======================#
   #=========================    irm conditions_controller=======================#
   label_irm_condition_condition_code: 编码
