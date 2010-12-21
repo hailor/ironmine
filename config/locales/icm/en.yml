@@ -2,7 +2,7 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  #=========================    icm role_settings_controller=======================#
+  #=========================    icm rule_settings_controller=======================#
   label_icm_rule_setting_new: New rule setting
   label_icm_rule_setting_list: List rule setting
   label_icm_rule_setting_company: Company
@@ -14,4 +14,14 @@ en:
   label_icm_rule_setting_auto_assignable: Auot assign
   label_icm_rule_setting_description: Description
   label_icm_rule_setting_edit: Edit rule setting
-  #========================= end icm role_settings_controller=======================#
+  #========================= end icm rule_settings_controller=======================#
+  #=========================    icm impact_ranges_controller=======================#
+  label_icm_impact_range_list: Impact range list
+  label_irm_impact_range_new: New impate range
+  label_icm_impact_range_impact_code: Impate code
+  label_icm_impact_range_company: Company
+  label_icm_impact_range_weight_values: Weight value
+  label_icm_impact_range_name: Name
+  label_icm_impact_range_description: Description
+  label_icm_impact_range_edit: Edit impate range
+  #========================= end icm impact_ranges_controller=======================# 

@@ -265,6 +265,15 @@ Ironmine::Application.routes.draw do
     match '/rule_settings/new(.:format)' => "rule_settings#new", :via => :get
     match '/rule_settings/create(.:format)' => "rule_settings#create", :via => :post
     match '/rule_settings/get_data(.:format)' => "rule_settings#get_data"
+    #impact_ranges
+    match '/impact_ranges(/index)(.:format)' => "impact_ranges#index", :via => :get
+    match '/impact_ranges/:id/edit(.:format)' => "impact_ranges#edit", :via => :get
+    match '/impact_ranges/:id(.:format)' => "impact_ranges#update", :via => :put
+    match '/impact_ranges/new(.:format)' => "impact_ranges#new", :via => :get
+    match '/impact_ranges/create(.:format)' => "impact_ranges#create", :via => :post
+    match '/impact_ranges/:id/multilingual_edit(.:format)' => "impact_ranges#multilingual_edit", :via => :get
+    match '/impact_ranges/:id/multilingual_update(.:format)' => "impact_ranges#multilingual_update", :via => :put
+    match '/impact_ranges/get_data(.:format)' => "impact_ranges#get_data"
   end
 
   match '/demo(/index)' => 'demo#index'
