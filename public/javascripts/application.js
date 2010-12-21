@@ -61,15 +61,19 @@ jQuery(function ($) {
       mulwins.attachViewportTo($(this).attr('view_port'));
 
       if($('#multwin').length<1){$('body').append("<div id='multwin' style='display:none'></div>");}
-      $('#multwin').load($(this).attr('href'));
+
       var win = mulwins.createWindow("mutilwin",50,50,590,142);
       win.attachObject('multwin');
+      win.setText("");
       win.button('park').hide();
       win.button('close').hide();
       win.button('minmax1').hide();
       win.button('minmax2').hide();
       win.denyResize();
       win.setModal(true);
+      $('#multwin').load($(this).attr('href'),function(){
+          win.setText($('#multwin').find("#windowtitle").html());
+      });
     });
     
     $('a[action_type="multilingual_close"]').live('click', function (e) {

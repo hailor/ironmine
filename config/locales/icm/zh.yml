@@ -12,3 +12,13 @@ zh:
   label_icm_rule_setting_description: 描述
   label_icm_rule_setting_edit: 编辑事件规则  
   #========================= end icm role_settings_controller=======================#
+  #=========================    icm impact_ranges_controller=======================#
+  label_icm_impact_range_list: 影响度列表
+  label_irm_impact_range_new: 新建影响度
+  label_icm_impact_range_impact_code: 简称
+  label_icm_impact_range_company: 公司
+  label_icm_impact_range_weight_values: 权重
+  label_icm_impact_range_name: 名称
+  label_icm_impact_range_description: 描述
+  label_icm_impact_range_edit: 编辑影响度
+  #========================= end icm impact_ranges_controller=======================#
