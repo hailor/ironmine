@@ -226,15 +226,13 @@ Ironmine::Application.routes.draw do
     match '/departments/:id/multilingual_edit(.:format)' => "departments#multilingual_edit", :via => :get
     match '/departments/:id/multilingual_update(.:format)' => "departments#multilingual_update", :via => :put
     match '/departments/get_data(.:format)' => "departments#get_data"
-    #value_sets
-    match '/value_sets(/index)(.:format)' => "value_sets#index", :via => :get
-    match '/value_sets/new(.:format)' => "value_sets#new", :via => :get
-    match '/value_sets/create(.:format)' => "value_sets#create", :via => :post
-    match '/value_sets/get_data(.:format)' => "value_sets#get_data"
-    match '/value_sets/:id/edit(.:format)' => "value_sets#edit", :via => :get
-    match '/value_sets/:id(.:format)' => "value_sets#update", :via => :put
-    match '/value_sets/:id/multilingual_edit(.:format)' => "value_sets#multilingual_edit", :via => :get
-    match '/value_sets/:id/multilingual_update(.:format)' => "value_sets#multilingual_update", :via => :put
+    #flex_value_sets
+    match '/flex_value_sets(/index)(.:format)' => "flex_value_sets#index", :via => :get
+    match '/flex_value_sets/new(.:format)' => "flex_value_sets#new", :via => :get
+    match '/flex_value_sets/create(.:format)' => "flex_value_sets#create", :via => :post
+    match '/flex_value_sets/get_data(.:format)' => "flex_value_sets#get_data"
+    match '/flex_value_sets/:id/edit(.:format)' => "flex_value_sets#edit", :via => :get
+    match '/flex_value_sets/:id(.:format)' => "flex_value_sets#update", :via => :put
     #flex_values
     match '/flex_values/:value_set_id/index(.:format)' => "flex_values#index", :via => :get
     match '/flex_values/:value_set_id/new(.:format)' => "flex_values#new", :via => :get
