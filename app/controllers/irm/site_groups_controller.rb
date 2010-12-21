@@ -154,4 +154,13 @@ class Irm::SiteGroupsController < ApplicationController
                                                              {:value => 'M', :controller => 'irm/site_groups',:action =>  'multilingual_site_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_site_list', :script => ''}], @sites.size)}
     end
   end
+
+  def belongs_to
+    sites = Irm::Site.query_by_site_group_code_and_language(::I18n.locale,params[:site_group_code])
+    respond_to do |format|
+      format.html
+      format.xml  { head :ok }
+      format.js { render :json => sites.collect{|d| {:id=>d.site_code,:name=>d[:name]}} }
+    end
+  end
 end

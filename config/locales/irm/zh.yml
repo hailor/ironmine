@@ -330,6 +330,20 @@ zh:
   label_irm_company_currency_code: 币种
   label_irm_company_budget_code: 预算代码
   label_irm_company_home_page: 主页
+  label_irm_company_site_name: 地点名称
+  label_irm_company_site_group_name: 地点组名称
+  label_irm_company_organization: 组织名称
+  label_irm_company_department: 部门名称
+  label_irm_company_site_maintenance: 维护地点
+  label_irm_location_list: 列表公司地点
+  label_irm_location_new: 新建公司地点
+  label_irm_location_organization: 组织
+  label_irm_location_department: 部门
+  label_irm_location_site_group: 地点组
+  label_irm_location_site: 地点
+  label_irm_location_status: 记录状态
+  label_irm_company_short_name: 编码
+  label_irm_location_edit: 编辑地点
   #=========================end irm companies_controller=======================#
   #=========================    irm login_records_controller=======================#
   label_irm_login_record_list: 用户登录历史

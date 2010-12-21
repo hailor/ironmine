@@ -203,7 +203,12 @@ Ironmine::Application.routes.draw do
     match '/companies/:id/multilingual_edit(.:format)' => "companies#multilingual_edit", :via => :get
     match '/companies/:id/multilingual_update(.:format)' => "companies#multilingual_update", :via => :put
     match '/companies/get_data(.:format)' => "companies#get_data"
-    match '/companies/base_info(.:format)' => "companies#base_info"
+    match '/companies/site_info(.:format)' => "companies#site_info"
+    match '/companies/get_company_site(.:format)' => "companies#get_company_site"
+    match '/companies/add_site_info(.:format)' => "companies#add_site_info"
+    match '/companies/create_location(.:format)' => "companies#create_location"
+    match '/companies/:id/edit_location(.:format)' => "companies#edit_location"
+    match '/companies/:id/update_location(.:format)' => "companies#update_location"
     #login_records
     match '/login_records(/index)(.:format)' => "login_records#index", :via => :get
     match '/login_records/get_data(.:format)' => "login_records#get_data"
@@ -226,6 +231,7 @@ Ironmine::Application.routes.draw do
     match '/departments/:id/multilingual_edit(.:format)' => "departments#multilingual_edit", :via => :get
     match '/departments/:id/multilingual_update(.:format)' => "departments#multilingual_update", :via => :put
     match '/departments/get_data(.:format)' => "departments#get_data"
+    match '/departments/belongs_to(.:format)' => "departments#belongs_to"
     #value_sets
     match '/value_sets(/index)(.:format)' => "value_sets#index", :via => :get
     match '/value_sets/new(.:format)' => "value_sets#new", :via => :get
@@ -264,6 +270,7 @@ Ironmine::Application.routes.draw do
     match '/site_groups/:id/current_site_group(.:format)' => "site_groups#current_site_group"
     match '/site_groups/:id/multilingual_site_edit(.:format)' => "site_groups#multilingual_site_edit", :via => :get
     match '/site_groups/:id/multilingual_site_update(.:format)' => "site_groups#multilingual_site_update", :via => :put
+    match '/site_groups/belongs_to(.:format)' => "site_groups#belongs_to"
   end
 
   match '/demo(/index)' => 'demo#index'

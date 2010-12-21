@@ -223,6 +223,20 @@ en:
   label_irm_company_currency_code: Currency Code
   label_irm_company_budget_code: Budget Code
   label_irm_company_home_page: Home Page
+  label_irm_company_site_name: Site Name
+  label_irm_company_site_group_name: Site Group Name
+  label_irm_company_organization: Organization Name
+  label_irm_company_department: Department Name
+  label_irm_company_site_maintenance: Site Manitance
+  label_irm_location_list: Location List
+  label_irm_location_new: New Location
+  label_irm_location_organization: Organization
+  label_irm_location_department: Department
+  label_irm_location_site_group: Site Group
+  label_irm_location_site: Site
+  label_irm_location_status: Status
+  label_irm_company_short_name: Short Name
+  label_irm_location_edit: Edit Site
   #=========================end irm companies_controller=======================#
   #=========================    irm login_records_controller=======================#
   label_irm_login_record_list: User login records

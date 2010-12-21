@@ -85,4 +85,13 @@ class Irm::DepartmentsController < ApplicationController
                                                              {:value => 'M', :controller => 'irm/departments',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_department_list', :script => ''}], @departments.size)}
     end
   end
+
+  def belongs_to
+    departments = Irm::Department.query_by_company_and_organization(::I18n.locale,params[:company_id],params[:organization_id])
+    respond_to do |format|
+      format.html
+      format.xml  { head :ok }
+      format.js { render :json => departments.collect{|d| {:id=>d.id,:name=>d[:name]}} }
+    end
+  end
 end

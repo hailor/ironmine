@@ -3,7 +3,7 @@
 
 $(document).ready(function(){
     init(document);
-    cascadeSelect(document)
+    cascadeSelect(document);
     pre_init_partial(document);
 });
 

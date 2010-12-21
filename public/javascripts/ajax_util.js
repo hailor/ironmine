@@ -137,6 +137,7 @@ function ajaxSubmit(el) {
 }
 //调用dhtmlxtabbar的方法来初始化tabbar
 var dhtmlx_tabbar_array={};
+var dhtmlx_tabbar_div_array={};
 function ajaxDhtmlxTabbar(el){
     var id = $(el).attr("id");
     if(id==null && id==undefined){
@@ -212,6 +213,9 @@ function ajaxDhtmlxTabbar(el){
           if(evalTabbarA1ContentParams[2] == 'HTML'){
              tabbar.setContentHTML(evalTabbarA1ContentParams[0], evalTabbarA1ContentParams[1]);
           }else{
+              if(evalTabbarA1ContentParams[2] == 'CUSTOMER_AJAX'){
+                  dhtmlx_tabbar_div_array[evalTabbarA1ContentParams[0]]= evalTabbarA1ContentParams[1];
+              }
               tabbar.setContent(evalTabbarA1ContentParams[0], evalTabbarA1ContentParams[1]);
           }
         }
@@ -230,9 +234,12 @@ function ajaxDhtmlxTabbar(el){
              }
           }
         }else{
-          if(evalTabbarA1ContentParams[2] == 'HTML'){
+          if(evalTabbarA2ContentParams[2] == 'HTML'){
              tabbar.setContentHTML(evalTabbarA2ContentParams[0], evalTabbarA2ContentParams[1]);
           }else{
+              if(evalTabbarA2ContentParams[2] == 'CUSTOMER_AJAX'){
+                  dhtmlx_tabbar_div_array[evalTabbarA2ContentParams[0]]= evalTabbarA2ContentParams[1];
+              }
               tabbar.setContent(evalTabbarA2ContentParams[0], evalTabbarA2ContentParams[1]);
           }
         }
@@ -251,9 +258,12 @@ function ajaxDhtmlxTabbar(el){
              }
           }
         }else{
-          if(evalTabbarA1ContentParams[2] == 'HTML'){
+          if(evalTabbarA3ContentParams[2] == 'HTML'){
              tabbar.setContentHTML(evalTabbarA3ContentParams[0], evalTabbarA3ContentParams[1]);
           }else{
+              if(evalTabbarA3ContentParams[2] == 'CUSTOMER_AJAX'){
+                    dhtmlx_tabbar_div_array[evalTabbarA1ContentParams[0]]= evalTabbarA3ContentParams[1];
+              }
               tabbar.setContent(evalTabbarA3ContentParams[0], evalTabbarA3ContentParams[1]);
           }
         }
@@ -272,9 +282,12 @@ function ajaxDhtmlxTabbar(el){
              }
           }
         }else{
-          if(evalTabbarA1ContentParams[2] == 'HTML'){
+          if(evalTabbarA4ContentParams[2] == 'HTML'){
              tabbar.setContentHTML(evalTabbarA4ContentParams[0], evalTabbarA4ContentParams[1]);
           }else{
+              if(evalTabbarA4ContentParams[2] == 'CUSTOMER_AJAX'){
+                    dhtmlx_tabbar_div_array[evalTabbarA4ContentParams[0]]= evalTabbarA4ContentParams[1];
+              }
               tabbar.setContent(evalTabbarA4ContentParams[0], evalTabbarA4ContentParams[1]);
           }
         }
@@ -293,9 +306,12 @@ function ajaxDhtmlxTabbar(el){
              }
           }
         }else{
-          if(evalTabbarA1ContentParams[2] == 'HTML'){
+          if(evalTabbarA5ContentParams[2] == 'HTML'){
              tabbar.setContentHTML(evalTabbarA5ContentParams[0], evalTabbarA5ContentParams[1]);
           }else{
+              if(evalTabbarA5ContentParams[2] == 'CUSTOMER_AJAX'){
+                 dhtmlx_tabbar_div_array[evalTabbarA5ContentParams[0]]= evalTabbarA5ContentParams[1];
+              }
               tabbar.setContent(evalTabbarA5ContentParams[0], evalTabbarA5ContentParams[1]);
           }
         }
@@ -303,6 +319,15 @@ function ajaxDhtmlxTabbar(el){
     if(tabbarActive!=null && tabbarActive!=undefined){
         tabbar.setTabActive(tabbarActive);
     }
+    dhtmlx_tabbar_array[id]=tabbar;
+    tabbar.attachEvent("onSelect", function() {
+        var selectDiv= dhtmlx_tabbar_div_array[arguments[0]];
+        var loadHref = $("#"+selectDiv).attr("href");
+        if(loadHref!=null&&loadHref!=undefined){
+           $("#"+selectDiv).load(loadHref,function(){init($("#"+selectDiv))});
+        }
+        return true;
+    });
 }
 
 //根据div的提供的属性构造表格对象

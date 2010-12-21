@@ -21,6 +21,14 @@ class Irm::Site < ActiveRecord::Base
     where(:site_group_code=>site_group_code)
   }
 
+
+
+  scope :query_by_site_group_code_and_language,lambda{|language,site_group_code| select("#{table_name}.site_code,#{Irm::SitesTl.table_name}.name").
+                                                              joins(:sites_tls).
+                                                              where("#{Irm::SitesTl.table_name}.language=? and " +
+                                                                    "#{table_name}.site_group_code = ?",
+                                                                    language,site_group_code)}
+
   scope :query_wrap_info,lambda{|language| select("#{table_name}.*,#{Irm::SitesTl.table_name}.name,#{Irm::SitesTl.table_name}.description,"+
                                                           "v1.meaning status_meaning").
                                                    joins(",irm_lookup_values_vl v1").

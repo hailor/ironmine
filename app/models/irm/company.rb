@@ -19,6 +19,9 @@ class Irm::Company < ActiveRecord::Base
                                                          "v2.lookup_type='SYSTEM_STATUS_CODE' AND v2.lookup_code = #{table_name}.status_code AND "+
                                                          "v1.language=? AND v2.language=?",language,language)}
 
+
+
+
   #设定当前用户
   def self.current=(company)
     @current_company = company

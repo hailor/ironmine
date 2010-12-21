@@ -26,4 +26,11 @@ class Irm::Department < ActiveRecord::Base
                                                          "#{table_name}.company_id = v2.id AND v2.language=? AND "+
                                                          "#{table_name}.organization_id = v3.id AND v3.language=? AND "+
                                                          "v1.language=?",language,language,language)}
+
+
+  scope :query_by_company_and_organization,lambda{|language,company_id,organization_id| select("#{table_name}.id,#{Irm::DepartmentsTl.table_name}.name").
+                                                              joins(:departments_tls).
+                                                              where("#{Irm::DepartmentsTl.table_name}.language=? AND " +
+                                                                    "#{table_name}.company_id = ? AND #{table_name}.organization_id = ?",
+                                                                    language,company_id,organization_id)}
 end

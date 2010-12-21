@@ -40,30 +40,26 @@
                 </tbody>
                 </table>
 
-                <div id="a_tabbar" style="width:auto; height:300px;"
+                <div id="id_company_tabbar" style="width:auto; height:295px;"
                  action_type="ajaxDhtmlxTabbar"
                  tabbar_skin="dhx_skyblue"
                  tabbar_image_path="/themes/default/images/dhtmlx/"
-                 tabbar_href_mode="ajax-html"
                  tabbar_a1_params="'a1', '<%=t(:label_irm_company_base_info)%>', '100px'"
                  tabbar_a2_params="'a2', '<%=t(:label_irm_company_site_info)%>', '100px'"
                  tabbar_a3_params="'a3', '<%=t(:label_irm_company_support_group)%>', '100px'"
-                 tabbar_a1_content_params="'a1', '/companies/base_info?company_id='+<%=@company.id%>,''"
-                 tabbar_a2_content_params="'a2', 'id_login_access','COMMON'"
+                 tabbar_a1_content_params="'a1', 'id_base_info','COMMON'"
+                 tabbar_a2_content_params="'a2', 'id_site_info','CUSTOMER_AJAX'"
                  tabbar_a3_content_params="'a3', 'id_support_group','COMMON'"
                  tabbar_active="a1">
                  </div>
-                <div id="id_login_access" >
-                   Content 3
+                <div id="id_base_info" >
+                   <%= render :partial=>"base_info",:locals=>{:f=>f,:company_info=>@company} %>
+                </div>
+                <div id="id_site_info" href="/companies/site_info?company_id=<%=@company.id%>">
                 </div>
                 <div id="id_support_group" >
                     Content 3
-                </div>
-
-                <div class="containerfooter">
-                    <div class="button floatright" ><%= link_to t(:save), {:controller=>"irm/companies",:action=>"update"}, {:action_type => "ajaxSubmit", :script => "/reload_grid('id_company_grid');replace(system_message_box,system_message_box);/replace(system_message_box,system_message_box);"}%></div>
-                    <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}, :script => "/replace(id_company_index,id_company_index);/", :action_type=>"ajaxLink"%></div>
-                </div>
+                </div>                
      <% end %>
    </div>
  </div>

@@ -94,4 +94,6 @@ function doSelectRowAndCheckRadio(grid_id,rowId){
    dhtmlx_grid_array[grid_id].setSelectedRow(rowId);
    dhtmlx_grid_array[grid_id].cells(rowId,0).setValue("1");
 }
+
+
 //#=========================end irm/language/_new_form.html.erb=======================#

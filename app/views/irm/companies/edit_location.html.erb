@@ -1,0 +1,54 @@
+<div id="id_location_edit">
+  <%= form_for(@location,:url=>{:action=>"update_location",:id=>@location_id},:builder => LabellingFormBuilder) do |f| %>
+             <div class="containerheader">
+                 <div class="floatleft headertitle"><%=t(:label_irm_location_edit)%></div>
+             </div>
+             <table class="twocolumnstable" cellspacing="0">
+                <tr>
+                    <td class="twocolumn">
+                       <table class="itemdetailtable">
+                        <tr>
+                        <td class="itemdetailtablelabel"><%=(t :label_irm_location_organization)%>:</td>
+                            <td><%=f.select(:organization_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_organization,:id,:wrap_name,@location.organization_id),{},
+                                            :action=>url_for(:controller=>"irm/departments",:action=>"belongs_to",
+                                                             :organization_id=>"cascade_id",:company_id=>@company_id),
+                                            :choice_title=>t(:actionview_instancetag_blank_option),
+                                  :cascade=>"department_select")%></td>
+                        </tr>
+                        <tr>
+                        <td class="itemdetailtablelabel"><%=(t :label_irm_location_department)%>:</td>
+                            <td><%=f.select(:department_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_department,:id,:wrap_name,@location.department_id),
+                                            {},:id=>"department_select")%></td>
+                        </tr>
+                       </table>
+                    </td>
+                    <td class="twocolumn" cellspacing="0">
+                       <table class="itemdetailtable">
+                        <tr>
+                        <td class="itemdetailtablelabel"><%=(t :label_irm_location_site_group)%>:</td>
+                            <td><%=f.select(:site_group_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_site_group,:group_code,:wrap_name,@location.site_group_code),{},
+                                            :action=>url_for(:controller=>"irm/site_groups",:action=>"belongs_to",
+                                                             :site_group_code=>"cascade_id"),
+                                            :choice_title=>t(:actionview_instancetag_blank_option),
+                                  :cascade=>"site_select")%></td>
+                        </tr>
+                        <tr>
+                        <td class="itemdetailtablelabel"><%=(t :label_irm_location_site)%>:</td>
+                            <td><%=f.select(:site_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_site,:site_code,:wrap_name,@location.site_code),
+                                            {},:id=>"site_select")%></td>
+                        </tr>
+                       </table>
+                    </td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+             <div class="containerfooter">
+                 <div class="button floatright" ><%= link_to t(:save), {:controller=>"irm/companies",:action=>"update_location",:id=>@location_id}, {:action_type => "ajaxSubmit", :script => "/reload_grid('id_location_grid');replace(system_message_box,system_message_box);/replace(system_message_box,system_message_box);"}%></div>
+                 <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(id_location_new,id_location_new);/", :action_type=>"ajaxLink"%></div>
+             </div>
+  <% end %>
+</div>

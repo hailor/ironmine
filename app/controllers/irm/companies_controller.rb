@@ -49,13 +49,6 @@ class Irm::CompaniesController < ApplicationController
   def update
     @company = Irm::Company.find(params[:id])
     @attr = params[:irm_company]
-    @attr.merge!(:home_page=>params[:home_page])
-    @attr.merge!(:hotline=>params[:hotline])
-    @attr.merge!(:time_zone=>params[:time_zone])
-    @attr.merge!(:cost_center_code=>params[:cost_center_code])
-    @attr.merge!(:currency_code=>params[:currency_code])
-    @attr.merge!(:status_code=>params[:status_code])
-    @attr.merge!(:budget_code=>params[:budget_code])
     
     respond_to do |format|
       if @company.update_attributes(@attr)
@@ -94,7 +87,74 @@ class Irm::CompaniesController < ApplicationController
     end
   end
 
-  def base_info
-    @company_info = Irm::Company.find(params[:company_id])
+  def site_info
+    @company_id = params[:company_id]
+  end
+
+  def get_company_site
+    @company_id = params[:company_id]
+    @company_sites= Irm::Location.query_site_info(I18n::locale,@company_id)
+    respond_to do |format|
+      format.json {render :json=>@company_sites.to_dhtmlxgrid_json(['R',:organization_name,:department_name,:site_group_name,:site_name,:status_meaning], @company_sites.size)}
+    end
+  end
+
+  def add_site_info
+    @company_id = params[:company_id]
+    @location=Irm::Location.new
+  end
+
+  def create_location
+     @location = Irm::Location.new(params[:irm_location])
+
+    respond_to do |format|
+      if @location.save
+        flash[:successful_message] = (t :successfully_created)
+        format.html { render "return" }
+        format.xml  { render :xml => @location, :status => :created, :location => @location }
+      else
+        @error = @location
+        format.html { render "irm/common/error_message" }
+        format.xml  { render :xml => @location.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def update_location
+     @location = Irm::location.new(params[:irm_location])
+
+    respond_to do |format|
+      if @location.save
+        flash[:successful_message] = (t :successfully_created)
+        format.html { render "return" }
+        format.xml  { render :xml => @location, :status => :created, :location => @location }
+      else
+        @error = @location
+        format.html { render "irm/common/error_message" }
+        format.xml  { render :xml => @location.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def edit_location
+    @location = Irm::Location.find(params[:id])
+    @location_id = params[:id]
+  end
+
+  def update_location
+    @location = Irm::Location.find(params[:id])
+    @attr = params[:irm_location]
+
+    respond_to do |format|
+      if @location.update_attributes(@attr)
+        flash[:successful_message] = (t :successfully_updated)
+        format.html { render "irm/common/_successful_message" }
+        format.xml  { head :ok }
+      else
+        @error = @location
+        format.html { render "irm/common/error_message" }
+        format.xml  { render :xml => @location.errors, :status => :unprocessable_entity }
+      end
+    end
   end
 end

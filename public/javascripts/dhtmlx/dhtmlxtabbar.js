@@ -908,6 +908,7 @@ dhtmlXTabBar.prototype = {
         };
         if (this._tabs[id] == this._lastActive)
             this.cells(id).show(true)
+
     },
     normalize : function(limit, full) {
         limit = limit || this._tabZone.offsetWidth;
@@ -1090,7 +1091,7 @@ if (!window.dhtmlXContainer) {
                 this._frame = fr;
                 if (this._doOnAttachURL)
                     this._doOnAttachURL(true)
-            } else if (type == "urlajax") {
+            } else if (type == "urlajax") {                
                 var t = this;
                 var xmlParser = function() {
                     t.attachHTMLString(this.xmlDoc.responseText, this);
