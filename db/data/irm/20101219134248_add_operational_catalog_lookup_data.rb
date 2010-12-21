@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 class AddOperationalCatalogLookupData < ActiveRecord::Migration
   def self.up
+    change_column :irm_flex_values, :position, :integer, :null => true
+
     operational_catalog_type=Irm::LookupType.new(:lookup_level=>'GLOBAL',
                                          :lookup_type=>'OPERATIONAL_CATALOG_TYPE',
                                          :status_code=>'ENABLED',
