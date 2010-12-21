@@ -38,13 +38,13 @@ function pre_init_partial(el){
 
     $('<span class="textrequired">*&nbsp;</span>').insertBefore($(el).find('textarea[required]:not([readonly]):not([disabled]):not([span])'));
     $(el).find('textarea[required]:not([readonly]):not([disabled]):not([span])').attr("span", true);
-    $('<span class="textrequired">&nbsp;&nbsp;</span>').insertBefore($(el).find('textarea:not([required]):not([disabled]):not([span])'));
-    $(el).find('textarea:not([required]):not([disabled]):not([span])').attr("span", true);
+    $('<span class="textrequired">&nbsp;&nbsp;</span>').insertBefore($(el).find('textarea:not([required]):not([span])'));
+    $(el).find('textarea:not([required]):not([span])').attr("span", true);
 
     $('<span class="textrequired">*&nbsp;</span>').insertBefore($(el).find('select[required]:not([readonly]):not([disabled]):not([span])'));
     $(el).find('select[required]:not([readonly]):not([disabled]):not([span])').attr("span", true);
-    $('<span class="textrequired">&nbsp;&nbsp;</span>').insertBefore($(el).find('select:not([required]):not([disabled]):not([span])'));
-    $(el).find('select:not([required]):not([disabled]):not([span])').attr("span", true);
+    $('<span class="textrequired">&nbsp;&nbsp;</span>').insertBefore($(el).find('select:not([required]):not([span])'));
+    $(el).find('select:not([required]):not([span])').attr("span", true);
     
     $(el).find('input[type=submit]').css("cursor","pointer");
     cascadeSelect(el);

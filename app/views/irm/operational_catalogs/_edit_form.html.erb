@@ -1,3 +1,30 @@
+
+    <script type="text/javascript">
+        function s1change(){
+            if($("#s1").val() == "")
+            {
+                $("select#s2").get(0).selectedIndex = 0;
+                $("#s2").attr("disabled", "disabled");
+                $("select#s3").get(0).selectedIndex = 0;
+                $("#s3").attr("disabled", "disabled");
+            }
+            else
+            {
+               $("#s2").attr("disabled", false);
+            }
+        }
+        function s2change(){
+            if($("#s2").val() == "")
+            {
+               $("select#s3").get(0).selectedIndex = 0;
+               $("#s3").attr("disabled", true);
+            }
+            else
+            {
+               $("#s3").attr("disabled", false);
+            }
+        }
+    </script>
 <div id="operational_catalog_new">
      <%= form_for(@operational_catalog,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
             <div class="containerheader">
@@ -17,13 +44,13 @@
                               <td><%=f.select :catalog_type, available_catalog_types, {:include_blank => false}, :required=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_segment1)%>:</td>
-                              <td><%=f.select :segment1, available_segment1, {:include_blank => true}%></td>
+                              <td><%=f.select :segment1, available_segment1, {:include_blank => t(:default)}, :id => "s1", :onchange => "s1change()"%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_segment2)%>:</td>
-                              <td><%=f.select :segment2, available_segment2, {:include_blank => true}%></td>
+                              <td><%=f.select :segment2, available_segment2, {:include_blank => t(:default)}, :id => "s2", :onchange => "s2change()"%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_segment3)%>:</td>
-                                <td><%=f.select :segment3, available_segment3, {:include_blank => true}%></td>
+                                <td><%=f.select :segment3, available_segment3, {:include_blank => t(:default)}, :id => "s3"%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
                               <td><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
