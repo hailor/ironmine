@@ -1,5 +1,5 @@
 .dhtmlxcalendar_yahoolike {
-	background: url(/bk_images/dhtmlx/calendar/__dhxCal_skin_Yahoolike/cal_bg_single.gif) no-repeat;
+	background: url(/images/dhtmlx/calendar/__dhxCal_skin_Yahoolike/cal_bg_single.gif) no-repeat;
 	border: 1px solid gray;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size:small;
@@ -61,7 +61,7 @@
 .dhtmlxcalendar_yahoolike .btn_close,
 .dhtmlxcalendar_yahoolike .btn_today,
 .dhtmlxcalendar_yahoolike .btn_clear {
-  background: url(/bk_images/dhtmlx/calendar/__dhxCal_skin_Yahoolike/btns.gif) no-repeat;
+  background: url(/images/dhtmlx/calendar/__dhxCal_skin_Yahoolike/btns.gif) no-repeat;
   float:right;
   height:12px;
   width:12px;  
@@ -103,7 +103,7 @@
 
 .dhtmlxcalendar_yahoolike .dxcalmonth td.month_btn_left,
 .dhtmlxcalendar_yahoolike .dxcalmonth td.month_btn_right {
-	background: url(/bk_images/dhtmlx/calendar/__dhxCal_skin_Yahoolike/btns.gif) no-repeat;
+	background: url(/images/dhtmlx/calendar/__dhxCal_skin_Yahoolike/btns.gif) no-repeat;
 	background-position: -60px 0;
 	width: 9px;
 }

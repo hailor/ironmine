@@ -314,7 +314,7 @@ zh:
   #=========================end irm regions_controller=======================#
   #=========================    irm companies_controller=======================#
   label_irm_company_company_short_name: 简称
-  label_irm_company_name: 名称
+  label_irm_company_name: 公司名称
   label_irm_company_company_type: 公司类型
   label_irm_company_description: 描述
   label_irm_company_status_code: 记录状态
@@ -403,3 +403,9 @@ zh:
   label_irm_operational_catalog_name: 运营分类名
   label_irm_operational_catalog_description: 描述
   #=========================end operational_catalogs_controller=======================#
+  #=========================irm op_catalog_accesses_controller=======================#
+  label_irm_op_catalog_access: 服务类别控制
+  label_irm_op_catalog_access_icm: ICM
+  label_irm_op_catalog_access_csi: CSI
+  label_irm_op_catalog_access_skm: SKM
+  #=========================end op_catalog_accesses_controller=======================#
