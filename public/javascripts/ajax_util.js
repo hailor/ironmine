@@ -160,9 +160,9 @@ function ajaxDhtmlxTabbar(el){
     var tabbarActive = $(el).attr("tabbar_active");
 
     var tabbar = dhtmlx_tabbar_array[id];
-    if(tabbar!=null&&tabbar!=undefined){
-       tabbar.destructor();
-    }
+    //if(tabbar!=null&&tabbar!=undefined){
+    //   tabbar.destructor();
+    //}
     if(tabbarMode==null && tabbarMode==undefined){
         tabbarMode='top';
     }
