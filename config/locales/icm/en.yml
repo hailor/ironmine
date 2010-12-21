@@ -24,4 +24,15 @@ en:
   label_icm_impact_range_name: Name
   label_icm_impact_range_description: Description
   label_icm_impact_range_edit: Edit impate range
-  #========================= end icm impact_ranges_controller=======================# 
+  #========================= end icm impact_ranges_controller=======================#
+  #=========================    icm urgence_codes_controller=======================#
+  label_icm_urgence_code_list: List urgence code
+  label_irm_urgence_code_new: New urgence code
+  label_icm_urgence_code_urgency_code: Code
+  label_icm_urgence_code_company: Company
+  label_icm_urgence_code_weight_values: Weight values
+  label_icm_urgence_code_name: Name
+  label_icm_urgence_code_description: Description
+  label_icm_urgence_code_edit: Edit urgence code
+  #========================= end icm urgence_codes_controller=======================#
+

@@ -274,6 +274,15 @@ Ironmine::Application.routes.draw do
     match '/impact_ranges/:id/multilingual_edit(.:format)' => "impact_ranges#multilingual_edit", :via => :get
     match '/impact_ranges/:id/multilingual_update(.:format)' => "impact_ranges#multilingual_update", :via => :put
     match '/impact_ranges/get_data(.:format)' => "impact_ranges#get_data"
+    #urgence_codes
+    match '/urgence_codes(/index)(.:format)' => "urgence_codes#index", :via => :get
+    match '/urgence_codes/:id/edit(.:format)' => "urgence_codes#edit", :via => :get
+    match '/urgence_codes/:id(.:format)' => "urgence_codes#update", :via => :put
+    match '/urgence_codes/new(.:format)' => "urgence_codes#new", :via => :get
+    match '/urgence_codes/create(.:format)' => "urgence_codes#create", :via => :post
+    match '/urgence_codes/:id/multilingual_edit(.:format)' => "urgence_codes#multilingual_edit", :via => :get
+    match '/urgence_codes/:id/multilingual_update(.:format)' => "urgence_codes#multilingual_update", :via => :put
+    match '/urgence_codes/get_data(.:format)' => "urgence_codes#get_data"
   end
 
   match '/demo(/index)' => 'demo#index'
