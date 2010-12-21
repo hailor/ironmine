@@ -17,6 +17,10 @@ class Irm::Department < ActiveRecord::Base
     where(:short_name=>short_name)
   }
 
+  scope :query_all_department,lambda{|company_id,organization_id|
+    where("#{table_name}.company_id=? and #{table_name}.organization_id=?",company_id,organization_id)
+  }
+
   scope :query_wrap_info,lambda{|language| select("#{table_name}.*,#{Irm::DepartmentsTl.table_name}.name,#{Irm::DepartmentsTl.table_name}.description,"+
                                                           "v1.meaning status_meaning,v2.name company_name,v3.name organization_name").
                                                    joins(",irm_lookup_values_vl v1").

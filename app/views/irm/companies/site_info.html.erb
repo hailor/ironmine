@@ -32,7 +32,8 @@
         </script>
             <div class="containerfooter">
               <div class="button floatright">
-                <a href="javascript:void(0);" onclick="siteInfoOnLoad();"><%= t(:label_irm_company_site_maintenance) %></a>
+                <div class="button floatright"><a href="javascript:void(0);" onclick="siteInfoOnLoad();"><%= t(:label_irm_company_site_maintenance) %></a></div>
+                <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}, :script => "/replace(id_company_index,id_company_index);/", :action_type=>"ajaxLink"%></div>
               </div>
             </div>
 </div>

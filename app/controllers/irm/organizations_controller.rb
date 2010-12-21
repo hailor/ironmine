@@ -87,7 +87,7 @@ class Irm::OrganizationsController < ApplicationController
   end
 
   def belongs_to
-    organizations = Irm::Organization.query_by_company_id(::I18n.locale,params[:company_id])
+    organizations = Irm::Organization.query_by_company_and_language(::I18n.locale,params[:company_id])
     respond_to do |format|
       format.html
       format.xml  { head :ok }

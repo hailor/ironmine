@@ -1,4 +1,6 @@
 <div id="id_location_all">
+<div id="id_window_message" >
+</div>
 <div id="id_location_new" class="container">
      <%= form_for(@location,:url=>{:action=>"create_location"},:builder => LabellingFormBuilder) do |f| %>
             <div class="containerheader">
@@ -12,16 +14,17 @@
                         <tr>
                         <td class="itemdetailtablelabel"><%=(t :label_irm_location_organization)%>:</td>
                             <td><%=f.select(:organization_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_organization,:id,:wrap_name),{},
+                                                options_from_collection_for_select(current_organization(@company_id),:id,:wrap_name),{},
                                             :action=>url_for(:controller=>"irm/departments",:action=>"belongs_to",
                                                              :organization_id=>"cascade_id",:company_id=>@company_id),
                                             :choice_title=>t(:actionview_instancetag_blank_option),
+                                            :required=>true,
                                   :cascade=>"department_select")%></td>
                         </tr>
                         <tr>
                         <td class="itemdetailtablelabel"><%=(t :label_irm_location_department)%>:</td>
                             <td><%=f.select(:department_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_department,:id,:wrap_name),
+                                                options_from_collection_for_select(current_department(@company_id,@location.organization_id),:id,:wrap_name),
                                             {},:id=>"department_select")%></td>
                         </tr>
                        </table>
@@ -35,13 +38,14 @@
                                             :action=>url_for(:controller=>"irm/site_groups",:action=>"belongs_to",
                                                              :site_group_code=>"cascade_id"),
                                             :choice_title=>t(:actionview_instancetag_blank_option),
+                                            :required=>true,
                                   :cascade=>"site_select")%></td>
                         </tr>
                         <tr>
                         <td class="itemdetailtablelabel"><%=(t :label_irm_location_site)%>:</td>
                             <td><%=f.select(:site_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_site,:site_code,:wrap_name),
-                                            {},:id=>"site_select")%></td>
+                                                options_from_collection_for_select(current_site(@location.site_group_code),:site_code,:wrap_name),
+                                            {},:id=>"site_select",:required=>true)%></td>
                         </tr>
                        </table>
                     </td>
@@ -49,7 +53,7 @@
                 </tr>
             </table>
             <div class="containerfooter">
-                <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/companies",:action=>"create_location"}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);reload_grid('id_location_grid');/replace(system_message_box,system_message_box);"}%></div>
+                <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/companies",:action=>"create_location"}, {:action_type => "ajaxSubmit", :script => "/replace(id_window_message,system_message_box);reload_grid('id_location_grid');/replace(id_window_message,system_message_box);"}%></div>
                 <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}, :script => "/dhxWins1.window('location_win').close();/", :action_type=>"ajaxLink"%></div>
             </div>
      <% end %>

@@ -17,6 +17,10 @@ class Irm::Organization < ActiveRecord::Base
     where(:short_name=>short_name)
   }
 
+  scope :query_by_company_id,lambda{|company_id|
+   where(:company_id=>company_id)
+  }
+
   scope :query_wrap_info,lambda{|language| select("#{table_name}.*,#{Irm::OrganizationsTl.table_name}.name,#{Irm::OrganizationsTl.table_name}.description,"+
                                                           "v1.meaning status_meaning,v2.name company_name").
                                                    joins(",irm_lookup_values_vl v1").
@@ -25,7 +29,7 @@ class Irm::Organization < ActiveRecord::Base
                                                          "#{table_name}.company_id = v2.id AND v2.language=? AND "+
                                                          "v1.language=?",language,language)}
 
-  scope :query_by_company_id,lambda{|language,company_id| select("#{Irm::Organization.table_name}.id,#{Irm::OrganizationsTl.table_name}.name").
+  scope :query_by_company_and_language,lambda{|language,company_id| select("#{Irm::Organization.table_name}.id,#{Irm::OrganizationsTl.table_name}.name").
                                                               joins(:organizations_tls).
                                                               where("#{Irm::OrganizationsTl.table_name}.language=? and " +
                                                                     "#{Irm::Organization.table_name}.company_id = ?",

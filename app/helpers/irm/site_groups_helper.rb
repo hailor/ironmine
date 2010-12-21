@@ -5,4 +5,8 @@ module Irm::SiteGroupsHelper
   def available_site
     Irm::Site.query_by_status_code("ENABLED").multilingual
   end
+
+  def current_site(site_group_code)
+    Irm::Site.query_by_site_group_code(site_group_code).query_by_status_code("ENABLED").multilingual
+  end
 end
