@@ -31,14 +31,20 @@ function pre_init_partial(el){
     $(el).find('textarea[required]:not([readonly]):not([disabled])').addClass("inputrequired");
     $(el).find('textarea[readonly]').addClass("inputdisable");
     
-    $('<span class="textrequired">*&nbsp;</span>').insertBefore($(el).find('input[required]:not([readonly]):not([disabled])'));
-    $(el).find('input[required]:not([readonly]):not([disabled])').removeAttr("required");
+    $('<span class="textrequired">*&nbsp;</span>').insertBefore($(el).find('input[required]:not([readonly]):not([disabled]):not([span])'));
+    $(el).find('input[required]:not([readonly]):not([disabled]):not(input[span])').attr("span", true);
+    $('<span class="textrequired">&nbsp;&nbsp;</span>').insertBefore($(el).find('input:not([required]):not([span]):not([type=hidden])'));
+    $(el).find('input:not(input[required]):not(input[span]):not([type=hidden])').attr("span", true);
 
-    $('<span class="textrequired">*&nbsp;</span>').insertBefore($(el).find('textarea[required]:not([readonly]):not([disabled])'));
-    $(el).find('textarea[required]:not([readonly]):not([disabled])').removeAttr("required");
+    $('<span class="textrequired">*&nbsp;</span>').insertBefore($(el).find('textarea[required]:not([readonly]):not([disabled]):not([span])'));
+    $(el).find('textarea[required]:not([readonly]):not([disabled]):not([span])').attr("span", true);
+    $('<span class="textrequired">&nbsp;&nbsp;</span>').insertBefore($(el).find('textarea:not([required]):not([span])'));
+    $(el).find('textarea:not([required]):not([span])').attr("span", true);
 
-    $('<span class="textrequired">*&nbsp;</span>').insertBefore($(el).find('select[required]:not([readonly]):not([disabled])'));
-    $(el).find('select[required]:not([readonly]):not([disabled])').removeAttr("required");    
+    $('<span class="textrequired">*&nbsp;</span>').insertBefore($(el).find('select[required]:not([readonly]):not([disabled]):not([span])'));
+    $(el).find('select[required]:not([readonly]):not([disabled]):not([span])').attr("span", true);
+    $('<span class="textrequired">&nbsp;&nbsp;</span>').insertBefore($(el).find('select:not([required]):not([span])'));
+    $(el).find('select:not([required]):not([span])').attr("span", true);
     
     $(el).find('input[type=submit]').css("cursor","pointer");
     cascadeSelect(el);
@@ -55,15 +61,19 @@ jQuery(function ($) {
       mulwins.attachViewportTo($(this).attr('view_port'));
 
       if($('#multwin').length<1){$('body').append("<div id='multwin' style='display:none'></div>");}
-      $('#multwin').load($(this).attr('href'));
+
       var win = mulwins.createWindow("mutilwin",50,50,590,142);
       win.attachObject('multwin');
+      win.setText("");
       win.button('park').hide();
       win.button('close').hide();
       win.button('minmax1').hide();
       win.button('minmax2').hide();
       win.denyResize();
       win.setModal(true);
+      $('#multwin').load($(this).attr('href'),function(){
+          win.setText($('#multwin').find("#windowtitle").html());
+      });
     });
     
     $('a[action_type="multilingual_close"]').live('click', function (e) {
@@ -114,6 +124,7 @@ function move_row(source, target)
     for(var i=0; i< rows.length; i++)
     {
         dhtmlx_grid_array[source].moveRow(rows[i], "row_sibling", dhtmlx_grid_array[target].getRowId(0), dhtmlx_grid_array[target]);
+        alert("!");
     }
 }
 //#========================= end move dhtmlxgrid row ================

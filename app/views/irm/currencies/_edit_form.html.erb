@@ -9,15 +9,15 @@
                            <table class="itemdetailtable">
                             <tr>
                                 <td class="itemdetailtablelabel"><%=(t :label_irm_currency_currency_code)%>:</td>
-                                <td><%=f.text_field :currency_code,:size=>40,:readonly=>"readonly"%></td>
+                                <td><%=f.text_field :currency_code, :readonly=>"readonly"%></td>
                             </tr>
                             <tr>
                                 <td class="itemdetailtablelabel"><%=(t :label_irm_currency_precision)%>:</td>
-                                <td><%=f.text_field :precision,:size=>40,:required=>true %></td>
+                                <td><%=f.text_field :precision, :required=>true %></td>
                             </tr>
                             <tr>
                                 <td class="itemdetailtablelabel"><%=(t :label_irm_currency_name)%>:</td>
-                                <td><%=f.text_field :name,:value=>@currency[:name],:size=>40,:required=>true %></td>
+                                <td><%=f.text_field :name,:value=>@currency[:name], :required=>true %></td>
                             </tr>
                             <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_currency_status_code)%>:</td>
@@ -32,7 +32,7 @@
                                <tr><td class="itemdetailtablelabel">
                                      <%=t(:label_irm_currency_description)%>:
                                </td>
-                               <td><%= f.text_area :description, :value => @currency[:description], :cols => 40, :rows => 2    %></td>
+                               <td><%= f.text_area :description, :value => @currency[:description], :rows => 2    %></td>
                             </tr>
                             </div>
                            </table>

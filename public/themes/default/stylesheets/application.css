@@ -168,10 +168,22 @@ table.leftnavigation tr.navigationbody td{
 	border-style: solid;
 	border-width: 1px;
 }
+table.leftnavigation tr.navigationbody a{
+    display: block;
+    padding: 3px 0 3px 5px;
+    margin: 0 0 0 2px;
+    color: #000;
+    text-decoration: none;
+}
+table.leftnavigation tr.navigationbody a:hover{
+    color: #000;
+    background-color: #E6E6E6;
+}
 table.leftnavigation{
 	width: 100%;
 	margin-bottom: -1px;
 }
+
 
 div.container {padding-bottom: 5px;}
 div.container div.containerheader{ background: none repeat scroll 0 0 #99BBDD; height:25px; line-height: 25px; padding: 0 20px 0 20px;}
@@ -235,8 +247,8 @@ table.twocolumnform{
 	border-width: 0 1px;
 	border-color: #ccc;
 }
-table.twocolumnform td.left{width: 30%;}
-table.twocolumnform td.right{width: 30%;}
+table.twocolumnform td.left{width: 40%;}
+table.twocolumnform td.right{width: 40%;}
 table.twocolumnform td.middle{width: 2%;}
 table.twocolumnform td.sep{width: 38%;}
 
@@ -246,14 +258,15 @@ input.titledesc, textarea.titledesc{width: 630px;}
 .inputrequired{background-color:#FFFFCC;}
 .inputdisable{background-color:#CCC;}
 
-span.textrequired{color:#990000;}
+span.textrequired{color:#990000; padding-top: 2px; }
 
 table.twocolumnstable{width:100%;border: #cccccc solid; border-width: 0 1px 0 0; }
 table.twocolumnstable td.twocolumn{	width: 40%; vertical-align: top; border: #cccccc solid; border-width: 0 0 0 1px; padding-left: 15px;}
 
 table.itemdetailtable{width: 100%;}
-table.itemdetailtable td.itemdetailtablelabel{ width: 20%; text-align:right; padding-right: 10px;}
-
+table.itemdetailtable td.itemdetailtablelabel{ width: 90px; text-align:right; padding-right: 3px; vertical-align: top; padding-top:2px;}
+table.itemdetailtable td input[type=text]{ width:90%;text-align: left;}
+table.itemdetailtable td textarea{ width:90%;}
 div#breadcrumbs{margin: 3px 0 0;padding: 0 0 0 5px;}
 div#breadcrumbs a{	text-decoration: none;	color: #0055DD;}
 div#breadcrumbs a:hover{	text-decoration:underline;	color: #0055DD;}
@@ -266,3 +279,21 @@ td.loginform {width: 250px;}
 
 div.meuncontent span.menuitem{display:block;padding-left: 10px;}
 div.menu h2.menutitle{margin-bottom: 5px;}
+
+.dhx_pbox_skyblue {
+    border-color: -moz-use-text-color #C2D5DC #C2D5DC;
+    border-right: 1px solid #C2D5DC;
+    border-style: none solid solid;
+    border-width: 0 1px 1px;
+    font-size: 10px;
+    margin-top: 3px;
+}
+.dhx_pline_skyblue {
+    background-color: white;
+    float: left;
+    margin: -15px 10px 10px;
+    padding: 0 5px;
+}
+input {background-color: #f2f2f2;border:1px solid #9b9b9b; color:#333333;}
+textarea {background-color: #f2f2f2;border:1px solid #9b9b9b; color:#333333;}
+select {background-color: #f2f2f2;border:1px solid #9b9b9b; color:#333333;}

@@ -21,11 +21,11 @@
                         </tr>
                         <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_department_short_name)%>:</td>
-                            <td><%=f.text_field :short_name,:size=>40,:required=>true,:irm_uppercase=>true%></td>
+                            <td><%=f.text_field :short_name, :required=>true,:irm_uppercase=>true%></td>
                         </tr>                        
                         <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_department_name)%>:</td>
-                            <td><%=f.text_field :name,:size=>40,:required=>true %></td>
+                            <td><%=f.text_field :name, :required=>true %></td>
                         </tr>
                        </table>
                     </td>
@@ -35,7 +35,7 @@
                         <tr><td class="itemdetailtablelabel">
                               <%=t(:label_irm_department_description)%>:
                            </td>
-                           <td><%= f.text_area :description, :cols => 40, :rows => 2%></td>
+                           <td><%= f.text_area :description, :rows => 2%></td>
                         </tr>
                         </div>
                        </table>

@@ -33,8 +33,9 @@ class Irm::NavigationsController < ApplicationController
   def advance_setting
 
   end
-  # 管理->服务请求设置
-  def sr_setting
+  # 管理->事件管理设置
+  def icm_setting
 
   end
+
 end

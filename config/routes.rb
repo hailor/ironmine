@@ -161,6 +161,7 @@ Ironmine::Application.routes.draw do
     match '/navigations/admin(.:format)' =>'navigations#admin'
     match '/navigations/advance_setting(.:format)' =>'navigations#advance_setting'
     match '/navigations/base_setting(.:format)' =>'navigations#base_setting'
+    match '/navigations/icm_setting(.:format)' =>'navigations#icm_setting'
     #mail_templates
     match '/mail_templates/new(.:format)'=>"mail_templates#new",:via=>:get
     match '/mail_templates(.:format)'=>"mail_templates#create",:via=>:post
@@ -271,6 +272,33 @@ Ironmine::Application.routes.draw do
     match '/site_groups/:id/multilingual_site_edit(.:format)' => "site_groups#multilingual_site_edit", :via => :get
     match '/site_groups/:id/multilingual_site_update(.:format)' => "site_groups#multilingual_site_update", :via => :put
     match '/site_groups/belongs_to(.:format)' => "site_groups#belongs_to"
+    #operational_catalogs
+    match '/operational_catalogs(/index)(.:format)' => "operational_catalogs#index", :via => :get
+    match '/operational_catalogs/new(.:format)' => "operational_catalogs#new", :via => :get
+    match '/operational_catalogs/create(.:format)' => "operational_catalogs#create", :via => :post
+    match '/operational_catalogs/get_data(.:format)' => "operational_catalogs#get_data"
+    match '/operational_catalogs/:id/edit(.:format)' => "operational_catalogs#edit", :via => :get
+    match '/operational_catalogs/:id(.:format)' => "operational_catalogs#update", :via => :put
+    match '/operational_catalogs/:id/multilingual_edit(.:format)' => "operational_catalogs#multilingual_edit", :via => :get
+    match '/operational_catalogs/:id/multilingual_update(.:format)' => "operational_catalogs#multilingual_update", :via => :put    
+  end
+
+  scope :module => "icm" do
+    match '/rule_settings(/index)(.:format)' => "rule_settings#index", :via => :get
+    match '/rule_settings/:id/edit(.:format)' => "rule_settings#edit", :via => :get
+    match '/rule_settings/:id(.:format)' => "rule_settings#update", :via => :put
+    match '/rule_settings/new(.:format)' => "rule_settings#new", :via => :get
+    match '/rule_settings/create(.:format)' => "rule_settings#create", :via => :post
+    match '/rule_settings/get_data(.:format)' => "rule_settings#get_data"
+    #impact_ranges
+    match '/impact_ranges(/index)(.:format)' => "impact_ranges#index", :via => :get
+    match '/impact_ranges/:id/edit(.:format)' => "impact_ranges#edit", :via => :get
+    match '/impact_ranges/:id(.:format)' => "impact_ranges#update", :via => :put
+    match '/impact_ranges/new(.:format)' => "impact_ranges#new", :via => :get
+    match '/impact_ranges/create(.:format)' => "impact_ranges#create", :via => :post
+    match '/impact_ranges/:id/multilingual_edit(.:format)' => "impact_ranges#multilingual_edit", :via => :get
+    match '/impact_ranges/:id/multilingual_update(.:format)' => "impact_ranges#multilingual_update", :via => :put
+    match '/impact_ranges/get_data(.:format)' => "impact_ranges#get_data"
   end
 
   match '/demo(/index)' => 'demo#index'

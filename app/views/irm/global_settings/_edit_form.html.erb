@@ -12,7 +12,7 @@
                       <td><%=f.select :theme_name, available_themes, {:include_blank => false}%></td>
                     </tr>
                     <tr><td class="paddedtablelabel"><%=(t :label_irm_global_setting_upload_file_limit)%>:</td>
-                      <td><%=f.text_field :upload_file_limit ,:size=>40, :irm_numberonly => true%></td>
+                      <td><%=f.text_field :upload_file_limit, :irm_numberonly => true%></td>
                     </tr>
                     <tr><td class="paddedtablelabel"><%=(t :label_irm_global_setting_timezone)%>:</td>
                       <td><%=f.select :timezone, available_timezone, {:include_blank => false}%></td>

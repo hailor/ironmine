@@ -1,0 +1,27 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  #=========================    icm rule_settings_controller=======================#
+  label_icm_rule_setting_new: New rule setting
+  label_icm_rule_setting_list: List rule setting
+  label_icm_rule_setting_company: Company
+  label_icm_rule_setting_report_date_changable: Report date changable
+  label_icm_rule_setting_respond_date_changable: Respond date changable
+  label_icm_rule_setting_auto_closure_days: Auto close days
+  label_icm_rule_setting_assignment_process_code: Process
+  label_icm_rule_setting_slove_date_changable: slove date changable
+  label_icm_rule_setting_auto_assignable: Auot assign
+  label_icm_rule_setting_description: Description
+  label_icm_rule_setting_edit: Edit rule setting
+  #========================= end icm rule_settings_controller=======================#
+  #=========================    icm impact_ranges_controller=======================#
+  label_icm_impact_range_list: Impact range list
+  label_irm_impact_range_new: New impate range
+  label_icm_impact_range_impact_code: Impate code
+  label_icm_impact_range_company: Company
+  label_icm_impact_range_weight_values: Weight value
+  label_icm_impact_range_name: Name
+  label_icm_impact_range_description: Description
+  label_icm_impact_range_edit: Edit impate range
+  #========================= end icm impact_ranges_controller=======================# 
