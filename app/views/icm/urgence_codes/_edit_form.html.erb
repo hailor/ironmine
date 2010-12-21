@@ -8,7 +8,7 @@
                     <td class="twocolumn">
                        <table class="itemdetailtable">
                             <tr><td class="itemdetailtablelabel"><%=(t :label_icm_urgence_code_urgency_code)%>:</td>
-                              <td><%=f.text_field :urgency_code, :size=>40,:required=>true,:irm_uppercase=>true%></td>
+                              <td><%=f.text_field :urgency_code,:required=>true,:irm_uppercase=>true%></td>
                             </tr>
 
                             <tr><td class="itemdetailtablelabel"><%=(t :label_icm_urgence_code_company)%>:</td>
@@ -17,7 +17,7 @@
                                                     {},{}%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_icm_urgence_code_weight_values)%>:</td>
-                              <td><%=f.text_field :weight_values, :size=>40,:required=>true%></td>
+                              <td><%=f.text_field :weight_values, :required=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
                               <td><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
@@ -27,10 +27,10 @@
                     <td class="twocolumn" cellspacing="0">
                        <table class="itemdetailtable">
                          <tr><td class="itemdetailtablelabel"><%=(t :label_icm_urgence_code_name)%>:</td>
-                              <td><%=f.text_field :name, :size=>40,:required=>true%></td>
+                              <td><%=f.text_field :name, :required=>true%></td>
                          </tr>
                          <tr><td class="itemdetailtablelabel"><%=t(:label_icm_urgence_code_description)%>:</td>
-                             <td><%= f.text_area :description, :cols => 40, :rows => 2%></td>
+                             <td><%= f.text_area :description,  :rows => 2%></td>
                          </tr>
                        </table>
                     </td>
