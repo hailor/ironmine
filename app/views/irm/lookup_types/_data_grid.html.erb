@@ -15,7 +15,7 @@
          grid_OnRowSelected="replaceLink"
          grid_attachHeader = "&nbsp;,#select_filter,#text_search,#text_search,&nbsp;,#cspan,#cspan"
          grid_load="'/lookup_types/get_lookup_types','','json'"></div>
-    <span id="pagingArea"></span>&nbsp;<span id="infoArea"></span>
+    <span id="infoArea"></span>
     <span id="recfound"></span>
     <script type="text/javascript" charset="utf-8">
     function doOnRowDblClicked(rowId,cInd){
@@ -32,6 +32,7 @@
     }
     </script>
     <div class="containerfooter">
+        <div class="floatleft"><span id="pagingArea"></span></div>
         <div class="button floatright" ><%=link_to t(:label_add_lookup_code),{:controller=>"irm/lookup_types",:action=>"add_code",:id=>":id"},
                                                    :script=>"/replace(id_lookup_type_index,id_add_lookup_code);/",
                                                    :action_type=>"ajaxLink",:id=>"id_add_lookup_code"%>
