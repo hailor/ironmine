@@ -46,7 +46,7 @@ function pre_init_partial(el){
     $('<span class="textrequired">&nbsp;&nbsp;</span>').insertBefore($(el).find("form").find('select:not([required]):not([span])'));
     $(el).find("form").find('select:not([required]):not([span])').attr("span", true);
     
-    $(el).find("form").find('input[type=submit]').css("cursor","pointer");
+    $(el).find('input[type=submit]').css("cursor","pointer");
     cascadeSelect(el);
 }
 //#=========================start multilingual=======================#

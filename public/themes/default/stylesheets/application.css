@@ -175,7 +175,8 @@ table.leftnavigation tr.navigationbody a{
     color: #000;
     text-decoration: none;
 }
-table.leftnavigation tr.navigationbody a:hover{color: #000;background-color: #E6E6E6;}
+table.leftnavigation tr.navigationbody a:hover{color: #000;background-color: #E6E6E6;
+}
 table.leftnavigation{width: 100%;margin-bottom: -1px;}
 
 
@@ -252,7 +253,7 @@ input.titledesc, textarea.titledesc{width: 630px;}
 .inputrequired{background-color:#FFFFCC;}
 .inputdisable{background-color:#CCC;}
 
-span.textrequired{color:#990000; padding-top: 2px; }
+span.textrequired{color:#990000; padding-top: 2px; font-family: Courier, "Courier New" !important;}
 
 table.twocolumnstable{width:100%;border: #cccccc solid; border-width: 0 1px 0 0; }
 table.twocolumnstable td.twocolumn{	width: 40%; vertical-align: top; border: #cccccc solid; border-width: 0 0 0 1px; padding-left: 15px;}
@@ -307,7 +308,7 @@ div.menu h2.menutitle{margin-bottom: 5px;}
     margin: -15px 10px 10px;
     padding: 0 5px;
 }
-input {background-color: #f2f2f2;border:1px solid #9b9b9b; color:#333333;}
+input[type="text"], input[type="password"] {background-color: #f2f2f2;border:1px solid #9b9b9b; color:#333333;}
 textarea {background-color: #f2f2f2;border:1px solid #9b9b9b; color:#333333;}
 select {background-color: #f2f2f2;border:1px solid #9b9b9b; color:#333333;}
 
