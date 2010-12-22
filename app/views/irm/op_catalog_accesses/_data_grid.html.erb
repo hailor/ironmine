@@ -14,7 +14,7 @@
             enable_paging="true, 15, null, 'pagingArea', true, 'infoArea'"
             grid_load="'<%= url_for(:action => "get_data", :controller => "irm/op_catalog_accesses", :format=>:json) %>',function(){init('#op_catalog_accesses_grid');},'json'">
         </div>
-        <span id="pagingArea"></span>&nbsp;<span id="infoArea"></span>
+        <span id="infoArea"></span>
         <span id="recfound"></span>
         <script>
             function rowSelectedHandler(id, ind){
@@ -22,5 +22,6 @@
             }
         </script>
         <div class="containerfooter">
+          <div class="floatleft"><span id="pagingArea"></span></div>
         </div>
     </div>
