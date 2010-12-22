@@ -5,13 +5,13 @@
         <%=flash[:error]%>
       </div>
     <%end%>
-    <table class="leftnavigation" cellspacing="0">
+    <table class="loginnv" cellspacing="0">
         <tbody>
-            <tr class="navigationheader">
+            <tr class="loginnvheader">
                 <td><%=t(:label_irm_common_login)%>(ironmine/123456)</td>
                 <td></td>
             </tr>
-            <tr class="navigationbody">
+            <tr class="loginnvbody">
                 <td class="loginform">
 
             <% form_tag({:action=> "login"},{:id=>"login_form"}) do %>

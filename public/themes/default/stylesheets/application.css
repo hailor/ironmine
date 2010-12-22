@@ -175,14 +175,8 @@ table.leftnavigation tr.navigationbody a{
     color: #000;
     text-decoration: none;
 }
-table.leftnavigation tr.navigationbody a:hover{
-    color: #000;
-    background-color: #E6E6E6;
-}
-table.leftnavigation{
-	width: 100%;
-	margin-bottom: -1px;
-}
+table.leftnavigation tr.navigationbody a:hover{color: #000;background-color: #E6E6E6;}
+table.leftnavigation{width: 100%;margin-bottom: -1px;}
 
 
 div.container {padding-bottom: 5px;}
@@ -276,6 +270,25 @@ table.logintable td.loginlabel {text-align: right;}
 table.logintable td{border-width: 0 !important; padding: 10px 0 0 10px !important;}
 td.loginicon {border-width: 1px 1px 1px 0 !important;text-align: center;}
 td.loginform {width: 250px;}
+table.logintable input {background-color: #fff;}
+table.loginnv{width: 100%;margin-bottom: -1px;}
+table.loginnv tr.loginnvheader td{
+	background-color: #ccddee;
+	border-color: #99bbdd;
+	border-style: solid;
+	border-width: 1px 0 0;
+	padding-left: 12px;
+	padding-right: 12px;
+	font-size: 12px;
+	font-weight: bold;
+}
+table.loginnv tr.loginnvbody td{
+	background-color: #F2F5F9;
+	padding: 10px 14px 10px 14px;
+	border-color: #ccddee;
+	border-style: solid;
+	border-width: 1px;
+}
 
 div.meuncontent span.menuitem{display:block;padding-left: 10px;}
 div.menu h2.menutitle{margin-bottom: 5px;}
@@ -297,3 +310,4 @@ div.menu h2.menutitle{margin-bottom: 5px;}
 input {background-color: #f2f2f2;border:1px solid #9b9b9b; color:#333333;}
 textarea {background-color: #f2f2f2;border:1px solid #9b9b9b; color:#333333;}
 select {background-color: #f2f2f2;border:1px solid #9b9b9b; color:#333333;}
+
