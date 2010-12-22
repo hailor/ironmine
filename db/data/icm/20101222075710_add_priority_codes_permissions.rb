@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddPriorityCodesPermissions < ActiveRecord::Migration
   def self.up
     icm_priority_codes_index = Irm::Permission.new(:permission_code=>'ICM_PRIORITY_CODES_INDEX',
