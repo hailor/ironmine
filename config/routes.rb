@@ -1,4 +1,5 @@
 Ironmine::Application.routes.draw do
+
   scope :module => "irm" do
     root :to => "navigations#entrance"
     match 'login'=>'common#login',:as=>:login
@@ -291,6 +292,16 @@ Ironmine::Application.routes.draw do
     #op_catalog_accesses
     match '/op_catalog_accesses/:operational_catalog_id(/index)(.:format)' => "op_catalog_accesses#index", :via => :get
     match '/op_catalog_accesses/:operational_catalog_id/get_data(.:format)' => "op_catalog_accesses#get_data"
+    #support_groups
+    match '/support_groups(/index)(.:format)' => "support_groups#index", :via => :get
+    match '/support_groups/:id/edit(.:format)' => "support_groups#edit", :via => :get
+    match '/support_groups/:id(.:format)' => "support_groups#update", :via => :put
+    match '/support_groups/new(.:format)' => "support_groups#new", :via => :get
+    match '/support_groups/create(.:format)' => "support_groups#create", :via => :post
+    match '/support_groups/:id/multilingual_edit(.:format)' => "support_groups#multilingual_edit", :via => :get
+    match '/support_groups/:id/multilingual_update(.:format)' => "support_groups#multilingual_update", :via => :put
+    match '/support_groups/get_data(.:format)' => "support_groups#get_data"
+    match '/support_groups/belongs_to(.:format)' => "support_groups#belongs_to"
   end
 
   scope :module => "icm" do

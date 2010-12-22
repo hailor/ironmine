@@ -1,0 +1,44 @@
+    <div id="id_support_group_list">
+        <div class="containerheader">
+           <div class="floatleft headertitle"><%=t(:label_irm_support_group_list)%></div>
+        </div>
+        <div id="id_support_group_grid" class="datagrid"
+        action_type="ajaxDhtmlxGrid"
+        grid_header=" ,<%=t(:label_irm_support_group_company_name)%>, <%=t(:label_irm_support_group_organization_name)%>,
+                      <%=t(:label_irm_support_group_group_code)%>,<%=t(:label_irm_support_group_name)%>,
+                      <%=t(:label_irm_support_group_description)%>,<%=t(:label_irm_support_group_support_role)%>,
+                      <%=t(:label_irm_support_group_vendor_group)%>,<%=t(:label_irm_support_group_oncall_group)%>,
+                      <%=t(:label_irm_support_group_status_code)%>,<%=t(:multilingual)%>"
+        grid_width="20,100,100,100,100,150,100,100,100,100,50"
+        grid_col_types="ra,ro,ro,ro,ro,ro,ro,ro,ro,ro,link"
+        grid_paging_skin="bricks"
+        enable_paging="true, 12, null, 'pagingArea', true, 'infoArea'"
+        grid_align="center,left,left,left,left,left,center,center,center,center,center"
+        grid_onRowDblClicked="replaceLink"
+        grid_checkbox="replaceLink"
+        grid_OnRowSelected="replaceLink"
+        grid_attachHeader = "&nbsp;,#text_search,#text_search,#text_search,#text_search,&nbsp;,#cspan,#cspan,#cspan,#cspan,#cspan"
+        grid_load="'<%= url_for(:action => "get_data", :controller => "irm/support_groups",:format=>:json) %>','','json'">
+        </div>
+        <span id="pagingArea"></span>&nbsp;<span id="infoArea"></span>
+        <span id="recfound"></span>
+        <script type="text/javascript" charset="utf-8">
+        function replaceLink(rowId){
+           var action_temp="";
+           if(rowId!=null&&rowId!=undefined){
+              action_temp = "<%=url_for(:controller=>"irm/support_groups",:action=>"edit",:id=>":id")%>".replace(":id",rowId);
+              $("#id_edit_support_group").attr("href",action_temp);
+           }
+           doSelectRowAndCheckRadio("id_support_group_grid",rowId)
+        }
+        </script>
+            <div class="containerfooter">
+               <div class="button floatright"><%=link_to t(:label_irm_support_group_edit) ,
+                                                        {:controller=>"irm/support_groups",
+                                                         :action=>"edit",:id=>":id"},
+                                                        :script => "/replace(id_support_group_index,id_support_group_edit);/",
+                                                        :action_type=>"ajaxLink",
+                                                        :id=> "id_edit_support_group"%>
+              </div>
+            </div>
+    </div>

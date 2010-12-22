@@ -20,7 +20,7 @@
         function siteInfoOnLoad(){            
             dhxWins1 = new dhtmlXWindows();
             dhxWins1.enableAutoViewport(false);
-            dhxWins1.attachViewportTo("id_company_index");
+            dhxWins1.attachViewportTo("system_content");
             dhxWins1.setImagePath("/bk_images/dhtmlx/");
             if($('#id_site_info_win').length<1){$('body').append("<div id='id_site_info_win' style='display:none'></div>");}
             w11 = dhxWins1.createWindow("location_win", 80, 30, 680, 400);
@@ -28,6 +28,7 @@
             $('#id_site_info_win').load("/companies/add_site_info?company_id=<%=@company_id%>",
                                     function(){init($("#id_location_all"))});
             w11.attachObject('id_site_info_win');
+            w11.setModal(true);
         }
         </script>
             <div class="containerfooter">

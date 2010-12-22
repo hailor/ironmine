@@ -299,4 +299,22 @@ en:
   label_irm_site_state: Province
   label_irm_site_timezone_code: TimeZone
   #=========================end irm site_groups_controller=======================#
+  #=========================    irm support_groups_controller=======================#
+  label_irm_support_group_company_name: Company Name
+  label_irm_support_group_organization_name: Organization Name
+  label_irm_support_group_group_code: Code
+  label_irm_support_group_name: Name
+  label_irm_support_group_description: Description
+  label_irm_support_group_status_code: Status Code
+  label_irm_support_group_new: New support_group
+  label_irm_support_group_edit: Edit support_group
+  label_irm_support_group_list: List support_group
+  label_irm_support_group_support_groups_tls:
+    name: Name
+  label_irm_support_group_oncall_group: Oncall Group
+  label_irm_support_group_support_role: Support Group Role
+  label_irm_support_group_vendor_group: Vendor Group
+  label_irm_support_group_base_info: Base Info
+  label_irm_support_group_member: Support Group Member
+  #=========================end irm support_groups_controller=======================#
 

@@ -1,0 +1,64 @@
+               <div class="container">
+               <br>
+               <table class="twocolumnstable" cellspacing="0">
+                <tr>
+                    <td class="twocolumn">
+                       <table class="itemdetailtable">
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_support_group_company_name)%>:</td>
+                            <td><%=f.select(:company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_company,:id,:wrap_name,support_group.company_id),
+                                                {},:action=>url_for(:controller=>"irm/organizations",:action=>"belongs_to",:company_id=>"cascade_id"),:choice_title=>t(:actionview_instancetag_blank_option),
+                                  :required=>true,:cascade=>"organization_select")%></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_support_group_organization_name)%>:</td>
+                            <td><%=f.select(:organization_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(current_organization(@support_group.company_id),
+                                                                                   :id,:wrap_name,support_group.organization_id),{},
+                                            :required=>true,:id=>"organization_select")%></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_support_group_oncall_group)%>:</td>
+                            <td><%=f.select(:oncall_group_flag,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_system_yes_no,:lookup_code,:wrap_meaning,support_group.oncall_group_flag),
+                                            {},:required=>true,:id=>"organization_select")%></td>
+                        </tr>
+                       </table>
+                    </td>
+                    <td class="twocolumn" cellspacing="0">
+                       <table class="itemdetailtable">
+                        <div id="id_lookup_level">
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_support_group_support_role)%>:</td>
+                            <td><%=f.select(:support_role_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_support_role,:lookup_code,:wrap_meaning,support_group.support_role_code),
+                                            {},:required=>true,:id=>"organization_select")%></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_support_group_vendor_group)%>:</td>
+                            <td><%=f.select(:vendor_group_flag,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_system_yes_no,:lookup_code,:wrap_meaning,support_group.vendor_group_flag),
+                                            {},:required=>true,:id=>"organization_select")%></td>
+                        </tr>
+                        </div>
+                       </table>
+                    </td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+              <div class="containerfooter">
+                   <div class="button floatright" ><%= link_to t(:save), {:controller=>"irm/support_groups",:action=>"update"}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);/replace(system_message_box,system_message_box);"}%></div>
+                   <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}, :script => "/replace(id_support_group_index,id_support_group_index);/", :action_type=>"ajaxLink"%></div>
+              </div>
+            </div>

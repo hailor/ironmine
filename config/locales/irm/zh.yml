@@ -449,3 +449,21 @@ zh:
   label_irm_op_catalog_access_csi: CSI
   label_irm_op_catalog_access_skm: SKM
   #=========================end op_catalog_accesses_controller=======================#
+  #=========================    irm support_groups_controller=======================#
+  label_irm_support_group_company_name: 公司名称
+  label_irm_support_group_organization_name: 组织名称
+  label_irm_support_group_group_code: 编码
+  label_irm_support_group_name: 名称
+  label_irm_support_group_description: 描述
+  label_irm_support_group_status_code: 记录状态
+  label_irm_support_group_new: 新建支持组
+  label_irm_support_group_edit: 编辑支持组
+  label_irm_support_group_list: 支持组列表
+  label_irm_support_group_support_groups_tls:
+    name: 名称
+  label_irm_support_group_oncall_group: 待命组
+  label_irm_support_group_support_role: 角色
+  label_irm_support_group_vendor_group: 供应商组
+  label_irm_support_group_base_info: 基本信息
+  label_irm_support_group_member: 人员
+  #=========================end irm support_groups_controller=======================#

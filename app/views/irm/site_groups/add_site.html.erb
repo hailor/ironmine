@@ -11,21 +11,21 @@
                       <td class="paddedtablelabel"><%=t(:label_irm_site_site_code)%>:
                       </td>
                       <td>
-                        <%=f.text_field :site_code,:size=>30,:required=>true,:irm_uppercase=>true%>
+                        <%=f.text_field :site_code,:required=>true,:irm_uppercase=>true%>
                       </td>
                   </tr>
                   <tr>
                       <td class="paddedtablelabel"><%=t(:label_irm_site_name)%>:
                       </td>
                       <td>
-                        <%=f.text_field :name,:size=>60,:required=>true%>
+                        <%=f.text_field :name,:required=>true%>
                       </td>
                   </tr>
                   <tr>
                       <td class="paddedtablelabel"><%=t(:label_irm_site_description)%>:
                       </td>
                       <td>
-                        <%=f.text_field :description,:size=>80%>
+                        <%=f.text_field :description%>
                       </td>
                   </tr>
                   <tr>
@@ -52,7 +52,7 @@
                                 </tr>
                                 <tr>
                                     <td class="itemdetailtablelabel"><%=(t :label_irm_site_postal_code)%>:</td>
-                                    <td><%=f.text_field :postal_code,:size=>40 %></td>
+                                    <td><%=f.text_field :postal_code,:size=>5%></td>
                                 </tr>
                                </table>
                             </td>

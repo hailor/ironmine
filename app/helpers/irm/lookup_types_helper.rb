@@ -40,4 +40,12 @@ module Irm::LookupTypesHelper
   def available_city
     Irm::LookupValue.query_by_lookup_type("CITY").multilingual
   end
+
+  def available_system_yes_no
+    Irm::LookupValue.query_by_lookup_type("SYSTEM_YES_NO").multilingual
+  end
+
+  def available_support_role
+    Irm::LookupValue.query_by_lookup_type("IRM_SUPPORT_ROLE").multilingual
+  end
 end

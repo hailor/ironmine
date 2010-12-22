@@ -73,6 +73,9 @@
         grid_onRowDblClicked="doOnRowDblClicked"
         grid_checkbox="selectRowAndRadio"
         grid_OnRowSelected="selectRowAndRadio"
+        grid_paging_skin="bricks"
+        enable_paging="true, 12, null, 'pagingArea', true, 'infoArea'"
+        grid_attachHeader = "&nbsp;,#text_search,#text_search,#text_search,#text_search,&nbsp;,#cspan"
         grid_load="'<%= url_for(:action => "get_company_site", :controller => "irm/companies",:company_id=>@company_id) %>','','json'">
         </div>
         <script type="text/javascript" charset="utf-8">

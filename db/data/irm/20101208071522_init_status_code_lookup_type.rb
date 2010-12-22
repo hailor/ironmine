@@ -27,13 +27,13 @@ class InitStatusCodeLookupType < ActiveRecord::Migration
     enabled_lookup_value.lookup_values_tls.build(:lookup_value_id=>enabled_lookup_value.id,
                                             :meaning=>"可用",
                                             :description=>"可用",
-                                            :language=>"en",
+                                            :language=>"zh",
                                             :status_code=>'ENABLED',
                                             :source_lang=>"en")
     enabled_lookup_value.lookup_values_tls.build(:lookup_value_id=>enabled_lookup_value.id,
                                             :meaning=>"Enabled",
                                             :description=>"Enabled",
-                                            :language=>"zh",
+                                            :language=>"en",
                                             :status_code=>'ENABLED',
                                             :source_lang=>"en")
 
