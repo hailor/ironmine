@@ -32,3 +32,13 @@ zh:
   label_icm_urgence_code_description: 描述
   label_icm_urgence_code_edit: 编辑紧急度
   #========================= end icm urgence_codes_controller=======================#
+  #=========================    icm priority_codes_controller=======================#
+  label_icm_priority_code_list: 优先级列表
+  label_icm_priority_code_new: 新建优先级范围
+  label_icm_priority_code_company: 公司
+  label_icm_priority_code_low_weight_value: 权重从
+  label_icm_priority_code_high_weight_value: 权重至
+  label_icm_priority_code_priority_code: 优先级
+  label_icm_priority_code_description: 描述
+  label_icm_priority_code_edit: 编辑优先级范围
+  #========================= end icm priority_codes_controller=======================#

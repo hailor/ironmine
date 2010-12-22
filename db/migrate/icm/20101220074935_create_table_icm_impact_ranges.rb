@@ -18,7 +18,7 @@ class CreateTableIcmImpactRanges < ActiveRecord::Migration
         t.integer  "impact_range_id"
         t.string   "language",          :limit => 30,  :null => false
         t.string   "name",              :limit => 150, :null => false
-        t.string   "description",       :limit => 240, :null => false
+        t.string   "description",       :limit => 240
         t.string   "source_lang",       :limit => 30,  :null => false
         t.string   "status_code",       :limit => 30, :null => false
         t.integer  "created_by"
