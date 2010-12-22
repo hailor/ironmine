@@ -20,11 +20,11 @@
                             </tr>
                             <tr>
                                 <td class="itemdetailtablelabel"><%=(t :label_irm_department_short_name)%>:</td>
-                                <td><%=f.text_field :short_name,:size=>40,:readonly=>"readonly"%></td>
+                                <td><%=f.text_field :short_name, :readonly=>"readonly"%></td>
                             </tr>
                             <tr>
                                 <td class="itemdetailtablelabel"><%=(t :label_irm_department_name)%>:</td>
-                                <td><%=f.text_field :name,:value=>@department[:name],:size=>40,:required=>true %></td>
+                                <td><%=f.text_field :name,:value=>@department[:name], :required=>true %></td>
                             </tr>
                             <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_department_status_code)%>:</td>
@@ -39,7 +39,7 @@
                                <tr><td class="itemdetailtablelabel">
                                      <%=t(:label_irm_department_description)%>:
                                </td>
-                               <td><%= f.text_area :description, :value => @department[:description], :cols => 40, :rows => 2    %></td>
+                               <td><%= f.text_area :description, :value => @department[:description], :rows => 2    %></td>
                             </tr>
                             </div>
                            </table>

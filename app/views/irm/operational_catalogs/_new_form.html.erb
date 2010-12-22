@@ -34,10 +34,10 @@
                     <td class="twocolumn">
                        <table class="itemdetailtable">
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_code)%>:</td>
-                              <td><%=f.text_field :catalog_code, :size=>40,:required=>true,:irm_uppercase=>true%></td>
+                              <td><%=f.text_field :catalog_code,:required=>true,:irm_uppercase=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_name)%>:</td>
-                              <td><%=f.text_field :name, :size=>40,:required=>true%></td>
+                              <td><%=f.text_field :name, :required=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_type)%>:</td>
                               <td><%=f.select :catalog_type, available_catalog_types, {:include_blank => false}, :required=>true%></td>
@@ -61,7 +61,7 @@
                         <tr><td class="itemdetailtablelabel">
                               <%=t(:label_irm_operational_catalog_description)%>:
                            </td>
-                           <td><%= f.text_area :description, :cols => 40, :rows => 4%></td>
+                           <td><%= f.text_area :description, :rows => 5%></td>
                         </tr>
                        </table>
                     </td>

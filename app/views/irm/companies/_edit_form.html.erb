@@ -10,14 +10,14 @@
                       <td class="paddedtablelabel"><%=t(:label_irm_company_company_short_name)%>:
                       </td>
                       <td>
-                        <%=f.text_field :short_name,:size=>30,:readonly=>"readonly"%>
+                        <%=f.text_field :short_name, :readonly=>"readonly"%>
                       </td>
                   </tr>
                   <tr>
                       <td class="paddedtablelabel"><%=t(:label_irm_company_name)%>:
                       </td>
                       <td>
-                        <%=f.text_field :name ,:value=>@company[:name],:size=>30,:required=>true%>
+                        <%=f.text_field :name ,:value=>@company[:name], :required=>true%>
                       </td>
                   </tr>
                   <tr>
@@ -34,7 +34,7 @@
                       <td class="paddedtablelabel"><%=t(:label_irm_company_description)%>:
                       </td>
                       <td>
-                        <%=f.text_field :description ,:value=>@company[:description],:size=>45%>
+                        <%=f.text_field :description ,:value=>@company[:description]%>
                       </td>
                   </tr>
                 </tbody>

@@ -1,17 +1,14 @@
 <div id="flex_value_show_parent">
   <%= form_for(@value_set,:url=>{},:builder => LabellingFormBuilder) do |f| %>
              <div class="containerheader">
-                 <div class="floatleft headertitle"><%=t(:label_irm_value_set)%> - <%= @value_set.value_set_code%></div>
+                 <div class="floatleft headertitle"><%=t(:label_irm_value_set)%> - <%= @value_set.flex_value_set_name%></div>
              </div>
              <table class="twocolumnstable" cellspacing="0">
                  <tr>
                      <td class="twocolumn">
                         <table class="itemdetailtable">
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_value_set_value_set_code)%>:</td>
-                             <td><%=f.text_field :value_set_code,:size=>40,:required=>true,:irm_uppercase=>true, :readonly=> true %></td>
-                         </tr>
                          <tr><td class="itemdetailtablelabel"><%=(t :label_irm_value_set_name)%>:</td>
-                           <td><%=f.text_field :name, :value => @value_set[:name] ,:size=>40,:required=>true, :readonly=> true %></td>
+                           <td><%=f.text_field :flex_value_set_name ,:size=>40,:required=>true, :readonly=> true %></td>
                          </tr>
                         </table>
                      </td>
@@ -20,7 +17,7 @@
                             <tr><td class="itemdetailtablelabel">
                                   <%=t(:label_irm_value_set_description)%>:
                             </td>
-                            <td><%= f.text_area :description, :value => @value_set[:description], :cols => 40, :rows => 1, :readonly=> true %></td>
+                            <td><%= f.text_area :description, :rows => 2, :readonly=> true %></td>
                             </tr>
                         </table>
                      </td>

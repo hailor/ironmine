@@ -175,14 +175,8 @@ table.leftnavigation tr.navigationbody a{
     color: #000;
     text-decoration: none;
 }
-table.leftnavigation tr.navigationbody a:hover{
-    color: #000;
-    background-color: #E6E6E6;
-}
-table.leftnavigation{
-	width: 100%;
-	margin-bottom: -1px;
-}
+table.leftnavigation tr.navigationbody a:hover{color: #000;background-color: #E6E6E6;}
+table.leftnavigation{width: 100%;margin-bottom: -1px;}
 
 
 div.container {padding-bottom: 5px;}
@@ -264,8 +258,9 @@ table.twocolumnstable{width:100%;border: #cccccc solid; border-width: 0 1px 0 0;
 table.twocolumnstable td.twocolumn{	width: 40%; vertical-align: top; border: #cccccc solid; border-width: 0 0 0 1px; padding-left: 15px;}
 
 table.itemdetailtable{width: 100%;}
-table.itemdetailtable td.itemdetailtablelabel{ width: 20%; text-align:right; padding-right: 3px; vertical-align: top; padding-top:2px;}
-
+table.itemdetailtable td.itemdetailtablelabel{ width: 90px; text-align:right; padding-right: 3px; vertical-align: top; padding-top:3px;}
+table.itemdetailtable td input[type=text]{ width:90%;text-align: left;}
+table.itemdetailtable td textarea{ width:90%;}
 div#breadcrumbs{margin: 3px 0 0;padding: 0 0 0 5px;}
 div#breadcrumbs a{	text-decoration: none;	color: #0055DD;}
 div#breadcrumbs a:hover{	text-decoration:underline;	color: #0055DD;}
@@ -275,6 +270,25 @@ table.logintable td.loginlabel {text-align: right;}
 table.logintable td{border-width: 0 !important; padding: 10px 0 0 10px !important;}
 td.loginicon {border-width: 1px 1px 1px 0 !important;text-align: center;}
 td.loginform {width: 250px;}
+table.logintable input {background-color: #fff;}
+table.loginnv{width: 100%;margin-bottom: -1px;}
+table.loginnv tr.loginnvheader td{
+	background-color: #ccddee;
+	border-color: #99bbdd;
+	border-style: solid;
+	border-width: 1px 0 0;
+	padding-left: 12px;
+	padding-right: 12px;
+	font-size: 12px;
+	font-weight: bold;
+}
+table.loginnv tr.loginnvbody td{
+	background-color: #F2F5F9;
+	padding: 10px 14px 10px 14px;
+	border-color: #ccddee;
+	border-style: solid;
+	border-width: 1px;
+}
 
 div.meuncontent span.menuitem{display:block;padding-left: 10px;}
 div.menu h2.menutitle{margin-bottom: 5px;}
@@ -296,3 +310,4 @@ div.menu h2.menutitle{margin-bottom: 5px;}
 input {background-color: #f2f2f2;border:1px solid #9b9b9b; color:#333333;}
 textarea {background-color: #f2f2f2;border:1px solid #9b9b9b; color:#333333;}
 select {background-color: #f2f2f2;border:1px solid #9b9b9b; color:#333333;}
+

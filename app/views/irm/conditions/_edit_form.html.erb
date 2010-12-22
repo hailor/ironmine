@@ -14,11 +14,11 @@
                             </tr>
                             <tr>
                                 <td class="itemdetailtablelabel"><%=(t :label_irm_condition_condition_code)%>:</td>
-                                <td><%=f.text_field :condition_code,:size=>40,:readonly=>"readonly"%></td>
+                                <td><%=f.text_field :condition_code, :readonly=>"readonly"%></td>
                             </tr>
                             <tr>
                                 <td class="itemdetailtablelabel"><%=(t :label_irm_condition_name)%>:</td>
-                                <td><%=f.text_field :name,:value=>@condition[:name],:size=>40,:required=>true %></td>
+                                <td><%=f.text_field :name,:value=>@condition[:name], :required=>true %></td>
                             </tr>
                             <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_condition_status_code)%>:</td>
@@ -33,7 +33,7 @@
                                <tr><td class="itemdetailtablelabel">
                                      <%=t(:label_irm_condition_description)%>:
                                </td>
-                               <td><%= f.text_area :description, :value => @condition[:description], :cols => 40, :rows => 2    %></td>
+                               <td><%= f.text_area :description, :value => @condition[:description], :rows => 2    %></td>
                             </tr>
                             </div>
                            </table>

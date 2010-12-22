@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddImpactRangePermissions < ActiveRecord::Migration
   def self.up
     icm_impact_ranges_index = Irm::Permission.new(:permission_code=>'ICM_IMPACT_RANGES_INDEX',

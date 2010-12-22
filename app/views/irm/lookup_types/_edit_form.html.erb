@@ -10,15 +10,15 @@
                               <td class="twocolumn">
                                  <table class="itemdetailtable">
                                     <tr><td class="itemdetailtablelabel"><%=(t :label_lookup_types)%>:</td>
-                                    <td><%=f.text_field :lookup_type,:size=>45,:required=>true,:irm_uppercase=>true,:readonly=>true%>
+                                    <td><%=f.text_field :lookup_type, :irm_uppercase=>true,:readonly=>true%>
                                         <%=f.hidden_field :id%>
                                     </td>
                                   </tr>
                                   <tr><td class="itemdetailtablelabel"><%=(t :label_meaning)%>:</td>
-                                    <td><%=f.text_field :meaning ,:value=>@lookup_type[:meaning],:size=>45,:required=>true%></td>
+                                    <td><%=f.text_field :meaning ,:value=>@lookup_type[:meaning], :required=>true%></td>
                                   </tr>
                                   <tr><td class="itemdetailtablelabel"><%=(t :label_description)%>:</td>
-                                    <td><%=f.text_field :description,:value=>@lookup_type[:description],:size=>45%></td>
+                                    <td><%=f.text_field :description,:value=>@lookup_type[:description]%></td>
                                   </tr>
                                  </table>
                               </td>

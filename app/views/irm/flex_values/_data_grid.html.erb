@@ -21,7 +21,7 @@
         <div class="floatright">
             <div class="button" id = "btn_save"><a href="javascript:void(0);" onclick="saveEditFlexValueRow();" ><%= t(:save) %></a></div>
             <div class="button" id = "btn_add" onclick="addFlexValueEditRow('flex_values_grid', '<%= @value_set.id%>');"><a href="javascript:void(0);"><%= t(:add) %></a></div>
-            <div class="button"><%= link_to t(:cancel), {:action => "index", :controller => "irm/value_sets"}, :script => "/replace(containers,containers);/", :action_type=>"ajaxLink"%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index", :controller => "irm/flex_value_sets"}, :script => "/replace(containers,containers);/", :action_type=>"ajaxLink"%></div>
         </div>
     </div>
 </div>

@@ -8,10 +8,10 @@
                     <td class="twocolumn">
                        <table class="itemdetailtable">
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_login_name)%>:</td>
-                              <td><%=f.text_field :login_name, :size=>40,:readonly=>true%></td>
+                              <td><%=f.text_field :login_name,:readonly=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_email)%>:</td>
-                              <td><%=f.text_field :email, :size=>40,:required=>true%></td>
+                              <td><%=f.text_field :email,:required=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_password)%>:</td>
                               <td><%=f.password_field :password, :size=>40%></td>
@@ -24,7 +24,7 @@
                     <td class="twocolumn" cellspacing="0">
                        <table class="itemdetailtable">
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_full_name)%>:</td>
-                              <td><%=f.text_field :full_name, :size=>40,:required=>true%></td>
+                              <td><%=f.text_field :full_name,:required=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_language_code)%>:</td>
                               <td><%= f.select(:language_code, options_for_select(selectable_languages,@identity.language_code)) %> </td>

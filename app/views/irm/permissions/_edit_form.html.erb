@@ -8,16 +8,16 @@
                         <td class="twocolumn">
                            <table class="itemdetailtable">
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_permission_permission_code)%>:</td>
-                              <td><%=f.text_field :permission_code, :size=>40,:required=>true, :readonly => true,:irm_uppercase=>true%></td>
+                              <td><%=f.text_field :permission_code, :readonly => true,:irm_uppercase=>true%></td>
                             </tr>                             
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_permission_name)%>:</td>
-                              <td><%=f.text_field :name, :value => @permission[:name] ,:size=>40,:required=>true%></td>
+                              <td><%=f.text_field :name, :value => @permission[:name],:required=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_permission_page_controller)%>:</td>
-                              <td><%=f.text_field :page_controller, :size=>40,:required=>true%></td>
+                              <td><%=f.text_field :page_controller,:required=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_permission_page_action)%>:</td>
-                              <td><%=f.text_field :page_action, :size=>40,:required=>true%></td>
+                              <td><%=f.text_field :page_action,:required=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_permission_product_name)%>:</td>
                                 <td><%=f.select :product_id, available_product_modules, {:include_blank => false}%></td>
@@ -32,7 +32,7 @@
                                <tr><td class="itemdetailtablelabel">
                                      <%=t(:label_irm_permission_description)%>:
                                </td>
-                               <td><%= f.text_area :description, :value => @permission[:description], :cols => 40, :rows => 4%></td>
+                               <td><%= f.text_area :description, :value => @permission[:description], :rows => 6%></td>
                             </tr>
                            </table>
                         </td>

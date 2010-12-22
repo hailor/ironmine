@@ -14,15 +14,15 @@
                             </tr>
                             <tr>
                                 <td class="itemdetailtablelabel"><%=(t :label_irm_action_action_code)%>:</td>
-                                <td><%=f.text_field :action_code,:size=>40,:readonly=>"readonly"%></td>
+                                <td><%=f.text_field :action_code, :readonly=>"readonly"%></td>
                             </tr>
                             <tr>
                                 <td class="itemdetailtablelabel"><%=(t :label_irm_action_name)%>:</td>
-                                <td><%=f.text_field :name,:value=>@action[:name],:size=>40,:required=>true %></td>
+                                <td><%=f.text_field :name,:value=>@action[:name], :required=>true %></td>
                             </tr>
                             <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_action_handler)%>:</td>
-                            <td><%=f.text_field :handler,:size=>40,:required=>true %></td>
+                            <td><%=f.text_field :handler, :required=>true %></td>
                             </tr>
                             <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_action_status_code)%>:</td>
@@ -37,7 +37,7 @@
                                <tr><td class="itemdetailtablelabel">
                                      <%=t(:label_irm_action_description)%>:
                                </td>
-                               <td><%= f.text_area :description, :value => @action[:description], :cols => 40, :rows => 2%></td>
+                               <td><%= f.text_area :description, :value => @action[:description], :rows => 2%></td>
                             </tr>
                             </div>
                            </table>
