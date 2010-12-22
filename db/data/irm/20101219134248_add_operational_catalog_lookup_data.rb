@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 class AddOperationalCatalogLookupData < ActiveRecord::Migration
   def self.up
+    change_column :irm_flex_values, :position, :integer, :null => true
+
     operational_catalog_type=Irm::LookupType.new(:lookup_level=>'GLOBAL',
                                          :lookup_type=>'OPERATIONAL_CATALOG_TYPE',
                                          :status_code=>'ENABLED',
@@ -76,7 +78,7 @@ class AddOperationalCatalogLookupData < ActiveRecord::Migration
                                             :source_lang=>"en")
     operational_catalog_type_value3.save
 
-    hardware_type=Irm::ValueSet.new(    :value_set_code=>'OPERATIONAL_CATALOG_HARDWARE',
+    hardware_type=Irm::FlexValueSet.new(    :value_set_code=>'OPERATIONAL_CATALOG_HARDWARE',
                                          :status_code=>'ENABLED',
                                          :not_auto_mult=>true)
     hardware_type.value_sets_tls.build(:value_set_id=>hardware_type.id,
@@ -131,7 +133,7 @@ class AddOperationalCatalogLookupData < ActiveRecord::Migration
                                             :source_lang=>"en")
     hardware_type_value2.save
 
-    system_type=Irm::ValueSet.new(:value_set_code=>'OPERATIONAL_CATALOG_SYSTEM',
+    system_type=Irm::FlexValueSet.new(:value_set_code=>'OPERATIONAL_CATALOG_SYSTEM',
                                    :status_code=>'ENABLED',
                                    :not_auto_mult=>true)
     system_type.value_sets_tls.build(:value_set_id=>system_type.id,
@@ -205,7 +207,7 @@ class AddOperationalCatalogLookupData < ActiveRecord::Migration
                                             :source_lang=>"en")
     system_type_value3.save
 
-    module_type=Irm::ValueSet.new(:value_set_code=>'OPERATIONAL_CATALOG_MODULE',
+    module_type=Irm::FlexValueSet.new(:value_set_code=>'OPERATIONAL_CATALOG_MODULE',
                                    :status_code=>'ENABLED',
                                    :not_auto_mult=>true)
     module_type.value_sets_tls.build(:value_set_id=>module_type.id,
@@ -279,7 +281,7 @@ class AddOperationalCatalogLookupData < ActiveRecord::Migration
                                             :source_lang=>"en")
     module_type_value3.save
 
-    feature_type=Irm::ValueSet.new(:value_set_code=>'OPERATIONAL_CATALOG_FEATURE',
+    feature_type=Irm::FlexValueSet.new(:value_set_code=>'OPERATIONAL_CATALOG_FEATURE',
                                          :status_code=>'ENABLED',
                                          :not_auto_mult=>true)
     feature_type.value_sets_tls.build(:value_set_id=>feature_type.id,
@@ -350,7 +352,7 @@ class AddOperationalCatalogLookupData < ActiveRecord::Migration
        lookup_code.delete
     end
 
-    operational_catalog_system= Irm::ValueSet.where(:value_set_code=>"OPERATIONAL_CATALOG_SYSTEM").first
+    operational_catalog_system= Irm::FlexValueSet.where(:value_set_code=>"OPERATIONAL_CATALOG_SYSTEM").first
     Irm::ValueSetsTl.where(:value_set_id => operational_catalog_system.id).each do |t1|
       t1.delete
     end
@@ -363,7 +365,7 @@ class AddOperationalCatalogLookupData < ActiveRecord::Migration
        value_code.delete
     end
 
-    operational_catalog_hardware= Irm::ValueSet.where(:value_set_code=>"OPERATIONAL_CATALOG_HARDWARE").first
+    operational_catalog_hardware= Irm::FlexValueSet.where(:value_set_code=>"OPERATIONAL_CATALOG_HARDWARE").first
     Irm::ValueSetsTl.where(:value_set_id => operational_catalog_hardware.id).each do |t1|
       t1.delete
     end
@@ -376,7 +378,7 @@ class AddOperationalCatalogLookupData < ActiveRecord::Migration
        value_code.delete
     end
 
-    operational_catalog_module= Irm::ValueSet.where(:value_set_code=>"OPERATIONAL_CATALOG_MODULE").first
+    operational_catalog_module= Irm::FlexValueSet.where(:value_set_code=>"OPERATIONAL_CATALOG_MODULE").first
     Irm::ValueSetsTl.where(:value_set_id => operational_catalog_module.id).each do |t1|
       t1.delete
     end
@@ -389,7 +391,7 @@ class AddOperationalCatalogLookupData < ActiveRecord::Migration
        value_code.delete
     end
 
-    operational_catalog_feature= Irm::ValueSet.where(:value_set_code=>"OPERATIONAL_CATALOG_FEATURE").first
+    operational_catalog_feature= Irm::FlexValueSet.where(:value_set_code=>"OPERATIONAL_CATALOG_FEATURE").first
     Irm::ValueSetsTl.where(:value_set_id => operational_catalog_feature.id).each do |t1|
       t1.delete
     end

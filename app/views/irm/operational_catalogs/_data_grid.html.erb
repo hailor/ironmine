@@ -23,8 +23,17 @@
             }
             function rowSelectedHandler(id, ind){
                 dhtmlx_grid_array['operational_catalogs_grid'].cells(id, 0).setValue("1");
+                replaceLink(id);
+            }
+            function replaceLink(rowId){
+               var action_temp="";
+               if(rowId!=null&&rowId!=undefined){
+                  action_temp = "<%=url_for(:controller=>"irm/op_catalog_accesses",:action=>"index",:operational_catalog_id=>":id")%>".replace(":id",rowId);
+                  $("#op_catalog_access_control").attr("href",action_temp);
+               }
             }
         </script>
         <div class="containerfooter">
+            <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/op_catalog_accesses",:action=>"index",:operational_catalog_id=>":id"}, {:action_type => "ajaxLink", :script => "/replace(containers,containers);/", :id => "op_catalog_access_control"}%></div>
         </div>
     </div>

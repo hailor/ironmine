@@ -4,21 +4,21 @@
     </div>
     <div id="value_sets_grid" class="datagrid"
         action_type="ajaxDhtmlxGrid"
-        grid_header=" , <%=t(:label_irm_value_set_value_set_code)%>,<%=t(:label_irm_value_set_name)%>,
-        <%=t(:label_irm_value_set_description)%>, <%=t(:active)%>,<%=t(:multilingual)%>"
-        grid_width="20,100,100,200,80,80"
-        grid_col_types="ra,ro,ro,ro,ro,link"
+        grid_header=" ,<%=t(:label_irm_value_set_name)%>,
+        <%=t(:label_irm_value_set_description)%>, <%=t(:active)%>"
+        grid_width="20,100,200,100"
+        grid_col_types="ra,ro,ro,ro"
         grid_paging_skin="bricks"
         enable_paging="true, 15, null, 'pagingArea', true, 'infoArea'"
         grid_onRowDblClicked="dblClickHandler"
         grid_OnRowSelected="rowSelectedHandler"
-        grid_load="'<%= url_for(:action => "get_data", :controller => "irm/value_sets", :format=>:json) %>','','json'">
+        grid_load="'<%= url_for(:action => "get_data", :controller => "irm/flex_value_sets", :format=>:json) %>','','json'">
     </div>
     <span id="pagingArea"></span>&nbsp;<span id="infoArea"></span>
     <span id="recfound"></span>  
     <script>
         function dblClickHandler(rId, cInd){
-            processDblClicked("container1","value_set_edit","<%= url_for(:action => "edit", :controller => "irm/value_sets", :id => ":id") %>", rId);
+            processDblClicked("container1","value_set_edit","<%= url_for(:action => "edit", :controller => "irm/flex_value_sets", :id => ":id") %>", rId);
         }
         function rowSelectedHandler(id, ind){
             dhtmlx_grid_array['value_sets_grid'].cells(id, 0).setValue("1");

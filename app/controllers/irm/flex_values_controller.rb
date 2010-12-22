@@ -1,7 +1,7 @@
 class Irm::FlexValuesController < ApplicationController
   def index
     @flex_value = Irm::FlexValue.new
-    @value_set = Irm::ValueSet.multilingual.find(params[:value_set_id])
+    @value_set = Irm::FlexValueSet.find(params[:value_set_id])
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @flex_value }
@@ -27,7 +27,7 @@ class Irm::FlexValuesController < ApplicationController
 
   def new
     @flex_value = Irm::FlexValue.new
-    @value_set = Irm::ValueSet.find(params[:value_set_id])
+    @value_set = Irm::FlexValueSet.find(params[:value_set_id])
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @flex_value }
@@ -36,7 +36,7 @@ class Irm::FlexValuesController < ApplicationController
 
   def create
     @flex_value = Irm::FlexValue.new(params[:irm_flex_value])
-    @value_set = Irm::ValueSet.find(params[:value_set_id])
+    @value_set = Irm::FlexValueSet.find(params[:value_set_id])
     @flex_value.value_set_code = @value_set.value_set_code
     respond_to do |format|
       if @flex_value.save
@@ -50,9 +50,9 @@ class Irm::FlexValuesController < ApplicationController
   end
 
   def create_value
-    value_set = Irm::ValueSet.find(params[:value_set_id])
-    position = params["c1"]
-    value_code = params["c2"]
+    value_set = Irm::FlexValueSet.find(params[:value_set_id])
+    display_sequence = params["c1"]
+    flex_value = params["c2"]
     name   = params["c3"]
     description = params["c4"]
     start_date_active = params["c5"]
@@ -63,7 +63,7 @@ class Irm::FlexValuesController < ApplicationController
     @id = params["gr_id"]
     case @mode
       when "inserted"
-        @flex_value = Irm::FlexValue.new({:value_set_code => value_set.value_set_code, :position => position, :value_code => value_code,
+        @flex_value = Irm::FlexValue.new({:flex_value_set_id => value_set.id, :display_sequence => display_sequence, :flex_value => flex_value,
                                           :name => name, :description => description, :start_date_active => start_date_active, :end_date_active => end_date_active})
         @flex_value.save
         @id = @flex_value.id
@@ -72,14 +72,14 @@ class Irm::FlexValuesController < ApplicationController
         exist_flag = Irm::FlexValue.check_flex_value_exist(@id)
         #no exists
         if !exist_flag
-          @flex_value = Irm::FlexValue.new({:value_set_code => value_set.value_set_code, :position => position, :value_code => value_code,
+          @flex_value = Irm::FlexValue.new({:flex_value_set_id => value_set.id, :display_sequence => display_sequence, :flex_value => flex_value,
                                           :name => name, :description => description, :start_date_active => start_date_active, :end_date_active => end_date_active})
           @flex_value.save
           @id = @flex_value.id
           @tid = @flex_value.id
         else
           @flex_value=Irm::FlexValue.find(@id)
-          @flex_value.update_attributes({:value_set_code => value_set.value_set_code, :position => position, :value_code => value_code,
+          @flex_value.update_attributes({:flex_value_set_id => value_set.id, :display_sequence => display_sequence, :flex_value => flex_value,
                                           :name => name, :description => description, :start_date_active => start_date_active, :end_date_active => end_date_active})
           @id = @flex_value.id
           @tid = @flex_value.id
@@ -88,12 +88,12 @@ class Irm::FlexValuesController < ApplicationController
   end
 
   def get_data
-    @value_set = Irm::ValueSet.find(params[:value_set_id])
-    @flex_values = Irm::FlexValue.multilingual.where(:value_set_code => @value_set.value_set_code)
+    @value_set = Irm::FlexValueSet.find(params[:value_set_id])
+    @flex_values = Irm::FlexValue.multilingual.where(:flex_value_set_id => params[:value_set_id])
     respond_to do |format|
       format.json  {render :json => @flex_values.to_dhtmlxgrid_json(['0',
-                                                               :position,
-                                                               :value_code,
+                                                               :display_sequence,
+                                                               :flex_value,
                                                                :name,
                                                                :description,
                                                                :start_date_active,
