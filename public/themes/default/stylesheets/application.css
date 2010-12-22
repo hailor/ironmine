@@ -253,7 +253,7 @@ input.titledesc, textarea.titledesc{width: 630px;}
 .inputrequired{background-color:#FFFFCC;}
 .inputdisable{background-color:#CCC;}
 
-span.textrequired{color:#990000; padding-top: 2px; font-family: Courier, "Courier New" !important;}
+span.textrequired{color:#990000; padding-top: 2px; font-family: Courier, "Courier New"\9;}/*firefox, ie8*/
 
 table.twocolumnstable{width:100%;border: #cccccc solid; border-width: 0 1px 0 0; }
 table.twocolumnstable td.twocolumn{	width: 40%; vertical-align: top; border: #cccccc solid; border-width: 0 0 0 1px; padding-left: 15px;}
