@@ -18,13 +18,14 @@
                             <tr><td class="itemdetailtablelabel"><%=(t :label_icm_rule_setting_respond_date_changable)%>:</td>
                               <td><%=f.check_box :respond_date_changable%></td>
                             </tr>
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_icm_rule_setting_auto_closure_days)%>:</td>
-                              <td><%=f.text_field :auto_closure_days, :size=>5,:required=>true%></td>
+                            <tr>
+                              <td class="itemdetailtablelabel"><%=t(:label_icm_rule_setting_slove_date_changable)%>:</td>
+                              <td><%= f.check_box :slove_date_changable, :cols => 40, :rows => 4%></td>
                             </tr>
-                            <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
+                           <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
                               <td><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
                             </tr>
-                       </table>
+                           </table>
                     </td>
                     <td class="twocolumn" cellspacing="0">
                        <table class="itemdetailtable">
@@ -34,17 +35,13 @@
                                                     options_for_select(available_processes,@rule_setting.assignment_process_code),
                                                     {},{}%></td>
                         </tr>
+
+                         <tr><td class="itemdetailtablelabel"><%=(t :label_icm_rule_setting_auto_closure_days)%>:</td>
+                              <td><%=f.text_field :auto_closure_days,:required=>true%></td>
+                            </tr>
                         <tr>
-                          <td class="itemdetailtablelabel"><%=t(:label_icm_rule_setting_slove_date_changable)%>:</td>
-                           <td><%= f.check_box :slove_date_changable, :cols => 40, :rows => 4%></td>
-                        </tr>
-                        <tr>
-                          <td class="itemdetailtablelabel"><%=t(:label_icm_rule_setting_auto_assignable)%>:</td>
-                           <td><%= f.check_box :auto_assignable, :cols => 40, :rows => 4%></td>
-                        </tr>
-                        <tr>
-                          <td rowspan="2" class="itemdetailtablelabel"><%=t(:label_icm_rule_setting_description)%>:</td>
-                           <td rowspan="2"><%= f.text_area :description, :cols => 40, :rows => 4%></td>
+                          <td class="itemdetailtablelabel"><%=t(:label_icm_rule_setting_description)%>:</td>
+                           <td ><%= f.text_area :description, :cols => 40, :rows => 2%></td>
                         </tr>
                        </table>
                     </td>

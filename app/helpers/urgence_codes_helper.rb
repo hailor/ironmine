@@ -1,0 +1,2 @@
+module UrgenceCodesHelper
+end
