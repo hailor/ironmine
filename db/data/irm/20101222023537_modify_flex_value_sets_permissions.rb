@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class ModifyFlexValueSetsPermissions < ActiveRecord::Migration
   def self.up 
     value_sets = Irm::Permission.where(:page_controller => "irm/value_sets")
