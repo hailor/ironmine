@@ -9,4 +9,8 @@ module Irm::PageHelper
     options = options.merge({:class => "formlabel"})
     content_tag(:td, obj, options)
   end
+
+  def page_td_sep(options = {})
+    content_tag(:td, raw(content_tag(:hr)), options)
+  end
 end
