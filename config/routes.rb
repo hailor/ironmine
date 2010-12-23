@@ -301,7 +301,16 @@ Ironmine::Application.routes.draw do
     match '/close_reasons/create(.:format)' => "close_reasons#create", :via => :post
     match '/close_reasons/:id/multilingual_edit(.:format)' => "close_reasons#multilingual_edit", :via => :get
     match '/close_reasons/:id/multilingual_update(.:format)' => "close_reasons#multilingual_update", :via => :put
-    match '/close_reasons/get_data(.:format)' => "close_reasons#get_data"    
+    match '/close_reasons/get_data(.:format)' => "close_reasons#get_data"
+    #incident_phases
+    match '/incident_phases(/index)(.:format)' => "incident_phases#index", :via => :get
+    match '/incident_phases/:id/edit(.:format)' => "incident_phases#edit", :via => :get
+    match '/incident_phases/:id(.:format)' => "incident_phases#update", :via => :put
+    match '/incident_phases/new(.:format)' => "incident_phases#new", :via => :get
+    match '/incident_phases/create(.:format)' => "incident_phases#create", :via => :post
+    match '/incident_phases/:id/multilingual_edit(.:format)' => "incident_phases#multilingual_edit", :via => :get
+    match '/incident_phases/:id/multilingual_update(.:format)' => "incident_phases#multilingual_update", :via => :put
+    match '/incident_phases/get_data(.:format)' => "incident_phases#get_data"  
   end
 
   match '/demo(/index)' => 'demo#index'

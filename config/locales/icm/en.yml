@@ -56,5 +56,14 @@ en:
   label_icm_close_reason_description: Description
   label_icm_close_reason_edit: Edit close reason
   #========================= end icm close_reasons_controller=======================#
+  #=========================    icm incident_phases_controller=======================#
+  label_icm_incident_phase_list: Incident phase list
+  label_icm_incident_phase_new: New incident phase
+  label_icm_incident_phase_phase_code: Code
+  label_icm_incident_phase_company: Company
+  label_icm_incident_phase_name: Name
+  label_icm_incident_phase_description: Description
+  label_icm_incident_phase_edit: Edit incident phase
+  #========================= end icm incident_phases_controller=======================#
 
 

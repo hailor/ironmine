@@ -1,7 +1,7 @@
 class Icm::RuleSetting < ActiveRecord::Base
   set_table_name :icm_rule_settings
 
-  validates_presence_of :assignment_process_code,:company_id
+  validates_presence_of :company_id
 
   #加入activerecord的通用方法和scope
   query_extend
