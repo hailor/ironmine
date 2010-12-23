@@ -302,6 +302,15 @@ Ironmine::Application.routes.draw do
     match '/support_groups/:id/multilingual_update(.:format)' => "support_groups#multilingual_update", :via => :put
     match '/support_groups/get_data(.:format)' => "support_groups#get_data"
     match '/support_groups/belongs_to(.:format)' => "support_groups#belongs_to"
+    #people
+    match '/people(/index)(.:format)' => "people#index", :via => :get
+    match '/people/:id/edit(.:format)' => "people#edit", :via => :get
+    match '/people/:id(.:format)' => "people#update", :via => :put
+    match '/people/new(.:format)' => "people#new", :via => :get
+    match '/people/create(.:format)' => "people#create", :via => :post
+    match '/people/:id/multilingual_edit(.:format)' => "people#multilingual_edit", :via => :get
+    match '/people/:id/multilingual_update(.:format)' => "people#multilingual_update", :via => :put
+    match '/people/get_data(.:format)' => "people#get_data"
   end
 
   scope :module => "icm" do

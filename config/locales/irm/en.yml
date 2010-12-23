@@ -317,4 +317,41 @@ en:
   label_irm_support_group_base_info: Base Info
   label_irm_support_group_member: Support Group Member
   #=========================end irm support_groups_controller=======================#
+  #=========================    irm people_controller=======================#
+  label_irm_person_login: Login
+  label_irm_person_name: Name
+  label_irm_person_list: Person List
+  label_irm_person_mobile_phone: Mobile Phone
+  label_irm_person_edit: Edit Person
+  label_irm_person_new: New Person
+  label_irm_person_company: Company
+  label_irm_person_organization: Organization
+  label_irm_person_department: Department
+  label_irm_person_title: Title
+  label_irm_person_first_name: First Name
+  label_irm_person_last_name: Last Name
+  label_irm_person_job_title: Job Title
+  label_irm_person_vip_flag: VIP
+  label_irm_person_support_staff_flag: Support Staff
+  label_irm_person_assignment_availability_flag: assignment availability
+  label_irm_person_email_address: Email Address
+  label_irm_person_home_phone: Home Phone
+  label_irm_person_home_address: Home Address
+  label_irm_person_mobile_phone: Mobile Phone
+  label_irm_person_fax_number: Fax Number
+  label_irm_person_bussiness_phone: Bussiness Phone
+  label_irm_person_region_code: Region
+  label_irm_person_site_group_code: Site Group
+  label_irm_person_site_code: Site
+  label_irm_person_function_group_code: Function Group
+  label_irm_person_avatar: Avatar
+  label_irm_person_unrestricted_access_flag: Unrestricted Access
+  label_irm_person_notification_lang: Notification Language
+  label_irm_person_notification_flag: Notification Flag
+  label_irm_person_base_info: Base Info
+  label_irm_person_login_and_access: Login Access
+  label_irm_person_support_group: Support Group
+  label_irm_person_notification: Notification
+  label_irm_person_status_code: Status Code
+  #=========================end irm people_controller=======================#
 

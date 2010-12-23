@@ -1,0 +1,46 @@
+    <div id="id_person_list">
+        <div class="containerheader">
+           <div class="floatleft headertitle"><%=t(:label_irm_person_list)%></div>
+        </div>
+        <div id="id_person_grid" class="datagrid"
+        action_type="ajaxDhtmlxGrid"
+        grid_header=" ,<%=t(:label_irm_person_login)%>,<%=t(:label_irm_person_name)%>,
+        <%=t(:label_irm_person_email_address)%>,<%=t(:label_irm_person_mobile_phone)%>,
+        <%=t(:label_irm_person_company)%>"
+        grid_width="20,100,100,100,100,150"
+        grid_col_types="ra,ro,ro,ro,ro,ro"
+        grid_align="center,left,left,left,center,left"
+        grid_paging_skin="bricks"
+        enable_paging="true, 12, null, 'pagingArea', true, 'infoArea'"
+        grid_onRowDblClicked="doOnRowDblClicked"
+        grid_checkbox="selectRowAndRadio"
+        grid_OnRowSelected="selectRowAndRadio"
+        grid_load="'<%= url_for(:action => "get_data", :controller => "irm/people",:format=>:json) %>','','json'">
+        </div>
+        <span id="pagingArea"></span>&nbsp;<span id="infoArea"></span>
+        <span id="recfound"></span>
+        <script type="text/javascript" charset="utf-8">
+        function doOnRowDblClicked(rowId,cInd){
+           processDblClicked("id_person_new","","<%= url_for(:action => "edit", :controller => "irm/people",:id=>":id")%>",rowId);
+        }
+        function selectRowAndRadio(rowId){
+            doSelectRowAndCheckRadio("id_person_grid",rowId)
+        }
+        </script>
+            <div class="containerfooter">
+              <div class="button floatright"><%=link_to t(:label_irm_person_edit) ,
+                                                        {:controller=>"irm/people",
+                                                         :action=>"edit",:id=>":id"},
+                                                        :script => "/replace(id_person_index,id_person_edit);/",
+                                                        :action_type=>"ajaxLink",
+                                                        :id=> "id_edit_support_group"%>
+              </div>
+              <div class="button floatright"><%=link_to t(:label_irm_person_new) ,
+                                                        {:controller=>"irm/people",
+                                                         :action=>"new"},
+                                                        :script => "/replace(id_person_index,id_person_new);/",
+                                                        :action_type=>"ajaxLink",
+                                                        :id=> "id_edit_support_group"%>
+              </div>
+            </div>
+    </div>

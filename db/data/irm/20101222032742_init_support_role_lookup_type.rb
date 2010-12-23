@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitSupportRoleLookupType < ActiveRecord::Migration
   def self.up
      support_role_lookup_type=Irm::LookupType.new(:lookup_level=>'GLOBAL',

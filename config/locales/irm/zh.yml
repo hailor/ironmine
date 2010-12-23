@@ -467,3 +467,41 @@ zh:
   label_irm_support_group_base_info: 基本信息
   label_irm_support_group_member: 人员
   #=========================end irm support_groups_controller=======================#
+  #=========================    irm people_controller=======================#
+  label_irm_person_login: 登录名
+  label_irm_person_name: 姓名
+  label_irm_person_language: 语言
+  label_irm_person_list: 人员列表
+  label_irm_person_mobile_phone: 移动电话
+  label_irm_person_edit: 编辑人员
+  label_irm_person_new: 新建人员
+  label_irm_person_company: 公司名称
+  label_irm_person_organization: 组织名称
+  label_irm_person_department: 部门
+  label_irm_person_title: 称谓
+  label_irm_person_first_name: 名
+  label_irm_person_last_name: 姓
+  label_irm_person_job_title: 工作职位
+  label_irm_person_vip_flag: VIP
+  label_irm_person_support_staff_flag: 支持组成员
+  label_irm_person_assignment_availability_flag: 是否可分单
+  label_irm_person_email_address: 邮件地址
+  label_irm_person_home_phone: 家庭电话
+  label_irm_person_home_address: 家庭地址
+  label_irm_person_mobile_phone: 移动电话
+  label_irm_person_fax_number: 传真
+  label_irm_person_bussiness_phone: 办公电话
+  label_irm_person_region_code: 区域
+  label_irm_person_site_group_code: 地点组
+  label_irm_person_site_code: 地点
+  label_irm_person_function_group_code: 功能组
+  label_irm_person_avatar: 头像
+  label_irm_person_unrestricted_access_flag: 无限制
+  label_irm_person_notification_lang: 通知语言
+  label_irm_person_notification_flag: 是否通知
+  label_irm_person_base_info: 基本信息
+  label_irm_person_login_and_access: 访问控制
+  label_irm_person_support_group: 支持组
+  label_irm_person_notification: 通知
+  label_irm_person_status_code: 记录状态
+  #=========================end irm people_controller=======================#

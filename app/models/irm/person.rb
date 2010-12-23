@@ -7,6 +7,16 @@ class Irm::Person < ActiveRecord::Base
     where(:identity_id=>identity)
   }
 
+  scope :query_wrap_info,lambda{|language| select("#{table_name}.id,irm_identities.login_name,#{table_name}.mobile_phone,CONCAT(#{table_name}.first_name,#{table_name}.last_name) person_name,"+
+                                                      "#{table_name}.email_address,v1.meaning status_meaning, v2.name company_name").
+                                                   joins(",irm_lookup_values_vl v1").
+                                                   joins(",irm_companies_vl v2").
+                                                   joins(",irm_identities").
+                                                   where("v1.lookup_type='SYSTEM_STATUS_CODE' AND v1.lookup_code = #{table_name}.status_code AND "+
+                                                         "v1.id=#{table_name}.company_id AND v1.language=? AND "+
+                                                         "#{table_name}.identity_id=irm_identities.id  AND "+
+                                                         "v2.language=?",language,language)}
+
   #取得系统当前登陆人员
   def self.current
     @current_person

@@ -1,0 +1,66 @@
+<div id="id_person_new">
+    <div class="container">
+     <%= form_for(@person,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+            <div class="containerheader">
+                <div class="floatleft headertitle"><%=t(:label_irm_person_new)%></div>
+            </div>
+            <table class="twocolumnstable" cellspacing="0">
+                <tr>
+                    <td class="twocolumn">
+                       <table class="itemdetailtable">
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_person_last_name)%>:</td>
+                            <td><%=f.text_field :last_name, :required=>true,:irm_uppercase=>true%></td>
+                        </tr>                        
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_person_first_name)%>:</td>
+                            <td><%=f.text_field :first_name, :required=>true %></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_person_email_address)%>:</td>
+                            <td><%=f.text_field :email_address, :required=>true %></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_person_title)%>:</td>
+                            <td><%=f.text_field :title, :required=>true %></td>
+                        </tr>
+                       </table>
+                    </td>
+                    <td class="twocolumn" cellspacing="0">
+                    </td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+     </div>
+     <div id="id_person_tabbar" style="width:auto; height:295px;"
+     action_type="ajaxDhtmlxTabbar"
+     tabbar_skin="dhx_skyblue"
+     tabbar_image_path="/themes/default/images/dhtmlx/"
+     tabbar_a1_params="'a1', '<%=t(:label_irm_person_base_info)%>', '100px'"
+     tabbar_a2_params="'a2', '<%=t(:label_irm_person_login_and_access)%>', '100px'"
+     tabbar_a3_params="'a3', '<%=t(:label_irm_person_support_group)%>', '100px'"
+     tabbar_a4_params="'a4', '<%=t(:label_irm_person_notification)%>', '100px'"
+     tabbar_a1_content_params="'a1', 'id_person_base_info','COMMON'"
+     tabbar_a2_content_params="'a2', 'id_person_login_and_access','COMMON'"
+     tabbar_a3_content_params="'a3', 'id_person_support_group','COMMON'"
+     tabbar_a4_content_params="'a4', 'id_person_notification','COMMON'"
+     tabbar_active="a1">
+     </div>
+     <div id="id_person_base_info" >
+         <%= render :partial=>"base_info",:locals=>{:f=>f,:person=>@person} %>
+     </div>
+     <div id="id_person_login_and_access">
+       Content 3
+     </div>
+     <div id="id_person_support_group">
+       Content 3
+     </div>
+     <div id="id_person_notification">
+       Content 3
+     </div>
+     <div class="containerfooter">
+          <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/people",:action=>"create"}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);/replace(system_message_box,system_message_box);"}%></div>
+          <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}, :script => "/replace(id_person_index,id_person_index);/", :action_type=>"ajaxLink"%></div>
+     </div>
+   <% end %>
+</div>
