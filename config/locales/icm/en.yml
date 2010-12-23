@@ -41,7 +41,8 @@ en:
   label_icm_priority_code_company: Company
   label_icm_priority_code_low_weight_value: Low weight value
   label_icm_priority_code_high_weight_value: High Weight value
-  label_icm_priority_code_priority_code: Priority
+  label_icm_priority_code_priority_code: Code
+  label_icm_priority_code_name: Name
   label_icm_priority_code_description: Description
   label_icm_priority_code_edit: Edit priority code
   #========================= end icm priority_codes_controller=======================#
