@@ -266,7 +266,7 @@ table.itemdetailtable td textarea{ width:95%;}
 
 table.formtable{}
 table.formtable td.formlabel{ width: 100px; text-align:right; padding-right: 3px; padding-top:3px; min-width: 90px;vertical-align: top; }
-table.formtable td.formitem{ width: 40%; text-align: left;max-width: 400px;min-width: 200px;vertical-align: top; }
+table.formtable td.formitem{ width: 40%; text-align: left;max-width: 300px;min-width: 100px;vertical-align: top; }
 table.formtable td.formitem input[type=text], table.formtable td.formitem input[type=password], table.formtable td.formitem textarea
 { width:90%;text-align: left;}
 

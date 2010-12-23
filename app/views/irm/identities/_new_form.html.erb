@@ -3,37 +3,28 @@
             <div class="containerheader">
                 <div class="floatleft headertitle"><%=t(:label_irm_identity_new)%></div>
             </div>
-            <table class="twocolumnstable" cellspacing="0">
-                <tr>
-                    <td class="twocolumn">
-                       <table class="itemdetailtable">
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_login_name)%>:</td>
-                              <td><%=f.text_field :login_name,:required=>true%></td>
-                            </tr>
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_email)%>:</td>
-                              <td><%=f.text_field :email,:required=>true%></td>
-                            </tr>
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_password)%>:</td>
-                              <td><%=f.password_field :password, :size=>40,:required=>true%></td>
-                            </tr>
-                       </table>
-                    </td>
-                    <td class="twocolumn" cellspacing="0">
-                       <table class="itemdetailtable">
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_full_name)%>:</td>
-                              <td><%=f.text_field :full_name,:required=>true%></td>
-                            </tr>
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_language_code)%>:</td>
-                              <td><%= f.select(:language_code, options_for_select(selectable_languages,@identity.language_code)) %> </td>
-                            </tr>
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_identity_password_confirmation)%>:</td>
-                              <td><%=f.password_field :password_confirmation, :size=>40,:required=>true%></td>
-                            </tr>
-                       </table>
-                    </td>
-                    <td width="10%"></td>
-                </tr>
-            </table>
+            <div class="containerbody">
+                <table class="formtable" cellspacing="0">
+                    <tr>
+                      <%= page_td_formlabel(t(:label_irm_identity_login_name))%>
+                      <%= page_td_formitem(f.text_field(:login_name,:required=>true))%>
+                      <%= page_td_formlabel(t(:label_irm_identity_full_name))%>
+                      <%= page_td_formitem(f.text_field(:full_name,:required=>true))%>
+                    </tr>
+                    <tr>
+                      <%= page_td_formlabel(t(:label_irm_identity_email))%>
+                      <%= page_td_formitem(f.text_field(:email,:required=>true))%>
+                      <%= page_td_formlabel(t(:label_irm_identity_language_code))%>
+                      <%= page_td_formitem(f.select(:language_code, options_for_select(selectable_languages,@identity.language_code)))%>
+                    </tr>
+                    <tr>
+                      <%= page_td_formlabel(t(:label_irm_identity_password))%>
+                      <%= page_td_formitem(f.password_field(:password, :size=>40,:required=>true))%>
+                      <%= page_td_formlabel(t(:label_irm_identity_password_confirmation))%>
+                      <%= page_td_formitem(f.password_field(:password_confirmation, :size=>40,:required=>true))%>
+                    </tr>
+                </table>
+            </div>
             <div class="containerfooter">
                 <div class="button floatright"><%= link_to t(:save), {}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);reload_grid('identities_grid');/replace(system_message_box,system_message_box);"}%></div>
                 <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(form_area,form_area);/", :action_type=>"ajaxLink"%></div>
