@@ -17,7 +17,7 @@ body{
 .floatright{ float:right !important;}
 .floatleft{float:left !important;}
 .headertitle{font-weight:bold; float:left;}
-.field_with_errors input, .field_with_errors text_area, .field_with_errors select{ border: red solid 2px !important; }
+.field_with_errors input, .field_with_errors text_area, .field_with_errors select{ border: red solid 1px !important; }
 
 div.errormsgbox{
     background: none repeat scroll 0 0 #FFBBAA;
