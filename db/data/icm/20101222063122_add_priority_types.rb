@@ -26,8 +26,8 @@ class AddPriorityTypes < ActiveRecord::Migration
                                              :status_code=>'ENABLED',
                                              :not_auto_mult=>true)
     critical.lookup_values_tls.build(:lookup_value_id=>critical.id,
-                                            :meaning=>"关键",
-                                            :description=>"关键",
+                                            :meaning=>"紧急",
+                                            :description=>"紧急",
                                             :language=>"zh",
                                             :status_code=>'ENABLED',
                                             :source_lang=>"en")
@@ -45,8 +45,8 @@ class AddPriorityTypes < ActiveRecord::Migration
                                              :status_code=>'ENABLED',
                                              :not_auto_mult=>true)
     high.lookup_values_tls.build(:lookup_value_id=>high.id,
-                                            :meaning=>"高级",
-                                            :description=>"高级",
+                                            :meaning=>"高",
+                                            :description=>"高",
                                             :language=>"zh",
                                             :status_code=>'ENABLED',
                                             :source_lang=>"en")
@@ -64,8 +64,8 @@ class AddPriorityTypes < ActiveRecord::Migration
                                              :status_code=>'ENABLED',
                                              :not_auto_mult=>true)
     medium.lookup_values_tls.build(:lookup_value_id=>medium.id,
-                                            :meaning=>"中等",
-                                            :description=>"中等",
+                                            :meaning=>"中",
+                                            :description=>"中",
                                             :language=>"zh",
                                             :status_code=>'ENABLED',
                                             :source_lang=>"en")
@@ -83,8 +83,8 @@ class AddPriorityTypes < ActiveRecord::Migration
                                              :status_code=>'ENABLED',
                                              :not_auto_mult=>true)
     low.lookup_values_tls.build(:lookup_value_id=>low.id,
-                                            :meaning=>"低级别",
-                                            :description=>"低级别",
+                                            :meaning=>"低",
+                                            :description=>"低",
                                             :language=>"zh",
                                             :status_code=>'ENABLED',
                                             :source_lang=>"en")
