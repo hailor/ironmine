@@ -1,7 +1,7 @@
 class CreateTableIcmImpactRanges < ActiveRecord::Migration
   def self.up
     create_table "icm_impact_ranges", :force => true do |t|
-        t.integer  "company_id",    :limit => 30, :null => false
+        t.integer  "company_id",     :null => false
         t.string   "impact_code",    :limit => 60, :null => false
         t.integer  "weight_values",  :null => false
         t.string   "status_code",       :limit => 30, :null => false

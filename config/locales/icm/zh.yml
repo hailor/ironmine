@@ -42,3 +42,13 @@ zh:
   label_icm_priority_code_description: 描述
   label_icm_priority_code_edit: 编辑优先级范围
   #========================= end icm priority_codes_controller=======================#
+  #=========================    icm close_reasons_controller=======================#
+  label_icm_close_reason_list: 关闭原因列表
+  label_icm_close_reason_new: 新建关闭原因
+  label_icm_close_reason_company: 公司
+  label_icm_close_reason_close_code: 编码
+  label_icm_close_reason_name: 名称
+  label_icm_close_reason_category: 关闭类型
+  label_icm_close_reason_description: 描述
+  label_icm_close_reason_edit: 编辑关闭原因
+  #========================= end icm close_reasons_controller=======================#

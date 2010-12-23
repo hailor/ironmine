@@ -293,6 +293,15 @@ Ironmine::Application.routes.draw do
     match '/priority_codes/:id/multilingual_edit(.:format)' => "priority_codes#multilingual_edit", :via => :get
     match '/priority_codes/:id/multilingual_update(.:format)' => "priority_codes#multilingual_update", :via => :put
     match '/priority_codes/get_data(.:format)' => "priority_codes#get_data"
+    #close_reasons
+    match '/close_reasons(/index)(.:format)' => "close_reasons#index", :via => :get
+    match '/close_reasons/:id/edit(.:format)' => "close_reasons#edit", :via => :get
+    match '/close_reasons/:id(.:format)' => "close_reasons#update", :via => :put
+    match '/close_reasons/new(.:format)' => "close_reasons#new", :via => :get
+    match '/close_reasons/create(.:format)' => "close_reasons#create", :via => :post
+    match '/close_reasons/:id/multilingual_edit(.:format)' => "close_reasons#multilingual_edit", :via => :get
+    match '/close_reasons/:id/multilingual_update(.:format)' => "close_reasons#multilingual_update", :via => :put
+    match '/close_reasons/get_data(.:format)' => "close_reasons#get_data"    
   end
 
   match '/demo(/index)' => 'demo#index'

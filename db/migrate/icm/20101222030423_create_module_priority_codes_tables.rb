@@ -1,7 +1,7 @@
 class CreateModulePriorityCodesTables < ActiveRecord::Migration
    def self.up
       create_table "icm_priority_codes", :force => true do |t|
-        t.integer  "company_id",    :limit => 30, :null => false
+        t.integer  "company_id",        :null => false
         t.string   "priority_code",    :limit => 60, :null => false
         t.integer  "low_weight_value",  :null => false
         t.integer  "high_weight_value",  :null => false

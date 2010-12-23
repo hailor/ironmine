@@ -45,5 +45,15 @@ en:
   label_icm_priority_code_description: Description
   label_icm_priority_code_edit: Edit priority code
   #========================= end icm priority_codes_controller=======================#
+  #=========================    icm close_reasons_controller=======================#
+  label_icm_close_reason_list: Close reason list
+  label_icm_close_reason_new: New close reason
+  label_icm_close_reason_company: Company
+  label_icm_close_reason_close_code: Code
+  label_icm_close_reason_name: Name
+  label_icm_close_reason_category: Catetory
+  label_icm_close_reason_description: Description
+  label_icm_close_reason_edit: Edit close reason
+  #========================= end icm close_reasons_controller=======================#
 
 
