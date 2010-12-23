@@ -3,36 +3,28 @@
             <div class="containerheader">
                 <div class="floatleft headertitle"><%=t(:label_irm_product_module_new)%></div>
             </div>
-            <table class="twocolumnstable" cellspacing="0">
-                <tr>
-                    <td class="twocolumn">
-                       <table class="itemdetailtable">
-                        <tr><td class="itemdetailtablelabel"><%=(t :label_irm_product_module_product_short_name)%>:</td>
-                            <td><%=f.text_field :product_short_name, :required=>true,:irm_uppercase=>true %></td>
-                        </tr>
-                        <tr><td class="itemdetailtablelabel"><%=(t :label_irm_product_module_name)%>:</td>
-                          <td><%=f.text_field :name, :required=>true%></td>
-                        </tr>
-                        <tr><td class="itemdetailtablelabel"><%=(t :label_irm_product_module_installed_flag)%>:</td>
-                          <td><%=f.check_box :installed_flag, :value => "Y"%></td>
-                        </tr>
-                        <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
-                          <td><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
-                        </tr>
-                       </table>
-                    </td>
-                    <td class="twocolumn" cellspacing="0">
-                       <table class="itemdetailtable">
-                        <tr><td class="itemdetailtablelabel">
-                              <%=t(:label_irm_product_module_description)%>:
-                           </td>
-                           <td><%= f.text_area :description, :rows => 4%></td>
-                        </tr>
-                       </table>
-                    </td>
-                    <td width="10%"></td>
-                </tr>
-            </table>
+            <div class="containerbody">
+                <table class="formtable" cellspacing="0">
+                    <tr>
+                      <td class="formlabel"><%=(t :label_irm_product_module_product_short_name)%>:</td>
+                      <td class="formitem"><%=f.text_field :product_short_name, :required=>true,:irm_uppercase=>true %></td>
+                      <td class="formlabel" rowspan="4"><%=t(:label_irm_product_module_description)%>:</td>
+                      <td class="formitem" rowspan="4"><%= f.text_area :description, :rows => 4%></td>
+                    </tr>
+                    <tr>
+                      <td class="formlabel"><%=(t :label_irm_product_module_name)%>:</td>
+                      <td class="formitem"><%=f.text_field :name, :required=>true%></td>
+                    </tr>
+                    <tr>
+                      <td class="formlabel"><%=(t :label_irm_product_module_installed_flag)%>:</td>
+                      <td class="formitem"><%=f.check_box :installed_flag, :value => "Y"%></td>
+                    </tr>
+                    <tr>
+                      <td class="formlabel"><%=(t :active)%>:</td>
+                      <td class="formitem"><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
+                    </tr>
+                </table>
+            </div>
             <div class="containerfooter">
                 <div class="button floatright"><%= link_to t(:save), {}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);reload_grid('product_modules_grid');/replace(system_message_box,system_message_box);"}%></div>
                 <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(container1,product_module_new);/", :action_type=>"ajaxLink"%></div>

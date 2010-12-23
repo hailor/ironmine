@@ -17,7 +17,7 @@ body{
 .floatright{ float:right !important;}
 .floatleft{float:left !important;}
 .headertitle{font-weight:bold; float:left;}
-.field_with_errors input, .field_with_errors text_area, .field_with_errors select{ border: red solid 2px;}
+.field_with_errors input, .field_with_errors text_area, .field_with_errors select{ border: red solid 1px !important; }
 
 div.errormsgbox{
     background: none repeat scroll 0 0 #FFBBAA;
@@ -183,6 +183,7 @@ table.leftnavigation{width: 100%;margin-bottom: -1px;}
 div.container {padding-bottom: 5px;}
 div.container div.containerheader{ background: none repeat scroll 0 0 #99BBDD; height:25px; line-height: 25px; padding: 0 20px 0 20px;}
 div.container div.containerfooter{ background: none repeat scroll 0 0 #d4d2d0; height:25px; line-height: 25px; padding: 0 20px 0 20px;}
+div.container div.containerbody{ border:solid #cccccc; padding: 0 1px 0 1px; border-width: 0 1px 0 1px;}
 div.container div.colorheader{background: url("../images/containerheader_bg.gif") repeat-x scroll 0 0 #AACCEE !important;}
 div.buttonbar {padding: 0 20px 0 20px;}
 
@@ -253,15 +254,22 @@ input.titledesc, textarea.titledesc{width: 630px;}
 .inputrequired{background-color:#FFFFCC;}
 .inputdisable{background-color:#CCC;}
 
-span.textrequired{color:#990000; padding-top: 2px; font-family: Courier, "Courier New"\9;}/*firefox, ie8*/
+div.textrequired{color:#990000; padding-top: 2px; float:left; font-family: Courier, "Courier New"\9;}/*firefox, ie8*/
 
-table.twocolumnstable{width:100%;border: #cccccc solid; border-width: 0 1px 0 0; }
-table.twocolumnstable td.twocolumn{	width: 40%; vertical-align: top; border: #cccccc solid; border-width: 0 0 0 1px; padding-left: 15px;}
+table.twocolumnstable{width:100%;border: #cccccc solid; border-width: 0 1px 0 1px; }
+table.twocolumnstable td.twocolumn{	width: 30%; vertical-align: top; /*border: #cccccc solid; border-width: 0 0 0 1px;*/ padding-left: 15px;}
 
 table.itemdetailtable{width: 100%;}
 table.itemdetailtable td.itemdetailtablelabel{ width: 90px; text-align:right; padding-right: 3px; vertical-align: top; padding-top:3px;}
-table.itemdetailtable td input[type=text]{ width:90%;text-align: left;}
-table.itemdetailtable td textarea{ width:90%;}
+table.itemdetailtable td input[type=text]{ width:95%;text-align: left;}
+table.itemdetailtable td textarea{ width:95%;}
+
+table.formtable{}
+table.formtable td.formlabel{ width: 100px; text-align:right; padding-right: 3px; padding-top:3px; min-width: 90px;vertical-align: top; }
+table.formtable td.formitem{ width: 350px; text-align: left;max-width: 400px;min-width: 100px;vertical-align: top; }
+table.formtable td.formitem input[type=text], table.formtable td.formitem input[type=password], table.formtable td.formitem textarea
+{ width:90%;text-align: left;}
+
 div#breadcrumbs{margin: 3px 0 0;padding: 0 0 0 5px;}
 div#breadcrumbs a{	text-decoration: none;	color: #0055DD;}
 div#breadcrumbs a:hover{	text-decoration:underline;	color: #0055DD;}
