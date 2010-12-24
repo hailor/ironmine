@@ -85,8 +85,8 @@ class Icm::IncidentStatusesController < ApplicationController
   def get_data
     @incident_statuses = Icm::IncidentStatus.multilingual.list_all
     respond_to do |format|
-      format.json  {render :json => @incident_statuses.to_dhtmlxgrid_json(['0',:name,
-                                                                     :incident_status_code,:company_name,
+      format.json  {render :json => @incident_statuses.to_dhtmlxgrid_json(['0',:company_name,:name,
+                                                                     :incident_status_code,
                                                                     {:value => 'M', :controller => 'icm/incident_statuses',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
                                                                     ], @incident_statuses.size) }
     end
