@@ -65,5 +65,13 @@ en:
   label_icm_incident_phase_description: Description
   label_icm_incident_phase_edit: Edit incident phase
   #========================= end icm incident_phases_controller=======================#
-
+  #=========================    icm incident_statuses_controller=======================#
+  label_icm_incident_status_list: Incident status list
+  label_icm_incident_status_edit: Edit incident status
+  label_icm_incident_status_name: Name
+  label_icm_incident_status_incident_status_code: Code
+  label_icm_incident_status_company: Company
+  label_icm_incident_status_new: New incident status
+  label_icm_incident_status_description: Description
+  #========================= end icm incident_statuses_controller=======================#
 
