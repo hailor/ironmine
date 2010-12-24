@@ -254,7 +254,7 @@ input.titledesc, textarea.titledesc{width: 630px;}
 .inputrequired{background-color:#FFFFCC;}
 .inputdisable{background-color:#CCC !important; color:#666666 !important;}
 
-div.textrequired{color:#990000; padding-top: 2px; float:left; font-family: Courier, "Courier New"\9;}/*firefox, ie8*/
+div.textrequired{color:#990000; padding-top: 2px; float:left; font-family: Courier, "Courier New"\9;}/*'/9' fix for ie*/
 
 table.twocolumnstable{width:100%;border: #cccccc solid; border-width: 0 1px 0 1px; }
 table.twocolumnstable td.twocolumn{	width: 30%; vertical-align: top; /*border: #cccccc solid; border-width: 0 0 0 1px;*/ padding-left: 15px;}
@@ -265,7 +265,7 @@ table.itemdetailtable td input[type=text]{ width:95%;text-align: left;}
 table.itemdetailtable td textarea{ width:95%;}
 
 table.formtable{}
-table.formtable td.formlabel{ width: 100px; text-align:right; padding-right: 3px; padding-top:3px; min-width: 90px;vertical-align: top; }
+table.formtable td.formlabel{ width: 100px; text-align:right; padding-right: 3px; padding-top:3px; min-width: 80px;vertical-align: top; max-width: 150px;}
 table.formtable td.formitem{ width: 350px; text-align: left;max-width: 400px;min-width: 100px;vertical-align: top; }
 table.formtable td.formitem input[type=text], table.formtable td.formitem input[type=password], table.formtable td.formitem textarea
 { width:90%;text-align: left;}
