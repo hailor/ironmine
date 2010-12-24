@@ -12,11 +12,13 @@
                                                     options_for_select(selectable_companies,@priority_code.company_id),
                                                     {},{}%></td>
                             </tr>
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_icm_priority_code_low_weight_value)%>:</td>
-                              <td><%=f.text_field :low_weight_value, :required=>true%></td>
+                            <tr>
+                              <td class="itemdetailtablelabel"><%=t(:label_icm_priority_code_priority_code)%>:</td>
+                              <td><%=f.text_field :priority_code, :readonly=>true%></td>
                             </tr>
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_icm_priority_code_high_weight_value)%>:</td>
-                              <td><%=f.text_field :high_weight_value, :required=>true%></td>
+                            <tr>
+                              <td class="itemdetailtablelabel"><%=t(:label_icm_priority_code_name)%>:</td>
+                              <td><%=f.text_field :name, :required=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
                               <td><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
@@ -25,13 +27,11 @@
                     </td>
                     <td class="twocolumn" cellspacing="0">
                        <table class="itemdetailtable">
-                        <tr>
-                          <td class="itemdetailtablelabel"><%=t(:label_icm_priority_code_priority_code)%>:</td>
-                           <td><%=f.text_field :priority_code, :readonly=>true%></td>
-                        </tr>
-                        <tr>
-                          <td class="itemdetailtablelabel"><%=t(:label_icm_priority_code_name)%>:</td>
-                           <td><%=f.text_field :name, :required=>true%></td>
+                        <tr><td class="itemdetailtablelabel"><%=(t :label_icm_priority_code_low_weight_value)%>:</td>
+                              <td><%=f.text_field :low_weight_value, :required=>true%></td>
+                            </tr>
+                            <tr><td class="itemdetailtablelabel"><%=(t :label_icm_priority_code_high_weight_value)%>:</td>
+                              <td><%=f.text_field :high_weight_value, :required=>true%></td>
                         </tr>
                          <tr><td class="itemdetailtablelabel"><%=t(:label_icm_priority_code_description)%>:</td>
                              <td><%= f.text_area :description, :cols => 40, :rows => 2%></td>
