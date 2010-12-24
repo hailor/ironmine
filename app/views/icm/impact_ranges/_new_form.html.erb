@@ -7,25 +7,23 @@
                 <tr>
                     <td class="twocolumn">
                        <table class="itemdetailtable">
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_icm_impact_range_impact_code)%>:</td>
-                              <td><%=f.text_field :impact_code, :size=>40,:required=>true,:irm_uppercase=>true%></td>
-                            </tr>
-
                             <tr><td class="itemdetailtablelabel"><%=(t :label_icm_impact_range_company)%>:</td>
                               <td><%=f.select :company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
                                                     options_for_select(selectable_companies,@impact_range.company_id),
                                                     {},{}%></td>
                             </tr>
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_icm_impact_range_weight_values)%>:</td>
-                              <td><%=f.text_field :weight_values, :size=>40,:required=>true%></td>
+                            <tr><td class="itemdetailtablelabel"><%=(t :label_icm_impact_range_impact_code)%>:</td>
+                              <td><%=f.text_field :impact_code, :size=>40,:required=>true,:irm_uppercase=>true%></td>
                             </tr>
-
+                            <tr><td class="itemdetailtablelabel"><%=(t :label_icm_impact_range_name)%>:</td>
+                              <td><%=f.text_field :name, :size=>40,:required=>true%></td>
+                            </tr>
                        </table>
                     </td>
                     <td class="twocolumn" cellspacing="0">
                        <table class="itemdetailtable">
-                         <tr><td class="itemdetailtablelabel"><%=(t :label_icm_impact_range_name)%>:</td>
-                              <td><%=f.text_field :name, :size=>40,:required=>true%></td>
+                         <tr><td class="itemdetailtablelabel"><%=(t :label_icm_impact_range_weight_values)%>:</td>
+                              <td><%=f.text_field :weight_values, :size=>40,:required=>true%></td>
                          </tr>
                          <tr><td class="itemdetailtablelabel"><%=t(:label_icm_impact_range_description)%>:</td>
                              <td><%= f.text_area :description, :cols => 40, :rows => 2%></td>
