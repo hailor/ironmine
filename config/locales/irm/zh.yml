@@ -388,8 +388,7 @@ zh:
   label_irm_flex_value_position: 显示顺序
   label_irm_flex_value_start_date_active: 开始生效日期
   label_irm_flex_value_end_date_active: 截至失效日期
-  #=========================end irm flex_values_controller=======================#  
-
+  #=========================end irm flex_values_controller=======================# 
   #=========================irm operational_catalogs_controller=======================#
   label_irm_operational_catalog: 服务类别
   label_irm_operational_catalog_list: 服务类别列表
@@ -409,3 +408,12 @@ zh:
   label_irm_op_catalog_access_csi: CSI
   label_irm_op_catalog_access_skm: SKM
   #=========================end op_catalog_accesses_controller=======================#
+  #=========================irm id_flexes_controller=======================#
+  label_irm_id_flex: 弹性域
+  label_irm_id_flex_list: 弹性域列表
+  label_irm_id_flex_new: 创建弹性域
+  label_irm_id_flex_edit: 编辑弹性域
+  label_irm_id_flex_code: 弹性域编码
+  label_irm_id_flex_name: 名称
+  label_irm_id_flex_description: 描述
+  #=========================end id_flexes_controller=======================#

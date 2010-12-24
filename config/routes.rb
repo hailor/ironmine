@@ -257,6 +257,13 @@ Ironmine::Application.routes.draw do
     #op_catalog_accesses
     match '/op_catalog_accesses/:operational_catalog_id(/index)(.:format)' => "op_catalog_accesses#index", :via => :get
     match '/op_catalog_accesses/:operational_catalog_id/get_data(.:format)' => "op_catalog_accesses#get_data"
+    #id_flexes
+    match '/id_flexes(/index)(.:format)' => "id_flexes#index", :via => :get
+    match '/id_flexes/:id/edit(.:format)' => "id_flexes#edit", :via => :get
+    match '/id_flexes/:id(.:format)' => "id_flexes#update", :via => :put
+    match '/id_flexes/new(.:format)' => "id_flexes#new", :via => :get
+    match '/id_flexes/create(.:format)' => "id_flexes#create", :via => :post
+    match '/id_flexes/get_data(.:format)' => "id_flexes#get_data"
   end
 
   scope :module => "icm" do

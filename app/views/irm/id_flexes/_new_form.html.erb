@@ -1,0 +1,30 @@
+<div id="id_flex_new">
+     <%= form_for(@id_flex,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+            <div class="containerheader">
+                <div class="floatleft headertitle"><%=t(:label_irm_id_flex_new)%></div>
+            </div>
+            <div class="containerbody">
+            <table class="formtable" cellspacing="0">
+                <tr>
+                  <td class="formlabel"><%=(t :label_irm_id_flex_code)%>:</td>
+                  <td class="formitem"><%=f.text_field :id_flex_code, :required=>true,:irm_uppercase=>true%></td>
+                  <td class="formlabel" rowspan="3"><%=t(:label_irm_id_flex_description)%>:</td>
+                  <td class="formitem" rowspan="3"><%= f.text_area :description,:rows => 3%></td>                  
+                </tr>
+                <tr>
+                  <td class="formlabel"><%=(t :label_irm_id_flex_name)%>:</td>
+                  <td class="formitem"><%=f.text_field :id_flex_name, :required=>true%></td>
+                </tr>
+                <tr>
+                  <td class="formlabel"><%=(t :active)%>:</td>
+                  <td class="formitem"><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
+                </tr>         
+            </table>  
+            </div>
+
+            <div class="containerfooter">
+                <div class="button floatright"><%= link_to t(:save), {}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);reload_grid('id_flexes_grid');/replace(system_message_box,system_message_box);"}%></div>
+                <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(container1,id_flex_new);/", :action_type=>"ajaxLink"%></div>
+            </div>
+     <% end %>
+</div>
