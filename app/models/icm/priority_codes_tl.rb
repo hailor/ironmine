@@ -3,4 +3,5 @@ class Icm::PriorityCodesTl < ActiveRecord::Base
 
   belongs_to :priority_code
 
+  validates_presence_of :name
 end

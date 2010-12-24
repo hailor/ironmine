@@ -300,6 +300,33 @@ Ironmine::Application.routes.draw do
     match '/priority_codes/:id/multilingual_edit(.:format)' => "priority_codes#multilingual_edit", :via => :get
     match '/priority_codes/:id/multilingual_update(.:format)' => "priority_codes#multilingual_update", :via => :put
     match '/priority_codes/get_data(.:format)' => "priority_codes#get_data"
+    #close_reasons
+    match '/close_reasons(/index)(.:format)' => "close_reasons#index", :via => :get
+    match '/close_reasons/:id/edit(.:format)' => "close_reasons#edit", :via => :get
+    match '/close_reasons/:id(.:format)' => "close_reasons#update", :via => :put
+    match '/close_reasons/new(.:format)' => "close_reasons#new", :via => :get
+    match '/close_reasons/create(.:format)' => "close_reasons#create", :via => :post
+    match '/close_reasons/:id/multilingual_edit(.:format)' => "close_reasons#multilingual_edit", :via => :get
+    match '/close_reasons/:id/multilingual_update(.:format)' => "close_reasons#multilingual_update", :via => :put
+    match '/close_reasons/get_data(.:format)' => "close_reasons#get_data"
+    #incident_phases
+    match '/incident_phases(/index)(.:format)' => "incident_phases#index", :via => :get
+    match '/incident_phases/:id/edit(.:format)' => "incident_phases#edit", :via => :get
+    match '/incident_phases/:id(.:format)' => "incident_phases#update", :via => :put
+    match '/incident_phases/new(.:format)' => "incident_phases#new", :via => :get
+    match '/incident_phases/create(.:format)' => "incident_phases#create", :via => :post
+    match '/incident_phases/:id/multilingual_edit(.:format)' => "incident_phases#multilingual_edit", :via => :get
+    match '/incident_phases/:id/multilingual_update(.:format)' => "incident_phases#multilingual_update", :via => :put
+    match '/incident_phases/get_data(.:format)' => "incident_phases#get_data"
+    #incident_statuses
+    match '/incident_statuses(/index)(.:format)' => "incident_statuses#index", :via => :get
+    match '/incident_statuses/:id/edit(.:format)' => "incident_statuses#edit", :via => :get
+    match '/incident_statuses/:id(.:format)' => "incident_statuses#update", :via => :put
+    match '/incident_statuses/new(.:format)' => "incident_statuses#new", :via => :get
+    match '/incident_statuses/create(.:format)' => "incident_statuses#create", :via => :post
+    match '/incident_statuses/:id/multilingual_edit(.:format)' => "incident_statuses#multilingual_edit", :via => :get
+    match '/incident_statuses/:id/multilingual_update(.:format)' => "incident_statuses#multilingual_update", :via => :put
+    match '/incident_statuses/get_data(.:format)' => "incident_statuses#get_data" 
   end
 
   match '/demo(/index)' => 'demo#index'

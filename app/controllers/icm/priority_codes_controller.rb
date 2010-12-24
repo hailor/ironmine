@@ -86,7 +86,7 @@ class Icm::PriorityCodesController < ApplicationController
   def get_data
     @priority_codes = Icm::PriorityCode.multilingual.list_all
     respond_to do |format|
-      format.json  {render :json => @priority_codes.to_dhtmlxgrid_json(['0',:company_name,:priority_code,
+      format.json  {render :json => @priority_codes.to_dhtmlxgrid_json(['0',:company_name,:priority_code,:name,
                                                                      :low_weight_value,:high_weight_value,
                                                                     {:value => 'M', :controller => 'icm/priority_codes',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
                                                                     ], @priority_codes.size) }
