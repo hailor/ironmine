@@ -252,7 +252,7 @@ table.twocolumnform td.sep{width: 38%;}
 input.halfdesc, textarea.halfdesc{width: 300px;}
 input.titledesc, textarea.titledesc{width: 630px;}
 .inputrequired{background-color:#FFFFCC;}
-.inputdisable{background-color:#CCC;}
+.inputdisable{background-color:#CCC !important; color:#666666 !important;}
 
 div.textrequired{color:#990000; padding-top: 2px; float:left; font-family: Courier, "Courier New"\9;}/*firefox, ie8*/
 
@@ -302,8 +302,8 @@ table.loginnv tr.loginnvbody td{
 div.meuncontent span.menuitem{display:block;padding-left: 10px;}
 div.menu h2.menutitle{margin-bottom: 5px;}
 
-input[type="text"], input[type="password"] {background-color: #f2f2f2;border:1px solid #9b9b9b; color:#333333;}
-textarea {background-color: #f2f2f2;border:1px solid #9b9b9b; color:#333333;}
-select {background-color: #f2f2f2;border:1px solid #9b9b9b; color:#333333;}
+input[type="text"], input[type="password"] {background-color: #F7F7F7;border:1px solid #9b9b9b; color:#333333;}
+textarea {background-color: #F7F7F7;border:1px solid #9b9b9b; color:#333333;}
+select {background-color: #F7F7F7;border:1px solid #9b9b9b; color:#333333;}
 
 
