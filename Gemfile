@@ -18,6 +18,7 @@ gem "spreadsheet"
 
 gem "rufus-scheduler"
 
+#gem 'composite_primary_keys', '=3.1.0'
 #gem "rmmseg"
 
 # Use unicorn as the web server

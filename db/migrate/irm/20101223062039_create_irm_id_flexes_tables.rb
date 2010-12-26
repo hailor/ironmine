@@ -89,11 +89,9 @@ class CreateIrmIdFlexesTables < ActiveRecord::Migration
 
   def self.down
     execute("drop view irm_flex_structures_vl")
-    execute("drop view irm_flex_segments_vl")
     drop_table :irm_id_flexes
     drop_table :irm_id_flex_structures
     drop_table :irm_id_flex_structures_tl
     drop_table :irm_id_flex_segments
-    drop_table :irm_id_flex_segments_tl
   end
 end
