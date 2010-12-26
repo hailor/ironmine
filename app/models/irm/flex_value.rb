@@ -2,9 +2,9 @@ class Irm::FlexValue < ActiveRecord::Base
   set_table_name :irm_flex_values
 
   #多语言关系
-  attr_accessor :name,:description
+  attr_accessor :flex_value_meaning,:description
   has_many :flex_values_tls,:dependent => :destroy
-  acts_as_multilingual
+  acts_as_multilingual(:columns => [:flex_value_meaning, :description])
 
   belongs_to :flex_value_set,:foreign_key=>"flex_value_set_id",:primary_key => "id"
   

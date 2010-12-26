@@ -64,7 +64,7 @@ class Irm::FlexValuesController < ApplicationController
     case @mode
       when "inserted"
         @flex_value = Irm::FlexValue.new({:flex_value_set_id => value_set.id, :display_sequence => display_sequence, :flex_value => flex_value,
-                                          :name => name, :description => description, :start_date_active => start_date_active, :end_date_active => end_date_active})
+                                          :flex_value_meaning => name, :description => description, :start_date_active => start_date_active, :end_date_active => end_date_active})
         @flex_value.save
         @id = @flex_value.id
         @tid = @flex_value.id
@@ -73,14 +73,14 @@ class Irm::FlexValuesController < ApplicationController
         #no exists
         if !exist_flag
           @flex_value = Irm::FlexValue.new({:flex_value_set_id => value_set.id, :display_sequence => display_sequence, :flex_value => flex_value,
-                                          :name => name, :description => description, :start_date_active => start_date_active, :end_date_active => end_date_active})
+                                          :flex_value_meaning => name, :description => description, :start_date_active => start_date_active, :end_date_active => end_date_active})
           @flex_value.save
           @id = @flex_value.id
           @tid = @flex_value.id
         else
           @flex_value=Irm::FlexValue.find(@id)
           @flex_value.update_attributes({:flex_value_set_id => value_set.id, :display_sequence => display_sequence, :flex_value => flex_value,
-                                          :name => name, :description => description, :start_date_active => start_date_active, :end_date_active => end_date_active})
+                                          :flex_value_meaning => name, :description => description, :start_date_active => start_date_active, :end_date_active => end_date_active})
           @id = @flex_value.id
           @tid = @flex_value.id
         end
@@ -94,7 +94,7 @@ class Irm::FlexValuesController < ApplicationController
       format.json  {render :json => @flex_values.to_dhtmlxgrid_json(['0',
                                                                :display_sequence,
                                                                :flex_value,
-                                                               :name,
+                                                               :flex_value_meaning,
                                                                :description,
                                                                :start_date_active,
                                                                :end_date_active,
