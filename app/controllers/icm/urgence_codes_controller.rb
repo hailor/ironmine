@@ -86,8 +86,8 @@ class Icm::UrgenceCodesController < ApplicationController
   def get_data
     @urgence_codes = Icm::UrgenceCode.multilingual.list_all
     respond_to do |format|
-      format.json  {render :json => @urgence_codes.to_dhtmlxgrid_json(['0',:name,:urgency_code,
-                                                                     :company_name,:weight_values,
+      format.json  {render :json => @urgence_codes.to_dhtmlxgrid_json(['0',:company_name,:name,:urgency_code,
+                                                                     :weight_values,
                                                                     {:value => 'M', :controller => 'icm/urgence_codes',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
                                                                     ], @urgence_codes.size) }
     end

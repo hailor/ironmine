@@ -7,18 +7,18 @@
                 <tr>
                     <td class="twocolumn">
                        <table class="itemdetailtable">
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_icm_urgence_code_urgency_code)%>:</td>
-                              <td><%=f.text_field :urgency_code,:required=>true,:irm_uppercase=>true%></td>
-                            </tr>
-
                             <tr><td class="itemdetailtablelabel"><%=(t :label_icm_urgence_code_company)%>:</td>
                               <td><%=f.select :company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
                                                     options_for_select(selectable_companies,@urgence_code.company_id),
                                                     {},{}%></td>
                             </tr>
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_icm_urgence_code_weight_values)%>:</td>
-                              <td><%=f.text_field :weight_values, :required=>true%></td>
+                            <tr><td class="itemdetailtablelabel"><%=(t :label_icm_urgence_code_urgency_code)%>:</td>
+                              <td><%=f.text_field :urgency_code,:readonly=>true%></td>
                             </tr>
+                          <tr><td class="itemdetailtablelabel"><%=(t :label_icm_urgence_code_name)%>:</td>
+                              <td><%=f.text_field :name, :required=>true%></td>
+                         </tr>
+
                             <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
                               <td><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
                             </tr>
@@ -26,8 +26,8 @@
                     </td>
                     <td class="twocolumn" cellspacing="0">
                        <table class="itemdetailtable">
-                         <tr><td class="itemdetailtablelabel"><%=(t :label_icm_urgence_code_name)%>:</td>
-                              <td><%=f.text_field :name, :required=>true%></td>
+                         <tr><td class="itemdetailtablelabel"><%=(t :label_icm_urgence_code_weight_values)%>:</td>
+                              <td><%=f.text_field :weight_values, :required=>true%></td>
                          </tr>
                          <tr><td class="itemdetailtablelabel"><%=t(:label_icm_urgence_code_description)%>:</td>
                              <td><%= f.text_area :description,  :rows => 2%></td>

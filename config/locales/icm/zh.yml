@@ -69,5 +69,5 @@ zh:
   label_icm_incident_status_incident_status_code: 简称
   label_icm_incident_status_company: 公司
   label_icm_incident_status_new: 新建事故单状态
-  label_icm_incident_status_description: Description
+  label_icm_incident_status_description: 描述
   #========================= end icm incident_statuses_controller=======================#

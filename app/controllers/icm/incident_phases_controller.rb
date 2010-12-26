@@ -85,8 +85,7 @@ class Icm::IncidentPhasesController < ApplicationController
   def get_data
     @incident_phases = Icm::IncidentPhase.multilingual.list_all
     respond_to do |format|
-      format.json  {render :json => @incident_phases.to_dhtmlxgrid_json(['0',:name,
-                                                                     :phase_code,:company_name,
+      format.json  {render :json => @incident_phases.to_dhtmlxgrid_json(['0',:company_name,:name,:phase_code,
                                                                     {:value => 'M', :controller => 'icm/incident_phases',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
                                                                     ], @incident_phases.size) }
     end

@@ -2,9 +2,9 @@ class Icm::PriorityCode < ActiveRecord::Base
   set_table_name :icm_priority_codes
 
   #多语言关系
-  attr_accessor :description
+  attr_accessor :name,:description
   has_many :priority_codes_tls,:dependent => :destroy
-  acts_as_multilingual({:columns =>[:description],:required=>[]})
+  acts_as_multilingual
 
   validates_presence_of :priority_code,:company_id,:low_weight_value,:high_weight_value
   validates_uniqueness_of :priority_code, :if => Proc.new { |i| !i.priority_code.blank? }
