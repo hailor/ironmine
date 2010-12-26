@@ -16,7 +16,7 @@ body{
 .sectiontitle {color: #222222;font-weight: bold;}
 .floatright{ float:right !important;}
 .floatleft{float:left !important;}
-.headertitle{font-weight:bold; float:left;}
+.headertitle{font-weight:bold; float:left; padding-right: 20px;}
 .field_with_errors input, .field_with_errors text_area, .field_with_errors select{ border: red solid 1px !important; }
 
 div.errormsgbox{
@@ -183,7 +183,7 @@ table.leftnavigation{width: 100%;margin-bottom: -1px;}
 div.container {padding-bottom: 5px;}
 div.container div.containerheader{ background: none repeat scroll 0 0 #99BBDD; height:25px; line-height: 25px; padding: 0 20px 0 20px;}
 div.container div.containerfooter{ background: none repeat scroll 0 0 #d4d2d0; height:25px; line-height: 25px; padding: 0 20px 0 20px;}
-div.container div.containerbody{ border:solid #cccccc; padding: 0 1px 0 1px; border-width: 0 1px 0 1px;}
+div.container div.containerbody{ border:solid #cccccc; padding: 0 1px 0 1px; border-width: 0 1px 1px 1px;}
 div.container div.colorheader{background: url("../images/containerheader_bg.gif") repeat-x scroll 0 0 #AACCEE !important;}
 div.buttonbar {padding: 0 20px 0 20px;}
 

@@ -264,6 +264,16 @@ Ironmine::Application.routes.draw do
     match '/id_flexes/new(.:format)' => "id_flexes#new", :via => :get
     match '/id_flexes/create(.:format)' => "id_flexes#create", :via => :post
     match '/id_flexes/get_data(.:format)' => "id_flexes#get_data"
+    #id_flex_stuctures
+    match '/id_flex_structures(/index)(.:format)' => "id_flex_structures#index", :via => :get
+    match '/id_flex_structures/:id_flex_code/show_parent(.:format)' => "id_flex_structures#show_parent", :via => :get
+    match '/id_flex_structures/:id_flex_code/get_data(.:format)' => "id_flex_structures#get_data"
+    match '/id_flex_structures/create_entry(.:format)' => "id_flex_structures#create_entry"
+    #id_flex_segments
+    match '/id_flex_segments/:id_flex_structure_id(/index)(.:format)' => "id_flex_segments#index", :via => :get
+    match '/id_flex_segments/:id_flex_structure_id/show_parent(.:format)' => "id_flex_segments#show_parent", :via => :get
+    match '/id_flex_segments/:id_flex_structure_id/get_data(.:format)' => "id_flex_segments#get_data"
+    match '/id_flex_segments/create_entry(.:format)' => "id_flex_segments#create_entry"    
   end
 
   scope :module => "icm" do
