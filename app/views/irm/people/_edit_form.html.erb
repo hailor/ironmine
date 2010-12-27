@@ -55,7 +55,7 @@
      <div id="id_person_support_group" href="/people/support_group?person_id=<%=@person.id%>">
      </div>
      <div id="id_person_notification">
-       Content 3
+       <%= render :partial=>"notification",:locals=>{:f=>f,:person=>@person} %>
      </div>
      <div class="containerfooter">
           <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/people",:action=>"update"}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);/replace(system_message_box,system_message_box);"}%></div>

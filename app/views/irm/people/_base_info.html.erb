@@ -1,3 +1,4 @@
+<br>
 <table class="twocolumnstable" cellspacing="0">
                 <tr>
                     <td class="twocolumn">
@@ -86,6 +87,21 @@
                               <%=t(:label_irm_person_assignment_availability_flag)%>:
                            </td>
                            <td><%=f.check_box :assignment_availability_flag%></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_person_region_code)%>:</td>
+                            <td><%=f.select :region_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_region,:region_code,:wrap_name)%></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_person_site_group_code)%>:</td>
+                            <td><%=f.select :site_group_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_site_group,:group_code,:wrap_name)%></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_person_site_code)%>:</td>
+                            <td><%=f.select :site_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_site,:site_code,:wrap_name)%></td>
                         </tr>
                         </div>
                        </table>

@@ -22,4 +22,8 @@ class Irm::Language < ActiveRecord::Base
   #返回语言编码
   scope :query_code,select("#{table_name}.language_code")
 
+  def wrap_description
+    self[:description]
+  end
+
 end
