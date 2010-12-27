@@ -211,6 +211,8 @@ Ironmine::Application.routes.draw do
     match '/companies/add_site_info(.:format)' => "companies#add_site_info"
     match '/companies/create_location(.:format)' => "companies#create_location"
     match '/companies/get_company_info(.:format)' => "companies#get_company_info"
+    match '/companies/support_group(.:format)' => "companies#support_group"
+    match '/companies/get_support_group(.:format)' => "companies#get_support_group"
     match '/companies/:id/edit_location(.:format)' => "companies#edit_location"
     match '/companies/:id/update_location(.:format)' => "companies#update_location"
     #login_records

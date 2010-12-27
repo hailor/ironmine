@@ -165,4 +165,16 @@ class Irm::CompaniesController < ApplicationController
     end
   end
 
+  def support_group
+    @company_id = params[:company_id]
+  end
+
+  def get_support_group
+    company_id = params[:company_id]
+    @support_group= Irm::SupportGroup.multilingual.query_by_company(I18n::locale,company_id)
+    respond_to do |format|
+      format.json {render :json=>@support_group.to_dhtmlxgrid_json(['R',:name,:description,:status_meaning], @support_group.size)}
+    end
+  end
+
 end

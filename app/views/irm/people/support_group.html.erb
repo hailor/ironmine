@@ -1,11 +1,8 @@
 <div class="container">
-    <div class="containerheader">
-        <div class="floatleft headertitle"><%=t(:label_irm_person_all_support_groups)%></div>
-    </div>
-    <div id="id_person_support_group_grid" class="datagrid" style="height:207px !important;"
+    <div id="id_person_support_group_grid" class="datagrid" style="height:240px !important;"
        action_type="ajaxDhtmlxGrid"
        grid_header=" ,<%=t(:label_irm_person_support_group)%>,<%=t(:label_irm_person_status_code)%>"
-       grid_width="20,150,150,150"
+       grid_width="20,150,150"
        grid_col_types="ra,ro,ro"
        grid_align="center,left,left"
        grid_onRowDblClicked="selectRowAndRadio"
