@@ -403,7 +403,6 @@ zh:
   label_irm_flex_value_position: 显示顺序
   label_irm_flex_value_start_date_active: 开始生效日期
   label_irm_flex_value_end_date_active: 截至失效日期
-<<<<<<< HEAD
   #=========================end irm flex_values_controller=======================#
   #=========================    irm site_groups_controller=======================#
   label_irm_site_group_group_code: 编码
