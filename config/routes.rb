@@ -306,6 +306,9 @@ Ironmine::Application.routes.draw do
     match '/support_groups/belongs_to(.:format)' => "support_groups#belongs_to"
     match '/support_groups/add_persons(.:format)' => "support_groups#add_persons"
     match '/support_groups/get_support_group_member(.:format)' => "support_groups#get_support_group_member"
+    match '/support_groups/choose_person(.:format)' => "support_groups#choose_person"
+    match '/support_groups/create_member(.:format)' => "support_groups#create_member"
+    match '/support_groups/delete_member(.:format)' => "support_groups#delete_member"
     #people
     match '/people(/index)(.:format)' => "people#index", :via => :get
     match '/people/:id/edit(.:format)' => "people#edit", :via => :get
@@ -316,6 +319,9 @@ Ironmine::Application.routes.draw do
     match '/people/:id/multilingual_update(.:format)' => "people#multilingual_update", :via => :put
     match '/people/get_data(.:format)' => "people#get_data"
     match '/people/login_access(.:format)' => "people#login_access"
+    match '/people/get_choose_people(.:format)' => "people#get_choose_people"
+    match '/people/get_support_group(.:format)' => "people#get_support_group"
+    match '/people/support_group(.:format)' => "people#support_group"
     #company_accesses
     match '/company_accesses(/index)(.:format)' => "company_accesses#index", :via => :get
     match '/company_accesses/:id/edit(.:format)' => "company_accesses#edit", :via => :get

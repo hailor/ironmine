@@ -95,8 +95,54 @@ class Irm::SupportGroupsController < ApplicationController
     @support_group_code = params[:support_group_code]
     @support_group_member= Irm::SupportGroupMember.query_wrap_info(I18n::locale,@support_group_code)
     respond_to do |format|
-      format.json {render :json=>@support_group_member.to_dhtmlxgrid_json(['R',:person_name,:company_name], @support_group_member.size)}
+      format.json {render :json=>@support_group_member.to_dhtmlxgrid_json(['R',:person_name,:company_name,
+                                                                           :email_address,:mobile_phone,:status_meaning],
+                                                                          @support_group_member.size)}
     end
   end
 
+  def choose_person
+     @support_group_code = params[:support_group_code]
+     @support_group = Irm::SupportGroup.query_by_support_group_code(@support_group_code)
+  end
+
+  def create_member
+    person_list = params[:person_choose_list].split(',')
+    support_group_code = params[:support_group_code]
+    flag = true
+    if ((!person_list.blank?) && !(support_group_code.blank?))
+      person_list.each do |person_id|
+        if Irm::SupportGroupMember.check_person_exists?(support_group_code,person_id)
+            @support_group_member = Irm::SupportGroupMember.new(:person_id => person_id,
+                                           :support_group_code =>support_group_code )
+            if !@support_group_member.save
+              flag=false
+            end
+        end
+      end
+    end
+    if flag
+      respond_to do |format|
+         flash[:successful_message] = (t :successfully_created)
+         format.html { render "irm/common/_successful_message" }
+      end
+    else
+      respond_to do |format|
+         format.html { render "irm/common/_successful_message" }
+      end
+    end
+  end
+
+  def delete_member
+    id_delete_list = params[:id_delete_list].split(',')
+    support_group_code = params[:support_group_code]
+    if ((!id_delete_list.blank?) || !(support_group_code.blank?))
+      Irm::SupportGroupMember.delete_by_id(id_delete_list)    
+      respond_to do |format|
+        flash[:successful_message] = (t :successfully_deleted)
+        format.html { render "irm/common/_successful_message" }
+        format.xml  { head :ok }
+      end
+    end
+  end
 end

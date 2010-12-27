@@ -74,4 +74,22 @@ class Irm::PeopleController < ApplicationController
     @person = Irm::Person.find(person_id)
   end
 
+  def get_choose_people
+    @choose_people= Irm::Person.query_choose_person.query_by_support_staff_flag("Y")
+    respond_to do |format|
+      format.json {render :json=>@choose_people.to_dhtmlxgrid_json(['R',:person_name,:email_address,:mobile_phone], @choose_people.size)}
+    end
+  end
+
+  def get_support_group
+    person_id = params[:person_id]
+    @support_group= Irm::SupportGroupMember.query_support_group_by_person_id(I18n::locale,person_id)
+    respond_to do |format|
+      format.json {render :json=>@support_group.to_dhtmlxgrid_json(['R',:support_group_name,:status_meaning], @support_group.size)}
+    end
+  end
+
+  def support_group
+    @person_id = params[:person_id]
+  end
 end

@@ -1,69 +1,95 @@
-<table class="paddedtable" cellspacing="0">
-               <tbody>
-                  <tr>
-                      <td class="paddedtablelabel"><%=t(:label_irm_person_company)%>:
+<table class="twocolumnstable" cellspacing="0">
+                <tr>
+                    <td class="twocolumn">
+                       <table class="itemdetailtable">
+                        <tr>
+                          <td class="itemdetailtablelabel"><%=t(:label_irm_person_company)%>:
+                          </td>
+                          <td><%=f.select(:company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                    options_from_collection_for_select(available_company,:id,:wrap_name,person.company_id),
+                                                    {},:action=>url_for(:controller=>"irm/organizations",
+                                                                        :action=>"belongs_to",
+                                                                        :company_id=>"cascade_id"),
+                                                    :choice_title=>t(:actionview_instancetag_blank_option),
+                                      :cascade=>"organization_select")%></td>
+                      </tr>
+                       <tr>
+                      <td class="itemdetailtablelabel"><%=t(:label_irm_person_organization)%>:
                       </td>
-                      <td><%=f.select(:company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_company,:id,:wrap_name,person.company_id),
-                                                {},:action=>url_for(:controller=>"irm/organizations",
-                                                                    :action=>"belongs_to",
-                                                                    :company_id=>"cascade_id"),
-                                                :choice_title=>t(:actionview_instancetag_blank_option),
-                                  :cascade=>"organization_select")%></td>
-                  </tr>
-                  <tr>
-                      <td class="paddedtablelabel"><%=t(:label_irm_person_organization)%>:
-                      </td>
-                      <td><%=f.select(:organization_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(current_organization(person.company_id),:id,:wrap_name,person.organization_id),{},
-                                      :id=>"organization_select")%></td>
-                  </tr>
-                  <tr>
-                      <td class="paddedtablelabel"><%=t(:label_irm_person_department)%>:
-                      </td>
-                      <td><%=f.select(:department_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(current_department(person.company_id,person.organization_id),:id,:wrap_name,person.department_id)
-                                      )%></td>
-                  </tr>
-                  <tr>
-                      <td class="paddedtablelabel"><%=t(:label_irm_person_home_phone)%>:
-                      </td>
-                      <td>
-                        <%=f.text_field :home_phone%>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td class="paddedtablelabel"><%=t(:label_irm_person_home_address)%>:
-                      </td>
-                      <td>
-                        <%=f.text_field :home_address%>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td class="paddedtablelabel"><%=t(:label_irm_person_mobile_phone)%>:
-                      </td>
-                      <td>
-                        <%=f.text_field :mobile_phone%>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td class="paddedtablelabel"><%=t(:label_irm_person_fax_number)%>:
-                      </td>
-                      <td>
-                        <%=f.text_field :fax_number%>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td class="paddedtablelabel"><%=t(:label_irm_person_bussiness_phone)%>:
-                      </td>
-                      <td>
-                        <%=f.text_field :bussiness_phone%>
-                      </td>
-                  </tr>
-                  <tr>
-                       <td class="paddedtablelabel"><%=(t :label_irm_person_status_code)%>:</td>
-                       <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                          options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,person.status_code)%></td>
-                  </tr>
-           </tbody>
-         </table>
+                          <td><%=f.select(:organization_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                    options_from_collection_for_select(current_organization(person.company_id),:id,:wrap_name,person.organization_id),{},
+                                          :id=>"organization_select")%></td>
+                      </tr>
+                      <tr>
+                          <td class="itemdetailtablelabel"><%=t(:label_irm_person_department)%>:
+                          </td>
+                          <td><%=f.select(:department_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                    options_from_collection_for_select(current_department(person.company_id,person.organization_id),:id,:wrap_name,person.department_id)
+                                          )%></td>
+                      </tr>
+                      <tr>
+                          <td class="itemdetailtablelabel"><%=t(:label_irm_person_home_phone)%>:
+                          </td>
+                          <td>
+                            <%=f.text_field :home_phone%>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="itemdetailtablelabel"><%=t(:label_irm_person_home_address)%>:
+                          </td>
+                          <td>
+                            <%=f.text_field :home_address%>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="itemdetailtablelabel"><%=t(:label_irm_person_mobile_phone)%>:
+                          </td>
+                          <td>
+                            <%=f.text_field :mobile_phone%>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="itemdetailtablelabel"><%=t(:label_irm_person_fax_number)%>:
+                          </td>
+                          <td>
+                            <%=f.text_field :fax_number%>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="itemdetailtablelabel"><%=t(:label_irm_person_bussiness_phone)%>:
+                          </td>
+                          <td>
+                            <%=f.text_field :bussiness_phone%>
+                          </td>
+                      </tr>
+                      <tr>
+                           <td class="itemdetailtablelabel"><%=(t :label_irm_person_status_code)%>:</td>
+                           <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                              options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,person.status_code)%></td>
+                      </tr>
+                       </table>
+                    </td>
+                    <td class="twocolumn" cellspacing="0">
+                       <table class="itemdetailtable">
+                        <div id="id_lookup_level">
+                        <tr><td class="itemdetailtablelabel">
+                              <%=t(:label_irm_person_vip_flag)%>:
+                           </td>
+                           <td><%=f.check_box :vip_flag%></td>
+                        </tr>
+                        <tr><td class="itemdetailtablelabel">
+                              <%=t(:label_irm_person_support_staff_flag)%>:
+                           </td>
+                           <td><%=f.check_box :support_staff_flag%></td>
+                        </tr>
+                        <tr><td class="itemdetailtablelabel">
+                              <%=t(:label_irm_person_assignment_availability_flag)%>:
+                           </td>
+                           <td><%=f.check_box :assignment_availability_flag%></td>
+                        </tr>
+                        </div>
+                       </table>
+                    </td>
+                    <td width="10%"></td>
+                </tr>
+            </table>

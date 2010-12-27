@@ -26,6 +26,7 @@ en:
   confirm: Confirm
   active: Active
   add: Add
+  close: Close
   copy:  Copy
   multilingual: Multilingual
   processing: Processing...
@@ -360,5 +361,6 @@ en:
   label_irm_person_login_access_status_code: Status Code
   label_irm_person_maintenance_company_access: Maintenance Company Access
   label_irm_person_add_company_access: Add Company
+  label_irm_person_person_name: Full Name
   #=========================end irm people_controller=======================#
 

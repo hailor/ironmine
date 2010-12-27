@@ -16,6 +16,9 @@ class Irm::Person < ActiveRecord::Base
                                                          "v2.id=#{table_name}.company_id AND v1.language=? AND "+
                                                          "v2.language=?",language,language)}
 
+  scope :query_by_support_staff_flag,lambda{|support_staff_flag| where(:support_staff_flag=>support_staff_flag)}
+  scope :query_choose_person,select("#{table_name}.id,CONCAT(#{table_name}.last_name,#{table_name}.first_name) person_name,#{table_name}.email_address,#{table_name}.mobile_phone")
+
   #取得系统当前登陆人员
   def self.current
     @current_person
@@ -58,4 +61,7 @@ class Irm::Person < ActiveRecord::Base
       true
     end
   end
+
+
+
 end

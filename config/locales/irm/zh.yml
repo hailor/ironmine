@@ -26,6 +26,7 @@ zh:
   create: 创建
   new: 新建
   add: 添加
+  close: 关闭
   multilingual: 多语言
   active: 可用
   status: 状态
@@ -513,6 +514,8 @@ zh:
   label_irm_person_login_access_status_code: 记录状态
   label_irm_person_maintenance_company_access: 维护公司访问
   label_irm_person_add_company_access: 增加公司
+  label_irm_person_person_name: 姓名
+  label_irm_person_all_support_groups: 所在支持组
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: 弹性域

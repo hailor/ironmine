@@ -43,7 +43,7 @@
      tabbar_a4_params="'a4', '<%=t(:label_irm_person_notification)%>', '100px'"
      tabbar_a1_content_params="'a1', 'id_person_base_info','COMMON'"
      tabbar_a2_content_params="'a2', 'id_person_login_and_access','CUSTOMER_AJAX'"
-     tabbar_a3_content_params="'a3', 'id_person_support_group','COMMON'"
+     tabbar_a3_content_params="'a3', 'id_person_support_group','CUSTOMER_AJAX'"
      tabbar_a4_content_params="'a4', 'id_person_notification','COMMON'"
      tabbar_active="a1">
      </div>
@@ -52,8 +52,7 @@
      </div>
      <div id="id_person_login_and_access" href="/people/login_access?person_id=<%=@person.id%>">
      </div>
-     <div id="id_person_support_group">
-       Content 3
+     <div id="id_person_support_group" href="/people/support_group?person_id=<%=@person.id%>">
      </div>
      <div id="id_person_notification">
        Content 3

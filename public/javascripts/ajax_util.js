@@ -263,7 +263,7 @@ function ajaxDhtmlxTabbar(el){
              tabbar.setContentHTML(evalTabbarA3ContentParams[0], evalTabbarA3ContentParams[1]);
           }else{
               if(evalTabbarA3ContentParams[2] == 'CUSTOMER_AJAX'){
-                    dhtmlx_tabbar_div_array[evalTabbarA1ContentParams[0]]= evalTabbarA3ContentParams[1];
+                    dhtmlx_tabbar_div_array[evalTabbarA3ContentParams[0]]= evalTabbarA3ContentParams[1];
               }
               tabbar.setContent(evalTabbarA3ContentParams[0], evalTabbarA3ContentParams[1]);
           }
