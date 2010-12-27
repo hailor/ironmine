@@ -14,7 +14,7 @@
             enable_paging="true, 15, null, 'pagingArea', true, 'infoArea'"
             grid_load="'<%= url_for(:action => "get_data", :controller => "irm/function_groups", :format=>:json) %>',function(){init('#function_groups_grid');},'json'">
         </div>
-        <span id="pagingArea"></span>&nbsp;<span id="infoArea"></span>
+        <span id="infoArea"></span>
         <span id="recfound"></span>
         <script>
             function dblClickHandler(rId, cInd){
@@ -33,6 +33,7 @@
             }
         </script>
         <div class="containerfooter">
+          <div class="floatleft"><span id="pagingArea"></span></div>
           <div class="floatright">
             <div class="button"><%= link_to t(:label_irm_function_group_function), {:action => "function_index", :function_group_id => ":id"}, :script => "/replace(containers,containers);/", :action_type=>"ajaxLink", :id => "function_index"%></div>
           </div>

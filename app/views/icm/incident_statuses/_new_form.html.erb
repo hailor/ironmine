@@ -1,0 +1,39 @@
+<div id="incident_status_new">
+     <%= form_for(@incident_status,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+            <div class="containerheader">
+                <div class="floatleft headertitle"><%=t(:label_icm_incident_status_new)%></div>
+            </div>
+            <table class="twocolumnstable" cellspacing="0">
+                <tr>
+                    <td class="twocolumn">
+                       <table class="itemdetailtable">
+                           <tr><td class="itemdetailtablelabel"><%=t(:label_icm_incident_status_company)%>:</td>
+                              <td><%=f.select :company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                    options_for_select(selectable_companies,@incident_status.company_id),
+                                                    {},{}%></td>
+                           </tr>
+                           <tr><td class="itemdetailtablelabel"><%=t(:label_icm_incident_status_incident_status_code)%>:</td>
+                              <td><%=f.text_field :incident_status_code, :required=>true ,:irm_uppercase=>true%></td>
+                            </tr>
+                            <tr><td class="itemdetailtablelabel"><%=t(:label_icm_incident_status_name)%>:</td>
+                              <td><%=f.text_field :name, :required=>true %></td>
+                            </tr>
+                       </table>
+                    </td>
+                    <td class="twocolumn" cellspacing="0">
+                       <table class="itemdetailtable">
+
+                         <tr><td class="itemdetailtablelabel"><%=t(:label_icm_incident_status_description)%>:</td>
+                             <td><%= f.text_area :description, :cols => 40, :rows => 2%></td>
+                         </tr>
+                       </table>
+                    </td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+            <div class="containerfooter">
+                <div class="button floatright"><%= link_to t(:save), {}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);reload_grid('incident_statuses_grid');/replace(system_message_box,system_message_box);"}%></div>
+                <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(container1,incident_status_new);/", :action_type=>"ajaxLink"%></div>
+            </div>
+     <% end %>
+</div>

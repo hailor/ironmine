@@ -325,6 +325,23 @@ Ironmine::Application.routes.draw do
     match '/company_accesses/:id/multilingual_edit(.:format)' => "company_accesses#multilingual_edit", :via => :get
     match '/company_accesses/:id/multilingual_update(.:format)' => "company_accesses#multilingual_update", :via => :put
     match '/company_accesses/get_data(.:format)' => "company_accesses#get_data"
+    #id_flexes
+    match '/id_flexes(/index)(.:format)' => "id_flexes#index", :via => :get
+    match '/id_flexes/:id/edit(.:format)' => "id_flexes#edit", :via => :get
+    match '/id_flexes/:id(.:format)' => "id_flexes#update", :via => :put
+    match '/id_flexes/new(.:format)' => "id_flexes#new", :via => :get
+    match '/id_flexes/create(.:format)' => "id_flexes#create", :via => :post
+    match '/id_flexes/get_data(.:format)' => "id_flexes#get_data"
+    #id_flex_stuctures
+    match '/id_flex_structures(/index)(.:format)' => "id_flex_structures#index", :via => :get
+    match '/id_flex_structures/:id_flex_code/show_parent(.:format)' => "id_flex_structures#show_parent", :via => :get
+    match '/id_flex_structures/:id_flex_code/get_data(.:format)' => "id_flex_structures#get_data"
+    match '/id_flex_structures/create_entry(.:format)' => "id_flex_structures#create_entry"
+    #id_flex_segments
+    match '/id_flex_segments/:id_flex_structure_id(/index)(.:format)' => "id_flex_segments#index", :via => :get
+    match '/id_flex_segments/:id_flex_structure_id/show_parent(.:format)' => "id_flex_segments#show_parent", :via => :get
+    match '/id_flex_segments/:id_flex_structure_id/get_data(.:format)' => "id_flex_segments#get_data"
+    match '/id_flex_segments/create_entry(.:format)' => "id_flex_segments#create_entry"
   end
 
   scope :module => "icm" do
@@ -343,6 +360,51 @@ Ironmine::Application.routes.draw do
     match '/impact_ranges/:id/multilingual_edit(.:format)' => "impact_ranges#multilingual_edit", :via => :get
     match '/impact_ranges/:id/multilingual_update(.:format)' => "impact_ranges#multilingual_update", :via => :put
     match '/impact_ranges/get_data(.:format)' => "impact_ranges#get_data"
+    #urgence_codes
+    match '/urgence_codes(/index)(.:format)' => "urgence_codes#index", :via => :get
+    match '/urgence_codes/:id/edit(.:format)' => "urgence_codes#edit", :via => :get
+    match '/urgence_codes/:id(.:format)' => "urgence_codes#update", :via => :put
+    match '/urgence_codes/new(.:format)' => "urgence_codes#new", :via => :get
+    match '/urgence_codes/create(.:format)' => "urgence_codes#create", :via => :post
+    match '/urgence_codes/:id/multilingual_edit(.:format)' => "urgence_codes#multilingual_edit", :via => :get
+    match '/urgence_codes/:id/multilingual_update(.:format)' => "urgence_codes#multilingual_update", :via => :put
+    match '/urgence_codes/get_data(.:format)' => "urgence_codes#get_data"
+    #priority_codes
+    match '/priority_codes(/index)(.:format)' => "priority_codes#index", :via => :get
+    match '/priority_codes/:id/edit(.:format)' => "priority_codes#edit", :via => :get
+    match '/priority_codes/:id(.:format)' => "priority_codes#update", :via => :put
+    match '/priority_codes/new(.:format)' => "priority_codes#new", :via => :get
+    match '/priority_codes/create(.:format)' => "priority_codes#create", :via => :post
+    match '/priority_codes/:id/multilingual_edit(.:format)' => "priority_codes#multilingual_edit", :via => :get
+    match '/priority_codes/:id/multilingual_update(.:format)' => "priority_codes#multilingual_update", :via => :put
+    match '/priority_codes/get_data(.:format)' => "priority_codes#get_data"
+    #close_reasons
+    match '/close_reasons(/index)(.:format)' => "close_reasons#index", :via => :get
+    match '/close_reasons/:id/edit(.:format)' => "close_reasons#edit", :via => :get
+    match '/close_reasons/:id(.:format)' => "close_reasons#update", :via => :put
+    match '/close_reasons/new(.:format)' => "close_reasons#new", :via => :get
+    match '/close_reasons/create(.:format)' => "close_reasons#create", :via => :post
+    match '/close_reasons/:id/multilingual_edit(.:format)' => "close_reasons#multilingual_edit", :via => :get
+    match '/close_reasons/:id/multilingual_update(.:format)' => "close_reasons#multilingual_update", :via => :put
+    match '/close_reasons/get_data(.:format)' => "close_reasons#get_data"
+    #incident_phases
+    match '/incident_phases(/index)(.:format)' => "incident_phases#index", :via => :get
+    match '/incident_phases/:id/edit(.:format)' => "incident_phases#edit", :via => :get
+    match '/incident_phases/:id(.:format)' => "incident_phases#update", :via => :put
+    match '/incident_phases/new(.:format)' => "incident_phases#new", :via => :get
+    match '/incident_phases/create(.:format)' => "incident_phases#create", :via => :post
+    match '/incident_phases/:id/multilingual_edit(.:format)' => "incident_phases#multilingual_edit", :via => :get
+    match '/incident_phases/:id/multilingual_update(.:format)' => "incident_phases#multilingual_update", :via => :put
+    match '/incident_phases/get_data(.:format)' => "incident_phases#get_data"
+    #incident_statuses
+    match '/incident_statuses(/index)(.:format)' => "incident_statuses#index", :via => :get
+    match '/incident_statuses/:id/edit(.:format)' => "incident_statuses#edit", :via => :get
+    match '/incident_statuses/:id(.:format)' => "incident_statuses#update", :via => :put
+    match '/incident_statuses/new(.:format)' => "incident_statuses#new", :via => :get
+    match '/incident_statuses/create(.:format)' => "incident_statuses#create", :via => :post
+    match '/incident_statuses/:id/multilingual_edit(.:format)' => "incident_statuses#multilingual_edit", :via => :get
+    match '/incident_statuses/:id/multilingual_update(.:format)' => "incident_statuses#multilingual_update", :via => :put
+    match '/incident_statuses/get_data(.:format)' => "incident_statuses#get_data" 
   end
 
   match '/demo(/index)' => 'demo#index'

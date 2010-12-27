@@ -8,7 +8,8 @@ class Irm::LoginRecord < ActiveRecord::Base
   scope :query_with_info,lambda{
     joins(" LEFT OUTER JOIN #{Irm::Identity.table_name} ON #{Irm::Identity.table_name}.id = #{table_name}.identity_id").
     select("#{Irm::Identity.table_name}.full_name,#{Irm::Identity.table_name}.login_name").
-    select("#{table_name}.user_ip,#{table_name}.operate_system,#{table_name}.browser,#{table_name}.login_at,#{table_name}.logout_at")
+    select("#{table_name}.user_ip,#{table_name}.operate_system,#{table_name}.browser,#{table_name}.login_at,#{table_name}.logout_at").
+    order("#{table_name}.created_at desc")     
   }
 
   def setup_os_browser

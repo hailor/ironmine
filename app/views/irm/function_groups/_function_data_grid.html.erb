@@ -13,7 +13,7 @@
             enable_paging="true, 15, null, 'pagingArea', true, 'infoArea'"
             grid_load="'<%= url_for(:action => "get_own_functions", :controller => "irm/function_groups", :format=>:json, :function_group_id => @function_group.id) %>','','json'">
         </div>
-        <span id="pagingArea"></span>&nbsp;<span id="infoArea"></span>
+        <span id="infoArea"></span>
         <span id="recfound"></span>
         <script>
             function rowSelectedHandler(id, ind){
@@ -22,6 +22,7 @@
         </script>
         <div class="containerfooter">
           <div class="floatright">
+            <div class="floatleft"><span id="pagingArea"></span></div>
             <div class="button"><%= link_to t(:label_irm_function_group_function_add), {:action => "edit_own_functions", :function_group_id => @function_group.id}, :script => "/replace(container2,edit_own_functions);/", :action_type=>"ajaxLink"%></div>
             <div class="button"><%= link_to t(:cancel), {:action => "index"}, :script => "/replace(containers,containers);/", :action_type=>"ajaxLink"%></div>
           </div>

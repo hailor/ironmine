@@ -413,34 +413,47 @@ div.dhx_page_active_light {
     font-weight: bold;
 }
 .dhx_pbox_skyblue {
-    border-color: -moz-use-text-color #C2D5DC #C2D5DC;
-    border-right: 1px solid #C2D5DC;
-    border-style: none solid solid;
-    border-width: 0 1px 1px;
-    font-size: 10px;
-    margin-top: 3px;
+    /*border-color: -moz-use-text-color #C2D5DC #C2D5DC;*/
+    /*border-right: 1px solid #C2D5DC;*/
+    /*border-style: none solid solid;*/
+    /*border-width: 0 1px 1px;*/
+    /*font-size: 10px;*/
+    /*margin-top: 3px;*/
+    display: none !important;
+    border-style: none;
 }
 .dhx_pline_skyblue {
-    background-color: white;
+    /*background-color: white;*/
     float: left;
-    margin: -15px 10px 10px;
-    padding: 0 5px;
+    /*margin: 0 10px 10px;*/
+    /*padding: 0 5px;*/
 }
-.dhx_page_skyblue, .dhx_pager_info_skyblue {
-    background-color: #93AFBA;
-    color: #055A78;
+.dhx_page_skyblue {
+    /*background-color: #93AFBA;*/
+    /*color: #055A78;*/
+    color: #000;
     cursor: pointer;
     float: left;
     font-family: tahoma;
     font-size: 12px;
     margin: 3px;
     padding: 1px;
+    text-align: center;    
+}
+.dhx_pager_info_skyblue {
+    /*background-color: #93AFBA;*/
+    /*color: #055A78;*/
+    color: #000;
+    cursor: pointer;
+    float: left;
+    font-family: tahoma;
+    font-size: 12px;
     text-align: center;
 }
 .dhx_pager_info_skyblue {
-    background-color: white;
-    margin: -8px 10px 10px;
-    padding: 0 5px;
+    /*background-color: white;*/
+    /*margin: 0 10px 10px;*/
+    /*padding: 0 5px;*/
     white-space: nowrap;
 }
 .dhx_page_skyblue div {
@@ -456,6 +469,7 @@ div.dhx_page_active_skyblue {
     cursor: default;
     font-weight: bold;
     padding: 0;
+    line-height: 17px;
 }
 div.dhx_page_active_skyblue div.dhx_page_active_skyblue {
     border: 0 solid #A4BED4;

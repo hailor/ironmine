@@ -86,8 +86,8 @@ class Icm::ImpactRangesController < ApplicationController
   def get_data
     @impact_ranges = Icm::ImpactRange.multilingual.list_all
     respond_to do |format|
-      format.json  {render :json => @impact_ranges.to_dhtmlxgrid_json(['0',:name,:impact_code,
-                                                                     :company_name,:weight_values,
+      format.json  {render :json => @impact_ranges.to_dhtmlxgrid_json(['0',:company_name,:name,:impact_code,
+                                                                     :weight_values,
                                                                     {:value => 'M', :controller => 'icm/impact_ranges',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
                                                                     ], @impact_ranges.size) }
     end

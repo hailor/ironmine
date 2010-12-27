@@ -170,9 +170,9 @@ dhtmlXGridObject.prototype._pgn_bricks = function(page, start, end) {
     this.pagerElAr["pagerInfo"] = document.createElement("DIV");
     this.pagerElAr["pagerInfoBox"] = document.createElement("DIV");
     var se = (this.globalBox || this.objBox);
-    this.pagerElAr["pagerCont"].style.width = se.clientWidth + "px";
-    this.pagerElAr["pagerCont"].style.overflow = "hidden";
-    this.pagerElAr["pagerCont"].style.clear = "both";
+//    this.pagerElAr["pagerCont"].style.width = se.clientWidth + "px";
+//    this.pagerElAr["pagerCont"].style.overflow = "hidden";
+//    this.pagerElAr["pagerCont"].style.clear = "both";
     this.pagerElAr["pagerBord"].className = "dhx_pbox" + sfx;
     this.pagerElAr["pagerLine"].className = "dhx_pline" + sfx;
     this.pagerElAr["pagerBox"].style.clear = "both";
@@ -192,6 +192,7 @@ dhtmlXGridObject.prototype._pgn_bricks = function(page, start, end) {
             var pageBox = document.createElement("DIV");
             pageCont.className = "dhx_page" + sfx;
             pageBox.innerHTML = "&larr;";
+            pageBox.style.lineHeight = 15 + "px";/*stanley added*/
             pageCont.appendChild(pageBox);
             this.pagerElAr["pagerBox"].appendChild(pageCont);
             var self = this;
@@ -222,6 +223,7 @@ dhtmlXGridObject.prototype._pgn_bricks = function(page, start, end) {
             };
             lineWidth += (parseInt(lineWidthInc / 3) * pageNumber.toString().length) + 15;
             pageBox.style.width = (parseInt(lineWidthInc / 3) * pageNumber.toString().length) + 8 + "px";
+            pageBox.style.lineHeight = 15 + "px";/*stanley added*/
             this.pagerElAr["pagerBox"].appendChild(pageCont)
         };
         if (Math.ceil(page / this.pagesInGroup) * this.pagesInGroup < Math.ceil(this.rowsBuffer.length / this.rowsBufferOutSize)) {
@@ -229,6 +231,7 @@ dhtmlXGridObject.prototype._pgn_bricks = function(page, start, end) {
             var pageBox = document.createElement("DIV");
             pageCont.className = "dhx_page" + sfx;
             pageBox.innerHTML = "&rarr;";
+            pageBox.style.lineHeight = 15 + "px";/*stanley added*/
             pageCont.appendChild(pageBox);
             this.pagerElAr["pagerBox"].appendChild(pageCont);
             var self = this;

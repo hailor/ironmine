@@ -6,7 +6,7 @@ class AddImpactRangePermissions < ActiveRecord::Migration
                                              :page_action=>'index',
                                              :not_auto_mult=>true)
     icm_impact_ranges_index.permissions_tls.build(:language=>'zh',:name=>'影响度首页',:description=>'影响度首页',:source_lang=>'en')
-    icm_impact_ranges_index.permissions_tls.build(:language=>'en',:name=>'Rule setting index',:description=>'Rule setting index',:source_lang=>'en')
+    icm_impact_ranges_index.permissions_tls.build(:language=>'en',:name=>'Impact range index',:description=>'Impact range index',:source_lang=>'en')
     icm_impact_ranges_index.save
 
     icm_impact_ranges_show = Irm::Permission.new(:permission_code=>'ICM_IMPACT_RANGES_SHOW',
@@ -14,7 +14,7 @@ class AddImpactRangePermissions < ActiveRecord::Migration
                                              :page_action=>'show',
                                              :not_auto_mult=>true)
     icm_impact_ranges_show.permissions_tls.build(:language=>'zh',:name=>'查看影响度',:description=>'查看影响度',:source_lang=>'en')
-    icm_impact_ranges_show.permissions_tls.build(:language=>'en',:name=>'View Rule setting',:description=>'View Rule setting',:source_lang=>'en')
+    icm_impact_ranges_show.permissions_tls.build(:language=>'en',:name=>'View Impact range',:description=>'View Impact range',:source_lang=>'en')
     icm_impact_ranges_show.save
 
     icm_impact_ranges_new = Irm::Permission.new(:permission_code=>'ICM_IMPACT_RANGES_NEW',
@@ -22,7 +22,7 @@ class AddImpactRangePermissions < ActiveRecord::Migration
                                              :page_action=>'new',
                                              :not_auto_mult=>true)
     icm_impact_ranges_new.permissions_tls.build(:language=>'zh',:name=>'新建影响度',:description=>'新建影响度',:source_lang=>'en')
-    icm_impact_ranges_new.permissions_tls.build(:language=>'en',:name=>'New rule setting',:description=>'New rule setting',:source_lang=>'en')
+    icm_impact_ranges_new.permissions_tls.build(:language=>'en',:name=>'New Impact range',:description=>'New Impact range',:source_lang=>'en')
     icm_impact_ranges_new.save
 
     icm_impact_ranges_edit = Irm::Permission.new(:permission_code=>'ICM_IMPACT_RANGES_EDIT',
@@ -30,7 +30,7 @@ class AddImpactRangePermissions < ActiveRecord::Migration
                                              :page_action=>'edit',
                                              :not_auto_mult=>true)
     icm_impact_ranges_edit.permissions_tls.build(:language=>'zh',:name=>'编辑影响度',:description=>'编辑影响度',:source_lang=>'en')
-    icm_impact_ranges_edit.permissions_tls.build(:language=>'en',:name=>'Edit rule setting',:description=>'Edit rule setting',:source_lang=>'en')
+    icm_impact_ranges_edit.permissions_tls.build(:language=>'en',:name=>'Edit Impact range',:description=>'Edit Impact range',:source_lang=>'en')
     icm_impact_ranges_edit.save
 
     icm_impact_ranges_create = Irm::Permission.new(:permission_code=>'ICM_IMPACT_RANGES_CREATE',

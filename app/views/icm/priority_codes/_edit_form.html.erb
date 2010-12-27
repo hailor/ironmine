@@ -1,0 +1,49 @@
+   <div id="priority_code_edit">
+     <%= form_for(@priority_code,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+                <div class="containerheader">
+                    <div class="floatleft headertitle"><%=t(:label_icm_priority_code_edit)%> - <%= @priority_code.priority_code%></div>
+                </div>
+            <table class="twocolumnstable" cellspacing="0">
+                <tr>
+                    <td class="twocolumn">
+                       <table class="itemdetailtable">
+                            <tr><td class="itemdetailtablelabel"><%=(t :label_icm_priority_code_company)%>:</td>
+                              <td><%=f.select :company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                    options_for_select(selectable_companies,@priority_code.company_id),
+                                                    {},{}%></td>
+                            </tr>
+                            <tr>
+                              <td class="itemdetailtablelabel"><%=t(:label_icm_priority_code_priority_code)%>:</td>
+                              <td><%=f.text_field :priority_code, :readonly=>true%></td>
+                            </tr>
+                            <tr>
+                              <td class="itemdetailtablelabel"><%=t(:label_icm_priority_code_name)%>:</td>
+                              <td><%=f.text_field :name, :required=>true%></td>
+                            </tr>
+                            <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
+                              <td><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
+                            </tr>
+                       </table>
+                    </td>
+                    <td class="twocolumn" cellspacing="0">
+                       <table class="itemdetailtable">
+                        <tr><td class="itemdetailtablelabel"><%=(t :label_icm_priority_code_low_weight_value)%>:</td>
+                              <td><%=f.text_field :low_weight_value, :required=>true%></td>
+                            </tr>
+                            <tr><td class="itemdetailtablelabel"><%=(t :label_icm_priority_code_high_weight_value)%>:</td>
+                              <td><%=f.text_field :high_weight_value, :required=>true%></td>
+                        </tr>
+                         <tr><td class="itemdetailtablelabel"><%=t(:label_icm_priority_code_description)%>:</td>
+                             <td><%= f.text_area :description, :cols => 40, :rows => 2%></td>
+                         </tr>
+                       </table>
+                    </td>
+                    <td width="10%"></td>
+                </tr>
+            </table>
+                <div class="containerfooter">
+                    <div class="button floatright" ><%= link_to t(:save), {}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);reload_grid('priority_codes_grid');/replace(system_message_box,system_message_box);"}%></div>
+                    <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(container1,priority_code_new);/", :action_type=>"ajaxLink"%></div>
+                </div>
+     <% end %>
+   </div>

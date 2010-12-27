@@ -14,7 +14,7 @@
         grid_OnRowSelected="rowSelectedHandler"
         grid_load="'<%= url_for(:action => "get_data", :controller => "irm/flex_value_sets", :format=>:json) %>','','json'">
     </div>
-    <span id="pagingArea"></span>&nbsp;<span id="infoArea"></span>
+    <span id="infoArea"></span>
     <span id="recfound"></span>  
     <script>
         function dblClickHandler(rId, cInd){
@@ -34,6 +34,7 @@
         }
     </script>
     <div class="containerfooter">
+        <div class="floatleft"><span id="pagingArea"></span></div>
         <div class="button floatright" ><%= link_to t(:label_irm_flex_value_add), {:controller=>"irm/flex_values",:action=>"index",:value_set_id=>":id"}, {:action_type => "ajaxLink", :script => "/replace(containers,containers);/", :id => "add_flex_value"}%></div>
     </div>
 </div>

@@ -22,3 +22,52 @@ zh:
   label_icm_impact_range_description: 描述
   label_icm_impact_range_edit: 编辑影响度
   #========================= end icm impact_ranges_controller=======================#
+  #=========================    icm urgence_codes_controller=======================#
+  label_icm_urgence_code_list: 紧急度列表
+  label_irm_urgence_code_new: 新建紧急度
+  label_icm_urgence_code_urgency_code: 简称
+  label_icm_urgence_code_company: 公司
+  label_icm_urgence_code_weight_values: 权重
+  label_icm_urgence_code_name: 名称
+  label_icm_urgence_code_description: 描述
+  label_icm_urgence_code_edit: 编辑紧急度
+  #========================= end icm urgence_codes_controller=======================#
+  #=========================    icm priority_codes_controller=======================#
+  label_icm_priority_code_list: 优先级列表
+  label_icm_priority_code_new: 新建优先级范围
+  label_icm_priority_code_company: 公司
+  label_icm_priority_code_low_weight_value: 权重从
+  label_icm_priority_code_high_weight_value: 权重至
+  label_icm_priority_code_priority_code: 编码
+  label_icm_priority_code_name: 名称
+  label_icm_priority_code_description: 描述
+  label_icm_priority_code_edit: 编辑优先级范围
+  #========================= end icm priority_codes_controller=======================#
+  #=========================    icm close_reasons_controller=======================#
+  label_icm_close_reason_list: 关闭原因列表
+  label_icm_close_reason_new: 新建关闭原因
+  label_icm_close_reason_company: 公司
+  label_icm_close_reason_close_code: 编码
+  label_icm_close_reason_name: 名称
+  label_icm_close_reason_category: 关闭类型
+  label_icm_close_reason_description: 描述
+  label_icm_close_reason_edit: 编辑关闭原因
+  #========================= end icm close_reasons_controller=======================#
+  #=========================    icm incident_phases_controller=======================#
+  label_icm_incident_phase_list: 事故单阶段列表
+  label_icm_incident_phase_new: 新建事故单阶段
+  label_icm_incident_phase_phase_code: 简称
+  label_icm_incident_phase_company: 公司
+  label_icm_incident_phase_name: 名称
+  label_icm_incident_phase_description: 描述
+  label_icm_incident_phase_edit: 编辑事故单阶段
+  #========================= end icm incident_phases_controller=======================#
+  #=========================    icm incident_statuses_controller=======================#
+  label_icm_incident_status_list: 事故单状态
+  label_icm_incident_status_edit: 编辑事故单状态
+  label_icm_incident_status_name: 名称
+  label_icm_incident_status_incident_status_code: 简称
+  label_icm_incident_status_company: 公司
+  label_icm_incident_status_new: 新建事故单状态
+  label_icm_incident_status_description: 描述
+  #========================= end icm incident_statuses_controller=======================#

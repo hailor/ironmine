@@ -40,6 +40,7 @@ zh:
   cut_image: 裁剪当前图片
   close: 关闭
   default: 默认
+  select: 请选择
   #常用语句
   notice_account_invalid_creditentials: 用户名或密码错误
   successfully_updated: 已经成功更新数据
@@ -402,6 +403,7 @@ zh:
   label_irm_flex_value_position: 显示顺序
   label_irm_flex_value_start_date_active: 开始生效日期
   label_irm_flex_value_end_date_active: 截至失效日期
+<<<<<<< HEAD
   #=========================end irm flex_values_controller=======================#
   #=========================    irm site_groups_controller=======================#
   label_irm_site_group_group_code: 编码
@@ -430,6 +432,7 @@ zh:
   label_irm_site_state: 省
   label_irm_site_timezone_code: 时区
   #=========================end irm site_groups_controller=======================#
+  #=========================end irm flex_values_controller=======================#
   #=========================irm operational_catalogs_controller=======================#
   label_irm_operational_catalog: 服务类别
   label_irm_operational_catalog_list: 服务类别列表
@@ -512,3 +515,30 @@ zh:
   label_irm_person_maintenance_company_access: 维护公司访问
   label_irm_person_add_company_access: 增加公司
   #=========================end irm people_controller=======================#
+  #=========================irm id_flexes_controller=======================#
+  label_irm_id_flex: 弹性域
+  label_irm_id_flex_list: 弹性域列表
+  label_irm_id_flex_new: 创建弹性域
+  label_irm_id_flex_edit: 编辑弹性域
+  label_irm_id_flex_code: 弹性域编码
+  label_irm_id_flex_name: 名称
+  label_irm_id_flex_description: 描述
+  #=========================end id_flexes_controller=======================#
+  #=========================irm id_flex_structures_controller=======================#
+  label_irm_id_flex_structure: 弹性域构造
+  label_irm_id_flex_structure_list: 弹性域构造列表
+  label_irm_id_flex_structure_new: 创建弹性域构造
+  label_irm_id_flex_structure_edit: 编辑弹性域构造
+  label_irm_id_flex_structure_name: 名称
+  label_irm_id_flex_structure_code: 构造编码
+  label_irm_id_flex_structure_description: 描述
+  label_flex_choice: 选择弹性域
+
+  label_irm_add_id_flex_segments: 管理弹性域段
+  label_irm_id_flex_segment: 弹性域段
+  label_irm_id_flex_segment_list: 弹性域段列表
+  label_irm_id_flex_segment_name: 段编码
+  label_irm_id_flex_segment_segment_num: 显示顺序
+  label_irm_id_flex_segment_description: 描述
+  label_irm_id_flex_segment_form_left_prompt: 段名称
+  #=========================end id_flex_structures_controller=======================#

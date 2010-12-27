@@ -1,0 +1,2 @@
+module Icm::UrgenceCodesHelper
+end
