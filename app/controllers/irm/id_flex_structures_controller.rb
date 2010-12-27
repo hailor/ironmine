@@ -58,7 +58,7 @@ class Irm::IdFlexStructuresController < ApplicationController
         end
       end
       format.xml  { render :xml => @id_flex_structure }
-    end    
+    end
   end
 
   def get_data

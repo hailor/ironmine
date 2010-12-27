@@ -86,9 +86,23 @@ class Irm::OperationalCatalogsController < ApplicationController
   def get_data
     @operational_catalogs = Irm::OperationalCatalog.list_all
     respond_to do |format|
-      format.json  {render :json => @operational_catalogs.to_dhtmlxgrid_json(['0',:catalog_type_name,:catalog_code, :name,:segment1_name, :segment2_name, :segment3_name,:status_code,
+      format.json  {render :json => @operational_catalogs.to_dhtmlxgrid_json(['0',:catalog_code,:name,:catalog_type_name, :segment1_name, :segment2_name, :segment3_name,:status_code,
                                                                     {:value => 'M', :controller => 'irm/operational_catalogs',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
                                                                     ], @operational_catalogs.size) }
     end
   end
+
+  def update_segment_options
+    if !params[:irm_operational_catalog][:id]
+      @operational_catalog = Irm::OperationalCatalog.new
+    else
+      @operational_catalog = Irm::OperationalCatalog.multilingual.find(params[:irm_operational_catalog][:id])
+    end
+      @operational_catalog.catalog_type = params[:irm_operational_catalog][:catalog_type]
+      @operational_catalog.name = params[:irm_operational_catalog][:name]
+      @operational_catalog.status_code = params[:irm_operational_catalog][:status_code]
+      @operational_catalog.description = params[:irm_operational_catalog][:description]
+      @operational_catalog.catalog_code = params[:irm_operational_catalog][:catalog_code]
+    render :action => "new"
+  end  
 end

@@ -4,7 +4,7 @@ class AddIdFlexSegmentsTlTable < ActiveRecord::Migration
       t.string  "segment_name", :limit => 150, :null => false
       t.string  "form_left_prompt", :limit => 150
       t.string  "form_above_prompt", :limit => 150
-      t.string  "description", :limit => 240, :null => false
+      t.string  "description", :limit => 240
       t.string    "language",      :limit=>30
       t.string    "source_lang",   :limit=>30
       t.string  "status_code", :limit => 30

@@ -1,21 +1,11 @@
 # -*- coding: utf-8 -*-
 module Irm::OperationalCatalogsHelper
-  def available_segment1
-    code = Irm::LookupValue.query_by_lookup_code("OPERATIONAL_CATALOG_SEG_1").multilingual.first()[:meaning]
-    Irm::FlexValue.query_by_value_set_code(code).multilingual.collect{|m| [m[:name], m.value_code]}
-  end
-
-  def available_segment2
-    code = Irm::LookupValue.query_by_lookup_code("OPERATIONAL_CATALOG_SEG_2").multilingual.first()[:meaning]
-    Irm::FlexValue.query_by_value_set_code(code).multilingual.collect{|m| [m[:name], m.value_code]}
-  end
-
-  def available_segment3
-    code = Irm::LookupValue.query_by_lookup_code("OPERATIONAL_CATALOG_SEG_3").multilingual.first()[:meaning]
-    Irm::FlexValue.query_by_value_set_code(code).multilingual.collect{|m| [m[:name], m.value_code]}
+  def available_oper_cata_segment_set(segment, catalog_type)
+    set_name = Irm::IdFlexSegment.query_by_structure_code(catalog_type).segment(segment.to_s).first().flex_value_set_name
+    Irm::FlexValue.query_by_value_set_name(set_name).multilingual.collect{|m| [m[:flex_value_meaning], m.flex_value]}
   end
 
   def available_catalog_types
-    Irm::LookupValue.query_by_lookup_type("OPERATIONAL_CATALOG_TYPE").multilingual.collect{|m| [m[:meaning], m.lookup_code]}
+    Irm::IdFlexStructure.query_by_flex_code("OPERATIONAL_CATALOG").multilingual.collect{|m| [m[:id_flex_structure_name], m.id_flex_structure_code]}
   end
 end
