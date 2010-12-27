@@ -16,10 +16,12 @@ class Irm::FlexValue < ActiveRecord::Base
 
   scope :query_by_value_set_name,lambda{|flex_value_set_name|
     select("#{table_name}.*").
-    join("#{Irm::FlexValueSet.table_name}").
+    joins(",#{Irm::FlexValueSet.table_name}").
     where("#{Irm::FlexValueSet.table_name}.id = #{table_name}.flex_value_set_id").
     where("#{Irm::FlexValueSet.table_name}.flex_value_set_name = ?", flex_value_set_name)}
+  
   scope :query_by_id, lambda{|id| where(:id => id)}
+  
   def self.check_flex_value_exist(id)
     if Irm::FlexValue.query_by_id(id).size > 0
       true

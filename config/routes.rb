@@ -254,6 +254,7 @@ Ironmine::Application.routes.draw do
     match '/operational_catalogs/:id(.:format)' => "operational_catalogs#update", :via => :put
     match '/operational_catalogs/:id/multilingual_edit(.:format)' => "operational_catalogs#multilingual_edit", :via => :get
     match '/operational_catalogs/:id/multilingual_update(.:format)' => "operational_catalogs#multilingual_update", :via => :put
+    match '/operational_catalogs/update_segment_options(.:format)' => "operational_catalogs#update_segment_options"
     #op_catalog_accesses
     match '/op_catalog_accesses/:operational_catalog_id(/index)(.:format)' => "op_catalog_accesses#index", :via => :get
     match '/op_catalog_accesses/:operational_catalog_id/get_data(.:format)' => "op_catalog_accesses#get_data"

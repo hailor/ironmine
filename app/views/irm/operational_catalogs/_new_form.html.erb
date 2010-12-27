@@ -40,17 +40,23 @@
                               <td><%=f.text_field :name, :required=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_type)%>:</td>
-                              <td><%=f.select :catalog_type, available_catalog_types, {:include_blank => false}, :required=>true%></td>
+                              <td><%=f.select :catalog_type, available_catalog_types, {:include_blank => t(:select)},:required=>true, 
+                              :onchange => remote_function(:update => "container1",:url => { :action => :update_segment_options},
+                              :with => "$('#new_irm_operational_catalog').serialize() + '&catalog_type=' + $('#irm_operational_catalog_catalog_type').val()", :complete => "init($('#container1'))")%></td>
                             </tr>
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_segment1)%>:</td>
-                              <td><%=f.select :segment1, available_segment1, {:include_blank => t(:default)}, :id => "s1", :onchange => "s1change()"%></td>
-                            </tr>
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_segment2)%>:</td>
-                              <td><%=f.select :segment2, available_segment2, {:include_blank => t(:default)}, :id => "s2", :onchange => "s2change()", :disabled => true%></td>
-                            </tr>
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_segment3)%>:</td>
-                                <td><%=f.select :segment3, available_segment3, {:include_blank => t(:default)}, :id => "s3", :disabled => true%></td>
-                            </tr>
+                            <div id="segments">
+                                <% if (@operational_catalog && !@operational_catalog.catalog_type.blank?)%>
+                                <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_segment1)%>:</td>
+                                  <td><%=f.select :segment1, available_oper_cata_segment_set(:segment1, @operational_catalog.catalog_type), {:include_blank => t(:default)}, :id => "s1", :onchange => "s1change()"%></td>
+                                </tr>
+                                <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_segment2)%>:</td>
+                                  <td><%=f.select :segment2, available_oper_cata_segment_set(:segment2, @operational_catalog.catalog_type), {:include_blank => t(:default)}, :id => "s2", :onchange => "s2change()", :disabled => true%></td>
+                                </tr>
+                                <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_segment3)%>:</td>
+                                  <td><%=f.select :segment3, available_oper_cata_segment_set(:segment3, @operational_catalog.catalog_type), {:include_blank => t(:default)}, :id => "s3", :disabled => true%></td>
+                                </tr>
+                                <% end %>
+                            </div>
                             <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
                               <td><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
                             </tr>
@@ -61,7 +67,7 @@
                         <tr><td class="itemdetailtablelabel">
                               <%=t(:label_irm_operational_catalog_description)%>:
                            </td>
-                           <td><%= f.text_area :description, :rows => 5%></td>
+                           <td><%= f.text_area :description, :rows => 3%></td>
                         </tr>
                        </table>
                     </td>

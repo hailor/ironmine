@@ -26,5 +26,8 @@ class Irm::IdFlexStructure < ActiveRecord::Base
   rescue ActiveRecord::RecordNotFound
     100
   end
-  
+
+  def id_flex_segments
+    Irm::IdFlexSegment.list_all(self.id)
+  end
 end
