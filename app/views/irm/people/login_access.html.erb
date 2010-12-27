@@ -12,7 +12,7 @@
                             <td class="itemdetailtablelabel"><%=(t :label_irm_person_function_group_code)%>:</td>
                             <td ><%=select_tag :function_group_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
                                                             options_from_collection_for_select(available_function_group,
-                                                                                               :identity_id,:login_name,@person.function_group_code) %></td>
+                                                                                               :function_group_code,:wrap_name,@person.function_group_code) %></td>
                         </tr>
                        </table>
                     </td>
