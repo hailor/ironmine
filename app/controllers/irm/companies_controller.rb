@@ -157,4 +157,12 @@ class Irm::CompaniesController < ApplicationController
       end
     end
   end
+
+  def get_company_info
+    @companies=Irm::Company.multilingual
+    respond_to do |format|
+      format.json { render :json => @companies.collect{|d| [d.id,d[:name]]}}
+    end
+  end
+
 end

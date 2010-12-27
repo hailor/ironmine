@@ -4,7 +4,7 @@
                       <td class="paddedtablelabel"><%=t(:label_irm_person_company)%>:
                       </td>
                       <td><%=f.select(:company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_company,:id,:wrap_name),
+                                                options_from_collection_for_select(available_company,:id,:wrap_name,person.company_id),
                                                 {},:action=>url_for(:controller=>"irm/organizations",
                                                                     :action=>"belongs_to",
                                                                     :company_id=>"cascade_id"),
@@ -15,14 +15,14 @@
                       <td class="paddedtablelabel"><%=t(:label_irm_person_organization)%>:
                       </td>
                       <td><%=f.select(:organization_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(current_organization(person.company_id),:id,:wrap_name),{},
+                                                options_from_collection_for_select(current_organization(person.company_id),:id,:wrap_name,person.organization_id),{},
                                       :id=>"organization_select")%></td>
                   </tr>
                   <tr>
                       <td class="paddedtablelabel"><%=t(:label_irm_person_department)%>:
                       </td>
                       <td><%=f.select(:department_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(current_department(person.company_id,person.organization_id),:id,:wrap_name)
+                                                options_from_collection_for_select(current_department(person.company_id,person.organization_id),:id,:wrap_name,person.department_id)
                                       )%></td>
                   </tr>
                   <tr>
@@ -63,7 +63,7 @@
                   <tr>
                        <td class="paddedtablelabel"><%=(t :label_irm_person_status_code)%>:</td>
                        <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                          options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning)%></td>
+                                          options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,person.status_code)%></td>
                   </tr>
            </tbody>
          </table>

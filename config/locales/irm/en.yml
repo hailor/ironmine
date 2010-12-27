@@ -316,6 +316,9 @@ en:
   label_irm_support_group_vendor_group: Vendor Group
   label_irm_support_group_base_info: Base Info
   label_irm_support_group_member: Support Group Member
+  label_irm_support_person_name: Person Name
+  label_irm_support_group_choose_person: Choose Person
+  label_irm_support_group_add_person: Add Person
   #=========================end irm support_groups_controller=======================#
   #=========================    irm people_controller=======================#
   label_irm_person_login: Login
@@ -353,5 +356,9 @@ en:
   label_irm_person_support_group: Support Group
   label_irm_person_notification: Notification
   label_irm_person_status_code: Status Code
+  label_irm_person_login_access_company: Company Name
+  label_irm_person_login_access_status_code: Status Code
+  label_irm_person_maintenance_company_access: Maintenance Company Access
+  label_irm_person_add_company_access: Add Company
   #=========================end irm people_controller=======================#
 

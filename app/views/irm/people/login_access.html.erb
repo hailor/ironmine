@@ -1,0 +1,56 @@
+<table class="twocolumnstable" cellspacing="0">
+                <tr>
+                    <td class="twocolumn">
+                       <table class="itemdetailtable">
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_person_login)%>:</td>
+                            <td ><%=select_tag :identity_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                            options_from_collection_for_select(all_login_name,
+                                                                                               :id,:login_name,@person.identity_id) %></td>
+                        </tr>
+                        <tr>
+                            <td class="itemdetailtablelabel"><%=(t :label_irm_person_function_group_code)%>:</td>
+                            <td ><%=select_tag :function_group_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                            options_from_collection_for_select(available_function_group,
+                                                                                               :identity_id,:login_name,@person.function_group_code) %></td>
+                        </tr>
+                       </table>
+                    </td>
+                    <td class="twocolumn" cellspacing="0">
+                       <table class="itemdetailtable">
+                        <div id="id_lookup_level">
+                        <tr><td class="itemdetailtablelabel">
+                              <%=t(:label_irm_person_unrestricted_access_flag)%>:
+                           </td>
+                           <td><%=check_box_tag :unrestricted_access_flag%></td>
+                        </tr>
+                        </div>
+                       </table>
+                    </td>
+                    <td width="10%"></td>
+                </tr>
+</table>
+
+<div id="id_login_access_list">
+        <div id="id_person_login_access_grid" class="datagrid" style="height:180px !important;"
+        action_type="ajaxDhtmlxGrid"
+        grid_header=" ,<%=t(:label_irm_person_login_access_company)%>,<%=t(:label_irm_person_login_access_status_code)%>"
+        grid_width="20,100,100"
+        grid_col_types="ra,co,co"
+        grid_align="center,left,left"
+        grid_column_ids="check_box_id,company_id,status_code"
+        grid_combo_params1="'1','/companies/get_company_info'"
+        grid_combo_params2="'2','/lookup_types/get_lookup_values?lookup_type=SYSTEM_STATUS_CODE'"
+        grid_load="'<%= url_for(:action => "get_data", :controller => "irm/company_accesses",:format=>:json) %>','','json'"
+        grid_data_processor_url="<%= url_for(:action => "create", :controller => "irm/company_accesses",:person_id=>@person.id) %>"
+        grid_data_processor_update_mode="off"
+        grid_data_processor_enable_data_names="false"
+        grid_data_processor_transaction_mode="POST">        
+        </div>
+        <div id='id_company_access_win' style='display:none'></div>
+        <div class="containerfooter">
+           <div class="button floatright"><a href="javascript:void(0);" onclick="addEditRow('id_person_login_access_grid');" ><%= t(:label_irm_person_add_company_access) %></a></div>
+           <div class="button floatright"><a href="javascript:void(0);" onclick="removeEditRow('id_person_login_access_grid');" ><%= t(:delete) %></a></div>
+           <div class="button floatright"><a href="javascript:void(0);" onclick="saveGridData('id_person_login_access_grid');" ><%= t(:save) %></a></div>
+        </div>
+</div>

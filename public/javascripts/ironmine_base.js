@@ -38,6 +38,7 @@ function addEditRow(id) {
     var newId = (new Date()).valueOf();
     grid.addRow(newId,"",grid.getRowsNum());
     grid.selectRow(grid.getRowIndex(newId),false,false,true);
+    grid.cells(grid.getSelectedRowId(),0).setValue("1");
 }
 function removeEditRow(id){
     var grid = dhtmlx_grid_array[id];

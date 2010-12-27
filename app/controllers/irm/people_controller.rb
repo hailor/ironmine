@@ -29,14 +29,16 @@ class Irm::PeopleController < ApplicationController
   # POST /people
   # POST /people.xml
   def create
-    @person = Irm::Person.new(params[:person])
+    @person = Irm::Person.new(params[:irm_person])
 
     respond_to do |format|
       if @person.save
-        format.html { redirect_to(@person, :notice => 'Person was successfully created.') }
+        flash[:successful_message] = (t :successfully_created)
+        format.html { render "irm/common/_successful_message" }
         format.xml  { render :xml => @person, :status => :created, :location => @person }
       else
-        format.html { render :action => "new" }
+        @error = @person
+        format.html { render "irm/common/error_message" }
         format.xml  { render :xml => @person.errors, :status => :unprocessable_entity }
       end
     end
@@ -48,11 +50,13 @@ class Irm::PeopleController < ApplicationController
     @person = Irm::Person.find(params[:id])
 
     respond_to do |format|
-      if @person.update_attributes(params[:person])
-        format.html { redirect_to(@person, :notice => 'Person was successfully updated.') }
+      if @person.update_attributes(params[:irm_person])
+        flash[:successful_message] = (t :successfully_updated)
+        format.html { render "irm/common/_successful_message" }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        @error = @person
+        format.html { render "irm/common/error_message" }
         format.xml  { render :xml => @person.errors, :status => :unprocessable_entity }
       end
     end
@@ -63,6 +67,11 @@ class Irm::PeopleController < ApplicationController
     respond_to do |format|
       format.json {render :json=>@people.to_dhtmlxgrid_json(['R',:login_name,:person_name,:email_address,:mobile_phone,:company_name], @people.size)}
     end
+  end
+
+  def login_access
+    person_id = params[:person_id]
+    @person = Irm::Person.find(person_id)
   end
 
 end

@@ -1,0 +1,40 @@
+<div id="id_add_person_list">
+        <div id="id_person_add_person_grid" class="datagrid" style="height:180px !important;"
+        action_type="ajaxDhtmlxGrid"
+        grid_header=" ,<%=t(:label_irm_support_person_name)%>,<%=t(:label_irm_support_group_company_name)%>,<%=t(:label_irm_support_group_status_code)%>"
+        grid_width="20,100,100"
+        grid_col_types="ra,ro,ro"
+        grid_align="center,left,left"
+        grid_onRowDblClicked="selectRowAndRadio"
+        grid_checkbox="selectRowAndRadio"
+        grid_OnRowSelected="selectRowAndRadio"
+        grid_load="'<%= url_for(:action => "get_support_group_member", :controller => "irm/support_groups",:support_group_code=>@support_group_code) %>','','json'">
+        </div>
+        <div id='id_choose_person_win' style='display:none'></div>
+        <script type="text/javascript" charset="utf-8">
+        function selectRowAndRadio(rowId){
+            doSelectRowAndCheckRadio("id_site_info_grid",rowId);
+        }
+        var supportWins,personW;
+        function supportPersonOnLoad(){
+            alert('111111');
+            supportWins = new dhtmlXWindows();
+            supportWins.enableAutoViewport(false);
+            alert('2222');
+            supportWins.attachViewportTo("system_content");
+            supportWins.setImagePath("/bk_images/dhtmlx/");
+            if($('#id_choose_person_win').length<1){$('body').append("<div id='id_choose_person_win' style='display:none'></div>");}
+            alert('3333');
+            personW = supportWins.createWindow("person_win", 80, 30, 680, 400);
+            personW.setText("<%=t(:label_irm_support_group_choose_person)%>");
+            $('#id_choose_person_win').load("/support_groups/choose_person",
+                                    function(){init($("#id_choose_person_win"))});
+            personW.attachObject('id_choose_person_win');
+            personW.setModal(true);
+        }
+        </script>
+        <div class="containerfooter">
+           <div class="button floatright"><a href="javascript:void(0);" onclick="supportPersonOnLoad();"><%= t(:label_irm_support_group_add_person) %></a></div>
+           <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}, :script => "/replace(id_company_index,id_company_index);/", :action_type=>"ajaxLink"%></div>
+        </div>
+</div>

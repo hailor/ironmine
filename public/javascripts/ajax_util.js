@@ -158,6 +158,7 @@ function ajaxDhtmlxTabbar(el){
     var tabbarA4ContentParams=$(el).attr("tabbar_a4_content_params");
     var tabbarA5ContentParams=$(el).attr("tabbar_a5_content_params");
     var tabbarActive = $(el).attr("tabbar_active");
+    var tabbarDisableParams=$(el).attr("tabbar_disable_params");
 
     var tabbar = dhtmlx_tabbar_array[id];
     //if(tabbar!=null&&tabbar!=undefined){
@@ -319,6 +320,12 @@ function ajaxDhtmlxTabbar(el){
     if(tabbarActive!=null && tabbarActive!=undefined){
         tabbar.setTabActive(tabbarActive);
     }
+    if(tabbarDisableParams!=null && tabbarDisableParams!=undefined){
+        var evalTabbarDisableParams = eval("([" + tabbarDisableParams + "])");
+        for(var i=0;i< evalTabbarDisableParams.length;i++){
+           tabbar.disableTab(evalTabbarDisableParams[i]);
+        }
+    }
     dhtmlx_tabbar_array[id]=tabbar;
     tabbar.attachEvent("onSelect", function() {
         var selectDiv= dhtmlx_tabbar_div_array[arguments[0]];
@@ -355,6 +362,10 @@ function ajaxDhtmlxGrid(el){
    var gridTransactionMode=$(el).attr("grid_data_processor_transaction_mode");
    var gridEnableValidation=$(el).attr("grid_enabled_validation");
    var gridSetColValidators=$(el).attr("grid_set_col_validators");
+   var gridComboParams1=$(el).attr("grid_combo_params1");
+   var gridComboParams2=$(el).attr("grid_combo_params2");
+   var gridColumnIds=$(el).attr("grid_column_ids");
+   var gridDataProcessorEnableDataNames=$(el).attr("grid_data_processor_enable_data_names");
 
    var grid = dhtmlx_grid_array[id];
    if(grid!=null&&grid!=undefined){
@@ -369,6 +380,9 @@ function ajaxDhtmlxGrid(el){
    }
    if (grid_col_types!=null&&grid_col_types!=undefined){
       grid.setColTypes(grid_col_types);//set column types
+   }
+   if(gridColumnIds!=null&&gridColumnIds!=undefined){
+      grid.setColumnIds(gridColumnIds);
    }
    if (grid_align!=null&&grid_align!=undefined){
       grid.setColAlign(grid_align);
@@ -427,17 +441,45 @@ function ajaxDhtmlxGrid(el){
    }else{
       grid.setDateFormat("%Y-%m-%d");
    }
+
+   //两个参数，其中第一为grid那一列需要设置为combo，而第二列是从后台取数据的
+   //URL，其中针对于返回的数据应该是[[1,1],[2,2]]
+   if(gridComboParams1!=null && gridComboParams1!=undefined){
+      var evalGridComboParams = eval("([" + gridComboParams1 + "])");
+      var ComboOptions = sendAsyncAjaxRequest(evalGridComboParams[1]);
+      for(var i=0;i<ComboOptions.length;i++){
+         var OptionData = ComboOptions[i];
+         grid.getCombo(evalGridComboParams[0]).put(OptionData[0],OptionData[1]);
+      }
+   }
+
+   //两个参数，其中第一为grid那一列需要设置为combo，而第二列是从后台取数据的
+   //URL，其中针对于返回的数据应该是[[1,1],[2,2]]
+   if(gridComboParams2!=null && gridComboParams2!=undefined){
+      var evalGridComboParams2 = eval("([" + gridComboParams2 + "])");
+      var ComboOptions2 = sendAsyncAjaxRequest(evalGridComboParams2[1]);
+      for(var j=0;j<ComboOptions2.length;j++){
+         var OptionData2 = ComboOptions2[j];
+         grid.getCombo(evalGridComboParams2[0]).put(OptionData2[0],OptionData2[1]);
+      }
+   }
+
    grid.init();
    if (grid_load!=null&&grid_load!=undefined){
       var gridLoad = eval("([" + grid_load + "])");
       grid.load(gridLoad[0],function(){init(el)},gridLoad[2]);
    }
 
+
+
    if(gridDataProcessorUrl!=null&&gridDataProcessorUrl!=undefined){
        var initDataProcessor = new dataProcessor(gridDataProcessorUrl);
        initDataProcessor.init(grid);
        if(gridUpdateMode!=null&gridUpdateMode!=undefined){
           initDataProcessor.setUpdateMode(gridUpdateMode);
+       }
+       if(gridDataProcessorEnableDataNames!=null&&gridDataProcessorEnableDataNames!=undefined){
+          initDataProcessor.enableDataNames(gridDataProcessorEnableDataNames);
        }
        if(gridTransactionMode!=null&gridTransactionMode!=undefined){
           initDataProcessor.setTransactionMode("POST");
@@ -595,5 +637,25 @@ function parseFunction(f, el, identify) {
 
 function isTrue(s) {
 	return $.trim(s) == "true";
+}
+
+//send async ajax request
+function sendAsyncAjaxRequest(url){
+    var result = false;
+     $.ajax({
+         dataType: "json",
+         cache: false,
+         async:false,
+         url: url,
+         timeout: 2000,
+         error: function(XMLHttpRequest, errorTextStatus, error){
+             alert("Failed to submit : "+ errorTextStatus+" ;"+error);
+         },
+         success: function(data){
+             result = data;
+             return true;
+         }
+     });
+    return result;
 }
 

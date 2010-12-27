@@ -47,8 +47,7 @@
                 <div id="id_support_group_info" >
                     <%= render :partial=>"base_info",:locals=>{:f=>f,:support_group=>@support_group} %>
                 </div>
-                <div id="id_support_group_member">
-                  Content 3
+                <div id="id_support_group_member" href="/support_groups/add_persons?support_group_code=<%=@support_group.group_code%>">
                 </div>
      <% end %>
    </div>

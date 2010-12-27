@@ -87,4 +87,16 @@ class Irm::SupportGroupsController < ApplicationController
     end
   end
 
+  def add_persons
+    @support_group_code = params[:support_group_code]
+  end
+
+  def get_support_group_member
+    @support_group_code = params[:support_group_code]
+    @support_group_member= Irm::SupportGroupMember.query_wrap_info(I18n::locale,@support_group_code)
+    respond_to do |format|
+      format.json {render :json=>@support_group_member.to_dhtmlxgrid_json(['R',:person_name,:company_name], @support_group_member.size)}
+    end
+  end
+
 end

@@ -1,0 +1,2 @@
+module Irm::CompanyAccessesHelper
+end

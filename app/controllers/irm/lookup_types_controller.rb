@@ -186,4 +186,12 @@ class Irm::LookupTypesController < ApplicationController
       format.json  { render :json => @flag}
     end
   end
+
+  def get_lookup_values
+    lookup_type= params[:lookup_type]
+    @lookup_types=Irm::LookupValue.multilingual.query_by_lookup_type(lookup_type)
+    respond_to do |format|
+      format.json { render :json => @lookup_types.collect{|d| [d.lookup_code,d[:meaning]]}}
+    end
+  end
 end

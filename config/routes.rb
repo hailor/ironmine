@@ -16,6 +16,7 @@ Ironmine::Application.routes.draw do
     match '/lookup_types/:id/edit(.:format)'=>"lookup_types#edit",:via=>:get
     match '/lookup_types/update'=>"lookup_types#update"
     match '/lookup_types/check_lookup_code'=>"lookup_types#check_lookup_code"
+    match '/lookup_types/get_lookup_values'=>"lookup_types#get_lookup_values"
     match '/lookup_types/:id/add_code'=>"lookup_types#add_code"
     #product modules
     match '/product_modules(/index)(.:format)' => "product_modules#index", :via => :get
@@ -209,6 +210,7 @@ Ironmine::Application.routes.draw do
     match '/companies/get_company_site(.:format)' => "companies#get_company_site"
     match '/companies/add_site_info(.:format)' => "companies#add_site_info"
     match '/companies/create_location(.:format)' => "companies#create_location"
+    match '/companies/get_company_info(.:format)' => "companies#get_company_info"
     match '/companies/:id/edit_location(.:format)' => "companies#edit_location"
     match '/companies/:id/update_location(.:format)' => "companies#update_location"
     #login_records
@@ -302,6 +304,8 @@ Ironmine::Application.routes.draw do
     match '/support_groups/:id/multilingual_update(.:format)' => "support_groups#multilingual_update", :via => :put
     match '/support_groups/get_data(.:format)' => "support_groups#get_data"
     match '/support_groups/belongs_to(.:format)' => "support_groups#belongs_to"
+    match '/support_groups/add_persons(.:format)' => "support_groups#add_persons"
+    match '/support_groups/get_support_group_member(.:format)' => "support_groups#get_support_group_member"
     #people
     match '/people(/index)(.:format)' => "people#index", :via => :get
     match '/people/:id/edit(.:format)' => "people#edit", :via => :get
@@ -311,6 +315,16 @@ Ironmine::Application.routes.draw do
     match '/people/:id/multilingual_edit(.:format)' => "people#multilingual_edit", :via => :get
     match '/people/:id/multilingual_update(.:format)' => "people#multilingual_update", :via => :put
     match '/people/get_data(.:format)' => "people#get_data"
+    match '/people/login_access(.:format)' => "people#login_access"
+    #company_accesses
+    match '/company_accesses(/index)(.:format)' => "company_accesses#index", :via => :get
+    match '/company_accesses/:id/edit(.:format)' => "company_accesses#edit", :via => :get
+    match '/company_accesses/:id(.:format)' => "company_accesses#update", :via => :put
+    match '/company_accesses/new(.:format)' => "company_accesses#new", :via => :get
+    match '/company_accesses/create(.:format)' => "company_accesses#create"
+    match '/company_accesses/:id/multilingual_edit(.:format)' => "company_accesses#multilingual_edit", :via => :get
+    match '/company_accesses/:id/multilingual_update(.:format)' => "company_accesses#multilingual_update", :via => :put
+    match '/company_accesses/get_data(.:format)' => "company_accesses#get_data"
   end
 
   scope :module => "icm" do

@@ -12,19 +12,21 @@
         grid_align="center,left,left,left,center,left"
         grid_paging_skin="bricks"
         enable_paging="true, 12, null, 'pagingArea', true, 'infoArea'"
-        grid_onRowDblClicked="doOnRowDblClicked"
-        grid_checkbox="selectRowAndRadio"
-        grid_OnRowSelected="selectRowAndRadio"
+        grid_onRowDblClicked="replaceLink"
+        grid_checkbox="replaceLink"
+        grid_OnRowSelected="replaceLink"
         grid_load="'<%= url_for(:action => "get_data", :controller => "irm/people",:format=>:json) %>','','json'">
         </div>
         <span id="pagingArea"></span>&nbsp;<span id="infoArea"></span>
         <span id="recfound"></span>
         <script type="text/javascript" charset="utf-8">
-        function doOnRowDblClicked(rowId,cInd){
-           processDblClicked("id_person_new","","<%= url_for(:action => "edit", :controller => "irm/people",:id=>":id")%>",rowId);
-        }
-        function selectRowAndRadio(rowId){
-            doSelectRowAndCheckRadio("id_person_grid",rowId)
+        function replaceLink(rowId){
+           var action_temp="";
+           if(rowId!=null&&rowId!=undefined){
+              action_temp = "<%=url_for(:controller=>"irm/people",:action=>"edit",:id=>":id")%>".replace(":id",rowId);
+              $("#id_edit_person").attr("href",action_temp);
+           }
+           doSelectRowAndCheckRadio("id_person_grid",rowId)
         }
         </script>
             <div class="containerfooter">
@@ -33,14 +35,13 @@
                                                          :action=>"edit",:id=>":id"},
                                                         :script => "/replace(id_person_index,id_person_edit);/",
                                                         :action_type=>"ajaxLink",
-                                                        :id=> "id_edit_support_group"%>
+                                                        :id=> "id_edit_person"%>
               </div>
               <div class="button floatright"><%=link_to t(:label_irm_person_new) ,
                                                         {:controller=>"irm/people",
                                                          :action=>"new"},
                                                         :script => "/replace(id_person_index,id_person_new);/",
-                                                        :action_type=>"ajaxLink",
-                                                        :id=> "id_edit_support_group"%>
+                                                        :action_type=>"ajaxLink"%>
               </div>
             </div>
     </div>
