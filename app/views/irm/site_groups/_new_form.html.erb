@@ -10,7 +10,7 @@
                         <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_site_group_region_name)%>:</td>
                             <td><%=f.select :region_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_region,:region_code,:wrap_name)%></td>
+                                                options_from_collection_for_select(available_region,:region_code,:wrap_name),{},{:required=>true}%></td>
                         </tr>
                         <tr>
                             <td class="itemdetailtablelabel"><%=(t :label_irm_site_group_group_code)%>:</td>

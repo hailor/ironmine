@@ -6,7 +6,7 @@ class Irm::SiteGroup < ActiveRecord::Base
   has_many :site_groups_tls,:dependent => :destroy
   acts_as_multilingual
   
-  validates_presence_of :group_code
+  validates_presence_of :group_code,:region_code
   validates_uniqueness_of :group_code, :if => Proc.new { |i| !i.group_code.blank? }
   validates_format_of :group_code, :with => /^[A-Z0-9_]*$/ ,:if=>Proc.new{|i| !i.group_code.blank?}
 
