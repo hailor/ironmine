@@ -3,7 +3,7 @@ class Irm::IdFlexSegment < ActiveRecord::Base
   
   #多语言关系
   attr_accessor :form_left_prompt,:description
-  has_many :id_flex_segments_tls,:dependent => :destroy, :foreign_key => :segment_name
+  has_many :id_flex_segments_tls,:dependent => :destroy, :foreign_key => :segment_name, :primary_key => :segment_name
   
   acts_as_multilingual(:columns =>[:form_left_prompt,:description], :required=>[:form_left_prompt])
 
