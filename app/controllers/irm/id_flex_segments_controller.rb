@@ -62,7 +62,7 @@ class Irm::IdFlexSegmentsController < ApplicationController
   def get_data
     @id_flex_segments = Irm::IdFlexSegment.list_all(params[:id_flex_structure_id])
     respond_to do |format|
-      format.json  {render :json => @id_flex_segments.to_dhtmlxgrid_json(['0',:segment_num, :segment_name, :form_left_prompt, :description, :status_code,
+      format.json  {render :json => @id_flex_segments.to_dhtmlxgrid_json(['0',:segment_num, :segment_name, :form_left_prompt, :description, :value_set_name, :status_code,
                                                                          {:value => 'M', :controller => 'irm/id_flex_segments',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}], @id_flex_segments.size) }
     end
   end

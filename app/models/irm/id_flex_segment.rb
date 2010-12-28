@@ -18,7 +18,8 @@ class Irm::IdFlexSegment < ActiveRecord::Base
                                           where("#{Irm::IdFlexStructure.table_name}.id_flex_structure_code = ?", id_flex_structure_code).
                                           where("#{Irm::IdFlexStructure.table_name}.id_flex_code = #{table_name}.id_flex_code AND #{Irm::IdFlexStructure.table_name}.id_flex_num = #{table_name}.id_flex_num")}
 
-  scope :list_all, lambda{|id_flex_structure_id| select("#{table_name}.*, #{Irm::IdFlexSegmentsTl.table_name}.form_left_prompt, #{Irm::IdFlexSegmentsTl.table_name}.description").
+  scope :list_all, lambda{|id_flex_structure_id| select("#{table_name}.*, #{Irm::IdFlexSegmentsTl.table_name}.form_left_prompt, #{Irm::IdFlexSegmentsTl.table_name}.description, fvs.flex_value_set_name value_set_name").
+                                          joins("LEFT OUTER JOIN #{Irm::FlexValueSet.table_name} fvs ON fvs.flex_value_set_name = #{table_name}.flex_value_set_name").
                                           joins(",#{Irm::IdFlexSegmentsTl.table_name}").
                                           joins(",#{Irm::IdFlexStructure.table_name}").
                                           where("#{Irm::IdFlexSegmentsTl.table_name}.segment_name = #{table_name}.segment_name").
