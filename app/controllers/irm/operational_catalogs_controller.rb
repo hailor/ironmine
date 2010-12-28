@@ -27,11 +27,14 @@ class Irm::OperationalCatalogsController < ApplicationController
   end
 
   def edit
-    @operational_catalog = Irm::OperationalCatalog.multilingual.find(params[:id])
+    @operational_catalog = Irm::OperationalCatalog.find(params[:id])
   end
 
   def create
     @operational_catalog = Irm::OperationalCatalog.new(params[:irm_operational_catalog])
+    @operational_catalog.segment1 = "" if params[:irm_operational_catalog][:segment1].blank?
+    @operational_catalog.segment2 = "" if params[:irm_operational_catalog][:segment2].blank?
+    @operational_catalog.segment3 = "" if params[:irm_operational_catalog][:segment3].blank?
     respond_to do |format|
       if @operational_catalog.save
         flash[:successful_message] = (t :successfully_created)
@@ -45,9 +48,12 @@ class Irm::OperationalCatalogsController < ApplicationController
 
   def update
     @operational_catalog = Irm::OperationalCatalog.find(params[:id])
+    if !params[:irm_operational_catalog][:segment3]
+      params[:irm_operational_catalog] = params[:irm_operational_catalog].merge({:segment3 => ""})
+    end
     if !params[:irm_operational_catalog][:segment2]
       params[:irm_operational_catalog] = params[:irm_operational_catalog].merge({:segment2 => ""})
-    end
+    end    
     respond_to do |format|
       if @operational_catalog.update_attributes(params[:irm_operational_catalog])
         flash[:successful_message] = (t :successfully_updated)

@@ -1,11 +1,8 @@
 class Irm::OperationalCatalog < ActiveRecord::Base
   set_table_name :irm_operational_catalogs
+  validates_presence_of :company_id
 
-  #多语言关系
-  attr_accessor :name,:description
-  has_many :operational_catalogs_tls,:dependent => :destroy
-  acts_as_multilingual
-
+  validate:unique_segment?
   query_extend
   #查找运营分类列表
     scope :list_all, lambda{
@@ -26,5 +23,12 @@ class Irm::OperationalCatalog < ActiveRecord::Base
     where("cp.id = cpt.company_id").
     where("cpt.language = ?", I18n.locale).
     where("cp.id = #{table_name}.company_id")
-  }  
+  }
+  private
+    def unique_segment?
+      if Irm::OperationalCatalog.where("segment1 = ? AND segment2 = ? AND segment3 = ? AND company_id = ?", segment1, segment2, segment3, company_id).size != 0
+       errors.add(:company_id, I18n.t(:error_segment_combination_existed))
+      end
+    end
+  
 end
