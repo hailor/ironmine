@@ -45,7 +45,9 @@ class Irm::OperationalCatalogsController < ApplicationController
 
   def update
     @operational_catalog = Irm::OperationalCatalog.find(params[:id])
-
+    if !params[:irm_operational_catalog][:segment2]
+      params[:irm_operational_catalog] = params[:irm_operational_catalog].merge({:segment2 => ""})
+    end
     respond_to do |format|
       if @operational_catalog.update_attributes(params[:irm_operational_catalog])
         flash[:successful_message] = (t :successfully_updated)

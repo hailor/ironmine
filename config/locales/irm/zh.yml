@@ -534,6 +534,8 @@ zh:
   label_irm_id_flex_structure_name: 名称
   label_irm_id_flex_structure_code: 构造编码
   label_irm_id_flex_structure_description: 描述
+  label_irm_id_flex_structure_concatenated_segment_delimiter: 分隔符
+  label_irm_id_flex_structure_id_flex_structure_name: 名称
   label_flex_choice: 选择弹性域
 
   label_irm_add_id_flex_segments: 管理弹性域段
