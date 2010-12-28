@@ -2,7 +2,7 @@
      <div class="containerheader">
          <div class="floatleft headertitle"><%=t(:label_flex_choice)%></div>
          <div class="floatleft">
-           <%= select("id_flex_choice",{}, available_id_flexes, {:include_blank => t(:select)}, {:onchange => "replaceLink();"})%>
+           <%= select("id_flex_choice",{}, available_id_flexes, {:include_blank => t(:select)}, {:onchange => "replaceLink();", :id => "id_flex_choice"})%>
          </div>
          <div class="floatleft"><div class="button" id = "flex_choice"><%= link_to t(:confirm), {:controller => "irm/id_flex_structures", :action => "show_parent", :id_flex_code => ":id", :format => "js"}, :id => "choice_confirm", :remote => true%></div></div>
      </div>
@@ -25,7 +25,7 @@
 </div>
 <script type="text/javascript">
     function replaceLink(){
-       var rowId = $("#id_flex_choice_").val();
+       var rowId = $("#id_flex_choice").val();
        var action_temp="";
        if(rowId!=null&&rowId!=undefined){
           action_temp = "<%=url_for(:controller=>"irm/id_flex_structures",:action=>"show_parent",:id_flex_code=>":id", :format => "js")%>".replace(":id",rowId);
