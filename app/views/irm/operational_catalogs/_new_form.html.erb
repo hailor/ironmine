@@ -42,7 +42,7 @@
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_operational_catalog_type)%>:</td>
                               <td><%=f.select :catalog_type, available_catalog_types, {:include_blank => t(:select)},:required=>true, 
                               :onchange => remote_function(:update => "container1",:url => { :action => :update_segment_options},
-                              :with => "$('#new_irm_operational_catalog').serialize() + '&catalog_type=' + $('#irm_operational_catalog_catalog_type').val()", :complete => "init($('#container1'))")%></td>
+                              :with => "$('#new_irm_operational_catalog').serialize() + '&catalog_type=' + $('#irm_operational_catalog_catalog_type').val() + '&new=1'", :complete => "init($('#container1'))")%></td>
                             </tr>
                             <div id="segments">
                                 <% if (@operational_catalog && !@operational_catalog.catalog_type.blank?)%>

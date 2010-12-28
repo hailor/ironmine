@@ -93,7 +93,7 @@ class Irm::OperationalCatalogsController < ApplicationController
   end
 
   def update_segment_options
-    if !params[:irm_operational_catalog][:id]
+    if params[:new]
       @operational_catalog = Irm::OperationalCatalog.new
     else
       @operational_catalog = Irm::OperationalCatalog.multilingual.find(params[:irm_operational_catalog][:id])
