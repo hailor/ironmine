@@ -2,32 +2,23 @@
 <html>
 <head>
   <title>Ironmine</title>
-  <% stylesheet_link_tag :all %>
-  <%= theme_stylesheet_link_tag "dhtmlxgrid" %>
-  <%= theme_stylesheet_link_tag "dhtmlxgrid_dhx_skyblue" %>
-  <%= theme_stylesheet_link_tag "dhtmlxcalendar_yahoolike" %>
-  <%= theme_stylesheet_link_tag "dhtmlxcalendar" %>
-  <%= theme_stylesheet_link_tag "dhtmlxwindows" %>
-  <%= theme_stylesheet_link_tag "dhtmlxwindows_dhx_skyblue" %>
-  <%= theme_stylesheet_link_tag "dhtmlxgrid_pgn_bricks" %>
   <%= javascript_include_tag :defaults %>
-  <%= javascript_include_tag :ajax_relation %>
-  <%= javascript_include_tag :dhtmlx %>
-  <%= javascript_include_tag :dhtmlx_grid %>
-  <%= javascript_include_tag :ironmine_base %>
-  <%= theme_stylesheet_link_tag :application%>
-  <%= theme_stylesheet_link_tag :dhtmlxtabbar%>
+  <%= javascript_include_tag :dojo %>
+  <%= theme_stylesheet_link_tag :application,:claro,:dojo,:dijit,:Grid%>
   <%= theme_stylesheet_link_tag "jquery.Jcrop"%>
   <%= javascript_include_tag "jquery.Jcrop"%>
-  <%= javascript_include_tag "jquery.mcdropdown"%>
-  <%= javascript_include_tag "jquery.bgiframe"%>
-  <%= theme_stylesheet_link_tag :application%>
-  <%= theme_stylesheet_link_tag "jquery.mcdropdown"%>
-  <%= theme_stylesheet_link_tag :dhtmlxtabbar%>
-
+  <script>
+    var djConfig = {
+            parseOnLoad: false,
+            isDebug: true,
+            locale: 'zh'
+    };
+    dojo.require("dijit.dijit");
+    dojo.require("dijit.dijit-all");
+  </script>
   <%= csrf_meta_tag %>
 </head>
-<body id="body">
+<body id="body" class="claro">
     <div id="banner"></div>
     <div id="toptoolbar">
     	<div class="floatleft">
