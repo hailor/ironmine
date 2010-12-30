@@ -123,10 +123,10 @@ class ApplicationController < ActionController::Base
   end
 
   #进行分页，返回分页后的scope和scope的记录的总记录数
-  def paginate(scoped,page,per_page)
-     page||=1
-     per_page||=10
-     [scoped.offset((page.to_i-1)*per_page.to_i).limit(per_page),scoped.count]
+  def paginate(scoped,offset=nil,limit=nil)
+     offset ||= (params[:start]||0).to_i
+     limit ||= params[:count]||25
+     [scoped.offset(offset).limit(limit),scoped.count]
   end
 
 
