@@ -1,29 +1,49 @@
 <div class="container">
-  <div class="containerheader">
-      <div class="floatleft headertitle"><%=t(:label_irm_identity_edit)%> - <%= @identity.login_name%></div>
+  <div class="pagetitle">账号设置</div>
+</div>
+<div class="container">
+  <div class="discontainerheader bluetop">
+    <table class="bartable">
+      <tr>
+        <td class="left"><div class="headertitle"><%=t(:label_irm_identity_edit)%> - <%= @identity.login_name%></div></td>
+        <td class="middle">
+          <div class="button"><%= link_to t(:edit), {:action => "edit_info"},:zone=>"system_content"%></div>
+          <div class="button" ><%= link_to t(:edit_password), {:action=>"edit_password"},:zone=>"system_content"%></div>
+        </td>
+        <td class="right"><span class="headertip"><a>i am tips</a></span></td>
+      </tr>
+    </table>
   </div>
-  <div class="containerbody">
-  <table class="formtable" cellspacing="0">
+  <div class="discontainerbody">
+  <table class="showtable" cellspacing="0">
       <tr>
-          <td class="formlabel"><%=(t :label_irm_identity_login_name)%>:</td>
-          <td class="formitem"><%=@identity.login_name%></td>
-          <td class="formlabel"><%=(t :label_irm_identity_full_name)%>:</td>
-          <td class="formitem"><%=@identity.full_name%></td>
+          <td class="showlabel"><%=(t :label_irm_identity_login_name)%>:</td>
+          <td class="showitem"><%=@identity.login_name%></td>
+          <td class="showlabel"><%=(t :label_irm_identity_full_name)%>:</td>
+          <td class="showitem"><%=@identity.full_name%></td>
       </tr>
       <tr>
-          <td class="formlabel"><%=(t :label_irm_identity_email)%>:</td>
-          <td class="formitem"><%=@identity.email%></td>
-          <td class="formlabel"><%=(t :label_irm_identity_language_code)%>:</td>
-          <td class="formitem"><%= @identity[:language_description]%></td>
+          <td class="showlabel"><%=(t :label_irm_identity_email)%>:</td>
+          <td class="showitem"><%=@identity.email%></td>
+          <td class="showlabel"><%=(t :label_irm_identity_language_code)%>:</td>
+          <td class="showitem"><%= @identity[:language_description]%></td>
       </tr>
       <tr>
-          <td class="formlabel"><%=(t :label_irm_identity_password)%>:</td>
-          <td class="formitem"><%=@identity.last_login_at%></td>
+          <td class="showlabel"><%=(t :label_irm_identity_password)%>:</td>
+          <td class="showitem"><%=@identity.last_login_at%></td>
       </tr>
-  </table>  
+  </table>
   </div>
-  <div class="containerfooter">
-      <div class="button floatright"><%= link_to t(:edit), {:action => "edit_info"},:zone=>"system_content"%></div>
-      <div class="button floatright" ><%= link_to t(:edit_password), {:action=>"edit_password"},:zone=>"system_content"%></div>
+  <div class="discontainerfooter">
+    <table class="bartable">
+      <tr>
+        <td class="left"></td>
+        <td class="middle">
+          <div class="button"><%= link_to t(:edit), {:action => "edit_info"},:zone=>"system_content"%></div>
+          <div class="button" ><%= link_to t(:edit_password), {:action=>"edit_password"},:zone=>"system_content"%></div>
+        </td>
+        <td class="right"></td>
+      </tr>
+    </table>
   </div>
 </div>

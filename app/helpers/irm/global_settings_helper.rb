@@ -10,6 +10,6 @@ module Irm::GlobalSettingsHelper
 #    ["GTM+12", "GTM+12"],["GTM+13", "GTM+13"]]
   end
   def available_themes
-    [["default", "default"]]
+    [["default", "default"], ["salesforce", "salesforce"]]
   end
 end
