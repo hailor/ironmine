@@ -73,6 +73,10 @@ class Irm::ActionsController < ApplicationController
     end
   end
 
+  def show
+    @action = Irm::Action.multilingual.find(params[:id])
+  end
+
   def multilingual_edit
     @action = Irm::Action.find(params[:id])
   end

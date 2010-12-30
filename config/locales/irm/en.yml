@@ -130,9 +130,11 @@ en:
   label_irm_action_entity_code: Entity
   label_irm_action_description: Description
   label_irm_action_status_code: Status Code
-  label_irm_action_new: New action
-  label_irm_action_edit: Edit action
-  label_irm_action_list: List action
+  label_irm_action_new: New Action
+  label_irm_action_edit: Edit Action
+  label_irm_action_list: List Action
+  label_irm_action_show: Show Action
+  label_irm_action_function_show: You Can Define
   label_irm_action_actions_tls:
     name: Name
   #=========================end irm actions_controller=======================#
