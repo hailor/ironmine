@@ -13,7 +13,7 @@ class Irm::ActionsController < ApplicationController
   # GET /actions/1
   # GET /actions/1.xml
   def show
-    @action = Irm::Action.find(params[:id])
+    @action = Irm::Action.multilingual.query_wrap_info(I18n::locale).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -71,10 +71,6 @@ class Irm::ActionsController < ApplicationController
         format.xml  { render :xml => @action.errors, :status => :unprocessable_entity }
       end
     end
-  end
-
-  def show
-    @action = Irm::Action.multilingual.find(params[:id])
   end
 
   def multilingual_edit

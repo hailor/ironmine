@@ -42,6 +42,7 @@ zh:
   close: 关闭
   default: 默认
   select: 请选择
+  save_and_new: 保存并新建
   #常用语句
   notice_account_invalid_creditentials: 用户名或密码错误
   successfully_updated: 已经成功更新数据
@@ -159,11 +160,14 @@ zh:
   label_irm_condition_new: 新建触发条件
   label_irm_condition_edit: 编辑触发条件
   label_irm_condition_list: 触发条件列表
+  label_irm_condition_show: 触发条件
+  label_irm_condition_function_description: 定义所有的触发条件。
   label_irm_condition_conditions_tls:
      name: 名称
   #=========================end irm conditions_controller=======================#
   #=========================    irm actions_controller=======================#
   label_irm_action_action_code: 编码
+  label_irm_action: 执行动作
   label_irm_action_name: 名称
   label_irm_action_handler: 处理方法
   label_irm_action_entity_code: 实体
@@ -175,7 +179,7 @@ zh:
   label_irm_action_edit: 编辑执行动作
   label_irm_action_list: 执行动作列表
   label_irm_action_show: 执行动作显示
-  label_irm_action_function_description: 执行动作可以在
+  label_irm_action_function_description: 需要执行动作的列表。整体描述整个执行动作的设置。
   label_irm_action_actions_tls:
      name: 名称
   #=========================end irm actions_controller=======================#
@@ -237,6 +241,8 @@ zh:
   label_irm_script_new: 新建服务宏
   label_irm_script_edit: 编辑服务宏
   label_irm_script_list: 执行服务宏
+  label_irm_script_show: 服务宏显示
+  label_irm_script_function_description: 选择条件,动作以及邮件模板来定义服务宏
   label_irm_script_scripts_tls:
      name: 名称
   #=========================end irm scripts_controller=======================#
@@ -302,6 +308,8 @@ zh:
   label_irm_currency_new: 新建币种
   label_irm_currency_edit: 编辑币种
   label_irm_currency_list: 币种列表
+  label_irm_currency_show: 币种
+  label_irm_currency_function_description: 显示币种的描述和编码。
   label_irm_currency_currencies_tls:
     name: 名称
   #=========================end irm currencies_controller=======================#
@@ -313,6 +321,8 @@ zh:
   label_irm_region_new: 新建区域
   label_irm_region_edit: 编辑区域
   label_irm_region_list: 区域列表
+  label_irm_region_show: 区域显示 
+  label_irm_region_function_description: 定义区域，例如，亚太区。
   label_irm_region_regions_tls:
     name: 名称
   #=========================end irm regions_controller=======================#
@@ -368,6 +378,8 @@ zh:
   label_irm_organization_new: 新建组织
   label_irm_organization_edit: 编辑组织
   label_irm_organization_list: 组织列表
+  label_irm_organization_show: 组织显示
+  label_irm_organization_function_description: 在公司中的定义组织。
   label_irm_organization_organizations_tls:
     name: 名称
   #=========================end irm organizations_controller=======================#
@@ -381,6 +393,8 @@ zh:
   label_irm_department_new: 新建部门
   label_irm_department_edit: 编辑部门
   label_irm_department_list: 部门列表
+  label_irm_department_show: 部门显示
+  label_irm_department_function_description: 在公司中的定义部门。
   label_irm_department_departments_tls:
     name: 名称
   #=========================end irm departments_controller=======================#

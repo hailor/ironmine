@@ -10,6 +10,15 @@ class Irm::DepartmentsController < ApplicationController
     end
   end
 
+  def show
+    @department = Irm::Department.query_wrap_info(I18n::locale).multilingual.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @department }
+    end
+  end
+
   # GET /departments/new
   # GET /departments/new.xml
   def new

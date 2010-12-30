@@ -10,6 +10,14 @@ class Irm::ScriptsController < ApplicationController
     end
   end
 
+  def show
+    @script = Irm::Script.multilingual.query_wrap_info(I18n::locale).find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @script }
+    end
+  end
 
   # GET /scripts/new
   # GET /scripts/new.xml

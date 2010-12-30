@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="pagetitle"><%=t(:label_irm_action_show)%></div>
-  <div class="pagedescription"><%=t(:label_irm_action_function_description)%></div>
+  <div class="pagetitle"><%=t(:label_irm_currency_show)%></div>
+  <div class="pagedescription"><%=t(:label_irm_currency_function_description)%></div>
 </div>
 <div class="container">
   <div class="discontainerheader  bluetop">
@@ -17,20 +17,16 @@
   <div class="discontainerbody">
   <table class="showtable" cellspacing="0">
       <tr>
-          <td class="showlabel"><%=(t :label_irm_action_entity_code)%>:</td>
-          <td class="showitem"><%=@action[:entity_meaning]%></td>
-          <td class="showlabel"><%=(t :label_irm_action_action_code)%>:</td>
-          <td class="showitem"><%=@action.action_code%></td>
+          <td class="showlabel"><%=(t :label_irm_currency_currency_code)%>:</td>
+          <td class="showitem"><%=@currency.currency_code%></td>
+          <td class="showlabel"><%=(t :label_irm_currency_precision)%>:</td>
+          <td class="showitem"><%=@currency.precision%></td>
       </tr>
       <tr>
-          <td class="showlabel"><%=(t :label_irm_action_name)%>:</td>
-          <td class="showitem"><%=@action[:name]%></td>
-          <td class="showlabel"><%=(t :label_irm_action_handler)%>:</td>
-          <td class="showitem"><%= @action.handler%></td>
-      </tr>
-      <tr>
-          <td class="showlabel"><%=(t :label_irm_action_description)%>:</td>
-          <td class="showitem"><%=@action[:description]%></td>
+          <td class="showlabel"><%=(t :label_irm_currency_name)%>:</td>
+          <td class="showitem"><%=@currency[:name]%></td>
+          <td class="showlabel"><%=(t :label_irm_currency_description)%>:</td>
+          <td class="showitem"><%=@currency[:description]%></td>
       </tr>
   </table>
   </div>

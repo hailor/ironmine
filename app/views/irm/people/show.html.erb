@@ -1,117 +1,135 @@
 <div id="id_person_show">
     <div class="container">
-       <div class="containerheader">
-          <div class="floatleft headertitle"><%=t(:label_irm_person_show)%></div>
-       </div>
        <div>
          <a href="#id_login_access_list"><%=t(:label_irm_person_company_access)%></a>
          <a href="#id_person_support_group"><%=t(:label_irm_person_support_group)%></a>
        </div>
-       <div class="containerbody">
-          <table class="formtable" cellspacing="0">
+       <div class="discontainerheader">
+        <table class="bartable">
+          <tr>
+            <td class="left"><div class="headertitle"><%=t(:label_irm_person_show)%></div></td>
+            <td class="middle">
+              <div class="button"><%= link_to t(:edit), {:action => "edit"}%></div>
+              <div class="button" ><%= link_to t(:new), {:action=>"new"}%></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="discontainerbody">
+          <table class="showtable" cellspacing="0">
                   <tr>
-                    <td class="formlabel"><%=(t :label_irm_person_full_name)%>:</td>
-                    <td class="formitem"><%=@person[:full_name]%></td>
+                    <td class="showlabel"><%=(t :label_irm_person_full_name)%>:</td>
+                    <td class="showitem"><%=@person[:full_name]%></td>
+                    <td class="showlabel"><%=(t :label_irm_person_title)%>:</td>
+                    <td class="showitem"><%=@person.title%></td>
                   </tr>
                   <tr>
-                    <td class="formlabel"><%=(t :label_irm_person_email_address)%>:</td>
-                    <td class="formitem"><%=@person.email_address%></td>
-                    <td class="formlabel"><%=(t :label_irm_person_title)%>:</td>
-                    <td class="formitem"><%=@person.title%></td>
+                    <td class="showlabel"><%=(t :label_irm_person_email_address)%>:</td>
+                    <td class="showitem"><%=@person.email_address%></td>                    
                   </tr>
           </table>
           <div class="containerheader">
              <div class="floatleft headertitle"><%=t(:label_irm_person_other_info)%></div>
           </div>
-          <table class="formtable" cellspacing="0">
+          <table class="showtable" cellspacing="0">
              <tr>
-                 <td class="formlabel"><%=t(:label_irm_person_company)%>:</td>
-                 <td class="formitem"><%=@person[:company_name]%></td>
-                 <td class="formlabel"><%=(t :label_irm_person_login)%>:</td>
-                 <td class="formitem"><%=@person[:login_name]%></td>
+                 <td class="showlabel"><%=t(:label_irm_person_company)%>:</td>
+                 <td class="showitem"><%=@person[:company_name]%></td>
+                 <td class="showlabel"><%=(t :label_irm_person_login)%>:</td>
+                 <td class="showitem"><%=@person[:login_name]%></td>
              </tr>
              <tr>
-             <td class="formlabel"><%=t(:label_irm_person_organization)%>:
-             </td>
-             <td class="formitem"><%=@person[:organization_name]%></td>
-             <td class="formlabel"><%=(t :label_irm_person_function_group_code)%>:</td>
-             <td class="formitem"><%=@person[:function_group_name] %></td>
+             <td class="showlabel"><%=t(:label_irm_person_organization)%>:</td>
+             <td class="showitem"><%=@person[:organization_name]%></td>
+             <td class="showlabel"><%=(t :label_irm_person_function_group_code)%>:</td>
+             <td class="showitem"><%=@person[:function_group_name] %></td>
              </tr>
              <tr>
-                 <td class="formlabel"><%=t(:label_irm_person_department)%>:
+                 <td class="showlabel"><%=t(:label_irm_person_department)%>:
                  </td>
-                 <td class="formitem"><%=@person[:department_name]%></td>
-                 <td class="formlabel">
+                 <td class="showitem"><%=@person[:department_name]%></td>
+                 <td class="showlabel">
                     <%=t(:label_irm_person_vip_flag)%>:
                  </td>
-                 <td class="formitem"><%=@person.vip_flag%></td>
+                 <td class="showitem"><%=@person.vip_flag%></td>
              </tr>
              <tr>
-                 <td class="formlabel"><%=t(:label_irm_person_home_phone)%>:
+                 <td class="showlabel"><%=t(:label_irm_person_home_phone)%>:
                  </td>
-                 <td class="formitem">
+                 <td class="showitem">
                    <%=@person.home_phone%>
                  </td>
-                 <td class="formlabel">
+                 <td class="showlabel">
                      <%=t(:label_irm_person_support_staff_flag)%>:
                   </td>
-                  <td class="formitem"><%=@person.support_staff_flag%></td>
+                  <td class="showitem"><%=@person.support_staff_flag%></td>
              </tr>
              <tr>
-                 <td class="formlabel"><%=t(:label_irm_person_home_address)%>:
+                 <td class="showlabel"><%=t(:label_irm_person_home_address)%>:
                  </td>
-                 <td class="formitem">
+                 <td class="showitem">
                    <%=@person.home_address%>
                  </td>
-                 <td class="formlabel">
+                 <td class="showlabel">
                      <%=t(:label_irm_person_assignment_availability_flag)%>:
                   </td>
-                  <td class="formitem"><%=@person.assignment_availability_flag%></td>
+                  <td class="showitem"><%=@person.assignment_availability_flag%></td>
              </tr>
              <tr>
-                 <td class="formlabel"><%=t(:label_irm_person_mobile_phone)%>:
+                 <td class="showlabel"><%=t(:label_irm_person_mobile_phone)%>:
                  </td>
-                 <td class="formitem">
+                 <td class="showitem">
                    <%=@person.mobile_phone%>
                  </td>
-                 <td class="formlabel"><%=(t :label_irm_person_site_group_code)%>:</td>
-                 <td class="formitem"><%=@person.site_group_code%></td>
+                 <td class="showlabel"><%=(t :label_irm_person_site_group_code)%>:</td>
+                 <td class="showitem"><%=@person.site_group_code%></td>
              </tr>
              <tr>
-                 <td class="formlabel"><%=t(:label_irm_person_fax_number)%>:
+                 <td class="showlabel"><%=t(:label_irm_person_fax_number)%>:
                  </td>
-                 <td class="formitem">
+                 <td class="showitem">
                    <%=@person.fax_number%>
                  </td>
-                 <td class="formlabel"><%=(t :label_irm_person_site_code)%>:</td>
-                 <td class="formitem"><%=@person.site_code%></td>
+                 <td class="showlabel"><%=(t :label_irm_person_site_code)%>:</td>
+                 <td class="showitem"><%=@person.site_code%></td>
              </tr>
              <tr>
-                 <td class="formlabel"><%=t(:label_irm_person_bussiness_phone)%>:
+                 <td class="showlabel"><%=t(:label_irm_person_bussiness_phone)%>:
                  </td>
-                 <td class="formitem">
+                 <td class="showitem">
                    <%=@person.bussiness_phone%>
                  </td>
-                 <td class="formlabel">
+                 <td class="showlabel">
                      <%=t(:label_irm_person_unrestricted_access_flag)%>:
                 </td>
-                <td class="formitem"><%=@person.unrestricted_access_flag%></td>
+                <td class="showitem"><%=@person.unrestricted_access_flag%></td>
              </tr>
              <tr>
-                  <td class="formlabel"><%=t(:label_irm_person_notification_lang)%>:
+                  <td class="showlabel"><%=t(:label_irm_person_notification_lang)%>:
                  </td>
-                 <td class="formitem"><%=@person.notification_lang%></td>
-                  <td class="formlabel">
+                 <td class="showitem"><%=@person.notification_lang%></td>
+                  <td class="showlabel">
                      <%=t(:label_irm_person_notification_flag)%>:
                   </td>
-                  <td class="formitem"><%=@person.notification_flag%></td>
+                  <td class="showitem"><%=@person.notification_flag%></td>
              </tr>
              <tr>
-                 <td class="formlabel"><%=(t :label_irm_person_status_code)%>:</td>
-                 <td class="formitem"><%=@person.status_code%></td>
+                 <td class="showlabel"><%=(t :label_irm_person_status_code)%>:</td>
+                 <td class="showitem"><%=@person.status_code%></td>
              </tr>
        </table>
        </div>
+       <div class="discontainerfooter">
+        <table class="bartable">
+          <tr>
+            <td class="left"><div class="headertitle"></div></td>
+            <td class="middle">
+              <div class="button"><%= link_to t(:edit), {:action => "edit"}%></div>
+              <div class="button" ><%= link_to t(:new), {:action=>"new"}%></div>
+            </td>
+          </tr>
+        </table>
+      </div>
        <div class="containerheader">
           <div class="floatleft headertitle"><%=t(:label_irm_person_company_access)%></div>
        </div>

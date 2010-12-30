@@ -10,6 +10,15 @@ class Irm::CurrenciesController < ApplicationController
     end
   end
 
+  def show
+    @currency = Irm::Currency.multilingual.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @currency }
+    end
+  end
+
   # GET /currencies/new
   # GET /currencies/new.xml
   def new

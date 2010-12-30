@@ -38,7 +38,7 @@ class Irm::PeopleController < ApplicationController
     respond_to do |format|
       if @person.save
         flash[:successful_message] = (t :successfully_created)
-        format.html { render "show"}
+        format.html { render "index"}
         format.xml  { render :xml => @person, :status => :created, :location => @person }
       else
         @error = @person

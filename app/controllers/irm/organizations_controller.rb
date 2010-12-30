@@ -10,6 +10,15 @@ class Irm::OrganizationsController < ApplicationController
     end
   end
 
+  def show
+    @organization = Irm::Organization.multilingual.query_wrap_info(I18n::locale).find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @organization }
+    end
+  end
+
   # GET /organizations/new
   # GET /organizations/new.xml
   def new

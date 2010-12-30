@@ -4,6 +4,10 @@
        <div id="id_person_form">
             <div class="containerheader">
                 <div class="floatleft headertitle"><%=t(:label_irm_person_base_info)%></div>
+                <div class="floatcenter">
+                   <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/people",:action=>"create"}%></div>
+                   <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}%></div>
+                </div>
             </div>
             <div class="containerbody">
                 <table class="formtable" cellspacing="0">
@@ -29,8 +33,10 @@
 
           </div>
           <div class="containerfooter">
-               <div class="button floatright"><%= link_to t(:save), {:controller=>"irm/people",:action=>"create"}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);/replace(system_message_box,system_message_box);"}%></div>
-               <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}, :script => "/replace(id_person_index,id_person_index);/", :action_type=>"ajaxLink"%></div>
+            <div class="floatcenter">
+               <div class="button floatright"><%= link_to t(:save)%></div>
+               <div class="button floatright"><%= link_to t(:cancel), {:action => "index"}%></div>
+            </div>
           </div>
     </div>
    <% end %>
