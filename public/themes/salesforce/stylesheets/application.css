@@ -14,9 +14,14 @@ body{
 
 .titlebar {background: #DDDDDD;margin: -1px 0 0;padding: 9px 10px;}
 .sectiontitle {color: #222222;font-weight: bold;}
-.floatright{ float:right !important;}
+.floatright{float:right !important;}
 .floatleft{float:left !important;}
-.headertitle{font-weight:bold; float:left; padding-right: 20px;}
+div.floatcenter{
+    float:left;
+    position:relative;
+    left:40%;    
+}
+.headertitle{font-weight:bold; float:left; padding-right: 20px;font-size: 1.3em;}
 .field_with_errors input, .field_with_errors text_area, .field_with_errors select{ border: red solid 1px !important; }
 
 div.errormsgbox{
@@ -101,89 +106,89 @@ div.jumpfield {
 	padding-right: 4px;
 }
 
-table.topmenu{width: 100%;}
+table.topmenu{width: 100%}
+table.topmenu br, table.topmenu .verticalseparatornoborder, table.topmenu img{display: none;}
+
+table.topmenu tr.buttonrow{
+    
+}
 table.topmenu tr.buttonrow td.button{
-	background: url("../images/top_gradient.gif") repeat-x scroll 0 0 #ccddee;
-	font-size: 1em;
+    background: url("../images/tabbar_sprite.png") repeat-x scroll left -73px transparent;
+}
+table.topmenu tr.buttonrow td.button div.buttoninside{
+    font-size: 1em;
+    font-weight: bold;
 	text-align: center;
 	vertical-align: middle;
 	white-space: nowrap;
-	width: 80px;
 	cursor: pointer;
-	padding-bottom: 4px;
-	padding-top: 2px;
+    padding: 10px 10px 5px 10px;
 }
-table.topmenu tr.buttonrow td.button a{
-	white-space: nowrap;
-}
-table.topmenu tr.buttonrow td.button img{
-	border: medium none;
-	margin: 0 2px;
-	padding: 2px 0 4px;
-	vertical-align: top;
-}
-table.topmenu tr.buttonrow td.button a:link,
-table.topmenu tr.buttonrow td.button a:visited {
-	color: #000000;
-	text-decoration: none;
-}
-table.topmenu tr.buttonrow td.button:hover,
-table.topmenu tr.buttonrow td.button:hover a,
-table.topmenu tr.buttonrow td.button a:hover {
-	background: none scroll 0 0 #99bbdd;
-	color: #000000;
-	text-decoration: none;
-}
-table.topmenu tr.buttonrow td.buttonend{
-	background: url("../images/top_gradient.gif") repeat-x scroll 0 0 #CCDDEE;
-	border-bottom: medium none;
-	border-top: 0px solid #ffffff;
-	width: auto;
-}
-table.topmenu tr.buttonrow td.selected{font-weight:bold; background: none repeat scroll 0 0 #ffffff;}
-table.topmenu tr.buttonrow td.selected:hover,
-table.topmenu tr.buttonrow td.selected:hover a,
-table.topmenu tr.buttonrow td.selected a:hover {
-	background: none no-repeat scroll 0 0 #ffffff;
-	color: #000000;
-	text-decoration: none;
-}
+table.topmenu tr.buttonrow td.button:hover{color: #1468b6; text-decoration: underline;}
+table.topmenu tr.buttonrow td.selected{
+    background-color: #1797C0;background-image: url("../images/tabs_sprite.png");background-position: left 0; background-repeat: no-repeat;margin-bottom:-1px;}
+table.topmenu tr.buttonrow td.selected div.buttoninside{
+    color:#fff; background-image: url("../images/tabs_sprite.png");background-position: right -150px; background-repeat: no-repeat;margin-right:-1px;}
+table.topmenu tr.buttonrow td.selected:hover{text-decoration: none;}
+table.topmenu tr.buttonrow td.buttonend{background: url("../images/tabbar_sprite.png") repeat-x scroll left -73px transparent;width: 100%;}
+table.topmenu tr.buttonrow td.buttonleft{background: url("../images/tabbar_sprite.png") no-repeat scroll -10px 0 transparent; width: 3px;}
+table.topmenu tr.buttonrow td.buttonright{background: url("../images/tabbar_sprite.png") no-repeat scroll -15px 0 transparent; width: 3px;}
 
 td.verticalseparatornoborder{width: 1px; padding: 0 !important;}
 
-table.leftnavigation tr.navigationheader td{
-	background-color: #ccddee;
-	border-color: #99bbdd;
-	border-style: solid;
-	border-width: 1px 0 0;
-	padding-left: 12px;
-	padding-right: 12px;
+div#leftnavigations{width: 250px;}
+div.leftnavigation{width: 100%;}
+div.leftnavigation .leftnavheader{
+    padding: 5px 12px 5px 12px;
+    color: #fff;
 	font-size: 12px;
 	font-weight: bold;
+    background-color: #1797c0;
+    -moz-border-radius: 4px 4px 4px 4px;
 }
-table.leftnavigation tr.navigationbody td{
-	background-color: #F2F5F9;
+
+div.leftnavigation .leftnavbody{
+    -moz-border-radius: 4px 4px 4px 4px;
+	background-color: #cfeef8;
 	padding: 10px 14px 10px 14px;
-	border-color: #ccddee;
-	border-style: solid;
-	border-width: 1px;
+    margin: 2px 0 7px 0;
 }
-table.leftnavigation tr.navigationbody a{
+div.leftnavigation .leftnavbody a{
     display: block;
     padding: 3px 0 3px 5px;
     margin: 0 0 0 2px;
     color: #000;
     text-decoration: none;
 }
-table.leftnavigation tr.navigationbody a:hover{color: #000;background-color: #E6E6E6;
+div.leftnavigation .leftnavbody a:hover{color: #000;background-color: #E6E6E6;
 }
-table.leftnavigation{width: 100%;margin-bottom: -1px;}
 
 
-div.container {padding-bottom: 5px;}
-div.container div.containerheader{ background: none repeat scroll 0 0 #99BBDD; height:25px; line-height: 25px; padding: 0 20px 0 20px;}
-div.container div.containerfooter{ background: none repeat scroll 0 0 #d4d2d0; height:25px; line-height: 25px; padding: 0 20px 0 20px;}
-div.container div.containerbody{ border:solid #cccccc; padding: 0 1px 0 1px; border-width: 0 1px 1px 1px;}
+div.container {
+    padding-bottom: 5px;
+}
+div.container div.containerheader{
+    -moz-border-radius: 4px 4px 0 0;
+    background: none repeat scroll 0 0 #F8F8F8;
+    border-left: 1px solid #EAEAEA;
+    border-right: 1px solid #EAEAEA;
+    border-bottom: 1px solid #fff;
+    border-top: 3px solid #1797C0;
+    height:25px;
+    line-height: 25px;
+    padding: 0 20px 0 20px;}
+div.container div.containerfooter{
+    background: none repeat scroll 0 0 #F8F8F8;
+    height:25px;
+    line-height: 25px;
+    padding: 0 20px 0 20px;
+    border-left: 1px solid #DBDBDB;
+    border-right: 1px solid #DBDBDB;
+    border-bottom: 1px solid #DBDBDB;
+    border-top: 1px solid #fff;
+    -moz-border-radius: 0 0 4px 4px;
+}
+div.container div.containerbody{ border:solid #EAEAEA; padding: 10px 1px 10px 1px; border-width: 0 1px 1px 1px; background: none repeat scroll 0 0 #F8F8F8;}
 div.container div.colorheader{background: url("../images/containerheader_bg.gif") repeat-x scroll 0 0 #AACCEE !important;}
 div.buttonbar {padding: 0 20px 0 20px;}
 
@@ -195,16 +200,21 @@ div.button {
 }
 div.disable a{ color: #6E6E6E !important;line-height: 20px;background: none repeat scroll #EDEBE2 !important;}
 div.button a {
-    background: url("../images/button_background_gold.gif") repeat-x scroll center bottom #EDEBCA;
-	border: 1px solid #888888;
+    -moz-border-radius: 3px 3px 3px 3px;
+    background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
+    border-color: #B5B5B5 #B5B5B5 #7F7F7F;
+	border-width: 1px;
+    border-style: solid;
 	text-decoration: none;
-	color:#000;
+	color:#333333;
 	display: inline-block;
 	padding: 0 8px;
-	height: 20px;
+	height: 18px;
+    font-size: 0.9em;
+    font-weight: bold;
 	line-height: 20px;
 }
-div.button a:hover{background: url("../images/button_background_hover.gif") repeat-x scroll center bottom #EDEBCA;}
+div.button a:hover{background-position: right -30px;}
 
 div.container div.datagrid{
     width:100%;
@@ -302,8 +312,8 @@ table.loginnv tr.loginnvbody td{
 div.meuncontent span.menuitem{display:block;padding-left: 10px;}
 div.menu h2.menutitle{margin-bottom: 5px;}
 
-input[type="text"], input[type="password"] {background-color: #F7F7F7;border:1px solid #9b9b9b; color:#333333;}
-textarea {background-color: #F7F7F7;border:1px solid #9b9b9b; color:#333333;}
-select {background-color: #F7F7F7;border:1px solid #9b9b9b; color:#333333;}
+input[type="text"], input[type="password"] {background-color: #fff;border:1px solid #9b9b9b; color:#333333;}
+textarea {background-color: #fff;border:1px solid #9b9b9b; color:#333333;}
+select {background-color: #fff;border:1px solid #9b9b9b; color:#333333;}
 
 
