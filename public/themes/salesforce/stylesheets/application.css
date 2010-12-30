@@ -1,7 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
 #main{
-
+    -moz-border-radius: 4px 4px 0 0;
+    /*background: none repeat scroll 0 0 #F8F8F8;*/
+    border-top: 5px solid #1797C0;
 }
 table, tr, td, th{border-spacing: 0;line-height: 135%;}
 table, td, tr {font-size: 1em;}
@@ -16,14 +18,19 @@ body{
 .sectiontitle {color: #222222;font-weight: bold;}
 .floatright{float:right !important;}
 .floatleft{float:left !important;}
+.bluetop{border-style:solid;border-width: 2px 0 0 0; border-color: #1797C0 !important;}
 div.floatcenter{
     float:left;
     position:relative;
     left:40%;    
 }
-.headertitle{font-weight:bold; float:left; padding-right: 20px;font-size: 1.3em;}
+.pagetitle{font-weight:bold; text-align:left;padding: 20px 0 5px 10px;font-size: 1.8em;}
+.headertitle{font-weight:bold; float:left; padding-right: 20px;font-size: 1.2em;}
 .field_with_errors input, .field_with_errors text_area, .field_with_errors select{ border: red solid 1px !important; }
-
+table.bartable{width:100%; border-spacing: 0; margin: 5px 0 0 0;}
+table.bartable td.left{width:30%;}
+table.bartable td.middle{}
+table.bartable td.right{text-align:right;}
 div.errormsgbox{
     background: none repeat scroll 0 0 #FFBBAA;
     text-align: center;
@@ -106,7 +113,7 @@ div.jumpfield {
 	padding-right: 4px;
 }
 
-table.topmenu{width: 100%}
+table.topmenu{width: 100%; margin-bottom: -2px;}
 table.topmenu br, table.topmenu .verticalseparatornoborder, table.topmenu img{display: none;}
 
 table.topmenu tr.buttonrow{
@@ -196,6 +203,23 @@ div.container div.containerbody{ border:solid #EAEAEA; padding: 10px 1px 10px 1p
 div.container div.colorheader{background: url("../images/containerheader_bg.gif") repeat-x scroll 0 0 #AACCEE !important;}
 div.buttonbar {padding: 0 20px 0 20px;}
 
+
+div.container div.discontainerheader{
+    background: none repeat scroll 0 0 #fff;
+    height:25px;
+    line-height: 25px;
+    padding: 0 20px 0 20px;}
+div.container div.discontainerbody{padding: 10px 1px 10px 1px; background: none repeat scroll 0 0 #fff;}
+div.container div.discontainerfooter{
+    background: none repeat scroll 0 0 #fff;
+    height:25px;
+    line-height: 25px;
+    padding: 0 20px 0 20px;
+}
+div.container span.headertip{float:right; font-size:91%; text-align:right;}
+div.container span.headertip a{text-decoration: none;color:#015BA7;}
+div.container span.headertip a:hover{text-decoration: underline;color:#015BA7;}
+
 div.button {
 	float: left;
 	margin-left: 6px;
@@ -283,6 +307,11 @@ table.formtable td.formlabel{ width: 100px; text-align:right; padding-right: 3px
 table.formtable td.formitem{ width: 350px; text-align: left;max-width: 400px;min-width: 100px;vertical-align: top; }
 table.formtable td.formitem input[type=text], table.formtable td.formitem input[type=password], table.formtable td.formitem textarea
 { width:90%;text-align: left;}
+
+table.showtable{border-collapse:collapse;width:100%;}
+table.showtable td{border-width:0 0 1px 0; border-style:solid; border-color: #ECECEC;}
+table.showtable td.showlabel{ width: 18%; text-align:right; padding: 6px 10px 3px 0;min-width: 80px;vertical-align: top; max-width: 150px;font-size:91%;font-weight:bold;}
+table.showtable td.showitem{ width: 32%; text-align: left;max-width: 400px;min-width: 100px;vertical-align: bottom; }
 
 div#breadcrumbs{margin: 3px 0 0;padding: 0 0 0 5px;}
 div#breadcrumbs a{	text-decoration: none;	color: #0055DD;}

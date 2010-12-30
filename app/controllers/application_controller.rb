@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  theme :salesforce
+  theme Irm::GlobalSetting.all.first().theme_name.to_sym
   protect_from_forgery
   helper :all
   #ajax请求不使用layout
