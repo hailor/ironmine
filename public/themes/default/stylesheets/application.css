@@ -148,10 +148,13 @@ table.topmenu tr.buttonrow td.selected a:hover {
 	color: #000000;
 	text-decoration: none;
 }
+table.topmenu tr.buttonrow td.buttonleft, table.topmenu tr.buttonrow td.buttonright{display:none}
 
 td.verticalseparatornoborder{width: 1px; padding: 0 !important;}
 
-table.leftnavigation tr.navigationheader td{
+div#leftnavigations{width: 250px;}
+div.leftnavigation{width: 100%;}
+div.leftnavigation .leftnavheader{
 	background-color: #ccddee;
 	border-color: #99bbdd;
 	border-style: solid;
@@ -161,24 +164,23 @@ table.leftnavigation tr.navigationheader td{
 	font-size: 12px;
 	font-weight: bold;
 }
-table.leftnavigation tr.navigationbody td{
+
+div.leftnavigation .leftnavbody{
 	background-color: #F2F5F9;
 	padding: 10px 14px 10px 14px;
 	border-color: #ccddee;
 	border-style: solid;
 	border-width: 1px;
 }
-table.leftnavigation tr.navigationbody a{
+div.leftnavigation .leftnavbody a{
     display: block;
     padding: 3px 0 3px 5px;
     margin: 0 0 0 2px;
     color: #000;
     text-decoration: none;
 }
-table.leftnavigation tr.navigationbody a:hover{color: #000;background-color: #E6E6E6;
+div.leftnavigation .leftnavbody a:hover{color: #000;background-color: #E6E6E6;
 }
-table.leftnavigation{width: 100%;margin-bottom: -1px;}
-
 
 div.container {padding-bottom: 5px;}
 div.container div.containerheader{ background: none repeat scroll 0 0 #99BBDD; height:25px; line-height: 25px; padding: 0 20px 0 20px;}

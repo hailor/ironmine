@@ -15,14 +15,18 @@
 <table class="topmenu" cellspacing="0">
 	<tbody id="secondmenu">
       <tr class="buttonrow jtabcontainer" zone="secondtoolbarcontent">
+        <td class="buttonleft"></td>
         <% sub_entries(params[:menu_code]).each do |menu_item|  %>
           <td class="button jtabitem">
+            <div class="buttoninside">
             <%= link_to image_tag(theme_image_path("menus/#{menu_item[:icon]}"),:class=>"menuimg"),{:controller=>menu_item[:page_controller],:action=>menu_item[:page_action],:menu_code=>menu_item[:menu_code],:pre_entry_id=>params[:menu_entry_id],:menu_entry_id=>menu_item[:menu_entry_id]} %>
             <br><%=menu_item[:name]%>
+            </div>
           </td>
           <td class="verticalseparatornoborder"><img width="1" height="40" border="0" src=<%= theme_image_path('white.gif') %>></td>
         <%end %>
           <td class="buttonend"></td>
+          <td class="buttonright"></td>
       </tr>
     </tbody>
 </table>
