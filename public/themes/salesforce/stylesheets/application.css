@@ -25,6 +25,7 @@ div.floatcenter{
     left:40%;    
 }
 .pagetitle{font-weight:bold; text-align:left;padding: 20px 0 5px 10px;font-size: 1.8em;}
+.pagedescription{text-align:left;padding: 10px 0 5px 10px;font-size: 1em;}
 .headertitle{font-weight:bold; float:left; padding-right: 20px;font-size: 1.2em;}
 .field_with_errors input, .field_with_errors text_area, .field_with_errors select{ border: red solid 1px !important; }
 table.bartable{width:100%; border-spacing: 0; margin: 5px 0 0 0;}
