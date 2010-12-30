@@ -63,35 +63,67 @@
         grid_OnRowSelected="replaceLink"
         grid_load="'<%= url_for(:action => "get_current_group_site", :controller => "irm/site_groups",:id=>@site_group.id) %>','','json'">
         </div>
+        <div id='id_new_site_win' style='display:none'></div>
+        <div id='id_edit_site_win' style='display:none'></div>
         <script type="text/javascript" charset="utf-8">
+        var editUrl="";
         function replaceLink(rowId){
            var action_temp="";
            if(rowId!=null&&rowId!=undefined){
               action_temp = "<%=url_for(:controller=>"irm/site_groups",:action=>"edit_site",:id=>":id",:site_group_code=>@site_group.group_code,
                                                         :site_group_id=>@site_group.id)%>".replace(":id",rowId);
-              $("#id_edit_site").attr("href",action_temp);
+              editUrl=action_temp;
            }
            doSelectRowAndCheckRadio("id_site_grid",rowId)
         }
+        var newSiteWins,newSiteW;
+        function newSiteOnLoad(){
+            newSiteWins = new dhtmlXWindows();
+            newSiteWins.enableAutoViewport(false);
+            newSiteWins.attachViewportTo("system_content");
+            newSiteWins.setImagePath("/bk_images/dhtmlx/");
+            if($('#id_new_site_win').length<1){$('body').append("<div id='id_new_site_win' style='display:none'></div>");}
+            newSiteW = newSiteWins.createWindow("new_site_win", 50, 30, 940, 360);
+            newSiteW.setText("<%=t(:label_irm_site_new)%>");
+            $('#id_new_site_win').load("<%= url_for(:controller=>"irm/site_groups",
+                                                :action=>"add_site",:id=>@site_group.id,
+                                                :site_group_code=>@site_group.group_code,
+                                                :site_group_id=>@site_group.id)%>",
+                                    function(){init($("#id_site_new"))});
+            newSiteW.attachObject('id_new_site_win');
+            newSiteW.button('close').hide();
+            newSiteW.button('minmax1').hide();
+            newSiteW.button('minmax2').hide();
+            newSiteW.button('park').hide();
+            newSiteW.setModal(true);
+        }
+        var editSiteWins,editSiteW;
+        function editSiteOnLoad(){
+            editSiteWins = new dhtmlXWindows();
+            editSiteWins.enableAutoViewport(false);
+            editSiteWins.attachViewportTo("system_content");
+            editSiteWins.setImagePath("/bk_images/dhtmlx/");
+            if($('#id_edit_site_win').length<1){$('body').append("<div id='id_edit_site_win' style='display:none'></div>");}
+            editSiteW = editSiteWins.createWindow("edit_site_win", 50, 30, 940, 360);
+            editSiteW.setText("<%=t(:label_irm_site_group_edit_site)%>");
+            $('#id_edit_site_win').load(editUrl,
+                                    function(){init($("#id_site_edit"))});
+            editSiteW.attachObject('id_edit_site_win');
+            editSiteW.button('close').hide();
+            editSiteW.button('minmax1').hide();
+            editSiteW.button('minmax2').hide();
+            editSiteW.button('park').hide();
+            editSiteW.setModal(true);
+        }
         </script>
             <div class="containerfooter">
-              <div class="button floatright"><%=link_to t(:label_irm_site_group_create_site) ,
-                                                        {:controller=>"irm/site_groups",
-                                                         :action=>"add_site",:id=>@site_group.id,
-                                                         :site_group_code=>@site_group.group_code,
-                                                         :site_group_id=>@site_group.id},
-                                                        :script => "/replace(id_site_group_index,id_site_new);/",
-                                                        :action_type=>"ajaxLink",
-                                                        :id=> "id_add_site"%>
+              <div class="button floatright">
+                <a href="javascript:void(0);" onclick="newSiteOnLoad();">
+                  <%= t(:label_irm_site_group_create_site) %></a>
               </div>
-              <div class="button floatright"><%=link_to t(:label_irm_site_group_edit_site) ,
-                                                        {:controller=>"irm/site_groups",
-                                                         :action=>"edit_site",:id=>":id",
-                                                        :site_group_code=>@site_group.group_code,
-                                                        :site_group_id=>@site_group.id},
-                                                        :script => "/replace(id_site_group_index,id_site_edit);/",
-                                                        :action_type=>"ajaxLink",
-                                                        :id=> "id_edit_site"%>
+              <div class="button floatright">
+                <a href="javascript:void(0);" onclick="editSiteOnLoad();">
+                  <%= t(:label_irm_site_group_edit_site) %></a>
               </div>
               <div class="button floatright"><%= link_to t(:cancel), {:action => "index"},
                                                          :script => "/replace(id_site_group_index,id_site_group_index);/",

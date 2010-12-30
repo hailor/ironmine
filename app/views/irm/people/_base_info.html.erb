@@ -1,111 +1,107 @@
-<br>
-<table class="twocolumnstable" cellspacing="0">
-                <tr>
-                    <td class="twocolumn">
-                       <table class="itemdetailtable">
-                        <tr>
-                          <td class="itemdetailtablelabel"><%=t(:label_irm_person_company)%>:
-                          </td>
-                          <td><%=f.select(:company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                    options_from_collection_for_select(available_company,:id,:wrap_name,person.company_id),
-                                                    {},:action=>url_for(:controller=>"irm/organizations",
-                                                                        :action=>"belongs_to",
-                                                                        :company_id=>"cascade_id"),
-                                                    :choice_title=>t(:actionview_instancetag_blank_option),
-                                      :cascade=>"organization_select")%></td>
-                      </tr>
-                       <tr>
-                      <td class="itemdetailtablelabel"><%=t(:label_irm_person_organization)%>:
-                      </td>
-                          <td><%=f.select(:organization_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                    options_from_collection_for_select(current_organization(person.company_id),:id,:wrap_name,person.organization_id),{},
-                                          :id=>"organization_select")%></td>
-                      </tr>
-                      <tr>
-                          <td class="itemdetailtablelabel"><%=t(:label_irm_person_department)%>:
-                          </td>
-                          <td><%=f.select(:department_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                    options_from_collection_for_select(current_department(person.company_id,person.organization_id),:id,:wrap_name,person.department_id)
-                                          )%></td>
-                      </tr>
-                      <tr>
-                          <td class="itemdetailtablelabel"><%=t(:label_irm_person_home_phone)%>:
-                          </td>
-                          <td>
-                            <%=f.text_field :home_phone%>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td class="itemdetailtablelabel"><%=t(:label_irm_person_home_address)%>:
-                          </td>
-                          <td>
-                            <%=f.text_field :home_address%>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td class="itemdetailtablelabel"><%=t(:label_irm_person_mobile_phone)%>:
-                          </td>
-                          <td>
-                            <%=f.text_field :mobile_phone%>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td class="itemdetailtablelabel"><%=t(:label_irm_person_fax_number)%>:
-                          </td>
-                          <td>
-                            <%=f.text_field :fax_number%>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td class="itemdetailtablelabel"><%=t(:label_irm_person_bussiness_phone)%>:
-                          </td>
-                          <td>
-                            <%=f.text_field :bussiness_phone%>
-                          </td>
-                      </tr>
-                      <tr>
-                           <td class="itemdetailtablelabel"><%=(t :label_irm_person_status_code)%>:</td>
-                           <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                              options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,person.status_code)%></td>
-                      </tr>
-                       </table>
-                    </td>
-                    <td class="twocolumn" cellspacing="0">
-                       <table class="itemdetailtable">
-                        <div id="id_lookup_level">
-                        <tr><td class="itemdetailtablelabel">
-                              <%=t(:label_irm_person_vip_flag)%>:
-                           </td>
-                           <td><%=f.check_box :vip_flag%></td>
-                        </tr>
-                        <tr><td class="itemdetailtablelabel">
-                              <%=t(:label_irm_person_support_staff_flag)%>:
-                           </td>
-                           <td><%=f.check_box :support_staff_flag%></td>
-                        </tr>
-                        <tr><td class="itemdetailtablelabel">
-                              <%=t(:label_irm_person_assignment_availability_flag)%>:
-                           </td>
-                           <td><%=f.check_box :assignment_availability_flag%></td>
-                        </tr>
-                        <tr>
-                            <td class="itemdetailtablelabel"><%=(t :label_irm_person_region_code)%>:</td>
-                            <td><%=f.select :region_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_region,:region_code,:wrap_name)%></td>
-                        </tr>
-                        <tr>
-                            <td class="itemdetailtablelabel"><%=(t :label_irm_person_site_group_code)%>:</td>
-                            <td><%=f.select :site_group_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_site_group,:group_code,:wrap_name)%></td>
-                        </tr>
-                        <tr>
-                            <td class="itemdetailtablelabel"><%=(t :label_irm_person_site_code)%>:</td>
-                            <td><%=f.select :site_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_site,:site_code,:wrap_name)%></td>
-                        </tr>
-                        </div>
-                       </table>
-                    </td>
-                    <td width="10%"></td>
-                </tr>
-            </table>
+<table class="formtable" cellspacing="0">
+ <tr>
+     <td class="formlabel"><%=t(:label_irm_person_company)%>:</td>
+     <td class="formitem"><%=f.select(:company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                               options_from_collection_for_select(available_company,:id,:wrap_name,person.company_id),
+                               {},:action=>url_for(:controller=>"irm/organizations",
+                                                   :action=>"belongs_to",
+                                                   :company_id=>"cascade_id"),
+                               :choice_title=>t(:actionview_instancetag_blank_option),:required=>true,
+                 :cascade=>"organization_select")%></td>
+     <td class="formlabel"><%=(t :label_irm_person_login)%>:</td>
+     <td class="formitem"><%=f.select :identity_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                       options_from_collection_for_select(all_login_name,
+                                                                          :id,:login_name,person.identity_id),{},{:required=>true}%></td>
+ </tr>
+ <tr>
+ <td class="formlabel"><%=t(:label_irm_person_organization)%>:
+ </td>
+ <td class="formitem"><%=f.select(:organization_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                               options_from_collection_for_select(current_organization(person.company_id),:id,:wrap_name,person.organization_id),{},
+                     :id=>"organization_select")%></td>
+ <td class="formlabel"><%=(t :label_irm_person_function_group_code)%>:</td>
+ <td class="formitem"><%=select_tag :function_group_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                       options_from_collection_for_select(available_function_group,
+                                                                          :group_code,:wrap_name,person.function_group_code) %></td>
+ </tr>
+ <tr>
+     <td class="formlabel"><%=t(:label_irm_person_department)%>:
+     </td>
+     <td class="formitem"><%=f.select(:department_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                               options_from_collection_for_select(current_department(person.company_id,person.organization_id),:id,:wrap_name,person.department_id)
+                     )%></td>
+     <td class="formlabel">
+        <%=t(:label_irm_person_vip_flag)%>:
+     </td>
+     <td class="formitem"><%=f.check_box :vip_flag%></td>
+ </tr>
+ <tr>
+     <td class="formlabel"><%=t(:label_irm_person_home_phone)%>:
+     </td>
+     <td class="formitem">
+       <%=f.text_field :home_phone%>
+     </td>
+     <td class="formlabel">
+         <%=t(:label_irm_person_support_staff_flag)%>:
+      </td>
+      <td class="formitem"><%=f.check_box :support_staff_flag%></td>
+ </tr>
+ <tr>
+     <td class="formlabel"><%=t(:label_irm_person_home_address)%>:
+     </td>
+     <td class="formitem">
+       <%=f.text_field :home_address%>
+     </td>
+     <td class="formlabel">
+         <%=t(:label_irm_person_assignment_availability_flag)%>:
+      </td>
+      <td class="formitem"><%=f.check_box :assignment_availability_flag%></td>
+ </tr>
+ <tr>
+     <td class="formlabel"><%=t(:label_irm_person_mobile_phone)%>:
+     </td>
+     <td class="formitem">
+       <%=f.text_field :mobile_phone%>
+     </td>
+     <td class="formlabel"><%=(t :label_irm_person_site_group_code)%>:</td>
+     <td class="formitem"><%=f.select :site_group_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                           options_from_collection_for_select(available_site_group,:group_code,:wrap_name,person.site_group_code)%></td>
+ </tr>
+ <tr>
+     <td class="formlabel"><%=t(:label_irm_person_fax_number)%>:
+     </td>
+     <td class="formitem">
+       <%=f.text_field :fax_number%>
+     </td>
+     <td class="formlabel"><%=(t :label_irm_person_site_code)%>:</td>
+     <td class="formitem"><%=f.select :site_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                           options_from_collection_for_select(available_site,:site_code,:wrap_name,person.site_code)%></td>
+ </tr>
+ <tr>
+     <td class="formlabel"><%=t(:label_irm_person_bussiness_phone)%>:
+     </td>
+     <td class="formitem">
+       <%=f.text_field :bussiness_phone%>
+     </td>
+     <td class="formlabel">
+         <%=t(:label_irm_person_unrestricted_access_flag)%>:
+    </td>
+    <td class="formitem"><%=f.check_box :unrestricted_access_flag%></td>
+ </tr>
+ <tr>
+      <td class="formlabel"><%=t(:label_irm_person_notification_lang)%>:
+     </td>
+     <td class="formitem"><%=f.select :notification_lang,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                               options_from_collection_for_select(available_languages,:language_code,:wrap_description,person.notification_lang)%></td>
+      <td class="formlabel">
+         <%=t(:label_irm_person_notification_flag)%>:
+      </td>
+      <td class="formitem"><%=f.check_box :notification_flag%></td>
+ </tr>
+ <tr>
+     <td class="formlabel"><%=(t :label_irm_person_status_code)%>:</td>
+     <td class="formitem"><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                         options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,person.status_code)%></td>
+ </tr>
+
+</table>

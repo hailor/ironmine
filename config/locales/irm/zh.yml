@@ -42,6 +42,7 @@ zh:
   close: 关闭
   default: 默认
   select: 请选择
+  save_and_new: 保存并新建
   #常用语句
   notice_account_invalid_creditentials: 用户名或密码错误
   successfully_updated: 已经成功更新数据
@@ -103,8 +104,9 @@ zh:
   label_irm_language_language_code: 语言编码
   label_irm_language_name: 名称
   label_irm_language_description: 描述
-  label_irm_language_installed_flag: 是否按照
+  label_irm_language_installed_flag: 是否安装
   label_irm_language_status_code: 状态编码
+  label_irm_language_show: 显示语言
   #=========================    irm languages_controller=======================#
   #=========================    irm common_controller=======================#
   label_irm_common_login: 登录
@@ -159,11 +161,14 @@ zh:
   label_irm_condition_new: 新建触发条件
   label_irm_condition_edit: 编辑触发条件
   label_irm_condition_list: 触发条件列表
+  label_irm_condition_show: 触发条件
+  label_irm_condition_function_description: 定义所有的触发条件。
   label_irm_condition_conditions_tls:
      name: 名称
   #=========================end irm conditions_controller=======================#
   #=========================    irm actions_controller=======================#
   label_irm_action_action_code: 编码
+  label_irm_action: 执行动作
   label_irm_action_name: 名称
   label_irm_action_handler: 处理方法
   label_irm_action_entity_code: 实体
@@ -174,6 +179,8 @@ zh:
   label_irm_action_new: 新建执行动作
   label_irm_action_edit: 编辑执行动作
   label_irm_action_list: 执行动作列表
+  label_irm_action_show: 执行动作显示
+  label_irm_action_function_description: 需要执行动作的列表。整体描述整个执行动作的设置。
   label_irm_action_actions_tls:
      name: 名称
   #=========================end irm actions_controller=======================#
@@ -235,6 +242,8 @@ zh:
   label_irm_script_new: 新建服务宏
   label_irm_script_edit: 编辑服务宏
   label_irm_script_list: 执行服务宏
+  label_irm_script_show: 服务宏显示
+  label_irm_script_function_description: 选择条件,动作以及邮件模板来定义服务宏
   label_irm_script_scripts_tls:
      name: 名称
   #=========================end irm scripts_controller=======================#
@@ -300,6 +309,8 @@ zh:
   label_irm_currency_new: 新建币种
   label_irm_currency_edit: 编辑币种
   label_irm_currency_list: 币种列表
+  label_irm_currency_show: 币种
+  label_irm_currency_function_description: 显示币种的描述和编码。
   label_irm_currency_currencies_tls:
     name: 名称
   #=========================end irm currencies_controller=======================#
@@ -311,6 +322,8 @@ zh:
   label_irm_region_new: 新建区域
   label_irm_region_edit: 编辑区域
   label_irm_region_list: 区域列表
+  label_irm_region_show: 区域显示 
+  label_irm_region_function_description: 定义区域，例如，亚太区。
   label_irm_region_regions_tls:
     name: 名称
   #=========================end irm regions_controller=======================#
@@ -366,6 +379,8 @@ zh:
   label_irm_organization_new: 新建组织
   label_irm_organization_edit: 编辑组织
   label_irm_organization_list: 组织列表
+  label_irm_organization_show: 组织显示
+  label_irm_organization_function_description: 在公司中的定义组织。
   label_irm_organization_organizations_tls:
     name: 名称
   #=========================end irm organizations_controller=======================#
@@ -379,6 +394,8 @@ zh:
   label_irm_department_new: 新建部门
   label_irm_department_edit: 编辑部门
   label_irm_department_list: 部门列表
+  label_irm_department_show: 部门显示
+  label_irm_department_function_description: 在公司中的定义部门。
   label_irm_department_departments_tls:
     name: 名称
   #=========================end irm departments_controller=======================#
@@ -480,12 +497,14 @@ zh:
   label_irm_person_mobile_phone: 移动电话
   label_irm_person_edit: 编辑人员
   label_irm_person_new: 新建人员
+  label_irm_person_show: 人员信息
   label_irm_person_company: 公司名称
   label_irm_person_organization: 组织名称
   label_irm_person_department: 部门
   label_irm_person_title: 称谓
   label_irm_person_first_name: 名
   label_irm_person_last_name: 姓
+  label_irm_person_full_name: 姓名
   label_irm_person_job_title: 工作职位
   label_irm_person_vip_flag: VIP
   label_irm_person_support_staff_flag: 支持组成员
@@ -505,7 +524,9 @@ zh:
   label_irm_person_notification_lang: 通知语言
   label_irm_person_notification_flag: 是否通知
   label_irm_person_base_info: 基本信息
+  label_irm_person_other_info: 其他信息
   label_irm_person_login_and_access: 访问控制
+  label_irm_person_company_access: 可访问公司
   label_irm_person_support_group: 支持组
   label_irm_person_notification: 通知
   label_irm_person_status_code: 记录状态
@@ -515,6 +536,7 @@ zh:
   label_irm_person_add_company_access: 增加公司
   label_irm_person_person_name: 姓名
   label_irm_person_all_support_groups: 所在支持组
+  label_irm_person_choose_company: 选择公司
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: 弹性域

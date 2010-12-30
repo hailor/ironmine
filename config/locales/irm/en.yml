@@ -28,6 +28,7 @@ en:
   add: Add
   close: Close
   copy:  Copy
+  save_and_new: Save And New
   multilingual: Multilingual
   processing: Processing...
   list: List
@@ -86,6 +87,7 @@ en:
   label_irm_language_description: Description
   label_irm_language_installed_flag: Installed Flag
   label_irm_language_status_code: Status Code
+  label_irm_language_show: Show Language
   #=========================    irm languages_controller=======================#
   #=========================    irm common_controller=======================#
   label_irm_common_login: User login
@@ -120,19 +122,24 @@ en:
   label_irm_condition_new: New Condition
   label_irm_condition_edit: Edit Condition
   label_irm_condition_list: List Condition
+  label_irm_condition_show: Condtion Show
+  label_irm_condition_function_description: Define All Condition。
   label_irm_condition_conditions_tls:
     name: Name
   #=========================end irm conditions_controller=======================#
   #=========================    irm actions_controller=======================#
   label_irm_action_action_code: Code
   label_irm_action_name: Name
+  label_irm_action: Action
   label_irm_action_handler: Handler
   label_irm_action_entity_code: Entity
   label_irm_action_description: Description
   label_irm_action_status_code: Status Code
-  label_irm_action_new: New action
-  label_irm_action_edit: Edit action
-  label_irm_action_list: List action
+  label_irm_action_new: New Action
+  label_irm_action_edit: Edit Action
+  label_irm_action_list: List Action
+  label_irm_action_show: Show Action
+  label_irm_action_function_description: Action List。You Can
   label_irm_action_actions_tls:
     name: Name
   #=========================end irm actions_controller=======================#
@@ -149,6 +156,8 @@ en:
   label_irm_script_new: New script
   label_irm_script_edit: Edit script
   label_irm_script_list: List script
+  label_irm_script_show: Show script
+  label_irm_script_function_description: Choose condition,action and mail template to define script
   label_irm_script_scripts_tls:
     name: Name
   #=========================end irm scripts_controller=======================#
@@ -187,9 +196,11 @@ en:
   label_irm_currency_precision: Precision
   label_irm_currency_description: Description
   label_irm_currency_status_code: Status Code
-  label_irm_currency_new: New currency
-  label_irm_currency_edit: Edit currency
-  label_irm_currency_list: List currency
+  label_irm_currency_new: New Currency
+  label_irm_currency_edit: Edit Currency
+  label_irm_currency_list: List Currency
+  label_irm_currency_show: Show Currency
+  label_irm_currency_function_description: Show Currency Code Description
   label_irm_currency_currencies_tls:
     name: Name
   #=========================end irm currencies_controller=======================#
@@ -201,6 +212,8 @@ en:
   label_irm_region_new: New region
   label_irm_region_edit: Edit region
   label_irm_region_list: List region
+  label_irm_region_show: Show region
+  label_irm_region_function_description: Define Region。
   label_irm_region_regions_tls:
     name: Name
   #=========================end irm regions_controller=======================#
@@ -253,9 +266,11 @@ en:
   label_irm_organization_name: Name
   label_irm_organization_description: Description
   label_irm_organization_status_code: Status Code
-  label_irm_organization_new: New organization
-  label_irm_organization_edit: Edit organization
-  label_irm_organization_list: List organization
+  label_irm_organization_new: New Organization
+  label_irm_organization_edit: Edit Organization
+  label_irm_organization_list: List Organization
+  label_irm_organization_show: Show Organization
+  label_irm_organization_function_description: Define organization in company。
   label_irm_organization_organizations_tls:
     name: Name
   #=========================end irm organizations_controller=======================#
@@ -266,9 +281,11 @@ en:
   label_irm_department_name: Name
   label_irm_department_description: Description
   label_irm_department_status_code: Status Code
-  label_irm_department_new: New department
-  label_irm_department_edit: Edit department
-  label_irm_department_list: List department
+  label_irm_department_new: Department New
+  label_irm_department_edit: Department Edit
+  label_irm_department_list: Department List
+  label_irm_department_show: Department Show
+  label_irm_department_function_description: Define Department in company。
   label_irm_department_departments_tls:
     name: Name
   #=========================end irm departments_controller=======================#
@@ -328,12 +345,14 @@ en:
   label_irm_person_mobile_phone: Mobile Phone
   label_irm_person_edit: Edit Person
   label_irm_person_new: New Person
+  label_irm_person_show: Person Info
   label_irm_person_company: Company
   label_irm_person_organization: Organization
   label_irm_person_department: Department
   label_irm_person_title: Title
   label_irm_person_first_name: First Name
   label_irm_person_last_name: Last Name
+  label_irm_person_full_name: Full Name
   label_irm_person_job_title: Job Title
   label_irm_person_vip_flag: VIP
   label_irm_person_support_staff_flag: Support Staff
@@ -353,7 +372,9 @@ en:
   label_irm_person_notification_lang: Notification Language
   label_irm_person_notification_flag: Notification Flag
   label_irm_person_base_info: Base Info
+  label_irm_person_other_info: Other Info
   label_irm_person_login_and_access: Login Access
+  label_irm_person_company_access: Company Access
   label_irm_person_support_group: Support Group
   label_irm_person_notification: Notification
   label_irm_person_status_code: Status Code
@@ -362,5 +383,7 @@ en:
   label_irm_person_maintenance_company_access: Maintenance Company Access
   label_irm_person_add_company_access: Add Company
   label_irm_person_person_name: Full Name
+  label_irm_person_edit: Edit Person
+  label_irm_person_choose_company: Choose Company
   #=========================end irm people_controller=======================#
 
