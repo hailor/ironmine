@@ -84,13 +84,10 @@ class Irm::PermissionsController < ApplicationController
   end
 
   def get_data
-    @permissions = Irm::Permission.list_all
+    permissions_scope = Irm::Permission.list_all
+    permissions,count = paginate(permissions_scope)
     respond_to do |format|
-      format.json  {render :json => @permissions.to_dhtmlxgrid_json(['0',:product_module_name,:permission_code,
-                                                                     :name,:page_controller,:page_action,
-                                                                     :status_code,
-                                                                    {:value => 'M', :controller => 'irm/permissions',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
-                                                                    ], @permissions.size) }
+      format.json  {render :json => permissions.to_grid_json([:name,:product_module_name,:status_code,:permission_code,:page_controller,:page_action], count) }
     end
   end
 end
