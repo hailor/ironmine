@@ -328,12 +328,14 @@ en:
   label_irm_person_mobile_phone: Mobile Phone
   label_irm_person_edit: Edit Person
   label_irm_person_new: New Person
+  label_irm_person_show: Person Info
   label_irm_person_company: Company
   label_irm_person_organization: Organization
   label_irm_person_department: Department
   label_irm_person_title: Title
   label_irm_person_first_name: First Name
   label_irm_person_last_name: Last Name
+  label_irm_person_full_name: Full Name
   label_irm_person_job_title: Job Title
   label_irm_person_vip_flag: VIP
   label_irm_person_support_staff_flag: Support Staff
@@ -353,7 +355,9 @@ en:
   label_irm_person_notification_lang: Notification Language
   label_irm_person_notification_flag: Notification Flag
   label_irm_person_base_info: Base Info
+  label_irm_person_other_info: Other Info
   label_irm_person_login_and_access: Login Access
+  label_irm_person_company_access: Company Access
   label_irm_person_support_group: Support Group
   label_irm_person_notification: Notification
   label_irm_person_status_code: Status Code
@@ -362,5 +366,7 @@ en:
   label_irm_person_maintenance_company_access: Maintenance Company Access
   label_irm_person_add_company_access: Add Company
   label_irm_person_person_name: Full Name
+  label_irm_person_edit: Edit Person
+  label_irm_person_choose_company: Choose Company
   #=========================end irm people_controller=======================#
 

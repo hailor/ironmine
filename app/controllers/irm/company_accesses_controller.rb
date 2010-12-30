@@ -1,31 +1,28 @@
 class Irm::CompanyAccessesController < ApplicationController
   def create
-    @person_id = params[:person_id]
-    @company_id = params["c1"]
-    @status_code   = params["c2"]
-
-    @mode = params["!nativeeditor_status"]
-
-    @id = params["gr_id"]
-    case @mode
-      when "inserted"
-            @company_access = Irm::CompanyAccess.new({:person_id => @person_id,
-                                                      :accessable_company_id=>@company_id})
-            @company_access.save!
-
-            @tid = @company_access.id
-        when "deleted"
-            @company_access=Irm::CompanyAccess.find(@id)
-            @company_access.destroy
-
-            @tid = @id
-        when "updated"
-            @company_access=Irm::CompanyAccess.find(@id)
-            @company_access.accessable_company_id = @company_id
-            @company_access.status_code = @status_code
-            @company_access.save!
-
-            @tid = @id
+    company_list = params[:company_choose_list].split(',')
+    person_id = params[:person_id]
+    flag = true
+    if ((!company_list.blank?) && !(person_id .blank?))
+      company_list.each do |company_id|
+        if Irm::CompanyAccess.check_company_exists?(company_id,person_id)
+            @company_access = Irm::CompanyAccess.new(:person_id => person_id,
+                                           :accessable_company_id =>company_id )
+            if !@company_access.save
+              flag=false
+            end
+        end
+      end
+    end
+    if flag
+      respond_to do |format|
+         flash[:successful_message] = (t :successfully_created)
+         format.html { render "irm/common/_successful_message" }
+      end
+    else
+      respond_to do |format|
+         format.html { render "irm/common/_successful_message" }
+      end
     end
   end
 

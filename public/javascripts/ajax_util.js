@@ -595,7 +595,10 @@ function executeFunctions(script, data) {
 		if(fs[i].indexOf("replace(") == 0) {
 			var param = fs[i].substring("replace(".length, fs[i].length - 1);
 			replace(param, data);
-		}
+		}else if(fs[i].indexOf("replaceA(") == 0){
+            var paramA = fs[i].substring("replaceA(".length, fs[i].length - 1);
+			replaceA(paramA, data);
+        }
 		else {
 			//alert(1);
 			result = eval(fs[i]);
@@ -611,6 +614,23 @@ function executeFunctions(script, data) {
 }
 
 function replace(param, data) {
+	var s = param.split(",");
+	var targetData=data;
+	if(s.length == 2) {
+		targetData = $(data).find("#" + s[1])[0];
+	}
+	var html=$(targetData).html();
+	var source = document.getElementById(s[0]);
+	$(source).find("*[action_type]").each(function() {
+		this.onclick = null;
+	});
+	if(html&&html!=""){$(source).html(html);}
+    //$("#system_message_box").empty();
+	init("#" + s[0]);
+    pre_init_partial("#" + s[0]);
+}
+
+function replaceA(param, data) {
 	var s = param.split(",");
 	var targetData=data;
 	if(s.length == 2) {

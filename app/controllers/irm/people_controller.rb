@@ -10,6 +10,10 @@ class Irm::PeopleController < ApplicationController
     end
   end
 
+  def show
+    @person = Irm::Person.find(params[:id])
+  end
+
   # GET /people/new
   # GET /people/new.xml
   def new
@@ -34,7 +38,7 @@ class Irm::PeopleController < ApplicationController
     respond_to do |format|
       if @person.save
         flash[:successful_message] = (t :successfully_created)
-        format.html { render "irm/common/_successful_message" }
+        format.html { render "show"}
         format.xml  { render :xml => @person, :status => :created, :location => @person }
       else
         @error = @person
@@ -93,7 +97,7 @@ class Irm::PeopleController < ApplicationController
     end
   end
 
-  def support_group
+  def choose_company
     @person_id = params[:person_id]
   end
 end

@@ -481,12 +481,14 @@ zh:
   label_irm_person_mobile_phone: 移动电话
   label_irm_person_edit: 编辑人员
   label_irm_person_new: 新建人员
+  label_irm_person_show: 人员信息
   label_irm_person_company: 公司名称
   label_irm_person_organization: 组织名称
   label_irm_person_department: 部门
   label_irm_person_title: 称谓
   label_irm_person_first_name: 名
   label_irm_person_last_name: 姓
+  label_irm_person_full_name: 姓名
   label_irm_person_job_title: 工作职位
   label_irm_person_vip_flag: VIP
   label_irm_person_support_staff_flag: 支持组成员
@@ -506,7 +508,9 @@ zh:
   label_irm_person_notification_lang: 通知语言
   label_irm_person_notification_flag: 是否通知
   label_irm_person_base_info: 基本信息
+  label_irm_person_other_info: 其他信息
   label_irm_person_login_and_access: 访问控制
+  label_irm_person_company_access: 可访问公司
   label_irm_person_support_group: 支持组
   label_irm_person_notification: 通知
   label_irm_person_status_code: 记录状态
@@ -516,6 +520,7 @@ zh:
   label_irm_person_add_company_access: 增加公司
   label_irm_person_person_name: 姓名
   label_irm_person_all_support_groups: 所在支持组
+  label_irm_person_choose_company: 选择公司
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: 弹性域
