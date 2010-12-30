@@ -104,8 +104,9 @@ zh:
   label_irm_language_language_code: 语言编码
   label_irm_language_name: 名称
   label_irm_language_description: 描述
-  label_irm_language_installed_flag: 是否按照
+  label_irm_language_installed_flag: 是否安装
   label_irm_language_status_code: 状态编码
+  label_irm_language_show: 显示语言
   #=========================    irm languages_controller=======================#
   #=========================    irm common_controller=======================#
   label_irm_common_login: 登录

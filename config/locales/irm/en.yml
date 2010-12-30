@@ -87,6 +87,7 @@ en:
   label_irm_language_description: Description
   label_irm_language_installed_flag: Installed Flag
   label_irm_language_status_code: Status Code
+  label_irm_language_show: Show Language
   #=========================    irm languages_controller=======================#
   #=========================    irm common_controller=======================#
   label_irm_common_login: User login

@@ -9,6 +9,15 @@ class Irm::LanguagesController < ApplicationController
       format.xml  { render :xml => languages }
     end
   end
+
+   def show
+    @language = Irm::Language.multilingual.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @language }
+    end
+  end
   
   # GET /languages/new
   # GET /languages/new.xml

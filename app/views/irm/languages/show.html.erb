@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="pagetitle"><%=t(:label_irm_language_show)%></div>
+</div>
+<div class="container">
+  <div class="discontainerheader  bluetop">
+    <table class="bartable">
+      <tr>
+        <td class="left"><div class="headertitle"></div></td>
+        <td class="middle">
+          <div class="button"><%= link_to t(:edit), {:action => "edit"}%></div>
+          <div class="button" ><%= link_to t(:new), {:action=>"new"}%></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="discontainerbody">
+  <table class="showtable" cellspacing="0">
+      <tr>
+          <td class="showlabel"><%=(t :label_irm_language_language_code)%>:</td>
+          <td class="showitem"><%=@language.language_code%></td>
+          <td class="showlabel"><%=(t :label_irm_language_installed_flag)%>:</td>
+          <td class="showitem"><%=@language.installed_flag%></td>
+      </tr>
+      <tr>
+         <td class="showlabel"><%=(t :label_irm_language_description)%>:</td>
+         <td class="showitem"><%=@language[:description]%></td>
+      </tr>
+  </table>
+  </div>
+  <div class="discontainerfooter">
+    <table class="bartable">
+      <tr>
+        <td class="left"></td>
+        <td class="middle">
+          <div class="button"><%= link_to t(:edit), {:action => "edit"}%></div>
+          <div class="button" ><%= link_to t(:new), {:action=>"new"}%></div>
+        </td>
+        <td class="right"></td>
+      </tr>
+    </table>
+  </div>
+</div>
