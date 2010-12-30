@@ -58,13 +58,31 @@ class Irm::IdFlexStructuresController < ApplicationController
         end
       end
       format.xml  { render :xml => @id_flex_structure }
-    end    
+    end
   end
 
   def get_data
     @id_flex_structures = Irm::IdFlexStructure.list_all.query_by_flex_code(params[:id_flex_code])
     respond_to do |format|
-      format.json  {render :json => @id_flex_structures.to_dhtmlxgrid_json(['0',:id_flex_structure_code, :id_flex_structure_name,:description,:status_code], @id_flex_structures.size) }
+      format.json  {render :json => @id_flex_structures.to_dhtmlxgrid_json(['0',:id_flex_structure_code, :id_flex_structure_name,:description, :concatenated_segment_delimiter, :status_code,
+                                                                            {:value => 'M', :controller => 'irm/id_flex_structures',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}],
+                                                                           @id_flex_structures.size) }
     end
   end
+
+  def multilingual_edit
+    @id_flex_structure = Irm::IdFlexStructure.find(params[:id])
+  end
+
+  def multilingual_update
+    @id_flex_structure = Irm::IdFlexStructure.find(params[:id])
+    @id_flex_structure.not_auto_mult=true
+    respond_to do |format|
+      if @id_flex_structure.update_attributes(params[:irm_flex_structure])
+        format.html { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
+      else
+        format.html { render({:action=>"multilingual_edit"}) }
+      end
+    end
+  end  
 end

@@ -27,11 +27,14 @@ class Irm::OperationalCatalogsController < ApplicationController
   end
 
   def edit
-    @operational_catalog = Irm::OperationalCatalog.multilingual.find(params[:id])
+    @operational_catalog = Irm::OperationalCatalog.find(params[:id])
   end
 
   def create
     @operational_catalog = Irm::OperationalCatalog.new(params[:irm_operational_catalog])
+    @operational_catalog.segment1 = "" if params[:irm_operational_catalog][:segment1].blank?
+    @operational_catalog.segment2 = "" if params[:irm_operational_catalog][:segment2].blank?
+    @operational_catalog.segment3 = "" if params[:irm_operational_catalog][:segment3].blank?
     respond_to do |format|
       if @operational_catalog.save
         flash[:successful_message] = (t :successfully_created)
@@ -45,7 +48,12 @@ class Irm::OperationalCatalogsController < ApplicationController
 
   def update
     @operational_catalog = Irm::OperationalCatalog.find(params[:id])
-
+    if !params[:irm_operational_catalog][:segment3]
+      params[:irm_operational_catalog] = params[:irm_operational_catalog].merge({:segment3 => ""})
+    end
+    if !params[:irm_operational_catalog][:segment2]
+      params[:irm_operational_catalog] = params[:irm_operational_catalog].merge({:segment2 => ""})
+    end    
     respond_to do |format|
       if @operational_catalog.update_attributes(params[:irm_operational_catalog])
         flash[:successful_message] = (t :successfully_updated)
@@ -86,8 +94,7 @@ class Irm::OperationalCatalogsController < ApplicationController
   def get_data
     @operational_catalogs = Irm::OperationalCatalog.list_all
     respond_to do |format|
-      format.json  {render :json => @operational_catalogs.to_dhtmlxgrid_json(['0',:catalog_type_name,:catalog_code, :name,:segment1_name, :segment2_name, :segment3_name,:status_code,
-                                                                    {:value => 'M', :controller => 'irm/operational_catalogs',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
+      format.json  {render :json => @operational_catalogs.to_dhtmlxgrid_json(['0',:company_name, :segment1_name, :segment2_name, :segment3_name, :concat_segment_name, :status_code
                                                                     ], @operational_catalogs.size) }
     end
   end

@@ -1,7 +1,6 @@
 class Irm::IdFlexSegmentsController < ApplicationController
   def index
     @id_flex_structure = Irm::IdFlexStructure.list_all.where(:id => params[:id_flex_structure_id]).first()
-    puts("+++++++++++++++++" +  @id_flex_structure.to_json)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @id_flex_structure }
@@ -63,7 +62,24 @@ class Irm::IdFlexSegmentsController < ApplicationController
   def get_data
     @id_flex_segments = Irm::IdFlexSegment.list_all(params[:id_flex_structure_id])
     respond_to do |format|
-      format.json  {render :json => @id_flex_segments.to_dhtmlxgrid_json(['0',:segment_num, :segment_name, :form_left_prompt, :description,:status_code], @id_flex_segments.size) }
+      format.json  {render :json => @id_flex_segments.to_dhtmlxgrid_json(['0',:segment_num, :segment_name, :form_left_prompt, :description, :value_set_name, :status_code,
+                                                                         {:value => 'M', :controller => 'irm/id_flex_segments',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}], @id_flex_segments.size) }
     end
   end
+
+  def multilingual_edit
+    @id_flex_segment = Irm::IdFlexSegment.find(params[:id])
+  end
+
+  def multilingual_update
+    @id_flex_segment = Irm::IdFlexSegment.find(params[:id])
+    @id_flex_segment.not_auto_mult=true
+    respond_to do |format|
+      if @id_flex_segment.update_attributes(params[:irm_flex_segment])
+        format.html { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
+      else
+        format.html { render({:action=>"multilingual_edit"}) }
+      end
+    end
+  end    
 end

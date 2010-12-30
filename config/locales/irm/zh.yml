@@ -438,13 +438,12 @@ zh:
   label_irm_operational_catalog_list: 服务类别列表
   label_irm_operational_catalog_new: 创建服务类别
   label_irm_operational_catalog_edit: 编辑服务类别
-  label_irm_operational_catalog_code: 服务类别代码
-  label_irm_operational_catalog_type: 服务类别类型
+  label_irm_operational_catalog_company: 公司
   label_irm_operational_catalog_segment1: 第一段
   label_irm_operational_catalog_segment2: 第二段
   label_irm_operational_catalog_segment3: 第三段
-  label_irm_operational_catalog_name: 运营分类名
-  label_irm_operational_catalog_description: 描述
+  label_irm_operational_catalog_concact_segment: 类别
+  error_segment_combination_existed: 同一公司下不能有相同的段组合
   #=========================end operational_catalogs_controller=======================#
   #=========================irm op_catalog_accesses_controller=======================#
   label_irm_op_catalog_access: 服务类别控制
@@ -539,6 +538,8 @@ zh:
   label_irm_id_flex_structure_name: 名称
   label_irm_id_flex_structure_code: 构造编码
   label_irm_id_flex_structure_description: 描述
+  label_irm_id_flex_structure_concatenated_segment_delimiter: 分隔符
+  label_irm_id_flex_structure_id_flex_structure_name: 名称
   label_flex_choice: 选择弹性域
 
   label_irm_add_id_flex_segments: 管理弹性域段

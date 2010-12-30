@@ -294,6 +294,7 @@ Ironmine::Application.routes.draw do
     match '/operational_catalogs/:id(.:format)' => "operational_catalogs#update", :via => :put
     match '/operational_catalogs/:id/multilingual_edit(.:format)' => "operational_catalogs#multilingual_edit", :via => :get
     match '/operational_catalogs/:id/multilingual_update(.:format)' => "operational_catalogs#multilingual_update", :via => :put
+    match '/operational_catalogs/update_segment_options(.:format)' => "operational_catalogs#update_segment_options"
     #op_catalog_accesses
     match '/op_catalog_accesses/:operational_catalog_id(/index)(.:format)' => "op_catalog_accesses#index", :via => :get
     match '/op_catalog_accesses/:operational_catalog_id/get_data(.:format)' => "op_catalog_accesses#get_data"
@@ -346,11 +347,15 @@ Ironmine::Application.routes.draw do
     match '/id_flex_structures/:id_flex_code/show_parent(.:format)' => "id_flex_structures#show_parent", :via => :get
     match '/id_flex_structures/:id_flex_code/get_data(.:format)' => "id_flex_structures#get_data"
     match '/id_flex_structures/create_entry(.:format)' => "id_flex_structures#create_entry"
+    match '/id_flex_structures/:id/multilingual_edit(.:format)' => "id_flex_structures#multilingual_edit", :via => :get
+    match '/id_flex_structures/:id/multilingual_update(.:format)' => "id_flex_structures#multilingual_update", :via => :put
     #id_flex_segments
     match '/id_flex_segments/:id_flex_structure_id(/index)(.:format)' => "id_flex_segments#index", :via => :get
     match '/id_flex_segments/:id_flex_structure_id/show_parent(.:format)' => "id_flex_segments#show_parent", :via => :get
     match '/id_flex_segments/:id_flex_structure_id/get_data(.:format)' => "id_flex_segments#get_data"
     match '/id_flex_segments/create_entry(.:format)' => "id_flex_segments#create_entry"
+    match '/id_flex_segments/:id/multilingual_edit(.:format)' => "id_flex_segments#multilingual_edit", :via => :get
+    match '/id_flex_segments/:id/multilingual_update(.:format)' => "id_flex_segments#multilingual_update", :via => :put
   end
 
   scope :module => "icm" do

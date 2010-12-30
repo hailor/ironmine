@@ -213,15 +213,15 @@ jQuery(function ($) {
       if(e.preventDefault) e.preventDefault();
     });
 
-    $('div[targetzone]').find("a:not([type]):not([data-confirm]):not([data-remote]):not([zone]:not([type]))").live('click',function(e){
-        var source = ($(this).attr('href')||"").replace(/^\s+|\s+$/g,"");
-        var zone = $(this).parents("div[targetzone]:first");
-        zone = $(zone).attr("targetzone");
-        if(source !='#'&&$('#'+zone).length>0)
-        {
-          $('#'+zone).cusload(source);
-        }        
-        if(e.preventDefault) e.preventDefault();
-    });
+ //   $('div[targetzone]').find("a:not([type]):not([data-confirm]):not([data-remote]):not([zone]:not([type]))").live('click',function(e){
+ //       var source = ($(this).attr('href')||"").replace(/^\s+|\s+$/g,"");
+ //       var zone = $(this).parents("div[targetzone]:first");
+ //       zone = $(zone).attr("targetzone");
+ //       if(source !='#'&&$('#'+zone).length>0)
+ //       {
+ //         $('#'+zone).cusload(source);
+ //       }
+ //       if(e.preventDefault) e.preventDefault();
+ //   });
 
 });
