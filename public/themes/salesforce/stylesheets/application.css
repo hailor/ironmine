@@ -124,7 +124,11 @@ table.topmenu tr.buttonrow td.button div.buttoninside{
 	cursor: pointer;
     padding: 10px 10px 5px 10px;
 }
-table.topmenu tr.buttonrow td.button:hover{color: #1468b6; text-decoration: underline;}
+table.topmenu tr.buttonrow td.button:hover, table.topmenu tr.buttonrow td.button a:hover{color: #1468b6; text-decoration: underline;}
+table.topmenu tr.buttonrow td.button a{color: #1468b6; text-decoration: none;}
+table.topmenu tr.buttonrow td.selected a{color: #fff; text-decoration: none !important;}
+table.topmenu tr.buttonrow td.selected a:hover{color: #fff; text-decoration: underline !important;}
+
 table.topmenu tr.buttonrow td.selected{
     background-color: #1797C0;background-image: url("../images/tabs_sprite.png");background-position: left 0; background-repeat: no-repeat;margin-bottom:-1px;}
 table.topmenu tr.buttonrow td.selected div.buttoninside{

@@ -148,6 +148,7 @@ table.topmenu tr.buttonrow td.selected a:hover {
 	color: #000000;
 	text-decoration: none;
 }
+
 table.topmenu tr.buttonrow td.buttonleft, table.topmenu tr.buttonrow td.buttonright{display:none}
 
 td.verticalseparatornoborder{width: 1px; padding: 0 !important;}
