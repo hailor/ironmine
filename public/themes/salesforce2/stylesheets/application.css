@@ -1,7 +1,7 @@
 @charset "utf-8";
 body, td {color:#222222; font-family:Arial,Helvetica,sans-serif;}
 body {font-size:75%;}
-input {padding-top: 0;}
+
 
 #appBodyHeader{background-image: none;}
 #appBodyHeader .phHeader{background-color: #1797C0; margin-bottom: 10px;background-position:right top; background-repeat:no-repeat;}
@@ -166,6 +166,7 @@ width:990px;
 }
 .login_form_box #login_form input.txtbox {
     height:1.8em;
+    height:1.333em\9;/* for ie */
     margin:0;
     width:280px;
 }
@@ -185,8 +186,13 @@ width:990px;
     min-height:2.833em;
     padding:0 0 0 10px;
     width:auto;
+    
 }
 .login_form_box #login_form .rememberme_txt input {float:left;}
+.login_form_box #login_form .rememberme_txt label {
+    float:left;
+    line-height:20px;
+}
 .login_form_box #login_form .rememberme_txt {font-size:12px;line-height:14px;}
 div.login_button a[type=submit] {
     -moz-border-radius: 3px 3px 3px 3px;
@@ -197,11 +203,11 @@ div.login_button a[type=submit] {
 	text-decoration: none;
 	color:#333333;
 	display: inline-block;
-	padding: 0 8px;
-	height: 20px;
+	padding: 0 12px;
+	height: 22px;
     font-size: 1em;
     font-weight: bold;
-	line-height: 20px;
+	line-height: 22px;
     float:left;
     margin:4px 9px 5px 12px;
 }
@@ -250,7 +256,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     width:489px;
 }
 #shoutoutcontent .shoutout {
-    margin:0;
+    margin:0 0 0 8px;
     overflow:hidden;
     padding:0 0 1px;
 }
