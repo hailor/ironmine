@@ -1,0 +1,293 @@
+@charset "utf-8";
+body, td {color:#222222; font-family:Arial,Helvetica,sans-serif;}
+body {font-size:75%;}
+input {padding-top: 0;}
+
+#appBodyHeader{background-image: none;}
+#appBodyHeader .phHeader{background-color: #1797C0; margin-bottom: 10px;background-position:right top; background-repeat:no-repeat;}
+.bPageHeader, .bPageHeader td.left {
+    background-image:url("../images/bgTop.gif");
+    background-position:left top;
+    background-repeat:repeat-x;
+}
+
+.bPageHeader td .left{background:url("../images/appHeader_l.png") no-repeat scroll left bottom transparent; width: 230px;}
+.bPageHeader td{vertical-align: top;}
+.bPageHeader td .searchCell{white-space: nowrap;}
+.bPageHeader .phHeader td.searchCell{vertical-align: middle; white-space: nowrap;}
+.bPageHeader td.right.vtop {vertical-align: top;}
+.bPageHeader .phHeader td.right {text-align: right; white-space: nowrap; width: 100%;}
+.bPageHeader .phHeader, .tabsNewBar {width: 100%; border: 0 none; margin: 0; padding: 0;}
+
+
+.headerSearchContainer{border: 0 none;font-family:Arial; height: 24px; margin-left: 21px; position: relative; width: 270px;}
+.headerSearchLeftRoundedCorner, .headerSearchContainer .headerSearchOptions{padding-left: 11px;}
+.headerSearchLeftRoundedCorner{background: url("../images/unified_search_sprite.png") no-repeat scroll left -216px transparent;}
+
+.headerSearchLeftRoundedCorner, .headerSearchRightRoundedCorner, .searchBoxClearContainer{border: 0 none; display: inline-block; height:24px;}
+.searchBoxClearContainer{background: url("../images/unified_search_background_sprite.png") repeat-x scroll left -168px transparent; position: absolute; width: 192px;}
+#phSearchInput.headerSearchBoxGhostText {color:#7D7D84;}
+
+.headerSearchLeftRoundedCorner #phSearchInput {background-color: #fff; border: 0 none; font-size:100%;height:16px; margin:0;padding:0;position:relative;top: 5px; width: 172px;}
+.headerSearchRightRoundedCorner{background: url("../images/unified_search_sprite.png") no-repeat scroll right -168px transparent; border-left: 1px solid #dddddd; cursor:pointer; left: 203px; padding-left:0; padding-right:11px;position:absolute;}
+.headerSearchRightRoundedCorner #phSearchButton {
+    background:url("../images/unified_search_background_sprite.png") repeat-x scroll left -120px transparent;
+    border:0 none;
+    color: #1797C0;
+    cursor:pointer;
+    font-size: 90%;
+    font-weight: bold;
+    height: 24px;
+    margin: 0;
+    overflow: visible;
+    padding-left: 8px;
+    padding-right: 0;
+    width: auto;
+}
+
+a.headerSearchOptionsLink, a.headerSearchOptionsLink:hover{color: #fff; font-size: 0.92em;}
+a.headerSearchOptionsLink{text-decoration: none;}
+
+table.tab {line-height:normal;}
+body .tabNavigation .tab .currentTab a{color: #fff;}
+body .tabNavigation .tab .currentTab div {
+    background-image:url("../images/tabs_sprite.png");
+    background-position:right -150px;
+    background-repeat:no-repeat;
+}
+
+body .tabNavigation .tab a {color: #353535;}
+.tab a{text-decoration: none;}
+.tab a:hover{text-decoration: underline;}
+body .tabsNewBar .tabNavigation {background: url("../images/tabbar_sprite.png") repeat-x scroll left -73px transparent; margin: 0 5px; padding: 3px 0 0; position: relative;}
+body .tabsNewBar .tabNavigation .tabBarLeft {background: url("../images/tabbar_sprite.png") no-repeat scroll 0 0 transparent;height: 100%; left: -15px; position: absolute; top: 0; width: 15px;}
+body .tabsNewBar .tabNavigation .tabBarRight {
+background:url("../images/tabbar_sprite.png") no-repeat scroll -15px 0 transparent;
+height:100%;
+position:absolute;
+right:-15px;
+top:0;
+width:15px;
+}
+
+.tabNavigation {font-family: 'Verdana','Geneva',sans-serif; font-size: 91%;}
+body .tabsNewBar .tabNavigation .tab {height: 25px;}
+body .tabNavigation .tab td div {color: #4B4B57; font-family: Arial,Helvetica,sans-serif; font-size: 1.18em; font-weight: bold; max-height: 15px; padding: 7px 10px;}
+.tabNavigation .tab .currentTab {background-color: #1797C0;background-image: url("../images/tabs_sprite.png"); background-position:left 0; background-repeat: no-repeat;}
+
+.sfdcBody {background: url("../images/gradient_body.png") repeat-x scroll 0 0 #1797C0;}
+body .bodyDiv{background-color: #fff;margin: 0 10px; height: 100%; position: relative;}
+
+#bd_l{background: url("../images/bd_sprite.png") repeat-y scroll left top transparent; height: 100%; left: -20px; position: absolute; width: 20px;}
+#bd_r{background: url("../images/bd_right_shadow.png") repeat-y scroll right top transparent;height: 100%; left: 20px; z-index: -1; width: 100%; position: absolute;}
+
+
+#motifCurve {
+    background-image:url("../images/motifCurve_sprite.png");
+    background-repeat:repeat-x;
+    height:9px;
+    margin:0 -5px;
+    position:relative;
+}
+#mc_l, #mc_r {
+    background:url("../images/motifCurve_sprite.png") no-repeat scroll 0 0 transparent;
+    height:9px;
+    position:absolute;
+    width:5px;
+}
+
+#newheader {
+    background:url("../images/header_bg.gif") no-repeat scroll 0 7px transparent;
+    height:91px;
+    overflow:visible;
+    padding-bottom:0 !important;
+    text-align:left;
+    width:955px;
+}
+#pagewrap {
+margin:0 auto;
+padding:0 10px;
+width:990px;
+}
+#loginpage #gradientwrap {
+    background:url("../images/bk_bluegradient_top.png") no-repeat scroll 0 0 transparent;
+    width:956px;
+}
+#gradientwrap {
+    overflow:visible;
+}
+#loginpage #gradientwrap .bottom {
+    background:url("../images/bk_bluegradient_bottom.png") no-repeat scroll 0 100% transparent;
+    margin:0;
+    overflow:hidden;
+    padding:41px 0 0 33px;
+    width:100%;
+}
+.login_form_box {
+    float:left;
+    margin-bottom:9px;
+    width:395px;
+}
+.login_form_box .content_new {
+    background:url("../images/login_form_new.png") no-repeat scroll 0 0 transparent;
+    height:auto !important;
+    margin:0;
+    min-height:331px;
+    overflow:hidden;
+    padding:39px 10px 13px 41px;
+    width:395px;
+}
+
+#loginpage #gradientwrap .login_form_box .bottom_new {
+    background:url("../images/login_form_bottom_new.png") no-repeat scroll 0 100% transparent;
+    display:block;
+    height:28px;
+    margin:0;
+    padding:0;
+}
+.login_form_box #login_form div {
+    background:none no-repeat scroll 0 0 transparent;
+    overflow:hidden;
+    padding-bottom:7px;
+    position:relative;
+    width:100%;
+}
+.login_form_box #login_form .inputbox label {
+    height:1.333em;
+    padding-bottom:4px;
+    padding-right:2px;
+    padding-top:4px;
+}
+.login_form_box #login_form div span {
+    display:block;
+    height:2.167em;
+    padding:3px 0 0;
+    width:300px;
+}
+.login_form_box #login_form input.txtbox {
+    height:1.8em;
+    margin:0;
+    width:280px;
+}
+.login_form_box #login_form {
+    color:#666666;
+    font-size:12px;
+    line-height:14px;
+}
+.inputs {
+    padding-left:10px;
+}
+.login_form_box #login_form .rememberme_txt {
+    background-image:none;
+    float:none;
+    font-size:12px;
+    line-height:14px;
+    min-height:2.833em;
+    padding:0 0 0 10px;
+    width:auto;
+}
+.login_form_box #login_form .rememberme_txt input {float:left;}
+.login_form_box #login_form .rememberme_txt {font-size:12px;line-height:14px;}
+div.login_button a[type=submit] {
+    -moz-border-radius: 3px 3px 3px 3px;
+    background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
+    border-color: #B5B5B5 #B5B5B5 #7F7F7F;
+	border-width: 1px;
+    border-style: solid;
+	text-decoration: none;
+	color:#333333;
+	display: inline-block;
+	padding: 0 8px;
+	height: 20px;
+    font-size: 1em;
+    font-weight: bold;
+	line-height: 20px;
+    float:left;
+    margin:4px 9px 5px 12px;
+}
+div.login_button a:hover[type=submit]{background-position: right -30px;}
+.login_form_box #login_form .login_button {
+    height:2.833em;
+    padding-bottom:1.75em;
+}
+
+.login_form_box #login_form .forgotpass {
+    background-color:#FFFFFF;
+    color:#356FB6;
+    display:block;
+    margin-left:65px;
+    margin-right:30px;
+    margin-top:8px;
+    text-decoration:none;
+    width:160px;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    border:0 none;
+    font-family:inherit;
+    font-size:100%;
+    font-style:inherit;
+    font-weight:inherit;
+    margin:0;
+    outline:0 none;
+    padding:0;
+    vertical-align:baseline;
+}
+#signupcontent .signupbox, .login_form_box .signupbox {
+    background:url("../images/horizontal_rule_dotted362.png") no-repeat scroll 0 0 transparent;
+    color:#333333;
+    font-size:14px;
+    line-height:17px;
+    margin:0;
+    padding:20px 0 0;
+    text-align:center;
+    width:320px;
+}
+.shoutout .promo .overlay {
+    background:url("../images/bk_promo_overlay3.png") no-repeat scroll 0 0 transparent;
+    display:block;
+    height:411px;
+    position:absolute;
+    width:489px;
+}
+#shoutoutcontent .shoutout {
+    margin:0;
+    overflow:hidden;
+    padding:0 0 1px;
+}
+.shoutout {
+    float:left;
+    margin-bottom:10px;
+    padding-left:8px;
+}
+.infobar {
+    background:url("../images/bk_infobar.gif") no-repeat scroll 0 0 transparent;
+    clear:both;
+    color:#666666;
+    overflow:hidden;
+    padding:15px 0 0 27px;
+    width:100%;
+}
+.infobar_bottom {
+    background:url("../images/bk_infobar_bottom.gif") no-repeat scroll 0 0 transparent;
+    clear:both;
+    display:block;
+    height:24px;
+    margin:0 0 34px;
+}
+.infobar .col1 {padding-left:22px;}
+
+.infobar .col {
+    float:left;
+    font-size:12px;
+    line-height:14px;
+    margin:0 31px 0 0;
+    width:381px;
+}
+.infobar .col h2 {
+    background:url("../images/horizontal_rule378.gif") no-repeat scroll 0 100% transparent;
+    font-size:15px;
+    font-weight:bold;
+    line-height:17px;
+    margin:0 0 4px;
+    padding:4px 0;
+}

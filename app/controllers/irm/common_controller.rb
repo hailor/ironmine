@@ -1,5 +1,5 @@
 class Irm::CommonController < ApplicationController
-  layout "common"
+  layout false
   skip_before_filter :check_if_login_required
 
   def login

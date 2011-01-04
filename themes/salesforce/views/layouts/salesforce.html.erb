@@ -1,0 +1,154 @@
+    <!DOCTYPE html>
+<html>
+<head>
+  <title>Ironmine</title>
+  <% stylesheet_link_tag :all %>
+  <%= theme_stylesheet_link_tag "dhtmlxgrid" %>
+  <%= theme_stylesheet_link_tag "dhtmlxgrid_dhx_skyblue" %>
+  <%= theme_stylesheet_link_tag "dhtmlxcalendar_yahoolike" %>
+  <%= theme_stylesheet_link_tag "dhtmlxcalendar" %>
+  <%= theme_stylesheet_link_tag "dhtmlxwindows" %>
+  <%= theme_stylesheet_link_tag "dhtmlxwindows_dhx_skyblue" %>
+  <%= theme_stylesheet_link_tag "dhtmlxgrid_pgn_bricks" %>
+  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag :ajax_relation %>
+  <%= javascript_include_tag :dhtmlx %>
+  <%= javascript_include_tag :dhtmlx_grid %>
+  <%= javascript_include_tag :ironmine_base %>
+  <%= theme_stylesheet_link_tag :application%>
+  <%= theme_stylesheet_link_tag :dhtmlxtabbar%>
+  <%= theme_stylesheet_link_tag "jquery.Jcrop"%>
+  <%= javascript_include_tag "jquery.Jcrop"%>
+  <%= javascript_include_tag "jquery.mcdropdown"%>
+  <%= javascript_include_tag "jquery.bgiframe"%>
+  <%= theme_stylesheet_link_tag :application%>
+  <%= theme_stylesheet_link_tag "jquery.mcdropdown"%>
+  <%= theme_stylesheet_link_tag :dhtmlxtabbar%>
+
+  <%= csrf_meta_tag %>
+</head>
+<body id="body">
+    <div id="banner"></div>
+    <div id="toptoolbar">
+    	<div class="floatleft">
+        	<div class="toptoolbarbtn">
+            	<div>我的工作空间tttt</div>
+            </div>
+        	<div class="toptoolbarsep"></div>
+            <div class="toptoolbarbtn">
+            	<div>搜索</div>
+            </div>
+            <div class="toptoolbarsep"></div>
+            <div class="toptoolbarbtn">
+            	<div>历史记录</div>
+            </div>
+        </div>
+        <div class="floatright">
+            <div class="toptoolbarbtn"><a href="javascript:void(0);">ivanmarkliu</a></div>
+            <div class="toptoolbarsep"></div>
+            <div class="toptoolbarbtn">退出系统</div>
+            <div class="toptoolbarsep"></div>
+            <div class="toptoolbarbtn">帮助</div>
+        </div>
+    </div>
+    <form>
+    	<div class="titlebar">
+        	<div class="jumpbutton"><a id="quickJump" href="javascript:void(0);">转至</a></div>
+            <div class="jumpfield">跳转至ID：<input id="idsString" class="jumptofield" type="text" maxlength="16" size="12" value=""></div>
+            <div class="sectiontitle">我的工作空间</div>
+        </div>
+    </form>
+    <div></div>
+
+    <table class="topmenu" cellspacing="0">
+    	<tbody>
+	        <tr class="buttonrow">
+                <td class="buttonleft"></td>
+            	<td class="button selected">
+                  <div class="buttoninside">
+                	<a href="javascript:void(0);"><img width="25" height="20" border="0" src=<%= theme_image_path('menus/my_page.gif') %>><br>我的页面</a>
+                  </div>
+                </td>
+                <td class="verticalseparatornoborder"><img width="1" height="40" border="0" src=<%= theme_image_path('white.gif') %>></td>
+                <td class="button">
+                  <div class="buttoninside">
+                	<a href="javascript:void(0);"><img width="25" height="20" border="0" src=<%= theme_image_path('menus/dashboard.gif') %>><br>统计数据</a>
+                  </div>
+                </td>
+                <td class="verticalseparatornoborder"><img width="1" height="40" border="0" src=<%= theme_image_path('white.gif') %>></td>
+                <td class="button">
+                  <div class="buttoninside">
+                	<a href="javascript:void(0);"><img width="25" height="20" border="0" src=<%= theme_image_path('menus/all_projects.gif') %>><br>项目</a>
+                  </div>
+                </td>
+                <td class="verticalseparatornoborder"><img width="1" height="40" border="0" src=<%= theme_image_path('white.gif') %>></td>
+                <td class="button">
+                  <div class="buttoninside">
+                	<a href="javascript:void(0);"><img width="25" height="20" border="0" src=<%= theme_image_path('menus/monitoring.gif') %>><br>监控</a>
+                  </div>
+                </td>
+                <td class="verticalseparatornoborder"><img width="1" height="40" border="0" src=<%= theme_image_path('white.gif') %>></td>
+                <td class="button">
+                  <div class="buttoninside">
+                	<a href="javascript:void(0);"><img width="25" height="20" border="0" src=<%= theme_image_path('menus/my_settings.gif') %>><br>我的设置</a>
+                  </div>
+                </td>
+                <td class="verticalseparatornoborder"><img width="1" height="40" border="0" src=<%= theme_image_path('white.gif') %>></td>
+                <td class="buttonend"></td>
+                <td class="buttonright"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="main">
+    	<table width="100%" cellspacing="0" cellpadding="4" border="0">
+        	<tr>
+            	<td width="250" valign="top">
+                	<div id="leftnavigations">
+                        <div class="leftnavigation">
+                          <div class="leftnavheader">
+                            子功能
+                          </div>
+                          <div class="leftnavbody functions">
+                                <a href="/product_modules/index" zone="system_content">产品模块</a>
+                                <a href="/identities" zone="system_content">帐号</a>
+                                <a href="/lookup_types/index" zone="system_content">快速编码</a>
+                                <a href="/languages/index" zone="system_content">语言信息</a>
+                                <a href="/conditions/index" zone="system_content">触发条件</a>
+                                <a href="/actions/index" zone="system_content">执行动作</a>
+                                <a href="/scripts/index" zone="system_content">服务宏</a>
+                                <a href="/mail_templates/index" zone="system_content">邮件模板</a>
+                                <a href="/currencies/index" zone="system_content">币种</a>
+                                <a href="/regions/index" zone="system_content">区域</a>
+                                <a href="/companies/index" zone="system_content">公司</a>
+                                <a href="/functions/index" zone="system_content">功能</a>
+                                <a href="/function_groups/index" zone="system_content">功能组</a>
+                                <a href="/permissions/index" zone="system_content">权限</a>
+                                <a href="/support_groups/index" zone="system_content">支持组</a>
+                                <a href="/people/index" zone="system_content">人员</a>
+                                <a href="/menus/index" zone="system_content">菜单</a>
+                                <a href="/auth_sources/index" zone="system_content">认证源</a>
+                                <a href="/global_settings/index" zone="system_content">全局设置</a>
+                                <a href="/organizations/index" zone="system_content">组织</a>
+                                <a href="/departments/index" zone="system_content">部门</a>
+                                <a href="/flex_value_sets/index" zone="system_content">值集</a>
+                                <a href="/operational_catalogs/index" zone="system_content">服务类别</a>
+                                <a href="/id_flexes/index" zone="system_content">弹性域</a>
+                                <a href="/id_flex_structures/index" zone="system_content">弹性域结构</a>
+                          </div>
+                        </div>
+                    </div>
+                </td>
+                <td width="87%" valign="top">
+                    <div>
+                    <div id="system_message_box"></div>
+                    <div class="containers" id="containers">
+                    <%= yield %>
+                    </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>    
+    <div id="footer" ></div>
+</body>
+</html>

@@ -1,45 +1,77 @@
-<div class="containers" id="containers">
-  <div id="form" class="container">
-    <%if flash[:error]%>
-      <div class="errormsgbox">
-        <%=flash[:error]%>
-      </div>
-    <%end%>
-    <table class="loginnv" cellspacing="0">
-        <tbody>
-            <tr class="loginnvheader">
-                <td><%=t(:label_irm_common_login)%>(ironmine/123456)</td>
-                <td></td>
-            </tr>
-            <tr class="loginnvbody">
-                <td class="loginform">
-
-            <% form_tag({:action=> "login"},{:id=>"login_form"}) do %>
-               <%= back_url_hidden_field_tag %>       
-               <table class="logintable" cellspacing="0" cellpadding="0">
-                 <tbody>
-                     <tr><td class="loginlabel"><%=(t :label_irm_common_username)%></td><td><%=text_field_tag :username,nil%></td></tr>
-                     <tr><td class="loginlabel"><%=(t :label_irm_common_password)%></td><td><%=password_field_tag :password, nil%></td></tr>
-                     <tr><td class="loginlabel">&nbsp;</td><td><div class="button floatright"><%= link_to t(:label_irm_common_login),{},:type=>"submit"%></div></td></tr>
-                 </tbody>
-               </table>
-             <%end%>
-                </td>
-              <td class="loginicon"><%= image_tag get_global_icon %></td>
-            </tr>
-        </tbody>
-    </table>
-
-
-  </div>
-</div>
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('input').keypress(function(e){
-  	    if(e.which == 13){
-    	    $('form#login_form').submit();
-        }
-    });
-  });
-</script>
+<html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="themes/salesforce2/stylesheets/application.css"></link>
+      <%= javascript_include_tag :defaults %>
+      <%= javascript_include_tag 'ajax_util' %>
+      <%= csrf_meta_tag %>
+    </head>
+    <body id="loginpage">
+        <div id="pagewrap">
+          <div id="newheader">
+            
+          </div>
+          <div id="gradientwrap">
+            <div class="bottom">
+              <div class="login_form_box">
+                <div class="content_new">
+                <% form_tag({:action=> "login"},{:id=>"login_form"}) do %>
+                   <%= back_url_hidden_field_tag %>
+                      <% if flash[:error] %>
+                      <div class="loginError"><%= flash[:error] %></div>
+                      <% end %>
+                      <div class="inputs">
+                        <div class="inputbox">
+                          <label><%=(t :label_irm_common_username)%></label>
+                          <br>
+                          <span><%=text_field_tag :username,nil, :class => "txtbox", :span => true%></span>
+                        </div>
+                        <div class="inputbox inputbox_password">
+                          <label><%=(t :label_irm_common_password)%></label>
+                          <br>
+                          <span><%=password_field_tag :password, nil, :class => "txtbox", :span => true%></span>
+                        </div>
+                      </div>
+                      <div class="rememberme_txt">
+                        <input type="checkbox"><label>记住用户名</label>
+                      </div>
+                      <div class="login_button">
+                        <%= link_to t(:label_irm_common_login),{},:type=>"submit"%>
+                        <a href="javascript:void(0);" class="forgotpass">忘记了密码？</a>
+                      </div>
+                 <%end%>
+                  <div class="signupbox">
+                    没有账户
+                    <a href="javascript:void(0);"></a>
+                  </div>
+                </div>
+                <span class="bottom_new"></span>
+              </div>
+              <div id="shoutoutcontent">
+                <div class="shoutout">
+                  <div class="promo"><span class="overlay"></span></div>
+                </div>
+              </div>
+              <div id="infobarcontent">
+                <div class="infobar">
+                <div class="col col1">
+                    <h2>安全警报、最佳实践和系统状态</h2>
+                    <div>
+                        如需查看安全警报、了解保护您的 Salesforce CRM 信息和访问的详情，以及查看系统状态，请访问 <a target="_blank" href="https://trust.salesforce.com/trust/cn">trust.salesforce.com/trust/cn</a>.<br>
+                        <a target="_blank" href="https://trust.salesforce.com/trust/cn/security/security_alerts/" class="bluelink">https://trust.salesforce.com/trust/cn/security/security_alerts/</a>
+                    </div>
+                </div>
+                <div class="col col2">
+                    <h2>新用户</h2>
+                    <div>
+                        请从您的电子邮件帐户中获取您的用户名和临时密码，或者联系贵公司的 Salesforce CRM 管理员以获得详细说明。<br>
+                        <a target="_blank" href="https://trust.salesforce.com/trust/cn/" class="bluelink">https://trust.salesforce.com/trust/cn</a>
+                    </div>
+                </div>
+                </div>
+                <span class="infobar_bottom"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+    </body>
+</html>
