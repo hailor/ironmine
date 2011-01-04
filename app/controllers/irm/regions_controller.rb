@@ -10,6 +10,16 @@ class Irm::RegionsController < ApplicationController
     end
   end
 
+  def show
+    @region = Irm::Region.multilingual.query_wrap_info(I18n::locale).find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @region }
+    end
+  end
+
+
 
   # GET /regions/new
   # GET /regions/new.xml

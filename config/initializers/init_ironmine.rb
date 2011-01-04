@@ -5,18 +5,7 @@ ActionView::Base.field_error_proc=Proc.new{ |html_tag, instance| "<span class=\"
 
 #将rails 3中默认的javascript prototype库替换成jquery
 ActionView::Helpers::AssetTagHelper.register_javascript_expansion :defaults=>%w(jquery.js rails.js)
-ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ajax_relation=>%w(ajax_util.js jquery.form.js)
-ActionView::Helpers::AssetTagHelper.register_javascript_expansion :dhtmlx=>%w(dhtmlx/dhtmlxcommon.js dhtmlx/dhtmlxwindows.js dhtmlx/dhtmlxlayout.js dhtmlx/dhtmlxcontainer.js dhtmlx/dhtmlxtabbar.js dhtmlx/dhtmlxcalendar.js dhtmlx/dhtmlxtabbar_start.js)
-ActionView::Helpers::AssetTagHelper.register_javascript_expansion :dhtmlx_grid=>%w(dhtmlx/grid/dhtmlxgrid.js dhtmlx/grid/dhtmlxgridcell.js dhtmlx/grid/dhtmlxgrid_excell_link.js dhtmlx/grid/dhtmlxdataprocessor.js dhtmlx/grid/dhtmlxgrid_excell_dhxcalendar.js dhtmlx/grid/dhtmlxgrid_pgn.js dhtmlx/grid/dhtmlxgrid_json.js dhtmlx/grid/dhtmlxgrid_filter.js dhtmlx/grid/dhtmlxgrid_validation)
-ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ironmine_base=>%w(ironmine_base.js)
-#ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jquery_ui=>%w(jquery-ui.js)
-#ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jquery_date=>%w(jquery.datePicker.js date.js)
-#ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jquery_other=>%w(jquery.loadmask.min.js  jquery.Jcrop.js jquery.json-2.2.min.js fancyzoom.js jquery.progressbar.min.js)
-#ActionView::Helpers::AssetTagHelper.register_javascript_expansion :blackbird=>%w(blackbird.js)
-#ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jpolite=>%w(jpolite/jqModal.js jpolite/jquery.gritter.js jpolite/jquery.cookie.js jpolite/jpolite.core.js jpolite/jpolite.ext.js)
-# 注册stylesheets简称
-#ActionView::Helpers::AssetTagHelper.register_stylesheet_expansion :jpolite=>%w(jpolite/screen.css jpolite/style.css jpolite/jquery.gritter.css jpolite/jqModal.css)
-
+ActionView::Helpers::AssetTagHelper.register_javascript_expansion :dojo=>%w(dojo/dojo.js)
 
 #扩展ActionRecord::Base,实现数据保存时自动给created_by与updated_by赋值
 ActiveRecord::Base.send(:include,Irm::SetWho)
@@ -72,5 +61,4 @@ begin
           puts("Init module error :#{text}")
 end
 
-require "dhtmlx_grid.rb"
-Array.send :include, DhtmlxgridJson
+Array.send :include, Irm::ArrayToJson

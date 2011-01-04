@@ -13,7 +13,7 @@ class Irm::ConditionsController < ApplicationController
   # GET /conditions/1
   # GET /conditions/1.xml
   def show
-    @condition = Irm::Condition.find(params[:id])
+    @condition = Irm::Condition.multilingual.query_wrap_info(I18n::locale).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

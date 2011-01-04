@@ -33,15 +33,11 @@
               <div class="button floatright"><%=link_to t(:label_irm_person_edit) ,
                                                         {:controller=>"irm/people",
                                                          :action=>"edit",:id=>":id"},
-                                                        :script => "/replace(id_person_index,id_person_edit);/",
-                                                        :action_type=>"ajaxLink",
                                                         :id=> "id_edit_person"%>
               </div>
               <div class="button floatright"><%=link_to t(:label_irm_person_new) ,
                                                         {:controller=>"irm/people",
-                                                         :action=>"new"},
-                                                        :script => "/replace(id_person_index,id_person_new);/",
-                                                        :action_type=>"ajaxLink"%>
+                                                         :action=>"new"}%>
               </div>
             </div>
     </div>

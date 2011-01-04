@@ -177,4 +177,11 @@ class Irm::CompaniesController < ApplicationController
     end
   end
 
+  def get_choose_company
+    @companies= Irm::Company.multilingual.query_wrap_info(I18n::locale)
+    respond_to do |format|
+      format.json {render :json=>@companies.to_dhtmlxgrid_json(['R',:name,:status_meaning], @companies.size)}
+    end
+  end
+
 end

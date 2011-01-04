@@ -31,11 +31,12 @@ Ironmine::Application.routes.draw do
     match '/product_modules/disable(.:format)' => "product_modules#disable", :via => :post
     #languages
     match '/languages(/index)(.:format)' => "languages#index", :via => :get
+    match '/languages/get_data(.:format)' => "languages#get_data"
     match '/languages/:id/edit(.:format)' => "languages#edit", :via => :get
     match '/languages/:id(.:format)' => "languages#update", :via => :put
     match '/languages/new(.:format)' => "languages#new", :via => :get
+    match '/languages/:id(.:format)' => "languages#show", :via => :get
     match '/languages/create(.:format)' => "languages#create", :via => :post
-    match '/languages/get_data(.:format)' => "languages#get_data"
     match '/languages/:id/multilingual_edit(.:format)' => "languages#multilingual_edit", :via => :get
     match '/languages/:id/multilingual_update(.:format)' => "languages#multilingual_update", :via => :put
     #menus
@@ -70,22 +71,25 @@ Ironmine::Application.routes.draw do
     match '/permissions/get_data(.:format)' => "permissions#get_data"
     #conditions
     match '/conditions(/index)(.:format)' => "conditions#index", :via => :get
+    match '/conditions/get_data(.:format)' => "conditions#get_data"
     match '/conditions/:id/edit(.:format)' => "conditions#edit", :via => :get
     match '/conditions/:id(.:format)' => "conditions#update", :via => :put
     match '/conditions/new(.:format)' => "conditions#new", :via => :get
+    match '/conditions/:id(.:format)' => "conditions#show", :via => :get
     match '/conditions/create(.:format)' => "conditions#create", :via => :post
     match '/conditions/:id/multilingual_edit(.:format)' => "conditions#multilingual_edit", :via => :get
     match '/conditions/:id/multilingual_update(.:format)' => "conditions#multilingual_update", :via => :put
-    match '/conditions/get_data(.:format)' => "conditions#get_data"
+
     #actions
     match '/actions(/index)(.:format)' => "actions#index", :via => :get
+    match '/actions/get_data(.:format)' => "actions#get_data"
     match '/actions/:id/edit(.:format)' => "actions#edit", :via => :get
     match '/actions/:id(.:format)' => "actions#update", :via => :put
     match '/actions/new(.:format)' => "actions#new", :via => :get
+    match '/actions/:id(.:format)' => "actions#show", :via => :get    
     match '/actions/create(.:format)' => "actions#create", :via => :post
     match '/actions/:id/multilingual_edit(.:format)' => "actions#multilingual_edit", :via => :get
     match '/actions/:id/multilingual_update(.:format)' => "actions#multilingual_update", :via => :put
-    match '/actions/get_data(.:format)' => "actions#get_data"
     #identities
     match '/identities(/index)(.:format)' => "identities#index", :via => :get
     match '/identities/:id/edit(.:format)' => "identities#edit", :via => :get
@@ -117,14 +121,16 @@ Ironmine::Application.routes.draw do
     match '/auth_sources/get_data(.:format)' => "auth_sources#get_data"
     #scripts
     match '/scripts(/index)(.:format)' => "scripts#index", :via => :get
+    match '/scripts/get_data(.:format)' => "scripts#get_data"
     match '/scripts/:id/edit(.:format)' => "scripts#edit", :via => :get
     match '/scripts/:id(.:format)' => "scripts#update", :via => :put
     match '/scripts/:id(.:format)' => "scripts#update", :via => :put
     match '/scripts/new(.:format)' => "scripts#new", :via => :get
+    match '/scripts/:id(.:format)' => "scripts#show", :via => :get
     match '/scripts/create(.:format)' => "scripts#create", :via => :post
     match '/scripts/:id/multilingual_edit(.:format)' => "scripts#multilingual_edit", :via => :get
     match '/scripts/:id/multilingual_update(.:format)' => "scripts#multilingual_update", :via => :put
-    match '/scripts/get_data(.:format)' => "scripts#get_data"
+
     #functions
     match '/functions(/index)(.:format)' => "functions#index", :via => :get
     match '/functions/:id/edit(.:format)' => "functions#edit", :via => :get
@@ -166,6 +172,7 @@ Ironmine::Application.routes.draw do
     match '/navigations/icm_setting(.:format)' =>'navigations#icm_setting'
     #mail_templates
     match '/mail_templates/new(.:format)'=>"mail_templates#new",:via=>:get
+    match '/mail_templates/get_data(.:format)' => "mail_templates#get_data"
     match '/mail_templates(.:format)'=>"mail_templates#create",:via=>:post
     match '/mail_templates/copy(.:format)'=>"mail_templates#copy",:via=>:get
     match '/mail_templates/copy_template(.:format)'=>"mail_templates#copy_template",:via=>:post
@@ -178,25 +185,28 @@ Ironmine::Application.routes.draw do
     match '/mail_templates/:id/multilingual_edit(.:format)'=>"mail_templates#multilingual_edit",:via=>:get
     match '/mail_templates/:id/multilingual_update(.:format)'=>"mail_templates#multilingual_update",:via=>:put
     match '/mail_templates/get_current_language(.:format)'=>"mail_templates#get_current_language",:via=>:get
-    match '/mail_templates/get_data(.:format)' => "mail_templates#get_data"
+
     #currencies
     match '/currencies(/index)(.:format)' => "currencies#index", :via => :get
+    match '/currencies/get_data(.:format)' => "currencies#get_data"
     match '/currencies/:id/edit(.:format)' => "currencies#edit", :via => :get
     match '/currencies/:id(.:format)' => "currencies#update", :via => :put
     match '/currencies/new(.:format)' => "currencies#new", :via => :get
+    match '/currencies/:id(.:format)' => "currencies#show", :via => :get
     match '/currencies/create(.:format)' => "currencies#create", :via => :post
     match '/currencies/:id/multilingual_edit(.:format)' => "currencies#multilingual_edit", :via => :get
     match '/currencies/:id/multilingual_update(.:format)' => "currencies#multilingual_update", :via => :put
-    match '/currencies/get_data(.:format)' => "currencies#get_data"
+
     #regions
     match '/regions(/index)(.:format)' => "regions#index", :via => :get
+    match '/regions/get_data(.:format)' => "regions#get_data"
     match '/regions/:id/edit(.:format)' => "regions#edit", :via => :get
     match '/regions/:id(.:format)' => "regions#update", :via => :put
     match '/regions/new(.:format)' => "regions#new", :via => :get
+    match '/regions/:id(.:format)' => "regions#show", :via => :get
     match '/regions/create(.:format)' => "regions#create", :via => :post
     match '/regions/:id/multilingual_edit(.:format)' => "regions#multilingual_edit", :via => :get
-    match '/regions/:id/multilingual_update(.:format)' => "regions#multilingual_update", :via => :put
-    match '/regions/get_data(.:format)' => "regions#get_data"
+    match '/regions/:id/multilingual_update(.:format)' => "regions#multilingual_update", :via => :put    
     #companies
     match '/companies(/index)(.:format)' => "companies#index", :via => :get
     match '/companies/:id/edit(.:format)' => "companies#edit", :via => :get
@@ -215,24 +225,27 @@ Ironmine::Application.routes.draw do
     match '/companies/get_support_group(.:format)' => "companies#get_support_group"
     match '/companies/:id/edit_location(.:format)' => "companies#edit_location"
     match '/companies/:id/update_location(.:format)' => "companies#update_location"
+    match '/companies/get_choose_company(.:format)' => "companies#get_choose_company"
     #login_records
     match '/login_records(/index)(.:format)' => "login_records#index", :via => :get
     match '/login_records/get_data(.:format)' => "login_records#get_data"
     #organizations
+    match '/organizations/get_data(.:format)' => "organizations#get_data"
     match '/organizations(/index)(.:format)' => "organizations#index", :via => :get
     match '/organizations/:id/edit(.:format)' => "organizations#edit", :via => :get
     match '/organizations/:id(.:format)' => "organizations#update", :via => :put
     match '/organizations/new(.:format)' => "organizations#new", :via => :get
+    match '/organizations/:id(.:format)' => "organizations#show", :via => :get
     match '/organizations/create(.:format)' => "organizations#create", :via => :post
     match '/organizations/:id/multilingual_edit(.:format)' => "organizations#multilingual_edit", :via => :get
     match '/organizations/:id/multilingual_update(.:format)' => "organizations#multilingual_update", :via => :put
-    match '/organizations/get_data(.:format)' => "organizations#get_data"
     match '/organizations/belongs_to(.:format)' => "organizations#belongs_to"
     #departments
     match '/departments(/index)(.:format)' => "departments#index", :via => :get
     match '/departments/:id/edit(.:format)' => "departments#edit", :via => :get
     match '/departments/:id(.:format)' => "departments#update", :via => :put
     match '/departments/new(.:format)' => "departments#new", :via => :get
+    match '/departments/:id(.:format)' => "departments#show", :via => :get
     match '/departments/create(.:format)' => "departments#create", :via => :post
     match '/departments/:id/multilingual_edit(.:format)' => "departments#multilingual_edit", :via => :get
     match '/departments/:id/multilingual_update(.:format)' => "departments#multilingual_update", :via => :put
@@ -313,18 +326,18 @@ Ironmine::Application.routes.draw do
     match '/support_groups/create_member(.:format)' => "support_groups#create_member"
     match '/support_groups/delete_member(.:format)' => "support_groups#delete_member"
     #people
+    match '/people/get_data(.:format)' => "people#get_data"
     match '/people(/index)(.:format)' => "people#index", :via => :get
     match '/people/:id/edit(.:format)' => "people#edit", :via => :get
-    match '/people/:id(.:format)' => "people#update", :via => :put
     match '/people/new(.:format)' => "people#new", :via => :get
+    match '/people/:id'=>"people#show", :via => :get
+    match '/people/:id(.:format)' => "people#update", :via => :put    
     match '/people/create(.:format)' => "people#create", :via => :post
     match '/people/:id/multilingual_edit(.:format)' => "people#multilingual_edit", :via => :get
     match '/people/:id/multilingual_update(.:format)' => "people#multilingual_update", :via => :put
-    match '/people/get_data(.:format)' => "people#get_data"
-    match '/people/login_access(.:format)' => "people#login_access"
+    match '/people/choose_company(.:format)' => "people#choose_company"
     match '/people/get_choose_people(.:format)' => "people#get_choose_people"
     match '/people/get_support_group(.:format)' => "people#get_support_group"
-    match '/people/support_group(.:format)' => "people#support_group"
     #company_accesses
     match '/company_accesses(/index)(.:format)' => "company_accesses#index", :via => :get
     match '/company_accesses/:id/edit(.:format)' => "company_accesses#edit", :via => :get

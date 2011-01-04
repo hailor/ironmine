@@ -311,7 +311,7 @@ table.formtable td.formitem input[type=text], table.formtable td.formitem input[
 
 table.showtable{border-collapse:collapse;width:100%;}
 table.showtable td{border-width:0 0 1px 0; border-style:solid; border-color: #ECECEC;}
-table.showtable td.showlabel{ width: 18%; text-align:right; padding: 6px 10px 3px 0;min-width: 80px;vertical-align: top; max-width: 150px;font-size:91%;font-weight:bold;}
+table.showtable td.showlabel{ width: 18%; text-align:right; padding: 6px 10px 3px 0;min-width: 80px;vertical-align: top; max-width: 150px;font-size:100%;font-weight:bold;}
 table.showtable td.showitem{ width: 32%; text-align: left;max-width: 400px;min-width: 100px;vertical-align: bottom; }
 
 div#breadcrumbs{margin: 3px 0 0;padding: 0 0 0 5px;}

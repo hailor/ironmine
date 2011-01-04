@@ -7,4 +7,16 @@ class Irm::CompanyAccess < ActiveRecord::Base
                                                    where("v1.lookup_type='SYSTEM_STATUS_CODE' AND v1.lookup_code = #{table_name}.status_code AND "+
                                                          "#{table_name}.accessable_company_id= v2.id AND v2.language = ? AND " +
                                                          "v1.language=?",language,language)}
+
+   scope :query_by_person_id,lambda{|person_id| where(:person_id=>person_id)}
+   scope :query_by_accessable_company_id,lambda{|accessable_company_id| where(:accessable_company_id=>accessable_company_id)}
+
+  def self.check_company_exists?(accessable_company_id,person_id)
+    @accessable_company = self.query_by_accessable_company_id(accessable_company_id).query_by_person_id(person_id)
+    if @accessable_company.blank?
+      true
+    else
+      false
+    end
+  end
 end

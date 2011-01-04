@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="pagetitle"><%=t(:label_irm_department_show)%></div>
+  <div class="pagedescription"><%=t(:label_irm_department_function_description)%></div>
+</div>
+<div class="container">
+  <div class="discontainerheader  bluetop">
+    <table class="bartable">
+      <tr>
+        <td class="left"><div class="headertitle"></div></td>
+        <td class="middle">
+          <div class="button"><%= link_to t(:edit), {:action => "edit"}%></div>
+          <div class="button" ><%= link_to t(:new), {:action=>"new"}%></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="discontainerbody">
+  <table class="showtable" cellspacing="0">
+      <tr>
+          <td class="showlabel"><%=(t :label_irm_department_company_name)%>:</td>
+          <td class="showitem"><%=@department[:company_name]%></td>
+          <td class="showlabel"><%=(t :label_irm_department_organization_name)%>:</td>
+          <td class="showitem"><%=@department[:organization_name]%></td>
+      </tr>
+      <tr>
+         <td class="showlabel"><%=(t :label_irm_department_short_name)%>:</td>
+         <td class="showitem"><%=@department.short_name%></td>
+         <td class="showlabel"><%=(t :label_irm_department_name)%>:</td>
+         <td class="showitem"><%=@department[:name]%></td>
+      </tr>
+      <tr>
+
+          <td class="showlabel"><%=(t :label_irm_department_description)%>:</td>
+          <td class="showitem"><%=@department[:description]%></td>
+      </tr>
+  </table>
+  </div>
+  <div class="discontainerfooter">
+    <table class="bartable">
+      <tr>
+        <td class="left"></td>
+        <td class="middle">
+          <div class="button"><%= link_to t(:edit), {:action => "edit"}%></div>
+          <div class="button" ><%= link_to t(:new), {:action=>"new"}%></div>
+        </td>
+        <td class="right"></td>
+      </tr>
+    </table>
+  </div>
+</div>
