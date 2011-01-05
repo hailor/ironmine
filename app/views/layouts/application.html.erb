@@ -2,23 +2,14 @@
 <html>
 <head>
   <title>Ironmine</title>
+
+<!-- JS -->
+<script type="text/javascript" src="/javascripts/yui3.3/yui/yui-min.js"></script>
   <%= javascript_include_tag :defaults %>
-  <%= javascript_include_tag :dojo %>
-  <%= theme_stylesheet_link_tag :application,:claro,:dojo,:dijit,:Grid%>
-  <%= theme_stylesheet_link_tag "jquery.Jcrop"%>
-  <%= javascript_include_tag "jquery.Jcrop"%>
-  <script>
-    var djConfig = {
-            parseOnLoad: false,
-            isDebug: true,
-            locale: 'zh'
-    };
-    dojo.require("dijit.dijit");
-    dojo.require("dijit.dijit-all");
-  </script>
+  <%= theme_stylesheet_link_tag :application%>
   <%= csrf_meta_tag %>
 </head>
-<body id="body" class="claro">
+<body id="body" class="yui3-skin-sam">
     <div id="banner"></div>
     <div id="toptoolbar">
     	<div class="floatleft">
