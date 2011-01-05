@@ -1,23 +1,14 @@
-<!-- The dojo.data API implementation that talks to the server -->
-<div dojoType="dojox.data.QueryReadStore" jsId="pstore" url="<%=url_for(:action=>"get_data",:format=>"json")  %>"></div>
+<div id="pizza" class="datatable" style="width:100%"></div>
+<%= datatable("pizza",url_for(:action=>"get_data",:format=>"json"),
+              [{:key=>"product_module_name",:label=>t(:label_irm_permission_product_name),:sortable=>true},
+               {:key=>"permission_code",:label=>t(:label_irm_permission_permission_code),:sortable=>true},
+               {:key=>"name",:label=>t(:label_irm_permission_name),:sortable=>true},
+               {:key=>"page_controller",:label=>t(:label_irm_permission_page_controller),:sortable=>true},
+               {:key=>"page_action",:label=>t(:label_irm_permission_page_action),:sortable=>true},
+               {:key=>"status_code",:label=>t(:label_irm_permission_status_code),:sortable=>true}])%>
 
-<table jsId="grid" dojoType="dojox.grid.DataGrid" selectable="true" store="pstore"  style="height:30em" >
-  <thead>
-  <tr>
-      <th field="id" width="15%" formatter="template_formatter" options="{template:'link_formatter'}">
-        Operation
-        <div id="id_column_template" style="display:none">
-            <%= link_to(t(:edit),:controller=>"irm/permissions",:action=>"edit",:id=>"${id}")%>
-            <%= link_to(t(:multilingual),:controller=>"irm/permissions",:action=>"multilingual_edit",:id=>"${id}")%>
-        </div>
-      </th>
-      <th field="product_module_name" width="15%"><%=t(:label_irm_permission_product_name)%></th>
-      <th field="permission_code" width="20%" ><%=t(:label_irm_permission_permission_code)%></th>
-      <th field="name" width="20%"><%=t(:label_irm_permission_name)%></th>
-      <th field="page_controller" width="20%"><%=t(:label_irm_permission_page_controller)%></th>
-      <th field="page_action" width="20%"><%=t(:label_irm_permission_page_action)%></th>
-      <th field="status_code" width="20%"><%=t(:label_irm_permission_status_code)%></th>
-  </tr>
-  </thead>
-
-</table>
+<style type="text/css">
+  .datatable table{
+      width:100%;
+  }
+</style>

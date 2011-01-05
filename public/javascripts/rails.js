@@ -1,227 +1,226 @@
-jQuery(function ($) {
-    var csrf_token = $('meta[name=csrf-token]').attr('content'),
-        csrf_param = $('meta[name=csrf-param]').attr('content');
+(function() {
 
-    $.fn.extend({
-        /**
-         * Triggers a custom event on an element and returns the event result
-         * this is used to get around not being able to ensure callbacks are placed
-         * at the end of the chain.
-         *
-         * TODO: deprecate with jQuery 1.4.2 release, in favor of subscribing to our
-         *       own events and placing ourselves at the end of the chain.
-         */
-        triggerAndReturn: function (name, data) {
-            var event = new $.Event(name);
-            this.trigger(event, data);
+// Add support for bubbling submit events in IE
+// http://yuilibrary.com/projects/yui3/ticket/2528683
+YUI.add('rails-event-bubble', function(Y) {
 
-            return event.result !== false;
-        },
+	// TODO: replace with http://yuilibrary.com/projects/yui3/ticket/2529119
+	// Technique from Juriy Zaytsev
+	// http://thinkweb2.com/projects/prototype/detecting-event-support-without-browser-sniffing/
+	function isEventSupported(eventName) {
+		var el = document.createElement('div');
+		eventName = 'on' + eventName;
+		var isSupported = (eventName in el);
+		if (!isSupported) {
+			el.setAttribute(eventName, 'return;');
+			isSupported = typeof el[eventName] == 'function';
+		}
+		el = null;
+		return isSupported;
+	}
 
-        /**
-         * Handles execution of remote calls firing overridable events along the way
-         */
-        callRemote: function () {
-            var el      = this,
-                method  = el.attr('method') || el.attr('data-method') || 'GET',
-                url     = el.attr('action') || el.attr('href'),
-                dataType  = el.attr('data-type')  || 'script';
+	var submitBubbles = isEventSupported('submit');
+	var EMULATED_SUBMIT = 'emulated:submit';
+		
+	if(!submitBubbles) {
+		Y.Event.define('submit', {
 
-            if (url === undefined) {
-              throw "No URL specified for remote call (action or href must be present).";
-            } else {
-                if (el.triggerAndReturn('ajax:before')) {
-                    var data = el.is('form') ? el.serializeArray() : [];
-                    $.ajax({
-                        url: url,
-                        data: data,
-                        dataType: dataType,
-                        type: method.toUpperCase(),
-                        beforeSend: function (xhr) {
-                            el.trigger('ajax:loading', xhr);
-                        },
-                        success: function (data, status, xhr) {
-                            // replace zone content with respone data
-                            if(el.attr('zone')){
-                              $('#'+el.attr('zone')).html(data);
-                            }
-                            el.trigger('ajax:success', [data, status, xhr]);
-                        },
-                        complete: function (xhr) {
-                            el.trigger('ajax:complete', xhr);
-                        },
-                        error: function (xhr, status, error) {
-                            // replace zone content with respone data
-                            if(el.attr('zone')){
-                              $('#'+el.attr('zone')).html(error);
-                            }
-                            el.trigger('ajax:failure', [xhr, status, error]);
-                        }
-                    });
-                }
+			on: function(node, sub, notifier) {
+				sub.onHandle = Y.Event._attach(['submit', function(e) { 
+					notifier.fire.apply(notifier, arguments); 
+				}, node, this], { capture: true });
+			},
 
-                el.trigger('ajax:after');
-            }
-        }
-    });
+			detach: function(node, sub) {
+				sub.onHandle.detach();
+			},
 
-    /**
-     *  confirmation handler
-     */
-    $('a[data-confirm],input[data-confirm]').live('click', function () {
-        var el = $(this);
-        if (el.triggerAndReturn('confirm')) {
-            if (!confirm(el.attr('data-confirm'))) {
-                return false;
-            }
-        }
-    });
+			delegate: function(node, sub, notifier, filter) {
+				var compiledFilter = Y.delegate.compileFilter(filter);
+				sub.delegateHandle = Y.on(EMULATED_SUBMIT, function(e) {
+					if(compiledFilter(e.target, {currentTarget: node})) {
+						var submitEvent = e.details[0];
+						var ret = notifier.fire.apply(notifier, arguments);
+						if(e.prevented) submitEvent.preventDefault();
+					}
+				});
+			},
+
+			detachDelegate: function(node, sub, notifier, filter) {
+				sub.delegateHandle.detach();
+			}
+
+		}, true);
+
+		// Discover elements that support onsubmit and onchange by listening to the focus event
+		Y.one(document).delegate('focus', function(focusEvent) {
+			// listen to the submit event if this input is in a form
+			var form = this.ancestor('form');
+			if (form && !form.getData(EMULATED_SUBMIT)) {
+				form.publish(EMULATED_SUBMIT, {broadcast: 1});
+				form.on('submit', function(e) {
+					return form.fire(EMULATED_SUBMIT, e);
+				});
+				form.setData(EMULATED_SUBMIT, true);
+			}
+		}, 'form input, form select, form button, form textarea');
+	}
+
+}, '0.0.1', { requires: ['event-delegate', 'event-focus', 'event-synthetic'] });
+
+var AJAX_EVENTS = ['before', 'after', 'create', 'complete', 'success', 'failure'];
+
+YUI.add('rails-ujs', function(Y) {
+	// Adds support for broadcasting ajax events globally on node instances
+	function defineEvent(evtName) {
+		Y.Event.define(evtName, {
+			on: function(node, sub, notifier) {
+				sub.handle = Y.Global.on(evtName, function(e) {
+					if(Y.Node.getDOMNode(e.target) == Y.Node.getDOMNode(node)) {
+						notifier.fire.apply(notifier, arguments);
+					}
+				});
+			},
+
+			detach: function(node, sub) {
+				sub.handle.detach();
+			},
+			
+			delegate: function(node, sub, notifier, filter) {
+				var compiledFilter = Y.delegate.compileFilter(filter);
+				sub.handle = Y.Global.on(evtName, function(e) {
+					if(compiledFilter(e.target, {currentTarget: node})) {
+						notifier.fire.apply(notifier, arguments);
+					}
+				});
+			},
+
+			detachDelegate: function(node, sub, notifier, filter) {
+				sub.handle.detach();
+			}
+
+		}, true);
+	}
+
+	for(var i = 0; i < AJAX_EVENTS.length; i++) {
+		defineEvent('ajax:' + AJAX_EVENTS[i]);
+	}
+
+}, '0.0.1', { requires: ['node-base', 'event-synthetic'] });
 
 
-    /**
-     * remote handlers
-     */
-    $('form[data-remote]').live('submit', function (e) {
-        $(this).callRemote();
-        e.preventDefault();
-    });
+YUI().use('node-base', 'node-event-delegate', 'io-form', 'rails-ujs', 'rails-event-bubble', function(Y) {
 
-    // 修正data-remote在ie中不能正常提交的bug
-    if (jQuery.browser.msie){
-       $("form[data-remote]").find("input[type='submit'],button[type='submit'],input[name='commit']").live('click',function(e) {
-           $(this).parents("form[data-remote]").callRemote();
-           if(e.preventDefault) e.preventDefault();
-       });
-    }
-    //else{
-    //   $("form[data-remote]").find("a[type='submit']").live('click',function(e) {
-    //       $(this).parents("form[data-remote]").callRemote();
-    //       if(e.preventDefault) e.preventDefault();
-    //   });
-    //}
+	var doc = Y.one(document);
+
+	/**
+	 * data-confirm
+	 */
+
+	doc.delegate('click', function(e) {
+		var message = this.getAttribute('data-confirm');
+		if(!(!message || confirm(message))) {
+			e.preventDefault();
+			return false;
+		}
+	}, 'a[data-confirm],input[data-confirm],button[data-confirm]');
 
 
-    $('a[data-remote],input[data-remote]').live('click', function (e) {
-        $(this).callRemote();
-        e.preventDefault();
-    });
+	/**
+	 * data-remote
+	 */
 
-    $('a[data-method]:not([data-remote])').live('click', function (e){
-        var link = $(this),
-            href = link.attr('href'),
-            method = link.attr('data-method'),
-            form = $('<form method="post" action="'+href+'"></form>'),
-            metadata_input = '<input name="_method" value="'+method+'" type="hidden" />';
+	function handleRemote(e) {
+		var element = this;
+		for(var i = 0; i < AJAX_EVENTS.length; i++) {
+			element.publish('ajax:' + AJAX_EVENTS[i], {broadcast: 2});
+		}
 
-        if (csrf_param != null && csrf_token != null) {
-          metadata_input += '<input name="'+csrf_param+'" value="'+csrf_token+'" type="hidden" />';
-        }
+		var url, cfg = {};
+		var event = element.fire('ajax:before');
 
-        form.hide()
-            .append(metadata_input)
-            .appendTo('body');
+		if (element.get('tagName').toLowerCase() === 'form') {
+			cfg.method = element.get('method') || 'post';
+			url = element.get('action');
+			// form elements need to have an id for yui to serialize them
+			if(!element.get('id')) element.setAttribute('id', Y.guid('remoteForm'));
+			cfg.form = { id: element.get('id') };
+		}
+		else {
+			cfg.method = element.getAttribute('data-method') || 'get';
+			url = element.get('href');
+		}
+		
+		cfg.on = {
+			start:    function(tid, response) { element.fire('ajax:create', {}, response); },
+			complete: function(tid, response) { element.fire('ajax:complete', {}, response); },
+			success:  function(tid, response) { element.fire('ajax:success', {}, response); },
+			failure:  function(tid, response) { element.fire('ajax:failure', {}, response); }
+		};
+		
+		Y.io(url, cfg);
+		
+		element.fire('ajax:after');
+		e.preventDefault();
+	}
 
-        e.preventDefault();
-        form.submit();
-    });
+	doc.delegate('submit', handleRemote, 'form[data-remote]');
+	doc.delegate('click', handleRemote, 'a[data-remote]');
+	
+	/**
+	 * data-method
+	 */
 
-    /**
-     * disable-with handlers
-     */
-    var disable_with_input_selector = 'input[data-disable-with]';
-    var disable_with_form_selector = 'form[data-remote]:has(' + disable_with_input_selector + ')';
+	function insertHiddenField(form, name, value) {
+		form.insert(Y.Node.create('<input/>').setAttrs({ type: 'hidden', name: name, value: value }));
+	}
 
-    $(disable_with_form_selector).live('ajax:before', function () {
-        $(this).find(disable_with_input_selector).each(function () {
-            var input = $(this);
-            input.data('enable-with', input.val())
-                 .attr('value', input.attr('data-disable-with'))
-                 .attr('disabled', 'disabled');
-        });
-    });
+	function handleMethod(e) {
+		var element = this,
+			method = element.getAttribute('data-method'),
+			url = element.get('href'),
+			csrfParam = Y.one('meta[name=csrf-param]'),
+			csrfToken = Y.one('meta[name=csrf-token]');
+		
+		var form = Y.Node.create('<form method="POST" style="display:none"></form>').setAttribute('action', url);
+		element.get('parentNode').insert(form);
 
-    $(disable_with_form_selector).live('ajax:complete', function () {
-        $(this).find(disable_with_input_selector).each(function () {
-            var input = $(this);
-            input.removeAttr('disabled')
-                 .val(input.data('enable-with'));
-        });
-    });
+		if (method !== 'post') {
+			insertHiddenField(form, '_method', method);
+		}
+		if (csrfParam && csrfToken) {
+			insertHiddenField(form, csrfParam.getAttribute('content'), csrfToken.getAttribute('content'));
+		}
+		form.submit();
+		e.preventDefault();
+	}
+	 
+	doc.delegate('click', handleMethod, 'a[data-method]:not([data-remote])');
+
+
+	/**
+	 * disable-with
+	 */
+	var DISABLE_WITH_SELECTOR = 'input[type=submit][data-disable-with]';
+	
+	function disableFormElements() {
+		this.all(DISABLE_WITH_SELECTOR).each(function(element) {
+			element.setData('enable-with', element.get('value'));
+			element.set('value', element.getAttribute('data-disable-with'));
+			element.setAttribute('disabled', 'disabled');
+		});
+	}
+
+	function enableFormElements() {
+		this.all(DISABLE_WITH_SELECTOR).each(function(element) {
+			element.removeAttribute('disabled')
+			element.set('value', element.getData('enable-with'));
+		});
+	}
+
+	doc.delegate('submit', disableFormElements, 'form:not([data-remote])');
+	doc.delegate('ajax:before', disableFormElements, 'form[data-remote]');
+	doc.delegate('ajax:complete', enableFormElements, 'form[data-remote]');
 });
 
-//扩展jquery
-jQuery(function ($) {
-    $.fn.extend({
-        astab: function () {
-            var el      = this,
-                zone    = el.attr('zone');
-            el.find('.jtabcontainer').each(function(){
-              if($(this).attr('zone')){zone = $(this).attr('zone');}
-              $(this).find('.jtabitem').unbind('click');
-              $(this).find('.jtabitem').bind('click',function(e){
-                  var source = ($(this).find('a:first').attr('href')||"").replace(/^\s+|\s+$/g,"");
-                  if(source !='#'&&$('#'+zone).length>0)
-                  {
-                    $('#'+zone).load(source);
-                  }
-                  $(this).addClass('selected');
-                  $(this).siblings('.selected').removeClass('selected');
-                  if(e.preventDefault) e.preventDefault();
-              });
-              $(this).find('.jtabitem.selected:first').length>0? $(this).find('.jtabitem.selected:first').trigger('click') :$(this).find('.jtabitem:first').trigger('click');
-            });
-        },
-        cusload: function( url, params, callback ) {
-          var el      = this;
-          var cuscallback,cusparams;
-          if ( params&&$.isFunction( params ) ){
-            cusparams = null;
-            cuscallback = function(data,status,xhr){
-              params.call(data,status,xhr);
-              init(el);
-              pre_init_partial(el);
-            };
-            el.load( url, cuscallback);
-          }else if(params&&callback){
-            cusparams = params;
-            cuscallback = function(data,status,xhr){
-              callback.call(data,status,xhr);
-              init(el);
-              pre_init_partial(el);
-            };
-
-          }else{
-            cuscallback = function(data,status,xhr){
-              init(el);
-              pre_init_partial(el);
-            };
-          }
-          el.load( url,cusparams, cuscallback);
-        }
-    });
-    $('a[zone]').live('click',function(e){
-        var zone    = $(this).attr('zone');
-        var source = ($(this).attr('href')||"").replace(/^\s+|\s+$/g,"");
-        if(source !='#'&&$('#'+zone).length>0)
-        {
-          $('#'+zone).cusload(source);
-        }
-        if(e.preventDefault) e.preventDefault();
-    });
-    $("form").find("a[type='submit']").live('click',function(e) {
-      $(this).parents("form:first").submit();
-      if(e.preventDefault) e.preventDefault();
-    });
-
- //   $('div[targetzone]').find("a:not([type]):not([data-confirm]):not([data-remote]):not([zone]:not([type]))").live('click',function(e){
- //       var source = ($(this).attr('href')||"").replace(/^\s+|\s+$/g,"");
- //       var zone = $(this).parents("div[targetzone]:first");
- //       zone = $(zone).attr("targetzone");
- //       if(source !='#'&&$('#'+zone).length>0)
- //       {
- //         $('#'+zone).cusload(source);
- //       }
- //       if(e.preventDefault) e.preventDefault();
- //   });
-
-});
+})();

@@ -33,4 +33,37 @@ module ApplicationHelper
   def allow_to?(url_options={})
     Irm::PermissionChecker.allow_to_url?(url_options)
   end
+
+
+  def datatable(id,source_url,columns,options={})
+    row_perpage = options[:row_perpage]||20
+    columns_conf = ""
+    data_fields = ""
+    columns.each do |c|
+      data_fields << %Q("#{c[:field]||c[:key]}",)
+      column = "{"
+      c.each do |key,value|
+        column << %Q(#{key.to_s}:"#{value}",)
+      end
+      columns_conf << column.chop
+      columns_conf << "},"
+    end
+    columns_conf.chop!
+    data_fields.chop!
+    script = %Q(GY.use("irm","datasource-get", "datasource-jsonschema","irmdtdatasource","datatable-sort",function(Y) {
+         var #{id}Cols = [#{columns_conf}],
+         #{id}Datasource = new Y.DataSource.Get({source:'#{source_url}'})
+                   .plug(Y.Plugin.DataSourceJSONSchema, {
+                      schema: {
+                        resultListLocator: "items",
+                        resultFields: [#{data_fields}]
+             }
+         }),
+         #{id}Datatable = new Y.DataTable.Base({columnset:#{id}Cols})
+             .plug(Y.Plugin.IrmDTDataSource, {datasource:#{id}Datasource}).plug(Y.Plugin.DataTableSort).render("##{id}");
+         #{id}Datatable.datasource.load({request:{start:0,count:#{row_perpage}}});
+         Y.mix(Y.irm,{#{id}Datatable:#{id}Datatable});
+     });)
+    javascript_tag(script)
+  end
 end
