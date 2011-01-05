@@ -599,7 +599,8 @@ body .bPageBlock .pbHeader {
 }
 body .bRelatedList .pbTitle h3, body .bPageBlock .pbTitle h2, body .bPageBlock .pbTitle h3, body .bSubBlock h3.lbHeader {
     color:#000000;
-    font-size:1.3em;
+    font-size:15px;
+    font-weight: bold;
 }
 .pbHeader .pbTitle h2, .pbHeader .pbTitle h3 {
     color:#333333;
@@ -662,6 +663,10 @@ body .bPageTitle .ptBody .pageType {
     font-weight:bold;
     padding-left:1px;
 }
+div#bodyDiv_setup > table.outer {background-color:#F2F2F3;}
+body .bodyDiv #bodyTable {padding-left:0;padding-right:0;}
+.outer {margin:0;}
+
 .setupTab .mComponent .cHeader, .setupTab .genericTable, .setupTab .bSubBlock, .setupTab .bPageBlock {border-top:3px solid #747E96;}
 body .bPageBlock, body #bodyCell .bResource .secondaryPalette, body .secondaryPalette.bPageBlock, body .overlayDialog .secondaryPalette.bPageBlock, body .individualPalette .secondaryPalette.bPageBlock, body .bodyDiv .genericTable, body .genericPageBlockTable, body .bodyDiv .bSubBlock, body .bComponentBlock .bPageBlock, body .bMyDashboard .bPageBlock, body.rlHoverFrame .bPageBlock, body.subjectSelectionPopup div.choicesBox, body.lookupTab .secondaryPalette.bPageBlock, body.popupTab .secondaryPalette.bPageBlock, body.UserTagStatsPage .secondaryPalette.bPageBlock {
     -moz-border-radius:4px 4px 4px 4px;
