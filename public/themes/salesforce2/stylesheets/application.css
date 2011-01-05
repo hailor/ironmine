@@ -414,8 +414,8 @@ div.button a {
 	color:#333333;
 	display: inline-block;
 	padding: 0 8px;
-	height: 18px;
-    font-size: 0.9em;
+	height: 20px;
+    font-size: 11px;
     font-weight: bold;
 	line-height: 20px;
 }
@@ -429,11 +429,11 @@ div.button input[type="submit"] {
 	text-decoration: none;
 	color:#333333;
 	display: inline-block;
-	padding: 0 5px 1px 5px;
-	height: 20px;
-    font-size: 0.9em;
+	padding: 0 5px 2px 5px;
+	height: 22px;
+    font-size: 11px;
     font-weight: bold;
-	line-height: 20px;
+	line-height: 22px;
 }
 div.button input[type="submit"]:hover{background-position: right -30px; cursor: pointer;}
 
@@ -787,6 +787,48 @@ form .pbBottomButtons > table {border-top:1px solid #FFFFFF;padding:0 !important
     text-align:center;
 }
 /********************************************************************/
-.listRelatedObject .pbBody {
-    padding: 0 6px 6px !important;
+.listRelatedObject .pbBody {padding: 0 !important;}
+.datatable table{width:100%;}
+.bPageBlock .pbHeader > #hotlist > table > tbody > tr > td {padding:5px 6px;}
+.bPageBlock .pbHeader .pbHelp {
+    padding:1px 5px 1px 1px;
+    text-align:right;
+    vertical-align:middle;
 }
+/***************************tools content***********************************/
+.toolsContent {width:100%;}
+.toolsContentLeft {margin-right:10px;}
+.bSubBlock .lbHeader {padding-left:1px;padding-right:0;}
+body .bSubBlock .lbBody {
+    background-color:#FFFFFF;
+    border:1px solid #E8E8E8;
+    margin:5px 0 0;
+    padding:5px;
+}
+body .bPageBlock {
+    border-top-width:3px;
+    margin-bottom:10px;
+    padding:0;
+}
+body .bSubBlock {padding:5px;}
+.bSubBlock .lbBody {
+    background-color:#F3F3EC;
+    height:100%;
+    line-height:1.6em;
+    padding:10px 23px 10px 26px;
+}
+.bSubBlock .lbHeader {
+    display:block;
+    float:none;
+    font-family:'Arial','Helvetica',sans-serif;
+    font-weight:bold;
+    padding:2px 13px;
+}
+.bSubBlock .lbBody ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+.bSubBlock .lbBody li, .bSubBlock .lbBody .bSummary {line-height:25px;}
+.bSubBlock .lbBody .mainLink {font-weight:bold;}
+/***********************************************************/
