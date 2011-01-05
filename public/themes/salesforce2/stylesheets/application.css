@@ -429,8 +429,8 @@ div.button input[type="submit"] {
 	text-decoration: none;
 	color:#333333;
 	display: inline-block;
-	padding: 0 8px;
-	height: 18px;
+	padding: 0 5px 1px 5px;
+	height: 20px;
     font-size: 0.9em;
     font-weight: bold;
 	line-height: 20px;
@@ -447,7 +447,7 @@ div.button input[type="submit"]:hover{background-position: right -30px; cursor: 
     text-decoration:none;
     width:160px;
 }
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, sub, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
     border:0 none;
     font-family:inherit;
     font-size:100%;
@@ -762,6 +762,7 @@ form .pbBottomButtons {
 body .bEditBlock .pbBottomButtons, body .apexp .bPageBlock.apexDefaultPageBlock .pbBottomButtons {margin-top:20px;}
 form .pbBottomButtons > table {border-top:1px solid #FFFFFF;padding:0 !important;}
 
+/************** error messages and input required ******************/
 .bPageBlock .requiredInput {height:100%;position:relative;}
 .bPageBlock .requiredInput .requiredBlock {
     background-color:#CC0000;
@@ -771,3 +772,18 @@ form .pbBottomButtons > table {border-top:1px solid #FFFFFF;padding:0 !important
     top:1px;
     width:3px;
 }
+.bPageBlock .detailList .errorMsg {
+    padding-left:3px;
+}
+.errorStyle, .errorMsg, .importantWarning, .pbBody .errorStyle a, .pbBody .errorMsg a {
+    color:#D74C3B;
+}
+.bPageBlock .detailList .error, .bPageTitle .tagDropDown #tag_edit_error, .bPageTitle .tagDropDown .tagDropDownContent .error, .tagRenameMenu .error, .inlineEditDiv .error, .inlineEditRequiredDiv .error {
+    border:2px solid #CC0000;
+}
+.bPageBlock .pbError, .editListError {
+    color:#CC0000;
+    font-weight:bold;
+    text-align:center;
+}
+/********************************************************************/

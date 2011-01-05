@@ -1,7 +1,20 @@
 # 该文件中的代码会在程序启动时自动运行,ironmine项目中需要初始的代码建议都放在此文件中
 
 
-ActionView::Base.field_error_proc=Proc.new{ |html_tag, instance| "<span class=\"field_with_errors\" title=\"#{instance.error_message}\">#{html_tag}</span>".html_safe }
+ActionView::Base.field_error_proc=Proc.new{ |html_tag, instance|
+  msg = instance.error_message
+  error_css = "error"
+  
+  if html_tag =~ /<(input|textarea|select)[^>]+class=/
+    css_attribute = html_tag =~ /class=['"]/
+    html_tag.insert(css_attribute + 7, "#{error_css} ")
+  elsif html_tag =~ /<(input|textarea|select)/
+    first_whitespace = html_tag =~ /\s/
+    html_tag[first_whitespace] = " class='#{error_css}' "
+  end
+
+  "#{html_tag}<div class=\"errorMsg\"><strong>#{I18n.t(:error)}:</strong>#{msg}</div>".html_safe
+}
 
 #将rails 3中默认的javascript prototype库替换成jquery
 ActionView::Helpers::AssetTagHelper.register_javascript_expansion :defaults=>%w(rails.js)

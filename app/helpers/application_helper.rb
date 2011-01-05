@@ -66,4 +66,10 @@ module ApplicationHelper
      });)
     javascript_tag(script)
   end
+
+  def error_for(object)
+    if object && object.errors && object.errors.any?
+      content_tag("div", raw(t(:error_invalid_data) + "<br>" + t(:check_error_msg_and_fix)), {:id => "errorDiv_ep", :class => "pbError"})
+    end
+  end
 end
