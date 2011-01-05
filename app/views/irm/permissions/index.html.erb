@@ -1,11 +1,42 @@
-<div id="pizza" class="datatable" style="width:100%"></div>
-<%= datatable("pizza",url_for(:action=>"get_data",:format=>"json"),
-              [{:key=>"product_module_name",:label=>t(:label_irm_permission_product_name),:sortable=>true},
-               {:key=>"permission_code",:label=>t(:label_irm_permission_permission_code),:sortable=>true},
-               {:key=>"name",:label=>t(:label_irm_permission_name),:sortable=>true},
-               {:key=>"page_controller",:label=>t(:label_irm_permission_page_controller),:sortable=>true},
-               {:key=>"page_action",:label=>t(:label_irm_permission_page_action),:sortable=>true},
-               {:key=>"status_code",:label=>t(:label_irm_permission_status_code),:sortable=>true}])%>
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"></h1>
+      <h2 class="pageDescription"><%= t(:label_irm_permission) %></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks">此页面的帮助</a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
+</div>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_permission_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="pizza" class="datatable" style="width:100%"></div>
+        <%= datatable("pizza",url_for(:action=>"get_data",:format=>"json"),
+                  [{:key=>"product_module_name",:label=>t(:label_irm_permission_product_name),:sortable=>true},
+                   {:key=>"permission_code",:label=>t(:label_irm_permission_permission_code),:sortable=>true},
+                   {:key=>"name",:label=>t(:label_irm_permission_name),:sortable=>true},
+                   {:key=>"page_controller",:label=>t(:label_irm_permission_page_controller),:sortable=>true},
+                   {:key=>"page_action",:label=>t(:label_irm_permission_page_action),:sortable=>true},
+                   {:key=>"status_code",:label=>t(:label_irm_permission_status_code),:sortable=>true}])%>
+      </div>
+    </div>
+</div>
 
 <style type="text/css">
   .datatable table{

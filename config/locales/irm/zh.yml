@@ -142,6 +142,7 @@ zh:
   error_irm_menu_entry_permission_sub_menu_at_least_one: 子菜单和页面至少输入一项
   #=========================    end menus_controller=======================#
   #=========================    irm permissions_controller=======================#
+  label_irm_permission: 权限
   label_irm_permission_new: 创建权限
   label_irm_permission_edit: 编辑权限
   label_irm_permission_permission_code: 权限编码

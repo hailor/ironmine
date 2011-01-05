@@ -787,3 +787,6 @@ form .pbBottomButtons > table {border-top:1px solid #FFFFFF;padding:0 !important
     text-align:center;
 }
 /********************************************************************/
+.listRelatedObject .pbBody {
+    padding: 0 6px 6px !important;
+}
