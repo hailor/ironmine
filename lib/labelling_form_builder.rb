@@ -3,7 +3,7 @@ class LabellingFormBuilder  < ActionView::Helpers::FormBuilder
   (field_helpers - %w(radio_button hidden_field) + %w(date_select)).each do |selector|
     src = <<-END_SRC
     def #{selector}(field, options = {})
-      if !options.delete(:normal)
+      if options.delete(:normal)
         if options[:required]
           super(field,options.merge!({:required=>true}))
         else
@@ -11,9 +11,9 @@ class LabellingFormBuilder  < ActionView::Helpers::FormBuilder
         end
       else
         if options[:required]
-          label_for_field(field, options) + super(field,options.merge!({:required=>true}))
+          label_for_field(super(field,options.merge!({:required=>true})), options)
         else
-          label_for_field(field, options) + super
+          super
         end
       end
     end
@@ -40,12 +40,17 @@ class LabellingFormBuilder  < ActionView::Helpers::FormBuilder
   
   # Returns a label tag for the given field
   def label_for_field(field, options = {})
-      text = options[:label].is_a?(Symbol) ? ::I18n.t(options[:label]) : options[:label]
-      text ||= ::I18n.t(("label_#{@object_name.to_s}_" + field.to_s.gsub(/\_id$/, "")).to_sym)
-      text += @template.content_tag("span", " *", :class => "required") if options.delete(:required)
-      @template.content_tag("label", text,
-                                    {:class => (@object && @object.errors[field] ? "error" : nil),
-                                     :for => (@object_name.to_s + "_" + field.to_s)},false)
+      text = ""
+      text += @template.content_tag("div", "", :class => "requiredBlock") if options.delete(:required)
+      @template.content_tag("div", text + field,{:class => "requiredInput"}, false)
+
+
+#      text = options[:label].is_a?(Symbol) ? ::I18n.t(options[:label]) : options[:label]
+#      text ||= ::I18n.t(("label_#{@object_name.to_s}_" + field.to_s.gsub(/\_id$/, "")).to_sym)
+#      text += @template.content_tag("span", " *", :class => "required") if options.delete(:required)
+#      @template.content_tag("label", text,
+#                                    {:class => (@object && @object.errors[field] ? "error" : nil),
+#                                     :for => (@object_name.to_s + "_" + field.to_s)},false)
   end
   
 end

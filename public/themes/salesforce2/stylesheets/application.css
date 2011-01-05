@@ -420,6 +420,22 @@ div.button a {
 	line-height: 20px;
 }
 div.button a:hover{background-position: right -30px;}
+div.button input[type="submit"] {
+    -moz-border-radius: 3px 3px 3px 3px;
+    background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
+    border-color: #B5B5B5 #B5B5B5 #7F7F7F;
+	border-width: 1px;
+    border-style: solid;
+	text-decoration: none;
+	color:#333333;
+	display: inline-block;
+	padding: 0 8px;
+	height: 18px;
+    font-size: 0.9em;
+    font-weight: bold;
+	line-height: 20px;
+}
+div.button input[type="submit"]:hover{background-position: right -30px; cursor: pointer;}
 
 .login_form_box #login_form .forgotpass {
     background-color:#FFFFFF;
@@ -745,3 +761,13 @@ form .pbBottomButtons {
 }
 body .bEditBlock .pbBottomButtons, body .apexp .bPageBlock.apexDefaultPageBlock .pbBottomButtons {margin-top:20px;}
 form .pbBottomButtons > table {border-top:1px solid #FFFFFF;padding:0 !important;}
+
+.bPageBlock .requiredInput {height:100%;position:relative;}
+.bPageBlock .requiredInput .requiredBlock {
+    background-color:#CC0000;
+    bottom:1px;
+    left:-4px;
+    position:absolute;
+    top:1px;
+    width:3px;
+}

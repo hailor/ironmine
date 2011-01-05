@@ -7,7 +7,7 @@ class Irm::GlobalSetting < ActiveRecord::Base
   has_attached_file :logo, :styles => { :medium => "300x300>", :thumb => "100x100>", :original => "500x500>" }, :processors => [:cropper]
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :reprocess_logo, :if => :cropping?
-
+  validates_presence_of :upload_file_limit
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
   end

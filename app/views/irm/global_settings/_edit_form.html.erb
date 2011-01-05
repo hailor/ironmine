@@ -39,7 +39,7 @@
               <td class="labelCol"><label><%= t(:label_irm_global_setting_theme_name)%></label></td>
               <td class="dataCol"><%=f.select :theme_name, available_themes, {:include_blank => false}%></td>
               <td class="labelCol"><label><%= t(:label_irm_global_setting_upload_file_limit) %></label></td>
-              <td class="dataCol"><%=f.text_field :upload_file_limit, :irm_numberonly => true%></td>
+              <td class="dataCol"><%=f.text_field :upload_file_limit, :irm_numberonly => true, :required => true%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%= t(:label_irm_global_setting_timezone)%></label></td>
@@ -57,7 +57,7 @@
         <tr>
           <td class="pbTitle"></td>
           <td id="bottomButtonRow" class="pbButtonb">
-            <div class="button"><%= link_to t(:save), {}%></div>
+            <div class="button"><%= link_to t(:save), {}, {:onclick => "this.form.submit();"}%></div>
             <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
           </td>
         </tr>
