@@ -1,86 +1,266 @@
 @charset "utf-8";
 body, td {color:#222222; font-family:Arial,Helvetica,sans-serif;}
-body {font-size:75%;}
+body {font-size:75% !important;}
+img {border:0 none !important;}
 
 
-#appBodyHeader{background-image: none;}
-#appBodyHeader .phHeader{background-color: #1797C0; margin-bottom: 10px;background-position:right top; background-repeat:no-repeat;}
+a.headerSearchOptionsLink, a.headerSearchOptionsLink:hover{color: #fff; font-size: 0.92em;}
+a.headerSearchOptionsLink{text-decoration: none;}
+
+body.sfdcBody {background:url("../images/gradient_body.png") repeat-x scroll 0 0 #1797C0;}
+body.setupTab {margin:0 10px;}
+#contentWrapper {display:inline-block;min-width:100%;}
+body #AppBodyHeader {background-image:none;}
+
+#AppBodyHeader .phHeader {background-color:#1797C0;}
+#AppBodyHeader .phHeader {margin-bottom:10px;}
+.bPageHeader .phHeader {background-position:right top;background-repeat:no-repeat;}
+.bPageHeader .phHeader, .tabsNewBar {
+    border:0 none;
+    margin:0;
+    padding:0;
+    width:100%;
+}
+.bPageHeader .phHeader .left .spacer, .bPageHeader .phHeader td.left {
+width:230px;
+}
+.bPageHeader td.left {background:url("../images/appHeader_l.png") no-repeat scroll left bottom transparent !important;}
+.bPageHeader .phHeader td {vertical-align:top;}
 .bPageHeader, .bPageHeader td.left {
     background-image:url("../images/bgTop.gif");
     background-position:left top;
     background-repeat:repeat-x;
 }
-
-.bPageHeader td .left{background:url("../images/appHeader_l.png") no-repeat scroll left bottom transparent; width: 230px;}
-.bPageHeader td{vertical-align: top;}
-.bPageHeader td .searchCell{white-space: nowrap;}
-.bPageHeader .phHeader td.searchCell{vertical-align: middle; white-space: nowrap;}
-.bPageHeader td.right.vtop {vertical-align: top;}
-.bPageHeader .phHeader td.right {text-align: right; white-space: nowrap; width: 100%;}
-.bPageHeader .phHeader, .tabsNewBar {width: 100%; border: 0 none; margin: 0; padding: 0;}
-
-
-.headerSearchContainer{border: 0 none;font-family:Arial; height: 24px; margin-left: 21px; position: relative; width: 270px;}
-.headerSearchLeftRoundedCorner, .headerSearchContainer .headerSearchOptions{padding-left: 11px;}
-.headerSearchLeftRoundedCorner{background: url("../images/unified_search_sprite.png") no-repeat scroll left -216px transparent;}
-
-.headerSearchLeftRoundedCorner, .headerSearchRightRoundedCorner, .searchBoxClearContainer{border: 0 none; display: inline-block; height:24px;}
-.searchBoxClearContainer{background: url("../images/unified_search_background_sprite.png") repeat-x scroll left -168px transparent; position: absolute; width: 192px;}
-#phSearchInput.headerSearchBoxGhostText {color:#7D7D84;}
-
-.headerSearchLeftRoundedCorner #phSearchInput {background-color: #fff; border: 0 none; font-size:100%;height:16px; margin:0;padding:0;position:relative;top: 5px; width: 172px;}
-.headerSearchRightRoundedCorner{background: url("../images/unified_search_sprite.png") no-repeat scroll right -168px transparent; border-left: 1px solid #dddddd; cursor:pointer; left: 203px; padding-left:0; padding-right:11px;position:absolute;}
-.headerSearchRightRoundedCorner #phSearchButton {
-    background:url("../images/unified_search_background_sprite.png") repeat-x scroll left -120px transparent;
-    border:0 none;
-    color: #1797C0;
-    cursor:pointer;
-    font-size: 90%;
-    font-weight: bold;
-    height: 24px;
-    margin: 0;
-    overflow: visible;
-    padding-left: 8px;
-    padding-right: 0;
-    width: auto;
+#AppBodyHeader .phHeader td.left img:first-child {margin:0 0 3px 3px;}
+.bPageHeader td.right.vtop {vertical-align:top;}
+.navLinks .linkElements > a {
+    color:#FFFFFF;
+    font-size:0.925em;
+    margin-left:14px;
+    margin-right:9px;
+    text-decoration:none;
+    vertical-align:baseline;
+}
+.multiforce {
+    font-weight:bold;
+    text-align:right;
+    white-space:nowrap;
+}
+.bPageHeader .phHeader .navLinks {
+margin-top:0;
+position:static;
+}
+.bPageHeader .phHeader .navLinks {
+    display:inline-block;
+    margin-top:-2px;
+}
+.multiforce .navLinks {
+    color:#999999;
+    position:relative;
+    top:2px;
+    vertical-align:top;
 }
 
-a.headerSearchOptionsLink, a.headerSearchOptionsLink:hover{color: #fff; font-size: 0.92em;}
-a.headerSearchOptionsLink{text-decoration: none;}
+.bPageHeader .phHeader td.right {text-align:right;white-space:nowrap;width:100%;}
+.bPageHeader td.right {padding-right:19px;vertical-align:middle;}
+.bPageHeader td.right {background:url("../images/appHeader_r.png") no-repeat scroll right bottom transparent;}
 
-table.tab {line-height:normal;}
-body .tabNavigation .tab .currentTab a{color: #fff;}
-body .tabNavigation .tab .currentTab div {
-    background-image:url("../images/tabs_sprite.png");
-    background-position:right -150px;
-    background-repeat:no-repeat;
+body.bodyDiv{background-color: #fff;margin: 0 10px; height: 100%; position: relative;}
+/* tabs */
+body .tabsNewBar .tabNavigation {
+    background:url("../images/tabbar_sprite.png") repeat-x scroll left -73px transparent;
+    margin:0 5px;
+    padding:3px 0 0;
+    position:relative;
 }
-
-body .tabNavigation .tab a {color: #353535;}
-.tab a{text-decoration: none;}
-.tab a:hover{text-decoration: underline;}
-body .tabsNewBar .tabNavigation {background: url("../images/tabbar_sprite.png") repeat-x scroll left -73px transparent; margin: 0 5px; padding: 3px 0 0; position: relative;}
-body .tabsNewBar .tabNavigation .tabBarLeft {background: url("../images/tabbar_sprite.png") no-repeat scroll 0 0 transparent;height: 100%; left: -15px; position: absolute; top: 0; width: 15px;}
+.tabNavigation, .blank .tabNavigation {
+    background-image:url("../images/blank_bg.gif");
+    background-position:center bottom;
+    background-repeat:repeat-x;
+}
+.tabNavigation {
+    font-family:'Verdana','Geneva',sans-serif;
+    font-size:91%;
+    margin-bottom:6px;
+    padding-bottom:10px;
+    padding-left:10px;
+}
+body .tabsNewBar .tabNavigation .tabBarLeft {
+    background:url("../images/tabbar_sprite.png") no-repeat scroll 0 0 transparent;
+    height:100%;
+    left:-15px;
+    position:absolute;
+    top:0;
+    width:15px;
+}
 body .tabsNewBar .tabNavigation .tabBarRight {
-background:url("../images/tabbar_sprite.png") no-repeat scroll -15px 0 transparent;
-height:100%;
-position:absolute;
-right:-15px;
-top:0;
-width:15px;
+    background:url("../images/tabbar_sprite.png") no-repeat scroll -15px 0 transparent;
+    height:100%;
+    position:absolute;
+    right:-15px;
+    top:0;
+    width:15px;
 }
 
-.tabNavigation {font-family: 'Verdana','Geneva',sans-serif; font-size: 91%;}
-body .tabsNewBar .tabNavigation .tab {height: 25px;}
-body .tabNavigation .tab td div {color: #4B4B57; font-family: Arial,Helvetica,sans-serif; font-size: 1.18em; font-weight: bold; max-height: 15px; padding: 7px 10px;}
-.tabNavigation .tab .currentTab {background-color: #1797C0;background-image: url("../images/tabs_sprite.png"); background-position:left 0; background-repeat: no-repeat;}
+body .tabsNewBar .tabNavigation .tab {height:25px;}
+table.tab {line-height:normal;}
+body .tab td {border:medium none;padding-left:0;}
+body .tab td, body .tab td div, body .tab .last div {background-image:none;background-repeat:no-repeat;}
+.tab td {
+    background-image:url("../images/motiftab3.gif");
+    background-position:left -156px;
+    background-repeat:no-repeat;
+    border-bottom:1px solid #A4A29E;
+    margin:0;
+    padding:0 0 0 6px;
+    text-align:center;
+}
+#bodyDiv_setup #motifCurve {height:3px;margin:0;}
 
-.sfdcBody {background: url("../images/gradient_body.png") repeat-x scroll 0 0 #1797C0;}
-body .bodyDiv{background-color: #fff;margin: 0 10px; height: 100%; position: relative;}
+.setupTab .tabNavigation .tab .currentTab, .setupTab #motifCurve, .setupTab #motifCurve #mc_l, .setupTab #motifCurve #mc_r {background-color:#747E96;}
 
-#bd_l{background: url("../images/bd_sprite.png") repeat-y scroll left top transparent; height: 100%; left: -20px; position: absolute; width: 20px;}
-#bd_r{background: url("../images/bd_right_shadow.png") repeat-y scroll right top transparent;height: 100%; left: 20px; z-index: -1; width: 100%; position: absolute;}
+#motifCurve {
+    background-image:url("../images/motifCurve_sprite.png");
+    background-repeat:repeat-x;
+    height:9px;
+    margin:0 -5px;
+    position:relative;
+}
+div#bodyDiv_setup table.outer td.oLeft {background:url("../images/setup_sidebar_shadow.png") repeat-y scroll right top transparent;}
+.sysAdminTab .outer td.oLeft, .setupTab .outer td.oLeft {width:230px;}
+.sysAdminTab .outer td.oLeft, .setupTab .outer td.oLeft {width:220px;}
 
+/************************************/
+/*****************   body cell ********************/
+div#bodyDiv_setup table.outer td.oRight {background-color:#FFFFFF;}
+body .bodyDiv .outer .oRight, body .bodyDiv .outerNoSidebar {background-color:transparent;}
+.setupTab .outer .oRight, .sysAdminTab .outer .oRight {padding-left:10px;}
+.outer td.oRight {padding:0 10px 20px 210px;}
+.outer td.oRight {background-color:#FFFFFF;padding:0 10px 10px 210px;}
+.outer td {vertical-align:top;}
+
+.setupTab .oLeft .mTreeSelection, .sysAdminTab .oLeft .mTreeSelection {padding:0;}
+.mTreeSelection {background-color:transparent;}
+.mTreeSelection {
+    background-color:#E8E8E8;
+    font-size:109%;
+    padding:0.8em;
+    text-align:left;
+}
+div#AutoNumber5 {
+    font-size:0.917em;
+    padding-bottom:17px;
+    padding-left:10px;
+}
+
+.mTreeSelection {
+    font-size:109%;
+    text-align:left;
+}
+#AutoNumber5 > img:first-child + .setupNavtree {
+    border-width:0;
+    margin-top:0;
+}
+#AutoNumber5 > .setupNavtree {
+    border-width:0;
+    border-top:1px solid #D9D9D9 !important;
+    margin:0 0 14px -10px;
+}
+.setupTab .oLeft .mTreeSelection #AutoNumber5 > img:first-child + .setupNavtree h2, .sysAdminTab .oLeft .mTreeSelection #AutoNumber5 > img:first-child + .setupNavtree h2 {
+    border-width:0;
+    padding-top:10px;
+}
+.setupTab .oLeft .mTreeSelection #AutoNumber5 > .setupNavtree h2, .sysAdminTab .oLeft .mTreeSelection #AutoNumber5 > .setupNavtree h2 {
+    border-top:1px solid #FFFFFF;
+    border-width:1px 0 0;
+    color:#333435;
+    font-size:1.167em;
+    margin:0;
+    padding:14px 0 0 10px;
+}
+.mTreeSelection h2 {
+    border-bottom:2px solid #CCCCCC;
+    display:block;
+    font-weight:bold;
+    margin-top:15px;
+    padding:0.33em 0.33em 0.33em 0;
+}
+.setupSection {
+    font-weight:bold;
+    padding:0.33em;
+    text-decoration:none;
+}
+a {color:#333435;}
+.setupLeaf a {text-decoration:none;}
+#AutoNumber5 .setupLeaf, #AutoNumber5 .setupHighlightLeaf {
+    font-weight:normal;
+    line-height:15px;
+    margin:5px 0 0;
+    padding:0 15px 0 17px;
+    white-space:nowrap;
+}
+.mTreeSelection .setupLeaf {
+    margin-left:1.27em;
+    padding-bottom:2px;
+    padding-top:2px;
+}
+/************************************/
+
+body .tabNavigation .tab td div {
+    color:#4B4B57;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:1.18em;
+    font-weight:bold;
+    max-height:15px;
+    padding:7px 10px;
+}
+body .tab td, body .tab td div, body .tab .last div {background-image:none;background-repeat:no-repeat;}
+.tab div {background-image:url("../images/motiftab3.gif");background-position:right -4776px;background-repeat:no-repeat;padding:3px 9px 5px 3px;}
+body .tabNavigation .tab a {color:#353535;}
+body .tabNavigation .tab a:hover {color:#1468b9;}
+.tab a {font-size:13px;line-height:16px;color:#444444;text-decoration:none;}
+.tab a:hover {text-decoration:underline;}
+.tab .last a {font-size:13px;}
+
+body .tabNavigation .tab .allTabsArrow {
+    background-image:url("../images/addTabs.png");
+    height:12px;
+    width:12px;
+}
+.allTabsArrow {
+    background-image:url("../images/arrow.gif");
+    background-position:0 0;
+    height:9px;
+    width:6px;
+}
+
+#bodyDiv_setup #bd_l {
+    left:-10px;
+    width:10px;
+}
+
+body .bodyDiv #bd_l {
+    background:url("../images/bd_sprite.png") repeat-y scroll left top transparent;
+    height:100%;
+    left:-20px;
+    position:absolute;
+    width:20px;
+}
+#bodyDiv_setup #mc_l, #bodyDiv_setup #mc_r, #bodyDiv_setup #bd_b {display:none;}
+#bodyDiv_setup #bd_r {
+    left:10px;
+}
+#bodyDiv_setup {
+    margin:0;
+}
+body .bodyDiv #bd_r {
+    background:url("../images/bd_right_shadow.png") repeat-y scroll right top transparent;
+    height:100%;
+    left:20px;
+    position:absolute;
+    width:100%;
+    z-index:-1;
+}
 
 #motifCurve {
     background-image:url("../images/motifCurve_sprite.png");
@@ -217,6 +397,30 @@ div.login_button a:hover[type=submit]{background-position: right -30px;}
     padding-bottom:1.75em;
 }
 
+div.button {
+	float: left;
+	margin-left: 6px;
+	margin-top: 1px;
+    line-height: 20px;
+}
+div.disable a{ color: #6E6E6E !important;line-height: 20px;background: none repeat scroll #EDEBE2 !important;}
+div.button a {
+    -moz-border-radius: 3px 3px 3px 3px;
+    background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
+    border-color: #B5B5B5 #B5B5B5 #7F7F7F;
+	border-width: 1px;
+    border-style: solid;
+	text-decoration: none;
+	color:#333333;
+	display: inline-block;
+	padding: 0 8px;
+	height: 18px;
+    font-size: 0.9em;
+    font-weight: bold;
+	line-height: 20px;
+}
+div.button a:hover{background-position: right -30px;}
+
 .login_form_box #login_form .forgotpass {
     background-color:#FFFFFF;
     color:#356FB6;
@@ -297,3 +501,242 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     margin:0 0 4px;
     padding:4px 0;
 }
+
+/********body cell*******/
+.bPageTitle {margin-bottom:15px;}
+body.detailPage .bPageTitle {margin-bottom:0;}
+body .bPageTitle {padding:10px 0 0;}
+body .bPageTitle .ptBody {
+    background-color:transparent;
+    color:#000000;
+    padding:0;
+}
+.bPageTitle .ptBody {
+    overflow:hidden;
+    padding-bottom:5px;
+    padding-top:5px;
+    width:100%;
+}
+.setupTab .bPageTitle .ptBody .content, .sysAdminTab .bPageTitle .ptBody .content {padding-left:0;}
+.setupTab .bPageTitle .ptBody .content, .sysAdminTab .bPageTitle .ptBody .content {padding-left:10px;}
+.bPageTitle .ptBody .content {
+    float:left;
+    padding-left:5px;
+    vertical-align:middle;
+    width:70%;
+}
+.setupTab .bPageTitle .ptBody .pageType, .setupTab .bPageTitle .ptBody .pageDescription, .sysAdminTab .bPageTitle .ptBody .pageType, .sysAdminTab .bPageTitle .ptBody .pageDescription {margin-left:0;}
+body .bPageTitle .ptBody .pageDescription {
+    font-size:2em;
+    font-weight:normal;
+    line-height:1.1em;
+}
+.bPageTitle .ptBody .pageDescription {font-size:109%;font-weight:bold;}
+.bPageTitle h1, .bPageTitle h2 {display:block;}
+.bPageTitle .content .blank {clear:both;font-size:0;}
+body .bPageTitle .ptBody .links {padding-top:0;}
+.bPageTitle .ptBody .links {
+    float:right;
+    font-size:91%;
+    padding:10px 5px 0 0;
+    text-align:right;
+    vertical-align:middle;
+    white-space:nowrap;
+}
+body .bPageTitle .ptBody .links a, body .bPageTitle .ptBody .links .configLinks, body .bPageTitle .ptBody .links .helpLink, body .bPageTitle .ptBody .links span {
+color:#015BA7;
+text-decoration:none;
+}
+.bPageTitle .ptBreadcrumb {
+    height:auto;
+    margin-bottom:0;
+    margin-top:3px;
+}
+.bPageTitle .ptBreadcrumb {
+    font-family:'Verdana','Geneva',sans-serif;
+    font-size:91.3%;
+    height:15px;
+    margin-bottom:-15px;
+    vertical-align:middle;
+}
+.setupTab.detailPage div.bDetailBlock.bPageBlock[id="ep"] {margin-bottom:20px;}
+body.detailPage .bDetailBlock.bPageBlock[id^="ep"] {
+    background-color:inherit;
+    border:inherit;
+    margin-bottom:auto;
+}
+body .bDetailBlock.bPageBlock, body .individualPalette .bDetailBlock.bPageBlock {
+    background-color:transparent;
+    border:0 none;
+    margin-bottom:25px;
+}
+body .bPageBlock.bDetailBlock .pbHeader {border:0 none;}
+body .bPageBlock .pbHeader {
+    background-color:transparent;
+    margin:0;
+    padding:0;
+}
+.bPageBlock .pbHeader {
+    background-color:#EEECD1;
+    border-bottom:1px solid #FFFFFF;
+    margin:0 2px 0 0;
+    padding-bottom:2px;
+}
+.bPageBlock .pbHeader table, .bPageBlock .pbBottomButtons table {border-spacing:0;width:100%;}
+.bPageBlock {font-size:105%;}
+.bPageBlock {
+    background-color:#222222;
+    background-image:url("../images/bgPageBlockLeft.gif");
+    background-position:left bottom;
+    background-repeat:no-repeat;
+    border-top:4px solid #222222;
+    clear:both;
+    margin-bottom:9px;
+    padding-bottom:9px;
+}
+.bEditBlock .pbHeader > table > tbody > tr > td, .bPageBlock .pbHeader > table > tbody > tr > td, .bLayoutBlock .pbHeader > table > tbody > tr > td, .bEditBlock .pbBottomButtons > table > tbody > tr > td, .bPageBlock .pbBottomButtons > table > tbody > tr > td, .bLayoutBlock .pbBottomButtons > table > tbody > tr > td {
+    padding:5px 12px;   
+}
+body .bRelatedList .pbTitle h3, body .bPageBlock .pbTitle h2, body .bPageBlock .pbTitle h3, body .bSubBlock h3.lbHeader {
+    color:#000000;
+    font-size:1.3em;
+}
+.pbHeader .pbTitle h2, .pbHeader .pbTitle h3 {
+    color:#333333;
+    display:block;
+    margin:0 0 0 4px;
+    padding:0;
+}
+.bPageBlock .pbTitle {
+    color:#222222;
+    font-size:91%;
+    margin:0;
+    vertical-align:middle;
+    width:30%;
+}
+.bPageBlock .pbButton {
+    padding:1px 0;
+    vertical-align:middle;
+}
+body .bPageBlock .pbBody {padding:0;}
+body .bPageBlock, body .bPageBlock .pbBody, body .bPageBlock .pbBottomButtons {
+    background-color:transparent;
+    background-image:none;
+    margin:0;
+}
+.bPageBlock .detailList {width:100%;}
+body .bDetailBlock.bPageBlock .pbBody .labelCol, body .bDetailBlock.bPageBlock .pbBody .dataCol, body .bDetailBlock.bPageBlock .pbBody .data2Col, body .bPageBlock.bEditBlock .pbBody .labelCol, body .bPageBlock.bEditBlock .pbBody .dataCol, body .bPageBlock.bEditBlock .pbBody .data2Col {
+    padding-bottom:3px;
+    padding-top:3px;
+}
+body .bPageBlock .pbBody .labelCol {color:#4A4A56;}
+body .bPageBlock .pbBody .labelCol, body .bPageBlock .pbBody .dataCol, body .bPageBlock .pbBody .data2Col {
+    padding-bottom:5px;
+    padding-top:5px;
+}
+.bPageBlock .detailList .labelCol {white-space:nowrap;}
+.bPageBlock .detailList .labelCol {width:18%;}
+.bPageBlock .detailList .dataCol {width:32%;}
+.bPageBlock .dataCol {
+    padding:2px 2px 2px 10px;
+    text-align:left;
+}
+body .bPageBlock .detailList tr td, body .bPageBlock .detailList tr th, body table.list tr td, body table.list tr th, body .hoverDetail .bPageBlock .detailList tr td, body .hoverDetail .bPageBlock .detailList tr th {
+    border-color:#ECECEC;
+}
+.bPageBlock .detailList tr td, .bPageBlock .detailList tr th, .hoverDetail .bPageBlock .detailList tr td, .hoverDetail .bPageBlock .detailList tr th {
+    border-bottom:1px solid #E3DEB8;
+}
+.bPageBlock .detailList th, .bPageBlock .detailList td {vertical-align:top;}
+.bPageBlock .labelCol {
+    color:#333333;
+    font-size:91%;
+    font-weight:bold;
+    padding:2px 10px 2px 2px;
+    text-align:right;
+}
+body .bDetailBlock.bPageBlock .pbBody .dataCol {border-right-color:transparent;}
+body .bPageTitle .ptBody .pageType {
+    color:#4A4A56;
+    font-size:0.9em;
+    font-weight:bold;
+    padding-left:1px;
+}
+.setupTab .mComponent .cHeader, .setupTab .genericTable, .setupTab .bSubBlock, .setupTab .bPageBlock {border-top:3px solid #747E96;}
+body .bPageBlock, body #bodyCell .bResource .secondaryPalette, body .secondaryPalette.bPageBlock, body .overlayDialog .secondaryPalette.bPageBlock, body .individualPalette .secondaryPalette.bPageBlock, body .bodyDiv .genericTable, body .genericPageBlockTable, body .bodyDiv .bSubBlock, body .bComponentBlock .bPageBlock, body .bMyDashboard .bPageBlock, body.rlHoverFrame .bPageBlock, body.subjectSelectionPopup div.choicesBox, body.lookupTab .secondaryPalette.bPageBlock, body.popupTab .secondaryPalette.bPageBlock, body.UserTagStatsPage .secondaryPalette.bPageBlock {
+    -moz-border-radius:4px 4px 4px 4px;
+    background-color:#F8F8F8;
+    border-bottom:1px solid #EAEAEA;
+    border-left:1px solid #EAEAEA;
+    border-right:1px solid #EAEAEA;
+}
+.bEditBlock .pbHeader > table, .apexp .bPageBlock.apexDefaultPageBlock .pbHeader > table, #ep.bLayoutBlock .pbHeader > table {border-bottom:1px solid #DBDBDB;padding:5px 0;}
+.setupTab form#editPage .pbBody .pbSubheader.first {
+border-top:0 none;
+}
+form .pbBody .pbSubheader {
+    background-image:url("../images/opacity75.png");
+    border-top:1px solid #FFFFFF;
+    border-width:1px 0 0;
+    color:#000000;
+    padding:4px 16px;
+}
+
+body .bEditBlock .pbBody .pbSubheader.first {border-top:medium none;}
+.setupTab .tertiaryPalette, .individualPalette .setupBlock .tertiaryPalette, .layoutEdit .individualPalette .setupBlock .tertiaryPalette {
+    background-color:#8E9DBE;
+    border-color:#8E9DBE;
+}
+.pbSubheader.first {margin-top:0;}
+.pbSubheader {
+    background-color:#222222;
+    font-size:91%;
+    font-weight:bold;
+    margin-bottom:2px;
+    margin-top:15px;
+    overflow:hidden;
+    padding:2px 2px 2px 5px;
+}
+body .bPageBlock .pbBody .pbSubheader h3, body .bWizardBlock .bPageBlock .pbBody .pbSubheader label {font-size:1.2em;}
+h1, h2, h3, h4, h5, h6 {
+    display:inline;
+    font-family:'Verdana','Geneva',sans-serif;
+    font-size:100%;
+    margin:0;
+}
+
+.bEditBlock .pbSubheader .pbSubExtra {margin-right:0;}
+.pbSubheader .pbSubExtra {float:right;margin-right:2em;}
+.bEditBlock .requiredLegend {background-color:transparent;}
+.requiredLegend {
+    background-color:#FFFFFF;
+    color:#000000;
+    font-weight:normal;
+    padding:0 2px;
+}
+.requiredExample {
+    border-left:3px solid #CC0000;
+    font-size:80%;
+    vertical-align:1px;
+    width:100%;
+}
+.requiredExampleOuter {
+    margin:0 0.2em 0 0.3em;
+    padding:1px 0;
+}
+.bEditBlock .requiredMark, .pbSubheader .requiredLegend .requiredMark {
+    color:#F8F8F8;
+    margin-right:2px;
+}
+.pbSubheader .requiredLegend .requiredMark {
+    color:white;
+    display:inline;
+    position:absolute;
+}
+.editPage .bPageBlock .detailList tr td, .editPage .bPageBlock .detailList tr th {border-bottom:medium none;}
+.bEditBlock.bPageBlock .detailList tr td, .bEditBlock.bPageBlock .detailList tr th {border-bottom-width:0;}
+form .pbBottomButtons {
+    border-top:1px solid #DBDBDB;
+}
+body .bEditBlock .pbBottomButtons, body .apexp .bPageBlock.apexDefaultPageBlock .pbBottomButtons {margin-top:20px;}
+form .pbBottomButtons > table {border-top:1px solid #FFFFFF;padding:0 !important;}

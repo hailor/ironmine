@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper :all
   #ajax请求不使用layout
 #  layout "application"
-  layout(Irm::GlobalSetting.all.first().theme_name.to_s == "default" ? "application" : Irm::GlobalSetting.all.first().theme_name.to_s )   
+  layout "application"   
   # filters
   # user_setup 从session中取得用户,如果session中没有[:user_id]则什么也不做
   # permission_setup 从当前链接中取得当前权限
