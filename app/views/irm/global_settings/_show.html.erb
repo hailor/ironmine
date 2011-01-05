@@ -1,0 +1,65 @@
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%= t(:label_irm_global_setting) %></h1>
+      <h2 class="pageDescription"><%= t(:label_irm_global_setting) %></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks">编辑局部</a>|
+      <a href="javascript:void(0);" class="configLinks">用户简档</a>|
+      <a href="javascript:void(0);" class="configLinks">此页面的帮助</a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+
+  </div>
+
+</div>  
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_global_setting) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit"}%></div>
+            <div class="button"><%= link_to t(:edit_icon), {}, {:href => "javascript:void(0);"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><%= t(:label_irm_global_setting_theme_name)%></td>
+              <td class="dataCol"><%= @global_setting.theme_name %></td>
+              <td class="labelCol"><%= t(:label_irm_global_setting_upload_file_limit) %></td>
+              <td class="dataCol"><%= @global_setting.upload_file_limit %></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><%= t(:label_irm_global_setting_timezone)%></td>
+              <td class="dataCol"><%= @global_setting.timezone %></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= link_to t(:edit), {:action => "edit"}%></div>
+            <div class="button"><%= link_to t(:edit_icon), {}, {:href => "javascript:void(0);"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

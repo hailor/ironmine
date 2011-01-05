@@ -1,67 +1,68 @@
-<div id="global_edit">
- <%= form_for(@global_setting,:url=>{:action=>"update", :id => @global_setting},:builder => LabellingFormBuilder, :html => {:method => :put, :id => "edit_setting_form", :multipart => true}) do |f| %>
-    <div class="containerheader">
-        <div class="floatleft headertitle"><%=t(:label_irm_global_setting)%></div>
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%= t(:label_irm_global_setting) %></h1>
+      <h2 class="pageDescription"><%= t(:label_irm_global_setting) %></h2>
+      <div class="blank">&nbsp;</div>
     </div>
-    <table class="twocolumnform" cellspacing="0">
-        <tr>
-          <td class="left">
-            <table cellspacing="0">
-                <tbody>
-                    <tr><td class="paddedtablelabel"><%=(t :label_irm_global_setting_theme_name)%>:</td>
-                      <td><%=f.select :theme_name, available_themes, {:include_blank => false}%></td>
-                    </tr>
-                    <tr><td class="paddedtablelabel"><%=(t :label_irm_global_setting_upload_file_limit)%>:</td>
-                      <td><%=f.text_field :upload_file_limit, :irm_numberonly => true%></td>
-                    </tr>
-                    <tr><td class="paddedtablelabel"><%=(t :label_irm_global_setting_timezone)%>:</td>
-                      <td><%=f.select :timezone, available_timezone, {:include_blank => false}%></td>
-                    </tr>
-                    <tr><td class="paddedtablelabel"><%=(t :label_irm_global_setting_logo)%>:</td>
-                      <td><%=f.file_field :logo%></td>
-                    </tr>
-                </tbody>
-            </table>
-          </td>
-          <td class="middle">
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks">此页面的帮助</a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
+</div>
 
-          </td>
-          <td class="middle" id="preimage">
-            <%= image_tag @global_setting.logo.url(:original) + "?" +  Time.new.usec.to_s%>
-          </td>
-          <td class="sep">
-            
+<%= form_for(@global_setting,:url=>{:action=>"update", :id => @global_setting},:builder => LabellingFormBuilder, :html => {:method => :put, :id => "edit_setting_form", :multipart => true}) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_global_setting) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:save), {}%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
           </td>
         </tr>
+      </tbody>
     </table>
-    <div class="containerfooter">
-        <div class="button floatright"><%= link_to t(:save), {}, {:action_type => "ajaxSubmit", :script => "/cropwindow();/replace(system_message_box,system_message_box);", :id => "save"}%></div>
+  </div>
+  <div class="pbBody">
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra"><span class="requiredLegend"><span class="requiredExampleOuter"><span class="requiredExample">&nbsp;</span></span><span class="requiredMark">*</span><span class="requiredText"> = 必填信息</span></span></span>
+      <h3>一般信息</h3>
     </div>
- <% end %>
-<div id='crop_win' style='display:none'></div>
-<script type="text/javascript" charset="utf-8">
-    var crop_win,win;
-    function cropwindow(){
-        if($('#crop_win').length > 0){
-            crop_win = new dhtmlXWindows();
-            crop_win.setImagePath("/images/dhtmlx/");
-            crop_win.enableAutoViewport(false);
-            crop_win.attachViewportTo("body");
-            $('#crop_win').load("/global_settings/crop", function(){init($("#img_container"))});
-            win = crop_win.createWindow("crop_win",50,50,600,400);
-            win.attachObject('crop_win');
-            win.button('park').hide();
-            win.button('close').hide();
-            win.button('minmax1').hide();
-            win.button('minmax2').hide();
-            win.denyResize();
-            win.setModal(true);
-            var evId = win.attachEvent("onClose", function(win){
-                win.detachEvent(evId);
-                win.close();
-                $('#container1').load("/global_settings/edit.js", function(){init($("#container1"))});
-            });
-        }
-    }
-</script>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%= t(:label_irm_global_setting_theme_name)%></label></td>
+              <td class="dataCol"><%=f.select :theme_name, available_themes, {:include_blank => false}%></td>
+              <td class="labelCol"><label><%= t(:label_irm_global_setting_upload_file_limit) %></label></td>
+              <td class="dataCol"><%=f.text_field :upload_file_limit, :irm_numberonly => true%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%= t(:label_irm_global_setting_timezone)%></label></td>
+              <td class="dataCol"><%=f.select :timezone, available_timezone, {:include_blank => false}%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= link_to t(:save), {}%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+<% end %>
