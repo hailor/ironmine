@@ -138,6 +138,7 @@ Ironmine::Application.routes.draw do
     match '/functions/:id(.:format)' => "functions#update", :via => :put
     match '/functions/new(.:format)' => "functions#new", :via => :get
     match '/functions/create(.:format)' => "functions#create", :via => :post
+    match '/functions/:id/show(.:format)' => "functions#show", :via => :get
     match '/functions/:id/multilingual_edit(.:format)' => "functions#multilingual_edit", :via => :get
     match '/functions/:id/multilingual_update(.:format)' => "functions#multilingual_update", :via => :put
     match '/functions/get_data(.:format)' => "functions#get_data"
