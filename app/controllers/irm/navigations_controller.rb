@@ -1,6 +1,5 @@
 # 用于存放IRM模块对应的菜单页面
 class Irm::NavigationsController < ApplicationController
-  layout "menu"
   # 顶级菜单对应的菜单页面
   def entrance
 
