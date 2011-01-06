@@ -404,7 +404,7 @@ zh:
   label_irm_department_new: 新建部门
   label_irm_department_edit: 编辑部门
   label_irm_department_list: 部门列表
-  label_irm_department_show: 部门显示
+  label_irm_department_show: 部门
   label_irm_department_function_description: 在公司中的定义部门。
   label_irm_department_departments_tls:
     name: 名称

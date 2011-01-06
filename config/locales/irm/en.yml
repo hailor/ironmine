@@ -291,7 +291,7 @@ en:
   label_irm_department_new: Department New
   label_irm_department_edit: Department Edit
   label_irm_department_list: Department List
-  label_irm_department_show: Department Show
+  label_irm_department_show: Department
   label_irm_department_function_description: Define Department in company。
   label_irm_department_departments_tls:
     name: Name

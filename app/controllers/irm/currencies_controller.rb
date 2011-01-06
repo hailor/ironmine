@@ -46,7 +46,6 @@ class Irm::CurrenciesController < ApplicationController
         format.html { render "index" }
         format.xml  { render :xml => @currency, :status => :created, :location => @currency }
       else
-        @error = @currency
         format.html { render "new" }
         format.xml  { render :xml => @currency.errors, :status => :unprocessable_entity }
       end
@@ -64,7 +63,6 @@ class Irm::CurrenciesController < ApplicationController
         format.html { render "index" }
         format.xml  { head :ok }
       else
-        @error = @currency
         format.html { render "edit" }
         format.xml  { render :xml => @currency.errors, :status => :unprocessable_entity }
       end

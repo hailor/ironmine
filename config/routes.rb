@@ -242,6 +242,7 @@ Ironmine::Application.routes.draw do
     match '/organizations/:id/multilingual_update(.:format)' => "organizations#multilingual_update", :via => :put
     match '/organizations/belongs_to(.:format)' => "organizations#belongs_to"
     #departments
+    match '/departments/get_data(.:format)' => "departments#get_data"
     match '/departments(/index)(.:format)' => "departments#index", :via => :get
     match '/departments/:id/edit(.:format)' => "departments#edit", :via => :get
     match '/departments/:id(.:format)' => "departments#update", :via => :put
@@ -250,7 +251,6 @@ Ironmine::Application.routes.draw do
     match '/departments/create(.:format)' => "departments#create", :via => :post
     match '/departments/:id/multilingual_edit(.:format)' => "departments#multilingual_edit", :via => :get
     match '/departments/:id/multilingual_update(.:format)' => "departments#multilingual_update", :via => :put
-    match '/departments/get_data(.:format)' => "departments#get_data"
     match '/departments/belongs_to(.:format)' => "departments#belongs_to"
     #value_sets
     match '/value_sets(/index)(.:format)' => "value_sets#index", :via => :get

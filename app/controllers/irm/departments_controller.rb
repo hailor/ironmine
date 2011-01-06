@@ -32,7 +32,7 @@ class Irm::DepartmentsController < ApplicationController
 
   # GET /departments/1/edit
   def edit
-    @department = Irm::Department.multilingual.find(params[:id])
+    @department = Irm::Department.multilingual.query_wrap_info(I18n::locale).find(params[:id])
   end
 
   # POST /departments
@@ -43,11 +43,10 @@ class Irm::DepartmentsController < ApplicationController
     respond_to do |format|
       if @department.save
         flash[:successful_message] = (t :successfully_created)
-        format.html { render "irm/common/_successful_message" }
+        format.html { render "index" }
         format.xml  { render :xml => @department, :status => :created, :location => @department }
       else
-        @error = @department
-        format.html { render "irm/common/error_message" }
+        format.html { render "new" }
         format.xml  { render :xml => @department.errors, :status => :unprocessable_entity }
       end
     end
@@ -61,11 +60,10 @@ class Irm::DepartmentsController < ApplicationController
     respond_to do |format|
       if @department.update_attributes(params[:irm_department])
         flash[:successful_message] = (t :successfully_updated)
-        format.html { render "irm/common/_successful_message" }
+        format.html { render "index" }
         format.xml  { head :ok }
       else
-        @error = @department
-        format.html { render "irm/common/error_message" }
+        format.html { render "edit" }
         format.xml  { render :xml => @department.errors, :status => :unprocessable_entity }
       end
     end
@@ -89,9 +87,9 @@ class Irm::DepartmentsController < ApplicationController
 
   def get_data
     @departments= Irm::Department.multilingual.query_wrap_info(I18n::locale)
+    @departments,count = paginate(@departments)
     respond_to do |format|
-      format.json {render :json=>@departments.to_dhtmlxgrid_json(['R',:company_name,:organization_name,:short_name,:name,:description,:status_meaning,
-                                                             {:value => 'M', :controller => 'irm/departments',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_department_list', :script => ''}], @departments.size)}
+      format.json {render :json=>to_jsonp(@departments.to_grid_json(['R',:company_name,:organization_name,:short_name,:name,:description,:status_meaning], count))}
     end
   end
 
