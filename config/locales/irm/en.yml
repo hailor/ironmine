@@ -140,6 +140,7 @@ en:
   label_irm_action_list: List Action
   label_irm_action_show: Show Action
   label_irm_action_function_description: Action List。You Can
+  label_irm_action_detail_info: Action Detail Info
   label_irm_action_actions_tls:
     name: Name
   #=========================end irm actions_controller=======================#

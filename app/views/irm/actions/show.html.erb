@@ -1,49 +1,68 @@
-<div class="container">
-  <div class="pagetitle"><%=t(:label_irm_action_show)%></div>
-  <div class="pagedescription"><%=t(:label_irm_action_function_description)%></div>
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%= t(:label_irm_action) %></h1>
+      <h2 class="pageDescription"><%=@action.action_code%></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks">编辑局部</a>|
+      <a href="javascript:void(0);" class="configLinks">用户简档</a>|
+      <a href="javascript:void(0);" class="configLinks">此页面的帮助</a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
 </div>
-<div class="container">
-  <div class="discontainerheader  bluetop">
-    <table class="bartable">
-      <tr>
-        <td class="left"><div class="headertitle"></div></td>
-        <td class="middle">
-          <div class="button"><%= link_to t(:edit), {:action => "edit"}%></div>
-          <div class="button" ><%= link_to t(:new), {:action=>"new"}%></div>
-        </td>
-      </tr>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_action_detail_info) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @action}%></div>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
-  <div class="discontainerbody">
-  <table class="showtable" cellspacing="0">
-      <tr>
-          <td class="showlabel"><%=(t :label_irm_action_entity_code)%>:</td>
-          <td class="showitem"><%=@action[:entity_meaning]%></td>
-          <td class="showlabel"><%=(t :label_irm_action_action_code)%>:</td>
-          <td class="showitem"><%=@action.action_code%></td>
-      </tr>
-      <tr>
-          <td class="showlabel"><%=(t :label_irm_action_name)%>:</td>
-          <td class="showitem"><%=@action[:name]%></td>
-          <td class="showlabel"><%=(t :label_irm_action_handler)%>:</td>
-          <td class="showitem"><%= @action.handler%></td>
-      </tr>
-      <tr>
-          <td class="showlabel"><%=(t :label_irm_action_description)%>:</td>
-          <td class="showitem"><%=@action[:description]%></td>
-      </tr>
-  </table>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_action_entity_code)%></label></td>
+              <td class="dataCol"><%=@action[:entity_meaning]%></td>
+              <td class="labelCol"><label><%=(t :label_irm_action_action_code)%></label></td>
+              <td class="dataCol"><%=@action.action_code%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_action_name)%></label></td>
+              <td class="dataCol"><%= @action[:name]%></td>
+              <td class="labelCol"><%=(t :label_irm_action_handler)%></td>
+              <td class="dataCol"><%= @action.handler%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_action_description)%></label></td>
+              <td class="dataCol"><%= @action[:description]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div class="discontainerfooter">
-    <table class="bartable">
-      <tr>
-        <td class="left"></td>
-        <td class="middle">
-          <div class="button"><%= link_to t(:edit), {:action => "edit"}%></div>
-          <div class="button" ><%= link_to t(:new), {:action=>"new"}%></div>
-        </td>
-        <td class="right"></td>
-      </tr>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @action.id}%></div>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>

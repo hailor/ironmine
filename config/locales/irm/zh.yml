@@ -185,6 +185,7 @@ zh:
   label_irm_action_edit: 编辑执行动作
   label_irm_action_list: 执行动作列表
   label_irm_action_show: 执行动作显示
+  label_irm_action_detail_info: 执行动作详细信息
   label_irm_action_function_description: 需要执行动作的列表。整体描述整个执行动作的设置。
   label_irm_action_actions_tls:
      name: 名称
