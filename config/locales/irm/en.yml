@@ -48,6 +48,8 @@ en:
   label_delete_confirm: Are you sure to delete this record?
   label_no_data: No Data
   label_sub_functions: Functions
+  label_common_info: Common Info
+  label_is_required: Required Info
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type
