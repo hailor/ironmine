@@ -54,16 +54,16 @@
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_script_condition)%></label></td>
               <td class="dataCol"><%=f.select :condition_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_condition,:condition_code,:wrap_name,@script.condition_code)%></td>
-              <td class="labelCol empty"><label><%=(t :label_irm_script_action)%></label></td>
-              <td class="dataCol empty"><%=f.select :action_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_condition,:condition_code,:wrap_name,@script.condition_code),:require=>true%></td>
+              <td class="labelCol"><label><%=(t :label_irm_script_action)%></label></td>
+              <td class="dataCol"><%=f.select :action_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
                                                     options_from_collection_for_select(available_action,:action_code,:wrap_name,@script.action_code)%></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_script_description)%></label><%=(t :label_irm_script_template)%></td>
+              <td class="labelCol"><label><%=(t :label_irm_script_description)%></label></td>
               <td class="dataCol"><%=f.text_area :description,:value=>@script[:description],:rows=>4%></td>
-              <td class="labelCol empty"><label><%=(t :label_irm_script_template)%></label></td>
-              <td class="dataCol empty"><%=f.select :template_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+              <td class="labelCol"><label><%=(t :label_irm_script_template)%></label></td>
+              <td class="dataCol"><%=f.select :template_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
                                                     options_from_collection_for_select(available_mail_template,:template_code,:wrap_name,@script.template_code)%></td>
             </tr>
         </tbody>
