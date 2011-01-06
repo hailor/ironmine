@@ -52,6 +52,9 @@ en:
   label_is_required: Required Info
   label_help_about_page: Page Help
   label_detail_info: Detail Info
+  error: Error
+  error_invalid_data: Error：Invalid Data。
+  check_error_msg_and_fix: Please check all error to correct data。
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type
