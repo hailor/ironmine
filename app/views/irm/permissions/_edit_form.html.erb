@@ -38,7 +38,7 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_permission_permission_code)%></label></td>
-              <td class="dataCol"><%=f.text_field :permission_code, :required=>true,:irm_uppercase=>true%></td>
+              <td class="dataCol"><%= @permission.permission_code%></td>
               <td class="labelCol"><label><%=(t :label_irm_permission_page_controller)%></label></td>
               <td class="dataCol"><%=f.text_field :page_controller, :required=>true%></td>
             </tr>
