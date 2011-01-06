@@ -22,6 +22,7 @@
           <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_permission) %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @permission}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
           </td>
         </tr>
       </tbody>
@@ -64,17 +65,5 @@
         </tbody>
       </table>
     </div>
-  </div>
-  <div class="pbBottomButtons">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <tbody>
-        <tr>
-          <td class="pbTitle"></td>
-          <td id="bottomButtonRow" class="pbButtonb">
-            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @permission.id}%></div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </div>

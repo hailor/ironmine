@@ -97,10 +97,11 @@ class Irm::FunctionGroupsController < ApplicationController
 
   def get_own_functions
     @function_group = Irm::FunctionGroup.find(params[:function_group_id])
-    @functions = @function_group.functions.multilingual
+    functions_scope = @function_group.functions.multilingual
+    functions,count = paginate(functions_scope)
     respond_to do |format|
-      format.json  {render :json => @functions.to_dhtmlxgrid_json(['0',:function_code,:name,:description], @functions.size) }
-    end
+      format.json  {render :json => to_jsonp(functions.to_grid_json([:function_code,:name,:description,:status_code], count)) }
+    end        
   end
 
   def get_available_functions
