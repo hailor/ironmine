@@ -46,7 +46,7 @@ class Irm::Permission < ActiveRecord::Base
 
   #查找权限列表
   scope :list_all, lambda{
-    select("#{table_name}.*, #{Irm::PermissionsTl.table_name}.name, #{Irm::PermissionsTl.table_name}.description, #{Irm::ProductModulesTl.table_name}.name product_module_name").
+    select("#{table_name}.*, #{Irm::PermissionsTl.table_name}.name name, #{Irm::PermissionsTl.table_name}.description description, #{Irm::ProductModulesTl.table_name}.name product_module_name").
     joins(",#{Irm::PermissionsTl.table_name}, #{Irm::ProductModulesTl.table_name}").
     where("#{Irm::PermissionsTl.table_name}.permission_id = #{table_name}.id").
     where("#{Irm::PermissionsTl.table_name}.language = ?", I18n.locale).
