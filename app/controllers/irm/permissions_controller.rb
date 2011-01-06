@@ -34,11 +34,11 @@ class Irm::PermissionsController < ApplicationController
     @permission = Irm::Permission.new(params[:irm_permission])
     respond_to do |format|
       if @permission.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "successful_info" }        
+        format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+        format.xml  { render :xml => @permission, :status => :created, :location => @permission }
       else
-         @error = @permission
-         format.html { render "error_message" }
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @permission.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -48,11 +48,11 @@ class Irm::PermissionsController < ApplicationController
 
     respond_to do |format|
       if @permission.update_attributes(params[:irm_permission])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
       else
-        @error = @permission
-        format.html { render "error_message" }
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @permission.errors, :status => :unprocessable_entity }
       end
     end
   end

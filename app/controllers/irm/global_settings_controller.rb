@@ -20,14 +20,23 @@ class Irm::GlobalSettingsController < ApplicationController
   # PUT /global_settings/1.xml
   def update
     @global_setting = Irm::GlobalSetting.find(params[:id])
+#    respond_to do |format|
+#      if @global_setting.update_attributes(params[:irm_global_setting])
+#        nil
+#      else
+#        @error = @global_setting
+#        format.html { render "error_message"}
+#      end
+#    end
     respond_to do |format|
       if @global_setting.update_attributes(params[:irm_global_setting])
-        nil
+        format.html { redirect_to({:action=>"edit"}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
       else
-        @error = @global_setting
-        format.html { render "error_message"}
-      end      
-    end
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @global_setting.errors, :status => :unprocessable_entity }
+      end
+    end    
   end
 
   def crop

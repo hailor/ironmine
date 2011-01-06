@@ -414,12 +414,28 @@ div.button a {
 	color:#333333;
 	display: inline-block;
 	padding: 0 8px;
-	height: 18px;
-    font-size: 0.9em;
+	height: 20px;
+    font-size: 11px;
     font-weight: bold;
 	line-height: 20px;
 }
 div.button a:hover{background-position: right -30px;}
+div.button input[type="submit"] {
+    -moz-border-radius: 3px 3px 3px 3px;
+    background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
+    border-color: #B5B5B5 #B5B5B5 #7F7F7F;
+	border-width: 1px;
+    border-style: solid;
+	text-decoration: none;
+	color:#333333;
+	display: inline-block;
+	padding: 0 5px 2px 5px;
+	height: 22px;
+    font-size: 11px;
+    font-weight: bold;
+	line-height: 22px;
+}
+div.button input[type="submit"]:hover{background-position: right -30px; cursor: pointer;}
 
 .login_form_box #login_form .forgotpass {
     background-color:#FFFFFF;
@@ -431,9 +447,9 @@ div.button a:hover{background-position: right -30px;}
     text-decoration:none;
     width:160px;
 }
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, sub, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
     border:0 none;
-    font-family:inherit;
+    /*font-family:inherit;*/
     font-size:100%;
     font-style:inherit;
     font-weight:inherit;
@@ -599,7 +615,8 @@ body .bPageBlock .pbHeader {
 }
 body .bRelatedList .pbTitle h3, body .bPageBlock .pbTitle h2, body .bPageBlock .pbTitle h3, body .bSubBlock h3.lbHeader {
     color:#000000;
-    font-size:1.3em;
+    font-size:15px;
+    font-weight: bold;
 }
 .pbHeader .pbTitle h2, .pbHeader .pbTitle h3 {
     color:#333333;
@@ -662,6 +679,10 @@ body .bPageTitle .ptBody .pageType {
     font-weight:bold;
     padding-left:1px;
 }
+div#bodyDiv_setup > table.outer {background-color:#F2F2F3;}
+body .bodyDiv #bodyTable {padding-left:0;padding-right:0;}
+.outer {margin:0;}
+
 .setupTab .mComponent .cHeader, .setupTab .genericTable, .setupTab .bSubBlock, .setupTab .bPageBlock {border-top:3px solid #747E96;}
 body .bPageBlock, body #bodyCell .bResource .secondaryPalette, body .secondaryPalette.bPageBlock, body .overlayDialog .secondaryPalette.bPageBlock, body .individualPalette .secondaryPalette.bPageBlock, body .bodyDiv .genericTable, body .genericPageBlockTable, body .bodyDiv .bSubBlock, body .bComponentBlock .bPageBlock, body .bMyDashboard .bPageBlock, body.rlHoverFrame .bPageBlock, body.subjectSelectionPopup div.choicesBox, body.lookupTab .secondaryPalette.bPageBlock, body.popupTab .secondaryPalette.bPageBlock, body.UserTagStatsPage .secondaryPalette.bPageBlock {
     -moz-border-radius:4px 4px 4px 4px;
@@ -740,3 +761,132 @@ form .pbBottomButtons {
 }
 body .bEditBlock .pbBottomButtons, body .apexp .bPageBlock.apexDefaultPageBlock .pbBottomButtons {margin-top:20px;}
 form .pbBottomButtons > table {border-top:1px solid #FFFFFF;padding:0 !important;}
+
+/************** error messages and input required ******************/
+.bPageBlock .requiredInput {height:100%;position:relative;}
+.bPageBlock .requiredInput .requiredBlock {
+    background-color:#CC0000;
+    bottom:1px;
+    left:-4px;
+    position:absolute;
+    top:1px;
+    width:3px;
+}
+.bPageBlock .detailList .errorMsg {
+    padding-left:3px;
+}
+.errorStyle, .errorMsg, .importantWarning, .pbBody .errorStyle a, .pbBody .errorMsg a {
+    color:#D74C3B;
+}
+.bPageBlock .detailList .error, .bPageTitle .tagDropDown #tag_edit_error, .bPageTitle .tagDropDown .tagDropDownContent .error, .tagRenameMenu .error, .inlineEditDiv .error, .inlineEditRequiredDiv .error {
+    border:2px solid #CC0000;
+}
+.bPageBlock .pbError, .editListError {
+    color:#CC0000;
+    font-weight:bold;
+    text-align:center;
+}
+/********************************************************************/
+.listRelatedObject .pbBody {padding: 0 !important;}
+.datatable table{width:100%;}
+.bPageBlock .pbHeader > #hotlist > table > tbody > tr > td {padding:5px 6px;}
+.bPageBlock .pbHeader .pbHelp {
+    padding:1px 5px 1px 1px;
+    text-align:right;
+    vertical-align:middle;
+}
+/***************************tools content***********************************/
+.toolsContent {width:100%;}
+.toolsContentLeft {margin-right:10px;}
+.bSubBlock .lbHeader {padding-left:1px;padding-right:0;}
+body .bSubBlock .lbBody {
+    background-color:#FFFFFF;
+    border:1px solid #E8E8E8;
+    margin:5px 0 0;
+    padding:5px;
+}
+body .bPageBlock {
+    border-top-width:3px;
+    margin-bottom:10px;
+    padding:0;
+}
+body .bSubBlock {padding:5px;}
+.bSubBlock .lbBody {
+    background-color:#F3F3EC;
+    height:100%;
+    line-height:1.6em;
+    padding:10px 23px 10px 26px;
+}
+.bSubBlock .lbHeader {
+    display:block;
+    float:none;
+    font-family:'Arial','Helvetica',sans-serif;
+    font-weight:bold;
+    padding:2px 13px;
+}
+.bSubBlock .lbBody ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+.bSubBlock .lbBody li, .bSubBlock .lbBody .bSummary {line-height:25px;}
+.bSubBlock .lbBody .mainLink {font-weight:bold;}
+/****************************bFilter and it's button*******************************/
+.bFilter .btn {
+    margin-right:10px;
+    vertical-align:middle;
+}
+
+body button, body .x-btn, body .btn, body .btnDisabled, body .btnCancel, body .menuButton .menuButtonButton {
+    -moz-border-radius:3px 3px 3px 3px;
+    background:url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
+    border-color:#B5B5B5 #B5B5B5 #7F7F7F;
+    border-style:solid;
+    border-width:1px;
+    color:#333333;
+    font-size:0.9em;
+    font-weight:bold;
+    margin:1px;
+    padding:2px 3px;
+}
+.bFilter input, .bFilter select {margin:2px auto;vertical-align:middle;}
+body .bodyDiv .filterOverview {margin:5px;padding:0 0 10px;}
+.filterOverview {padding-bottom:15px;}
+body .bodyDiv .bFilter {margin:0;}
+.bFilterView .bFilter .fBody {vertical-align:middle;}
+.btn {
+    font-size:90%;
+    font-weight:normal;
+    padding-bottom:0;
+    padding-top:1px;
+}
+.bFilter .fFooter {
+    font-size:91%;
+    padding-left:8px;
+    padding-top:2px;
+    text-align:left;
+}
+body .bodyDiv .bFilter .fFooter a {vertical-align:-1px;}
+body .bodyDiv .bFilter a {
+    color:#015BA7;
+    font-size:1.2em;
+    text-decoration:none;
+}
+body .bodyDiv .bFilter a:hover {text-decoration:underline;}
+
+.btn{
+    background-image:url("../images/bgButton.gif");
+    background-position:left top;
+    background-repeat:repeat-x;
+    border-color:-moz-use-text-color #5C5D61 #5C5D61 -moz-use-text-color;
+    border-style:none solid solid none;
+    border-width:medium 1px 1px medium;
+    color:#FFFFFF;
+    cursor:pointer;
+    display:inline;
+    font-family:'Verdana','Geneva',sans-serif;
+    font-size:80%;
+    font-weight:bold;
+    padding:1px 3px;
+}
+/*************************************************************/
