@@ -2,11 +2,8 @@ class Irm::ProductModulesController < ApplicationController
   # GET /product_modules
   # GET /product_modules.xml
   def index
-    @product_module = Irm::ProductModule.new
-    
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @product_module }
     end
   end
 
@@ -44,11 +41,11 @@ class Irm::ProductModulesController < ApplicationController
 
     respond_to do |format|
       if @product_module.save
-        format.html { redirect_to(:action => "index", :notice => (t :successfully_created)) }
+        format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
         format.xml  { render :xml => @product_module, :status => :created, :location => @product_module }
       else
-         @error = @product_module
-         format.html { render "error_message" }
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @product_module.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -60,13 +57,11 @@ class Irm::ProductModulesController < ApplicationController
 
     respond_to do |format|
       if @product_module.update_attributes(params[:irm_product_module])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
-#        format.html { redirect_to(:action => "index", :notice => (t :successfully_updated)) }
-#        format.xml  { head :ok }
+        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
       else
-        @error = @product_module
-        format.html { render "error_message" }
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @product_module.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -100,13 +95,11 @@ class Irm::ProductModulesController < ApplicationController
   end
 
   def get_data
-    @product_modules = Irm::ProductModule.multilingual
+    product_modules_scope = Irm::ProductModule.multilingual
+    product_modules,count = paginate(product_modules_scope)
     respond_to do |format|
-      format.json  {render :json => @product_modules.to_dhtmlxgrid_json(['0',
-                                                                         :product_short_name,
-                                                                         :name, :description, :installed_flag, :status_code,
-                                                                         {:value => 'M', :controller => 'irm/product_modules',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}], @product_modules.size) }
-    end    
+      format.json  {render :json => to_jsonp(product_modules.to_grid_json([:product_short_name,:name,:description,:installed_flag,:status_code], count)) }
+    end
   end
 
   def enable

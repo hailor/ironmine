@@ -67,3 +67,28 @@
   </div>
 </div>
 <% end %>
+<script type="text/javascript" charset="utf-8">
+    var crop_win,win;
+    function cropwindow(){
+        if($('#crop_win').length > 0){
+            crop_win = new dhtmlXWindows();
+            crop_win.setImagePath("/images/dhtmlx/");
+            crop_win.enableAutoViewport(false);
+            crop_win.attachViewportTo("body");
+            $('#crop_win').load("/global_settings/crop", function(){init($("#img_container"))});
+            win = crop_win.createWindow("crop_win",50,50,600,400);
+            win.attachObject('crop_win');
+            win.button('park').hide();
+            win.button('close').hide();
+            win.button('minmax1').hide();
+            win.button('minmax2').hide();
+            win.denyResize();
+            win.setModal(true);
+            var evId = win.attachEvent("onClose", function(win){
+                win.detachEvent(evId);
+                win.close();
+                $('#container1').load("/global_settings/edit.js", function(){init($("#container1"))});
+            });
+        }
+    }
+</script>

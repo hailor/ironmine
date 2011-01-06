@@ -1,16 +1,12 @@
 class Irm::PermissionsController < ApplicationController
   def index
-    @permission = Irm::Permission.new
-
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @permission }
     end
   end
 
   def show
-    @permission = Irm::Permission.find(params[:id])
-
+    @permission = Irm::Permission.list_all.where(:id => params[:id]).first()
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @permission }
