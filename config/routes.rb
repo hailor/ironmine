@@ -291,13 +291,15 @@ Ironmine::Application.routes.draw do
     match '/site_groups/get_data(.:format)' => "site_groups#get_data"
     match '/site_groups/get_current_group_site(.:format)' => "site_groups#get_current_group_site"
     match '/site_groups/create_site(.:format)' => "site_groups#create_site"
+    match '/site_groups/belongs_to(.:format)' => "site_groups#belongs_to"
+    match '/site_groups/:id(.:format)' => "site_groups#show"
     match '/site_groups/:id/add_site(.:format)' => "site_groups#add_site"
     match '/site_groups/:id/edit_site(.:format)' => "site_groups#edit_site"
     match '/site_groups/:id/update_site(.:format)' => "site_groups#update_site"
     match '/site_groups/:id/current_site_group(.:format)' => "site_groups#current_site_group"
     match '/site_groups/:id/multilingual_site_edit(.:format)' => "site_groups#multilingual_site_edit", :via => :get
     match '/site_groups/:id/multilingual_site_update(.:format)' => "site_groups#multilingual_site_update", :via => :put
-    match '/site_groups/belongs_to(.:format)' => "site_groups#belongs_to"
+
     #operational_catalogs
     match '/operational_catalogs(/index)(.:format)' => "operational_catalogs#index", :via => :get
     match '/operational_catalogs/new(.:format)' => "operational_catalogs#new", :via => :get

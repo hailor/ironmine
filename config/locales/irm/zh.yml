@@ -450,6 +450,7 @@ zh:
   label_irm_site_group_new: 新建地点组
   label_irm_site_group_edit: 编辑地点组
   label_irm_site_group_list: 地点组列表
+  label_irm_site_group_show: 地点组
   label_irm_site_group_site_groups_tls:
     name: 名称
   label_irm_site_new: 新建地点

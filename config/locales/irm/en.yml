@@ -314,6 +314,7 @@ en:
   label_irm_site_group_new: New Site Group
   label_irm_site_group_edit: Edit Site Group
   label_irm_site_group_list: List Site Group
+  label_irm_site_group_show: Site Group
   label_irm_site_group_create_site: Create Site
   label_irm_site_group_site_groups_tls:
     name: Name

@@ -13,7 +13,7 @@ class Irm::SiteGroupsController < ApplicationController
   # GET /site_groups/1
   # GET /site_groups/1.xml
   def show
-    @site_group = Irm::SiteGroup.find(params[:id])
+    @site_group = Irm::SiteGroup.multilingual.query_wrap_info(I18n::locale).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +34,7 @@ class Irm::SiteGroupsController < ApplicationController
 
   # GET /site_groups/1/edit
   def edit
-    @site_group = Irm::SiteGroup.multilingual.find(params[:id])
+    @site_group = Irm::SiteGroup.multilingual.query_wrap_info(I18n::locale).find(params[:id])
   end
 
   # POST /site_groups
@@ -91,9 +91,9 @@ class Irm::SiteGroupsController < ApplicationController
 
   def get_data
     @site_groups= Irm::SiteGroup.multilingual.query_wrap_info(I18n::locale)
+    @site_groups,count = paginate(@site_groups)
     respond_to do |format|
-      format.json {render :json=>@site_groups.to_dhtmlxgrid_json(['R',:region_name,:group_code,:name,:description,:status_meaning,
-                                                             {:value => 'M', :controller => 'irm/site_groups',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_site_group_list', :script => ''}], @site_groups.size)}
+      format.json {render :json=>to_jsonp(@site_groups.to_grid_json(['R',:region_name,:group_code,:name,:description,:status_meaning], count))}
     end
   end
 
