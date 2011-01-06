@@ -48,8 +48,8 @@
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_action_description)%></label></td>
               <td class="dataCol"><%= @action[:description]%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><label><%=(t :label_irm_region_status_code)%></label></td>
+              <td class="dataCol"><%=@action[:status_meaning]%></td>
             </tr>
         </tbody>
       </table>

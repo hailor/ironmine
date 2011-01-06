@@ -54,8 +54,9 @@
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_department_description)%></label></td>
               <td class="dataCol"><%=f.text_area :description,:value=>@department[:description],:rows=>4%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol empty"><label><%=(t :label_irm_script_status_code)%></label></td>
+              <td class="dataCol empty"><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@department.status_code)%></td>
             </tr>
         </tbody>
       </table>
