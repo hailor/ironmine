@@ -8,7 +8,7 @@
     <div class="links">
       <a href="javascript:void(0);" class="configLinks">编辑局部</a>|
       <a href="javascript:void(0);" class="configLinks">用户简档</a>|
-      <a href="javascript:void(0);" class="configLinks">此页面的帮助</a>
+      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%></a>
     </div>
     <div class="ptBreadcrumb"></div>
   </div>
@@ -19,9 +19,11 @@
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_action_detail_info) %></h2></td>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_action_show) %>&nbsp;<%= t(:label_detail_info) %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @action}%></div>
+            <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
           </td>
         </tr>
       </tbody>
@@ -60,6 +62,8 @@
           <td class="pbTitle"></td>
           <td id="bottomButtonRow" class="pbButtonb">
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @action.id}%></div>
+            <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
           </td>
         </tr>
       </tbody>

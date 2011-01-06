@@ -50,6 +50,8 @@ en:
   label_sub_functions: Functions
   label_common_info: Common Info
   label_is_required: Required Info
+  label_help_about_page: Page Help
+  label_detail_info: Detail Info
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type
@@ -124,7 +126,7 @@ en:
   label_irm_condition_new: New Condition
   label_irm_condition_edit: Edit Condition
   label_irm_condition_list: List Condition
-  label_irm_condition_show: Condtion Show
+  label_irm_condition_show: Condtion
   label_irm_condition_function_description: Define All Condition。
   label_irm_condition_conditions_tls:
     name: Name
@@ -140,9 +142,8 @@ en:
   label_irm_action_new: New Action
   label_irm_action_edit: Edit Action
   label_irm_action_list: List Action
-  label_irm_action_show: Show Action
+  label_irm_action_show: Action
   label_irm_action_function_description: Action List。You Can
-  label_irm_action_detail_info: Action Detail Info
   label_irm_action_actions_tls:
     name: Name
   #=========================end irm actions_controller=======================#
@@ -159,7 +160,7 @@ en:
   label_irm_script_new: New script
   label_irm_script_edit: Edit script
   label_irm_script_list: List script
-  label_irm_script_show: Show script
+  label_irm_script_show: script
   label_irm_script_function_description: Choose condition,action and mail template to define script
   label_irm_script_scripts_tls:
     name: Name
@@ -202,7 +203,7 @@ en:
   label_irm_currency_new: New Currency
   label_irm_currency_edit: Edit Currency
   label_irm_currency_list: List Currency
-  label_irm_currency_show: Show Currency
+  label_irm_currency_show: Currency
   label_irm_currency_function_description: Show Currency Code Description
   label_irm_currency_currencies_tls:
     name: Name

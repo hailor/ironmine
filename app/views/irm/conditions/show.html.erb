@@ -1,45 +1,73 @@
-<div class="container">
-  <div class="pagetitle"><%=t(:label_irm_condition_show)%></div>
-  <div class="pagedescription"><%=t(:label_irm_condition_function_description)%></div>
-</div>
-<div class="container">
-  <div class="discontainerheader  bluetop">
-    <table class="bartable">
-      <tr>
-        <td class="left"><div class="headertitle"></div></td>
-        <td class="middle">
-          <div class="button"><%= link_to t(:edit), {:action => "edit"}%></div>
-          <div class="button" ><%= link_to t(:new), {:action=>"new"}%></div>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="discontainerbody">
-  <table class="showtable" cellspacing="0">
-      <tr>
-          <td class="showlabel"><%=(t :label_irm_condition_entity_code)%>:</td>
-          <td class="showitem"><%=@condition[:entity_meaning]%></td>
-          <td class="showlabel"><%=(t :label_irm_condition_condition_code)%>:</td>
-          <td class="showitem"><%=@condition.condition_code%></td>
-      </tr>
-      <tr>
-          <td class="showlabel"><%=(t :label_irm_condition_name)%>:</td>
-          <td class="showitem"><%=@condition[:name]%></td>
-          <td class="showlabel"><%=(t :label_irm_condition_description)%>:</td>
-          <td class="showitem"><%=@condition[:description]%></td>
-      </tr>
-  </table>
-  </div>
-  <div class="discontainerfooter">
-    <table class="bartable">
-      <tr>
-        <td class="left"></td>
-        <td class="middle">
-          <div class="button"><%= link_to t(:edit), {:action => "edit"}%></div>
-          <div class="button" ><%= link_to t(:new), {:action=>"new"}%></div>
-        </td>
-        <td class="right"></td>
-      </tr>
-    </table>
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%= t(:label_irm_condition_show) %></h1>
+      <h2 class="pageDescription"><%=@condition.condition_code%></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks">编辑局部</a>|
+      <a href="javascript:void(0);" class="configLinks">用户简档</a>|
+      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%></a>
+    </div>
+    <div class="ptBreadcrumb"></div>
   </div>
 </div>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_condition_show) %>&nbsp;<%= t(:label_detail_info) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:condition => "edit", :id => @condition}%></div>
+            <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_condition_entity_code)%></label></td>
+              <td class="dataCol"><%=@condition[:entity_meaning]%></td>
+              <td class="labelCol"><label><%=(t :label_irm_condition_condition_code)%></label></td>
+              <td class="dataCol"><%=@condition.condition_code%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_condition_name)%></label></td>
+              <td class="dataCol"><%= @condition[:name]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_condition_description)%></label></td>
+              <td class="dataCol"><%= @condition[:description]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @condition.id}%></div>
+            <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

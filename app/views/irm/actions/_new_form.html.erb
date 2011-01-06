@@ -6,7 +6,7 @@
       <div class="blank">&nbsp;</div>
     </div>
     <div class="links">
-      <a href="javascript:void(0);" class="configLinks">此页面的帮助</a>
+      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%></a>
     </div>
     <div class="ptBreadcrumb"></div>
   </div>
@@ -30,7 +30,15 @@
   <div class="pbBody">
     <%= error_for @action%>
     <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
-      <span class="pbSubExtra"><span class="requiredLegend"><span class="requiredExampleOuter"><span class="requiredExample">&nbsp;</span></span><span class="requiredMark">*</span><span class="requiredText"> = <%=t(:label_is_required)%></span></span></span>
+      <span class="pbSubExtra">
+          <span class="requiredLegend">
+            <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+            </span>
+          <span class="requiredMark">*</span>
+          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+          </span>
+      </span>
       <h3><%=t(:label_common_info)%></h3>
     </div>
     <div class="pbSubsection">
