@@ -32,7 +32,7 @@ class Irm::OrganizationsController < ApplicationController
 
   # GET /organizations/1/edit
   def edit
-    @organization = Irm::Organization.multilingual.find(params[:id])
+    @organization = Irm::Organization.multilingual.query_wrap_info(I18n::locale).find(params[:id])
   end
 
   # POST /organizations
@@ -43,11 +43,10 @@ class Irm::OrganizationsController < ApplicationController
     respond_to do |format|
       if @organization.save
         flash[:successful_message] = (t :successfully_created)
-        format.html { render "irm/common/_successful_message" }
+        format.html { render "index" }
         format.xml  { render :xml => @organization, :status => :created, :location => @organization }
       else
-        @error = @organization
-        format.html { render "irm/common/error_message" }
+        format.html { render "new" }
         format.xml  { render :xml => @organization.errors, :status => :unprocessable_entity }
       end
     end
@@ -61,11 +60,11 @@ class Irm::OrganizationsController < ApplicationController
     respond_to do |format|
       if @organization.update_attributes(params[:irm_organization])
         flash[:successful_message] = (t :successfully_updated)
-        format.html { render "irm/common/_successful_message" }
+        format.html { render "index" }
         format.xml  { head :ok }
       else
         @error = @organization
-        format.html { render "irm/common/error_message" }
+        format.html { render "edit" }
         format.xml  { render :xml => @organization.errors, :status => :unprocessable_entity }
       end
     end
@@ -89,9 +88,9 @@ class Irm::OrganizationsController < ApplicationController
 
   def get_data
     @organizations= Irm::Organization.multilingual.query_wrap_info(I18n::locale)
+    @organizations,count = paginate(@organizations)
     respond_to do |format|
-      format.json {render :json=>@organizations.to_dhtmlxgrid_json(['R',:company_name,:short_name,:name,:description,:status_meaning,
-                                                             {:value => 'M', :controller => 'irm/organizations',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_organization_list', :script => ''}], @organizations.size)}
+      format.json {render :json=>to_jsonp(@organizations.to_grid_json(['R',:company_name,:short_name,:name,:description,:status_meaning], count))}
     end
   end
 

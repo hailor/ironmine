@@ -52,3 +52,9 @@ YUI.add('irm', function(Y) {
 });
 
 var GY = YUI(yuiConfig).use("irm");
+
+GY.use('node',function(Y){
+   Y.all('input[irm_uppercase]').on('keyup', function(){
+      this.set('value',this.get('value').toString().toUpperCase());
+   });
+});

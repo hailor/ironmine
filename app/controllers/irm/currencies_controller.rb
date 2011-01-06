@@ -32,7 +32,7 @@ class Irm::CurrenciesController < ApplicationController
 
   # GET /currencies/1/edit
   def edit
-    @currency = Irm::Currency.multilingual.find(params[:id])
+    @currency = Irm::Currency.multilingual.query_wrap_info(I18n::locale).find(params[:id])
   end
 
   # POST /currencies
@@ -43,11 +43,10 @@ class Irm::CurrenciesController < ApplicationController
     respond_to do |format|
       if @currency.save
         flash[:successful_message] = (t :successfully_created)
-        format.html { render "irm/common/_successful_message" }
+        format.html { render "index" }
         format.xml  { render :xml => @currency, :status => :created, :location => @currency }
       else
-        @error = @currency
-        format.html { render "irm/common/error_message" }
+        format.html { render "new" }
         format.xml  { render :xml => @currency.errors, :status => :unprocessable_entity }
       end
     end
@@ -61,11 +60,10 @@ class Irm::CurrenciesController < ApplicationController
     respond_to do |format|
       if @currency.update_attributes(params[:irm_currency])
         flash[:successful_message] = (t :successfully_updated)
-        format.html { render "irm/common/_successful_message" }
+        format.html { render "index" }
         format.xml  { head :ok }
       else
-        @error = @currency
-        format.html { render "irm/common/error_message" }
+        format.html { render "edit" }
         format.xml  { render :xml => @currency.errors, :status => :unprocessable_entity }
       end
     end
@@ -89,9 +87,9 @@ class Irm::CurrenciesController < ApplicationController
 
   def get_data
     @currencies= Irm::Currency.multilingual.query_wrap_info(I18n::locale)
+    @currencies,count = paginate(@currencies)
     respond_to do |format|
-      format.json {render :json=>@currencies.to_dhtmlxgrid_json(['R',:currency_code,:name,:description, :precision,:status_meaning,
-                                                             {:value => 'M', :controller => 'irm/currencies',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_currency_list', :script => ''}], @currencies.size)}
+      format.json {render :json=>to_jsonp(@currencies.to_grid_json(['R',:currency_code,:name,:description, :precision,:status_meaning], count))}
     end
   end
 end

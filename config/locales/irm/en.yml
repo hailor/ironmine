@@ -48,6 +48,13 @@ en:
   label_delete_confirm: Are you sure to delete this record?
   label_no_data: No Data
   label_sub_functions: Functions
+  label_common_info: Common Info
+  label_is_required: Required Info
+  label_help_about_page: Page Help
+  label_detail_info: Detail Info
+  error: Error
+  error_invalid_data: Error：Invalid Data。
+  check_error_msg_and_fix: Please check all error to correct data。
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type
@@ -83,7 +90,7 @@ en:
   label_irm_language_edit: Edit Language
   label_irm_language_list: Language List
   label_irm_language_language_code: Language Code
-  label_irm_language_name: Name
+  label_irm_language_info: Language Info
   label_irm_language_description: Description
   label_irm_language_installed_flag: Installed Flag
   label_irm_language_status_code: Status Code
@@ -122,7 +129,8 @@ en:
   label_irm_condition_new: New Condition
   label_irm_condition_edit: Edit Condition
   label_irm_condition_list: List Condition
-  label_irm_condition_show: Condtion Show
+  label_irm_condition_show: Condtion
+  label_irm_condition_info: Condition Info
   label_irm_condition_function_description: Define All Condition。
   label_irm_condition_conditions_tls:
     name: Name
@@ -138,7 +146,8 @@ en:
   label_irm_action_new: New Action
   label_irm_action_edit: Edit Action
   label_irm_action_list: List Action
-  label_irm_action_show: Show Action
+  label_irm_action_show: Action
+  label_irm_action_info: Action Info
   label_irm_action_function_description: Action List。You Can
   label_irm_action_actions_tls:
     name: Name
@@ -156,7 +165,8 @@ en:
   label_irm_script_new: New script
   label_irm_script_edit: Edit script
   label_irm_script_list: List script
-  label_irm_script_show: Show script
+  label_irm_script_show: Script
+  label_irm_script_info: Script Info
   label_irm_script_function_description: Choose condition,action and mail template to define script
   label_irm_script_scripts_tls:
     name: Name
@@ -199,7 +209,8 @@ en:
   label_irm_currency_new: New Currency
   label_irm_currency_edit: Edit Currency
   label_irm_currency_list: List Currency
-  label_irm_currency_show: Show Currency
+  label_irm_currency_show: Currency
+  label_irm_currency_info: Currency Info
   label_irm_currency_function_description: Show Currency Code Description
   label_irm_currency_currencies_tls:
     name: Name
@@ -213,6 +224,7 @@ en:
   label_irm_region_edit: Edit region
   label_irm_region_list: List region
   label_irm_region_show: Show region
+  label_irm_region_info: Regin Info
   label_irm_region_function_description: Define Region。
   label_irm_region_regions_tls:
     name: Name
@@ -284,7 +296,8 @@ en:
   label_irm_department_new: Department New
   label_irm_department_edit: Department Edit
   label_irm_department_list: Department List
-  label_irm_department_show: Department Show
+  label_irm_department_show: Department
+  label_irm_department_info: Department Info
   label_irm_department_function_description: Define Department in company。
   label_irm_department_departments_tls:
     name: Name

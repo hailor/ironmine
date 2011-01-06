@@ -32,7 +32,7 @@ class Irm::ScriptsController < ApplicationController
 
   # GET /scripts/1/edit
   def edit
-    @script = Irm::Script.multilingual.find(params[:id])
+    @script = Irm::Script.multilingual.query_wrap_info(I18n::locale).find(params[:id])
   end
 
   # POST /scripts
@@ -43,11 +43,11 @@ class Irm::ScriptsController < ApplicationController
     respond_to do |format|
       if @script.save
         flash[:successful_message] = (t :successfully_created)
-        format.html { render "return" }
+        format.html { render "index" }
         format.xml  { render :xml => @script, :status => :created, :location => @script }
       else
         @error = @script
-        format.html { render "irm/common/error_message" }
+        format.html { render "new" }
         format.xml  { render :xml => @script.errors, :status => :unprocessable_entity }
       end
     end
@@ -61,11 +61,11 @@ class Irm::ScriptsController < ApplicationController
     respond_to do |format|
       if @script.update_attributes(params[:irm_script])
         flash[:successful_message] = (t :successfully_updated)
-        format.html { render "irm/common/_successful_message" }
+        format.html { render "index" }
         format.xml  { head :ok }
       else
         @error = @script
-        format.html { render "irm/common/error_message" }
+        format.html { render "edit" }
         format.xml  { render :xml => @script.errors, :status => :unprocessable_entity }
       end
     end
@@ -89,9 +89,9 @@ class Irm::ScriptsController < ApplicationController
 
   def get_data
     @scripts= Irm::Script.multilingual.query_wrap_info(I18n::locale)
+    @scripts,count = paginate(@scripts)
     respond_to do |format|
-      format.json {render :json=>@scripts.to_dhtmlxgrid_json(['R',:entity_meaning,:condition_code,:action_code,:template_code,:description,:status_meaning,
-                                                             {:value => 'M', :controller => 'irm/scripts',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_script_list', :script => ''}], @scripts.size)}
+      format.json {render :json=>to_jsonp(@scripts.to_grid_json(['R',:entity_meaning,:condition_name,:action_name,:template_name,:description,:status_meaning], count))}
     end
   end
 end

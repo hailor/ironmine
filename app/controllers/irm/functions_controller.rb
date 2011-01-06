@@ -100,7 +100,7 @@ class Irm::FunctionsController < ApplicationController
     @permissions = @function.permissions.multilingual
     respond_to do |format|
       format.json  {render :json => @permissions.to_dhtmlxgrid_json(['0',:permission_code,:name,:description, :page_controller, :page_action, :status_code], @permissions.size) }
-    end    
+    end
   end
 
   def get_available_permissions
@@ -108,7 +108,7 @@ class Irm::FunctionsController < ApplicationController
     @available_permissions = Irm::Permission.multilingual.query_by_status_code(Irm::Constant::ENABLED) - @own_permissions = @function.permissions.multilingual
     respond_to do |format|
       format.json  {render :json => @available_permissions.to_dhtmlxgrid_json(['0',:permission_code,:name,:description, :page_controller, :page_action, :status_code], @available_permissions.size) }
-    end       
+    end
   end
 
   def edit_own_permissions

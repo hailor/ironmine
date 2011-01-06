@@ -34,7 +34,7 @@ class Irm::ConditionsController < ApplicationController
 
   # GET /conditions/1/edit
   def edit
-    @condition = Irm::Condition.multilingual.find(params[:id])
+    @condition = Irm::Condition.multilingual.query_wrap_info(I18n::locale).find(params[:id])
   end
 
   # POST /conditions
@@ -45,11 +45,11 @@ class Irm::ConditionsController < ApplicationController
     respond_to do |format|
       if @condition.save
         flash[:successful_message] = (t :successfully_created)
-        format.html { render "return" }
+        format.html { render "index" }
         format.xml  { render :xml => @condition, :status => :created, :location => @condition }
       else
         @error = @condition
-        format.html { render "irm/common/error_message" }
+        format.html { render "new" }
         format.xml  { render :xml => @condition.errors, :status => :unprocessable_entity }
       end
     end
@@ -63,11 +63,11 @@ class Irm::ConditionsController < ApplicationController
     respond_to do |format|
       if @condition.update_attributes(params[:irm_condition])
         flash[:successful_message] = (t :successfully_updated)
-        format.html { render "irm/common/_successful_message" }
+        format.html { render "index" }
         format.xml  { head :ok }
       else
         @error = @condition
-        format.html { render "irm/common/error_message" }
+        format.html { render "edit" }
         format.xml  { render :xml => @condition.errors, :status => :unprocessable_entity }
       end
     end
@@ -91,9 +91,9 @@ class Irm::ConditionsController < ApplicationController
 
   def get_data
     @conditions= Irm::Condition.multilingual.query_wrap_info(I18n::locale)
+    @conditions,count = paginate(@conditions)
     respond_to do |format|
-      format.json {render :json=>@conditions.to_dhtmlxgrid_json(['R',:entity_meaning,:condition_code,:name,:description, :status_meaning,
-                                                             {:value => 'M', :controller => 'irm/conditions',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_condition_list', :script => ''}], @conditions.size)}
+      format.json {render :json=>to_jsonp(@conditions.to_grid_json(['R',:entity_meaning,:condition_code,:name,:description, :status_meaning], count))}
     end
   end
 end

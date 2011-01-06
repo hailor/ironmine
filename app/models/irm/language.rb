@@ -22,6 +22,12 @@ class Irm::Language < ActiveRecord::Base
   #返回语言编码
   scope :query_code,select("#{table_name}.language_code")
 
+  scope :query_wrap_info,lambda{|language| select("#{table_name}.*,#{Irm::LanguagesTl.table_name}.description,"+
+                                                          "v1.meaning status_meaning").
+                                                   joins(",irm_lookup_values_vl v1").
+                                                   where("v1.lookup_type='SYSTEM_STATUS_CODE' AND v1.lookup_code = #{table_name}.status_code AND "+
+                                                         "v1.language=?",language)}
+
   def wrap_description
     self[:description]
   end

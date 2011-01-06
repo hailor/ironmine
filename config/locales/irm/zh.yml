@@ -62,6 +62,10 @@ zh:
   label_delete_confirm: 你确定要删除该条数据吗?
   label_no_data: 没有找到数据
   label_sub_functions: 功能
+  label_common_info: 一般信息
+  label_is_required: 必填信息
+  label_help_about_page: 此页面帮助
+  label_detail_info: 详细信息
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=====================#
   label_lookup_types: 快速编码类型
@@ -108,7 +112,7 @@ zh:
   label_irm_language_edit: 编辑语言
   label_irm_language_list: 语言列表
   label_irm_language_language_code: 语言编码
-  label_irm_language_name: 名称
+  label_irm_language_info: 语言信息
   label_irm_language_description: 描述
   label_irm_language_installed_flag: 是否安装
   label_irm_language_status_code: 状态编码
@@ -169,6 +173,7 @@ zh:
   label_irm_condition_edit: 编辑触发条件
   label_irm_condition_list: 触发条件列表
   label_irm_condition_show: 触发条件
+  label_irm_condition_info: 触发条件信息
   label_irm_condition_function_description: 定义所有的触发条件。
   label_irm_condition_conditions_tls:
      name: 名称
@@ -186,7 +191,8 @@ zh:
   label_irm_action_new: 新建执行动作
   label_irm_action_edit: 编辑执行动作
   label_irm_action_list: 执行动作列表
-  label_irm_action_show: 执行动作显示
+  label_irm_action_show: 执行动作
+  label_irm_action_info: 执行动作信息
   label_irm_action_function_description: 需要执行动作的列表。整体描述整个执行动作的设置。
   label_irm_action_actions_tls:
      name: 名称
@@ -251,6 +257,7 @@ zh:
   label_irm_script_edit: 编辑服务宏
   label_irm_script_list: 执行服务宏
   label_irm_script_show: 服务宏显示
+  label_irm_script_info: 服务宏信息
   label_irm_script_function_description: 选择条件,动作以及邮件模板来定义服务宏
   label_irm_script_scripts_tls:
      name: 名称
@@ -318,6 +325,7 @@ zh:
   label_irm_currency_edit: 编辑币种
   label_irm_currency_list: 币种列表
   label_irm_currency_show: 币种
+  label_irm_currency_info: 币种信息
   label_irm_currency_function_description: 显示币种的描述和编码。
   label_irm_currency_currencies_tls:
     name: 名称
@@ -330,7 +338,8 @@ zh:
   label_irm_region_new: 新建区域
   label_irm_region_edit: 编辑区域
   label_irm_region_list: 区域列表
-  label_irm_region_show: 区域显示 
+  label_irm_region_show: 区域显示
+  label_irm_region_info: 区域信息
   label_irm_region_function_description: 定义区域，例如，亚太区。
   label_irm_region_regions_tls:
     name: 名称
@@ -402,7 +411,8 @@ zh:
   label_irm_department_new: 新建部门
   label_irm_department_edit: 编辑部门
   label_irm_department_list: 部门列表
-  label_irm_department_show: 部门显示
+  label_irm_department_show: 部门
+  label_irm_department_info: 部门信息
   label_irm_department_function_description: 在公司中的定义部门。
   label_irm_department_departments_tls:
     name: 名称
