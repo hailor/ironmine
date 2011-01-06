@@ -1,35 +1,81 @@
-<div id="product_module_new">
-     <%= form_for(@product_module,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
-            <div class="containerheader">
-                <div class="floatleft headertitle"><%=t(:label_irm_product_module_new)%></div>
-            </div>
-            <div class="containerbody">
-                <table class="formtable" cellspacing="0">
-                    <tr>
-                      <td class="formlabel"><%=(t :label_irm_product_module_product_short_name)%>:</td>
-                      <td class="formitem"><%=f.text_field :product_short_name, :required=>true,:irm_uppercase=>true %></td>
-                      <td class="formlabel" rowspan="4"><%=t(:label_irm_product_module_description)%>:</td>
-                      <td class="formitem" rowspan="4"><%= f.text_area :description, :rows => 4%></td>
-                    </tr>
-                    <tr>
-                      <td class="formlabel"><%=(t :label_irm_product_module_name)%>:</td>
-                      <td class="formitem"><%=f.text_field :name, :required=>true%></td>
-                    </tr>
-                    <tr>
-                      <td class="formlabel"><%=(t :label_irm_product_module_installed_flag)%>:</td>
-                      <td class="formitem"><%=f.check_box :installed_flag, :value => "Y"%></td>
-                    </tr>
-                    <tr>
-                      <td class="formlabel"><%=(t :active)%>:</td>
-                      <td class="formitem"><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="containerfooter">
-              <div class="floatcenter">
-                <div class="button floatright"><%= link_to t(:save), {}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);reload_grid('product_modules_grid');/replace(system_message_box,system_message_box);"}%></div>
-                <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(container1,product_module_new);/", :action_type=>"ajaxLink"%></div>
-              </div>
-            </div>
-     <% end %>
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%=t(:label_irm_product_module_new)%></h1>
+      <h2 class="pageDescription"><%=t(:label_irm_product_module_new)%></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks">此页面的帮助</a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
 </div>
+
+<%= form_for(@product_module,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_product_module_new)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @product_module%>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra"><span class="requiredLegend"><span class="requiredExampleOuter"><span class="requiredExample">&nbsp;</span></span><span class="requiredMark">*</span><span class="requiredText"> = 必填信息</span></span></span>
+      <h3>一般信息</h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_product_module_product_short_name)%></label></td>
+              <td class="dataCol"><%=f.text_field :product_short_name, :required=>true,:irm_uppercase=>true %></td>
+              <td class="labelCol"><label><%=(t :label_irm_product_module_name)%></label></td>
+              <td class="dataCol"><%=f.text_field :name, :required=>true%></td>              
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_product_module_description)%></label></td>
+              <td class="dataCol"><%= f.text_area :description, :rows => 4%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_product_module_installed_flag)%></label></td>
+              <td class="dataCol"><%=f.check_box :installed_flag, :value => "Y"%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :active)%></label></td>
+              <td class="dataCol"><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>        
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>

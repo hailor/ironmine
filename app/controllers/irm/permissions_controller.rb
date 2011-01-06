@@ -1,10 +1,7 @@
 class Irm::PermissionsController < ApplicationController
   def index
-    @permission = Irm::Permission.new
-
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @permission }
     end
   end
 
