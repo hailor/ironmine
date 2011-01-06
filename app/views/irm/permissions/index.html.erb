@@ -54,11 +54,11 @@
       <div class="pbBody">
         <div id="pizza" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"edit",:id=>"{id}"}) %>
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
         <%= datatable("pizza",url_for(:action=>"get_data",:format=>"json"),
-                      [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"50%"},
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
                        {:key=>"product_module_name",:label=>t(:label_irm_permission_product_name),:sortable=>true},
                        {:key=>"permission_code",:label=>t(:label_irm_permission_permission_code),:sortable=>true},
                        {:key=>"name",:label=>t(:label_irm_permission_name),:sortable=>true},
