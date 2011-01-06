@@ -1,10 +1,8 @@
 class Irm::FlexValuesController < ApplicationController
   def index
-    @flex_value = Irm::FlexValue.new
-    @value_set = Irm::FlexValueSet.find(params[:value_set_id])
+    @value_set = Irm::FlexValueSet.find(params[:value_set_id]) if params[:value_set_id]
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @flex_value }
     end    
   end
 
@@ -89,17 +87,12 @@ class Irm::FlexValuesController < ApplicationController
 
   def get_data
     @value_set = Irm::FlexValueSet.find(params[:value_set_id])
-    @flex_values = Irm::FlexValue.multilingual.where(:flex_value_set_id => params[:value_set_id])
+    
+    flex_values_scope = Irm::FlexValue.multilingual.where(:flex_value_set_id => params[:value_set_id])
+    flex_values,count = paginate(flex_values_scope)
     respond_to do |format|
-      format.json  {render :json => @flex_values.to_dhtmlxgrid_json(['0',
-                                                               :display_sequence,
-                                                               :flex_value,
-                                                               :flex_value_meaning,
-                                                               :description,
-                                                               :start_date_active,
-                                                               :end_date_active,
-                                                               {:value => 'M', :controller => 'irm/flex_values',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}], @flex_values.size) }
-    end        
+      format.json  {render :json => to_jsonp(flex_values.to_grid_json([:display_sequence,:flex_value,:flex_value_meaning,:description,:start_date_active,:end_date_active,], count)) }
+    end    
   end
 
   def link_edit
@@ -142,5 +135,9 @@ class Irm::FlexValuesController < ApplicationController
          format.html { render "error_message" }
       end
     end    
+  end
+
+  def show
+    
   end
 end

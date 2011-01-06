@@ -272,7 +272,7 @@ Ironmine::Application.routes.draw do
     match '/flex_value_sets/:id(.:format)' => "flex_value_sets#update", :via => :put
     match '/flex_value_sets/:id/show(.:format)' => "flex_value_sets#show", :via => :get
     #flex_values
-    match '/flex_values/:value_set_id/index(.:format)' => "flex_values#index", :via => :get
+    match '/flex_values(/index)(.:format)' => "flex_values#index", :via => :get
     match '/flex_values/:value_set_id/new(.:format)' => "flex_values#new", :via => :get
     match '/flex_values/:value_set_id/create(.:format)' => "flex_values#create", :via => :post
     match '/flex_values/:value_set_id/get_data(.:format)' => "flex_values#get_data"
