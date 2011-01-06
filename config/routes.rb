@@ -153,6 +153,7 @@ Ironmine::Application.routes.draw do
     match '/function_groups/:id(.:format)' => "function_groups#update", :via => :put
     match '/function_groups/new(.:format)' => "function_groups#new", :via => :get
     match '/function_groups/create(.:format)' => "function_groups#create", :via => :post
+    match '/function_groups/:id/show(.:format)' => "function_groups#show", :via => :get
     match '/function_groups/:id/multilingual_edit(.:format)' => "function_groups#multilingual_edit", :via => :get
     match '/function_groups/:id/multilingual_update(.:format)' => "function_groups#multilingual_update", :via => :put
     match '/function_groups/get_data(.:format)' => "function_groups#get_data"

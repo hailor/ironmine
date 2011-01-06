@@ -9,13 +9,13 @@
                            <table class="itemdetailtable">
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_function_function_code)%>:</td>
                               <td><%=f.text_field :function_code, :readonly => true,:irm_uppercase=>true%></td>
-                            </tr>                             
+                            </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :label_irm_function_name)%>:</td>
                               <td><%=f.text_field :name, :value => @function[:name], :required=>true%></td>
                             </tr>
                             <tr><td class="itemdetailtablelabel"><%=(t :active)%>:</td>
                               <td><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
-                            </tr>                        
+                            </tr>
                            </table>
                         </td>
                         <td class="twocolumn" cellspacing="0">
