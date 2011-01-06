@@ -9,7 +9,7 @@ class Irm::FunctionsController < ApplicationController
   end
 
   def show
-    @function = Irm::Function.find(params[:id])
+    @function = Irm::Function.multilingual.where(:id => params[:id]).first()
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,11 +34,11 @@ class Irm::FunctionsController < ApplicationController
     @function = Irm::Function.new(params[:irm_function])
     respond_to do |format|
       if @function.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "successful_info" }        
+        format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+        format.xml  { render :xml => @function, :status => :created, :location => @function }
       else
-         @error = @function
-         format.html { render "error_message" }
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @function.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -48,11 +48,11 @@ class Irm::FunctionsController < ApplicationController
 
     respond_to do |format|
       if @function.update_attributes(params[:irm_function])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
       else
-        @error = @function
-        format.html { render "error_message" }
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @function.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -84,13 +84,11 @@ class Irm::FunctionsController < ApplicationController
   end
 
   def get_data
-    @functions = Irm::Function.multilingual.all
+    functions_scope = Irm::Function.multilingual
+    functions,count = paginate(functions_scope)
     respond_to do |format|
-      format.json  {render :json => @functions.to_dhtmlxgrid_json(['0',:function_code,:name,
-                                                                     :description, :status_code,
-                                                                    {:value => 'M', :controller => 'irm/functions',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
-                                                                    ], @functions.size) }
-    end
+      format.json  {render :json => to_jsonp(functions.to_grid_json([:function_code,:name,:description,:status_code], count)) }
+    end        
   end
 
   def permission_index
@@ -102,7 +100,7 @@ class Irm::FunctionsController < ApplicationController
     @permissions = @function.permissions.multilingual
     respond_to do |format|
       format.json  {render :json => @permissions.to_dhtmlxgrid_json(['0',:permission_code,:name,:description, :page_controller, :page_action, :status_code], @permissions.size) }
-    end    
+    end
   end
 
   def get_available_permissions
@@ -110,7 +108,7 @@ class Irm::FunctionsController < ApplicationController
     @available_permissions = Irm::Permission.multilingual.query_by_status_code(Irm::Constant::ENABLED) - @own_permissions = @function.permissions.multilingual
     respond_to do |format|
       format.json  {render :json => @available_permissions.to_dhtmlxgrid_json(['0',:permission_code,:name,:description, :page_controller, :page_action, :status_code], @available_permissions.size) }
-    end       
+    end
   end
 
   def edit_own_permissions

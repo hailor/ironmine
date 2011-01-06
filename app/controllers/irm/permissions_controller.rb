@@ -1,16 +1,12 @@
 class Irm::PermissionsController < ApplicationController
   def index
-    @permission = Irm::Permission.new
-
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @permission }
     end
   end
 
   def show
-    @permission = Irm::Permission.find(params[:id])
-
+    @permission = Irm::Permission.list_all.where(:id => params[:id]).first()
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @permission }
@@ -66,23 +62,7 @@ class Irm::PermissionsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-
-  def multilingual_edit
-    @permission = Irm::Permission.find(params[:id])
-  end
-
-  def multilingual_update
-    @permission = Irm::Permission.find(params[:id])
-    @permission.not_auto_mult=true
-    respond_to do |format|
-      if @permission.update_attributes(params[:irm_permission])
-        format.html { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
-      else
-        format.html { render({:action=>"multilingual_edit"}) }
-      end
-    end
-  end
-
+  
   def get_data
     permissions_scope = Irm::Permission.list_all
     permissions,count = paginate(permissions_scope)

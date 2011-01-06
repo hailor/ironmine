@@ -43,11 +43,11 @@ class Irm::LanguagesController < ApplicationController
     respond_to do |format|
       if @language.save
         flash[:successful_message] = (t :successfully_created)
-        format.html { render "return" }
+        format.html { render "index" }
         format.xml  { render :xml => @language, :status => :created, :location => @language }
       else
         @error = @language
-        format.html { render "irm/common/error_message" }
+        format.html { render "new" }
         format.xml  { render :xml => @language.errors, :status => :unprocessable_entity }
       end
     end
@@ -61,11 +61,11 @@ class Irm::LanguagesController < ApplicationController
     respond_to do |format|
       if @language.update_attributes(params[:irm_language])
         flash[:successful_message] = (t :successfully_updated)
-        format.html { render "irm/common/_successful_message" }
+        format.html { render "index" }
         format.xml  { head :ok }
       else
         @error=@language
-        format.html { render "irm/common/error_message" }
+        format.html { render "edit" }
         format.xml  { render :xml => @language.errors, :status => :unprocessable_entity }
       end
     end
@@ -88,10 +88,10 @@ class Irm::LanguagesController < ApplicationController
   end
 
   def get_data
-    @languages= Irm::Language.multilingual
+    @languages= Irm::Language.multilingual.query_wrap_info(I18n::locale)
+    @languages,count = paginate(@languages)
     respond_to do |format|
-      format.json {render :json=>@languages.to_dhtmlxgrid_json(['R',:language_code,:description, :installed_flag, :status_code,
-                                                             {:value => 'M', :controller => 'irm/languages',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_language_list', :script => ''}], @languages.size)}
+      format.json {render :json=>to_jsonp(@languages.to_grid_json(['R',:language_code,:description, :installed_flag, :status_code], count))}
     end
   end
   

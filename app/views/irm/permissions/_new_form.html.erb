@@ -49,6 +49,12 @@
               <td class="dataCol"><%=f.text_field :page_action, :required=>true%></td>
             </tr>
             <tr>
+              <td class="labelCol"><label><%=(t :label_irm_permission_description)%></label></td>
+              <td class="dataCol"><%=f.text_area :description%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>            
+            <tr>
               <td class="labelCol"><label><%=(t :label_irm_permission_product_name)%></label></td>
               <td class="dataCol"><%=f.select :product_id, available_product_modules, {:include_blank => false}%></td>
               <td class="labelCol empty">&nbsp;</td>

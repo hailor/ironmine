@@ -1,48 +1,79 @@
-   <div id="id_currency_edit">
-     <%= form_for(@currency,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
-                <div class="containerheader">
-                    <div class="floatleft headertitle"><%=t(:label_irm_currency_edit)%> - <%= @currency.currency_code%></div>
-                </div>
-                <table class="twocolumnstable" cellspacing="0">
-                    <tr>
-                        <td class="twocolumn">
-                           <table class="itemdetailtable">
-                            <tr>
-                                <td class="itemdetailtablelabel"><%=(t :label_irm_currency_currency_code)%>:</td>
-                                <td><%=f.text_field :currency_code, :readonly=>"readonly"%></td>
-                            </tr>
-                            <tr>
-                                <td class="itemdetailtablelabel"><%=(t :label_irm_currency_precision)%>:</td>
-                                <td><%=f.text_field :precision, :required=>true %></td>
-                            </tr>
-                            <tr>
-                                <td class="itemdetailtablelabel"><%=(t :label_irm_currency_name)%>:</td>
-                                <td><%=f.text_field :name,:value=>@currency[:name], :required=>true %></td>
-                            </tr>
-                            <tr>
-                            <td class="itemdetailtablelabel"><%=(t :label_irm_currency_status_code)%>:</td>
-                            <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%=t(:label_irm_currency_edit)%></h1>
+      <h2 class="pageDescription"><%=t(:label_irm_currency_edit)%></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%><</a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
+</div>
+
+<%= form_for(@currency,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_currency_edit)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @currency%>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend"><span class="requiredExampleOuter">
+          <span class="requiredExample">&nbsp;</span></span>
+           <span class="requiredMark">*</span><span class="requiredText"> = <%=t(:label_is_required)%></span></span></span>
+      <h3><%=t(:label_irm_currency_info)%></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_currency_currency_code)%></label></td>
+              <td class="dataCol"><%=@currency.currency_code%></td>
+              <td class="labelCol"><label><%=(t :label_irm_currency_precision)%></label></td>
+              <td class="dataCol"><%=f.text_field :precision,:required=>true %></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_currency_name)%></label></td>
+              <td class="dataCol"><%=f.text_field :name,:value=>@currency[:name], :required=>true %></td>
+              <td class="labelCol empty"><label><%=(t :label_irm_script_status_code)%></label></td>
+              <td class="dataCol empty"><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
                                                 options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@currency.status_code)%></td>
-                            </tr>
-                           </table>
-                        </td>
-                        <td class="twocolumn" cellspacing="0">
-                           <table class="itemdetailtable">
-                            <div id="id_lookup_level">
-                               <tr><td class="itemdetailtablelabel">
-                                     <%=t(:label_irm_currency_description)%>:
-                               </td>
-                               <td><%= f.text_area :description, :value => @currency[:description], :rows => 2    %></td>
-                            </tr>
-                            </div>
-                           </table>
-                        </td>
-                        <td width="10%"></td>
-                    </tr>
-                </table>
-                <div class="containerfooter">
-                    <div class="button floatright" ><%= link_to t(:save), {:controller=>"irm/currencies",:action=>"update"}, {:action_type => "ajaxSubmit", :script => "/reload_grid('id_currency_grid');replace(system_message_box,system_message_box);/replace(system_message_box,system_message_box);"}%></div>
-                    <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(id_currency_new,id_currency_new);/", :action_type=>"ajaxLink"%></div>
-                </div>
-     <% end %>
-   </div>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_currency_description)%></label></td>
+              <td class="dataCol"><%=f.text_area :description,:value=>@currency[:description],:rows=>4%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,37 @@
+<div class="container" id="img_container">
+    <table style="width:598px;">
+        <tr>
+            <td style="width:50%;">&nbsp;</td><td style="width:5%;text-align:center;"><div><%= image_tag image.url(:original), :id => "crop_box"%></div></td><td style="width:50%;">&nbsp;</td>
+        </tr>
+    </table>
+    <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
+        <%= form.hidden_field attribute, :id => attribute %>
+    <% end %>
+    <div class="containerfooter">
+        <div class="button floatright"><%= link_to t(:cut_image), {}, {:action_type => "ajaxSubmit", :script => "//closeWindow();"}%></div>
+    </div>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function($){
+    if($('#crop_box').length > 0){
+        $('#crop_box').Jcrop({
+                                onChange: update_crop,
+                                onSelect: update_crop,
+                                allowSelect: false,
+                                setSelect: [0, 0, 500, 500],
+                                aspectRatio: 1
+        });
+    }
+  });
+
+function update_crop(coords) {
+   $('#crop_x').val(coords.x);
+   $('#crop_y').val(coords.y);
+   $('#crop_w').val(coords.w);
+   $('#crop_h').val(coords.h);
+   }
+function closeWindow() {
+    parent.win.close();
+}
+</script>
+</div>

@@ -1,56 +1,83 @@
-   <div id="id_script_edit">
-     <%= form_for(@script,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
-                <div class="containerheader">
-                    <div class="floatleft headertitle"><%=t(:label_irm_script_edit)%></div>
-                </div>
-                <table class="twocolumnstable" cellspacing="0">
-                    <tr>
-                        <td class="twocolumn">
-                           <table class="itemdetailtable">
-                            <tr>
-                            <td class="itemdetailtablelabel"><%=(t :label_irm_script_entity)%>:</td>
-                            <td><%=f.select :entity_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_entity,:lookup_code,:wrap_meaning,@script.entity_code),{},{:disabled=>true}%></td>
-                            </tr>
-                            <tr>
-                            <td class="itemdetailtablelabel"><%=(t :label_irm_script_condition)%>:</td>
-                            <td><%=f.select :condition_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_condition,:condition_code,:wrap_name,@script.condition_code)%></td>
-                            </tr>                        
-                            <tr>
-                                <td class="itemdetailtablelabel"><%=(t :label_irm_script_action)%>:</td>
-                                <td><%=f.select :action_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                    options_from_collection_for_select(available_action,:action_code,:wrap_name,@script.action_code)%></td>
-                            </tr>
-                            <tr>
-                                <td class="itemdetailtablelabel"><%=(t :label_irm_script_template)%>:</td>
-                                <td><%=f.select :template_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                    options_from_collection_for_select(available_mail_template,:template_code,:wrap_name,@script.template_code)%></td>
-                            </tr>
-                            <tr>
-                            <td class="itemdetailtablelabel"><%=(t :label_irm_script_status_code)%>:</td>
-                            <td><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%=t(:label_irm_script_edit)%></h1>
+      <h2 class="pageDescription"><%=t(:label_irm_script_edit)%></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%><</a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
+</div>
+
+<%= form_for(@script,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_script_edit)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @script%>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend"><span class="requiredExampleOuter">
+          <span class="requiredExample">&nbsp;</span></span>
+           <span class="requiredMark">*</span><span class="requiredText"> = <%=t(:label_is_required)%></span></span></span>
+      <h3><%=t(:label_irm_script_info)%></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_script_entity)%></label></td>
+              <td class="dataCol"><%=@script.entity_meaning%></td>
+              <td class="labelCol empty"><label><%=(t :label_irm_script_status_code)%></label></td>
+              <td class="dataCol empty"><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
                                                 options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@script.status_code)%></td>
-                            </tr>
-                           </table>
-                        </td>
-                        <td class="twocolumn" cellspacing="0">
-                           <table class="itemdetailtable">
-                            <div id="id_lookup_level">
-                               <tr><td class="itemdetailtablelabel">
-                                     <%=t(:label_irm_script_description)%>:
-                               </td>
-                               <td><%= f.text_area :description, :value => @script[:description], :rows => 4%></td>
-                            </tr>
-                            </div>
-                           </table>
-                        </td>
-                        <td width="10%"></td>
-                    </tr>
-                </table>
-                <div class="containerfooter">
-                    <div class="button floatright" ><%= link_to t(:save), {:controller=>"irm/scripts",:action=>"update"}, {:action_type => "ajaxSubmit", :script => "/reload_grid('id_script_grid');replace(system_message_box,system_message_box);/replace(system_message_box,system_message_box);"}%></div>
-                    <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(id_script_new,id_script_new);/", :action_type=>"ajaxLink"%></div>
-                </div>
-     <% end %>
-   </div>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_script_condition)%></label></td>
+              <td class="dataCol"><%=f.select :condition_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_condition,:condition_code,:wrap_name,@script.condition_code)%></td>
+              <td class="labelCol empty"><label><%=(t :label_irm_script_action)%></label></td>
+              <td class="dataCol empty"><%=f.select :action_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                    options_from_collection_for_select(available_action,:action_code,:wrap_name,@script.action_code)%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_script_description)%></label></td>
+              <td class="dataCol"><%=f.text_area :description,:value=>@script[:description],:rows=>4%></td>
+              <td class="labelCol empty"><label><%=(t :label_irm_script_template)%></label></td>
+              <td class="dataCol empty"><%=f.select :template_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                    options_from_collection_for_select(available_mail_template,:template_code,:wrap_name,@script.template_code)%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
+   

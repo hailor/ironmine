@@ -27,17 +27,20 @@ class Irm::Script < ActiveRecord::Base
     where(:condition_code=>condition_code)
   }
 
-  scope :query_wrap_info,lambda{|language| select("#{Irm::ConditionsTl.table_name}.name condition_name,#{Irm::ActionsTl.table_name}.name action_name,"+
+  scope :query_wrap_info,lambda{|language| select("v3.name condition_name,v4.name action_name,v5.name template_name,"+
                                                   "#{Irm::Script.table_name}.*,#{Irm::ScriptsTl.table_name}.description,"+
                                                   "v1.meaning entity_meaning,v2.meaning status_meaning").
-                                                   joins("JOIN #{Irm::ConditionsTl.table_name} ON #{Irm::ConditionsTl.table_name}.condition_id = #{Irm::Condition.table_name}.id and #{Irm::ConditionsTl.table_name}.language = '#{I18n.locale}' ").
-                                                   joins("JOIN #{Irm::ActionsTl.table_name} ON #{Irm::ActionsTl.table_name}.action_id = #{Irm::Action.table_name}.id and #{Irm::ActionsTl.table_name}.language = '#{I18n.locale}'").
-                                                   joins(:condition,:action).
                                                    joins(",irm_lookup_values_vl v1").
                                                    joins(",irm_lookup_values_vl v2").
+                                                   joins(",irm_conditions_vl v3").
+                                                   joins(",irm_actions_vl v4").
+                                                   joins(",irm_mail_templates_vl v5").
                                                    where("v1.lookup_type='ENTITY_CODE' AND v1.lookup_code = #{table_name}.entity_code AND "+
                                                          "v2.lookup_type='SYSTEM_STATUS_CODE' AND v2.lookup_code = #{table_name}.status_code AND "+
-                                                         "v1.language=? AND v2.language=?",language,language)}
+                                                         "v1.language=? AND v2.language=? AND v3.language=? AND v4.language=? AND " +
+                                                         "v3.condition_code = #{table_name}.condition_code AND v4.action_code = #{table_name}.action_code AND "+
+                                                         "v5.template_code = #{table_name}.template_code AND " +
+                                                         "v5.language=? ",language,language,language,language,language)}
 
 
 end

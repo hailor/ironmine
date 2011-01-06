@@ -9,7 +9,7 @@ class Irm::FunctionGroupsController < ApplicationController
   end
 
   def show
-    @function_group = Irm::FunctionGroup.find(params[:id])
+    @function_group = Irm::FunctionGroup.multilingual.where(:id => params[:id]).first()
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,11 +34,11 @@ class Irm::FunctionGroupsController < ApplicationController
     @function_group = Irm::FunctionGroup.new(params[:irm_function_group])
     respond_to do |format|
       if @function_group.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+        format.xml  { render :xml => @function_group, :status => :created, :location => @function_group }
       else
-         @error = @function_group
-         format.html { render "error_message" }
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @function_group.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -48,11 +48,11 @@ class Irm::FunctionGroupsController < ApplicationController
 
     respond_to do |format|
       if @function_group.update_attributes(params[:irm_function_group])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
       else
-        @error = @function_group
-        format.html { render "error_message" }
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @function_group.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -84,12 +84,11 @@ class Irm::FunctionGroupsController < ApplicationController
   end
 
   def get_data
-    @function_groups = Irm::FunctionGroup.multilingual.all
+    function_groups_scope = Irm::FunctionGroup.multilingual
+    function_groups,count = paginate(function_groups_scope)
     respond_to do |format|
-      format.json  {render :json => @function_groups.to_dhtmlxgrid_json(['0',:group_code,:name,:description, :status_code,
-                                                                    {:value => 'M', :controller => 'irm/function_groups',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
-                                                                    ], @function_groups.size) }
-    end
+      format.json  {render :json => to_jsonp(function_groups.to_grid_json([:group_code,:name,:description,:status_code], count)) }
+    end    
   end
 
   def function_index
@@ -98,10 +97,11 @@ class Irm::FunctionGroupsController < ApplicationController
 
   def get_own_functions
     @function_group = Irm::FunctionGroup.find(params[:function_group_id])
-    @functions = @function_group.functions.multilingual
+    functions_scope = @function_group.functions.multilingual
+    functions,count = paginate(functions_scope)
     respond_to do |format|
-      format.json  {render :json => @functions.to_dhtmlxgrid_json(['0',:function_code,:name,:description], @functions.size) }
-    end
+      format.json  {render :json => to_jsonp(functions.to_grid_json([:function_code,:name,:description,:status_code], count)) }
+    end        
   end
 
   def get_available_functions

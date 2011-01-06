@@ -45,11 +45,11 @@ class Irm::RegionsController < ApplicationController
     respond_to do |format|
       if @region.save
         flash[:successful_message] = (t :successfully_created)
-        format.html { render "irm/common/_successful_message" }
+        format.html { render "index" }
         format.xml  { render :xml => @region, :status => :created, :location => @region }
       else
         @error = @region
-        format.html { render "irm/common/error_message" }
+        format.html { render "new" }
         format.xml  { render :xml => @region.errors, :status => :unprocessable_entity }
       end
     end
@@ -63,11 +63,11 @@ class Irm::RegionsController < ApplicationController
     respond_to do |format|
       if @region.update_attributes(params[:irm_region])
         flash[:successful_message] = (t :successfully_updated)
-        format.html { render "irm/common/_successful_message" }
+        format.html { render "index" }
         format.xml  { head :ok }
       else
         @error = @region
-        format.html { render "irm/common/error_message" }
+        format.html { render "edit" }
         format.xml  { render :xml => @region.errors, :status => :unprocessable_entity }
       end
     end
@@ -91,9 +91,9 @@ class Irm::RegionsController < ApplicationController
 
   def get_data
     @regions= Irm::Region.multilingual.query_wrap_info(I18n::locale)
+    @regions,count = paginate(@regions)
     respond_to do |format|
-      format.json {render :json=>@regions.to_dhtmlxgrid_json(['R',:region_code,:name,:description,:status_meaning,
-                                                             {:value => 'M', :controller => 'irm/regions',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_region_list', :script => ''}], @regions.size)}
+      format.json {render :json=>to_jsonp(@regions.to_grid_json(['R',:region_code,:name,:description,:status_meaning], count))}
     end
   end
 end

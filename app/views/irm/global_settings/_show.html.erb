@@ -34,31 +34,18 @@
         <tbody>
             <tr>
               <td class="labelCol"><%= t(:label_irm_global_setting_theme_name)%></td>
-              <td class="dataCol"><%= @global_setting.theme_name %></td>
+              <td class="dataCol"><div><%= @global_setting.theme_name %></div></td>
               <td class="labelCol"><%= t(:label_irm_global_setting_upload_file_limit) %></td>
-              <td class="dataCol"><%= @global_setting.upload_file_limit %></td>
+              <td class="dataCol"><div><%= @global_setting.upload_file_limit %></div></td>
             </tr>
             <tr>
               <td class="labelCol"><%= t(:label_irm_global_setting_timezone)%></td>
-              <td class="dataCol"><%= @global_setting.timezone %></td>
+              <td class="dataCol"><div><%= @global_setting.timezone %></div></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
         </tbody>
       </table>
     </div>
-  </div>
-  <div class="pbBottomButtons">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <tbody>
-        <tr>
-          <td class="pbTitle"></td>
-          <td id="bottomButtonRow" class="pbButtonb">
-            <div class="button"><%= link_to t(:edit), {:action => "edit"}%></div>
-            <div class="button"><%= link_to t(:edit_icon), {}, {:href => "javascript:void(0);"}%></div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </div>

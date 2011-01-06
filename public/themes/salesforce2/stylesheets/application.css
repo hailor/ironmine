@@ -654,10 +654,9 @@ body .bPageBlock .pbBody .labelCol, body .bPageBlock .pbBody .dataCol, body .bPa
 .bPageBlock .detailList .labelCol {white-space:nowrap;}
 .bPageBlock .detailList .labelCol {width:18%;}
 .bPageBlock .detailList .dataCol {width:32%;}
-.bPageBlock .dataCol {
-    padding:2px 2px 2px 10px;
-    text-align:left;
-}
+.bPageBlock .dataCol {padding:2px 2px 2px 10px;text-align:left;}
+.bPageBlock textarea {font-size: 12px;}
+
 body .bPageBlock .detailList tr td, body .bPageBlock .detailList tr th, body table.list tr td, body table.list tr th, body .hoverDetail .bPageBlock .detailList tr td, body .hoverDetail .bPageBlock .detailList tr th {
     border-color:#ECECEC;
 }

@@ -69,6 +69,7 @@ Ironmine::Application.routes.draw do
     match '/permissions/:id/multilingual_edit(.:format)' => "permissions#multilingual_edit", :via => :get
     match '/permissions/:id/multilingual_update(.:format)' => "permissions#multilingual_update", :via => :put
     match '/permissions/get_data(.:format)' => "permissions#get_data"
+    match '/permissions/:id/show(.:format)' => "permissions#show", :via => :get
     #conditions
     match '/conditions(/index)(.:format)' => "conditions#index", :via => :get
     match '/conditions/get_data(.:format)' => "conditions#get_data"
@@ -137,6 +138,7 @@ Ironmine::Application.routes.draw do
     match '/functions/:id(.:format)' => "functions#update", :via => :put
     match '/functions/new(.:format)' => "functions#new", :via => :get
     match '/functions/create(.:format)' => "functions#create", :via => :post
+    match '/functions/:id/show(.:format)' => "functions#show", :via => :get
     match '/functions/:id/multilingual_edit(.:format)' => "functions#multilingual_edit", :via => :get
     match '/functions/:id/multilingual_update(.:format)' => "functions#multilingual_update", :via => :put
     match '/functions/get_data(.:format)' => "functions#get_data"
@@ -152,6 +154,7 @@ Ironmine::Application.routes.draw do
     match '/function_groups/:id(.:format)' => "function_groups#update", :via => :put
     match '/function_groups/new(.:format)' => "function_groups#new", :via => :get
     match '/function_groups/create(.:format)' => "function_groups#create", :via => :post
+    match '/function_groups/:id/show(.:format)' => "function_groups#show", :via => :get
     match '/function_groups/:id/multilingual_edit(.:format)' => "function_groups#multilingual_edit", :via => :get
     match '/function_groups/:id/multilingual_update(.:format)' => "function_groups#multilingual_update", :via => :put
     match '/function_groups/get_data(.:format)' => "function_groups#get_data"
@@ -241,6 +244,7 @@ Ironmine::Application.routes.draw do
     match '/organizations/:id/multilingual_update(.:format)' => "organizations#multilingual_update", :via => :put
     match '/organizations/belongs_to(.:format)' => "organizations#belongs_to"
     #departments
+    match '/departments/get_data(.:format)' => "departments#get_data"
     match '/departments(/index)(.:format)' => "departments#index", :via => :get
     match '/departments/:id/edit(.:format)' => "departments#edit", :via => :get
     match '/departments/:id(.:format)' => "departments#update", :via => :put
@@ -249,7 +253,6 @@ Ironmine::Application.routes.draw do
     match '/departments/create(.:format)' => "departments#create", :via => :post
     match '/departments/:id/multilingual_edit(.:format)' => "departments#multilingual_edit", :via => :get
     match '/departments/:id/multilingual_update(.:format)' => "departments#multilingual_update", :via => :put
-    match '/departments/get_data(.:format)' => "departments#get_data"
     match '/departments/belongs_to(.:format)' => "departments#belongs_to"
     #value_sets
     match '/value_sets(/index)(.:format)' => "value_sets#index", :via => :get
@@ -267,8 +270,9 @@ Ironmine::Application.routes.draw do
     match '/flex_value_sets/get_data(.:format)' => "flex_value_sets#get_data"
     match '/flex_value_sets/:id/edit(.:format)' => "flex_value_sets#edit", :via => :get
     match '/flex_value_sets/:id(.:format)' => "flex_value_sets#update", :via => :put
+    match '/flex_value_sets/:id/show(.:format)' => "flex_value_sets#show", :via => :get
     #flex_values
-    match '/flex_values/:value_set_id/index(.:format)' => "flex_values#index", :via => :get
+    match '/flex_values(/index)(.:format)' => "flex_values#index", :via => :get
     match '/flex_values/:value_set_id/new(.:format)' => "flex_values#new", :via => :get
     match '/flex_values/:value_set_id/create(.:format)' => "flex_values#create", :via => :post
     match '/flex_values/:value_set_id/get_data(.:format)' => "flex_values#get_data"
