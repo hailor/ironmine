@@ -43,7 +43,11 @@ module ApplicationHelper
       data_fields << %Q("#{c[:field]||c[:key]}",)
       column = "{"
       c.each do |key,value|
-        column << %Q(#{key.to_s}:"#{value}",)
+        if(!key.to_s.eql?("formatter"))
+          column << %Q(#{key.to_s}:"#{value}",)
+        else
+          column << %Q(#{key.to_s}:#{value},)
+        end
       end
       columns_conf << column.chop
       columns_conf << "},"
