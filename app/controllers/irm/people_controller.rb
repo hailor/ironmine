@@ -72,8 +72,9 @@ class Irm::PeopleController < ApplicationController
 
   def get_data
     @people= Irm::Person.query_wrap_info(I18n::locale)
+    @people,count = paginate(@people)
     respond_to do |format|
-      format.json {render :json=>@people.to_dhtmlxgrid_json(['R',:login_name,:person_name,:email_address,:mobile_phone,:company_name], @people.size)}
+      format.json {render :json=>to_jsonp(@people.to_grid_json(['R',:login_name,:person_name,:email_address,:mobile_phone,:company_name], count))}
     end
   end
 

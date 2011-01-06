@@ -34,7 +34,7 @@ class Irm::ActionsController < ApplicationController
 
   # GET /actions/1/edit
   def edit
-    @action = Irm::Action.multilingual.find(params[:id])
+    @action = Irm::Action.multilingual.query_wrap_info(I18n::locale).find(params[:id])
   end
 
   # POST /actions
@@ -45,11 +45,11 @@ class Irm::ActionsController < ApplicationController
     respond_to do |format|
       if @action.save
         flash[:successful_message] = (t :successfully_created)
-        format.html { render "return" }
+        format.html { render "index" }
         format.xml  { render :xml => @action, :status => :created, :location => @action }
       else
         @error = @action
-        format.html { render "irm/common/error_message" }
+        format.html { render "new" }
         format.xml  { render :xml => @action.errors, :status => :unprocessable_entity }
       end
     end
@@ -63,11 +63,11 @@ class Irm::ActionsController < ApplicationController
     respond_to do |format|
       if @action.update_attributes(params[:irm_action])
         flash[:successful_message] = (t :successfully_updated)
-        format.html { render "irm/common/_successful_message" }
+        format.html { render "index" }
         format.xml  { head :ok }
       else
         @error = @action
-        format.html { render "irm/common/error_message" }
+        format.html { render "edit" }
         format.xml  { render :xml => @action.errors, :status => :unprocessable_entity }
       end
     end
@@ -91,9 +91,9 @@ class Irm::ActionsController < ApplicationController
 
   def get_data
     @actions= Irm::Action.multilingual.query_wrap_info(I18n::locale)
+    @actions,count = paginate(@actions)
     respond_to do |format|
-      format.json {render :json=>@actions.to_dhtmlxgrid_json(['R',:entity_meaning,:action_code,:name,:description,:handler,:status_meaning,
-                                                             {:value => 'M', :controller => 'irm/actions',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_action_list', :script => ''}],@actions.size)}
+      format.json {render :json=>to_jsonp(@actions.to_grid_json(['R',:entity_meaning,:action_code,:name,:description,:handler,:status_meaning],count))}
     end
   end
 end
