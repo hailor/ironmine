@@ -158,7 +158,7 @@ a.NavTreeExp {
             <table id="bodyTable" class="outer" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td class="oLeft">
-                    <%= if has_content(:sidebar) %>
+                    <% if has_content?(:sidebar) %>
                       <%= yield :sidebar %>
                     <% else %>
                       <%= sidebar_menu %>
