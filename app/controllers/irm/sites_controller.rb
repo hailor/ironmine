@@ -2,7 +2,12 @@ class Irm::SitesController < ApplicationController
   # GET /sites
   # GET /sites.xml
   def index
-    @site = Irm::Site.new
+    if !params[:site_group_code].blank?
+      @site_group = Irm::SiteGroup.multilingual.query_wrap_info(I18n::locale).
+                     query_by_group_code(params[:site_group_code]).first
+    else
+      @site_group= Irm::SiteGroup.new
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,6 +29,11 @@ class Irm::SitesController < ApplicationController
   # GET /sites/new
   # GET /sites/new.xml
   def new
+    @site_group_code = params[:site_group_code]
+    @site_group = Irm::SiteGroup.multilingual.query_by_group_code(@site_group_code).first
+    if !@site_group.blank?
+      @site_group_name = @site_group[:name]
+    end
     @site = Irm::Site.new
 
     respond_to do |format|
@@ -45,6 +55,12 @@ class Irm::SitesController < ApplicationController
     respond_to do |format|
       if @site.save
         flash[:successful_message] = (t :successfully_created)
+        if !params[:site_group_code].blank?
+          @site_group = Irm::SiteGroup.multilingual.query_wrap_info(I18n::locale).
+                         query_by_group_code(params[:site_group_code]).first
+        else
+          @site_group= Irm::SiteGroup.new
+        end
         format.html { render "index" }
         format.xml  { render :xml => @site, :status => :created, :location => @site }
       else
@@ -63,6 +79,12 @@ class Irm::SitesController < ApplicationController
     respond_to do |format|
       if @site.update_attributes(params[:irm_site])
         flash[:successful_message] = (t :successfully_updated)
+        if !params[:site_group_code].blank?
+          @site_group = Irm::SiteGroup.multilingual.query_wrap_info(I18n::locale).
+                         query_by_group_code(params[:site_group_code]).first
+        else
+          @site_group= Irm::SiteGroup.new
+        end
         format.html { render "index" }
         format.xml  { head :ok }
       else
@@ -70,5 +92,24 @@ class Irm::SitesController < ApplicationController
         format.xml  { render :xml => @site.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  def get_data
+    @sites= Irm::Site.query_by_site_group_code_and_language(I18n::locale,params[:site_group_code]).
+        query_wrap_info(I18n::locale)
+    @sites,count = paginate(@sites)
+    respond_to do |format|
+      format.json {render :json=>to_jsonp(@sites.to_grid_json(['R',:site_code,:name,:description,:status_meaning], count))}
+    end
+  end
+
+  def select_site
+    if !params[:site_group_code].blank?
+      @site_group = Irm::SiteGroup.multilingual.query_wrap_info(I18n::locale).
+                     query_by_group_code(params[:site_group_code]).first
+    else
+      @site_group= Irm::SiteGroup.new
+    end
+    render :action => "index"
   end
 end

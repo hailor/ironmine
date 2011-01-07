@@ -337,6 +337,7 @@ Ironmine::Application.routes.draw do
     match '/sites/new(.:format)' => "sites#new", :via => :get
     match '/sites/:id(.:format)' => "sites#show", :via => :get
     match '/sites/create(.:format)' => "sites#create", :via => :post
+    match '/sites/select_site(.:format)' => "sites#select_site", :via => :post
     match '/sites/:id/multilingual_edit(.:format)' => "sites#multilingual_edit", :via => :get
     match '/sites/:id/multilingual_update(.:format)' => "sites#multilingual_update", :via => :put
     #people
