@@ -14,6 +14,8 @@
 
 <%= form_for(@site,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
 <%= hidden_field_tag :site_group_code,@site_group_code %>
+<%= hidden_field_tag :return_url,@return_url %>
+<%= hidden_field_tag :_from,@_from %>    
 <%=f.hidden_field :site_group_code,:value=>@site_group_code%>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
@@ -23,7 +25,11 @@
           <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_site_new)%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+            <% if @_from.to_s == "site_group" %>
+              <div class="button"><%= link_to t(:cancel), @return_url%></div>
+            <% else %>
+              <div class="button"><%= link_to t(:cancel), {:action => "index",:site_group_code=>@site_group_code}%></div>
+            <% end %>  
           </td>
         </tr>
       </tbody>
@@ -101,7 +107,11 @@
           <td class="pbTitle"></td>
           <td id="bottomButtonRow" class="pbButtonb">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_to t(:cancel), {:action => "index",:site_group_code=>@site_group_code}%></div>
+            <% if @_from.to_s == "site_group" %>
+              <div class="button"><%= link_to t(:cancel), @return_url%></div>
+            <% else %>
+              <div class="button"><%= link_to t(:cancel), {:action => "index",:site_group_code=>@site_group_code}%></div>
+            <% end %>            
           </td>
         </tr>
       </tbody>

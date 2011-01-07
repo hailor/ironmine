@@ -19,6 +19,8 @@ class Irm::SitesController < ApplicationController
   # GET /sites/1.xml
   def show
     @site = Irm::Site.multilingual.query_wrap_info(I18n::locale).find(params[:id])
+    @return_url=request.env['HTTP_REFERER']
+    @_from=params[:_from]
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,6 +31,8 @@ class Irm::SitesController < ApplicationController
   # GET /sites/new
   # GET /sites/new.xml
   def new
+    @return_url=request.env['HTTP_REFERER']
+    @_from=params[:_from]
     @site_group_code = params[:site_group_code]
     @site_group = Irm::SiteGroup.multilingual.query_by_group_code(@site_group_code).first
     if !@site_group.blank?
@@ -45,6 +49,8 @@ class Irm::SitesController < ApplicationController
   # GET /sites/1/edit
   def edit
     @site = Irm::Site.multilingual.query_wrap_info(I18n::locale).find(params[:id])
+    @return_url=request.env['HTTP_REFERER']
+    @_from=params[:_from]
   end
 
   # POST /sites
@@ -61,7 +67,13 @@ class Irm::SitesController < ApplicationController
         else
           @site_group= Irm::SiteGroup.new
         end
-        format.html { render "index" }
+        format.html {
+          if(params[:_from]=="site_group")
+            redirect_to params[:return_url]
+          else
+            render "index"
+          end
+          }
         format.xml  { render :xml => @site, :status => :created, :location => @site }
       else
         @error = @site
@@ -85,7 +97,13 @@ class Irm::SitesController < ApplicationController
         else
           @site_group= Irm::SiteGroup.new
         end
-        format.html { render "index" }
+        format.html {
+          if(params[:_from]=="site_group")
+            redirect_to params[:return_url]
+          else
+            render "index"
+          end
+        }
         format.xml  { head :ok }
       else
         format.html { render "edit" }

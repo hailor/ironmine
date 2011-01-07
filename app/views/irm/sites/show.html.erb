@@ -22,8 +22,12 @@
           <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_site_show) %>&nbsp;<%= t(:label_detail_info) %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @site}%></div>
-            <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
-            <div class="button"><%= link_to t(:back), {:action => "index",:site_group_code=>@site.site_group_code}%></div>
+            <div class="button"><%= link_to t(:new), {:action => "new"}%></div>            
+            <% if @_from.to_s == "site_group" %>
+              <div class="button"><%= link_to t(:back), @return_url%></div>
+            <% else %>
+              <div class="button"><%= link_to t(:back), {:action => "index",:site_group_code=>@site.site_group_code}%></div>
+            <% end %>
           </td>
         </tr>
       </tbody>
