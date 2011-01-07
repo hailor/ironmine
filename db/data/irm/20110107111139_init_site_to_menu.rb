@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitSiteToMenu < ActiveRecord::Migration
     def self.up
     irm_sites_index = Irm::Permission.new(:permission_code=>'IRM_SITE_INDEX',
