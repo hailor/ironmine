@@ -27,13 +27,16 @@ zh:
   #========================= end icm impact_ranges_controller=======================#
   #=========================    icm urgence_codes_controller=======================#
   label_icm_urgence_code_list: 紧急度列表
-  label_irm_urgence_code_new: 新建紧急度
+  label_icm_urgence_code_new: 新建紧急度
   label_icm_urgence_code_urgency_code: 简称
   label_icm_urgence_code_company: 公司
   label_icm_urgence_code_weight_values: 权重
   label_icm_urgence_code_name: 名称
   label_icm_urgence_code_description: 描述
   label_icm_urgence_code_edit: 编辑紧急度
+  label_icm_urgence_code_info: 紧急度详细信息
+  label_icm_urgence_code_show: 紧急度
+  label_icm_urgence_code_status_code: 记录状态
   #========================= end icm urgence_codes_controller=======================#
   #=========================    icm priority_codes_controller=======================#
   label_icm_priority_code_list: 优先级列表

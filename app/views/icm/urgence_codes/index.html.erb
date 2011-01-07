@@ -1,1 +1,45 @@
-<div id="container1" class="container"><%= render 'data_grid'%></div>
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"></h1>
+      <h2 class="pageDescription"><%= t(:label_icm_urgence_code_new) %></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%></a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
+</div>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_icm_urgence_code_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="urgence_code" class="datatable" style="width:100%;">
+          <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+          </div>
+        </div>
+        <%= datatable("urgence_code",url_for(:action=>"get_data",:format=>"json"),
+                  [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"50%"},
+                   {:key=>"company_name",:label=>t(:label_icm_urgence_code_company),:sortable=>true},
+                   {:key=>"urgency_code",:label=>t(:label_icm_urgence_code_urgency_code),:sortable=>true},
+                   {:key=>"name",:label=>t(:label_icm_urgence_code_name),:sortable=>true},
+                   {:key=>"weight_values",:label=>t(:label_icm_urgence_code_weight_values),:sortable=>true},
+                   {:key=>"description",:label=>t(:label_icm_urgence_code_description),:sortable=>true},
+                   {:key=>"status_meaning",:label=>t(:label_irm_script_status_code),:sortable=>true}],
+                   {:row_perpage=>5})%>
+      </div>
+    </div>
+</div>

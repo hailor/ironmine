@@ -30,13 +30,16 @@ en:
   #========================= end icm impact_ranges_controller=======================#
   #=========================    icm urgence_codes_controller=======================#
   label_icm_urgence_code_list: List urgence code
-  label_irm_urgence_code_new: New urgence code
+  label_icm_urgence_code_new: New urgence code
   label_icm_urgence_code_urgency_code: Code
   label_icm_urgence_code_company: Company
   label_icm_urgence_code_weight_values: Weight values
   label_icm_urgence_code_name: Name
   label_icm_urgence_code_description: Description
   label_icm_urgence_code_edit: Edit urgence code
+  label_icm_urgence_code_info: Urgency Detail Info
+  label_icm_urgence_code_show: Urgency
+  label_icm_urgence_code_status_code: Status Code
   #========================= end icm urgence_codes_controller=======================#
   #=========================    icm priority_codes_controller=======================#
   label_icm_priority_code_list: Priority codes list

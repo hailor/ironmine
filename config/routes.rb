@@ -412,6 +412,7 @@ Ironmine::Application.routes.draw do
     match '/urgence_codes/:id/multilingual_edit(.:format)' => "urgence_codes#multilingual_edit", :via => :get
     match '/urgence_codes/:id/multilingual_update(.:format)' => "urgence_codes#multilingual_update", :via => :put
     match '/urgence_codes/get_data(.:format)' => "urgence_codes#get_data"
+    match '/urgence_codes/:id(.:format)' => "urgence_codes#show" ,:via=>:get
     #priority_codes
     match '/priority_codes(/index)(.:format)' => "priority_codes#index", :via => :get
     match '/priority_codes/:id/edit(.:format)' => "priority_codes#edit", :via => :get
