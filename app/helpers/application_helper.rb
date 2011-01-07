@@ -34,7 +34,7 @@ module ApplicationHelper
     Irm::PermissionChecker.allow_to_url?(url_options)
   end
 
-
+  # 生成YUI表格
   def datatable(id,source_url,columns,options={})
     row_perpage = options[:row_perpage]||20
     columns_conf = ""
@@ -75,5 +75,18 @@ module ApplicationHelper
     if object && object.errors && object.errors.any?
       content_tag("div", raw(t(:error_invalid_data) + "<br>" + t(:check_error_msg_and_fix)), {:id => "errorDiv_ep", :class => "pbError"})
     end
+  end
+
+
+  #重写content_for方法,当调用content_for时,修改has_content
+  def content_for(name, content = nil, &block)
+    @has_content ||= {}
+    @has_content[name] = true
+    super(name, content, &block)
+  end
+
+  #利用@has_content来判断是否存在name content
+  def has_content?(name)
+    (@has_content && @has_content[name]) || false
   end
 end
