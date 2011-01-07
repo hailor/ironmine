@@ -28,7 +28,7 @@
             <% if @_from.to_s == "site_group" %>
               <div class="button"><%= link_to t(:cancel), @return_url%></div>
             <% else %>
-              <div class="button"><%= link_to t(:cancel), {:action => "index",:site_group_code=>@site.group_code}%></div>
+              <div class="button"><%= link_to t(:cancel), {:action => "index",:site_group_code=>@site.site_group_code}%></div>
             <% end %>
           </td>
         </tr>
@@ -107,7 +107,7 @@
             <% if @_from.to_s == "site_group" %>
               <div class="button"><%= link_to t(:cancel), @return_url%></div>
             <% else %>
-              <div class="button"><%= link_to t(:cancel), {:action => "index",:site_group_code=>@site.group_code}%></div>
+              <div class="button"><%= link_to t(:cancel), {:action => "index",:site_group_code=>@site.site_group_code}%></div>
             <% end %>
           </td>
         </tr>
