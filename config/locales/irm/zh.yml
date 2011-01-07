@@ -467,6 +467,8 @@ zh:
   label_irm_site_postal_code: 邮编
   label_irm_site_state: 省
   label_irm_site_timezone_code: 时区
+  label_add_another_site: 增加新的地点
+  label_delete_last_site: 删除最后一行的地点
   #=========================end irm site_groups_controller=======================#
   #=========================end irm flex_values_controller=======================#
   #=========================irm operational_catalogs_controller=======================#

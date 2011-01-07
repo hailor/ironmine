@@ -331,6 +331,16 @@ Ironmine::Application.routes.draw do
     match '/support_groups/choose_person(.:format)' => "support_groups#choose_person"
     match '/support_groups/create_member(.:format)' => "support_groups#create_member"
     match '/support_groups/delete_member(.:format)' => "support_groups#delete_member"
+    #sites
+    match '/sites(/index)(.:format)' => "sites#index", :via => :get
+    match '/sites/get_data(.:format)' => "sites#get_data"
+    match '/sites/:id/edit(.:format)' => "sites#edit", :via => :get
+    match '/sites/:id(.:format)' => "sites#update", :via => :put
+    match '/sites/new(.:format)' => "sites#new", :via => :get
+    match '/sites/:id(.:format)' => "sites#show", :via => :get
+    match '/sites/create(.:format)' => "sites#create", :via => :post
+    match '/sites/:id/multilingual_edit(.:format)' => "sites#multilingual_edit", :via => :get
+    match '/sites/:id/multilingual_update(.:format)' => "sites#multilingual_update", :via => :put
     #people
     match '/people/get_data(.:format)' => "people#get_data"
     match '/people(/index)(.:format)' => "people#index", :via => :get
