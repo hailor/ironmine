@@ -14,6 +14,9 @@ en:
   label_icm_rule_setting_auto_assignable: Auot assign
   label_icm_rule_setting_description: Description
   label_icm_rule_setting_edit: Edit rule setting
+  label_icm_rule_setting_info: Rule Setting Info
+  label_icm_rule_setting_show: Rule Setting
+  label_icm_rule_setting_status_code: Status Code
   #========================= end icm rule_settings_controller=======================#
   #=========================    icm impact_ranges_controller=======================#
   label_icm_impact_range_list: Impact range list
@@ -27,13 +30,16 @@ en:
   #========================= end icm impact_ranges_controller=======================#
   #=========================    icm urgence_codes_controller=======================#
   label_icm_urgence_code_list: List urgence code
-  label_irm_urgence_code_new: New urgence code
+  label_icm_urgence_code_new: New urgence code
   label_icm_urgence_code_urgency_code: Code
   label_icm_urgence_code_company: Company
   label_icm_urgence_code_weight_values: Weight values
   label_icm_urgence_code_name: Name
   label_icm_urgence_code_description: Description
   label_icm_urgence_code_edit: Edit urgence code
+  label_icm_urgence_code_info: Urgency Detail Info
+  label_icm_urgence_code_show: Urgency
+  label_icm_urgence_code_status_code: Status Code
   #========================= end icm urgence_codes_controller=======================#
   #=========================    icm priority_codes_controller=======================#
   label_icm_priority_code_list: Priority codes list
@@ -45,6 +51,9 @@ en:
   label_icm_priority_code_name: Name
   label_icm_priority_code_description: Description
   label_icm_priority_code_edit: Edit priority code
+  label_icm_priority_code_info: Priority Code Deatail Info
+  label_icm_priority_code_show: Priority Code
+  label_icm_priority_code_status_code: Status Code
   #========================= end icm priority_codes_controller=======================#
   #=========================    icm close_reasons_controller=======================#
   label_icm_close_reason_list: Close reason list
@@ -73,5 +82,9 @@ en:
   label_icm_incident_status_company: Company
   label_icm_incident_status_new: New incident status
   label_icm_incident_status_description: Description
+  label_icm_incident_status_info: Incident Status Info
+  label_irm_incident_status_new: New Incident Status
+  label_irm_incident_status_list: List Incident Status
+  label_icm_incident_status_show: Incident Status
   #========================= end icm incident_statuses_controller=======================#
 

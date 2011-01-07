@@ -13,7 +13,7 @@ class Irm::SiteGroupsController < ApplicationController
   # GET /site_groups/1
   # GET /site_groups/1.xml
   def show
-    @site_group = Irm::SiteGroup.find(params[:id])
+    @site_group = Irm::SiteGroup.multilingual.query_wrap_info(I18n::locale).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +34,7 @@ class Irm::SiteGroupsController < ApplicationController
 
   # GET /site_groups/1/edit
   def edit
-    @site_group = Irm::SiteGroup.multilingual.find(params[:id])
+    @site_group = Irm::SiteGroup.multilingual.query_wrap_info(I18n::locale).find(params[:id])
   end
 
   # POST /site_groups
@@ -45,11 +45,11 @@ class Irm::SiteGroupsController < ApplicationController
     respond_to do |format|
       if @site_group.save
         flash[:successful_message] = (t :successfully_created)
-        format.html { render "irm/common/_successful_message" }
+        format.html { render "index" }
         format.xml  { render :xml => @site_group, :status => :created, :location => @site_group }
       else
         @error = @site_group
-        format.html { render "irm/common/error_message" }
+        format.html { render "new" }
         format.xml  { render :xml => @site_group.errors, :status => :unprocessable_entity }
       end
     end
@@ -63,11 +63,11 @@ class Irm::SiteGroupsController < ApplicationController
     respond_to do |format|
       if @site_group.update_attributes(params[:irm_site_group])
         flash[:successful_message] = (t :successfully_updated)
-        format.html { render "irm/common/_successful_message" }
+        format.html { render "index" }
         format.xml  { head :ok }
       else
         @error = @site_group
-        format.html { render "irm/common/error_message" }
+        format.html { render "new" }
         format.xml  { render :xml => @site_group.errors, :status => :unprocessable_entity }
       end
     end
@@ -91,9 +91,9 @@ class Irm::SiteGroupsController < ApplicationController
 
   def get_data
     @site_groups= Irm::SiteGroup.multilingual.query_wrap_info(I18n::locale)
+    @site_groups,count = paginate(@site_groups)
     respond_to do |format|
-      format.json {render :json=>@site_groups.to_dhtmlxgrid_json(['R',:region_name,:group_code,:name,:description,:status_meaning,
-                                                             {:value => 'M', :controller => 'irm/site_groups',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_site_group_list', :script => ''}], @site_groups.size)}
+      format.json {render :json=>to_jsonp(@site_groups.to_grid_json(['R',:region_name,:group_code,:name,:description,:status_meaning], count))}
     end
   end
 
@@ -147,11 +147,10 @@ class Irm::SiteGroupsController < ApplicationController
 
   #根据 site group 得到 site
   def get_current_group_site
-    @current_site_group_code = Irm::SiteGroup.find(params[:id]).group_code
-    @sites = Irm::Site.multilingual.query_by_site_group_code(@current_site_group_code).query_wrap_info(I18n.locale)
+    @sites = Irm::Site.multilingual.query_by_site_group_code(params[:group_code]).query_wrap_info(I18n.locale)
+    @sites,count = paginate(@sites)
     respond_to do |format|
-      format.json {render :json=>@sites.to_dhtmlxgrid_json(['R',:site_code,:name,:description,:status_meaning,
-                                                             {:value => 'M', :controller => 'irm/site_groups',:action =>  'multilingual_site_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_site_list', :script => ''}], @sites.size)}
+      format.json {render :json=>to_jsonp(@sites.to_grid_json(['R',:site_code,:name,:description,:status_meaning], count))}
     end
   end
 
