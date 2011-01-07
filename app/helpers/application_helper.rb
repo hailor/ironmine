@@ -89,4 +89,8 @@ module ApplicationHelper
   def has_content?(name)
     (@has_content && @has_content[name]) || false
   end
+  
+  def link_back(text = t(:back))
+    link_to text, {}, {:href => "javascript:history.back();"}
+  end
 end
