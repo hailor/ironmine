@@ -70,7 +70,8 @@
             <tr>
               <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_id_flex_segment_list) %></h2></td>
               <td class="pbButton">
-                <div class="button"><%= link_to t(:add), {}%></div>
+                <div class="button"><%= link_to t(:new),
+                {:controller => "irm/id_flex_segments", :action => "new", :id_flex_code => @id_flex_structure.id_flex_code, :id_flex_num => @id_flex_structure.id_flex_num}%></div>
               </td>
               <td class="pbHelp">
                 <select title="显示所选内容" name="hotlist_mode" id="hotlist_mode"><option value="2">最近创建</option>
@@ -85,7 +86,7 @@
       <div class="pbBody">
         <div id="pizza" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{}) %>|<%= link_to(t(:show),{}) %>|<%= link_to(t(:remove),{}) %>
+            <%= link_to(t(:edit),{:controller => "irm/id_flex_segments", :action => "edit", :id => "{id}"}) %>|<%= link_to(t(:show),{:controller => "irm/id_flex_segments", :action => "show", :id => "{id}"}) %>|<%= link_to(t(:remove),{}) %>
           </div>
         </div>
         <%= datatable("pizza",url_for(:controller => "irm/id_flex_segments", :action=>"get_data", :id_flex_structure_id => @id_flex_structure,:format=>"json"),

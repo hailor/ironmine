@@ -1,0 +1,94 @@
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"></h1>
+      <h2 class="pageDescription"><%=t(:label_irm_id_flex_segment_edit)%></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks">此页面的帮助</a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
+</div>
+
+<%= form_for(@id_flex_segment,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_id_flex_segment_edit)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @id_flex_segment%>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra"><span class="requiredLegend"><span class="requiredExampleOuter"><span class="requiredExample">&nbsp;</span></span><span class="requiredMark">*</span><span class="requiredText"> = 必填信息</span></span></span>
+      <h3>一般信息</h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_id_flex_structure_code)%></label></td>
+              <td class="dataCol"><%= @id_flex_structure.id_flex_structure_code%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_id_flex_structure_name_full)%></label></td>
+              <td class="dataCol"><%= @id_flex_structure[:id_flex_structure_name]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_id_flex_segment_name)%></label></td>
+              <td class="dataCol"><%= @id_flex_segment.segment_name%></td>
+              <td class="labelCol"><label><%=t(:label_irm_value_set)%></label></td>
+              <td class="dataCol"><div><%= f.select :flex_value_set_name, available_flex_value_sets.collect{|p| [p.flex_value_set_name, p.flex_value_set_name]}, {:include_blank => t(:select)}%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_id_flex_segment_form_left_prompt)%></label></td>
+              <td class="dataCol"><%= f.text_field :form_left_prompt, :required => true%></td>
+              <td class="labelCol"><%= t(:label_irm_id_flex_segment_segment_num) %></td>
+              <td class="dataCol"><div><%= f.text_field :segment_num%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_id_flex_segment_description)%></label></td>
+              <td class="dataCol"><div><%= f.text_area :description, :rows => 4%></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :active)%></label></td>
+              <td class="dataCol"><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
+

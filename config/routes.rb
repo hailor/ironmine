@@ -369,7 +369,6 @@ Ironmine::Application.routes.draw do
     #id_flex_segments
     match '/id_flex_segments/:id_flex_structure_id(/index)(.:format)' => "id_flex_segments#index", :via => :get
     match '/id_flex_segments/:id_flex_structure_id/get_data(.:format)' => "id_flex_segments#get_data"
-    
     match '/id_flex_segments/:id/edit(.:format)' => "id_flex_segments#edit", :via => :get
     match '/id_flex_segments/:id(.:format)' => "id_flex_segments#update", :via => :put
     match '/id_flex_segments/:id_flex_code/:id_flex_num/new(.:format)' => "id_flex_segments#new", :via => :get
