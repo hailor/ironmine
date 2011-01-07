@@ -4,9 +4,10 @@ class Irm::IdFlexStructure < ActiveRecord::Base
   #多语言关系
   attr_accessor :id_flex_structure_name,:description
   has_many :id_flex_structures_tls,:dependent => :destroy
-  
   acts_as_multilingual(:columns =>[:id_flex_structure_name,:description], :required=>[:id_flex_structure_name])
 
+  validates_presence_of :id_flex_structure_code
+  validates_uniqueness_of :id_flex_structure_code
   scope :query_by_flex_code, lambda{|flex_code| where("#{table_name}.id_flex_code = ?", flex_code)}
 
   scope :list_all, lambda{select("#{table_name}.*, #{Irm::IdFlex.table_name}.id_flex_name id_flex_name, #{Irm::IdFlexStructuresTl.table_name}.id_flex_structure_name id_flex_structure_name, #{Irm::IdFlexStructuresTl.table_name}.description description").

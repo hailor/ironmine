@@ -564,6 +564,7 @@ zh:
   label_irm_id_flex_edit: 编辑弹性域
   label_irm_id_flex_code: 弹性域编码
   label_irm_id_flex_name: 名称
+  label_irm_id_flex_name_full: 弹性域名称
   label_irm_id_flex_description: 描述
   #=========================end id_flexes_controller=======================#
   #=========================irm id_flex_structures_controller=======================#

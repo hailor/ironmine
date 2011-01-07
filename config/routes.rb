@@ -359,18 +359,22 @@ Ironmine::Application.routes.draw do
     match '/id_flexes/:id/show(.:format)' => "id_flexes#show", :via => :get
     #id_flex_stuctures
     match '/id_flex_structures(/index)(.:format)' => "id_flex_structures#index", :via => :get
-    match '/id_flex_structures/:id_flex_code/show_parent(.:format)' => "id_flex_structures#show_parent", :via => :get
     match '/id_flex_structures/:id_flex_code/get_data(.:format)' => "id_flex_structures#get_data"
-    match '/id_flex_structures/create_entry(.:format)' => "id_flex_structures#create_entry"
-    match '/id_flex_structures/:id/multilingual_edit(.:format)' => "id_flex_structures#multilingual_edit", :via => :get
-    match '/id_flex_structures/:id/multilingual_update(.:format)' => "id_flex_structures#multilingual_update", :via => :put
+    match '/id_flex_structures/select_parent(.:format)' => 'id_flex_structures#select_parent'
+    match '/id_flex_structures/:id/edit(.:format)' => "id_flex_structures#edit", :via => :get
+    match '/id_flex_structures/:id(.:format)' => "id_flex_structures#update", :via => :put
+    match '/id_flex_structures/:id_flex_code/new(.:format)' => "id_flex_structures#new", :via => :get
+    match '/id_flex_structures/create(.:format)' => "id_flex_structures#create", :via => :post
+    match '/id_flex_structures/:id/show(.:format)' => "id_flex_structures#show", :via => :get
     #id_flex_segments
     match '/id_flex_segments/:id_flex_structure_id(/index)(.:format)' => "id_flex_segments#index", :via => :get
-    match '/id_flex_segments/:id_flex_structure_id/show_parent(.:format)' => "id_flex_segments#show_parent", :via => :get
     match '/id_flex_segments/:id_flex_structure_id/get_data(.:format)' => "id_flex_segments#get_data"
-    match '/id_flex_segments/create_entry(.:format)' => "id_flex_segments#create_entry"
-    match '/id_flex_segments/:id/multilingual_edit(.:format)' => "id_flex_segments#multilingual_edit", :via => :get
-    match '/id_flex_segments/:id/multilingual_update(.:format)' => "id_flex_segments#multilingual_update", :via => :put
+    
+    match '/id_flex_segments/:id/edit(.:format)' => "id_flex_segments#edit", :via => :get
+    match '/id_flex_segments/:id(.:format)' => "id_flex_segments#update", :via => :put
+    match '/id_flex_segments/:id_flex_code/:id_flex_num/new(.:format)' => "id_flex_segments#new", :via => :get
+    match '/id_flex_segments/create(.:format)' => "id_flex_segments#create", :via => :post
+    match '/id_flex_segments/:id/show(.:format)' => "id_flex_segments#show", :via => :get
   end
 
   scope :module => "icm" do
