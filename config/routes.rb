@@ -3,6 +3,7 @@ Ironmine::Application.routes.draw do
   scope :module => "irm" do
     root :to => "navigations#entrance"
     match 'login'=>'common#login',:as=>:login
+    match 'combo'=>'navigations#combo'
     match 'logout'=>'common#logout',:as=>:logout
     #lookup_types
     match '/lookup_types/new(.:format)'=>"lookup_types#new",:via=>:get

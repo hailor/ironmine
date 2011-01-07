@@ -43,4 +43,13 @@ class Irm::NavigationsController < ApplicationController
     @page_menus = Irm::MenuManager.parent_menus_by_menu(params[:mc])    
   end
 
+  def combo
+    contents = ""
+    params.keys.each do |k|
+     next unless k.to_s.end_with?(".js")||k.to_s.end_with?(".css")
+     contents << IO.read("#{Rails.root}/public#{k.to_s}")
+    end
+    render :text=> contents
+  end
+
 end
