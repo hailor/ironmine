@@ -9,7 +9,7 @@ class Icm::PriorityCodesController < ApplicationController
   end
 
   def show
-    @priority_code = Icm::PriorityCode.find(params[:id])
+    @priority_code = Icm::PriorityCode.multilingual.list_all.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,7 +27,7 @@ class Icm::PriorityCodesController < ApplicationController
   end
 
   def edit
-    @priority_code = Icm::PriorityCode.multilingual.find(params[:id])
+    @priority_code = Icm::PriorityCode.multilingual.list_all.find(params[:id])
   end
 
   def create
@@ -35,10 +35,9 @@ class Icm::PriorityCodesController < ApplicationController
     respond_to do |format|
       if @priority_code.save
         flash[:successful_message] = (t :successfully_created)
-        format.html { render "successful_info" }
+        format.html { render "index" }
       else
-         @error = @priority_code
-         format.html { render "error_message" }
+         format.html { render "new" }
       end
     end
   end
@@ -49,10 +48,9 @@ class Icm::PriorityCodesController < ApplicationController
     respond_to do |format|
       if @priority_code.update_attributes(params[:icm_priority_code])
         flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+        format.html { render "index" }
       else
-        @error = @priority_code
-        format.html { render "error_message" }
+        format.html { render "edit" }
       end
     end
   end
@@ -85,11 +83,10 @@ class Icm::PriorityCodesController < ApplicationController
 
   def get_data
     @priority_codes = Icm::PriorityCode.multilingual.list_all
+    @priority_codes,count = paginate(@priority_codes)
     respond_to do |format|
-      format.json  {render :json => @priority_codes.to_dhtmlxgrid_json(['0',:company_name,:priority_code,:name,
-                                                                     :low_weight_value,:high_weight_value,
-                                                                    {:value => 'M', :controller => 'icm/priority_codes',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
-                                                                    ], @priority_codes.size) }
+      format.json  {render :json => to_jsonp(@priority_codes.to_grid_json(['0',:company_name,:priority_code,:name,:description,
+                                                                     :low_weight_value,:high_weight_value,:status_meaning], count)) }
     end
   end  
 end

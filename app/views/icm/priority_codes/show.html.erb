@@ -1,0 +1,65 @@
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%= t(:label_icm_priority_code_show) %></h1>
+      <h2 class="pageDescription"><%=@priority_code.priority_code%></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks">编辑局部</a>|
+      <a href="javascript:void(0);" class="configLinks">用户简档</a>|
+      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%></a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
+</div>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_icm_priority_code_show) %>&nbsp;<%= t(:label_detail_info) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @priority_code}%></div>
+            <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_icm_priority_code_company)%></label></td>
+              <td class="dataCol"><%=@priority_code[:company_name]%></td>
+              <td class="labelCol"><label><%=(t :label_icm_priority_code_priority_code)%></label></td>
+              <td class="dataCol"><%=@priority_code.priority_code%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_icm_priority_code_name)%></label></td>
+              <td class="dataCol"><%= @priority_code[:name]%></td>
+              <td class="labelCol"><label><%=(t :label_icm_priority_code_low_weight_value)%></label></td>
+              <td class="dataCol"><%= @priority_code[:low_weight_value]%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_icm_priority_code_description)%></label></td>
+              <td class="dataCol"><%= @priority_code[:description]%></td>
+              <td class="labelCol"><label><%=(t :label_icm_priority_code_high_weight_value)%></label></td>
+              <td class="dataCol"><%= @priority_code[:high_weight_value]%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_icm_priority_code_status_code)%></label></td>
+              <td class="dataCol"><%= @priority_code[:status_meaning]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

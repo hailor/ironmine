@@ -10,7 +10,10 @@ zh:
   label_icm_rule_setting_slove_date_changable: 更改解决日期
   label_icm_rule_setting_auto_assignable: 自动分配
   label_icm_rule_setting_description: 描述
-  label_icm_rule_setting_edit: 编辑事件规则  
+  label_icm_rule_setting_edit: 编辑事件规则
+  label_icm_rule_setting_info: 事件规则详细信息
+  label_icm_rule_setting_show: 事件规则
+  label_icm_rule_setting_status_code: 记录状态
   #========================= end icm role_settings_controller=======================#
   #=========================    icm impact_ranges_controller=======================#
   label_icm_impact_range_list: 影响度列表
@@ -42,6 +45,8 @@ zh:
   label_icm_priority_code_name: 名称
   label_icm_priority_code_description: 描述
   label_icm_priority_code_edit: 编辑优先级范围
+  label_icm_priority_code_show: 优先级
+  label_icm_priority_code_status_code: 记录状态
   #========================= end icm priority_codes_controller=======================#
   #=========================    icm close_reasons_controller=======================#
   label_icm_close_reason_list: 关闭原因列表
@@ -70,4 +75,6 @@ zh:
   label_icm_incident_status_company: 公司
   label_icm_incident_status_new: 新建事故单状态
   label_icm_incident_status_description: 描述
+  label_icm_incident_status_info: 事故单状态信息
+  label_icm_incident_status_show: 事故单状态
   #========================= end icm incident_statuses_controller=======================#

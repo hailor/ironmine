@@ -393,6 +393,7 @@ Ironmine::Application.routes.draw do
     match '/rule_settings/new(.:format)' => "rule_settings#new", :via => :get
     match '/rule_settings/create(.:format)' => "rule_settings#create", :via => :post
     match '/rule_settings/get_data(.:format)' => "rule_settings#get_data"
+    match '/rule_settings/:id(.:format)' => "rule_settings#show", :via => :get
     #impact_ranges
     match '/impact_ranges(/index)(.:format)' => "impact_ranges#index", :via => :get
     match '/impact_ranges/:id/edit(.:format)' => "impact_ranges#edit", :via => :get
@@ -420,6 +421,7 @@ Ironmine::Application.routes.draw do
     match '/priority_codes/:id/multilingual_edit(.:format)' => "priority_codes#multilingual_edit", :via => :get
     match '/priority_codes/:id/multilingual_update(.:format)' => "priority_codes#multilingual_update", :via => :put
     match '/priority_codes/get_data(.:format)' => "priority_codes#get_data"
+    match '/priority_codes/:id(.:format)' => "priority_codes#show", :via => :get
     #close_reasons
     match '/close_reasons(/index)(.:format)' => "close_reasons#index", :via => :get
     match '/close_reasons/:id/edit(.:format)' => "close_reasons#edit", :via => :get
@@ -446,7 +448,8 @@ Ironmine::Application.routes.draw do
     match '/incident_statuses/create(.:format)' => "incident_statuses#create", :via => :post
     match '/incident_statuses/:id/multilingual_edit(.:format)' => "incident_statuses#multilingual_edit", :via => :get
     match '/incident_statuses/:id/multilingual_update(.:format)' => "incident_statuses#multilingual_update", :via => :put
-    match '/incident_statuses/get_data(.:format)' => "incident_statuses#get_data" 
+    match '/incident_statuses/get_data(.:format)' => "incident_statuses#get_data"
+    match '/incident_statuses/:id(.:format)' => "incident_statuses#show", :via => :get
   end
 
   match '/demo(/index)' => 'demo#index'
