@@ -11,6 +11,11 @@ module Irm::NavigationsHelper
   def sub_entries(menu_code)
     Irm::MenuManager.sub_entries_by_menu(menu_code)
   end
+
+  def menu_by_code(menu_code)
+    Irm::MenuManager.menus[menu_code]
+  end
+
   # 生成一级菜单
   def level_one_menu
     menus = @page_menus.dup
@@ -23,7 +28,7 @@ module Irm::NavigationsHelper
     lis = ""
     entries.each do |e|
       next if e[:menu_code].eql?(menus[1])
-      lis << content_tag(:li,link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code]},{:class=>"yui3-menuitem-content"}),{:class=>"yui3-menuitem"})
+      lis << content_tag(:li,link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id],:level=>1},{:class=>"yui3-menuitem-content"}),{:class=>"yui3-menuitem"})
     end
 
     menu_content = content_tag(:div,content_tag(:div,content_tag(:ul,lis.html_safe),{:class=>"yui3-menu-content"}),{:id=>"#{menus[0].downcase}",:class=>"yui3-menu"})
@@ -51,7 +56,7 @@ module Irm::NavigationsHelper
     entries.each do |e|
       style = ""
       style = "currentTab" if e[:menu_code].eql?(menus[2]||"NO_MENU")
-      tds << content_tag(:td,content_tag(:div,link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code]},{:title=>e[:description]})),{:class=>style,:nowrap=>"nowrap"})
+      tds << content_tag(:td,content_tag(:div,link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]},{:title=>e[:description]})),{:class=>style,:nowrap=>"nowrap"})
     end
     tds.html_safe
 
@@ -71,6 +76,7 @@ module Irm::NavigationsHelper
     script = %Q(
       GY.use(function(Y){
         var current_permissions = [#{permssions.collect{|x| "'#{x}'"}.join(",")}];
+        var current_menus = [#{menus.collect{|x| "'#{x.downcase}'"}.join(",")}];
         // 处理展开事件
         Y.one("#MenuNavTree").delegate("click",function(e){
           if(this.hasClass("NavTreeCol")){
@@ -95,6 +101,13 @@ module Irm::NavigationsHelper
               selectedNode.addClass("setupHighlightLeaf");
             }
           }
+          for(var i = 0;i<current_menus.length;i++){
+            selectedNode = n.one("a.NavIconLink[real='"+current_menus[i]+"']");
+            if(selectedNode){
+              if(n.one(".NavIconLink")&&n.one(".NavIconLink").hasClass("NavTreeCol"))
+                n.one(".NavIconLink").simulate("click")
+            }
+          }
         });
       });
     )
@@ -109,7 +122,7 @@ module Irm::NavigationsHelper
     functions = ""
     if level == 1
       entries.each do |e|
-        functions << content_tag(:div,content_tag(:h2,link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code]},{:title=>e[:description]})),{:class=>"setupNavtree"})        
+        functions << content_tag(:div,content_tag(:h2,link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id],:level=>1},{:title=>e[:description]})),{:class=>"setupNavtree"})
         if(e[:entry_type].eql?("MENU"))
           functions << content_tag(:div,generate_sidebar_menu(e[:menu_code],next_level),{:id=>"#{e[:menu_code].downcase}_child"})
         end
@@ -118,7 +131,7 @@ module Irm::NavigationsHelper
       entries.each do |e|
         if(e[:entry_type].eql?("MENU"))
           icon_link = link_to("",{},{:href=>"javascript:void(0)",:real=>"#{e[:menu_code].downcase}",:class=>"NavIconLink NavTreeCol",:id=>"#{e[:menu_code].downcase}_icon"})
-          font_link = link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code]},{:title=>e[:description],:class=>"setupFolder",:id=>"#{e[:menu_code].downcase}_font"})
+          font_link = link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]},{:title=>e[:description],:class=>"setupFolder",:id=>"#{e[:menu_code].downcase}_font"})
           child_div = content_tag(:div,generate_sidebar_menu(e[:menu_code],next_level),{:class=>"childContainer",:id=>"#{e[:menu_code].downcase}_child"})
           functions << content_tag(:div,icon_link+font_link+child_div,{:mi=>"#{e[:menu_code].downcase}",:class=>"parent",:id=>"#{e[:menu_code].downcase}"})
         else
@@ -128,4 +141,22 @@ module Irm::NavigationsHelper
     end
     functions.html_safe
   end
+
+
+  def generate_entries_table(menu_code)
+    entries = Irm::MenuManager.sub_entries_by_menu(menu_code)
+    odd_index = (0..entries.length).reject{|i| i%2 ==1}
+    content = ""
+    odd_index.each do |i|
+      tr = ""
+      e = entries[i]
+      tr << content_tag(:td,("•"+link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]})).html_safe,{:width=>"50%"}) if e
+      e = entries[i+1]
+      tr << content_tag(:td,("•"+link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]})).html_safe,{:width=>"50%"}) if e
+      content << content_tag(:tr,tr.html_safe)
+    end
+    raw content
+
+  end
+
 end

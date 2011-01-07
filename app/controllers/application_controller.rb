@@ -93,7 +93,8 @@ class ApplicationController < ActionController::Base
 
   # 设置当前页面对应的菜单数据
   def menu_setup
-    @page_menus = Irm::MenuManager.menus_by_permission({:page_controller=>params[:controller],:page_action=>params[:action]})
+    @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>params[:controller],:page_action=>params[:action]})
+    @page_menus << params[:mc] if(params[:mc])
   end
 
   #===========all controller public method============ 
