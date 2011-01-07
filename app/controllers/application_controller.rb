@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   # check_permission 检测当前用户的权限,如果无权访问则跳转到用户首页my#page
   # set_localization 设置当前用户语言
   # layout_setup 检查设置窗口的运行模式，wmode,设置页面布局
+  # menu_setup 设置当前页面对应的菜单数据
   before_filter :user_setup
   before_filter :permission_setup
   #before_filter :check_if_login_required
@@ -20,6 +21,7 @@ class ApplicationController < ActionController::Base
   before_filter :check_permission
   before_filter :localization_setup
   before_filter :layout_setup
+  before_filter :menu_setup
 
   # 设置当前用户，为下步检查用户是否登录做准备
   def user_setup
@@ -87,6 +89,11 @@ class ApplicationController < ActionController::Base
     else
       self.class.layout self.class.default_layout unless self.class.default_layout.eql?(_layout)
     end
+  end
+
+  # 设置当前页面对应的菜单数据
+  def menu_setup
+    @page_menus = Irm::MenuManager.menus_by_permission({:page_controller=>params[:controller],:page_action=>params[:action]})
   end
 
   #===========all controller public method============ 

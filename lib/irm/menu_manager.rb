@@ -170,7 +170,9 @@ module Irm
 
       #通过权限编辑取得菜单列表
       def menus_by_permission(options={})
-        permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions","index")]
+        menus =  permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions",options[:page_action]||"index")]||[]
+        return menus unless menus.size==0
+        permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions","index")]||[]
       end
 
 
@@ -218,6 +220,11 @@ module Irm
         menus.values.each do |m|
           if(m[:menu_entries].detect{|me| me[:sub_menu_code].eql?(pm_code)}||m[:permission_entries].detect{|pe| pe[:permission_code].eql?(pm_code)})
             return m[:menu_code]
+          else
+            tme = m[:menu_entries].detect{|me| me[:permission_code].eql?(pm_code)}
+            if tme
+              return tme[:sub_menu_code]
+            end
           end
         end
         nil
