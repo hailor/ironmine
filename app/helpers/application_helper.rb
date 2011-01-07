@@ -76,4 +76,8 @@ module ApplicationHelper
       content_tag("div", raw(t(:error_invalid_data) + "<br>" + t(:check_error_msg_and_fix)), {:id => "errorDiv_ep", :class => "pbError"})
     end
   end
+
+  def link_back(text = t(:back))
+    link_to text, {}, {:href => "javascript:history.back();"}
+  end
 end
