@@ -1,29 +1,3 @@
-var yuiConfig = {
-    modules:{
-        irmdtdatasource:{
-            fullpath:"/javascripts/irm/irm-dtdatasource.js",
-            requires: ["datatable-datasource"]
-        }
-    },
-    groups: {
-            yui2: {
-                base:      '/javascripts/yui2.8.1/',
-                patterns:  {
-                    'yui2-': {
-                        configFn: function(me) {
-                            if(/-skin|reset|fonts|grids|base/.test(me.name)) {
-                                me.type = 'css';
-                                me.path = me.path.replace(/\.js/, '.css');
-                                // this makes skins in builds earlier than 2.6.0 work as long as combine is false
-                                me.path = me.path.replace(/\/yui2-skin/, '/assets/skins/sam/yui2-skin');
-                            }
-                        }
-                    }
-                }
-            }
-         }
-};
-
 YUI.add('irm', function(Y) {
 
     Y.namespace('irm');
@@ -51,10 +25,60 @@ YUI.add('irm', function(Y) {
     requires: ['base']
 });
 
-var GY = YUI(yuiConfig).use("irm");
+
 
 GY.use('node',function(Y){
    Y.all('input[irm_uppercase]').on('keyup', function(){
       this.set('value',this.get('value').toString().toUpperCase());
    });
 });
+
+var siteCount = 0;
+function add_site_Field(){
+    if (siteCount >= 10)
+        return false;
+    siteCount++;
+    var f1 = document.createElement("input");
+    f1.type = "text";
+    f1.name = "irm_sites[" + siteCount + "][site_code]";
+    var f2 = document.createElement("input");
+    f2.type = "text";
+    f2.name = "irm_sites[" + siteCount + "][name]";
+    var f3 = document.createElement("input");
+    f3.type = "text";
+    f3.name = "irm_sites[" + siteCount + "][description]";
+
+    var span1 = document.createElement("span");
+    span1.setAttribute("class","lookupInput");
+    var span2 = document.createElement("span");
+    span2.setAttribute("class","lookupInput");
+    var span3 = document.createElement("span");
+    span3.setAttribute("class","lookupInput");
+
+    var cell1=document.createElement("td");// 创建td
+    var cell2=document.createElement("td");// 创建td
+    var cell3=document.createElement("td");// 创建td
+    var row=document.createElement("tr");// 创建tr
+
+    span1.appendChild(f1);
+    span2.appendChild(f2);
+    span3.appendChild(f3);
+    cell1.appendChild(span1);
+    cell2.appendChild(span2);
+    cell3.appendChild(span3);
+
+    row.appendChild(cell1);
+    row.appendChild(cell2);
+    row.appendChild(cell3);
+
+    var p = document.getElementById("site_fields");
+    p.appendChild(row);
+}
+
+function delete_site_last_row(){
+   if (siteCount <= 0)
+        return false;
+   siteCount--;
+   var t=document.getElementById('site_fields');
+   t.removeChild(t.lastChild);
+}

@@ -12,21 +12,22 @@ module Irm
           options      = args[1] || {}
           html_options = args[2]
           html_options = convert_options_to_data_attributes(options, html_options)
-
-          options[:controller] ||= params[:controller]
-          options[:action] ||= params[:action]
-          url = url_for(options)
-          #扩展权限验证,当用户无权访问链接时,隐藏链接
-          if(options[:controller]&&options[:action]&&!allow_to?(options))
-            if(!html_options['show'])
-              if(html_options['style'])
-                html_options['style'] ="display:none;"+html_options['style']
-              else
-                html_options['style'] = "display:none;"
+          if options.is_a?(Hash)
+              options[:controller] ||= params[:controller]
+              options[:action] ||= params[:action]              
+              #扩展权限验证,当用户无权访问链接时,隐藏链接
+              if(options[:controller]&&options[:action]&&!allow_to?(options))
+                if(!html_options['show'])
+                  if(html_options['style'])
+                    html_options['style'] ="display:none;"+html_options['style']
+                  else
+                    html_options['style'] = "display:none;"
+                  end
+                end
+                html_options[:not_allow] = true
               end
-            end
-            html_options[:not_allow] = true
           end
+          url = url_for(options)
           if html_options
             html_options = html_options.stringify_keys
             href = html_options['href']

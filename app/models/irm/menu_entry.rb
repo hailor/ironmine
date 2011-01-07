@@ -18,6 +18,7 @@ class Irm::MenuEntry < ActiveRecord::Base
   query_extend
 
   scope :query_by_menu_code,lambda{|menu_code|where(:menu_code => menu_code)}
+  scope :query_by_permission_code,lambda{|permission_code|where(:permission_code => permission_code)}
   scope :query_by_id, lambda{|id| where(:id => id)}
   def self.check_menu_entry_exist(id)
     if Irm::MenuEntry.query_by_id(id).size > 0

@@ -37,4 +37,19 @@ class Irm::NavigationsController < ApplicationController
 
   end
 
+  # 公共菜单页面
+  # 当菜单项没有对应的permission时，使用common页面
+  def common
+    @page_menus = Irm::MenuManager.parent_menus_by_menu(params[:mc])    
+  end
+
+  def combo
+    contents = ""
+    params.keys.each do |k|
+     next unless k.to_s.end_with?(".js")||k.to_s.end_with?(".css")
+     contents << IO.read("#{Rails.root}/public#{k.to_s}")
+    end
+    render :text=> contents
+  end
+
 end

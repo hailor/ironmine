@@ -1,53 +1,94 @@
-<div id="rule_setting_new">
-     <%= form_for(@rule_setting,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
-            <div class="containerheader">
-                <div class="floatleft headertitle"><%=t(:label_icm_rule_setting_new)%></div>
-            </div>
-            <table class="twocolumnstable" cellspacing="0">
-                <tr>
-                    <td class="twocolumn">
-                       <table class="itemdetailtable">
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_icm_rule_setting_company)%>:</td>
-                              <td><%=f.select :company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%=t(:label_icm_rule_setting_new)%></h1>
+      <h2 class="pageDescription"><%=t(:label_icm_rule_setting_new)%></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%></a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
+</div>
+
+<%= form_for(@rule_setting,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_icm_rule_setting_new)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @condition%>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+          <span class="requiredLegend">
+            <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+            </span>
+          <span class="requiredMark">*</span>
+          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+          </span>
+      </span>
+      <h3><%=t(:label_icm_rule_setting_info)%></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_icm_rule_setting_company)%></label></td>
+              <td class="dataCol"><%=f.select :company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
                                                     options_for_select(selectable_companies,@rule_setting.company_id),
                                                     {},{}%></td>
-                            </tr>
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_icm_rule_setting_report_date_changable)%>:</td>
-                              <td><%=f.check_box :report_date_changable%></td>
-                            </tr>
-                            <tr><td class="itemdetailtablelabel"><%=(t :label_icm_rule_setting_respond_date_changable)%>:</td>
-                              <td><%=f.check_box :respond_date_changable%></td>
-                            </tr>
-                            <tr>
-                              <td class="itemdetailtablelabel"><%=t(:label_icm_rule_setting_slove_date_changable)%>:</td>
-                              <td><%= f.check_box :slove_date_changable, :cols => 40, :rows => 4%></td>
-                            </tr>
-                       </table>
-                    </td>
-                    <td class="twocolumn" cellspacing="0">
-                       <table class="itemdetailtable">
-                        <tr>
-                          <td class="itemdetailtablelabel"><%=t(:label_icm_rule_setting_assignment_process_code)%>:</td>
-                           <td><%=f.select :assignment_process_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+              <td class="labelCol"><label><%=(t :label_icm_rule_setting_report_date_changable)%></label></td>
+              <td class="dataCol"><%=f.check_box :report_date_changable%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_icm_rule_setting_respond_date_changable)%></label></td>
+              <td class="dataCol"><%=f.check_box :respond_date_changable%></td>
+              <td class="labelCol"><label><%=t(:label_icm_rule_setting_slove_date_changable)%></label></td>
+              <td class="dataCol"><%= f.check_box :slove_date_changable%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><%=(t :label_icm_rule_setting_auto_closure_days)%></td>
+              <td class="dataCol"><%=f.text_field :auto_closure_days,:required=>true%></td>
+              <td class="labelCol"><label><%=t(:label_icm_rule_setting_assignment_process_code)%></label></td>
+              <td class="dataCol"><%=f.select :assignment_process_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
                                                     options_for_select(available_processes,@rule_setting.assignment_process_code),
                                                     {},{}%></td>
-                        </tr>
-
-                         <tr><td class="itemdetailtablelabel"><%=(t :label_icm_rule_setting_auto_closure_days)%>:</td>
-                              <td><%=f.text_field :auto_closure_days,:required=>true%></td>
-                            </tr>
-                        <tr>
-                          <td class="itemdetailtablelabel"><%=t(:label_icm_rule_setting_description)%>:</td>
-                           <td ><%= f.text_area :description, :cols => 40, :rows => 2%></td>
-                        </tr>
-                       </table>
-                    </td>
-                    <td width="10%"></td>
-                </tr>
-            </table>
-            <div class="containerfooter">
-                <div class="button floatright"><%= link_to t(:save), {}, {:action_type => "ajaxSubmit", :script => "/replace(system_message_box,system_message_box);reload_grid('rule_setting_grid');/replace(system_message_box,system_message_box);"}%></div>
-                <div class="button floatright"><%= link_to t(:cancel), {:action => "new"}, :script => "/replace(container1,rule_setting_new);/", :action_type=>"ajaxLink"%></div>
-            </div>
-     <% end %>
+            </tr>
+            <tr>
+              <td class="labelCol"><%=t(:label_icm_rule_setting_description)%></td>
+              <td class="dataCol"><%= f.text_area :description, :cols => 40, :rows => 2%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+<% end %>
+

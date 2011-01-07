@@ -9,7 +9,7 @@ class Icm::UrgenceCodesController < ApplicationController
   end
 
   def show
-    @urgence_code = Icm::UrgenceCode.find(params[:id])
+    @urgence_code = Icm::UrgenceCode.multilingual.list_all(I18n::locale).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,7 +27,7 @@ class Icm::UrgenceCodesController < ApplicationController
   end
 
   def edit
-    @urgence_code = Icm::UrgenceCode.multilingual.find(params[:id])
+    @urgence_code = Icm::UrgenceCode.multilingual.list_all(I18n::locale).find(params[:id])
   end
 
   def create
@@ -35,10 +35,9 @@ class Icm::UrgenceCodesController < ApplicationController
     respond_to do |format|
       if @urgence_code.save
         flash[:successful_message] = (t :successfully_created)
-        format.html { render "successful_info" }
+        format.html { render "index" }
       else
-         @error = @urgence_code
-         format.html { render "error_message" }
+         format.html { render "new" }
       end
     end
   end
@@ -49,10 +48,9 @@ class Icm::UrgenceCodesController < ApplicationController
     respond_to do |format|
       if @urgence_code.update_attributes(params[:icm_urgence_code])
         flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+        format.html { render "index" }
       else
-        @error = @urgence_code
-        format.html { render "error_message" }
+        format.html { render "edit" }
       end
     end
   end
@@ -84,12 +82,11 @@ class Icm::UrgenceCodesController < ApplicationController
   end
 
   def get_data
-    @urgence_codes = Icm::UrgenceCode.multilingual.list_all
+    @urgence_codes = Icm::UrgenceCode.multilingual.list_all(I18n::locale)
+    @urgence_codes,count = paginate(@urgence_codes)
     respond_to do |format|
-      format.json  {render :json => @urgence_codes.to_dhtmlxgrid_json(['0',:company_name,:name,:urgency_code,
-                                                                     :weight_values,
-                                                                    {:value => 'M', :controller => 'icm/urgence_codes',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
-                                                                    ], @urgence_codes.size) }
+      format.json  {render :json => to_jsonp(@urgence_codes.to_grid_json(['0',:company_name,:name,:urgency_code,
+                                                                     :weight_values,:description,:status_meaning], count)) }
     end
   end  
 end

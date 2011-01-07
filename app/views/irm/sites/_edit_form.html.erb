@@ -1,0 +1,119 @@
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%=t(:label_irm_site_edit)%></h1>
+      <h2 class="pageDescription"><%=t(:label_irm_site_edit)%></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%><</a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
+</div>
+
+<%= form_for(@site,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+<%=f.hidden_field :site_group_code,:value=>@site.site_group_code%>
+<%= hidden_field_tag :return_url,@return_url %>
+<%= hidden_field_tag :_from,@_from %>   
+<%= hidden_field_tag :site_group_code,@site.site_group_code%>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_site_edit)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <% if @_from.to_s == "site_group" %>
+              <div class="button"><%= link_to t(:cancel), @return_url%></div>
+            <% else %>
+              <div class="button"><%= link_to t(:cancel), {:action => "index",:site_group_code=>@site.site_group_code}%></div>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @site%>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend"><span class="requiredExampleOuter">
+          <span class="requiredExample">&nbsp;</span></span>
+           <span class="requiredMark">*</span><span class="requiredText"> = <%=t(:label_is_required)%></span></span></span>
+      <h3><%=t(:label_common_info)%></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_site_site_group_name)%></label></td>
+              <td class="dataCol"><%=@site[:site_group_name]%></td>
+              <td class="labelCol"><label><%=(t :label_irm_site_site_code)%></label></td>
+              <td class="dataCol"><%=@site.site_code%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_site_name)%></label></td>
+              <td class="dataCol"><%=f.text_field :name,:value=>@site[:name], :required=>true %></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_site_description)%></label></td>
+              <td class="dataCol"><%=f.text_area :description,:value=>@site[:description],:rows=>4%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_site_country)%></label></td>
+              <td class="dataCol"><%=f.select :country,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                        options_from_collection_for_select(available_country,:lookup_code,:wrap_meaning,@site.country)%></td>
+              <td class="labelCol"><label><%=(t :label_irm_site_status_code)%></label></td>
+              <td class="dataCol"><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@site.status_code)%>
+              </td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_site_state)%></label></td>
+              <td class="dataCol"><%=f.select :state_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                        options_from_collection_for_select(available_province,:lookup_code,:wrap_meaning,@site.state_code)%></td>
+              <td class="labelCol"><label><%=(t :label_irm_site_postal_code)%></label></td>
+              <td class="dataCol"><%=f.text_field :postal_code,:size=>10%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_site_city)%></label></td>
+              <td class="dataCol"><%=f.select :city,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                        options_from_collection_for_select(available_city,:lookup_code,:wrap_meaning,@site.city)%></td>
+              <td class="labelCol"><label><%=(t :label_irm_site_timezone_code)%></label></td>
+              <td class="dataCol"><%=f.select :timezone_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_time_zone,:lookup_code,:wrap_meaning,@site.timezone_code)%></td>              
+            </tr>
+            <tr>
+              <td class="labelCol" ><label><%=(t :label_irm_site_address_line)%></label></td>
+              <td class="dataCol" colspan="3"><%=f.text_area :address_line,:rows=>4%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <% if @_from.to_s == "site_group" %>
+              <div class="button"><%= link_to t(:cancel), @return_url%></div>
+            <% else %>
+              <div class="button"><%= link_to t(:cancel), {:action => "index",:site_group_code=>@site.site_group_code}%></div>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
+   

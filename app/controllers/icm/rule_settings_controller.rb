@@ -9,7 +9,7 @@ class Icm::RuleSettingsController < ApplicationController
   end
 
   def show
-    @rule_setting = Icm::RuleSetting.find(params[:id])
+    @rule_setting = Icm::RuleSetting.list_all.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,7 +27,7 @@ class Icm::RuleSettingsController < ApplicationController
   end
 
   def edit
-    @rule_setting = Icm::RuleSetting.find(params[:id])
+    @rule_setting = Icm::RuleSetting.list_all.find(params[:id])
   end
 
   def create
@@ -35,10 +35,9 @@ class Icm::RuleSettingsController < ApplicationController
     respond_to do |format|
       if @rule_setting.save
         flash[:successful_message] = (t :successfully_created)
-        format.html { render "successful_info" }
+        format.html { render "index" }
       else
-         @error = @rule_setting
-         format.html { render "error_message" }
+         format.html { render "new" }
       end
     end
   end
@@ -49,10 +48,10 @@ class Icm::RuleSettingsController < ApplicationController
     respond_to do |format|
       if @rule_setting.update_attributes(params[:icm_rule_setting])
         flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+        format.html { render "index" }
       else
         @error = @rule_setting
-        format.html { render "error_message" }
+        format.html { render "edit" }
       end
     end
   end
@@ -69,10 +68,11 @@ class Icm::RuleSettingsController < ApplicationController
 
   def get_data
     @rule_settings = Icm::RuleSetting.list_all
+    @rule_settings,count = paginate(@rule_settings)
     respond_to do |format|
-      format.json  {render :json => @rule_settings.to_dhtmlxgrid_json(['0',:company_name,:process_name,
+      format.json  {render :json => to_jsonp(@rule_settings.to_grid_json(['0',:company_name,:process_name,
                                                                      :report_date_changable,:slove_date_changable,:respond_date_changable,
-                                                                     :auto_assignable,:auto_closure_days], @rule_settings.size) }
+                                                                     :auto_assignable,:auto_closure_days,:status_meaning], count)) }
     end
   end
 end

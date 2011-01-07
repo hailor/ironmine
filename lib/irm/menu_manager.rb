@@ -120,7 +120,7 @@ module Irm
                              :name=>me[::I18n.locale.to_sym][:name],
                              :description=>me[::I18n.locale.to_sym][:description],
                              :permission_code=>me[:permission_code]}
-          sub_entries<< entries_options.merge!(permission_url_options(me[:permission_code])) if menu_showable(me)
+          sub_entries<< entries_options.merge!(permission_url_options(me[:permission_code],false)) if menu_showable(me)
         end
         menu[:permission_entries].each do |pe|
           if(permissions[pe[:permission_code]].nil?)
@@ -159,20 +159,30 @@ module Irm
       end
 
       # 使用permission_code取得permission中的url 参数
-      def permission_url_options(permission_code)
+      # is_permission 表示权限还是菜单
+      def permission_url_options(permission_code,is_permission=true)
         permission = permissions[permission_code]
         if permission
           {:page_controller=>permission[:page_controller],:page_action=>permission[:page_action]}
         else
-          {}
+          if is_permission
+            {}
+          else
+            {:page_controller=>"irm/navigations",:page_action=>"common"}
+          end
         end  
       end
 
       #通过权限编辑取得菜单列表
-      def menus_by_permission(options={})
+      def parent_menus_by_permission(options={})
         menus =  permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions",options[:page_action]||"index")]||[]
         return menus unless menus.size==0
         permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions","index")]||[]
+      end
+
+      # 通过菜单取得上层菜单列表
+      def parent_menus_by_menu(menu_code)
+        permission_parent_menus(menu_code) << menu_code
       end
 
 
@@ -195,18 +205,19 @@ module Irm
       def menu_icon(menu_code)
         menus[menu_code][:icon]
       end
-      #
+      # 生成权限对应的菜单列表
       def setup_permission_menus
         permission_menus_cache = {}
         permissions.values.each do |p|
-          permission_menus_cache.merge!({Irm::Permission.url_key(p[:page_controller],p[:page_action])=>permissions_menus(p[:permission_code])})
+          permission_menus_cache.merge!({Irm::Permission.url_key(p[:page_controller],p[:page_action])=>permission_parent_menus(p[:permission_code])})
         end
         map do |m|
           m.merge!({:permission_menus=>permission_menus_cache})
         end
       end
 
-      def permissions_menus(permission_code)
+
+      def permission_parent_menus(permission_code)
         menu_codes = []
         menu_code = parent_menu(permission_code)
         while menu_code

@@ -17,7 +17,7 @@ ActionView::Base.field_error_proc=Proc.new{ |html_tag, instance|
 }
 
 #将rails 3中默认的javascript prototype库替换成jquery
-ActionView::Helpers::AssetTagHelper.register_javascript_expansion :defaults=>%w(rails.js)
+ActionView::Helpers::AssetTagHelper.register_javascript_expansion :defaults=>%w(yui_config.js rails.js)
 
 #扩展ActionRecord::Base,实现数据保存时自动给created_by与updated_by赋值
 ActiveRecord::Base.send(:include,Irm::SetWho)

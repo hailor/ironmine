@@ -888,4 +888,13 @@ body .bodyDiv .bFilter a:hover {text-decoration:underline;}
     font-weight:bold;
     padding:1px 3px;
 }
+.lookupInput {
+    display: inline;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+#editPage .pbSubsection, .editPage .pbSubsection {
+    margin-top: 7px;
+    padding: 0 12px;
+}
 /*************************************************************/

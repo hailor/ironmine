@@ -12,51 +12,11 @@ module Irm::NavigationsHelper
     Irm::MenuManager.sub_entries_by_menu(menu_code)
   end
 
-  def breadcrumbs
-    links = ""
-    pre_entry = Irm::MenuEntry.multilingual.query(params[:pre_entry_id]).first
-    current_entry = Irm::MenuEntry.multilingual.query(params[:menu_entry_id]).first
-    pre_entry_url = Irm::MenuManager.permission_url_options(pre_entry[:permission_code])
-    current_entry_url = Irm::MenuManager.permission_url_options(current_entry[:permission_code])
-    links << (link_to(pre_entry[:name],{:menu_entry_id=>params[:pre_entry_id],
-                                        :controller=>pre_entry_url[:page_controller],
-                                        :action=>pre_entry_url[:page_action],
-                                        :menu_code=>pre_entry[:sub_menu_code]},:zone=>"toptoolbarcontent")).html_safe
-    links << ">"
-    links << (link_to(current_entry[:name],{:controller=>current_entry_url[:page_controller],
-                                            :action=>current_entry_url[:page_action],
-                                            :menu_entry_id=>params[:menu_entry_id],
-                                            :pre_entry_id=>params[:pre_entry_id],
-                                            :menu_code=>current_entry[:sub_menu_code]},
-                                            :zone=>"secondtoolbarcontent")).html_safe
-    content_tag(:div,links.html_safe,{:class=>"breadcrumbs",:id=>"breadcrumbs"}).html_safe
+  def menu_by_code(menu_code)
+    Irm::MenuManager.menus[menu_code]
   end
 
-  def page_functions(menu_code)
-    return nil unless menu_code
-    generate_functions(menu_code)
-  end
-
-  def generate_functions(menu_code)
-    info = ""
-    if menu_code.is_a?(Hash)
-      info << content_tag(:h2,menu_code[:name],{:class=>"menutitle"})
-      menu_code = menu_code[:menu_code]
-    end
-    entries = Irm::MenuManager.sub_entries_by_menu(menu_code)
-    functions = ""
-    entries.each do |e|
-      if(e[:entry_type].eql?("MENU"))
-        functions<<content_tag(:span,generate_functions(e),{:class=>"menuitem"}).html_safe
-      else
-        functions<<content_tag(:span,link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action]},{:zone=>"system_content",:title=>e[:description]}),{:class=>"menuitem"}).html_safe
-      end
-    end
-    info << content_tag(:div,functions.html_safe,{:class=>"meuncontent"})
-    content_tag(:div,info.html_safe,{:class=>"menu"}).html_safe
-  end
-
-
+  # 生成一级菜单
   def level_one_menu
     menus = @page_menus.dup
     return nil unless menus&&menus.size>1
@@ -68,7 +28,7 @@ module Irm::NavigationsHelper
     lis = ""
     entries.each do |e|
       next if e[:menu_code].eql?(menus[1])
-      lis << content_tag(:li,link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code]},{:class=>"yui3-menuitem-content"}),{:class=>"yui3-menuitem"})
+      lis << content_tag(:li,link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id],:level=>1},{:class=>"yui3-menuitem-content"}),{:class=>"yui3-menuitem"})
     end
 
     menu_content = content_tag(:div,content_tag(:div,content_tag(:ul,lis.html_safe),{:class=>"yui3-menu-content"}),{:id=>"#{menus[0].downcase}",:class=>"yui3-menu"})
@@ -83,7 +43,7 @@ module Irm::NavigationsHelper
     (menu+javascript_tag(script)).html_safe
 
   end
-
+  # 生成二级菜单
   def level_two_menu
     menus = @page_menus.dup
     return nil unless menus&&menus.size>1
@@ -96,12 +56,12 @@ module Irm::NavigationsHelper
     entries.each do |e|
       style = ""
       style = "currentTab" if e[:menu_code].eql?(menus[2]||"NO_MENU")
-      tds << content_tag(:td,content_tag(:div,link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code]},{:title=>e[:description]})),{:class=>style,:nowrap=>"nowrap"})
+      tds << content_tag(:td,content_tag(:div,link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]},{:title=>e[:description]})),{:class=>style,:nowrap=>"nowrap"})
     end
     tds.html_safe
 
   end
-
+  # 生成左侧菜单
   def sidebar_menu
     # 当前页面选中的权限
     permssions = []
@@ -116,6 +76,7 @@ module Irm::NavigationsHelper
     script = %Q(
       GY.use(function(Y){
         var current_permissions = [#{permssions.collect{|x| "'#{x}'"}.join(",")}];
+        var current_menus = [#{menus.collect{|x| "'#{x.downcase}'"}.join(",")}];
         // 处理展开事件
         Y.one("#MenuNavTree").delegate("click",function(e){
           if(this.hasClass("NavTreeCol")){
@@ -140,13 +101,20 @@ module Irm::NavigationsHelper
               selectedNode.addClass("setupHighlightLeaf");
             }
           }
+          for(var i = 0;i<current_menus.length;i++){
+            selectedNode = n.one("a.NavIconLink[real='"+current_menus[i]+"']");
+            if(selectedNode){
+              if(n.one(".NavIconLink")&&n.one(".NavIconLink").hasClass("NavTreeCol"))
+                n.one(".NavIconLink").simulate("click")
+            }
+          }
         });
       });
     )
     (content+javascript_tag(script)).html_safe
   end
 
-
+  # 递归生成子菜单
   def generate_sidebar_menu(menu_code,level=1)
     next_level = level+1
     info = ""
@@ -154,7 +122,7 @@ module Irm::NavigationsHelper
     functions = ""
     if level == 1
       entries.each do |e|
-        functions << content_tag(:div,content_tag(:h2,link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code]},{:title=>e[:description]})),{:class=>"setupNavtree"})        
+        functions << content_tag(:div,content_tag(:h2,link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id],:level=>1},{:title=>e[:description]})),{:class=>"setupNavtree"})
         if(e[:entry_type].eql?("MENU"))
           functions << content_tag(:div,generate_sidebar_menu(e[:menu_code],next_level),{:id=>"#{e[:menu_code].downcase}_child"})
         end
@@ -163,7 +131,7 @@ module Irm::NavigationsHelper
       entries.each do |e|
         if(e[:entry_type].eql?("MENU"))
           icon_link = link_to("",{},{:href=>"javascript:void(0)",:real=>"#{e[:menu_code].downcase}",:class=>"NavIconLink NavTreeCol",:id=>"#{e[:menu_code].downcase}_icon"})
-          font_link = link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code]},{:title=>e[:description],:class=>"setupFolder",:id=>"#{e[:menu_code].downcase}_font"})
+          font_link = link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]},{:title=>e[:description],:class=>"setupFolder",:id=>"#{e[:menu_code].downcase}_font"})
           child_div = content_tag(:div,generate_sidebar_menu(e[:menu_code],next_level),{:class=>"childContainer",:id=>"#{e[:menu_code].downcase}_child"})
           functions << content_tag(:div,icon_link+font_link+child_div,{:mi=>"#{e[:menu_code].downcase}",:class=>"parent",:id=>"#{e[:menu_code].downcase}"})
         else
@@ -173,4 +141,22 @@ module Irm::NavigationsHelper
     end
     functions.html_safe
   end
+
+
+  def generate_entries_table(menu_code)
+    entries = Irm::MenuManager.sub_entries_by_menu(menu_code)
+    odd_index = (0..entries.length).reject{|i| i%2 ==1}
+    content = ""
+    odd_index.each do |i|
+      tr = ""
+      e = entries[i]
+      tr << content_tag(:td,("•"+link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]})).html_safe,{:width=>"50%"}) if e
+      e = entries[i+1]
+      tr << content_tag(:td,("•"+link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]})).html_safe,{:width=>"50%"}) if e
+      content << content_tag(:tr,tr.html_safe)
+    end
+    raw content
+
+  end
+
 end

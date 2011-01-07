@@ -109,7 +109,7 @@ YUI.add('rails-ujs', function(Y) {
 }, '0.0.1', { requires: ['node-base', 'event-synthetic'] });
 
 
-YUI().use('node-base', 'node-event-delegate', 'io-form', 'rails-ujs', 'rails-event-bubble', function(Y) {
+YUI(yuiConfig).use('node-base', 'node-event-delegate', 'io-form', 'rails-ujs', 'rails-event-bubble', function(Y) {
 
 	var doc = Y.one(document);
 
