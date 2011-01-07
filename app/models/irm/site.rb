@@ -21,8 +21,6 @@ class Irm::Site < ActiveRecord::Base
     where(:site_group_code=>site_group_code)
   }
 
-
-
   scope :query_by_site_group_code_and_language,lambda{|language,site_group_code| select("#{table_name}.site_code,#{Irm::SitesTl.table_name}.name").
                                                               joins(:sites_tls).
                                                               where("#{Irm::SitesTl.table_name}.language=? and " +
@@ -30,8 +28,11 @@ class Irm::Site < ActiveRecord::Base
                                                                     language,site_group_code)}
 
   scope :query_wrap_info,lambda{|language| select("#{table_name}.*,#{Irm::SitesTl.table_name}.name,#{Irm::SitesTl.table_name}.description,"+
-                                                          "v1.meaning status_meaning").
+                                                          "v1.meaning status_meaning,v2.name site_group_name").
                                                    joins(",irm_lookup_values_vl v1").
+                                                   joins(",irm_site_groups_vl v2").
                                                    where("v1.lookup_type='SYSTEM_STATUS_CODE' AND v1.lookup_code = #{table_name}.status_code AND "+
-                                                         "v1.language=?",language)}
+                                                         "v2.group_code = #{table_name}.site_group_code and v2.language = ? AND " +
+                                                         "v1.language=?",language,language)}
+
 end

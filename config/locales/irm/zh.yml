@@ -457,10 +457,13 @@ zh:
   label_irm_site_group_site_groups_tls:
     name: 名称
   label_irm_site_new: 新建地点
+  label_irm_site_index: 地点
   label_irm_site_edit: 编辑地点
   label_irm_site_list: 地点列表
   label_irm_site_site_code: 地点编码
   label_irm_site_name: 名称
+  label_irm_site_info: 地点详细信息
+  label_irm_site_site_group_name: 地点组名称
   label_irm_site_description: 描述
   label_irm_site_address_line: 详细地址
   label_irm_site_country: 国家
@@ -470,6 +473,8 @@ zh:
   label_irm_site_timezone_code: 时区
   label_add_another_site: 增加新的地点
   label_delete_last_site: 删除最后一行的地点
+  label_irm_site_status_code: 记录状态
+  label_irm_site_show: 地点
   #=========================end irm site_groups_controller=======================#
   #=========================end irm flex_values_controller=======================#
   #=========================irm operational_catalogs_controller=======================#

@@ -1,0 +1,86 @@
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%= t(:label_irm_site_show) %></h1>
+      <h2 class="pageDescription"><%=@site.site_code%></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks">编辑局部</a>|
+      <a href="javascript:void(0);" class="configLinks">用户简档</a>|
+      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%></a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
+</div>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_site_show) %>&nbsp;<%= t(:label_detail_info) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @site}%></div>
+            <div class="button"><%= link_to t(:new), {:action => "new"}%></div>            
+            <% if @_from.to_s == "site_group" %>
+              <div class="button"><%= link_to t(:back), @return_url%></div>
+            <% else %>
+              <div class="button"><%= link_to t(:back), {:action => "index",:site_group_code=>@site.site_group_code}%></div>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_site_site_code)%></label></td>
+              <td class="dataCol"><%=@site.site_code%></td>
+              <td class="labelCol"><label><%=(t :label_irm_site_status_code)%></label></td>
+              <td class="dataCol"><%=@site[:status_meaning]%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_site_name)%></label></td>
+              <td class="dataCol"><%= @site[:name]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_site_description)%></label></td>
+              <td class="dataCol"><%= @site[:description]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_site_country)%></label></td>
+              <td class="dataCol"><%=@site[:country_meaning]%></td>
+              <td class="labelCol"><label><%=(t :label_irm_site_status_code)%></label></td>
+              <td class="dataCol"><%=@site[:status_meaning]%>
+              </td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_site_state)%></label></td>
+              <td class="dataCol"><%=@site[:state_meaning]%></td>
+              <td class="labelCol"><label><%=(t :label_irm_site_postal_code)%></label></td>
+              <td class="dataCol"><%=@site.postal_code%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_site_city)%></label></td>
+              <td class="dataCol"><%=@site[:city_meaning]%></td>
+              <td class="labelCol"><label><%=(t :label_irm_site_timezone_code)%></label></td>
+              <td class="dataCol"><%=@site[:timezone_meaning]%></td>
+            </tr>
+            <tr>
+              <td class="labelCol" ><label><%=(t :label_irm_site_address_line)%></label></td>
+              <td class="dataCol" colspan="3"><%=@site.address_line%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
