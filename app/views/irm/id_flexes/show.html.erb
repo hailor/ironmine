@@ -2,7 +2,7 @@
   <div class="ptBody">
     <div class="content">
       <h1 class="pageType"></h1>
-      <h2 class="pageDescription"><%= t(:label_irm_function_group) %></h2>
+      <h2 class="pageDescription"><%= t(:label_irm_id_flex) %></h2>
       <div class="blank">&nbsp;</div>
     </div>
     <div class="links">
@@ -19,9 +19,9 @@
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_function_group) %></h2></td>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_id_flex) %></h2></td>
           <td id="topButtonRow" class="pbButton">
-            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @function_group}%></div>
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @id_flex}%></div>
             <div class="button"><%= link_back %></div>
           </td>
         </tr>
@@ -33,20 +33,26 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_function_group_name)%></label></td>
-              <td class="dataCol"><%= @function_group[:name]%></td>
-              <td class="labelCol"><label><%=(t :label_irm_function_group_group_code)%></label></td>
-              <td class="dataCol"><%= @function_group.group_code%></td>
+              <td class="labelCol"><label><%=(t :label_irm_id_flex_code)%></label></td>
+              <td class="dataCol"><%= @id_flex.id_flex_code%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=t(:label_irm_function_group_description)%></label></td>
-              <td class="dataCol"><%= @function_group[:description]%></td>
+              <td class="labelCol"><label><%=(t :label_irm_id_flex_name)%></label></td>
+              <td class="dataCol"><%= @id_flex.id_flex_name%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_id_flex_description)%></label></td>
+              <td class="dataCol"><%= @id_flex.description %></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :active)%></label></td>
-              <td class="dataCol"><%= @function_group.status_code%></td>
+              <td class="dataCol"><%= @id_flex.status_code %></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
@@ -62,7 +68,7 @@
         <table cellpadding="0" cellspacing="0" border="0">
           <tbody>
             <tr>
-              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_function_list) %></h2></td>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_id_flex_structure_list) %></h2></td>
               <td class="pbButton">
                 <div class="button"><%= link_to t(:add), {:action => "new"}%></div>
               </td>
@@ -79,14 +85,14 @@
       <div class="pbBody">
         <div id="pizza" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:remove),{:action=>"edit",:id=>"{id}"}) %>
           </div>
         </div>
-        <%= datatable("pizza",url_for(:action=>"get_own_functions", :function_group_id => @function_group,:format=>"json"),
+        <%= datatable("pizza",url_for(:controller => "irm/id_flex_structures", :action=>"get_data", :id_flex_code => @id_flex.id_flex_code,:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template"},
-                       {:key=>"function_code",:label=>t(:label_irm_function_function_code),:sortable=>true},
-                       {:key=>"name",:label=>t(:label_irm_function_name),:sortable=>true},
-                       {:key=>"description",:label=>t(:label_irm_function_description),:sortable=>true},
+                       {:key=>"id_flex_structure_code",:label=>t(:label_irm_id_flex_structure_code),:sortable=>true},
+                       {:key=>"id_flex_structure_name",:label=>t(:label_irm_id_flex_structure_name),:sortable=>true},
+                       {:key=>"description",:label=>t(:label_irm_id_flex_structure_description),:sortable=>true},
+                       {:key=>"concatenated_segment_delimiter",:label=>t(:label_irm_id_flex_structure_concatenated_segment_delimiter),:sortable=>true},
                        {:key=>"status_code",:label=>t(:active),:sortable=>true}]) %>
       </div>
     </div>

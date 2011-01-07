@@ -9,7 +9,7 @@ class Irm::IdFlexStructure < ActiveRecord::Base
 
   scope :query_by_flex_code, lambda{|flex_code| where("#{table_name}.id_flex_code = ?", flex_code)}
 
-  scope :list_all, lambda{select("#{table_name}.*, #{Irm::IdFlex.table_name}.id_flex_name, #{Irm::IdFlexStructuresTl.table_name}.id_flex_structure_name, #{Irm::IdFlexStructuresTl.table_name}.description").
+  scope :list_all, lambda{select("#{table_name}.*, #{Irm::IdFlex.table_name}.id_flex_name id_flex_name, #{Irm::IdFlexStructuresTl.table_name}.id_flex_structure_name id_flex_structure_name, #{Irm::IdFlexStructuresTl.table_name}.description description").
                           joins(",#{Irm::IdFlex.table_name}, #{Irm::IdFlexStructuresTl.table_name}").
                           where("#{Irm::IdFlex.table_name}.id_flex_code = #{table_name}.id_flex_code").
                           where("#{Irm::IdFlexStructuresTl.table_name}.id_flex_structure_id = #{table_name}.id").

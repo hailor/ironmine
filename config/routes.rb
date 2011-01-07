@@ -356,6 +356,7 @@ Ironmine::Application.routes.draw do
     match '/id_flexes/new(.:format)' => "id_flexes#new", :via => :get
     match '/id_flexes/create(.:format)' => "id_flexes#create", :via => :post
     match '/id_flexes/get_data(.:format)' => "id_flexes#get_data"
+    match '/id_flexes/:id/show(.:format)' => "id_flexes#show", :via => :get
     #id_flex_stuctures
     match '/id_flex_structures(/index)(.:format)' => "id_flex_structures#index", :via => :get
     match '/id_flex_structures/:id_flex_code/show_parent(.:format)' => "id_flex_structures#show_parent", :via => :get

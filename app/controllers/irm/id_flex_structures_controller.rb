@@ -62,12 +62,11 @@ class Irm::IdFlexStructuresController < ApplicationController
   end
 
   def get_data
-    @id_flex_structures = Irm::IdFlexStructure.list_all.query_by_flex_code(params[:id_flex_code])
+    id_flex_structures_scope = Irm::IdFlexStructure.list_all.query_by_flex_code(params[:id_flex_code])
+    id_flex_structures,count = paginate(id_flex_structures_scope)
     respond_to do |format|
-      format.json  {render :json => @id_flex_structures.to_dhtmlxgrid_json(['0',:id_flex_structure_code, :id_flex_structure_name,:description, :concatenated_segment_delimiter, :status_code,
-                                                                            {:value => 'M', :controller => 'irm/id_flex_structures',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}],
-                                                                           @id_flex_structures.size) }
-    end
+      format.json  {render :json => to_jsonp(id_flex_structures.to_grid_json([:id_flex_structure_code, :id_flex_structure_name,:description, :concatenated_segment_delimiter, :status_code], count)) }
+    end          
   end
 
   def multilingual_edit
