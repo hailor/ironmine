@@ -53,6 +53,7 @@ zh:
   #========================= end icm priority_codes_controller=======================#
   #=========================    icm close_reasons_controller=======================#
   label_icm_close_reason_list: 关闭原因列表
+  label_icm_close_reason: 关闭原因
   label_icm_close_reason_new: 新建关闭原因
   label_icm_close_reason_company: 公司
   label_icm_close_reason_close_code: 编码
