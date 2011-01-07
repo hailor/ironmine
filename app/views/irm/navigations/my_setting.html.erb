@@ -1,4 +1,3 @@
-<% breadcrumbs %>
 <table width="100%" cellspacing="0" cellpadding="4" border="0">
   <tr>
       <td width="100%" valign="top">
@@ -12,8 +11,3 @@
 <div class="functions" style="display:none">
   <%=link_to "",{:controller=>"irm/identities",:action=>"my_info"},:zone=>"system_content"%>
 </div>
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('.functions').find('a[zone]:first').trigger('click');
-  });
-</script>

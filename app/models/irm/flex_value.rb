@@ -4,7 +4,7 @@ class Irm::FlexValue < ActiveRecord::Base
   #多语言关系
   attr_accessor :flex_value_meaning,:description
   has_many :flex_values_tls,:dependent => :destroy
-  acts_as_multilingual(:columns => [:flex_value_meaning, :description])
+  acts_as_multilingual({:columns => [:flex_value_meaning, :description],:required=>[:flex_value_meaning]})
 
   belongs_to :flex_value_set,:foreign_key=>"flex_value_set_id",:primary_key => "id"
   
@@ -21,14 +21,6 @@ class Irm::FlexValue < ActiveRecord::Base
     where("#{Irm::FlexValueSet.table_name}.flex_value_set_name = ?", flex_value_set_name)}
   
   scope :query_by_id, lambda{|id| where(:id => id)}
-  
-  def self.check_flex_value_exist(id)
-    if Irm::FlexValue.query_by_id(id).size > 0
-      true
-    else
-      false
-    end
-  end
 end
 
 

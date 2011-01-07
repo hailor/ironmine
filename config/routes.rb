@@ -274,15 +274,13 @@ Ironmine::Application.routes.draw do
     #flex_values
     match '/flex_values(/index)(.:format)' => "flex_values#index", :via => :get
     match '/flex_values/:value_set_id/new(.:format)' => "flex_values#new", :via => :get
-    match '/flex_values/:value_set_id/create(.:format)' => "flex_values#create", :via => :post
-    match '/flex_values/:value_set_id/get_data(.:format)' => "flex_values#get_data"
-    match '/flex_values/:id/edit(.:format)' => "flex_values#edit", :via => :get
-    match '/flex_values/link_edit(.:format)' => "flex_values#link_edit", :via => :post
-    match '/flex_values/:id(.:format)' => "flex_values#update", :via => :put
-    match '/flex_values/:id/multilingual_edit(.:format)' => "flex_values#multilingual_edit", :via => :get
-    match '/flex_values/:id/multilingual_update(.:format)' => "flex_values#multilingual_update", :via => :put
+    match '/flex_values/create(.:format)' => "flex_values#create", :via => :post
     match '/flex_values/destroy(.:format)' => "flex_values#destroy"
-    match '/flex_values/create_value(.:format)' => "flex_values#create_value", :via => :post
+    match 'flex_values/:id/show(.:format)' => "flex_values#show", :via => :get
+    match '/flex_values/:id/edit(.:format)' => "flex_values#edit", :via => :get
+    match '/flex_values/:value_set_id/get_data(.:format)' => "flex_values#get_data"
+    match '/flex_values/:id(.:format)' => "flex_values#update", :via => :put
+    match '/flex_values/select_set(.:format)' => "flex_values#select_set", :via => :post
     #site_groups
     match '/site_groups(/index)(.:format)' => "site_groups#index", :via => :get
     match '/site_groups/:id/edit(.:format)' => "site_groups#edit", :via => :get
