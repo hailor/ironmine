@@ -1,10 +1,7 @@
 class Icm::CloseReasonsController < ApplicationController
   def index
-    @close_reason = Icm::CloseReason.new
-
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @close_reason }
     end
   end
 

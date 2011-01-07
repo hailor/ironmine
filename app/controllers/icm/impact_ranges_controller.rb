@@ -1,10 +1,7 @@
 class Icm::ImpactRangesController < ApplicationController
   def index
-    @impact_range = Icm::ImpactRange.new
-
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @impact_range }
     end
   end
 
@@ -34,11 +31,11 @@ class Icm::ImpactRangesController < ApplicationController
     @impact_range = Icm::ImpactRange.new(params[:icm_impact_range])
     respond_to do |format|
       if @impact_range.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+        format.xml  { render :xml => @impact_range, :status => :created, :location => @impact_range }
       else
-         @error = @impact_range
-         format.html { render "error_message" }
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @impact_range.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -48,11 +45,11 @@ class Icm::ImpactRangesController < ApplicationController
 
     respond_to do |format|
       if @impact_range.update_attributes(params[:icm_impact_range])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
       else
-        @error = @impact_range
-        format.html { render "error_message" }
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @impact_range.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -66,30 +63,13 @@ class Icm::ImpactRangesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-
-  def multilingual_edit
-    @impact_range = Icm::ImpactRange.find(params[:id])
-  end
-
-  def multilingual_update
-    @impact_range = Icm::ImpactRange.find(params[:id])
-    @impact_range.not_auto_mult=true
-    respond_to do |format|
-      if @impact_range.update_attributes(params[:icm_impact_range])
-        format.html { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
-      else
-        format.html { render({:action=>"multilingual_edit"}) }
-      end
-    end
-  end
-
+  
   def get_data
-    @impact_ranges = Icm::ImpactRange.multilingual.list_all
+    impact_ranges_scope = Icm::ImpactRange.multilingual.list_all
+    impact_ranges,count = paginate(impact_ranges_scope)
+
     respond_to do |format|
-      format.json  {render :json => @impact_ranges.to_dhtmlxgrid_json(['0',:company_name,:name,:impact_code,
-                                                                     :weight_values,
-                                                                    {:value => 'M', :controller => 'icm/impact_ranges',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
-                                                                    ], @impact_ranges.size) }
+      format.json  {render :json => to_jsonp(impact_ranges.to_grid_json([:company_name,:name,:impact_code,:weight_values], count)) }
     end
-  end  
+  end    
 end

@@ -16,8 +16,9 @@ zh:
   label_icm_rule_setting_status_code: 记录状态
   #========================= end icm role_settings_controller=======================#
   #=========================    icm impact_ranges_controller=======================#
+  label_icm_impact_range: 影响度
   label_icm_impact_range_list: 影响度列表
-  label_irm_impact_range_new: 新建影响度
+  label_icm_impact_range_new: 新建影响度
   label_icm_impact_range_impact_code: 简称
   label_icm_impact_range_company: 公司
   label_icm_impact_range_weight_values: 权重
