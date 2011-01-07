@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module Irm::NavigationsHelper
   def menu_entry_name(id)
     if(id)
