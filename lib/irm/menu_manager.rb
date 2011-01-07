@@ -3,18 +3,23 @@ module Irm
   module MenuManager
     class << self
 
-      # 所有菜单
+      # 系统中所有菜单，以HASH形式保存
       def menus
         items[:menus]
       end
-      # 所有权限
+      # 系统中所有权限，以HASH形式保存
       def permissions
         items[:permissions]
       end
 
-      # 所有权限编码
+      # 所有权限编码，以HASH形式保存
       def permission_codes
         items[:permission_codes]
+      end
+
+      # 所有权限对应的菜单，以HASH形式保存
+      def permission_menus
+        items[:permission_menus]
       end
 
       #初始化菜单和权限缓存
@@ -76,10 +81,14 @@ module Irm
         map do |m|
           m.merge!({:menus=>menus_cache,:permissions=>permissions_cache,:permission_codes=>permission_codes_cache})  
         end
+        # 初始化权限对应的菜单
+        setup_permission_menus
 
         rescue =>text
           puts("Init menu error:#{text}")
       end
+
+
 
 
       #通过controller,action取得permission hash
@@ -159,6 +168,13 @@ module Irm
         end  
       end
 
+      #通过权限编辑取得菜单列表
+      def menus_by_permission(options={})
+        permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions","index")]
+      end
+
+
+
       private
       #将数据加载至内存
       def map
@@ -177,7 +193,35 @@ module Irm
       def menu_icon(menu_code)
         menus[menu_code][:icon]
       end
+      #
+      def setup_permission_menus
+        permission_menus_cache = {}
+        permissions.values.each do |p|
+          permission_menus_cache.merge!({Irm::Permission.url_key(p[:page_controller],p[:page_action])=>permissions_menus(p[:permission_code])})
+        end
+        map do |m|
+          m.merge!({:permission_menus=>permission_menus_cache})
+        end
+      end
 
+      def permissions_menus(permission_code)
+        menu_codes = []
+        menu_code = parent_menu(permission_code)
+        while menu_code
+          menu_codes << menu_code
+          menu_code = parent_menu(menu_code)
+        end
+        menu_codes.reverse
+      end
+
+      def parent_menu(pm_code)
+        menus.values.each do |m|
+          if(m[:menu_entries].detect{|me| me[:sub_menu_code].eql?(pm_code)}||m[:permission_entries].detect{|pe| pe[:permission_code].eql?(pm_code)})
+            return m[:menu_code]
+          end
+        end
+        nil
+      end
     end
   end
 end

@@ -54,7 +54,7 @@ module ApplicationHelper
     end
     columns_conf.chop!
     data_fields.chop!
-    script = %Q(GY.use("irm","datasource-get", "datasource-jsonschema","irmdtdatasource","datatable-sort",function(Y) {
+    script = %Q(GY.use("irm","datasource-get", "datasource-jsonschema","irmdtdatasource","datatable-sort","datatable-colresize",function(Y) {
          var #{id}Cols = [#{columns_conf}],
          #{id}Datasource = new Y.DataSource.Get({source:'#{source_url}'})
                    .plug(Y.Plugin.DataSourceJSONSchema, {
@@ -64,7 +64,7 @@ module ApplicationHelper
              }
          }),
          #{id}Datatable = new Y.DataTable.Base({columnset:#{id}Cols})
-             .plug(Y.Plugin.IrmDTDataSource, {datasource:#{id}Datasource}).plug(Y.Plugin.DataTableSort).render("##{id}");
+             .plug(Y.Plugin.IrmDTDataSource, {datasource:#{id}Datasource}).plug(Y.Plugin.DataTableSort).plug(Y.Plugin.DataTableColResize).render("##{id}");
          #{id}Datatable.datasource.load({request:{start:0,count:#{row_perpage}}});
          Y.mix(Y.irm,{#{id}Datatable:#{id}Datatable});
      });)

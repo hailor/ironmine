@@ -55,4 +55,54 @@ module Irm::NavigationsHelper
     content_tag(:div,info.html_safe,{:class=>"menu"}).html_safe
   end
 
+
+  def level_one_menu
+
+    menus = Irm::MenuManager.menus_by_permission({:page_controller=>params[:controller]})
+    return nil unless menus&&menus.size>1
+    entries = Irm::MenuManager.sub_entries_by_menu(menus[0])
+    menu_id = "#{menus[0].downcase}_menu"
+
+    current_entries = entries.detect{|e| e[:menu_code].eql?(menus[1])}
+
+    lis = ""
+    entries.each do |e|
+      next if e[:menu_code].eql?(menus[1])
+      lis << content_tag(:li,link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action]},{:class=>"yui3-menuitem-content"}),{:class=>"yui3-menuitem"})
+    end
+
+    menu_content = content_tag(:div,content_tag(:div,content_tag(:ul,lis.html_safe),{:class=>"yui3-menu-content"}),{:id=>"#{menus[0].downcase}",:class=>"yui3-menu"})
+    menus_label = link_to(content_tag(:em,current_entries[:name]),{},{:href=>"##{menus[0].downcase}",:class=>"yui3-menu-label"})
+
+    menu = content_tag(:div,content_tag(:div,content_tag(:ul,content_tag(:li,menus_label+menu_content),{:class=>"first-of-type"}),{:class=>"yui3-menu-content"}),{:style=>"display:none",:id=>"#{menu_id}",:class=>"yui3-menu yui3-menu-horizontal yui3-menubuttonnav"}).html_safe
+    script = %Q(GY.use('node-menunav', function(Y) {
+        var menu = Y.one("##{menu_id}");
+        menu.plug(Y.Plugin.NodeMenuNav,{ autoSubmenuDisplay: false, mouseOutHideDelay: 0 });
+        menu.setStyle("display","block");
+    });)
+    (menu+javascript_tag(script)).html_safe
+
+  end
+
+  def level_two_menu
+    menus = Irm::MenuManager.menus_by_permission({:page_controller=>params[:controller]})
+    return nil unless menus&&menus.size>2
+    entries = Irm::MenuManager.sub_entries_by_menu(menus[1])
+
+    current_entries = entries.detect{|e| e[:menu_code].eql?(menus[2])}
+
+    tds = ""
+
+    entries.each do |e|
+      style = ""
+      style = "currentTab" if e[:menu_code].eql?(menus[2])
+      tds << content_tag(:td,content_tag(:div,link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action]},{:title=>e[:description]})),{:class=>style,:nowrap=>"nowrap"})
+    end
+    tds.html_safe
+
+  end
+
+  def sidebar_menu
+    
+  end
 end
