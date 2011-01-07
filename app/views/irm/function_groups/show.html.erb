@@ -79,7 +79,7 @@
       <div class="pbBody">
         <div id="pizza" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:delete),{:action=>"edit",:id=>"{id}"}) %>
+            <%= link_to(t(:remove),{:action=>"edit",:id=>"{id}"}) %>
           </div>
         </div>
         <%= datatable("pizza",url_for(:action=>"get_own_functions", :function_group_id => @function_group,:format=>"json"),
