@@ -173,6 +173,7 @@ Ironmine::Application.routes.draw do
     match '/navigations/advance_setting(.:format)' =>'navigations#advance_setting'
     match '/navigations/base_setting(.:format)' =>'navigations#base_setting'
     match '/navigations/icm_setting(.:format)' =>'navigations#icm_setting'
+    match '/navigations/common(.:format)' =>'navigations#common'
     #mail_templates
     match '/mail_templates/new(.:format)'=>"mail_templates#new",:via=>:get
     match '/mail_templates/get_data(.:format)' => "mail_templates#get_data"

@@ -37,4 +37,10 @@ class Irm::NavigationsController < ApplicationController
 
   end
 
+  # 公共菜单页面
+  # 当菜单项没有对应的permission时，使用common页面
+  def common
+    @page_menus = Irm::MenuManager.parent_menus_by_menu(params[:mc])    
+  end
+
 end
