@@ -65,6 +65,7 @@ zh:
   #========================= end icm close_reasons_controller=======================#
   #=========================    icm incident_phases_controller=======================#
   label_icm_incident_phase_list: 事故单阶段列表
+  label_icm_incident_phase: 事故单阶段
   label_icm_incident_phase_new: 新建事故单阶段
   label_icm_incident_phase_phase_code: 简称
   label_icm_incident_phase_company: 公司

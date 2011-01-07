@@ -6,7 +6,7 @@ class Icm::ImpactRangesController < ApplicationController
   end
 
   def show
-    @impact_range = Icm::ImpactRange.find(params[:id])
+    @impact_range = Icm::ImpactRange.multilingual.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

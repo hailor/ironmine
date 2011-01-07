@@ -38,7 +38,7 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_icm_impact_range_company)%></label></td>
-              <td class="dataCol"><%= Irm::Company.multilingual.find(@close_reason.company_id).name%></td>
+              <td class="dataCol"><%= Irm::Company.multilingual.find(@impact_range.company_id)[:name]%></td>
               <td class="labelCol"><div><%=(t :label_icm_impact_range_weight_values)%></div></td>
               <td class="dataCol"><div><%=f.text_field :weight_values,:required=>true%></div></td>
             </tr>
