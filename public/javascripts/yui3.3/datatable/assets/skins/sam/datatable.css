@@ -22,11 +22,14 @@
 }
 .yui3-skin-sam .yui3-datatable th,
 .yui3-skin-sam .yui3-datatable th a {
-    font-weight:normal;text-decoration:none;color:#000; /* header text */
-    vertical-align:bottom;
+    text-decoration:none;color:#000; /* header text */
+    vertical-align:bottom; font-weight: bold;
+    font-size:12px;
+    text-align: left;
 }
 .yui3-skin-sam .yui3-datatable th {
-    margin:0;padding:0;
+    margin:0;
+    padding:0;
     border:none;
     border-top:1px solid #CBCBCB;
     border-bottom:1px solid #CBCBCB;
@@ -42,8 +45,8 @@
     white-space:nowrap;
 }
 .yui3-skin-sam .yui3-datatable-liner {
-    margin:0;padding:0;
-    padding:4px 10px 4px 10px; /* cell padding */
+    margin:0;
+    padding:4px 10px 4px 5px; /* cell padding */
 	overflow:visible; /*to make ths where the title is really long work*/
 	border:0px solid black;
 }
@@ -85,7 +88,7 @@
 /* sortable columns */
 .yui3-skin-sam th.yui3-datatable-asc,
 .yui3-skin-sam th.yui3-datatable-desc {
-    background:url(../../../../assets/skins/sam/sprite.png) repeat-x 0 -100px; /* sorted header gradient */
+    background:url(../../../../assets/skins/sam/grid_headerbg.gif) repeat-x scroll 0 bottom #FFFFFF; /* sorted header gradient */
 }
 .yui3-skin-sam th.yui3-datatable-sortable .yui3-datatable-liner {
     padding-right:20px; /* room for arrow */
@@ -151,7 +154,7 @@ tbody .yui3-datatable-editable {
 .yui3-skin-sam tr.yui3-datatable-even td.yui3-datatable-asc,
 .yui3-skin-sam tr.yui3-datatable-even td.yui3-datatable-desc { background-color:#EDF5FF; } /* light blue sorted */
 .yui3-skin-sam tr.yui3-datatable-odd td.yui3-datatable-asc,
-.yui3-skin-sam tr.yui3-datatable-odd td.yui3-datatable-desc { background-color:#DBEAFF; } /* dark blue sorted */
+.yui3-skin-sam tr.yui3-datatable-odd td.yui3-datatable-desc { background-color:#EDF5FF; } /* dark blue sorted */
 
 /* disable striping in list mode */
 .yui3-skin-sam .yui3-datatable-list tr.yui3-datatable-even { background-color:#FFF; } /* white */
