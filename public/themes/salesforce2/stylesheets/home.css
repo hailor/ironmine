@@ -1,8 +1,7 @@
 @charset "utf-8";
-body {font-family:'Arial','Helvetica',sans-serif;}
 body, td {color:#222222; font-family:Arial,Helvetica,sans-serif;}
 body {font-size:75% !important;}
-img {border:0 none;}
+img {border:0 none !important;}
 body a:hover{color: #015BA7;}
 
 a.headerSearchOptionsLink, a.headerSearchOptionsLink:hover{color: #fff; font-size: 0.92em;}
@@ -262,6 +261,12 @@ body .bodyDiv #bd_r {
     margin:0 -5px;
     position:relative;
 }
+#mc_l, #mc_r {
+    background:url("../images/motifCurve_sprite.png") no-repeat scroll 0 0 transparent;
+    height:9px;
+    position:absolute;
+    width:5px;
+}
 
 #newheader {
     background:url("../images/header_bg.gif") no-repeat scroll 0 7px transparent;
@@ -353,7 +358,7 @@ width:990px;
     min-height:2.833em;
     padding:0 0 0 10px;
     width:auto;
-    
+
 }
 .login_form_box #login_form .rememberme_txt input {float:left;}
 .login_form_box #login_form .rememberme_txt label {
@@ -436,7 +441,7 @@ div.button input[type="submit"]:hover{background-position: right -30px; cursor: 
 }
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, sub, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
     border:0 none;
-    /*font-family:inherit;*/
+    font-family:inherit;
     font-size:100%;
     font-style:inherit;
     font-weight:inherit;
@@ -598,7 +603,7 @@ body .bPageBlock .pbHeader {
     padding-bottom:9px;
 }
 .bEditBlock .pbHeader > table > tbody > tr > td, .bPageBlock .pbHeader > table > tbody > tr > td, .bLayoutBlock .pbHeader > table > tbody > tr > td, .bEditBlock .pbBottomButtons > table > tbody > tr > td, .bPageBlock .pbBottomButtons > table > tbody > tr > td, .bLayoutBlock .pbBottomButtons > table > tbody > tr > td {
-    padding:5px 12px;   
+    padding:5px 12px;
 }
 body .bRelatedList .pbTitle h3, body .bPageBlock .pbTitle h2, body .bPageBlock .pbTitle h3, body .bSubBlock h3.lbHeader {
     color:#000000;
@@ -988,163 +993,3 @@ a.NavTreeExp {
     padding:3px 2px 3px 5px;
     width:50%;
 }
-
-
-
-/*********************** home tab ***********************************/
-body.homeTab {margin:0 10px;}
-.homeTab .tabNavigation .tab .currentTab, .homeTab #motifCurve, .homeTab #motifCurve #mc_l, .homeTab #motifCurve #mc_r {
-background-color:#1797C0;
-}
-#mc_l, #mc_r {
-    background:url("../images/motifCurve_sprite.png") no-repeat scroll 0 0 transparent;
-    height:9px;
-    position:absolute;
-    width:5px;
-}
-#mc_l {background-position:left -10px;left:-5px;}
-#mc_r {background-position:right -10px;right:-5px;}
-.bodyDiv {position:relative;}
-body .bodyDiv {background-color:#FFFFFF;margin:0 10px;}
-
-body .tabNavigation .tab .currentTab {
-    background-image:url("../images/tabs_sprite.png");
-    background-position:left 0;
-    background-repeat:no-repeat;
-}
-.tab td.currentTab {font-weight:normal;}
-.homeTab .primaryPalette, .individualPalette .homeBlock .primaryPalette {background-color:#1797C0;border-color:#1797C0;}
-body .tabNavigation .tab .currentTab div {
-    background-image:url("../images/tabs_sprite.png");
-    background-position:right -150px;
-    background-repeat:no-repeat;
-}
-body .tabNavigation .tab td div {
-    color:#4B4B57;
-    font-family:Arial,Helvetica,sans-serif;
-    font-size:1.18em;
-    font-weight:bold;
-    max-height:15px;
-    padding:7px 10px;
-}
-body .tabNavigation .tab .currentTab a {color:#FFFFFF;}
-body .tabNavigation .tab .currentTab a:hover {text-decoration:underline;}
-
-.mruItem {
-    padding:4px 2px 3px 30px;
-    position:relative;
-    z-index:7;
-}
-#sidebarDiv .sidebarModule, #sidebarDiv .nestedModule {margin:0 0 20px;}
-#sidebarDiv .sidebarModule {background:url("../images/sidebar_sprite.png") no-repeat scroll -9px bottom #CFEEF8;}
-body #sidebarDiv .sidebarInner {
-    background-color:transparent;
-    padding:0 3px 5px 0;
-    width:200px;
-}
-#sidebarDiv {
-    /*background-color:#E8E8E8;*/
-    left:0;
-    position:absolute;
-    top:0;
-    z-index:10;
-}
-#sidebarDiv {
-    background-color:#FFFFFF;
-    margin-top:13px;
-}
-#sidebarDiv .sidebarModuleHeader {
-    background:url("../images/sidebar_sprite.png") no-repeat scroll -209px -2px #1797C0;
-    color:#FFFFFF;
-    padding:0;
-}
-.sidebarModuleHeader {font-weight:bold;padding:15px 8px 2px 15px;}
-#sidebarDiv .sidebarModuleHeader h2 {
-    background:url("../images/sidebar_sprite.png") no-repeat scroll -9px bottom transparent;
-    display:block;
-    padding:5px 9px;
-}
-#sidebarDiv .sidebarModule .sidebarModuleBody {
-    background:url("../images/sidebar_sprite.png") no-repeat scroll -209px top transparent;
-    padding:12px 9px 10px;
-}
-/*#sidebarDiv  .mruItem a img {left:0;margin-left:3px;}*/
-.mruIcon {
-    background-image:url("../images/master.png");
-    background-position:0 -2px;
-    height:16px;
-    width:16px;
-}
-#sidebarDiv .mruItem {padding:4px 5px 3px 25px;}
-#sidebarDiv .sidebarModuleBody {padding:6px 5px 10px 4px  !important;}
-.mruItem a img {left:5px;position:absolute;}
-.mruItem a .mruText{color: #333435;}
-
-body .bodyDiv #bd_b {
-    background:url("../images/bd_b.png") repeat-x scroll 0 0 transparent;
-    bottom:-20px;
-    height:20px;
-    position:absolute;
-    width:100%;
-}
-body .bodyDiv #bd_b #bd_bl {
-    background-position:-40px top;
-    left:-20px;
-    z-index:11;
-}
-body .bodyDiv #bd_b #bd_br {
-    background-position:-60px top;
-    right:-20px;
-}
-#bd_bl, #bd_br {
-    background:url("../images/bd_sprite.png") no-repeat scroll 0 0 transparent;
-    height:20px;
-    position:absolute;
-    width:20px;
-}
-
-.homeTab .bPageTitle .thumbnail_visible {
-    float:left;
-    margin-right:10px;
-}
-.chattergrouplistpage .groupicon img, .PeopleListPage .chatterlisticon img, .searchResults .groupicon img, .searchResults .chatterlisticon img, .homeTab .bPageTitle .thumbnail_visible, .feedcontainer .feeditemusericon {
-    height:45px;
-    width:45px;
-}
-.chattergrouplistpage .groupicon img, .PeopleListPage .chatterlisticon img, .searchResults .groupicon img, .searchResults .chatterlisticon img, .homeTab .bPageTitle .thumbnail_visible, .feedcontainer .feeditemusericon, .thumbnailPanel .thumbnailTable img, .thumbnailPanel .groupThumbnail img, .chatterListOverlay .overlayListPhoto img, .followerIcon, .feedcontainer .feeditemcommentphoto img {
-    border:1px solid #D4DADC;
-    display:block;
-    overflow:hidden;
-}
-.homeTab .bPageTitle .ptBody .greeting .pageType {
-    font-size:109%;
-    font-weight:bold;
-}
-body .bPageTitle .ptBody .greeting .pageType {padding-left:0;}
-body.homeTab .greeting .content > span {display:block;margin-left:0;}
-body.homeTab .greeting .pageType {margin-left:0;}
-body .bPageTitle .ptBody .pageType, body .bPageTitle .ptBody .pageDescription {margin-left:37px;}
-body .bPageTitle .ptBody .pageType {
-    color:#4A4A56;
-    font-size:0.9em;
-    font-weight:bold;
-    padding-left:1px;
-}
-.homeTab .bPageTitle .pageType {margin-bottom:4px;}
-.homeTab .bPageTitle .ptBody .greeting h1, .homeTab .bPageTitle .ptBody .greeting h2 {padding-left:0;}
-.homeTab .bPageTitle h1.currentStatusUserName {display:inline;}
-body.homeTab .greeting h1 {font-size:12px;}
-
-body.homeTab div.greeting a {text-decoration:none;}
-body .bPageTitle .secondaryPalette a, body .secondaryPalette .lbHeader a, body .pbSubheader a {color:#015BA7;}
-.currentStatusUserName a {font-size:15px;font-weight:normal;}
-.homeTab .bPageTitle .ptBody .greeting .pageDescription {font-size:91%;font-weight:normal;}
-.homeTab .bodyDiv .bPageTitle {padding-top:5px;}
-.sysAdminTab .bPageTitle .ptBody .content, .homeTab .bPageTitle .ptBody .content, .allTabTab .bPageTitle .ptBody .content {padding-left:0;}
-
-.homeTab .mComponent .cHeader, .homeTab .genericTable, .homeTab .bSubBlock, .homeTab .bPageBlock {border-top:3px solid #1797C0;}
-
-body.homeTab #db_refresh_time {margin-bottom:5px;}
-body.homeTab .componentDate {margin-left:10px;}
-.componentDate {font-family:'MS UI Gothic','MS PGothic','Osaka','Arial','Helvetica',sans-serif;}
-.componentDate {font-size:0.91em;margin-top:5px;}

@@ -391,6 +391,8 @@ Ironmine::Application.routes.draw do
     # setting
     match '/setting(/index)(.:format)' =>'setting#index'
     match '/setting/common(.:format)' =>'setting#common'
+    #home
+    match '/home(/index)(.:format)' => "home#index", :via => :get
   end
 
   scope :module => "icm" do

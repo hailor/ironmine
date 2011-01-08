@@ -97,7 +97,7 @@ class ApplicationController < ActionController::Base
     @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>params[:controller],:page_action=>params[:action]})
     if @page_menus[0]&&@page_menus[0].eql?("IRM_SETTING_ENTRANCE_MENU")
       @setting_menus = @page_menus.dup
-      #self.class.layout "setting"
+      self.class.layout "setting"
       @page_menus = (session[:entrance_menu]||default_menus)[0..1]
     else
       @page_menus << params[:mc] if(params[:mc])
