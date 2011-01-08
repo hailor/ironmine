@@ -22,27 +22,29 @@
 </div>
 <% sub_entries(params[:mc]).each do |en| %>
 <div class="listRelatedObject setupBlock">
-    <div class="bPageBlock">
-      <div class="pbHeader">
-        <table cellpadding="0" cellspacing="0" border="0">
-          <tbody>
-            <tr>
-              <td class="pbTitle"><h2 class="mainTitle"><%=menu_entry_name(en[:menu_entry_id])%></h2></td>
-              <td id="topButtonRow" class="pbButton">
-              </td>
-              <td class="pbHelp">
-              </td>
-            </tr>
-          </tbody>
-        </table>
+  <div class="bTask">
+      <div class="bPageBlock">
+          <div class="pbHeader">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tbody>
+                <tr>
+                  <td class="pbTitle"><h2 class="mainTitle"><%=menu_entry_name(en[:menu_entry_id])%></h2></td>
+                  <td id="topButtonRow" class="pbButton">
+                  </td>
+                  <td class="pbHelp">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+              <div class="pbBody">
+                <table cellspacing="0" cellpadding="0" border="0" width="100%" class="setupOverview">
+                  <tbody>
+                  <%= generate_entries_table(en[:menu_code]) %>
+                  </tbody>
+                </table>
+             </div>
       </div>
-      <div class="pbBody">
-        <table cellspacing="0" cellpadding="0" border="0" width="100%" class="setupOverview">
-          <tbody>
-          <%= generate_entries_table(en[:menu_code]) %>
-          </tbody>
-        </table>
-     </div>
   </div>
 </div>
 <% end %>
