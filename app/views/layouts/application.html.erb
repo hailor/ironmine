@@ -7,7 +7,7 @@
   <%= csrf_meta_tag %>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/application.css"></link>
 </head>
-<body class="setupTab setup sfdcBody yui3-skin-sam yui-skin-sam">
+<body id ="homePage" class="homeTab homepage ext-gecko ext-gecko3 sfdcBody yui3-skin-sam yui-skin-sam">
     <div id="contentWrapper">
         <div id="AppBodyHeader" class="bPageHeader">
             <table id="phHeader" class="phHeader" cellpadding="0" cellspacing="0" border="0">
@@ -31,7 +31,6 @@
                 </tr>
               </tbody>
             </table>
-            <%=level_one_menu%>
             <table id="tabsNewBar" class="tabsNewBar" cellpadding="0" cellspacing="0" border="0">
                 <tbody>
                     <tr>
@@ -39,7 +38,18 @@
                             <div id="tabNavigation" class="tabNavigation">
                                 <div class="tabBarLeft"></div>
                                 <table id="tabBar" class="tab" cellpadding="0" cellspacing="0">
-                                    <%= level_two_menu %>
+                                    <td nowrap="nowrap" class="currentTab"><div id="homeTab">
+                                        <a title="主页选项卡 - 已选取" href="javascript:void(0);">主页</a>
+                                    </div></td>
+                                    <td nowrap="nowrap" class=""><div id="settingTab">
+                                        <a title="项目" href="javascript:void(0);">项目</a>
+                                    </div></td>
+                                    <td nowrap="nowrap" class=""><div id="projectTab">
+                                        <a title="个人信息" href="javascript:void(0);">个人信息</a>
+                                    </div></td>
+                                    <td nowrap="nowrap" class=""><div id="reportTab">
+                                        <a title="设置" href="javascript:void(0);">设置</a>
+                                    </div></td>
                                 </table>
                                 <div class="tabBarRight"></div>
                             </div>
@@ -48,9 +58,9 @@
                 </tbody>
             </table>
         </div>
-        <div id="bodyDiv_setup" class="bodyDiv">
-            <div id=""></div>
-            <div id=""></div>
+        <div id="bodyDiv" class="bodyDiv">
+            <div id="bd_l"></div>
+            <div id="bd_r"></div>
             <div id="motifCurve">
                 <div id="mc_l"></div>
                 <div id="mc_r"></div>
@@ -59,15 +69,31 @@
                 <div id="bd_bl"></div>
                 <div id="bd_br"></div>
             </div>
+            <div id="sidebarDiv">
+                <div class="sidebarInner">
+                  <div class="sidebarModule">
+                    <div class="sidebarModuleHeader"><h2>快捷菜单</h2></div>
+                    <div class="sidebarModuleBody">
+                      <div class="mruList">
+                        <div class="mruItem">
+                          <a title="[Alt+1]" accesskey="1" class="accountMru" href="/00190000005sBLj"><img title="客户: 123" class="mruIcon" alt="客户: 123" src="/images/s.gif"><span class="mruText">123</span></a>
+                        </div>
+                        <div class="mruItem">
+                          <a title="[Alt+1]" accesskey="1" class="accountMru" href="/00190000005sBLj"><img title="客户: 123" class="mruIcon" alt="客户: 123" src="/images/s.gif"><span class="mruText">123</span></a>
+                        </div>
+                        <div class="mruItem">
+                          <a title="[Alt+1]" accesskey="1" class="accountMru" href="/00190000005sBLj"><img title="客户: 123" class="mruIcon" alt="客户: 123" src="/images/s.gif"><span class="mruText">123</span></a>
+                        </div>
+                        <div class="mruItem">
+                          <a title="[Alt+1]" accesskey="1" class="accountMru" href="/00190000005sBLj"><img title="客户: 123" class="mruIcon" alt="客户: 123" src="/images/s.gif"><span class="mruText">123</span></a>
+                        </div>                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
             <table id="bodyTable" class="outer" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td class="oLeft">
-                    <% if has_content?(:sidebar) %>
-                      <%= yield :sidebar %>
-                    <% else %>
-                      <%= sidebar_menu %>
-                    <% end %>    
-                  </td>
                   <td id="bodyCell" class="oRight">
                     <%= yield %>
                   </td>

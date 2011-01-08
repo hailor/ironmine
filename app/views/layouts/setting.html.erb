@@ -1,16 +1,20 @@
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="themes/salesforce2/stylesheets/application.css"></link>
+  <title>Ironmine</title>
+
+  <script type="text/javascript" src="/javascripts/yui3.3/yui/yui-min.js"></script>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+  <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/setting.css"></link>
 </head>
-<body class="setupTab setup sfdcBody">
+<body class="setupTab setup sfdcBody yui3-skin-sam yui-skin-sam">
     <div id="contentWrapper">
         <div id="AppBodyHeader" class="bPageHeader">
             <table id="phHeader" class="phHeader" cellpadding="0" cellspacing="0" border="0">
               <tbody>
                 <tr>
                   <td class="left">
-                    <img width="175" height="65" title="salesforce.com" id="phHeaderLogoImage" alt="salesforce.com" src="/img/seasonLogos/sales_logo_aloha_win11.png">
-                    <img width="1" height="1" title="" class="spacer" alt="" src="/s.gif">
+                    <img width="175" height="65" title="salesforce.com" id="phHeaderLogoImage" src="/themes/salesforce2/images/sales_logo_aloha_win11.png">
                   </td>
                   <td class="right vtop">
                     <div class="multiforce">
@@ -27,6 +31,7 @@
                 </tr>
               </tbody>
             </table>
+            <%=level_one_menu%>
             <table id="tabsNewBar" class="tabsNewBar" cellpadding="0" cellspacing="0" border="0">
                 <tbody>
                     <tr>
@@ -34,32 +39,18 @@
                             <div id="tabNavigation" class="tabNavigation">
                                 <div class="tabBarLeft"></div>
                                 <table id="tabBar" class="tab" cellpadding="0" cellspacing="0">
-                                    <td nowrap="nowrap" class="currentTab "><div id="homeTab">
-                                        <a title="首页选项卡" href="javascript:void(0);">首页</a>
-                                    </div></td>
-                                    <td nowrap="nowrap" class=""><div id="settingTab">
-                                        <a title="设置选项卡" href="javascript:void(0);">设置</a>
-                                    </div></td>
-                                    <td nowrap="nowrap" class=""><div id="projectTab">
-                                        <a title="我的项目选项卡" href="javascript:void(0);">我的项目</a>
-                                    </div></td>
-                                    <td nowrap="nowrap" class=""><div id="reportTab">
-                                        <a title="报表选项卡" href="javascript:void(0);">报表</a>
-                                    </div></td>
-                                    <td nowrap="nowrap" class=""><div>
-                                        <img class="allTabsArrow">
-                                    </div></td>
+                                    <%= level_two_menu %>
                                 </table>
                                 <div class="tabBarRight"></div>
                             </div>
                         </td>
                     </tr>
                 </tbody>
-            </table>          
+            </table>
         </div>
         <div id="bodyDiv_setup" class="bodyDiv">
-            <div id="bd_l"></div>
-            <div id="bd_r"></div>
+            <div id=""></div>
+            <div id=""></div>
             <div id="motifCurve">
                 <div id="mc_l"></div>
                 <div id="mc_r"></div>
@@ -71,34 +62,19 @@
             <table id="bodyTable" class="outer" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td class="oLeft">
-                    <div class="mTreeSelection">
-                      <div id="AutoNumber5">
-                        <div class="setupNavtree"><h2><a class="setupSection" href="/ui/setup/Setup?setupid=PersonalSetup">个人设置</a></h2></div>
-                        <div searchtext="" class="parent" id="PersonalInfo">
-                          <a id="PersonalInfo_icon" href="javascript:HTMLTreeNode.prototype.toggleHTMLTree%28%27PersonalInfo%27%29">
-                            <img width="11" height="11" title="折叠 - 我的个人信息 - 级别 1" class="setupImage" alt="折叠 - 我的个人信息 - 级别 1" src="/img/alohaSkin/setup/setup_minus_lev1.gif">
-                          </a>
-                          <a id="PersonalInfo_font" class="setupHighlightFolder" href="/ui/setup/Setup?setupid=PersonalInfo">我的个人信息</a>
-                          <div id="PersonalInfo_child" style="display: block;" class="childContainer">
-                            <div class="setupLeaf"><a id="PersonalInformation_font" href="/00590000000ZDH7?noredirect=1&amp;retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DPersonalInfo&amp;setupid=PersonalInformation">个人信息</a></div>
-                            <div class="setupLeaf"><a id="ChangePassword_font" href="/_ui/system/security/ChangePassword?retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DPersonalInfo&amp;setupid=ChangePassword">更改我的密码</a></div>
-                            <div class="setupLeaf"><a id="ResetApiToken_font" href="/_ui/system/security/ResetApiTokenEdit?retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DPersonalInfo&amp;setupid=ResetApiToken">重新设置我的安全标记</a></div>
-                            <div class="setupLeaf"><a id="Groups_font" href="/setup/own/personalgroups.jsp?setupid=Groups&amp;retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DPersonalInfo">我的用户组</a></div>
-                            <div class="setupLeaf"><a id="CustomizeDisplay_font" href="/ui/setup/user/CustomizeMyDisplayPage?setupid=CustomizeDisplay&amp;retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DPersonalInfo">更改我的显示</a></div>
-                            <div class="setupLeaf"><a id="GrantLogin_font" href="/secur/useraccessdateedit.jsp?id=00590000000ZDH7&amp;retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DPersonalInfo&amp;setupid=GrantLogin">授予登录访问权限</a></div>
-                            <div class="setupLeaf"><a id="CalendarSharing_font" href="/p/share/CalendarSharingDetail?pp=1&amp;retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DPersonalInfo&amp;setupid=CalendarSharing">日历共享</a></div>
-                            <div class="setupLeaf"><a id="Reminders_font" href="/ui/core/activity/ReminderSettingsPage?setupid=Reminders&amp;retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DPersonalInfo">提醒</a></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <% if has_content?(:sidebar) %>
+                      <%= yield :sidebar %>
+                    <% else %>
+                      <%= sidebar_menu %>
+                    <% end %>
                   </td>
                   <td id="bodyCell" class="oRight">
-                    
+                    <%= yield %>
                   </td>
                 </tr>
             </table>
-        </div>      
+        </div>
     </div>
+
 </body>
 </html>
