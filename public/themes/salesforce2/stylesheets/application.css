@@ -924,7 +924,7 @@ body .bodyDiv .bFilter a:hover {text-decoration:underline;}
 
 .mTreeSelection {background-color:transparent;}
 .mTreeSelection {
-    background-color:#E8E8E8;
+    /*background-color:#E8E8E8;*/
     font-size:109%;
     padding:0.8em;
     text-align:left;
