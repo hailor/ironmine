@@ -157,15 +157,7 @@ div#AutoNumber5 {
     font-size:109%;
     text-align:left;
 }
-#AutoNumber5 > img:first-child + .setupNavtree {
-    border-width:0;
-    margin-top:0;
-}
-#AutoNumber5 > .setupNavtree {
-    border-width:0;
-    border-top:1px solid #D9D9D9 !important;
-    margin:0 0 14px -10px;
-}
+
 .setupTab .oLeft .mTreeSelection #AutoNumber5 > img:first-child + .setupNavtree h2, .sysAdminTab .oLeft .mTreeSelection #AutoNumber5 > img:first-child + .setupNavtree h2 {
     border-width:0;
     padding-top:10px;
@@ -449,7 +441,7 @@ div.button input[type="submit"]:hover{background-position: right -30px; cursor: 
 }
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, sub, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
     border:0 none;
-    /*font-family:inherit;*/
+    font-family:inherit;
     font-size:100%;
     font-style:inherit;
     font-weight:inherit;
@@ -543,7 +535,7 @@ body .bPageTitle .ptBody {
 }
 .setupTab .bPageTitle .ptBody .pageType, .setupTab .bPageTitle .ptBody .pageDescription, .sysAdminTab .bPageTitle .ptBody .pageType, .sysAdminTab .bPageTitle .ptBody .pageDescription {margin-left:0;}
 body .bPageTitle .ptBody .pageDescription {
-    font-size:2em;
+    font-size:25px;
     font-weight:normal;
     line-height:1.1em;
 }
@@ -701,7 +693,36 @@ form .pbBody .pbSubheader {
     color:#000000;
     padding:4px 16px;
 }
+body .bDetailBlock.bPageBlock .pbBody .pbSubheader, body.FindSimilarOppsSearchUi .bPageBlock .pbBody .pbSubheader {background-color:transparent;}
+body .bPageBlock .pbBody .pbSubheader {
+    border-style:solid;
+    border-width:2px 0 0;
+    color:#27282E;
+    padding:4px 3px;
+}
 
+body .bPageBlock .pbBody .pbSubheader .hideListButton {
+    background:url("../images/twisty_sprite.png") no-repeat scroll 0 -11px transparent;
+}
+
+body .bPageBlock .pbBody .pbSubheader img {
+background-repeat:no-repeat;
+height:11px;
+margin-right:4px;
+width:11px;
+}
+
+.hideListButton {
+    background-image:url("../images/twistySubhDown.gif");
+    background-position:0 0;
+    height:10px;
+    width:16px;
+}
+
+.accountTab .tertiaryPalette, .individualPalette .accountBlock .tertiaryPalette, .layoutEdit .individualPalette .accountBlock .tertiaryPalette {
+    background-color:#8A9EBE;
+    border-color:#8A9EBE;
+}
 body .bEditBlock .pbBody .pbSubheader.first {border-top:medium none;}
 .setupTab .tertiaryPalette, .individualPalette .setupBlock .tertiaryPalette, .layoutEdit .individualPalette .setupBlock .tertiaryPalette {
     background-color:#8E9DBE;
@@ -898,3 +919,67 @@ body .bodyDiv .bFilter a:hover {text-decoration:underline;}
     padding: 0 12px;
 }
 /*************************************************************/
+/***********************setup side bar menu ***********************/
+.setupTab .oLeft .mTreeSelection, .sysAdminTab .oLeft .mTreeSelection {padding:0;}
+
+.mTreeSelection {background-color:transparent;}
+.mTreeSelection {
+    background-color:#E8E8E8;
+    font-size:109%;
+    padding:0.8em;
+    text-align:left;
+}
+
+#AutoNumber5 > img:first-child + .setupNavtree {
+    border-width:0;
+    margin-top:0;
+}
+
+#AutoNumber5 > .setupNavtree {
+    border-top:1px solid #D9D9D9;
+    margin:14px 0 14px -10px;
+}
+
+.mTreeSelection .parent {
+    font-weight:bold;
+    line-height:15px;
+    margin-top:5px;
+    padding:0;
+    vertical-align:middle;
+}
+
+.mTreeSelection .parent {
+    padding-bottom:1px;
+    padding-top:1px;
+}
+
+.mTreeSelection a.setupFolder, .mTreeSelection a.setupHighlightFolder {
+    background-color:transparent;
+    margin-left:6px;
+    position:relative;
+    top:-1px;
+}
+.setupFolder {text-decoration:none;}
+
+a.NavTreeCol {
+    float:left;
+    height: 11px;
+    width:11px;
+    background: url("../images/setup_plus_lev1.gif") no-repeat scroll 0 0 transparent
+}
+a.NavTreeExp {
+    float:left;
+    height: 11px;
+    width:11px;
+    background: url("../images/setup_minus_lev1.gif") no-repeat scroll 0 0 transparent
+}
+.setupHighlightLeaf {
+    background: url("../images/setup_selected_bottombg.png") repeat-x scroll left bottom #FFFFFF;
+    border-color: #E8E8E9;
+    border-style: solid;
+    border-width: 1px 0 0 1px;
+    line-height: 20px;
+    padding-bottom: 3px;
+    padding-left: 15px;
+    padding-top: 2px;
+}
