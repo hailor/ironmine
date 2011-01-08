@@ -19,7 +19,7 @@ module Irm::SettingHelper
     #如果菜单菜单中只有一个菜单则返回
     return nil unless menus&&menus.size>1
     parent_menu_code = menus[1]
-    content = content_tag(:div, content_tag(:div, raw(content_tag(:img, {}, {:width => 205, :height => 1, :title => "", :src => "/images/s.gif"}) + generate_sidebar_menu(parent_menu_code)), {:id => "AutoNumber5"}),{:id=>"MenuNavTree",:class=>"mTreeSelection"})
+    content = content_tag(:div, content_tag(:div, raw(content_tag(:img,"", {:width => 205, :height => 1, :title => "", :src => "/images/s.gif"}) + generate_sidebar_menu(parent_menu_code)), {:id => "AutoNumber5"}),{:id=>"MenuNavTree",:class=>"mTreeSelection"})
     script = %Q(
       GY.use(function(Y){
         var current_permissions = [#{permssions.collect{|x| "'#{x}'"}.join(",")}];
