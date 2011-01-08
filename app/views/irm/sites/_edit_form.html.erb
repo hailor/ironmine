@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<%= form_for(@site,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+<%= form_for(@site,:url=>{:controller=>"irm/sites",:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
 <%=f.hidden_field :site_group_code,:value=>@site.site_group_code%>
 <%= hidden_field_tag :return_url,@return_url %>
 <%= hidden_field_tag :_from,@_from %>   

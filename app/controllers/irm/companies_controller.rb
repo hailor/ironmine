@@ -33,8 +33,7 @@ class Irm::CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "return" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_created))}        
         format.xml  { render :xml => @company, :status => :created, :location => @company }
       else
         @error = @company
@@ -52,8 +51,7 @@ class Irm::CompaniesController < ApplicationController
     
     respond_to do |format|
       if @company.update_attributes(@attr)
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "irm/common/_successful_message" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
         format.xml  { head :ok }
       else
         @error = @company

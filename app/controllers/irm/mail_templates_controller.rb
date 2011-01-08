@@ -33,8 +33,7 @@ class Irm::MailTemplatesController < ApplicationController
 
     respond_to do |format|
       if @mail_template.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "return" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_created))}
         format.xml  { render :xml => @mail_template, :status => :created, :location => @mail_template }
       else
         @error = @mail_template
@@ -51,8 +50,7 @@ class Irm::MailTemplatesController < ApplicationController
 
     respond_to do |format|
       if @mail_template.update_attributes(params[:irm_mail_template])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "return" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
         format.xml  { head :ok }
       else
         @error = @mail_template

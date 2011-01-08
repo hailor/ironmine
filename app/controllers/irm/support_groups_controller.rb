@@ -44,12 +44,11 @@ class Irm::SupportGroupsController < ApplicationController
 
     respond_to do |format|
       if @support_group.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "irm/common/_successful_message" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_created))}
         format.xml  { render :xml => @support_group, :status => :created, :location => @support_group }
       else
         @error = @support_group
-        format.html { render "irm/common/error_message" }
+        format.html { render "new" }
         format.xml  { render :xml => @support_group.errors, :status => :unprocessable_entity }
       end
     end
@@ -62,12 +61,11 @@ class Irm::SupportGroupsController < ApplicationController
 
     respond_to do |format|
       if @support_group.update_attributes(params[:irm_support_group])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "irm/common/_successful_message" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
         format.xml  { head :ok }
       else
         @error = @support_group
-        format.html { render "irm/common/error_message" }
+        format.html { render "edit" }
         format.xml  { render :xml => @support_group.errors, :status => :unprocessable_entity }
       end
     end

@@ -3,6 +3,8 @@ class Irm::Person < ActiveRecord::Base
 
   belongs_to :identity
 
+  validates_presence_of :last_name,:first_name,:title,:email_address
+
   scope :query_by_identity,lambda{|identity|
     where(:identity_id=>identity)
   }

@@ -37,12 +37,10 @@ class Irm::PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "index"}
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_created))}
         format.xml  { render :xml => @person, :status => :created, :location => @person }
       else
-        @error = @person
-        format.html { render "irm/common/error_message" }
+        format.html { render "new" }
         format.xml  { render :xml => @person.errors, :status => :unprocessable_entity }
       end
     end
@@ -59,12 +57,11 @@ class Irm::PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.update_attributes(@attributes)
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "irm/common/_successful_message" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
         format.xml  { head :ok }
       else
         @error = @person
-        format.html { render "irm/common/error_message" }
+        format.html { render "edit" }
         format.xml  { render :xml => @person.errors, :status => :unprocessable_entity }
       end
     end
