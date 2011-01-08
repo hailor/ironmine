@@ -42,6 +42,15 @@ class AddSetingMenuPermission < ActiveRecord::Migration
 
     admin_icm_setting = Irm::MenuEntry.where(:menu_code=>'IRM_ADMIN_MENU',:sub_menu_code=>'IRM_ICM_SETTING_MENU',:permission_code=>'IRM_NAVIGATIONS_ICM_SETTING').first
     admin_icm_setting.update_attributes(:permission_code=>nil) if admin_advance_setting
+
+    setting_common = Irm::MenuEntry.new(:menu_code=>'IRM_SETTING_ENTRANCE_MENU',
+                                         :permission_code=>'IRM_SETTING_COMMON',
+                                         :display_flag => "N",
+                                         :display_sequence=>100,
+                                         :not_auto_mult=>true)
+    setting_common.menu_entries_tls.build(:language=>'zh',:name=>'设置公用页面',:description=>'设置公用页面',:source_lang=>'en')
+    setting_common.menu_entries_tls.build(:language=>'en',:name=>'Setting Common',:description=>'Setting Common',:source_lang=>'en')
+    setting_common.save
   end
 
   def self.down

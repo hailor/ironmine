@@ -95,13 +95,13 @@ class ApplicationController < ActionController::Base
   def menu_setup
     @setting_menus = []
     @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>params[:controller],:page_action=>params[:action]})
-    @page_menus << params[:mc] if(params[:mc])
     if @page_menus[0]&&@page_menus[0].eql?("IRM_SETTING_ENTRANCE_MENU")
       @setting_menus = @page_menus.dup
-      self.class.layout "setting"
-      @page_menus = session[:entrance_menu]||default_menus
+      #self.class.layout "setting"
+      @page_menus = (session[:entrance_menu]||default_menus)[0..1]
     else
-      session[:entrance_menu] = @page_menus
+      @page_menus << params[:mc] if(params[:mc])
+      session[:entrance_menu] = @page_menus.dup if @page_menus.length>1
     end
   end
 
@@ -219,7 +219,7 @@ class ApplicationController < ActionController::Base
     menus = ["IRM_ENTRANCE_MENU"]
     entry = Irm::MenuManager.sub_entries_by_menu("IRM_ENTRANCE_MENU")[0]
     if entry && entry[:entry_type].eql?("MENU")
-       menus << entries[:menu_code]
+       menus << entry[:menu_code]
     end
     menus
   end
