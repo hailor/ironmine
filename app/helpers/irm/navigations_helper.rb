@@ -71,7 +71,7 @@ module Irm::NavigationsHelper
     menus = @page_menus.dup
     #如果菜单菜单中只有一个菜单则返回
     return nil unless menus&&menus.size>1
-    parent_menu_code = menus[0]
+    parent_menu_code = menus[2]||menus[1]||menus[0]
     content = content_tag(:div,generate_sidebar_menu(parent_menu_code),{:id=>"MenuNavTree",:class=>"mTreeSelection"});
     script = %Q(
       GY.use(function(Y){
