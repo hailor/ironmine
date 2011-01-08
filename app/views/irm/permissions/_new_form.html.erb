@@ -21,7 +21,7 @@
           <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_permission_new)%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
           </td>
         </tr>
       </tbody>
@@ -50,7 +50,7 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_permission_description)%></label></td>
-              <td class="dataCol"><%=f.text_area :description%></td>
+              <td class="dataCol"><%=f.text_area :description, :rows => 4%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>            
@@ -77,7 +77,7 @@
           <td class="pbTitle"></td>
           <td id="bottomButtonRow" class="pbButtonb">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
           </td>
         </tr>
       </tbody>

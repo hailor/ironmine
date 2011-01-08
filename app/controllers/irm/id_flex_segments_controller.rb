@@ -7,79 +7,58 @@ class Irm::IdFlexSegmentsController < ApplicationController
     end
   end
 
-  def create_entry
-    id_flex_structure = Irm::IdFlexStructure.find(params[:id_flex_structure_id])
-    segment_num = params["c1"]
-    id_flex_segment_code = params["c2"]
-    form_left_prompt = params["c3"]
-    description = params["c4"]
-    status_code = params["c5"]
-
-    @mode = params["!nativeeditor_status"]
-
-    @id = params["gr_id"]
-    case @mode
-      when "inserted"
-        @id_flex_segment = Irm::IdFlexSegment.new({:id_flex_code => id_flex_structure.id_flex_code, :id_flex_num => id_flex_structure.id_flex_num,
-                                                      :segment_num => segment_num, :segment_name => id_flex_segment_code,
-                                                      :form_left_prompt => form_left_prompt, :description => description, :status_code => status_code})
-        @id_flex_segment.save
-        @id = @id_flex_segment.id
-        @tid = @id_flex_segment.id
-      when "updated"
-        #no exists
-        if !Irm::IdFlexSegment.exists?(@id)
-          @id_flex_segment = Irm::IdFlexSegment.new({:id_flex_code => id_flex_structure.id_flex_code, :id_flex_num => id_flex_structure.id_flex_num,
-                                                      :segment_num => segment_num, :segment_name => id_flex_segment_code,
-                                                      :form_left_prompt => form_left_prompt, :description => description, :status_code => status_code})
-          @id_flex_segment.save
-          @id = @id_flex_segment.id
-          @tid = @id_flex_segment.id
-        else
-          @id_flex_segment=Irm::IdFlexSegment.find(@id)
-          @id_flex_segment.update_attributes({:segment_num => segment_num,:form_left_prompt => form_left_prompt, :description => description, :status_code => status_code})
-          @id = @id_flex_segment.id
-          @tid = @id_flex_segment.id
-        end
-    end
+  def get_data
+    id_flex_segments_scope = Irm::IdFlexSegment.list_all(params[:id_flex_structure_id])
+    id_flex_segments,count = paginate(id_flex_segments_scope)
+    respond_to do |format|
+      format.json  {render :json => to_jsonp(id_flex_segments.to_grid_json([:segment_num, :segment_name, :form_left_prompt, :description, :value_set_name, :status_code], count)) }
+    end              
   end
 
-  def show_parent
-    @id_flex = Irm::IdFlex.where(:id_flex_code => params[:id_flex_code]).first()
+  def show
+    @id_flex_segment = Irm::IdFlexSegment.multilingual.find(params[:id])
+    @id_flex_structure = Irm::IdFlexStructure.multilingual.where(:id_flex_code => @id_flex_segment.id_flex_code, :id_flex_num => @id_flex_segment.id_flex_num).first()
+  end
+
+  def edit
+    @id_flex_segment = Irm::IdFlexSegment.multilingual.find(params[:id])
+    @id_flex_structure = Irm::IdFlexStructure.multilingual.where(:id_flex_code => @id_flex_segment.id_flex_code, :id_flex_num => @id_flex_segment.id_flex_num).first()
+  end
+
+  def update
+    @id_flex_segment = Irm::IdFlexSegment.find(params[:id])
+    @id_flex_structure = Irm::IdFlexStructure.where(:id_flex_code => @id_flex_segment.id_flex_code, :id_flex_num => @id_flex_segment.id_flex_num).first()
     respond_to do |format|
-      format.html # index.html.erb
-      format.js do
-        render do |page|
-          page.replace_html(:container1, render(:partial => 'show_parent', :locals => { :@id_flex => @id_flex }))
-          page.replace_html(:container2, render(:partial => 'data_grid', :locals => { :@id_flex => @id_flex }))
-          page << "init('#data_area');"
-        end
+      if @id_flex_segment.update_attributes(params[:irm_id_flex_segment])
+        format.html { redirect_to({:controller => "irm/id_flex_structures", :action=>"show", :id => @id_flex_structure}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @id_flex_structure.errors, :status => :unprocessable_entity }
       end
-      format.xml  { render :xml => @id_flex_structure }
     end    
   end
 
-  def get_data
-    @id_flex_segments = Irm::IdFlexSegment.list_all(params[:id_flex_structure_id])
+  def new
+    @id_flex_segment = Irm::IdFlexSegment.new
+    @id_flex_structure = Irm::IdFlexStructure.multilingual.where(:id_flex_code => params[:id_flex_code], :id_flex_num => params[:id_flex_num]).first()
     respond_to do |format|
-      format.json  {render :json => @id_flex_segments.to_dhtmlxgrid_json(['0',:segment_num, :segment_name, :form_left_prompt, :description, :value_set_name, :status_code,
-                                                                         {:value => 'M', :controller => 'irm/id_flex_segments',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}], @id_flex_segments.size) }
+      format.html # new.html.erb
+      format.xml  { render :xml => @id_flex_segment }
     end
   end
-
-  def multilingual_edit
-    @id_flex_segment = Irm::IdFlexSegment.find(params[:id])
-  end
-
-  def multilingual_update
-    @id_flex_segment = Irm::IdFlexSegment.find(params[:id])
-    @id_flex_segment.not_auto_mult=true
+  
+  def create
+    @id_flex_segment = Irm::IdFlexSegment.new(params[:irm_id_flex_segment])
+    @id_flex_structure = Irm::IdFlexStructure.multilingual.where(:id_flex_code => @id_flex_segment.id_flex_code, :id_flex_num => @id_flex_segment.id_flex_num).first()
     respond_to do |format|
-      if @id_flex_segment.update_attributes(params[:irm_flex_segment])
-        format.html { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
+      if @id_flex_segment.save
+        format.html { redirect_to({:controller => "irm/id_flex_structures", :action=>"show", :id => @id_flex_structure}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
       else
-        format.html { render({:action=>"multilingual_edit"}) }
+        format.html { render :action => "new"}
+        format.xml  { render :xml => @id_flex_segment.errors, :status => :unprocessable_entity }
       end
     end
-  end    
+  end  
 end

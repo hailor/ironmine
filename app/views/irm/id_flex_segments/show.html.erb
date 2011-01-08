@@ -1,0 +1,75 @@
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"></h1>
+      <h2 class="pageDescription"><%= t(:label_irm_id_flex_segment) %></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks">编辑局部</a>|
+      <a href="javascript:void(0);" class="configLinks">用户简档</a>|
+      <a href="javascript:void(0);" class="configLinks">此页面的帮助</a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
+</div>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_id_flex_segment) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @id_flex_segment}%></div>
+            <div class="button"><%= link_back %></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_id_flex_structure_code)%></label></td>
+              <td class="dataCol"><%= @id_flex_structure.id_flex_structure_code%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_id_flex_structure_name_full)%></label></td>
+              <td class="dataCol"><%= @id_flex_structure[:id_flex_structure_name]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>                  
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_id_flex_segment_name)%></label></td>
+              <td class="dataCol"><%= @id_flex_segment.segment_name%></td>
+              <td class="labelCol"><label><%=t(:label_irm_value_set)%></label></td>
+              <td class="dataCol"><div><%= @id_flex_segment.flex_value_set_name%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_id_flex_segment_form_left_prompt)%></label></td>
+              <td class="dataCol"><%= @id_flex_segment[:form_left_prompt]%></td>
+              <td class="labelCol"><%= t(:label_irm_id_flex_segment_segment_num) %></td>
+              <td class="dataCol"><div><%= @id_flex_segment.segment_num%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_id_flex_segment_description)%></label></td>
+              <td class="dataCol"><div><%= @id_flex_segment[:description]%></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>          
+            <tr>
+              <td class="labelCol"><label><%=(t :active)%></label></td>
+              <td class="dataCol"><%= @id_flex_segment.status_code%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

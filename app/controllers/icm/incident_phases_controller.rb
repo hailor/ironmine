@@ -9,7 +9,7 @@ class Icm::IncidentPhasesController < ApplicationController
   end
 
   def show
-    @incident_phase = Icm::IncidentPhase.find(params[:id])
+    @incident_phase = Icm::IncidentPhase.multilingual.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @incident_phase }
@@ -33,11 +33,11 @@ class Icm::IncidentPhasesController < ApplicationController
     @incident_phase = Icm::IncidentPhase.new(params[:icm_incident_phase])
     respond_to do |format|
       if @incident_phase.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+        format.xml  { render :xml => @incident_phase, :status => :created, :location => @incident_phase }
       else
-         @error = @incident_phase
-         format.html { render "error_message" }
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @incident_phase.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -47,11 +47,11 @@ class Icm::IncidentPhasesController < ApplicationController
 
     respond_to do |format|
       if @incident_phase.update_attributes(params[:icm_incident_phase])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
       else
-        @error = @incident_phase
-        format.html { render "error_message" }
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @incident_phase.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -66,28 +66,12 @@ class Icm::IncidentPhasesController < ApplicationController
     end
   end
 
-  def multilingual_edit
-    @incident_phase = Icm::IncidentPhase.find(params[:id])
-  end
-
-  def multilingual_update
-    @incident_phase = Icm::IncidentPhase.find(params[:id])
-    @incident_phase.not_auto_mult=true
-    respond_to do |format|
-      if @incident_phase.update_attributes(params[:icm_incident_phase])
-        format.html { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
-      else
-        format.html { render({:action=>"multilingual_edit"}) }
-      end
-    end
-  end
-
   def get_data
-    @incident_phases = Icm::IncidentPhase.multilingual.list_all
+    incident_phases_scope = Icm::IncidentPhase.multilingual.list_all
+    incident_phases,count = paginate(incident_phases_scope)
+
     respond_to do |format|
-      format.json  {render :json => @incident_phases.to_dhtmlxgrid_json(['0',:company_name,:name,:phase_code,
-                                                                    {:value => 'M', :controller => 'icm/incident_phases',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
-                                                                    ], @incident_phases.size) }
+      format.json  {render :json => to_jsonp(incident_phases.to_grid_json([:company_name,:name,:phase_code], count)) }
     end
-  end   
+  end     
 end

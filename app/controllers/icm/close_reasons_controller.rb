@@ -1,10 +1,7 @@
 class Icm::CloseReasonsController < ApplicationController
   def index
-    @close_reason = Icm::CloseReason.new
-
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @close_reason }
     end
   end
 
@@ -32,13 +29,14 @@ class Icm::CloseReasonsController < ApplicationController
 
   def create
     @close_reason = Icm::CloseReason.new(params[:icm_close_reason])
+    
     respond_to do |format|
       if @close_reason.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+        format.xml  { render :xml => @close_reason, :status => :created, :location => @close_reason }
       else
-         @error = @close_reason
-         format.html { render "error_message" }
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @close_reason.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -48,11 +46,11 @@ class Icm::CloseReasonsController < ApplicationController
 
     respond_to do |format|
       if @close_reason.update_attributes(params[:icm_close_reason])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
       else
-        @error = @close_reason
-        format.html { render "error_message" }
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @close_reason.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -66,30 +64,14 @@ class Icm::CloseReasonsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-
-  def multilingual_edit
-    @close_reason = Icm::CloseReason.find(params[:id])
-  end
-
-  def multilingual_update
-    @close_reason = Icm::CloseReason.find(params[:id])
-    @close_reason.not_auto_mult=true
-    respond_to do |format|
-      if @close_reason.update_attributes(params[:icm_close_reason])
-        format.html { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
-      else
-        format.html { render({:action=>"multilingual_edit"}) }
-      end
-    end
-  end
-
+  
   def get_data
-    @close_reasons = Icm::CloseReason.multilingual.list_all
+    close_reasons_scope = Icm::CloseReason.multilingual.list_all
+    close_reasons,count = paginate(close_reasons_scope)
+    
     respond_to do |format|
-      format.json  {render :json => @close_reasons.to_dhtmlxgrid_json(['0',:company_name,:name,
-                                                                     :close_code,:category_name,
-                                                                    {:value => 'M', :controller => 'icm/close_reasons',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
-                                                                    ], @close_reasons.size) }
+      format.json  {render :json => to_jsonp(close_reasons.to_grid_json([:company_name,:name,
+                                                                     :close_code,:category_name], count)) }
     end
-  end   
+  end  
 end

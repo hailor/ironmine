@@ -8,7 +8,7 @@ class Icm::CloseReason < ActiveRecord::Base
 
   validates_presence_of :close_code,:company_id,:category_id
   validates_uniqueness_of :close_code, :if => Proc.new { |i| !i.close_code.blank? }
-  validates_format_of :close_code, :with => /^[A-Z0-9_]*$/ ,:if=>Proc.new{|i| !i.close_code.blank?}
+#  validates_format_of :close_code, :with => /^[A-Z0-9_]*$/ ,:if=>Proc.new{|i| !i.close_code.blank?}
 
   #加入activerecord的通用方法和scope
   query_extend

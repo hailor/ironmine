@@ -1,10 +1,7 @@
 class Irm::IdFlexesController < ApplicationController
   def index
-    @id_flex = Irm::IdFlex.new
-
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @id_flex }
     end
   end
 
@@ -34,11 +31,11 @@ class Irm::IdFlexesController < ApplicationController
     @id_flex = Irm::IdFlex.new(params[:irm_id_flex])
     respond_to do |format|
       if @id_flex.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "successful_info" }        
+        format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+        format.xml  { render :xml => @id_flex, :status => :created, :location => @id_flex }
       else
-         @error = @permission
-         format.html { render "error_message" }
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @id_flex.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -48,11 +45,11 @@ class Irm::IdFlexesController < ApplicationController
 
     respond_to do |format|
       if @id_flex.update_attributes(params[:irm_id_flex])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
       else
-        @error = @id_flex
-        format.html { render "error_message" }
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @id_flex.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -68,9 +65,10 @@ class Irm::IdFlexesController < ApplicationController
   end
 
   def get_data
-    @id_flexes = Irm::IdFlex.all
+    id_flexes_scope = Irm::IdFlex.where("1=1")
+    id_flexes,count = paginate(id_flexes_scope)
     respond_to do |format|
-      format.json  {render :json => @id_flexes.to_dhtmlxgrid_json(['0',:id_flex_code,:id_flex_name,:description,:status_code], @id_flexes.size) }
-    end
+      format.json  {render :json => to_jsonp(id_flexes.to_grid_json([:id_flex_code,:id_flex_name,:description,:status_code], count)) }
+    end        
   end
 end

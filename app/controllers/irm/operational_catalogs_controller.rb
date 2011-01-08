@@ -9,7 +9,7 @@ class Irm::OperationalCatalogsController < ApplicationController
   end
 
   def show
-    @operational_catalog = Irm::OperationalCatalog.find(params[:id])
+    @operational_catalog = Irm::OperationalCatalog.list_all.where(:id => params[:id]).first()
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,11 +37,11 @@ class Irm::OperationalCatalogsController < ApplicationController
     @operational_catalog.segment3 = "" if params[:irm_operational_catalog][:segment3].blank?
     respond_to do |format|
       if @operational_catalog.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "successful_info" }        
+        format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+        format.xml  { render :xml => @operational_catalog, :status => :created, :location => @operational_catalog }
       else
-         @error = @operational_catalog
-         format.html { render "error_message" }
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @operational_catalog.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -56,11 +56,11 @@ class Irm::OperationalCatalogsController < ApplicationController
     end    
     respond_to do |format|
       if @operational_catalog.update_attributes(params[:irm_operational_catalog])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
       else
-        @error = @operational_catalog
-        format.html { render "error_message" }
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @operational_catalog.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -75,27 +75,11 @@ class Irm::OperationalCatalogsController < ApplicationController
     end
   end
 
-  def multilingual_edit
-    @operational_catalog = Irm::OperationalCatalog.find(params[:id])
-  end
-
-  def multilingual_update
-    @operational_catalog = Irm::OperationalCatalog.find(params[:id])
-    @operational_catalog.not_auto_mult=true
-    respond_to do |format|
-      if @operational_catalog.update_attributes(params[:irm_operational_catalog])
-        format.html { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
-      else
-        format.html { render({:action=>"multilingual_edit"}) }
-      end
-    end
-  end
-
   def get_data
-    @operational_catalogs = Irm::OperationalCatalog.list_all
+    operational_catalogs_scope = Irm::OperationalCatalog.list_all
+    operational_catalogs,count = paginate(operational_catalogs_scope)
     respond_to do |format|
-      format.json  {render :json => @operational_catalogs.to_dhtmlxgrid_json(['0',:company_name, :segment1_name, :segment2_name, :segment3_name, :concat_segment_name, :status_code
-                                                                    ], @operational_catalogs.size) }
+      format.json  {render :json => to_jsonp(operational_catalogs.to_grid_json([:company_name, :segment1_name, :segment2_name, :segment3_name, :concat_segment_name, :status_code], count)) }
     end
-  end
+  end  
 end

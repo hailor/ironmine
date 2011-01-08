@@ -17,7 +17,7 @@
       <span class="bFilter">
         <label style="text-align: left; font-weight: bold; padding-right: 0.69em;"><%= t(:label_irm_value_set) %>：</label>
         <span class="fBody">
-            <%= select("flex_value_set","value_set_id", available_flex_value_sets, {:include_blank => t(:select)}, {:onchange => "", :id => "value_set_id"}) %>
+            <%= select("flex_value_set","value_set_id", available_flex_value_sets.collect{|p| [p.flex_value_set_name, p.id]}, {:include_blank => t(:select)}) %>
             <%= submit_tag t(:jump), :title => t(:jump), :class => "btn" %>
         </span>
         <span class="fFooter">

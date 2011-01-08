@@ -310,9 +310,8 @@ Ironmine::Application.routes.draw do
     match '/operational_catalogs/get_data(.:format)' => "operational_catalogs#get_data"
     match '/operational_catalogs/:id/edit(.:format)' => "operational_catalogs#edit", :via => :get
     match '/operational_catalogs/:id(.:format)' => "operational_catalogs#update", :via => :put
-    match '/operational_catalogs/:id/multilingual_edit(.:format)' => "operational_catalogs#multilingual_edit", :via => :get
-    match '/operational_catalogs/:id/multilingual_update(.:format)' => "operational_catalogs#multilingual_update", :via => :put
     match '/operational_catalogs/update_segment_options(.:format)' => "operational_catalogs#update_segment_options"
+    match '/operational_catalogs/:id/show(.:format)' => "operational_catalogs#show", :via => :get
     #op_catalog_accesses
     match '/op_catalog_accesses/:operational_catalog_id(/index)(.:format)' => "op_catalog_accesses#index", :via => :get
     match '/op_catalog_accesses/:operational_catalog_id/get_data(.:format)' => "op_catalog_accesses#get_data"
@@ -371,20 +370,24 @@ Ironmine::Application.routes.draw do
     match '/id_flexes/new(.:format)' => "id_flexes#new", :via => :get
     match '/id_flexes/create(.:format)' => "id_flexes#create", :via => :post
     match '/id_flexes/get_data(.:format)' => "id_flexes#get_data"
+    match '/id_flexes/:id/show(.:format)' => "id_flexes#show", :via => :get
     #id_flex_stuctures
     match '/id_flex_structures(/index)(.:format)' => "id_flex_structures#index", :via => :get
-    match '/id_flex_structures/:id_flex_code/show_parent(.:format)' => "id_flex_structures#show_parent", :via => :get
     match '/id_flex_structures/:id_flex_code/get_data(.:format)' => "id_flex_structures#get_data"
-    match '/id_flex_structures/create_entry(.:format)' => "id_flex_structures#create_entry"
-    match '/id_flex_structures/:id/multilingual_edit(.:format)' => "id_flex_structures#multilingual_edit", :via => :get
-    match '/id_flex_structures/:id/multilingual_update(.:format)' => "id_flex_structures#multilingual_update", :via => :put
+    match '/id_flex_structures/select_parent(.:format)' => 'id_flex_structures#select_parent'
+    match '/id_flex_structures/:id/edit(.:format)' => "id_flex_structures#edit", :via => :get
+    match '/id_flex_structures/:id(.:format)' => "id_flex_structures#update", :via => :put
+    match '/id_flex_structures/:id_flex_code/new(.:format)' => "id_flex_structures#new", :via => :get
+    match '/id_flex_structures/create(.:format)' => "id_flex_structures#create", :via => :post
+    match '/id_flex_structures/:id/show(.:format)' => "id_flex_structures#show", :via => :get
     #id_flex_segments
     match '/id_flex_segments/:id_flex_structure_id(/index)(.:format)' => "id_flex_segments#index", :via => :get
-    match '/id_flex_segments/:id_flex_structure_id/show_parent(.:format)' => "id_flex_segments#show_parent", :via => :get
     match '/id_flex_segments/:id_flex_structure_id/get_data(.:format)' => "id_flex_segments#get_data"
-    match '/id_flex_segments/create_entry(.:format)' => "id_flex_segments#create_entry"
-    match '/id_flex_segments/:id/multilingual_edit(.:format)' => "id_flex_segments#multilingual_edit", :via => :get
-    match '/id_flex_segments/:id/multilingual_update(.:format)' => "id_flex_segments#multilingual_update", :via => :put
+    match '/id_flex_segments/:id/edit(.:format)' => "id_flex_segments#edit", :via => :get
+    match '/id_flex_segments/:id(.:format)' => "id_flex_segments#update", :via => :put
+    match '/id_flex_segments/:id_flex_code/:id_flex_num/new(.:format)' => "id_flex_segments#new", :via => :get
+    match '/id_flex_segments/create(.:format)' => "id_flex_segments#create", :via => :post
+    match '/id_flex_segments/:id/show(.:format)' => "id_flex_segments#show", :via => :get
   end
 
   scope :module => "icm" do
@@ -401,9 +404,8 @@ Ironmine::Application.routes.draw do
     match '/impact_ranges/:id(.:format)' => "impact_ranges#update", :via => :put
     match '/impact_ranges/new(.:format)' => "impact_ranges#new", :via => :get
     match '/impact_ranges/create(.:format)' => "impact_ranges#create", :via => :post
-    match '/impact_ranges/:id/multilingual_edit(.:format)' => "impact_ranges#multilingual_edit", :via => :get
-    match '/impact_ranges/:id/multilingual_update(.:format)' => "impact_ranges#multilingual_update", :via => :put
     match '/impact_ranges/get_data(.:format)' => "impact_ranges#get_data"
+    match '/impact_ranges/:id/show(.:format)' => "impact_ranges#show", :via => :get
     #urgence_codes
     match '/urgence_codes(/index)(.:format)' => "urgence_codes#index", :via => :get
     match '/urgence_codes/:id/edit(.:format)' => "urgence_codes#edit", :via => :get
@@ -430,8 +432,7 @@ Ironmine::Application.routes.draw do
     match '/close_reasons/:id(.:format)' => "close_reasons#update", :via => :put
     match '/close_reasons/new(.:format)' => "close_reasons#new", :via => :get
     match '/close_reasons/create(.:format)' => "close_reasons#create", :via => :post
-    match '/close_reasons/:id/multilingual_edit(.:format)' => "close_reasons#multilingual_edit", :via => :get
-    match '/close_reasons/:id/multilingual_update(.:format)' => "close_reasons#multilingual_update", :via => :put
+    match '/close_reasons/:id/show(.:format)' => "close_reasons#show", :via => :get
     match '/close_reasons/get_data(.:format)' => "close_reasons#get_data"
     #incident_phases
     match '/incident_phases(/index)(.:format)' => "incident_phases#index", :via => :get
@@ -439,9 +440,8 @@ Ironmine::Application.routes.draw do
     match '/incident_phases/:id(.:format)' => "incident_phases#update", :via => :put
     match '/incident_phases/new(.:format)' => "incident_phases#new", :via => :get
     match '/incident_phases/create(.:format)' => "incident_phases#create", :via => :post
-    match '/incident_phases/:id/multilingual_edit(.:format)' => "incident_phases#multilingual_edit", :via => :get
-    match '/incident_phases/:id/multilingual_update(.:format)' => "incident_phases#multilingual_update", :via => :put
     match '/incident_phases/get_data(.:format)' => "incident_phases#get_data"
+    match '/incident_phases/:id/show(.:format)' => "incident_phases#show", :via => :get
     #incident_statuses
     match '/incident_statuses(/index)(.:format)' => "incident_statuses#index", :via => :get
     match '/incident_statuses/:id/edit(.:format)' => "incident_statuses#edit", :via => :get

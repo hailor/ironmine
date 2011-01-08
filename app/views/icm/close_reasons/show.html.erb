@@ -2,61 +2,57 @@
   <div class="ptBody">
     <div class="content">
       <h1 class="pageType"></h1>
-      <h2 class="pageDescription"><%=t(:label_icm_close_reason_edit)%></h2>
+      <h2 class="pageDescription"><%= t(:label_icm_close_reason) %></h2>
       <div class="blank">&nbsp;</div>
     </div>
     <div class="links">
+      <a href="javascript:void(0);" class="configLinks">编辑局部</a>|
+      <a href="javascript:void(0);" class="configLinks">用户简档</a>|
       <a href="javascript:void(0);" class="configLinks">此页面的帮助</a>
     </div>
     <div class="ptBreadcrumb"></div>
   </div>
 </div>
 
-<%= form_for(@close_reason,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
-<div id="ep" class="bEditBlock bPageBlock">
+<div id="ep" class="bDetailBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_icm_close_reason_edit)%></h2></td>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_icm_close_reason) %></h2></td>
           <td id="topButtonRow" class="pbButton">
-            <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_back t(:cancel)%></div>
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @close_reason}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
   <div class="pbBody">
-    <%= error_for @close_reason%>
-    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
-      <span class="pbSubExtra"><span class="requiredLegend"><span class="requiredExampleOuter"><span class="requiredExample">&nbsp;</span></span><span class="requiredMark">*</span><span class="requiredText"> = 必填信息</span></span></span>
-      <h3>一般信息</h3>
-    </div>
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
               <td class="labelCol"><label><%=t(:label_icm_close_reason_company)%></label></td>
-              <td class="dataCol"><%= Irm::Company.multilingual.find(@close_reason.company_id)[:name]%></td>
+              <td class="dataCol"><%= Irm::Company.multilingual.find(@close_reason.company_id).name%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=t(:label_icm_close_reason_close_code)%></label></td>
-              <td class="dataCol"><%=f.text_field :close_code, :required=>true%></td>
+              <td class="dataCol"><%= @close_reason.close_code%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=t(:label_icm_close_reason_name)%></label></td>
-              <td class="dataCol"><%=f.text_field :name, :required=>true%></td>
+              <td class="dataCol"><%= @close_reason.name%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :active)%></label></td>
-              <td class="dataCol"><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
+              <td class="dataCol"><%= @close_reason.status_code%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
@@ -64,18 +60,4 @@
       </table>
     </div>
   </div>
-  <div class="pbBottomButtons">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <tbody>
-        <tr>
-          <td class="pbTitle"></td>
-          <td id="bottomButtonRow" class="pbButtonb">
-            <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_back t(:cancel)%></div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 </div>
-<% end %>

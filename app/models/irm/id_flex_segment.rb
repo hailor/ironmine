@@ -4,9 +4,11 @@ class Irm::IdFlexSegment < ActiveRecord::Base
   #多语言关系
   attr_accessor :form_left_prompt,:description
   has_many :id_flex_segments_tls,:dependent => :destroy, :foreign_key => :segment_name, :primary_key => :segment_name
-  
   acts_as_multilingual(:columns =>[:form_left_prompt,:description], :required=>[:form_left_prompt])
-
+  
+  validates_uniqueness_of :segment_name
+  validates_presence_of :segment_name
+  
   scope :query_by_flex_code_num, lambda{|id_flex_code, id_flex_num| where("#{table_name}.id_flex_code = ? AND #{table_name}.id_flex_num = ?", id_flex_code, id_flex_num)}
   scope :segment, lambda{|segment| where("#{table_name}.segment_name = ?", segment)}
 

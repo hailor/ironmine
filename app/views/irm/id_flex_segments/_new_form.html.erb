@@ -2,7 +2,7 @@
   <div class="ptBody">
     <div class="content">
       <h1 class="pageType"></h1>
-      <h2 class="pageDescription"><%=t(:label_icm_incident_phase_new)%></h2>
+      <h2 class="pageDescription"><%=t(:label_irm_id_flex_segment_new)%></h2>
       <div class="blank">&nbsp;</div>
     </div>
     <div class="links">
@@ -12,13 +12,13 @@
   </div>
 </div>
 
-<%= form_for(@incident_phase,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+<%= form_for(@id_flex_segment,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_icm_incident_phase_new)%></h2></td>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_id_flex_segment_new)%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
             <div class="button"><%= link_back t(:cancel)%></div>
@@ -28,7 +28,7 @@
     </table>
   </div>
   <div class="pbBody">
-    <%= error_for @incident_phase%>
+    <%= error_for @id_flex_segment%>
     <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
       <span class="pbSubExtra"><span class="requiredLegend"><span class="requiredExampleOuter"><span class="requiredExample">&nbsp;</span></span><span class="requiredMark">*</span><span class="requiredText"> = 必填信息</span></span></span>
       <h3>一般信息</h3>
@@ -37,31 +37,43 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <td class="labelCol"><label><%=t(:label_icm_incident_phase_company)%></label></td>
-              <td class="dataCol"><%=f.select :company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                    options_for_select(selectable_companies,@incident_phase.company_id),
-                                                    {},{}%></td>
+              <td class="labelCol"><label><%=(t :label_irm_id_flex_structure_code)%></label></td>
+              <td class="dataCol"><%= @id_flex_structure.id_flex_structure_code%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=t(:label_icm_incident_phase_phase_code)%></label></td>
-              <td class="dataCol"><%=f.text_field :phase_code, :required=>true ,:irm_uppercase=>true%></td>
+              <td class="labelCol"><label><%=(t :label_irm_id_flex_structure_name_full)%></label></td>
+              <td class="dataCol"><%= @id_flex_structure[:id_flex_structure_name]%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
-              <td class="labelCol"><%=t(:label_icm_incident_phase_name)%></td>
-              <td class="dataCol"><%=f.text_field :name, :required=>true %></td>
+              <td class="labelCol"><label><%=t(:label_irm_id_flex_segment_name)%></label></td>
+              <td class="dataCol"><%= f.text_field :segment_name, :required => true%></td>
+              <td class="labelCol"><label><%=t(:label_irm_value_set)%></label></td>
+              <td class="dataCol"><div><%= f.select :flex_value_set_name, available_flex_value_sets.collect{|p| [p.flex_value_set_name, p.flex_value_set_name]}, {:include_blank => t(:select)}%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_id_flex_segment_form_left_prompt)%></label></td>
+              <td class="dataCol"><%= f.text_field :form_left_prompt, :required => true%></td>
+              <td class="labelCol"><%= t(:label_irm_id_flex_segment_segment_num) %></td>
+              <td class="dataCol"><div><%= f.text_field :segment_num%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_id_flex_segment_description)%></label></td>
+              <td class="dataCol"><div><%= f.text_area :description, :rows => 4%></div></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
-              <td class="labelCol"><%=t(:label_icm_incident_phase_description)%></td>
-              <td class="dataCol"><%= f.text_area :description, :rows => 4%></td>
+              <td class="labelCol"><label><%=(t :active)%></label></td>
+              <td class="dataCol"><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
-            </tr>        
+            </tr>
+            <%= f.hidden_field :id_flex_code, :value => @id_flex_structure.id_flex_code %>
+            <%= f.hidden_field :id_flex_num, :value => @id_flex_structure.id_flex_num %>
         </tbody>
       </table>
     </div>
