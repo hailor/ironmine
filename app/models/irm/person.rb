@@ -4,6 +4,7 @@ class Irm::Person < ActiveRecord::Base
   belongs_to :identity
 
   validates_presence_of :last_name,:first_name,:title,:email_address
+  validates_uniqueness_of :email_address, :if => Proc.new { |i| !i.email_address.blank? }
 
   scope :query_by_identity,lambda{|identity|
     where(:identity_id=>identity)
