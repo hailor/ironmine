@@ -59,11 +59,11 @@
   <div class="pbBody">
     <div class="componentDate">2010-12-29 下午4:10 的最后一次刷新。 显示数据为zhang arone。</div>
       <div class="pbBody">
-        <div id="pizza" class="datatable" style="width:100%">
+        <div id="home_permission_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
           </div>
         </div>
-        <%= datatable("pizza",url_for(:controller => "irm/permissions", :action=>"get_data",:format=>"json"),
+        <%= datatable("home_permission_list",url_for(:controller => "irm/permissions", :action=>"get_data",:format=>"json"),
                       [{:key=>"product_module_name",:label=>t(:label_irm_permission_product_name),:sortable=>true},
                        {:key=>"permission_code",:label=>t(:label_irm_permission_permission_code),:sortable=>true},
                        {:key=>"name",:label=>t(:label_irm_permission_name),:sortable=>true},
@@ -73,7 +73,9 @@
       </div>
   </div>
 </div>
-
+<div id="tabView" class="bMiniTab"></div>
+<%= tabview("tabView", {"Chrome" => 'permissions', "Firefox" => 'product_modules'}) %>
+  
 <table class="toolsContent">
     <tbody>
         <tr>

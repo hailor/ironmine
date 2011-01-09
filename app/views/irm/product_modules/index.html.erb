@@ -52,8 +52,8 @@
         </table>
       </div>
       <div class="pbBody">
-        <div id="pizza" class="datatable" style="width:100%"></div>
-        <%= datatable("pizza",url_for(:action=>"get_data",:format=>"json"),
+        <div id="product_modules_list" class="datatable" style="width:100%"></div>
+        <%= datatable("product_modules_list",url_for(:action=>"get_data",:format=>"json"),
                   [{:key=>"product_short_name",:label=>t(:label_irm_product_module_product_short_name),:sortable=>true},
                    {:key=>"name",:label=>t(:label_irm_product_module_name),:sortable=>true},
                    {:key=>"description",:label=>t(:label_irm_product_module_description),:sortable=>true},

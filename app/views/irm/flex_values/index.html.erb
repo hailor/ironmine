@@ -89,12 +89,12 @@
         </table>
       </div>
       <div class="pbBody">
-        <div id="pizza" class="datatable" style="width:100%">
+        <div id="flex_values_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
-        <%= datatable("pizza",url_for(:action=>"get_data",:format=>"json", :value_set_id => @value_set),
+        <%= datatable("flex_values_list",url_for(:action=>"get_data",:format=>"json", :value_set_id => @value_set),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
                        {:key=>"display_sequence",:label=>t(:label_irm_flex_value_position)},
                        {:key=>"flex_value",:label=>t(:label_irm_flex_value_name)},
