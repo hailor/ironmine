@@ -13,6 +13,7 @@
 </div>
 
 <%= form_for(@company,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+<%= hidden_field_tag :return_url,@return_url %>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -21,7 +22,11 @@
           <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_company_edit)%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+            <% if @return_url.blank? %>
+              <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+            <% else %>
+              <div class="button"><%= link_to t(:cancel), @return_url%></div>
+            <% end %>
           </td>
         </tr>
       </tbody>
@@ -89,7 +94,11 @@
           <td class="pbTitle"></td>
           <td id="bottomButtonRow" class="pbButtonb">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+            <% if @return_url.blank? %>
+              <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+            <% else %>
+              <div class="button"><%= link_to t(:cancel), @return_url%></div>
+            <% end %>
           </td>
         </tr>
       </tbody>

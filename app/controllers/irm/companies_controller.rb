@@ -18,6 +18,7 @@ class Irm::CompaniesController < ApplicationController
   # GET /Companies/new.xml
   def new
     @company = Irm::Company.new
+    @return_url= request.env['HTTP_REFERER']
 
     respond_to do |format|
       format.html # new.html.erb
@@ -28,6 +29,7 @@ class Irm::CompaniesController < ApplicationController
   # GET /Companies/1/edit
   def edit
     @company = Irm::Company.multilingual.find(params[:id])
+    @return_url= request.env['HTTP_REFERER']
   end
 
   # POST /Companies
@@ -37,7 +39,13 @@ class Irm::CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.save
-        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_created))}        
+        format.html {
+          if params[:return_url].blank?
+            redirect_to({:action=>"index"},:notice => (t :successfully_created))
+          else
+            redirect_to(params[:return_url],:notice => (t :successfully_created))
+          end
+        }
         format.xml  { render :xml => @company, :status => :created, :location => @company }
       else
         @error = @company
@@ -54,7 +62,12 @@ class Irm::CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.update_attributes(params[:irm_company])
-        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
+        format.html {
+          if params[:return_url].blank?
+            redirect_to({:action=>"index"},:notice => (t :successfully_created))
+          else
+            redirect_to(params[:return_url],:notice => (t :successfully_created))
+          end }
         format.xml  { head :ok }
       else
         @error = @company
