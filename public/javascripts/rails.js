@@ -221,6 +221,20 @@ YUI(yuiConfig).use('node-base', 'node-event-delegate', 'io-form', 'rails-ujs', '
 	doc.delegate('submit', disableFormElements, 'form:not([data-remote])');
 	doc.delegate('ajax:before', disableFormElements, 'form[data-remote]');
 	doc.delegate('ajax:complete', enableFormElements, 'form[data-remote]');
+
+    //add for ironmine===================================================
+    doc.delegate('click', handleSubmit, 'a[type=submit]');
+
+    function handleSubmit(e){
+      doc.all("form").each(function(f){
+          aschild = f.one("#"+e.currentTarget.get("id"));
+          if(aschild){
+              f.submit();
+          }
+      });
+      e.preventDefault();
+    }
+    //add for ironmine===================================================
 });
 
 })();

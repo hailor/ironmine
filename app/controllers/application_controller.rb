@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   # menu_setup 设置当前页面对应的菜单数据
   before_filter :user_setup
   before_filter :permission_setup
-  #before_filter :check_if_login_required
+  before_filter :check_if_login_required
   before_filter :person_setup
   before_filter :check_permission
   before_filter :localization_setup

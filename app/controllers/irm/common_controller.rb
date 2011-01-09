@@ -1,12 +1,11 @@
 class Irm::CommonController < ApplicationController
-  layout false
+  layout "common"
   skip_before_filter :check_if_login_required
 
   def login
     if request.get?
       # 注销用户
       self.logged_user = nil
-      puts "get comming"
     else
       password_authentication(session[:session_id])
     end
@@ -54,7 +53,8 @@ class Irm::CommonController < ApplicationController
     #  cookies[:autologin] = { :value => token.value, :expires => 1.year.from_now }
     #end
     #call_hook(:controller_account_success_authentication_after, {:user => user })
-    redirect_back_or_default :controller => 'irm/navigations', :action => 'entrance'
+    entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>"IRM_ENTRANCE_MENU"})
+    redirect_back_or_default :controller => entrance[:page_controller], :action => entrance[:page_action]
   end
 
   def logout_successful(session_id)
