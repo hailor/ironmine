@@ -1148,3 +1148,5 @@ body.homeTab #db_refresh_time {margin-bottom:5px;}
 body.homeTab .componentDate {margin-left:10px;}
 .componentDate {font-family:'MS UI Gothic','MS PGothic','Osaka','Arial','Helvetica',sans-serif;}
 .componentDate {font-size:0.91em;margin-top:5px;}
+
+.bMiniTab {margin-bottom: 5px;}

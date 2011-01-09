@@ -7,6 +7,10 @@ var yuiConfig = {
         irmdtdatasource:{
             fullpath:"/javascripts/irm/irm-dtdatasource.js",
             requires: ["datatable-datasource"]
+        },
+        gallerywidgetio:{
+            fullpath:"/javascripts/gallery/widget-io.js",
+            requires: ["io-base"]
         }
     },
     groups: {

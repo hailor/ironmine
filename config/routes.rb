@@ -25,11 +25,9 @@ Ironmine::Application.routes.draw do
     match '/product_modules/:id(.:format)' => "product_modules#update", :via => :put
     match '/product_modules/new(.:format)' => "product_modules#new", :via => :get
     match '/product_modules/create(.:format)' => "product_modules#create", :via => :post
-    match '/product_modules/:id/multilingual_edit(.:format)' => "product_modules#multilingual_edit", :via => :get
-    match '/product_modules/:id/multilingual_update(.:format)' => "product_modules#multilingual_update", :via => :put
     match '/product_modules/get_data(.:format)' => "product_modules#get_data"
-    match '/product_modules/enable(.:format)' => "product_modules#enable", :via => :post
-    match '/product_modules/disable(.:format)' => "product_modules#disable", :via => :post
+    match '/product_modules/data_grid(.:format)' => "product_modules#data_grid", :via => :get
+
     #languages
     match '/languages(/index)(.:format)' => "languages#index", :via => :get
     match '/languages/get_data(.:format)' => "languages#get_data"
@@ -71,6 +69,7 @@ Ironmine::Application.routes.draw do
     match '/permissions/:id/multilingual_update(.:format)' => "permissions#multilingual_update", :via => :put
     match '/permissions/get_data(.:format)' => "permissions#get_data"
     match '/permissions/:id/show(.:format)' => "permissions#show", :via => :get
+    match '/permissions/data_grid(.:format)' => "permissions#data_grid", :via => :get
     #conditions
     match '/conditions(/index)(.:format)' => "conditions#index", :via => :get
     match '/conditions/get_data(.:format)' => "conditions#get_data"
