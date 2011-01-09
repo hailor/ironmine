@@ -330,6 +330,7 @@ Ironmine::Application.routes.draw do
     match '/support_groups/choose_person(.:format)' => "support_groups#choose_person"
     match '/support_groups/create_member(.:format)' => "support_groups#create_member"
     match '/support_groups/delete_member(.:format)' => "support_groups#delete_member"
+    match '/support_groups/:id(.:format)' => "support_groups#show"
     #sites
     match '/sites(/index)(.:format)' => "sites#index", :via => :get
     match '/sites/get_data(.:format)' => "sites#get_data"
@@ -388,6 +389,14 @@ Ironmine::Application.routes.draw do
     match '/id_flex_segments/:id_flex_code/:id_flex_num/new(.:format)' => "id_flex_segments#new", :via => :get
     match '/id_flex_segments/create(.:format)' => "id_flex_segments#create", :via => :post
     match '/id_flex_segments/:id/show(.:format)' => "id_flex_segments#show", :via => :get
+    #support_group_members
+    match '/support_group_members(/index)(.:format)' => "support_group_members#index", :via => :get
+    match '/support_group_members/:id/edit(.:format)' => "support_group_members#edit", :via => :get
+    match '/support_group_members/:id(.:format)' => "support_group_members#update", :via => :put
+    match '/support_group_members/new(.:format)' => "support_group_members#new", :via => :get
+    match '/support_group_members/create(.:format)' => "support_group_members#create"
+    match '/support_group_members/get_data(.:format)' => "support_group_members#get_data"
+    match '/support_group_members/select_person(.:format)' => "support_group_members#select_person"
   end
 
   scope :module => "icm" do

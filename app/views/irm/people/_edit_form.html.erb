@@ -34,7 +34,7 @@
         <span class="requiredLegend"><span class="requiredExampleOuter">
           <span class="requiredExample">&nbsp;</span></span>
            <span class="requiredMark">*</span><span class="requiredText"> = <%=t(:label_is_required)%></span></span></span>
-      <h3><%=t(:label_common_info)%></h3>
+      <h3><%=t(:label_irm_person_info)%></h3>
     </div>
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
@@ -57,7 +57,7 @@
   </div>
   <div class="pbBody">
     <div id="head_2_ep" class="pbSubheader first tertiaryPalette">
-      <h3><%=t(:label_common_info)%></h3>
+      <h3><%=t(:label_irm_person_other_info)%></h3>
     </div>
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
@@ -100,17 +100,18 @@
                  <td class="dataCol">
                    <%=f.text_field :home_phone%>
                  </td>
-                 <td class="labelCol empty">&nbsp;</td>
-                 <td class="dataCol empty">&nbsp;</td>
+                 <td class="labelCol"><label>
+                     <%=t(:label_irm_person_assignment_availability_flag)%></label></td>
+                  <td class="dataCol"><%=f.check_box :assignment_availability_flag%></td>
              </tr>
              <tr>
                  <td class="labelCol"><label><%=t(:label_irm_person_home_address)%></label></td>
                  <td class="dataCol">
                    <%=f.text_field :home_address%>
                  </td>
-                 <td class="labelCol"><label>
-                     <%=t(:label_irm_person_assignment_availability_flag)%></label></td>
-                  <td class="dataCol"><%=f.check_box :assignment_availability_flag%></td>
+                 <td class="labelCol"><label><%=(t :label_irm_person_region_code)%></label></td>
+                  <td class="dataCol"><%=f.select :region_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_region,:region_code,:wrap_name,@person.region_code),{},{:required=>true}%></td>
              </tr>
              <tr>
                  <td class="labelCol"><label><%=t(:label_irm_person_mobile_phone)%></label></td>

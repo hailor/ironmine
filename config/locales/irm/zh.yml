@@ -511,10 +511,11 @@ zh:
   label_irm_support_group_support_role: 角色
   label_irm_support_group_vendor_group: 供应商组
   label_irm_support_group_base_info: 基本信息
-  label_irm_support_group_member: 人员
-  label_irm_support_person_name: 人员名称
+  label_irm_support_group_member: 支持组成员
   label_irm_support_group_choose_person: 选择人员
   label_irm_support_group_add_person: 添加人员
+  label_irm_support_group_show: 支持组
+  label_irm_support_group_person_name: 人员名称
   #=========================end irm support_groups_controller=======================#
   #=========================    irm people_controller=======================#
   label_irm_person_login: 登录名
@@ -564,6 +565,10 @@ zh:
   label_irm_person_person_name: 姓名
   label_irm_person_all_support_groups: 所在支持组
   label_irm_person_choose_company: 选择公司
+  label_irm_person_info: 个人信息
+  label_irm_person_other_info: 其他信息
+  label_irm_person_company_access_flag: 是否可以访问
+  label_irm_person_support_stuff_flag: 是否支持组
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: 弹性域
@@ -598,3 +603,12 @@ zh:
   label_irm_id_flex_segment_description: 描述
   label_irm_id_flex_segment_form_left_prompt: 段名称
   #=========================end id_flex_structures_controller=======================#
+  #=========================    irm people_controller=======================#
+  label_irm_company_access_new: 新建公司访问
+  label_irm_company_access_info: 公司访问信息
+  #=========================end irm people_controller=======================#
+  #=========================    irm support_group_controller=======================#
+  label_irm_support_group_member_new: 新增支持组成员
+  label_irm_support_group_member_group_list: 支持组成员列表
+  label_irm_support_group_member_infoL: 支持组成员
+  #=========================end irm  support_group_controller=======================#

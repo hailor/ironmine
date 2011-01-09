@@ -33,9 +33,9 @@ class Irm::SupportGroupMember < ActiveRecord::Base
     end
   end
 
-  def self.delete_support_group_member(person_list,support_group_code)
-    self.delete_all(["support_group_code = ? and person_id in (?) ",
-                     support_group_code,person_list])
+  def self.delete_support_group_member(support_group_code)
+    self.delete_all(["support_group_code = ?",
+                     support_group_code])
   end
 
   def self.delete_by_id(id)

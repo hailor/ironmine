@@ -1,0 +1,88 @@
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%=t(:label_irm_company_access_new)%></h1>
+      <h2 class="pageDescription"><%=t(:label_irm_company_access_new)%></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%></a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
+</div>
+
+<%= form_for(@company_access,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+<%= hidden_field_tag "person_id",@person_id%>    
+<%= hidden_field_tag "return_url",@return_url%>    
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_company_access_new)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), @return_url%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @company_access%>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+          <span class="requiredLegend">
+            <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+            </span>
+          <span class="requiredMark">*</span>
+          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+          </span>
+      </span>
+      <h3><%=t(:label_irm_company_access_info)%></h3>
+    </div>
+    <div class="pbSubsection">
+      <table cellspacing="0" cellpadding="0" border="0" class="detailList">
+        <tbody>
+        <tr class="tdSectionRowHeader">
+          <th scope="col" class="tdTableColumnHeader"><%= t(:label_irm_company_name) %></th>
+          <th scope="col"><%= t(:label_irm_person_company_access_flag) %></th>
+          <th scope="col"><%= t(:label_irm_person_support_stuff_flag) %></th>
+        </tr>
+          <% for company in @companies %>
+            <tr class="tdSectionRow">
+                <%= hidden_field_tag "irm_company_access[#{company.id}][accessable_company_id]",company.id %>
+                <%= hidden_field_tag "irm_company_access[#{company.id}][person_id]",@person_id%>
+                <td><%= company[:name] %></td>
+                <td>
+                    <%= check_box_tag "irm_company_access[#{company.id}][company_access_flag]",'Y',
+                                      company_access_flag(@person_id,company.id,"company_access_flag")%>
+                </td>
+                <td>
+                    <%= check_box_tag "irm_company_access[#{company.id}][support_stuff_flag]",'Y',
+                                      company_access_flag(@person_id,company.id,"support_stuff_flag")%>
+                </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel),@return_url%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
+

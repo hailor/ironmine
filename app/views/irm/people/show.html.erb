@@ -2,7 +2,7 @@
   <div class="ptBody">
     <div class="content">
       <h1 class="pageType"><%= t(:label_irm_person_show) %></h1>
-      <h2 class="pageDescription"><%=@person.short_name%></h2>
+      <h2 class="pageDescription"><%=@person[:person_name]%></h2>
       <div class="blank">&nbsp;</div>
     </div>
     <div class="links">
@@ -14,12 +14,55 @@
   </div>
 </div>
 
+<script type="text/javascript" charset="utf-8">
+    var relatedListPanel;
+    GY.use('node',function(Y){
+       relatedListPanel=new RelatedListPanel('RLPanel');
+    });
+</script>
+
+<div class="listHoverLinks" style="visibility: visible;">
+  <a id="id_person_company_access_link"
+     href="#id_person_company_access"
+     class="linklet" onmouseover="relatedListPanel.showRLDelayed('id_person_company_access');"
+     onmouseout="relatedListPanel.hideRLDelayed('id_person_company_access');">
+    <span class="listTitle"><%= t(:label_irm_person_company_access) %>
+       <span class="count">[1]</span>
+    </span>
+  </a>
+  <span class="pipe"> | </span>
+  <a id="00190000005sAel_RelatedActivityList_link" href="#00190000005sAel_RelatedActivityList_target"
+     class="linklet">
+    <span class="listTitle"><%= t(:label_irm_person_support_group) %>
+    <span class="count">[0]</span></span>
+  </a>
+</div>
+
+<div id="RLPanelShadow" class="RLPanelShadow" style="display: none;">
+  <div class="rls_top">
+  <div class="rls_tl"></div>
+  <div class="rls_tr"></div>
+  </div>
+  <div class="rls_l"></div>
+  <div class="rls_r"></div>
+  <div id="RLPanel" class="RLPanel">
+    <iframe frameborder="0" title="隐藏框架 - 忽略"
+            src="/images/emptyHtmlDoc.html"
+            name="RLPanelFrame" id="RLPanelFrame" style="height: 101px;">
+    </iframe>
+  </div>
+  <div class="rls_bottom">
+  <div class="rls_bl"></div>
+  <div class="rls_br"></div>
+  </div>
+</div>
+
 <div id="ep" class="bDetailBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_person_show) %>&nbsp;<%= t(:label_detail_info) %></h2></td>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_person_show) %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @person}%></div>
             <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
@@ -48,7 +91,124 @@
         </tbody>
       </table>
       </div>
+      <div class="pbSubheader tertiaryPalette">&nbsp;
+      <h3><%=t(:label_irm_person_other_info)%><span class="titleSeparatingColon"></span></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+           <tr>
+                 <td class="labelCol"><label><%=t(:label_irm_person_company)%></label></td>
+                 <td class="dataCol"><%=@person[:company_name]%></td>
+                 <td class="labelCol"><label><%=(t :label_irm_person_login)%></label></td>
+                 <td class="dataCol"><%=@person[:login_name]%></td>
+             </tr>
+             <tr>
+             <td class="labelCol"><label><%=t(:label_irm_person_organization)%></label></td>
+             <td class="dataCol"><%=@person[:organization_name]%></td>
+             <td class="labelCol"><label><%=(t :label_irm_person_function_group_code)%></label></td>
+             <td class="dataCol"><%=@person[:function_group_name] %></td>
+             </tr>
+             <tr>
+                 <td class="labelCol"><label><%=t(:label_irm_person_department)%></label></td>
+                 <td class="dataCol"><%=@person[:department_name]%></td>
+                 <td class="labelCol"><label>
+                    <%=t(:label_irm_person_vip_flag)%></label></td>
+                 <td class="dataCol"><%=@person.vip_flag%></td>
+             </tr>
+             <tr>
+                 <td class="labelCol"><label><%=t(:label_irm_person_home_phone)%></label></td>
+                 <td class="dataCol">
+                   <%=@person.home_phone%>
+                 </td>
+                 <td class="labelCol"><label>
+                     <%=t(:label_irm_person_assignment_availability_flag)%></label></td>
+                  <td class="dataCol"><%=@person.assignment_availability_flag%></td>
+             </tr>
+             <tr>
+                 <td class="labelCol"><label><%=t(:label_irm_person_home_address)%></label></td>
+                 <td class="dataCol">
+                   <%=@person.home_address%>
+                 </td>
+                  <td class="labelCol"><label><%=(t :label_irm_person_region_code)%></label></td>
+                  <td class="dataCol"><%=@person[:region_name]%></td>
+             </tr>
+             <tr>
+                 <td class="labelCol"><label><%=t(:label_irm_person_mobile_phone)%></label></td>
+                 <td class="dataCol">
+                   <%=@person.mobile_phone%>
+                 </td>
+                 <td class="labelCol"><label><%=(t :label_irm_person_site_group_code)%></label></td>
+                 <td class="dataCol"><%= @person[:site_group_name]%></td>
+             </tr>
+             <tr>
+                 <td class="labelCol"><label><%=t(:label_irm_person_fax_number)%></label></td>
+                 <td class="dataCol">
+                   <%=@person.fax_number%>
+                 </td>
+                 <td class="labelCol"><label><%=(t :label_irm_person_site_code)%></label></td>
+                 <td class="dataCol"><%=@person[:site_name]%></td>
+             </tr>
+             <tr>
+                 <td class="labelCol"><label><%=t(:label_irm_person_bussiness_phone)%></label></td>
+                 <td class="dataCol">
+                   <%=@person.bussiness_phone%>
+                 </td>
+                 <td class="labelCol"><label>
+                     <%=t(:label_irm_person_unrestricted_access_flag)%></label></td>
+                <td class="dataCol"><%=@person.unrestricted_access_flag%></td>
+             </tr>
+             <tr>
+                  <td class="labelCol"><label><%=t(:label_irm_person_notification_lang)%></label>
+                 </td>
+                 <td class="dataCol"><%=@person[:notification_lang_name]%></td>
+                  <td class="labelCol"><label>
+                     <%=t(:label_irm_person_notification_flag)%></label></td>
+                  <td class="dataCol"><%=@person.notification_flag%></td>
+             </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-    
+</div>
+
+<div id="id_person_company_access" class="bRelatedList">
+    <a name="id_person_company_access_target">
+    </a>
+    <div class="listRelatedObject taskBlock">
+      <div class="bPageBlock secondaryPalette">
+        <div class="pbHeader">
+          <table cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+            <tr>
+              <td class="pbTitle">
+                <h3 id="id_person_company_access_title"><%=t(:label_irm_person_company_access)%></h3>
+              </td>
+              <td class="pbButton">
+                <div class="button"><%= link_to t(:edit), {:controller=>"irm/company_accesses",
+                                                          :action => "new",:person_id=>@person.id}%></div>
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="id_company_access" class="pbBody">
+          <div id="person" class="datatable" style="width:100%;">
+          </div>
+          <!-- Begin company access table -->
+            <%= datatable("person",url_for(:controller=>"irm/company_accesses",:action=>"get_data",:person_id=>@person.id),
+                              [{:key=>"company_name",:label=>t(:label_irm_person_company),:sortable=>true},
+                               {:key=>"company_access_flag",:label=>t(:label_irm_person_company_access_flag),:sortable=>true},
+                               {:key=>"support_stuff_flag",:label=>t(:label_irm_person_support_stuff_flag),:sortable=>true}],
+                               {:row_perpage=>5})%>
+          <!-- End company access table -->
+        </div>
+        <div class="pbFooter secondaryPalette">
+        <div class="bg"></div>
+        </div>
+      </div>
+    </div>
 </div>
 

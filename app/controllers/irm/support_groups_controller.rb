@@ -13,7 +13,7 @@ class Irm::SupportGroupsController < ApplicationController
   # GET /support_groups/1
   # GET /support_groups/1.xml
   def show
-    @support_group = Irm::SupportGroup.find(params[:id])
+    @support_group = Irm::SupportGroup.multilingual.query_wrap_info(I18n::locale).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -73,15 +73,12 @@ class Irm::SupportGroupsController < ApplicationController
 
   def get_data
     @support_groups= Irm::SupportGroup.multilingual.query_wrap_info(I18n::locale)
+    @support_groups,count = paginate(@support_groups)
     respond_to do |format|
-      format.json {render :json=>@support_groups.to_dhtmlxgrid_json(['R',:company_name,:organization_name,:group_code,:name,
-                                                                  :description,:support_role_name,:vendor_group_flag,
-                                                                  :oncall_group_flag,:status_meaning,
-                                                                  {:value => 'M', :controller => 'irm/support_groups',
-                                                                   :action =>  'multilingual_edit', :id => 'id',
-                                                                   :action_type => 'multilingual',:view_port=>'id_support_group_list',
-                                                                   :script => ''}],
-                                                                 @support_groups.size)}
+      format.json {render :json=>to_jsonp(@support_groups.to_grid_json(['R',:company_name,:organization_name,:group_code,:name,
+                                                                  :support_role_name,:vendor_group_flag,
+                                                                  :oncall_group_flag,:status_meaning],
+                                                                 count))}
     end
   end
 
