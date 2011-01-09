@@ -93,7 +93,7 @@ class ApplicationController < ActionController::Base
 
   # 设置当前页面对应的菜单数据
   def menu_setup
-    @setting_menus = []
+    @setting_menus = default_setting_menus
     @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>params[:controller],:page_action=>params[:action]})
     if @page_menus[0]&&@page_menus[0].eql?("IRM_SETTING_ENTRANCE_MENU")
       @setting_menus = @page_menus.dup
@@ -218,6 +218,16 @@ class ApplicationController < ActionController::Base
   def default_menus
     menus = ["IRM_ENTRANCE_MENU"]
     entry = Irm::MenuManager.sub_entries_by_menu("IRM_ENTRANCE_MENU")[0]
+    if entry && entry[:entry_type].eql?("MENU")
+       menus << entry[:menu_code]
+    end
+    menus
+  end
+
+  # 默认设置菜单
+  def default_setting_menus
+    menus = ["IRM_SETTING_ENTRANCE_MENU"]
+    entry = Irm::MenuManager.sub_entries_by_menu("IRM_SETTING_ENTRANCE_MENU",true)[0]
     if entry && entry[:entry_type].eql?("MENU")
        menus << entry[:menu_code]
     end

@@ -7,6 +7,21 @@ module Irm::SettingHelper
       "MenuEntry Name"
     end
   end
+
+
+  # 生成设置一级菜单
+  def setting_menu
+    menus = @setting_menus.dup
+    return nil unless menus&&menus.size>1
+    entries = Irm::MenuManager.sub_entries_by_menu(menus[0])
+    links = ""
+    entries.each do |e|
+      links << content_tag(:span,link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]}),{:class=>"menuItem"})
+    end
+
+    links.html_safe
+  end
+
   # 生成左侧菜单
   def sidebar_menu
     # 当前页面选中的权限
@@ -21,41 +36,10 @@ module Irm::SettingHelper
     parent_menu_code = menus[1]
     content = content_tag(:div, content_tag(:div, raw(content_tag(:img,"", {:width => 205, :height => 1, :title => "", :src => "/images/s.gif"}) + generate_sidebar_menu(parent_menu_code)), {:id => "AutoNumber5"}),{:id=>"MenuNavTree",:class=>"mTreeSelection"})
     script = %Q(
-      GY.use(function(Y){
+      GY.use("irm",function(Y){
         var current_permissions = [#{permssions.collect{|x| "'#{x}'"}.join(",")}];
         var current_menus = [#{menus.collect{|x| "'#{x.downcase}'"}.join(",")}];
-        // 处理展开事件
-        Y.one("#MenuNavTree").delegate("click",function(e){
-          if(this.hasClass("NavTreeCol")){
-            this.removeClass("NavTreeCol");
-            this.addClass("NavTreeExp");
-            Y.one('#'+this.getAttribute("real")+"_child").setStyle("display","block");
-          }
-          else{
-            this.removeClass("NavTreeExp");
-            this.addClass("NavTreeCol");
-            Y.one('#'+this.getAttribute("real")+"_child").setStyle("display","none");
-          }
-
-        },".NavIconLink")
-        //选中当前页面的结点
-        Y.one("#MenuNavTree").all(".parent").each(function(n){
-          for(var i = 0;i<current_permissions.length;i++){
-            selectedNode = n.one("div.setupLeaf[mi='"+current_permissions[i]+"']");
-            if(selectedNode){
-              if(n.one(".NavIconLink")&&n.one(".NavIconLink").hasClass("NavTreeCol"))
-                n.one(".NavIconLink").simulate("click")
-              selectedNode.addClass("setupHighlightLeaf");
-            }
-          }
-          for(var i = 0;i<current_menus.length;i++){
-            selectedNode = n.one("a.NavIconLink[real='"+current_menus[i]+"']");
-            if(selectedNode){
-              if(n.one(".NavIconLink")&&n.one(".NavIconLink").hasClass("NavTreeCol"))
-                n.one(".NavIconLink").simulate("click")
-            }
-          }
-        });
+        Y.irm.navTree("MenuNavTree",current_permissions,current_menus);
       });
     )
     (content+javascript_tag(script)).html_safe
@@ -89,7 +73,7 @@ module Irm::SettingHelper
     functions.html_safe
   end
 
-
+  # 展开菜单下的 子项
   def generate_entries_table(menu_code)
     return nil unless menu_code
     entries = Irm::MenuManager.sub_entries_by_menu(menu_code,true)
@@ -105,5 +89,16 @@ module Irm::SettingHelper
     end
     raw content
 
+  end
+
+
+  # 展开菜单子项
+  def generate_entries_table_ext(entriy)
+    if(entriy[:entry_type].eql?("MENU"))
+      generate_entries_table(menu_code[:meun_code])
+    else
+      tr = content_tag(:td,("•"+link_to(entriy[:description],{:controller=>entriy[:page_controller],:action=>entriy[:page_action],:mc=>entriy[:menu_code],:mi=>entriy[:menu_entry_id]})).html_safe,{:width=>"50%"}) if entriy
+     content_tag(:tr,tr.html_safe).html_safe
+    end
   end
 end
