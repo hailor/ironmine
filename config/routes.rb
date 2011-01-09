@@ -388,6 +388,9 @@ Ironmine::Application.routes.draw do
     match '/id_flex_segments/:id_flex_code/:id_flex_num/new(.:format)' => "id_flex_segments#new", :via => :get
     match '/id_flex_segments/create(.:format)' => "id_flex_segments#create", :via => :post
     match '/id_flex_segments/:id/show(.:format)' => "id_flex_segments#show", :via => :get
+    # setting
+    match '/setting(/index)(.:format)' =>'setting#index'
+    match '/setting/common(.:format)' =>'setting#common'
     #home
     match '/home(/index)(.:format)' => "home#index", :via => :get
   end

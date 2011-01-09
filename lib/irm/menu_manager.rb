@@ -35,7 +35,7 @@ module Irm
           tmp_menu_entries = m.menu_entries.where("sub_menu_code IS NOT NULL").order(:display_sequence)
           menu_entries = []
           tmp_menu_entries.each do |tm|
-            data = {:menu_entry_id=>tm.id,:sub_menu_code=>tm.sub_menu_code,:permission_code=>tm.permission_code}
+            data = {:menu_entry_id=>tm.id,:sub_menu_code=>tm.sub_menu_code,:permission_code=>tm.permission_code,:display_flag=>tm.display_flag}
             tm.menu_entries_tls.each do |mt|
               data.merge!({mt.language.to_sym=>{:name=>mt.name,:description=>mt.description}})
             end
@@ -45,7 +45,7 @@ module Irm
           tmp_permission_entries = m.menu_entries.where("sub_menu_code IS NULL AND permission_code IS NOT NULL").order(:display_sequence)
           permission_entries = []
           tmp_permission_entries.each do |tp|
-            data = {:menu_entry_id=>tp.id,:permission_code=>tp.permission_code}
+            data = {:menu_entry_id=>tp.id,:permission_code=>tp.permission_code,:display_flag=>tp.display_flag}
             tp.menu_entries_tls.each do |mt|
               data.merge!({mt.language.to_sym=>{:name=>mt.name,:description=>mt.description}})
             end
@@ -105,7 +105,8 @@ module Irm
 
       # 通过菜单编码取得子菜单项
       # 在返回子项前进行菜单子项的权限验证
-      def sub_entries_by_menu(menu_code)
+      # must_permission_code 表示entry的permission_code不能为空，如果为空使用IRM_SETTING_COMMON填充
+      def sub_entries_by_menu(menu_code,must_permission_code=false)
         sub_entries = []
         menu = menus[menu_code]
         menu[:menu_entries].each do |me|
@@ -120,7 +121,9 @@ module Irm
                              :name=>me[::I18n.locale.to_sym][:name],
                              :description=>me[::I18n.locale.to_sym][:description],
                              :permission_code=>me[:permission_code]}
-          sub_entries<< entries_options.merge!(permission_url_options(me[:permission_code],false)) if menu_showable(me)
+            entries_options.merge!({:permission_code=>"IRM_SETTING_COMMON"}) if must_permission_code&&entries_options[:permission_code].nil?
+            show_options = menu_showable(me.merge(:permission_code=>entries_options[:permission_code]))
+            sub_entries<< entries_options.merge!(show_options) if show_options&&me[:display_flag].eql?("Y")
         end
         menu[:permission_entries].each do |pe|
           if(permissions[pe[:permission_code]].nil?)
@@ -132,23 +135,29 @@ module Irm
                              :name=>pe[::I18n.locale.to_sym][:name],
                              :description=>pe[::I18n.locale.to_sym][:description],
                              :permission_code=>pe[:permission_code]}
-          sub_entries<< entries_options.merge!(permission_url_options(pe[:permission_code])) if check_permission(pe[:permission_code])
+          sub_entries<< entries_options.merge!(permission_url_options(pe[:permission_code])) if pe[:display_flag].eql?("Y")&&check_permission(pe[:permission_code])
         end
         sub_entries
       end
 
       # 确定菜单是否可显示
       def menu_showable(menu_entry)
-        if(menu_entry[:permission_code])
-          check_permission(menu_entry[:permission_code])
+        if(menu_entry[:permission_code]&&check_permission(menu_entry[:permission_code]))
+          return permission_url_options(menu_entry[:permission_code])    
         else
           menu = menu_by_code(menu_entry[:sub_menu_code])
           if menu
-            menu[:menu_entries].detect{|me| menu_showable(me)}||menu[:permission_entries].detect{|pe| check_permission(pe[:permission_code])}
-          else
-            true
+            menu[:menu_entries].each do |me|
+              showable = menu_showable(me)
+              return showable if showable
+            end
+
+            menu[:permission_entries].each do |pe|
+              return permission_url_options(pe[:permission_code]) if check_permission(pe[:permission_code])
+            end
           end
         end
+        false
       end
 
       # 检查permission的权限
@@ -160,24 +169,20 @@ module Irm
 
       # 使用permission_code取得permission中的url 参数
       # is_permission 表示权限还是菜单
-      def permission_url_options(permission_code,is_permission=true)
+      def permission_url_options(permission_code)
         permission = permissions[permission_code]
         if permission
           {:page_controller=>permission[:page_controller],:page_action=>permission[:page_action]}
         else
-          if is_permission
-            {}
-          else
-            {:page_controller=>"irm/navigations",:page_action=>"common"}
-          end
+          {}
         end  
       end
 
       #通过权限编辑取得菜单列表
       def parent_menus_by_permission(options={})
         menus =  permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions",options[:page_action]||"index")]||[]
-        return menus unless menus.size==0
-        permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions","index")]||[]
+        return menus.dup unless menus.size==0
+        (permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions","index")]||[]).dup
       end
 
       # 通过菜单取得上层菜单列表
