@@ -40,39 +40,6 @@
     content here
   </div>
 </div>
-
-<div class="bPageBlock">
-  <div class="pbHeader">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <tbody>
-        <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_permission_list) %></h2></td>
-          <td class="pbButton">
-            <div class="button"><a href="javascript:void(0);">新建</a> </div>
-          </td>
-          <td class="pbHelp">
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="pbBody">
-    <div class="componentDate">2010-12-29 下午4:10 的最后一次刷新。 显示数据为zhang arone。</div>
-      <div class="pbBody">
-        <div id="home_permission_list" class="datatable" style="width:100%">
-          <div id="id" style="display:none">
-          </div>
-        </div>
-        <%= datatable("home_permission_list",url_for(:controller => "irm/permissions", :action=>"get_data",:format=>"json"),
-                      [{:key=>"product_module_name",:label=>t(:label_irm_permission_product_name),:sortable=>true},
-                       {:key=>"permission_code",:label=>t(:label_irm_permission_permission_code),:sortable=>true},
-                       {:key=>"name",:label=>t(:label_irm_permission_name),:sortable=>true},
-                       {:key=>"page_controller",:label=>t(:label_irm_permission_page_controller),:sortable=>true},
-                       {:key=>"page_action",:label=>t(:label_irm_permission_page_action),:sortable=>true},
-                       {:key=>"status_code",:label=>t(:label_irm_permission_status_code),:sortable=>true}])%>
-      </div>
-  </div>
-</div>
 <div id="tabView" class="bMiniTab"></div>
 <%= tabview("tabView", {"Chrome" => 'permissions/data_grid', "Firefox" => 'permissions/data_grid'}) %>
   
