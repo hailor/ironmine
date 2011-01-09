@@ -16,7 +16,7 @@ module Irm::SettingHelper
     entries = Irm::MenuManager.sub_entries_by_menu(menus[0],true)
     links = ""
     entries.each do |e|
-      links << content_tag(:span,link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]}),{:class=>"menuItem"})
+      links << content_tag(:span,link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id],:level=>1}),{:class=>"menuItem"})
     end
 
     links.html_safe
