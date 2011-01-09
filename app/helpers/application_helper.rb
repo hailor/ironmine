@@ -54,7 +54,7 @@ module ApplicationHelper
     end
     columns_conf.chop!
     data_fields.chop!
-    script = %Q(GY.use("irm","datasource-get", "datasource-jsonschema","irmdtdatasource","datatable-sort","datatable-colresize",function(Y) {
+    script = %Q(GY.use("irm","datasource-get", "datasource-jsonschema","dtdatasource","datatable-sort","datatable-colresize",function(Y) {
          var #{id}Cols = [#{columns_conf}],
          #{id}Datasource = new Y.DataSource.Get({source:'#{source_url}'})
                    .plug(Y.Plugin.DataSourceJSONSchema, {
