@@ -380,6 +380,9 @@ zh:
   label_irm_location_status: 记录状态
   label_irm_company_short_name: 编码
   label_irm_location_edit: 编辑地点
+  label_irm_company_info: 公司详细信息
+  label_irm_company_show: 公司
+  label_irm_location_info: 地点信息
   #=========================end irm companies_controller=======================#
   #=========================    irm login_records_controller=======================#
   label_irm_login_record_list: 用户登录历史

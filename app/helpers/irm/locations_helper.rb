@@ -1,0 +1,2 @@
+module Irm::LocationsHelper
+end

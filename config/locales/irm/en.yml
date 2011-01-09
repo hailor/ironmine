@@ -266,6 +266,9 @@ en:
   label_irm_location_status: Status
   label_irm_company_short_name: Short Name
   label_irm_location_edit: Edit Site
+  label_irm_company_info: Company Info
+  label_irm_company_show: Company
+  label_irm_location_info: Location Info
   #=========================end irm companies_controller=======================#
   #=========================    irm login_records_controller=======================#
   label_irm_login_record_list: User login records

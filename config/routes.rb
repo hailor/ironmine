@@ -231,6 +231,7 @@ Ironmine::Application.routes.draw do
     match '/companies/:id/edit_location(.:format)' => "companies#edit_location"
     match '/companies/:id/update_location(.:format)' => "companies#update_location"
     match '/companies/get_choose_company(.:format)' => "companies#get_choose_company"
+    match '/companies/:id(.:format)' => "companies#show"
     #login_records
     match '/login_records(/index)(.:format)' => "login_records#index", :via => :get
     match '/login_records/get_data(.:format)' => "login_records#get_data"
@@ -400,6 +401,14 @@ Ironmine::Application.routes.draw do
     match '/support_group_members/get_data(.:format)' => "support_group_members#get_data"
     match '/support_group_members/select_person(.:format)' => "support_group_members#select_person"
     match '/support_group_members/get_person(.:format)' => "support_group_members#get_person"
+    #locations
+    match '/locations(/index)(.:format)' => "locations#index", :via => :get
+    match '/locations/get_data(.:format)' => "locations#get_data"
+    match '/locations/:id/edit(.:format)' => "locations#edit", :via => :get
+    match '/locations/:id(.:format)' => "locations#update", :via => :put
+    match '/locations/new(.:format)' => "locations#new", :via => :get
+    match '/locations/:id(.:format)' => "locations#show", :via => :get
+    match '/locations/create(.:format)' => "locations#create", :via => :post
   end
 
   scope :module => "icm" do

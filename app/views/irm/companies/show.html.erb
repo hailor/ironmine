@@ -1,0 +1,165 @@
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%= t(:label_irm_company_show) %></h1>
+      <h2 class="pageDescription"><%=@company.short_name%></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks">编辑局部</a>|
+      <a href="javascript:void(0);" class="configLinks">用户简档</a>|
+      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%></a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
+</div>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_company_show) %>&nbsp;<%= t(:label_detail_info) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @company}%></div>
+            <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_company_company_type)%></label></td>
+              <td class="dataCol"><%=@company[:company_type_meaning]%></td>
+              <td class="labelCol"><label><%=(t :label_irm_company_short_name)%></label></td>
+              <td class="dataCol"><%=@company.short_name%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_company_name)%></label></td>
+              <td class="dataCol"><%= @company[:name]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_company_description)%></label></td>
+              <td class="dataCol"><%= @company[:description]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+             <tr>
+              <td class="labelCol"><label><%=(t :label_irm_company_time_zone)%></label></td>
+              <td class="dataCol"><%=@company[:timezone_meaning]%></td>
+              <td class="labelCol"><%=(t :label_irm_company_hotline)%></td>
+              <td class="dataCol"><%=@company.hotline%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_company_cost_center)%></label></td>
+              <td class="dataCol"><%=@company.cost_center_code%></td>
+              <td class="labelCol"><%=(t :label_irm_company_home_page)%></td>
+              <td class="dataCol"><%=@company.home_page%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_company_currency_code)%></label></td>
+              <td class="dataCol"><%=@company[:currency_name]%></td>
+              <td class="labelCol"><%=(t :label_irm_company_budget_code)%></td>
+              <td class="dataCol"><%=@company.budget_code%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div id="id_company_location" class="bRelatedList">
+    <a name="id_company_location_target">
+    </a>
+    <div class="listRelatedObject taskBlock">
+      <div class="bPageBlock secondaryPalette">
+        <div class="pbHeader">
+          <table cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+            <tr>
+              <td class="pbTitle">
+                <h3 id="id_company_location_title"><%=t(:label_irm_location_info)%></h3>
+              </td>
+              <td class="pbButton">
+                <div class="button"><%= link_to t(:new), {:controller=>"irm/locations",
+                                                          :action => "new",:company_id=>@company.id}%></div>
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="id_company_location_table" class="pbBody">
+          <div id="company_location" class="datatable" style="width:100%;">
+            <div id="id" style="display:none">
+               <%= link_to(t(:edit),{:controller=>"irm/locations",:action=>"edit",:id=>"{id}",:company_id=>@company.id}) %>
+            </div>
+          </div>
+          <!-- Begin company access table -->
+            <%= datatable("company_location",url_for(:controller=>"irm/locations",:action=>"get_data",:company_id=>@company.id),
+                              [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"50%"},
+                               {:key=>"organization_name",:label=>t(:label_irm_location_organization),:sortable=>true},
+                               {:key=>"department_name",:label=>t(:label_irm_location_department),:sortable=>true},
+                               {:key=>"site_group_name",:label=>t(:label_irm_location_site_group),:sortable=>true},
+                               {:key=>"site_name",:label=>t(:label_irm_location_site),:sortable=>true},
+                               {:key=>"status_meaning",:label=>t(:label_irm_company_status_code),:sortable=>true}],
+                               {:row_perpage=>5})%>
+          <!-- End company access table -->
+        </div>
+        <div class="pbFooter secondaryPalette">
+        <div class="bg"></div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<div id="id_company_support_group" class="bRelatedList">
+    <a name="id_company_support_group_target">
+    </a>
+    <div class="listRelatedObject taskBlock">
+      <div class="bPageBlock secondaryPalette">
+        <div class="pbHeader">
+          <table cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+            <tr>
+              <td class="pbTitle">
+                <h3 id="id_person_company_access_title"><%=t(:label_irm_company_support_group)%></h3>
+              </td>
+              <td class="pbButton">
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="id_company_support_group_table" class="pbBody">
+          <div id="company_support_group" class="datatable" style="width:100%;">
+          </div>
+          <!-- Begin company access table -->
+            <%= datatable("company_support_group",url_for(:controller=>"irm/companies",:action=>"get_support_group",:company_id=>@company.id),
+                              [{:key=>"name",:label=>t(:label_irm_support_group_name),:sortable=>true},
+                               {:key=>"description",:label=>t(:label_irm_support_group_description),:sortable=>true},
+                               {:key=>"status_meaning",:label=>t(:label_irm_company_status_code),:sortable=>true}],
+                               {:row_perpage=>5})%>
+          <!-- End company access table -->
+        </div>
+        <div class="pbFooter secondaryPalette">
+        <div class="bg"></div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
