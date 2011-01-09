@@ -1,0 +1,31 @@
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_product_module_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+              </td>
+              <td class="pbHelp">
+                <select title="显示所选内容" name="hotlist_mode" id="hotlist_mode"><option value="2">最近创建</option>
+                <option value="1">最近修改</option>
+                <option selected="selected" value="3">最近查看</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="product_modules_list" class="datatable" style="width:100%"></div>
+        <%= datatable("product_modules_list",url_for(:action=>"get_data",:format=>"json"),
+                  [{:key=>"product_short_name",:label=>t(:label_irm_product_module_product_short_name),:sortable=>true},
+                   {:key=>"name",:label=>t(:label_irm_product_module_name),:sortable=>true},
+                   {:key=>"description",:label=>t(:label_irm_product_module_description),:sortable=>true},
+                   {:key=>"installed_flag",:label=>t(:label_irm_product_module_installed_flag),:sortable=>true},
+                   {:key=>"status_code",:label=>t(:active),:sortable=>true}])%>
+      </div>
+    </div>
+</div>

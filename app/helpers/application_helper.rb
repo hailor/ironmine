@@ -71,6 +71,61 @@ module ApplicationHelper
     javascript_tag(script)
   end
 
+  def tabview(id, srcs = {})
+    script = %Q(
+      GY.use("tabview", "gallerywidgetio", function(Y) {
+          TabIO = function(config) {
+              TabIO.superclass.constructor.apply(this, arguments);
+          };
+
+          Y.extend(TabIO, Y.Plugin.WidgetIO, {
+              initializer: function() {
+                  var tab = this.get('host');
+                  tab.on('selectedChange', this.afterSelectedChange);
+                  tab.on('contentUpdate', this.contentUpdate);
+                  tab.get('panelNode').on('contentUpdate', this.contentUpdate);
+              },
+              contentUpdate:function(e){
+                  alert("test");
+              },
+              afterSelectedChange: function(e) { // this === tab
+                  if (e.newVal) { // tab has been selected
+                      this.io.refresh();
+                  }
+              },
+              setContent: function(content) {
+                  var tab = this.get('host');
+                  tab.set('content', content);
+              },
+              _toggleLoadingClass: function(add) {
+                  this.get('host').get('panelNode')
+                      .toggleClass(this.get('host').getClassName('loading'), add);
+              }
+          }, {
+              NAME: 'tabIO',
+              NS: 'io'
+          });
+
+          var feeds = #{srcs.to_json};
+
+          var tabview = new Y.TabView();
+          Y.each(feeds, function(src, label) {
+              tabview.add({
+                  label: label,
+                  plugins: [{
+                      fn: TabIO,
+                      cfg: {
+                          uri: src
+                      }
+                  }]
+              });
+          });
+          tabview.render('##{id}');
+      });
+    )
+    javascript_tag(script);
+  end
+
   def error_for(object)
     if object && object.errors && object.errors.any?
       content_tag("div", raw(t(:error_invalid_data) + "<br>" + t(:check_error_msg_and_fix)), {:id => "errorDiv_ep", :class => "pbError"})

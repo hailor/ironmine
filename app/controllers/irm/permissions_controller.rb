@@ -75,4 +75,8 @@ class Irm::PermissionsController < ApplicationController
       format.json  {render :json => to_jsonp(permissions.to_grid_json([:name,:product_module_name,:status_code,:permission_code,:page_controller,:page_action], count)) }
     end
   end
+
+  def data_grid
+    render :layout => nil
+  end
 end

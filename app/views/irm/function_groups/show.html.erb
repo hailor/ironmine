@@ -77,12 +77,12 @@
         </table>
       </div>
       <div class="pbBody">
-        <div id="pizza" class="datatable" style="width:100%">
+        <div id="function_groups_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
             <%= link_to(t(:remove),{:action=>"edit",:id=>"{id}"}) %>
           </div>
         </div>
-        <%= datatable("pizza",url_for(:action=>"get_own_functions", :function_group_id => @function_group,:format=>"json"),
+        <%= datatable("function_groups_list",url_for(:action=>"get_own_functions", :function_group_id => @function_group,:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template"},
                        {:key=>"function_code",:label=>t(:label_irm_function_function_code),:sortable=>true},
                        {:key=>"name",:label=>t(:label_irm_function_name),:sortable=>true},

@@ -102,27 +102,7 @@ class Irm::ProductModulesController < ApplicationController
     end
   end
 
-  def enable
-    @product_modules = Irm::ProductModule.where("id in (?)", params[:enable_list].split(','))
-    puts(@product_modules)
-    @product_modules.each do |p|
-      p.update_attribute(:status_code, Irm::Constant::ENABLED)
-    end
-
-    respond_to do |format|
-      format.html { redirect_to(:action => "index", :notice => (t :successfully_updated)) }
-    end        
-  end
-
-  def disable
-    @product_modules = Irm::ProductModule.where("id in (?)", params[:disable_list].split(','))
-    puts(@product_modules)
-    @product_modules.each do |p|
-      p.update_attribute(:status_code, Irm::Constant::DISABLED)
-    end
-
-    respond_to do |format|
-      format.html { redirect_to(:action => "index", :notice => (t :successfully_updated)) }
-    end           
+  def data_grid
+    render :layout => nil
   end
 end

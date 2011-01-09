@@ -8,8 +8,18 @@
   <%= csrf_meta_tag %>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/application.css"></link>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/test.css"></link>
+
+
+  <script type="text/javascript">
+    GY.use("irm","node-base",function(Y){
+      Y.on("domready",function(){
+        Y.irm.menuButton("settingMenu","TR","BR");
+        Y.irm.menuButton("pageMenu");
+      });
+    });
+  </script>
 </head>
-<body class="setupTab setup sfdcBody yui3-skin-sam yui-skin-sam">
+<body id ="homePage" class="homeTab homepage sfdcBody yui3-skin-sam yui-skin-sam">
     <div id="contentWrapper">
         <div id="AppBodyHeader" class="bPageHeader">
             <table id="phHeader" class="phHeader" cellpadding="0" cellspacing="0" border="0">
@@ -21,19 +31,32 @@
                   <td class="right vtop">
                     <div class="multiforce">
                       <div class="messages"></div>
-                      <span class="navLinks">
-                        <span class="linkElements">
-                            <a href="javascript:void(0);">ivanmarkliu</a>
-                            <a href="javascript:void(0);">设置</a>
+                      <div>
+                        <span id="settingMenu" class="menuParent" style="float:right">
+                          <div  class="menuLabel">
+                            <span tabindex="0" style="">liu hailor</span>
+                          </div>
+                          <div class="menuContent" >
+                            <%= setting_menu%>
+                            <br/>
+                            <span><%= link_to(t(:label_irm_common_logout),logout_url) %></span>
+                          </div>
                         </span>
-                      </span>
+                        <span id="pageMenu" class="menuParent" style="float:right">
+                          <div  class="menuLabel">
+                            <span tabindex="0" id="userNavLabel" style=""><%= level_one_current_name %></span>
+                          </div>
+                          <div class="menuContent" >
+                            <%= level_one_menu %>
+                          </div>
+                        </span>
+                      </div>
                       <div id="toolbar"></div>
                     </div>
                   </td>
                 </tr>
               </tbody>
             </table>
-            <%=level_one_menu%>
             <table id="tabsNewBar" class="tabsNewBar" cellpadding="0" cellspacing="0" border="0">
                 <tbody>
                     <tr>
@@ -50,9 +73,9 @@
                 </tbody>
             </table>
         </div>
-        <div id="bodyDiv_setup" class="bodyDiv">
-            <div id=""></div>
-            <div id=""></div>
+        <div id="bodyDiv" class="bodyDiv">
+            <div id="bd_l"></div>
+            <div id="bd_r"></div>
             <div id="motifCurve">
                 <div id="mc_l"></div>
                 <div id="mc_r"></div>
@@ -61,15 +84,32 @@
                 <div id="bd_bl"></div>
                 <div id="bd_br"></div>
             </div>
+            <div id="sidebarDiv">
+                <div class="sidebarInner">
+                  <div class="sidebarModule">
+                    <div class="sidebarModuleHeader"><h2>快捷菜单</h2></div>
+                    <div class="sidebarModuleBody">
+                      <div class="mruList">
+                        <div class="mruItem">
+                          <a title="[Alt+1]" accesskey="1" class="accountMru" href="/00190000005sBLj"><img title="客户: 123" class="mruIcon" alt="客户: 123" src="/images/s.gif"><span class="mruText">123</span></a>
+                        </div>
+                        <div class="mruItem">
+                          <a title="[Alt+1]" accesskey="1" class="accountMru" href="/00190000005sBLj"><img title="客户: 123" class="mruIcon" alt="客户: 123" src="/images/s.gif"><span class="mruText">123</span></a>
+                        </div>
+                        <div class="mruItem">
+                          <a title="[Alt+1]" accesskey="1" class="accountMru" href="/00190000005sBLj"><img title="客户: 123" class="mruIcon" alt="客户: 123" src="/images/s.gif"><span class="mruText">123</span></a>
+                        </div>
+                        <div class="mruItem">
+                          <a title="[Alt+1]" accesskey="1" class="accountMru" href="/00190000005sBLj"><img title="客户: 123" class="mruIcon" alt="客户: 123" src="/images/s.gif"><span class="mruText">123</span></a>
+                        </div>                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
             <table id="bodyTable" class="outer" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td class="oLeft">
-                    <% if has_content?(:sidebar) %>
-                      <%= yield :sidebar %>
-                    <% else %>
-                      <%= sidebar_menu %>
-                    <% end %>    
-                  </td>
                   <td id="bodyCell" class="oRight">
                     <%= yield %>
                   </td>

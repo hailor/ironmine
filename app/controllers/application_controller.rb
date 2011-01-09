@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   # menu_setup 设置当前页面对应的菜单数据
   before_filter :user_setup
   before_filter :permission_setup
-  #before_filter :check_if_login_required
+  before_filter :check_if_login_required
   before_filter :person_setup
   before_filter :check_permission
   before_filter :localization_setup
@@ -93,8 +93,16 @@ class ApplicationController < ActionController::Base
 
   # 设置当前页面对应的菜单数据
   def menu_setup
+    @setting_menus = default_setting_menus
     @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>params[:controller],:page_action=>params[:action]})
-    @page_menus << params[:mc] if(params[:mc])
+    if @page_menus[0]&&@page_menus[0].eql?("IRM_SETTING_ENTRANCE_MENU")
+      @setting_menus = @page_menus.dup
+      self.class.layout "setting"
+      @page_menus = (session[:entrance_menu]||default_menus)[0..1]
+    else
+      @page_menus << params[:mc] if(params[:mc])
+      session[:entrance_menu] = @page_menus.dup if @page_menus.length>1
+    end
   end
 
   #===========all controller public method============ 
@@ -204,6 +212,26 @@ class ApplicationController < ActionController::Base
     if l = find_language(lang)
       ::I18n.locale = l
     end
+  end
+
+  # 默认菜单
+  def default_menus
+    menus = ["IRM_ENTRANCE_MENU"]
+    entry = Irm::MenuManager.sub_entries_by_menu("IRM_ENTRANCE_MENU")[0]
+    if entry && entry[:entry_type].eql?("MENU")
+       menus << entry[:menu_code]
+    end
+    menus
+  end
+
+  # 默认设置菜单
+  def default_setting_menus
+    menus = ["IRM_SETTING_ENTRANCE_MENU"]
+    entry = Irm::MenuManager.sub_entries_by_menu("IRM_SETTING_ENTRANCE_MENU",true)[0]
+    if entry && entry[:entry_type].eql?("MENU")
+       menus << entry[:menu_code]
+    end
+    menus
   end
 
 

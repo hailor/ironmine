@@ -77,12 +77,12 @@
         </table>
       </div>
       <div class="pbBody">
-        <div id="pizza" class="datatable" style="width:100%">
+        <div id="function_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
             <%= link_to(t(:remove),{:action=>"edit",:id=>"{id}"}) %>
           </div>
         </div>
-        <%= datatable("pizza",url_for(:controller => "irm/permissions", :function_id => @function, :action=>"get_data",:format=>"json"),
+        <%= datatable("function_list",url_for(:controller => "irm/permissions", :function_id => @function, :action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
                        {:key=>"product_module_name",:label=>t(:label_irm_permission_product_name),:sortable=>true},
                        {:key=>"permission_code",:label=>t(:label_irm_permission_permission_code),:sortable=>true},
