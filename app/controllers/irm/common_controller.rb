@@ -47,6 +47,11 @@ class Irm::CommonController < ApplicationController
                              :user_ip=>request.remote_ip,
                              :user_agent=>request.user_agent,
                              :login_at=>Time.now})
+    if(params[:rememberme])
+      cookies[:username] = params[:username]
+    else
+      cookies[:username] = nil
+    end
     # generate a key and set cookie if autologin
     #if params[:autologin] && Setting.autologin?
     #  token = Token.create(:user => user, :action => 'autologin')
