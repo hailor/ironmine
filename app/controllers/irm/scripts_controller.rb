@@ -42,8 +42,7 @@ class Irm::ScriptsController < ApplicationController
 
     respond_to do |format|
       if @script.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "index" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_created))}
         format.xml  { render :xml => @script, :status => :created, :location => @script }
       else
         @error = @script
@@ -60,8 +59,7 @@ class Irm::ScriptsController < ApplicationController
 
     respond_to do |format|
       if @script.update_attributes(params[:irm_script])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "index" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
         format.xml  { head :ok }
       else
         @error = @script

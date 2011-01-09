@@ -60,7 +60,6 @@ class Irm::SitesController < ApplicationController
 
     respond_to do |format|
       if @site.save
-        flash[:successful_message] = (t :successfully_created)
         if !params[:site_group_code].blank?
           @site_group = Irm::SiteGroup.multilingual.query_wrap_info(I18n::locale).
                          query_by_group_code(params[:site_group_code]).first
@@ -71,7 +70,7 @@ class Irm::SitesController < ApplicationController
           if(params[:_from]=="site_group")
             redirect_to params[:return_url]
           else
-            render "index"
+            format.html { redirect_to({:action=>"index"},:notice => (t :successfully_created))}
           end
           }
         format.xml  { render :xml => @site, :status => :created, :location => @site }
@@ -90,7 +89,6 @@ class Irm::SitesController < ApplicationController
 
     respond_to do |format|
       if @site.update_attributes(params[:irm_site])
-        flash[:successful_message] = (t :successfully_updated)
         if !params[:site_group_code].blank?
           @site_group = Irm::SiteGroup.multilingual.query_wrap_info(I18n::locale).
                          query_by_group_code(params[:site_group_code]).first
@@ -104,7 +102,7 @@ class Irm::SitesController < ApplicationController
             render "index"
           end
         }
-        format.xml  { head :ok }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
       else
         format.html { render "edit" }
         format.xml  { render :xml => @site.errors, :status => :unprocessable_entity }

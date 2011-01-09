@@ -42,8 +42,7 @@ class Irm::CurrenciesController < ApplicationController
 
     respond_to do |format|
       if @currency.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "index" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_created))}
         format.xml  { render :xml => @currency, :status => :created, :location => @currency }
       else
         format.html { render "new" }
@@ -59,8 +58,7 @@ class Irm::CurrenciesController < ApplicationController
 
     respond_to do |format|
       if @currency.update_attributes(params[:irm_currency])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "index" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
         format.xml  { head :ok }
       else
         format.html { render "edit" }

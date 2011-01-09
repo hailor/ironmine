@@ -1150,3 +1150,45 @@ body.homeTab .componentDate {margin-left:10px;}
 .componentDate {font-size:0.91em;margin-top:5px;}
 
 .bMiniTab {margin-bottom: 5px;}
+
+.menuParent {
+    text-align: left;
+}
+.menuParent div.menuLabel {
+     -moz-border-radius: 5px 5px 5px 5px;
+    padding: 0 15px;
+    height: 24px;
+    line-height: 24px;
+ }
+.menuParent div.menuLabel .menuButtonArrow{
+     float:right;
+     padding-right:10px;
+ }
+
+.menuParent div.menuLabelHover{
+     -moz-border-radius: 5px 5px 5px 5px;
+     background:white;
+ }
+.menuParent div.menuLabelClick{
+     -moz-border-radius: 5px 5px 0px 0px;
+     background:white;
+ }
+
+.menuParent div.menuContent{
+    display:none;
+    padding: 3px 15px 9px 15px;
+    -moz-box-shadow: 0 2px 4px rgba(127, 127, 127, 0.3);
+ }
+.menuParent div.menuContentVisual{
+     display:block;
+     -moz-border-radius: 0px 0px 5px 5px;
+     background:white;
+ }
+
+.menuParent div.menuContent a {
+    -moz-border-radius: 11px 11px 11px 11px;
+    color: #333435;
+    margin: 4px 0;
+    text-decoration: none;
+    z-index:10000;
+}

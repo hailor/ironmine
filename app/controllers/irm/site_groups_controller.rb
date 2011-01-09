@@ -44,8 +44,7 @@ class Irm::SiteGroupsController < ApplicationController
 
     respond_to do |format|
       if @site_group.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "index" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_created))}
         format.xml  { render :xml => @site_group, :status => :created, :location => @site_group }
       else
         @error = @site_group
@@ -62,8 +61,7 @@ class Irm::SiteGroupsController < ApplicationController
 
     respond_to do |format|
       if @site_group.update_attributes(params[:irm_site_group])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "index" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
         format.xml  { head :ok }
       else
         @error = @site_group

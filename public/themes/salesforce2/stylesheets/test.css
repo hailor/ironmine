@@ -1,0 +1,31 @@
+.listHoverLinks, .RLPanelShadow {
+    display: none;
+}
+.listHoverLinks {
+    margin: 5px 6px 15px;
+}
+.listHoverLinks {
+    display: block;
+    font-size: 90%;
+    line-height: 1.5em;
+    margin: -0.9em 0 5px 6px;
+    text-align: center;
+    visibility: hidden;
+}
+.RLPanelShadow {
+    background: none repeat scroll 0 0 transparent;
+    margin: -2px 0 0 0;
+    z-index: 25;
+}
+.RLPanelShadow {
+    background-color: #FFFFFF;
+    display: none;
+    height: auto;
+    padding: 0;
+    position: absolute;
+    z-index: 18;
+}
+BODY.rlHoverFrame {
+	margin: 0;
+    BACKGROUND: none transparent scroll repeat 0% 0%
+}

@@ -11,7 +11,9 @@ class Irm::PeopleController < ApplicationController
   end
 
   def show
-    @person = Irm::Person.find(params[:id])
+    @person = Irm::Person.query_by_company_id(I18n::locale).query_show_wrap_info(I18n::locale).find(params[:id])
+    @company_access_count= Irm::CompanyAccess.query_by_person_id(params[:id]).query_wrap_info(I18n::locale).size
+    @support_group_count = Irm::SupportGroupMember.query_support_group_by_person_id(I18n::locale,params[:id]).size 
   end
 
   # GET /people/new
@@ -37,12 +39,10 @@ class Irm::PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "index"}
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_created))}
         format.xml  { render :xml => @person, :status => :created, :location => @person }
       else
-        @error = @person
-        format.html { render "irm/common/error_message" }
+        format.html { render "new" }
         format.xml  { render :xml => @person.errors, :status => :unprocessable_entity }
       end
     end
@@ -59,12 +59,11 @@ class Irm::PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.update_attributes(@attributes)
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "irm/common/_successful_message" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
         format.xml  { head :ok }
       else
         @error = @person
-        format.html { render "irm/common/error_message" }
+        format.html { render "edit" }
         format.xml  { render :xml => @person.errors, :status => :unprocessable_entity }
       end
     end
@@ -92,9 +91,10 @@ class Irm::PeopleController < ApplicationController
 
   def get_support_group
     person_id = params[:person_id]
-    @support_group= Irm::SupportGroupMember.query_support_group_by_person_id(I18n::locale,person_id)
+    @support_groups= Irm::SupportGroupMember.query_support_group_by_person_id(I18n::locale,person_id)
+    @support_groups,count = paginate(@support_groups)
     respond_to do |format|
-      format.json {render :json=>@support_group.to_dhtmlxgrid_json(['R',:support_group_name,:status_meaning], @support_group.size)}
+      format.json {render :json=>to_jsonp(@support_groups.to_grid_json(['R',:support_group_name,:description,:status_meaning], count))}
     end
   end
 

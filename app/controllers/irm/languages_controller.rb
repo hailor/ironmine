@@ -42,8 +42,7 @@ class Irm::LanguagesController < ApplicationController
 
     respond_to do |format|
       if @language.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "index" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_created))}
         format.xml  { render :xml => @language, :status => :created, :location => @language }
       else
         @error = @language
@@ -60,8 +59,7 @@ class Irm::LanguagesController < ApplicationController
 
     respond_to do |format|
       if @language.update_attributes(params[:irm_language])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "index" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
         format.xml  { head :ok }
       else
         @error=@language

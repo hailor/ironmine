@@ -16,32 +16,27 @@ module Irm::NavigationsHelper
     Irm::MenuManager.menus[menu_code]
   end
 
+  def level_one_current_name
+    menus = @page_menus.dup
+    return nil unless menus&&menus.size>1
+    entries = Irm::MenuManager.sub_entries_by_menu(menus[0])
+    current_entries = entries.detect{|e| e[:menu_code].eql?(menus[1])}
+    current_entries[:name]
+  end
+
   # 生成一级菜单
   def level_one_menu
     menus = @page_menus.dup
     return nil unless menus&&menus.size>1
     entries = Irm::MenuManager.sub_entries_by_menu(menus[0])
-    menu_id = "#{menus[0].downcase}_menu"
-
     current_entries = entries.detect{|e| e[:menu_code].eql?(menus[1])}
-
-    lis = ""
+    links = ""
     entries.each do |e|
       next if e[:menu_code].eql?(menus[1])
-      lis << content_tag(:li,link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id],:level=>1},{:class=>"yui3-menuitem-content"}),{:class=>"yui3-menuitem"})
+      links << content_tag(:span,link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]}),{:class=>"menuItem"})
     end
 
-    menu_content = content_tag(:div,content_tag(:div,content_tag(:ul,lis.html_safe),{:class=>"yui3-menu-content"}),{:id=>"#{menus[0].downcase}",:class=>"yui3-menu"})
-    menus_label = link_to(content_tag(:em,current_entries[:name]),{},{:href=>"##{menus[0].downcase}",:class=>"yui3-menu-label"})
-
-    menu = content_tag(:div,content_tag(:div,content_tag(:ul,content_tag(:li,menus_label+menu_content),{:class=>"first-of-type"}),{:class=>"yui3-menu-content"}),{:style=>"display:none",:id=>"#{menu_id}",:class=>"yui3-menu yui3-menu-horizontal yui3-menubuttonnav"}).html_safe
-    script = %Q(GY.use('node-menunav', function(Y) {
-        var menu = Y.one("##{menu_id}");
-        menu.plug(Y.Plugin.NodeMenuNav,{ autoSubmenuDisplay: false, mouseOutHideDelay: 0 });
-        menu.setStyle("display","block");
-    });)
-    (menu+javascript_tag(script)).html_safe
-
+    links.html_safe
   end
   # 生成二级菜单
   def level_two_menu
