@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
   before_filter :localization_setup
   before_filter :layout_setup
   before_filter :menu_setup
+  before_filter :menu_entry_setup
 
   # 设置当前用户，为下步检查用户是否登录做准备
   def user_setup
@@ -105,6 +106,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # 设置当前菜单项
+  def menu_entry_setup
+    permission = Irm::Permission.position(params[:controller],params[:action]).first
+    @current_menu_entry = Irm::MenuEntry.query_by_permission_code(permission.permission_code).first if permission && permission.permission_code
+  end
   #===========all controller public method============ 
 
   # 设置当前用户

@@ -526,7 +526,7 @@ body .bPageTitle .ptBody {
     width:100%;
 }
 .setupTab .bPageTitle .ptBody .content, .sysAdminTab .bPageTitle .ptBody .content {padding-left:0;}
-.setupTab .bPageTitle .ptBody .content, .sysAdminTab .bPageTitle .ptBody .content {padding-left:10px;}
+.setupTab .bPageTitle .ptBody .content, .sysAdminTab .bPageTitle .ptBody .content {padding-left:5px;}
 .bPageTitle .ptBody .content {
     float:left;
     padding-left:5px;

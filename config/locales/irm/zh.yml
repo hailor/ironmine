@@ -134,7 +134,8 @@ zh:
   label_irm_menu_icon: 图标
   label_irm_menu_name: 名称
   label_irm_menu_description: 描述
-
+  label_irm_menu_icon: 图标
+  
   label_irm_menu_entry_name: 提示 
   label_irm_menu_entry_list: 子菜单项列表
   label_irm_menu_entry_new: 创建子菜单项
@@ -147,6 +148,8 @@ zh:
   label_irm_menu_entry_description: 描述
   label_irm_menu_entry_add: 添加子菜单项
   error_irm_menu_entry_permission_sub_menu_at_least_one: 子菜单和页面至少输入一项
+  label_irm_menu_entry_icon: 图标
+  label_irm_menu_entry_css_name: 样式名称
   #=========================    end menus_controller=======================#
   #=========================    irm permissions_controller=======================#
   label_irm_permission: 权限
