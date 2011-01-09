@@ -4,7 +4,7 @@ class Irm::CompanyAccessesController < ApplicationController
    @person_id = params[:person_id] if params[:person_id]
    @company_access = Irm::CompanyAccess.new
    @return_url=request.env['HTTP_REFERER']
-   @companies = Irm::Company.query_by_status_code("ENABLED").multilingual
+   @companies= Irm::Company.query_by_status_code("ENABLED").multilingual
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,8 +42,17 @@ class Irm::CompanyAccessesController < ApplicationController
 
   def get_data
     @access_companies= Irm::CompanyAccess.query_by_person_id(params[:person_id]).query_wrap_info(I18n::locale)
+    @access_companies,count = paginate(@access_companies)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(@access_companies.to_grid_json(['R',:company_name,:status_meaning,:company_access_flag,:support_stuff_flag], @access_companies.size))}
+      format.json {render :json=>to_jsonp(@access_companies.to_grid_json(['R',:company_name,:status_meaning,:company_access_flag,:support_stuff_flag], count))}
+    end
+  end
+
+  def get_company
+    @all_companies= Irm::Company.query_by_status_code("ENABLED").multilingual
+    @all_companies,count = paginate(@all_companies)
+    respond_to do |format|
+      format.json {render :json=>to_jsonp(@all_companies.to_grid_json(['R',:id,:name], count))}
     end
   end
 end

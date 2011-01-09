@@ -27,14 +27,15 @@
      class="linklet" onmouseover="relatedListPanel.showRLDelayed('id_person_company_access');"
      onmouseout="relatedListPanel.hideRLDelayed('id_person_company_access');">
     <span class="listTitle"><%= t(:label_irm_person_company_access) %>
-       <span class="count">[1]</span>
+       <span class="count">[<%= @company_access_count %>]</span>
     </span>
   </a>
   <span class="pipe"> | </span>
-  <a id="00190000005sAel_RelatedActivityList_link" href="#00190000005sAel_RelatedActivityList_target"
-     class="linklet">
+  <a id="id_person_support_group_link" href="#id_person_support_group"
+     class="linklet" onmouseover="relatedListPanel.showRLDelayed('id_person_support_group');"
+     onmouseout="relatedListPanel.hideRLDelayed('id_person_support_group');">
     <span class="listTitle"><%= t(:label_irm_person_support_group) %>
-    <span class="count">[0]</span></span>
+    <span class="count">[<%= @support_group_count %>]</span></span>
   </a>
 </div>
 
@@ -202,6 +203,45 @@
                               [{:key=>"company_name",:label=>t(:label_irm_person_company),:sortable=>true},
                                {:key=>"company_access_flag",:label=>t(:label_irm_person_company_access_flag),:sortable=>true},
                                {:key=>"support_stuff_flag",:label=>t(:label_irm_person_support_stuff_flag),:sortable=>true}],
+                               {:row_perpage=>5})%>
+          <!-- End company access table -->
+        </div>
+        <div class="pbFooter secondaryPalette">
+        <div class="bg"></div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div id="id_person_support_group" class="bRelatedList">
+    <a name="id_person_support_group_target">
+    </a>
+    <div class="listRelatedObject taskBlock">
+      <div class="bPageBlock secondaryPalette">
+        <div class="pbHeader">
+          <table cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+            <tr>
+              <td class="pbTitle">
+                <h3 id="id_person_support_group_title"><%=t(:label_irm_person_support_group)%></h3>
+              </td>
+              <td class="pbButton">
+                <div class="button">&nbsp;</div>
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="id_support_group" class="pbBody">
+          <div id="support_group" class="datatable" style="width:100%;">
+          </div>
+          <!-- Begin company access table -->
+            <%= datatable("support_group",url_for(:controller=>"irm/people",:action=>"get_support_group",:person_id=>@person.id),
+                              [{:key=>"support_group_name",:label=>t(:label_irm_support_group_name),:sortable=>true},
+                               {:key=>"description",:label=>t(:label_irm_support_group_description),:sortable=>true},
+                               {:key=>"status_meaning",:label=>t(:label_irm_support_group_status_code),:sortable=>true}],
                                {:row_perpage=>5})%>
           <!-- End company access table -->
         </div>

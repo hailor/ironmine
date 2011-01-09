@@ -343,6 +343,8 @@ Ironmine::Application.routes.draw do
     match '/sites/:id/multilingual_edit(.:format)' => "sites#multilingual_edit", :via => :get
     match '/sites/:id/multilingual_update(.:format)' => "sites#multilingual_update", :via => :put
     #people
+    match '/people/get_choose_people(.:format)' => "people#get_choose_people"
+    match '/people/get_support_group(.:format)' => "people#get_support_group"
     match '/people/get_data(.:format)' => "people#get_data"
     match '/people(/index)(.:format)' => "people#index", :via => :get
     match '/people/:id/edit(.:format)' => "people#edit", :via => :get
@@ -352,9 +354,7 @@ Ironmine::Application.routes.draw do
     match '/people/create(.:format)' => "people#create", :via => :post
     match '/people/:id/multilingual_edit(.:format)' => "people#multilingual_edit", :via => :get
     match '/people/:id/multilingual_update(.:format)' => "people#multilingual_update", :via => :put
-    match '/people/choose_company(.:format)' => "people#choose_company"
-    match '/people/get_choose_people(.:format)' => "people#get_choose_people"
-    match '/people/get_support_group(.:format)' => "people#get_support_group"
+    match '/people/choose_company(.:format)' => "people#choose_company"    
     #company_accesses
     match '/company_accesses(/index)(.:format)' => "company_accesses#index", :via => :get
     match '/company_accesses/:id/edit(.:format)' => "company_accesses#edit", :via => :get
@@ -364,6 +364,7 @@ Ironmine::Application.routes.draw do
     match '/company_accesses/:id/multilingual_edit(.:format)' => "company_accesses#multilingual_edit", :via => :get
     match '/company_accesses/:id/multilingual_update(.:format)' => "company_accesses#multilingual_update", :via => :put
     match '/company_accesses/get_data(.:format)' => "company_accesses#get_data"
+    match '/company_accesses/get_company(.:format)' => "company_accesses#get_company"
     #id_flexes
     match '/id_flexes(/index)(.:format)' => "id_flexes#index", :via => :get
     match '/id_flexes/:id/edit(.:format)' => "id_flexes#edit", :via => :get
