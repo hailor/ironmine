@@ -82,7 +82,7 @@
                 <h3 id="id_support_group_person_title"><%=t(:label_irm_support_group_member)%></h3>
               </td>
               <td class="pbButton">
-                <div class="button"><%= link_to t(:edit), {:controller=>"irm/support_group_members",
+                <div class="button"><%= link_to t(:label_irm_support_group_add_person), {:controller=>"irm/support_group_members",
                                                           :action => "select_person",:support_group_code=>@support_group.group_code}%></div>
               </td>
               <td class="pbHelp">
@@ -93,10 +93,16 @@
         </div>
         <div id="id_company_access" class="pbBody">
           <div id="person" class="datatable" style="width:100%;">
+            <div id="id" style="display:none">
+              <%= link_to(t(:delete),{:controller=>"irm/support_group_members",:action=>"delete",:id=>"{id}",
+                                      :support_group_id=>@support_group.id},:confirm => t(:label_are_you_sure) ,
+                                      :method => :delete) %>
+            </div>
           </div>
           <!-- Begin company access table -->
             <%= datatable("person",url_for(:controller=>"irm/support_group_members",:action=>"get_data",:support_group_code=>@support_group.group_code),
-                              [{:key=>"person_name",:label=>t(:label_irm_support_group_person_name),:sortable=>true},
+                              [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
+                               {:key=>"person_name",:label=>t(:label_irm_support_group_person_name),:sortable=>true},
                                {:key=>"company_name",:label=>t(:label_irm_support_group_company_name),:sortable=>true},
                                {:key=>"email_address",:label=>t(:label_irm_person_email_address),:sortable=>true}],
                                {:row_perpage=>5})%>

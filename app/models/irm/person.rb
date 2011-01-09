@@ -42,13 +42,14 @@ class Irm::Person < ActiveRecord::Base
 
 
 
-  scope :query_by_person_name,lambda{|person_name,language| select("#{table_name}.id,CONCAT(#{table_name}.last_name,#{table_name}.first_name) person_name,v2.name company_name,#{table_name}.email_address,v1.meaning status_meaning").
+  scope :query_by_person_name,lambda{|person_name,language,support_group_code| select("#{table_name}.id,CONCAT(#{table_name}.last_name,#{table_name}.first_name) person_name,v2.name company_name,#{table_name}.email_address,v1.meaning status_meaning").
                                                    joins(",irm_companies_vl v2").
                                                    joins(",irm_lookup_values_vl v1").
                                                    where("v1.lookup_type='SYSTEM_STATUS_CODE' AND v1.lookup_code = #{table_name}.status_code AND "+
                                                          "v2.id = #{table_name}.company_id AND v2.language = ? AND " +
                                                          "CONCAT(#{table_name}.last_name,#{table_name}.first_name) LIKE '%#{person_name}%' AND " +
-                                                         "v1.language=?",language,language)}
+                                                         "v1.language=? AND NOT EXISTS (SELECT 1 FROM #{Irm::SupportGroupMember.table_name}  where " +
+                                                         "support_group_code=? AND #{Irm::SupportGroupMember.table_name}.person_id = #{table_name}.id)",language,language,support_group_code)}
 
   #取得系统当前登陆人员
   def self.current

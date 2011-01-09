@@ -74,8 +74,10 @@
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_support_group_vendor_group)%></label></td>
               <td class="dataCol"><%=f.check_box :vendor_group_flag%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><label><%=(t :label_irm_support_group_status_code)%></label></td>
+              <td class="dataCol"><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@support_group.status_code)%>
+              </td>
             </tr>
         </tbody>
       </table>

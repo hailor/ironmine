@@ -393,10 +393,12 @@ Ironmine::Application.routes.draw do
     match '/support_group_members(/index)(.:format)' => "support_group_members#index", :via => :get
     match '/support_group_members/:id/edit(.:format)' => "support_group_members#edit", :via => :get
     match '/support_group_members/:id(.:format)' => "support_group_members#update", :via => :put
-    match '/support_group_members/new(.:format)' => "support_group_members#new", :via => :get
+    match '/support_group_members/:id(.:format)' => "support_group_members#delete", :via => :delete
+    match '/support_group_members/new(.:format)' => "support_group_members#new", :via => :get    
     match '/support_group_members/create(.:format)' => "support_group_members#create"
     match '/support_group_members/get_data(.:format)' => "support_group_members#get_data"
     match '/support_group_members/select_person(.:format)' => "support_group_members#select_person"
+    match '/support_group_members/get_person(.:format)' => "support_group_members#get_person"
   end
 
   scope :module => "icm" do

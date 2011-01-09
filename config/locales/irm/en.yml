@@ -57,6 +57,7 @@ en:
   error: Error
   error_invalid_data: Error：Invalid Data。
   check_error_msg_and_fix: Please check all error to correct data。
+  label_are_you_sure: Are you sure?
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type
@@ -359,7 +360,7 @@ en:
   label_irm_support_group_member: Support Group Member
   label_irm_support_person_name: Person Name
   label_irm_support_group_choose_person: Choose Person
-  label_irm_support_group_add_person: Add Person
+  label_irm_support_group_add_person: Add Member
   label_irm_support_group_show: Support Group
   label_irm_support_group_person_name: Person Name
   #=========================end irm support_groups_controller=======================#
@@ -421,6 +422,7 @@ en:
   #=========================end irm company_access_controller=======================#
   #=========================    irm support_group_controller=======================#
   label_irm_support_group_member_new: New Support Group Memeber
+  label_irm_select_result: Select Result
   label_irm_support_group_member_group_list: List Support Group List
   label_irm_support_group_member_info: Support Group Member
   #=========================end irm  support_group_controller=======================#
