@@ -77,5 +77,6 @@ class Irm::PermissionsController < ApplicationController
   end
 
   def data_grid
+    render :layout => nil
   end
 end
