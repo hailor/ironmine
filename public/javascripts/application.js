@@ -32,6 +32,7 @@ YUI.add('irm', function(Y) {
       overlay.render();
 
       menuNode.delegate("mouseenter",function(e){
+        console.log("enter");
         if(!this.hasClass("menuLabelHover"))
           this.addClass("menuLabelHover");
       },".menuLabel");
@@ -118,7 +119,7 @@ YUI.add('irm', function(Y) {
     }
 
 }, '0.1.1' /* module version */, {
-    requires: ['base',"overlay","node-event-simulate"]
+    requires: ['base',"overlay","node-event-simulate","event-mouseenter"]
 });
 
 

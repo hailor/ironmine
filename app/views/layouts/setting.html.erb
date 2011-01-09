@@ -5,7 +5,16 @@
   <script type="text/javascript" src="/javascripts/yui3.3/yui/yui-min.js"></script>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
-  <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/setting.css"></link>
+  <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/application.css"></link>
+
+  <script type="text/javascript">
+    GY.use("irm","node-base",function(Y){
+      Y.on("domready",function(){
+        Y.irm.menuButton("settingMenu","TR","BR");
+        Y.irm.menuButton("pageMenu");
+      });
+    });
+  </script>
 </head>
 <body class="setupTab setup sfdcBody yui3-skin-sam yui-skin-sam">
     <div id="contentWrapper">
@@ -19,19 +28,32 @@
                   <td class="right vtop">
                     <div class="multiforce">
                       <div class="messages"></div>
-                      <span class="navLinks">
-                        <span class="linkElements">
-                            <a href="javascript:void(0);">ivanmarkliu</a>
-                            <a href="javascript:void(0);">设置</a>
+                      <div>
+                        <span id="settingMenu" class="menuParent" style="float:right">
+                          <div  class="menuLabel">
+                            <span tabindex="0" style="">liu hailor</span>
+                          </div>
+                          <div class="menuContent" >
+                            <%= setting_menu%>
+                            <br/>
+                            <span><%= link_to(t(:logout),logout_url) %></span>
+                          </div>
                         </span>
-                      </span>
+                        <span id="pageMenu" class="menuParent" style="float:right">
+                          <div  class="menuLabel">
+                            <span tabindex="0" id="userNavLabel" style=""><%= level_one_current_name %></span>
+                          </div>
+                          <div class="menuContent" >
+                            <%= level_one_menu %>
+                          </div>
+                        </span>
+                      </div>
                       <div id="toolbar"></div>
                     </div>
                   </td>
                 </tr>
               </tbody>
             </table>
-            <%=level_one_menu%>
             <table id="tabsNewBar" class="tabsNewBar" cellpadding="0" cellspacing="0" border="0">
                 <tbody>
                     <tr>

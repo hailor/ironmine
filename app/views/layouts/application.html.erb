@@ -6,61 +6,17 @@
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/application.css"></link>
-  <style type="text/css">
 
-.menuParent {
-    text-align: left;
-}
-.menuParent div.menuLabel {
-     -moz-border-radius: 5px 5px 5px 5px;
-    padding: 0 15px;
-    height: 24px;
-    line-height: 24px;
- }
-.menuParent div.menuLabel .menuButtonArrow{
-     float:right;
-     padding-right:10px;
- }
-
-.menuParent div.menuLabelHover{
-     -moz-border-radius: 5px 5px 5px 5px;
-     background:white;
- }
-.menuParent div.menuLabelClick{
-     -moz-border-radius: 5px 5px 0px 0px;
-     background:white;
- }
-
-.menuParent div.menuContent{
-    display:none;
-    padding: 3px 15px 9px 15px;
-    -moz-box-shadow: 0 2px 4px rgba(127, 127, 127, 0.3);
- }
-.menuParent div.menuContentVisual{
-     display:block;
-     -moz-border-radius: 0px 0px 5px 5px;
-     background:white;
- }
-
-.menuParent div.menuContent a {
-    -moz-border-radius: 11px 11px 11px 11px;
-    color: #333435;
-    margin: 4px 0;
-    text-decoration: none;
-    z-index:10000;
-}
-
-</style>
   <script type="text/javascript">
-    GY.use("irm",function(Y){
+    GY.use("irm","node-base",function(Y){
       Y.on("domready",function(){
         Y.irm.menuButton("settingMenu","TR","BR");
         Y.irm.menuButton("pageMenu");
       });
     });
-  </script>  
+  </script>
 </head>
-<body id ="homePage" class="homeTab homepage ext-gecko ext-gecko3 sfdcBody yui3-skin-sam yui-skin-sam">
+<body id ="homePage" class="homeTab homepage sfdcBody yui3-skin-sam yui-skin-sam">
     <div id="contentWrapper">
         <div id="AppBodyHeader" class="bPageHeader">
             <table id="phHeader" class="phHeader" cellpadding="0" cellspacing="0" border="0">
@@ -105,18 +61,7 @@
                             <div id="tabNavigation" class="tabNavigation">
                                 <div class="tabBarLeft"></div>
                                 <table id="tabBar" class="tab" cellpadding="0" cellspacing="0">
-                                    <td nowrap="nowrap" class="currentTab"><div id="homeTab">
-                                        <a title="主页选项卡 - 已选取" href="javascript:void(0);">主页</a>
-                                    </div></td>
-                                    <td nowrap="nowrap" class=""><div id="settingTab">
-                                        <a title="项目" href="javascript:void(0);">项目</a>
-                                    </div></td>
-                                    <td nowrap="nowrap" class=""><div id="projectTab">
-                                        <a title="个人信息" href="javascript:void(0);">个人信息</a>
-                                    </div></td>
-                                    <td nowrap="nowrap" class=""><div id="reportTab">
-                                        <a title="设置" href="javascript:void(0);">设置</a>
-                                    </div></td>
+                                    <%= level_two_menu %>
                                 </table>
                                 <div class="tabBarRight"></div>
                             </div>

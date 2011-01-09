@@ -34,4 +34,4 @@ var yuiConfig = {
             }
          }
 };
-var GY = YUI(yuiConfig).use("irm");
+var GY = YUI(yuiConfig).use("base");

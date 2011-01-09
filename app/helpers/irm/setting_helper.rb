@@ -13,7 +13,7 @@ module Irm::SettingHelper
   def setting_menu
     menus = @setting_menus.dup
     return nil unless menus&&menus.size>1
-    entries = Irm::MenuManager.sub_entries_by_menu(menus[0])
+    entries = Irm::MenuManager.sub_entries_by_menu(menus[0],true)
     links = ""
     entries.each do |e|
       links << content_tag(:span,link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]}),{:class=>"menuItem"})
@@ -93,12 +93,12 @@ module Irm::SettingHelper
 
 
   # 展开菜单子项
-  def generate_entries_table_ext(entriy)
-    if(entriy[:entry_type].eql?("MENU"))
-      generate_entries_table(menu_code[:meun_code])
+  def generate_entries_table_ext(entry)
+    if(entry[:entry_type].eql?("MENU"))
+       generate_entries_table(entry[:menu_code])
     else
-      tr = content_tag(:td,("•"+link_to(entriy[:description],{:controller=>entriy[:page_controller],:action=>entriy[:page_action],:mc=>entriy[:menu_code],:mi=>entriy[:menu_entry_id]})).html_safe,{:width=>"50%"}) if entriy
-     content_tag(:tr,tr.html_safe).html_safe
+      tr = content_tag(:td,("•"+link_to(entry[:description],{:controller=>entry[:page_controller],:action=>entry[:page_action],:mc=>entry[:menu_code],:mi=>entry[:menu_entry_id]})).html_safe,{:width=>"50%"}) if entry
+      content_tag(:tr,tr.html_safe).html_safe
     end
   end
 end
