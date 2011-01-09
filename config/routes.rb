@@ -71,6 +71,7 @@ Ironmine::Application.routes.draw do
     match '/permissions/:id/multilingual_update(.:format)' => "permissions#multilingual_update", :via => :put
     match '/permissions/get_data(.:format)' => "permissions#get_data"
     match '/permissions/:id/show(.:format)' => "permissions#show", :via => :get
+    match '/permissions/data_grid(.:format)' => "permissions#data_grid", :via => :get
     #conditions
     match '/conditions(/index)(.:format)' => "conditions#index", :via => :get
     match '/conditions/get_data(.:format)' => "conditions#get_data"
