@@ -1,4 +1,10 @@
 @charset "utf-8";
+body, td {color:#222222; font-family:Arial,Helvetica,sans-serif;}
+body {font-size:75% !important;}
+img {border:0 none !important;}
+body a:hover{color: #015BA7;}
+a {color:#333435;}
+
 .pageTitleIcon {
     display:inline;
     float:left;
@@ -173,3 +179,6 @@ img.img9Big{}
 .menuParent div.menuLabelClick #settingMenu-arrow{
     background-position: 0 -145px;
  }
+.messages{
+    height:35px;
+}
