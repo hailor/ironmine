@@ -16,6 +16,9 @@ module ApplicationHelper
       else
         title_tags << content_tag(:h2, permission[:name], :class => "pageDescription")
       end
+    else
+      title_tags << title
+      title_tags << description
     end
     content = raw(content_tag(:div, raw(title_tags), :class => "content"))
     pt_body = raw(content_tag(:div, content, :class => "ptBody"))
