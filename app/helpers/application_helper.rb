@@ -18,7 +18,9 @@ module ApplicationHelper
       else
         page_description << content_tag(:h2, permission[:name], :class => "pageDescription")
       end
-      b_description << content_tag(:div, permission[:description], :class => "bDescription")
+      if !permission[:description].blank?
+        b_description << content_tag(:div, permission[:description], :class => "bDescription")  
+      end
     else
       page_title << content_tag(:h1, title, :class => "pageType")
       page_description << content_tag(:h2, description, :class => "pageDescription")
