@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddSettingCommonMenu < ActiveRecord::Migration
   def self.up
     setting_common = Irm::MenuEntry.new(:menu_code=>'IRM_SETTING_ENTRANCE_MENU',
