@@ -1,17 +1,4 @@
-<div class="bPageTitle">
-  <div class="ptBody">
-    <div class="content">
-      <h1 class="pageType"><%=t(:label_irm_permission_new)%></h1>
-      <h2 class="pageDescription"><%=t(:label_irm_permission_new)%></h2>
-      <div class="blank">&nbsp;</div>
-    </div>
-    <div class="links">
-      <a href="javascript:void(0);" class="configLinks">此页面的帮助</a>
-    </div>
-    <div class="ptBreadcrumb"></div>
-  </div>
-</div>
-
+<%= page_title %>
 <%= form_for(@permission,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">

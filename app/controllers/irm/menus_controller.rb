@@ -17,11 +17,11 @@ class Irm::MenusController < ApplicationController
 
     respond_to do |format|
       if @menu.update_attributes(params[:irm_menu])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
       else
-        @error = @menu
-        format.html { render "error_message" }
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @menu.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -37,46 +37,26 @@ class Irm::MenusController < ApplicationController
 
   def create
     @menu = Irm::Menu.new(params[:irm_menu])
-    @menu.company_id = Irm::Company.current.id
     respond_to do |format|
       if @menu.save
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+        format.xml  { render :xml => @menu, :status => :created, :location => @menu }
       else
-         @error = @menu
-         format.html { render "error_message" }
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @menu.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   def get_data
-    @menus = Irm::Menu.multilingual
+    menus_scope = Irm::Menu.multilingual
+    menus,count = paginate(menus_scope)
     respond_to do |format|
-      format.json  {render :json => @menus.to_dhtmlxgrid_json(['0',
-                                                               :menu_code,
-                                                               :name,
-                                                               :description,
-                                                               :status_code,
-                                                               {:value => 'M', :controller => 'irm/menus',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}], @menus.size) }
-    end    
+      format.json  {render :json => to_jsonp(menus.to_grid_json([:menu_code,:name,:description,:status_code], count)) }
+    end        
   end
 
-
-  def multilingual_edit
-    @menu = Irm::Menu.find(params[:id])
-  end
-
-  def multilingual_update
-    @menu = Irm::Menu.find(params[:id])
-    @menu.not_auto_mult=true
-    respond_to do |format|
-      if @menu.update_attributes(params[:irm_menu])
-        format.html { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
-        format.js { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
-      else
-        format.html { render({:action=>"multilingual_edit"}) }
-        format.js   { render({:action=>"multilingual_edit"}) }
-      end
-    end
+  def show
+    @menu = Irm::Menu.multilingual.find(params[:id])
   end
 end
