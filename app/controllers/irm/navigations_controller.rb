@@ -2,7 +2,8 @@
 class Irm::NavigationsController < ApplicationController
   # 顶级菜单对应的菜单页面
   def entrance
-
+    entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>"IRM_ENTRANCE_MENU"})
+    redirect_to :controller => entrance[:page_controller], :action => entrance[:page_action]
   end
   # 我的工作空间
   def workspace

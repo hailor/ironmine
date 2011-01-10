@@ -50,7 +50,7 @@ class Irm::CommonController < ApplicationController
     if(params[:rememberme])
       cookies[:username] = params[:username]
     else
-      cookies[:username] = nil
+      cookies.delete(:username)
     end
     # generate a key and set cookie if autologin
     #if params[:autologin] && Setting.autologin?
