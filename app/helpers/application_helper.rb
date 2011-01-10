@@ -7,18 +7,18 @@ module ApplicationHelper
         title_tags << content_tag(:img, "", :src => '/images/s.gif', :class => @current_menu_entry.icon + " pageTitleIcon")
       end
       if !title.blank?
-        title_tags << title
+        title_tags << content_tag(:h1, title, :class => "pageType")
       else
         title_tags << content_tag(:h1, "", :class => "pageType")
       end
       if !description.blank?
-        title_tags << description
+        title_tags << content_tag(:h2, description, :class => "pageDescription")
       else
         title_tags << content_tag(:h2, permission[:name], :class => "pageDescription")
       end
     else
-      title_tags << title
-      title_tags << description
+      title_tags << content_tag(:h1, title, :class => "pageType")
+      title_tags << content_tag(:h2, description, :class => "pageDescription")
     end
     content = raw(content_tag(:div, raw(title_tags), :class => "content"))
     pt_body = raw(content_tag(:div, content, :class => "ptBody"))
