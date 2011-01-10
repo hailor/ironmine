@@ -112,7 +112,7 @@ class ApplicationController < ActionController::Base
     if permission && permission.permission_code
       @current_menu_entry = Irm::MenuEntry.multilingual.query_by_permission_code(permission.permission_code).first if permission && permission.permission_code
       if !@current_menu_entry
-        @current_menu_entry = Irm::MenuEntry.multilingual.query_by_permission_code(Irm::Permission.position(params[:controller], "index")).first
+        @current_menu_entry = Irm::MenuEntry.multilingual.query_by_permission_code(Irm::Permission.position(params[:controller], "index").first.permission_code).first
       end
     end
   end
