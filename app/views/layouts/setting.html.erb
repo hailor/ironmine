@@ -4,14 +4,18 @@
 
   <script type="text/javascript" src="/javascripts/yui3.3/yui/yui-min.js"></script>
   <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "tabbar_ext" %>
   <%= csrf_meta_tag %>
+  <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/setting.css"></link>
+  <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/common.css"></link>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/application.css"></link>
+  <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/test.css"></link>
 
   <script type="text/javascript">
     GY.use("irm","node-base",function(Y){
       Y.on("domready",function(){
         Y.irm.menuButton("settingMenu","TR","BR");
-        Y.irm.menuButton("pageMenu");
+        Y.irm.menuButton("pageMenu","TR","BR");
       });
     });
   </script>
@@ -35,8 +39,7 @@
                           </div>
                           <div class="menuContent" >
                             <%= setting_menu%>
-                            <br/>
-                            <span><%= link_to(t(:label_irm_common_logout),logout_url) %></span>
+                            <div class="menuItem"><%= link_to(t(:label_irm_common_logout),logout_url) %></div>
                           </div>
                         </span>
                         <span id="pageMenu" class="menuParent" style="float:right">

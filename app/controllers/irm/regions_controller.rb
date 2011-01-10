@@ -44,8 +44,7 @@ class Irm::RegionsController < ApplicationController
 
     respond_to do |format|
       if @region.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "index" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_created))}
         format.xml  { render :xml => @region, :status => :created, :location => @region }
       else
         @error = @region
@@ -62,8 +61,7 @@ class Irm::RegionsController < ApplicationController
 
     respond_to do |format|
       if @region.update_attributes(params[:irm_region])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "index" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
         format.xml  { head :ok }
       else
         @error = @region

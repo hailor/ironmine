@@ -45,13 +45,12 @@ Ironmine::Application.routes.draw do
     match '/menus/get_data(.:format)' => "menus#get_data"
     match '/menus/:id/edit(.:format)' => "menus#edit", :via => :get
     match '/menus/:id(.:format)' => "menus#update", :via => :put
-    match '/menus/:id/multilingual_edit(.:format)' => "menus#multilingual_edit", :via => :get
-    match '/menus/:id/multilingual_update(.:format)' => "menus#multilingual_update", :via => :put
+    match '/menus/:id/show(.:format)' => "menus#show", :via => :get
     #menu_entries
     match '/menu_entries/:menu_id/index(.:format)' => "menu_entries#index", :via => :get
     match '/menu_entries/:menu_id/new(.:format)' => "menu_entries#new", :via => :get
     match '/menu_entries/:menu_id/create(.:format)' => "menu_entries#create", :via => :post
-    match '/menu_entries/:menu_id/get_data(.:format)' => "menu_entries#get_data"
+    match '/menu_entries/:menu_code/get_data(.:format)' => "menu_entries#get_data"
     match '/menu_entries/:id/edit(.:format)' => "menu_entries#edit", :via => :get
     match '/menu_entries/link_edit(.:format)' => "menu_entries#link_edit", :via => :post
     match '/menu_entries/:id(.:format)' => "menu_entries#update", :via => :put
@@ -230,6 +229,7 @@ Ironmine::Application.routes.draw do
     match '/companies/:id/edit_location(.:format)' => "companies#edit_location"
     match '/companies/:id/update_location(.:format)' => "companies#update_location"
     match '/companies/get_choose_company(.:format)' => "companies#get_choose_company"
+    match '/companies/:id(.:format)' => "companies#show"
     #login_records
     match '/login_records(/index)(.:format)' => "login_records#index", :via => :get
     match '/login_records/get_data(.:format)' => "login_records#get_data"
@@ -329,6 +329,7 @@ Ironmine::Application.routes.draw do
     match '/support_groups/choose_person(.:format)' => "support_groups#choose_person"
     match '/support_groups/create_member(.:format)' => "support_groups#create_member"
     match '/support_groups/delete_member(.:format)' => "support_groups#delete_member"
+    match '/support_groups/:id(.:format)' => "support_groups#show"
     #sites
     match '/sites(/index)(.:format)' => "sites#index", :via => :get
     match '/sites/get_data(.:format)' => "sites#get_data"
@@ -341,6 +342,8 @@ Ironmine::Application.routes.draw do
     match '/sites/:id/multilingual_edit(.:format)' => "sites#multilingual_edit", :via => :get
     match '/sites/:id/multilingual_update(.:format)' => "sites#multilingual_update", :via => :put
     #people
+    match '/people/get_choose_people(.:format)' => "people#get_choose_people"
+    match '/people/get_support_group(.:format)' => "people#get_support_group"
     match '/people/get_data(.:format)' => "people#get_data"
     match '/people(/index)(.:format)' => "people#index", :via => :get
     match '/people/:id/edit(.:format)' => "people#edit", :via => :get
@@ -350,9 +353,7 @@ Ironmine::Application.routes.draw do
     match '/people/create(.:format)' => "people#create", :via => :post
     match '/people/:id/multilingual_edit(.:format)' => "people#multilingual_edit", :via => :get
     match '/people/:id/multilingual_update(.:format)' => "people#multilingual_update", :via => :put
-    match '/people/choose_company(.:format)' => "people#choose_company"
-    match '/people/get_choose_people(.:format)' => "people#get_choose_people"
-    match '/people/get_support_group(.:format)' => "people#get_support_group"
+    match '/people/choose_company(.:format)' => "people#choose_company"    
     #company_accesses
     match '/company_accesses(/index)(.:format)' => "company_accesses#index", :via => :get
     match '/company_accesses/:id/edit(.:format)' => "company_accesses#edit", :via => :get
@@ -362,6 +363,7 @@ Ironmine::Application.routes.draw do
     match '/company_accesses/:id/multilingual_edit(.:format)' => "company_accesses#multilingual_edit", :via => :get
     match '/company_accesses/:id/multilingual_update(.:format)' => "company_accesses#multilingual_update", :via => :put
     match '/company_accesses/get_data(.:format)' => "company_accesses#get_data"
+    match '/company_accesses/get_company(.:format)' => "company_accesses#get_company"
     #id_flexes
     match '/id_flexes(/index)(.:format)' => "id_flexes#index", :via => :get
     match '/id_flexes/:id/edit(.:format)' => "id_flexes#edit", :via => :get
@@ -387,6 +389,24 @@ Ironmine::Application.routes.draw do
     match '/id_flex_segments/:id_flex_code/:id_flex_num/new(.:format)' => "id_flex_segments#new", :via => :get
     match '/id_flex_segments/create(.:format)' => "id_flex_segments#create", :via => :post
     match '/id_flex_segments/:id/show(.:format)' => "id_flex_segments#show", :via => :get
+    #support_group_members
+    match '/support_group_members(/index)(.:format)' => "support_group_members#index", :via => :get
+    match '/support_group_members/:id/edit(.:format)' => "support_group_members#edit", :via => :get
+    match '/support_group_members/:id(.:format)' => "support_group_members#update", :via => :put
+    match '/support_group_members/:id(.:format)' => "support_group_members#delete", :via => :delete
+    match '/support_group_members/new(.:format)' => "support_group_members#new", :via => :get    
+    match '/support_group_members/create(.:format)' => "support_group_members#create"
+    match '/support_group_members/get_data(.:format)' => "support_group_members#get_data"
+    match '/support_group_members/select_person(.:format)' => "support_group_members#select_person"
+    match '/support_group_members/get_person(.:format)' => "support_group_members#get_person"
+    #locations
+    match '/locations(/index)(.:format)' => "locations#index", :via => :get
+    match '/locations/get_data(.:format)' => "locations#get_data"
+    match '/locations/:id/edit(.:format)' => "locations#edit", :via => :get
+    match '/locations/:id(.:format)' => "locations#update", :via => :put
+    match '/locations/new(.:format)' => "locations#new", :via => :get
+    match '/locations/:id(.:format)' => "locations#show", :via => :get
+    match '/locations/create(.:format)' => "locations#create", :via => :post
     # setting
     match '/setting(/index)(.:format)' =>'setting#index'
     match '/setting/common(.:format)' =>'setting#common'

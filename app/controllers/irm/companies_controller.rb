@@ -10,10 +10,15 @@ class Irm::CompaniesController < ApplicationController
     end
   end
 
+  def show
+    @company = Irm::Company.multilingual.query_show_wrap_info(I18n::locale).find(params[:id])
+  end
+
   # GET /Companies/new
   # GET /Companies/new.xml
   def new
     @company = Irm::Company.new
+    @return_url= request.env['HTTP_REFERER']
 
     respond_to do |format|
       format.html # new.html.erb
@@ -24,6 +29,7 @@ class Irm::CompaniesController < ApplicationController
   # GET /Companies/1/edit
   def edit
     @company = Irm::Company.multilingual.find(params[:id])
+    @return_url= request.env['HTTP_REFERER']
   end
 
   # POST /Companies
@@ -33,12 +39,17 @@ class Irm::CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "return" }
+        format.html {
+          if params[:return_url].blank?
+            redirect_to({:action=>"index"},:notice => (t :successfully_created))
+          else
+            redirect_to(params[:return_url],:notice => (t :successfully_created))
+          end
+        }
         format.xml  { render :xml => @company, :status => :created, :location => @company }
       else
         @error = @company
-        format.html { render "irm/common/error_message" }
+        format.html { render "new" }
         format.xml  { render :xml => @company.errors, :status => :unprocessable_entity }
       end
     end
@@ -48,16 +59,19 @@ class Irm::CompaniesController < ApplicationController
   # PUT /Companies/1.xml
   def update
     @company = Irm::Company.find(params[:id])
-    @attr = params[:irm_company]
-    
+
     respond_to do |format|
-      if @company.update_attributes(@attr)
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "irm/common/_successful_message" }
+      if @company.update_attributes(params[:irm_company])
+        format.html {
+          if params[:return_url].blank?
+            redirect_to({:action=>"index"},:notice => (t :successfully_created))
+          else
+            redirect_to(params[:return_url],:notice => (t :successfully_created))
+          end }
         format.xml  { head :ok }
       else
         @error = @company
-        format.html { render "irm/common/error_message" }
+        format.html { render "edit" }
         format.xml  { render :xml => @company.errors, :status => :unprocessable_entity }
       end
     end
@@ -81,9 +95,9 @@ class Irm::CompaniesController < ApplicationController
 
   def get_data
     @companies= Irm::Company.multilingual.query_wrap_info(I18n::locale)
+    @companies,count = paginate(@companies)
     respond_to do |format|
-      format.json {render :json=>@companies.to_dhtmlxgrid_json(['R',:company_type_meaning,:short_name,:name,:description, :status_meaning,
-                                                             {:value => 'M', :controller => 'irm/companies',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'id_company_list', :script => ''}], @companies.size)}
+      format.json {render :json=>to_jsonp(@companies.to_grid_json(['R',:company_type_meaning,:short_name,:name,:description, :status_meaning], count))}
     end
   end
 
@@ -172,8 +186,9 @@ class Irm::CompaniesController < ApplicationController
   def get_support_group
     company_id = params[:company_id]
     @support_group= Irm::SupportGroup.multilingual.query_by_company(I18n::locale,company_id)
+    @support_group,count = paginate(@support_group)
     respond_to do |format|
-      format.json {render :json=>@support_group.to_dhtmlxgrid_json(['R',:name,:description,:status_meaning], @support_group.size)}
+      format.json {render :json=>to_jsonp(@support_group.to_grid_json(['R',:name,:description,:status_meaning], count))}
     end
   end
 

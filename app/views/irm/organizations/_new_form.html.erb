@@ -51,7 +51,7 @@
                                                 {},:action=>url_for(:controller=>"irm/organizations",:action=>"belongs_to",:company_id=>"cascade_id"),:choice_title=>t(:actionview_instancetag_blank_option),
                                   :cascade=>"organization_select")%></td>
               <td class="labelCol"><label><%=(t :label_irm_organization_short_name)%></label></td>
-              <td class="dataCol"><%=f.text_field :short_name, :required=>true%></td>
+              <td class="dataCol"><%=f.text_field :short_name, :irm_uppercase=>true,:required=>true%></td>
             </tr>
             <tr>              
               <td class="labelCol"><label><%=(t :label_irm_organization_name)%></label></td>

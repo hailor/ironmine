@@ -67,6 +67,7 @@ zh:
   label_is_required: 必填信息
   label_help_about_page: 此页面帮助
   label_detail_info: 详细信息
+  label_are_you_sure: 你确定要删除数据吗?
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=====================#
   label_lookup_types: 快速编码类型
@@ -134,7 +135,8 @@ zh:
   label_irm_menu_icon: 图标
   label_irm_menu_name: 名称
   label_irm_menu_description: 描述
-
+  label_irm_menu_icon: 图标
+  
   label_irm_menu_entry_name: 提示 
   label_irm_menu_entry_list: 子菜单项列表
   label_irm_menu_entry_new: 创建子菜单项
@@ -147,6 +149,8 @@ zh:
   label_irm_menu_entry_description: 描述
   label_irm_menu_entry_add: 添加子菜单项
   error_irm_menu_entry_permission_sub_menu_at_least_one: 子菜单和页面至少输入一项
+  label_irm_menu_entry_icon: 图标
+  label_irm_menu_entry_css_name: 样式名称
   #=========================    end menus_controller=======================#
   #=========================    irm permissions_controller=======================#
   label_irm_permission: 权限
@@ -379,6 +383,9 @@ zh:
   label_irm_location_status: 记录状态
   label_irm_company_short_name: 编码
   label_irm_location_edit: 编辑地点
+  label_irm_company_info: 公司详细信息
+  label_irm_company_show: 公司
+  label_irm_location_info: 地点信息
   #=========================end irm companies_controller=======================#
   #=========================    irm login_records_controller=======================#
   label_irm_login_record_list: 用户登录历史
@@ -511,10 +518,11 @@ zh:
   label_irm_support_group_support_role: 角色
   label_irm_support_group_vendor_group: 供应商组
   label_irm_support_group_base_info: 基本信息
-  label_irm_support_group_member: 人员
-  label_irm_support_person_name: 人员名称
+  label_irm_support_group_member: 支持组成员
   label_irm_support_group_choose_person: 选择人员
-  label_irm_support_group_add_person: 添加人员
+  label_irm_support_group_add_person: 添加成员
+  label_irm_support_group_show: 支持组
+  label_irm_support_group_person_name: 人员名称
   #=========================end irm support_groups_controller=======================#
   #=========================    irm people_controller=======================#
   label_irm_person_login: 登录名
@@ -564,6 +572,10 @@ zh:
   label_irm_person_person_name: 姓名
   label_irm_person_all_support_groups: 所在支持组
   label_irm_person_choose_company: 选择公司
+  label_irm_person_info: 个人信息
+  label_irm_person_other_info: 其他信息
+  label_irm_person_company_access_flag: 是否可以访问
+  label_irm_person_support_stuff_flag: 是否支持组
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: 弹性域
@@ -598,3 +610,13 @@ zh:
   label_irm_id_flex_segment_description: 描述
   label_irm_id_flex_segment_form_left_prompt: 段名称
   #=========================end id_flex_structures_controller=======================#
+  #=========================    irm people_controller=======================#
+  label_irm_company_access_new: 新建公司访问
+  label_irm_company_access_info: 公司访问信息
+  #=========================end irm people_controller=======================#
+  #=========================    irm support_group_controller=======================#
+  label_irm_support_group_member_new: 新增支持组成员
+  label_irm_support_group_member_group_list: 支持组成员列表
+  label_irm_support_group_member_infoL: 支持组成员
+  label_irm_select_result: 搜索结果
+  #=========================end irm  support_group_controller=======================#

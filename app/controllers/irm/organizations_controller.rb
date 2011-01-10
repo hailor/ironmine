@@ -42,8 +42,7 @@ class Irm::OrganizationsController < ApplicationController
 
     respond_to do |format|
       if @organization.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "index" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_created))}
         format.xml  { render :xml => @organization, :status => :created, :location => @organization }
       else
         format.html { render "new" }
@@ -59,8 +58,7 @@ class Irm::OrganizationsController < ApplicationController
 
     respond_to do |format|
       if @organization.update_attributes(params[:irm_organization])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "index" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
         format.xml  { head :ok }
       else
         @error = @organization

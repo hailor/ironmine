@@ -1,7 +1,7 @@
 class Irm::CompanyAccess < ActiveRecord::Base
    set_table_name :irm_company_accesses
 
-   scope :query_wrap_info,lambda{|language| select("#{table_name}.id,v2.name company_name,v1.meaning status_meaning").
+   scope :query_wrap_info,lambda{|language| select("#{table_name}.*,v2.name company_name,v1.meaning status_meaning").
                                                    joins(",irm_lookup_values_vl v1").
                                                    joins(",irm_companies_vl v2").
                                                    where("v1.lookup_type='SYSTEM_STATUS_CODE' AND v1.lookup_code = #{table_name}.status_code AND "+
@@ -18,5 +18,9 @@ class Irm::CompanyAccess < ActiveRecord::Base
     else
       false
     end
+  end
+
+  def self.delete_all(person_id)
+     self.destroy_all( ["person_id=?",person_id])
   end
 end

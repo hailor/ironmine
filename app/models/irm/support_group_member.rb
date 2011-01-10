@@ -11,7 +11,7 @@ class Irm::SupportGroupMember < ActiveRecord::Base
                                                          "v2.id  = t3.company_id AND v2.language=? AND "+
                                                          "v1.language=?",support_group_code,language,language)}
 
-  scope :query_support_group_by_person_id,lambda{|language,person_id| select("#{table_name}.id id,v2.name support_group_name,"+
+  scope :query_support_group_by_person_id,lambda{|language,person_id| select("#{table_name}.id id,v2.name support_group_name,v2.description,"+
                                                                          "v1.meaning status_meaning").
                                                    joins(",irm_lookup_values_vl v1").
                                                    joins(",irm_support_groups_vl v2").
@@ -33,9 +33,9 @@ class Irm::SupportGroupMember < ActiveRecord::Base
     end
   end
 
-  def self.delete_support_group_member(person_list,support_group_code)
-    self.delete_all(["support_group_code = ? and person_id in (?) ",
-                     support_group_code,person_list])
+  def self.delete_support_group_member(support_group_code)
+    self.delete_all(["support_group_code = ?",
+                     support_group_code])
   end
 
   def self.delete_by_id(id)

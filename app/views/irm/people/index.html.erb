@@ -26,9 +26,14 @@
         </table>
       </div>
       <div class="pbBody">
-        <div id="person" class="datatable" style="width:100%;"></div>
+        <div id="person" class="datatable" style="width:100%;">
+          <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+          </div>
+        </div>        
         <%= datatable("person",url_for(:action=>"get_data",:format=>"json"),
-                  [{:key=>"login_name",:label=>t(:label_irm_person_login),:sortable=>true},
+                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
+                   {:key=>"login_name",:label=>t(:label_irm_person_login),:sortable=>true},
                    {:key=>"person_name",:label=>t(:label_irm_person_name),:sortable=>true},
                    {:key=>"email_address",:label=>t(:label_irm_person_email_address),:sortable=>true},
                    {:key=>"mobile_phone",:label=>t(:label_irm_person_mobile_phone),:sortable=>true},

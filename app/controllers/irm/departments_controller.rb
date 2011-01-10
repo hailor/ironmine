@@ -42,8 +42,7 @@ class Irm::DepartmentsController < ApplicationController
 
     respond_to do |format|
       if @department.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "index" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_created))}
         format.xml  { render :xml => @department, :status => :created, :location => @department }
       else
         format.html { render "new" }
@@ -59,8 +58,7 @@ class Irm::DepartmentsController < ApplicationController
 
     respond_to do |format|
       if @department.update_attributes(params[:irm_department])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "index" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
         format.xml  { head :ok }
       else
         format.html { render "edit" }

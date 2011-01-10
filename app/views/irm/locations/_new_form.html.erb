@@ -1,0 +1,96 @@
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%=t(:label_irm_location_new)%></h1>
+      <h2 class="pageDescription"><%=t(:label_irm_location_new)%></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%></a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
+</div>
+
+<%= form_for(@location,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+<%= hidden_field_tag :return_url,@return_url %>
+<%= f.hidden_field :company_id,:value=>@company_id %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_location_new)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), @return_url%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @location%>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+          <span class="requiredLegend">
+            <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+            </span>
+          <span class="requiredMark">*</span>
+          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+          </span>
+      </span>
+      <h3><%=t(:label_irm_location_info)%></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_location_organization)%></label></td>
+              <td class="dataCol"><%=f.select(:organization_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(current_organization(@company_id),:id,:wrap_name),{},
+                                            :action=>url_for(:controller=>"irm/departments",:action=>"belongs_to",
+                                                             :organization_id=>"cascade_id",:company_id=>@company_id),
+                                            :choice_title=>t(:actionview_instancetag_blank_option),
+                                            :required=>true,
+                                  :cascade=>"department_select")%></td>
+              <td class="labelCol"><label><%=(t :label_irm_location_site_group)%></label></td>
+              <td class="dataCol"><%=f.select(:site_group_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_site_group,:group_code,:wrap_name),{},
+                                            :action=>url_for(:controller=>"irm/site_groups",:action=>"belongs_to",
+                                                             :site_group_code=>"cascade_id"),
+                                            :choice_title=>t(:actionview_instancetag_blank_option),
+                                            :required=>true,
+                                  :cascade=>"site_select")%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_location_department)%></label></td>
+              <td class="dataCol"><%=f.select(:department_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_department,:id,:wrap_name),
+                                            {},:id=>"department_select")%></td>
+              <td class="labelCol"><%=(t :label_irm_location_site)%></td>
+              <td class="dataCol"><%=f.select(:site_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_site,:site_code,:wrap_name),
+                                            {},:id=>"site_select",:required=>true)%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), @return_url%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
+

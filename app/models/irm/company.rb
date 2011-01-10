@@ -20,6 +20,19 @@ class Irm::Company < ActiveRecord::Base
                                                          "v1.language=? AND v2.language=?",language,language)}
 
 
+  scope :query_show_wrap_info,lambda{|language| select("#{table_name}.*,#{Irm::CompaniesTl.table_name}.name,#{Irm::CompaniesTl.table_name}.description,"+
+                                                          "v1.meaning company_type_meaning,v2.meaning status_meaning,v3.meaning timezone_meaning,v4.name currency_name").
+                                                   joins("left outer join irm_lookup_values_vl v3 on v3.lookup_type='TIMEZONE' AND v3.lookup_code = #{table_name}.time_zone AND "+
+                                                         "v3.language = #{Irm::CompaniesTl.table_name}.language").
+                                                   joins("left outer join irm_currencies_vl v4 on v4.currency_code = #{table_name}.currency_code AND "+
+                                                         "v4.language = #{Irm::CompaniesTl.table_name}.language").
+                                                   joins(",irm_lookup_values_vl v1").
+                                                   joins(",irm_lookup_values_vl v2").
+                                                   where("v1.lookup_type='COMPANY_TYPE' AND v1.lookup_code = #{table_name}.company_type AND "+
+                                                         "v2.lookup_type='SYSTEM_STATUS_CODE' AND v2.lookup_code = #{table_name}.status_code AND "+
+                                                         "v1.language=? AND v2.language=? ",language,language)}
+
+
 
 
   #设定当前用户

@@ -44,8 +44,7 @@ class Irm::ConditionsController < ApplicationController
 
     respond_to do |format|
       if @condition.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "index" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_created))}        
         format.xml  { render :xml => @condition, :status => :created, :location => @condition }
       else
         @error = @condition
@@ -62,8 +61,7 @@ class Irm::ConditionsController < ApplicationController
 
     respond_to do |format|
       if @condition.update_attributes(params[:irm_condition])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "index" }
+        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
         format.xml  { head :ok }
       else
         @error = @condition
