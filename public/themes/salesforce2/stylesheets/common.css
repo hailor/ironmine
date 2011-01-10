@@ -161,6 +161,7 @@ img.img9Big{}
 
 #pageMenu{
     -moz-border-radius:11px 11px 11px 11px;
+    -webkit-border-radius: 11px;
     background:none repeat scroll 0 0 #35B4E9;
 }
 #pageMenu-arrow, #settingMenu-arrow {
