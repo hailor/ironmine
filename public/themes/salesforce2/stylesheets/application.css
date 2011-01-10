@@ -319,6 +319,7 @@ div.button {
 div.disable a{ color: #6E6E6E !important;line-height: 20px;background: none repeat scroll #EDEBE2 !important;}
 div.button a {
     -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px;
     background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
     border-color: #B5B5B5 #B5B5B5 #7F7F7F;
 	border-width: 1px;
@@ -335,6 +336,7 @@ div.button a {
 div.button a:hover{background-position: right -30px;}
 div.button input[type="submit"] {
     -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px;    
     background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
     border-color: #B5B5B5 #B5B5B5 #7F7F7F;
 	border-width: 1px;
@@ -601,6 +603,7 @@ body .bodyDiv #bodyTable {padding-left:0;padding-right:0;}
 .setupTab .mComponent .cHeader, .setupTab .genericTable, .setupTab .bSubBlock, .setupTab .bPageBlock {border-top:3px solid #747E96;}
 body .bPageBlock, body #bodyCell .bResource .secondaryPalette, body .secondaryPalette.bPageBlock, body .overlayDialog .secondaryPalette.bPageBlock, body .individualPalette .secondaryPalette.bPageBlock, body .bodyDiv .genericTable, body .genericPageBlockTable, body .bodyDiv .bSubBlock, body .bComponentBlock .bPageBlock, body .bMyDashboard .bPageBlock, body.rlHoverFrame .bPageBlock, body.subjectSelectionPopup div.choicesBox, body.lookupTab .secondaryPalette.bPageBlock, body.popupTab .secondaryPalette.bPageBlock, body.UserTagStatsPage .secondaryPalette.bPageBlock {
     -moz-border-radius:4px 4px 4px 4px;
+    -webkit-border-radius: 4px;
     background-color:#F8F8F8;
     border-bottom:1px solid #EAEAEA;
     border-left:1px solid #EAEAEA;
@@ -783,6 +786,7 @@ body .bSubBlock {padding:5px;}
 
 body button, body .x-btn, body .btn, body .btnDisabled, body .btnCancel, body .menuButton .menuButtonButton {
     -moz-border-radius:3px 3px 3px 3px;
+    -webkit-border-radius: 3px;
     background:url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
     border-color:#B5B5B5 #B5B5B5 #7F7F7F;
     border-style:solid;
@@ -1099,7 +1103,7 @@ body.homeTab .componentDate {margin-left:10px;}
     color: #1797C0;
  }
 .menuParent div.menuLabelClick{
-    -moz-border-radius: 11px 11px 0px 0px;
+    -moz-border-radius: 11px 11px 0 0;
     -webkit-border-top-left-radius: 11px;
     -webkit-border-top-right-radius: 11px;
     -webkit-border-bottom-right-radius: 0;
@@ -1115,7 +1119,7 @@ body.homeTab .componentDate {margin-left:10px;}
  }
 .menuParent div.menuContentVisual{
     display:block;
-    -moz-border-radius: 11px 0px 11px 11px;
+    -moz-border-radius: 11px 0 11px 11px;
     -webkit-border-top-left-radius: 11px;
     -webkit-border-bottom-right-radius: 11px;
     -webkit-border-bottom-left-radius: 11px;
