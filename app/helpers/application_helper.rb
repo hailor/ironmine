@@ -6,12 +6,12 @@ module ApplicationHelper
       if @current_menu_entry.icon
         title_tags << content_tag(:img, "", :src => '/images/s.gif', :class => @current_menu_entry.icon + " pageTitleIcon")
       end
-      if title.blank?
+      if !title.blank?
         title_tags << title
       else
         title_tags << content_tag(:h1, "", :class => "pageType")
       end
-      if description.blank?
+      if !description.blank?
         title_tags << description
       else
         title_tags << content_tag(:h2, permission[:name], :class => "pageDescription")
