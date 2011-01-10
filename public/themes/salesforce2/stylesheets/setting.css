@@ -1006,3 +1006,9 @@ a.NavTreeExp {
     padding:3px 2px 3px 5px;
     width:50%;
 }
+.login_form_box #login_form .loginError {
+    color:#FF0000;
+    padding-bottom:10px;
+    text-align:center;
+    width:310px;
+}
