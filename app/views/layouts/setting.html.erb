@@ -13,7 +13,7 @@
     GY.use("irm","node-base",function(Y){
       Y.on("domready",function(){
         Y.irm.menuButton("settingMenu","TR","BR");
-        Y.irm.menuButton("pageMenu");
+        Y.irm.menuButton("pageMenu","TR","BR");
       });
     });
   </script>
@@ -37,8 +37,7 @@
                           </div>
                           <div class="menuContent" >
                             <%= setting_menu%>
-                            <br/>
-                            <span><%= link_to(t(:label_irm_common_logout),logout_url) %></span>
+                            <div class="menuItem"><%= link_to(t(:label_irm_common_logout),logout_url) %></div>
                           </div>
                         </span>
                         <span id="pageMenu" class="menuParent" style="float:right">

@@ -32,7 +32,6 @@ YUI.add('irm', function(Y) {
       overlay.render();
 
       menuNode.delegate("mouseenter",function(e){
-        console.log("enter");
         if(!this.hasClass("menuLabelHover"))
           this.addClass("menuLabelHover");
       },".menuLabel");
@@ -60,7 +59,6 @@ YUI.add('irm', function(Y) {
         else{
           menuContent.removeClass("menuContentVisual");
           overlay.set("visible",false);
-          console.log("close");
         }
       },"*");
 
