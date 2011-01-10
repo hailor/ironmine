@@ -534,15 +534,22 @@ body .bPageTitle .ptBody {
     padding-top:5px;
     width:100%;
 }
+
+.bDescription {
+    margin:16px 0;
+    padding:0;
+}
 .setupTab .bPageTitle .ptBody .content, .sysAdminTab .bPageTitle .ptBody .content {padding-left:0;}
-.setupTab .bPageTitle .ptBody .content, .sysAdminTab .bPageTitle .ptBody .content {padding-left:5px;}
 .bPageTitle .ptBody .content {
     float:left;
     padding-left:5px;
     vertical-align:middle;
     width:70%;
 }
-.setupTab .bPageTitle .ptBody .pageType, .setupTab .bPageTitle .ptBody .pageDescription, .sysAdminTab .bPageTitle .ptBody .pageType, .sysAdminTab .bPageTitle .ptBody .pageDescription {margin-left:0;}
+.setupTab .bPageTitle .ptBody .pageType, .setupTab .bPageTitle .ptBody .pageDescription, .sysAdminTab .bPageTitle .ptBody .pageType, .sysAdminTab .bPageTitle .ptBody .pageDescription {
+    margin-left:0;
+    margin-bottom: 5px;
+}
 body .bPageTitle .ptBody .pageDescription {
     font-size:25px;
     font-weight:normal;
