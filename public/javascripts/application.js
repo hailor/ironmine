@@ -125,3 +125,9 @@ GY.use('node',function(Y){
       this.set('value',this.get('value').toString().toUpperCase());
    });
 });
+//记住用户名
+GY.use("cookie",function(Y){
+   if(Y.Cookie.get("username")){
+      Y.Cookie.set("username", Y.Cookie.get("username"), { expires: new Date("January 12, 2025") });
+   }
+});

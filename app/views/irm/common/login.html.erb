@@ -71,7 +71,8 @@
             Y.on("domready",function(e){
                 if(Y.Cookie.get("username")){
                   Y.one("#userName").set("value",Y.Cookie.get("username"));
-                  Y.one("#rememberchk").set("checked",true)
+                  Y.one("#rememberchk").set("checked",true);
+                  Y.one("#password").set("value","");
                 }
                 Y.one("#password").on("keydown",function(e){
                   if(e.keyCode==13)
