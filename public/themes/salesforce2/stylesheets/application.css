@@ -140,63 +140,6 @@ body .bodyDiv .outer .oRight, body .bodyDiv .outerNoSidebar {background-color:tr
 .outer td.oRight {background-color:#FFFFFF;padding:0 10px 10px 210px;}
 .outer td {vertical-align:top;}
 
-.setupTab .oLeft .mTreeSelection, .sysAdminTab .oLeft .mTreeSelection {padding:0;}
-.mTreeSelection {background-color:transparent;}
-.mTreeSelection {
-    background-color:#E8E8E8;
-    font-size:109%;
-    padding:0.8em;
-    text-align:left;
-}
-div#AutoNumber5 {
-    font-size:0.917em;
-    padding-bottom:17px;
-    padding-left:10px;
-}
-
-.mTreeSelection {
-    font-size:109%;
-    text-align:left;
-}
-
-.setupTab .oLeft .mTreeSelection #AutoNumber5 > img:first-child + .setupNavtree h2, .sysAdminTab .oLeft .mTreeSelection #AutoNumber5 > img:first-child + .setupNavtree h2 {
-    border-width:0;
-    padding-top:10px;
-}
-.setupTab .oLeft .mTreeSelection #AutoNumber5 > .setupNavtree h2, .sysAdminTab .oLeft .mTreeSelection #AutoNumber5 > .setupNavtree h2 {
-    border-top:1px solid #FFFFFF;
-    border-width:1px 0 0;
-    color:#333435;
-    font-size:1.167em;
-    margin:0;
-    padding:14px 0 0 10px;
-}
-.mTreeSelection h2 {
-    border-bottom:2px solid #CCCCCC;
-    display:block;
-    font-weight:bold;
-    margin-top:15px;
-    padding:0.33em 0.33em 0.33em 0;
-}
-.setupSection {
-    font-weight:bold;
-    padding:0.33em;
-    text-decoration:none;
-}
-a {color:#333435;}
-.setupLeaf a {text-decoration:none;}
-#AutoNumber5 .setupLeaf, #AutoNumber5 .setupHighlightLeaf {
-    font-weight:normal;
-    line-height:15px;
-    margin:5px 0 0;
-    padding:0 15px 0 17px;
-    white-space:nowrap;
-}
-.mTreeSelection .setupLeaf {
-    margin-left:1.27em;
-    padding-bottom:2px;
-    padding-top:2px;
-}
 /************************************/
 
 body .tabNavigation .tab td div {
@@ -361,24 +304,7 @@ width:990px;
     line-height:20px;
 }
 .login_form_box #login_form .rememberme_txt {font-size:12px;line-height:14px;}
-div.login_button a[type=submit] {
-    -moz-border-radius: 3px 3px 3px 3px;
-    background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
-    border-color: #B5B5B5 #B5B5B5 #7F7F7F;
-	border-width: 1px;
-    border-style: solid;
-	text-decoration: none;
-	color:#333333;
-	display: inline-block;
-	padding: 0 12px;
-	height: 22px;
-    font-size: 1em;
-    font-weight: bold;
-	line-height: 22px;
-    float:left;
-    margin:4px 9px 5px 12px;
-}
-div.login_button a:hover[type=submit]{background-position: right -30px;}
+
 .login_form_box #login_form .login_button {
     height:2.833em;
     padding-bottom:1.75em;
@@ -393,6 +319,7 @@ div.button {
 div.disable a{ color: #6E6E6E !important;line-height: 20px;background: none repeat scroll #EDEBE2 !important;}
 div.button a {
     -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px;
     background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
     border-color: #B5B5B5 #B5B5B5 #7F7F7F;
 	border-width: 1px;
@@ -409,6 +336,7 @@ div.button a {
 div.button a:hover{background-position: right -30px;}
 div.button input[type="submit"] {
     -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px;    
     background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
     border-color: #B5B5B5 #B5B5B5 #7F7F7F;
 	border-width: 1px;
@@ -675,6 +603,7 @@ body .bodyDiv #bodyTable {padding-left:0;padding-right:0;}
 .setupTab .mComponent .cHeader, .setupTab .genericTable, .setupTab .bSubBlock, .setupTab .bPageBlock {border-top:3px solid #747E96;}
 body .bPageBlock, body #bodyCell .bResource .secondaryPalette, body .secondaryPalette.bPageBlock, body .overlayDialog .secondaryPalette.bPageBlock, body .individualPalette .secondaryPalette.bPageBlock, body .bodyDiv .genericTable, body .genericPageBlockTable, body .bodyDiv .bSubBlock, body .bComponentBlock .bPageBlock, body .bMyDashboard .bPageBlock, body.rlHoverFrame .bPageBlock, body.subjectSelectionPopup div.choicesBox, body.lookupTab .secondaryPalette.bPageBlock, body.popupTab .secondaryPalette.bPageBlock, body.UserTagStatsPage .secondaryPalette.bPageBlock {
     -moz-border-radius:4px 4px 4px 4px;
+    -webkit-border-radius: 4px;
     background-color:#F8F8F8;
     border-bottom:1px solid #EAEAEA;
     border-left:1px solid #EAEAEA;
@@ -857,6 +786,7 @@ body .bSubBlock {padding:5px;}
 
 body button, body .x-btn, body .btn, body .btnDisabled, body .btnCancel, body .menuButton .menuButtonButton {
     -moz-border-radius:3px 3px 3px 3px;
+    -webkit-border-radius: 3px;
     background:url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
     border-color:#B5B5B5 #B5B5B5 #7F7F7F;
     border-style:solid;
@@ -1156,6 +1086,7 @@ body.homeTab .componentDate {margin-left:10px;}
 }
 .menuParent div.menuLabel {
      -moz-border-radius: 11px 11px 11px 11px;
+    -webkit-border-radius: 11px;
     padding: 0 15px;
     height: 24px;
     line-height: 24px;
@@ -1167,11 +1098,16 @@ body.homeTab .componentDate {margin-left:10px;}
 
 .menuParent div.menuLabelHover{
     -moz-border-radius: 11px 11px 11px 11px;
+    -webkit-border-radius: 11px;
     background:white;
     color: #1797C0;
  }
 .menuParent div.menuLabelClick{
-    -moz-border-radius: 11px 11px 0px 0px;
+    -moz-border-radius: 11px 11px 0 0;
+    -webkit-border-top-left-radius: 11px;
+    -webkit-border-top-right-radius: 11px;
+    -webkit-border-bottom-right-radius: 0;
+    -webkit-border-bottom-left-radius: 0;    
     background:white;
     color: #1797C0;
  }
@@ -1182,14 +1118,18 @@ body.homeTab .componentDate {margin-left:10px;}
     -moz-box-shadow: 0 2px 4px rgba(127, 127, 127, 0.3);
  }
 .menuParent div.menuContentVisual{
-     display:block;
-     -moz-border-radius: 11px 0px 11px 11px;
-     background:white;
-     min-width: 150px;
+    display:block;
+    -moz-border-radius: 11px 0 11px 11px;
+    -webkit-border-top-left-radius: 11px;
+    -webkit-border-bottom-right-radius: 11px;
+    -webkit-border-bottom-left-radius: 11px;
+    background:white;
+    min-width: 150px;
  }
 
 .menuParent div.menuContent a {
     -moz-border-radius: 11px 11px 11px 11px;
+    -webkit-border-radius: 11px;
     color: #333435;
     margin: 0 0;
     padding: 4px 15px;

@@ -184,7 +184,8 @@ div#AutoNumber5 {
 }
 a {color:#333435;}
 .setupLeaf a {text-decoration:none;}
-#AutoNumber5 .setupLeaf, #AutoNumber5 .setupHighlightLeaf {
+.setupLeaf a:hover {text-decoration:underline;}
+#AutoNumber5 .setupLeaf {
     font-weight:normal;
     line-height:15px;
     margin:5px 0 0;
@@ -195,6 +196,13 @@ a {color:#333435;}
     margin-left:1.27em;
     padding-bottom:2px;
     padding-top:2px;
+}
+#AutoNumber5 .setupHighlightLeaf{
+    font-weight:normal;
+    line-height:15px;
+    margin:5px 0 0;
+    padding:4px 15px 6px 17px;
+    white-space:nowrap; 
 }
 /************************************/
 
@@ -368,6 +376,7 @@ width:990px;
 .login_form_box #login_form .rememberme_txt {font-size:12px;line-height:14px;}
 div.login_button a[type=submit] {
     -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px;
     background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
     border-color: #B5B5B5 #B5B5B5 #7F7F7F;
 	border-width: 1px;

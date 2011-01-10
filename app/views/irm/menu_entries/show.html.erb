@@ -1,0 +1,72 @@
+<%= page_title %>
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_menu_entry) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @menu_entry}%></div>
+            <div class="button"><%= link_back %></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+         <tr>
+           <td class="labelCol"><label><%=(t :label_irm_menu_menu_code)%></label></td>
+           <td class="dataCol"><%= @menu.menu_code%></td>
+           <td class="labelCol empty">&nbsp;</td>
+           <td class="dataCol empty">&nbsp;</td>
+         </tr>
+         <tr>
+           <td class="labelCol"><label><%=(t :label_irm_menu_name)%></label></td>
+           <td class="dataCol"><%= @menu[:name]%></td>
+           <td class="labelCol empty">&nbsp;</td>
+           <td class="dataCol empty">&nbsp;</td>
+         </tr>
+         <tr>
+           <td class="labelCol"><label><%=t :label_irm_menu_entry_prompt%></label></td>
+           <td class="dataCol"><%= @menu_entry[:name]%></td>
+           <td class="labelCol empty">&nbsp;</td>
+           <td class="dataCol empty">&nbsp;</td>
+         </tr>
+         <tr>
+           <td class="labelCol"><label><%=t :label_irm_menu_entry_sub_menu%></label></td>
+           <td class="dataCol"><div><%= @menu_entry.sub_menu_code%></div></td>
+           <td class="labelCol empty">&nbsp;</td>
+           <td class="dataCol empty">&nbsp;</td>
+         </tr>
+         <tr>
+           <td class="labelCol"><label><%=t :label_irm_menu_entry_page%></label></td>
+           <td class="dataCol"><div><%= @menu_entry.permission_code%></div></td>
+           <td class="labelCol empty">&nbsp;</td>
+           <td class="dataCol empty">&nbsp;</td>
+         </tr>
+         <tr>
+           <td class="labelCol"><label><%=t(:label_irm_menu_entry_description)%></label></td>
+           <td class="dataCol"><div><%= @menu_entry[:description]%></div></td>
+           <td class="labelCol empty">&nbsp;</td>
+           <td class="dataCol empty">&nbsp;</td>
+         </tr>
+         <tr>
+           <td class="labelCol"><label><%=t(:label_irm_menu_entry_display_sequence)%></label></td>
+           <td class="dataCol"><div><%= @menu_entry.display_sequence%></div></td>
+           <td class="labelCol empty">&nbsp;</td>
+           <td class="dataCol empty">&nbsp;</td>
+         </tr>
+         <tr>
+           <td class="labelCol"><label><%=(t :active)%></label></td>
+           <td class="dataCol"><%= @menu_entry.status_code%></td>
+           <td class="labelCol empty">&nbsp;</td>
+           <td class="dataCol empty">&nbsp;</td>
+         </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -47,17 +47,15 @@ Ironmine::Application.routes.draw do
     match '/menus/:id(.:format)' => "menus#update", :via => :put
     match '/menus/:id/show(.:format)' => "menus#show", :via => :get
     #menu_entries
-    match '/menu_entries/:menu_id/index(.:format)' => "menu_entries#index", :via => :get
-    match '/menu_entries/:menu_id/new(.:format)' => "menu_entries#new", :via => :get
-    match '/menu_entries/:menu_id/create(.:format)' => "menu_entries#create", :via => :post
+    match '/menu_entries(/index)(.:format)' => "menu_entries#index", :via => :get
+    match '/menu_entries/:menu_code/new(.:format)' => "menu_entries#new", :via => :get
+    match '/menu_entries/create(.:format)' => "menu_entries#create", :via => :post
     match '/menu_entries/:menu_code/get_data(.:format)' => "menu_entries#get_data"
     match '/menu_entries/:id/edit(.:format)' => "menu_entries#edit", :via => :get
-    match '/menu_entries/link_edit(.:format)' => "menu_entries#link_edit", :via => :post
     match '/menu_entries/:id(.:format)' => "menu_entries#update", :via => :put
-    match '/menu_entries/:id/multilingual_edit(.:format)' => "menu_entries#multilingual_edit", :via => :get
-    match '/menu_entries/:id/multilingual_update(.:format)' => "menu_entries#multilingual_update", :via => :put
     match '/menu_entries/destroy(.:format)' => "menu_entries#destroy"
-    match '/menu_entries/create_entry(.:format)' => "menu_entries#create_entry", :via => :post
+    match '/menu_entries/select_parent(.:format)' => "menu_entries#select_parent"
+    match '/menu_entries/:id/show(.:format)' => "menu_entries#show", :via => :get
     #permissions
     match '/permissions(/index)(.:format)' => "permissions#index", :via => :get
     match '/permissions/:id/edit(.:format)' => "permissions#edit", :via => :get
@@ -138,8 +136,6 @@ Ironmine::Application.routes.draw do
     match '/functions/new(.:format)' => "functions#new", :via => :get
     match '/functions/create(.:format)' => "functions#create", :via => :post
     match '/functions/:id/show(.:format)' => "functions#show", :via => :get
-    match '/functions/:id/multilingual_edit(.:format)' => "functions#multilingual_edit", :via => :get
-    match '/functions/:id/multilingual_update(.:format)' => "functions#multilingual_update", :via => :put
     match '/functions/get_data(.:format)' => "functions#get_data"
     match '/functions/:function_id/permission_index(.:format)' => "functions#permission_index", :via => :get
     match '/functions/:function_id/add_permission(.:format)' => "functions#add_permission", :via => :get
