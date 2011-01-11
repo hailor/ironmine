@@ -66,7 +66,7 @@ Ironmine::Application.routes.draw do
     match '/permissions/create(.:format)' => "permissions#create", :via => :post
     match '/permissions/:id/multilingual_edit(.:format)' => "permissions#multilingual_edit", :via => :get
     match '/permissions/:id/multilingual_update(.:format)' => "permissions#multilingual_update", :via => :put
-    match '/permissions/:function_id/function_get_data(.:format)' => "permissions#function_get_data"
+    match '/permissions/:function_code/function_get_data(.:format)' => "permissions#function_get_data"
     match '/permissions/get_data(.:format)' => "permissions#get_data"
     match '/permissions/:id/show(.:format)' => "permissions#show", :via => :get
     match '/permissions/data_grid(.:format)' => "permissions#data_grid", :via => :get
@@ -152,12 +152,12 @@ Ironmine::Application.routes.draw do
     match '/functions/create(.:format)' => "functions#create", :via => :post
     match '/functions/:id/show(.:format)' => "functions#show", :via => :get
     match '/functions/get_data(.:format)' => "functions#get_data"
-    match '/functions/:function_id/permission_index(.:format)' => "functions#permission_index", :via => :get
-    match '/functions/:function_id/add_permission(.:format)' => "functions#add_permission", :via => :get
-    match '/functions/:function_id/edit_own_permissions(.:format)' => "functions#edit_own_permissions", :via => :get
-    match '/functions/:function_id/get_own_permissions(.:format)' => "functions#get_own_permissions", :via => :get
-    match '/functions/:function_id/get_available_permissions(.:format)' => "functions#get_available_permissions", :via => :get
-    match '/functions/:function_id/update_permissions(.:format)' => "functions#update_permissions", :via => :post
+    match '/functions/:function_id/add_permissions(.:format)' => "functions#add_permissions", :via => :get
+    match '/functions/:function_code/get_available_permissions(.:format)' => "functions#get_available_permissions", :via => :get
+    match '/functions/:function_id/select_permissions(.:format)' => "functions#select_permissions"
+    match '/functions/:function_id/add_permissions(.:format)' => "functions#add_permissions", :via => :post
+    match '/functions/:function_id/:permission_id/remove_permission(.:format)' => "functions#remove_permission", :via => :get
+    
     #function_groups
     match '/function_groups(/index)(.:format)' => "function_groups#index", :via => :get
     match '/function_groups/:id/edit(.:format)' => "function_groups#edit", :via => :get

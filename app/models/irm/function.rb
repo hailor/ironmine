@@ -13,9 +13,9 @@ class Irm::Function < ActiveRecord::Base
   validates_format_of :function_code, :with => /^[A-Z0-9_]*$/ ,:if=>Proc.new{|i| !i.function_code.blank?}
 
   # 菜单子项
-  has_many :function_members,:foreign_key=>"function_code",:primary_key=>"function_code"
+  has_many :function_members
   has_many :permissions, :through => :function_members
 
-  has_many :function_group_members,:foreign_key=>"function_code",:primary_key=>"function_code"
-  has_many :function_groups, :through => :function_group_members  
+  has_many :function_group_members,:foreign_key=>"function_code"
+  has_many :function_groups, :through => :function_group_members
 end

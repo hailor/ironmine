@@ -245,3 +245,21 @@ img.img9Big{}
 .menuParent div.menuLabelHover #settingMenu-arrow,
 .menuParent div.menuLabelClick #settingMenu-arrow{background-position: 0 -145px;}
 .messages{height:35px;}
+
+
+/*************************************************************************************/
+div.srch {
+    font-family:'Arial','Helvetica',sans-serif;
+    font-size:118%;
+    font-weight:bold;
+    padding:4px 3px;
+}
+
+div.srch .pbTitle {
+    color:#222222;
+    margin:0;
+    vertical-align:middle;
+    width:30%;
+}
+div.srch table {border-spacing:0;width:100%;}
+/*************************************************************************************/

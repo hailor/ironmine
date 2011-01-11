@@ -6,7 +6,7 @@ class Irm::Permission < ActiveRecord::Base
   has_many :permissions_tls,:dependent => :destroy
   acts_as_multilingual
   
-  has_many :function_members,:foreign_key=>"permission_code",:primary_key=>"permission_code"
+  has_many :function_members
   has_many :functions, :through => :function_members
 
   # 验证权限编码唯一性
@@ -24,7 +24,12 @@ class Irm::Permission < ActiveRecord::Base
 
   #通过controller,action确定permission
   scope :position,lambda {|controller,action| where("page_controller = ? AND page_action = ?", controller,action) }
-
+  scope :belong_to_function, lambda{|function_code|
+    joins(",#{Irm::FunctionMember.table_name}").
+    where("#{Irm::FunctionMember.table_name}.function_code = ?", function_code).
+    where("#{Irm::FunctionMember.table_name}.permission_code = #{table_name}.permission_code")
+  }
+  scope :query_by_permission_name, lambda {|name| where("#{Irm::PermissionsTl.table_name}.name LIKE '%#{name}%'")}
   #查找人员的权限
   scope :query_by_person,lambda{|person_id|
     joins("LEFT OUTER JOIN #{Irm::FunctionMember.table_name} ON #{Irm::FunctionMember.table_name}.permission_code = #{table_name}.permission_code").
@@ -54,7 +59,9 @@ class Irm::Permission < ActiveRecord::Base
     where("#{Irm::ProductModulesTl.table_name}.product_id = #{table_name}.product_id")
   }
 
-
+  scope :without_function, lambda{|function_code|
+    where("#{table_name}.permission_code NOT IN (SELECT t.permission_code FROM #{Irm::FunctionMember.table_name} t WHERE t.permission_code = #{table_name}.permission_code AND t.function_code = ?)", function_code)
+  }
   def set_product_id
     product_code = self.page_controller.gsub(/\/.*/, "")
     product = Irm::ProductModule.query_by_short_name(product_code.upcase).first

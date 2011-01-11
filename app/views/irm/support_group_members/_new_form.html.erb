@@ -7,11 +7,9 @@
         <label style="text-align: left; font-weight: bold; padding-right: 0.69em;"><%= t(:label_irm_person_name) %>：</label>
         <span class="fBody">
             <%= text_field_tag :person_name,@person_name%>
-            <%= submit_tag t(:jump), :title => t(:jump), :class => "btn" %>
+            <%= submit_tag t(:search), :title => t(:search), :class => "btn" %>
         </span>
         <span class="fFooter">
-          <a href="javascript:void(0);">编辑</a> |
-          <a href="javascript:void(0);">创建新视图</a>
         </span>
       </span>
       <% end %>
