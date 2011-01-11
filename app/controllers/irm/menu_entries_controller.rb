@@ -1,33 +1,32 @@
 class Irm::MenuEntriesController < ApplicationController
   def index
-    @menu_entry = Irm::MenuEntry.new
-    @menu = Irm::Menu.multilingual.find(params[:menu_id])
+    @menu = Irm::Menu.where(:menu_code => params[:menu_code]).first if params[:menu_code]
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @menu_entry }
-    end    
+    end
   end
 
   def edit
     @menu_entry = Irm::MenuEntry.multilingual.find(params[:id])
+    @menu = Irm::Menu.multilingual.where(:menu_code => @menu_entry.menu_code).first
   end
 
   def update
     @menu_entry = Irm::MenuEntry.find(params[:id])
     respond_to do |format|
       if @menu_entry.update_attributes(params[:irm_menu_entry])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index", :menu_code => @menu_entry.menu_code}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
       else
-        @error = @menu_entry
-        format.html { render "error_message" }
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @menu_entry.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   def new
     @menu_entry = Irm::MenuEntry.new
-    @menu = Irm::Menu.find(params[:menu_id])
+    @menu = Irm::Menu.multilingual.where(:menu_code => params[:menu_code]).first
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @menu_entry }
@@ -36,15 +35,14 @@ class Irm::MenuEntriesController < ApplicationController
 
   def create
     @menu_entry = Irm::MenuEntry.new(params[:irm_menu_entry])
-    @menu = Irm::Menu.find(params[:menu_id])
-    @menu_entry.menu_code = @menu.menu_code
     respond_to do |format|
       if @menu_entry.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index", :menu_code => @menu_entry.menu_code}, :notice =>t(:successfully_created)) }
+        format.xml  { render :xml => @menu_entry, :status => :created, :location => @menu_entry }
       else
-         @error = @menu_entry
-         format.html { render "error_message" }
+        @menu = Irm::Menu.where(:menu_code => @menu_entry.menu_code).first
+        format.html { render :action => "new"}
+        format.xml  { render :xml => @menu_entry.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -70,4 +68,13 @@ class Irm::MenuEntriesController < ApplicationController
       end
     end    
   end
+
+  def select_parent
+    redirect_to :action => "index", :menu_code => params[:menu][:menu_code]
+  end
+
+  def show
+    @menu_entry = Irm::MenuEntry.multilingual.where(:id => params[:id]).first
+    @menu = Irm::Menu.multilingual.where(:menu_code => @menu_entry.menu_code).first
+  end  
 end

@@ -8,14 +8,13 @@
   <%= csrf_meta_tag %>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/setting.css"></link>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/common.css"></link>
-  <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/application.css"></link>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/test.css"></link>
 
   <script type="text/javascript">
     GY.use("irm","node-base",function(Y){
       Y.on("domready",function(){
         Y.irm.menuButton("settingMenu","TR","BR");
-        Y.irm.menuButton("pageMenu");
+        Y.irm.menuButton("pageMenu","TR","BR");
       });
     });
   </script>
@@ -33,22 +32,23 @@
                     <div class="multiforce">
                       <div class="messages"></div>
                       <div>
-                        <span id="settingMenu" class="menuParent" style="float:right">
-                          <div  class="menuLabel">
-                            <span tabindex="0" style="">liu hailor</span>
-                          </div>
-                          <div class="menuContent" >
-                            <%= setting_menu%>
-                            <br/>
-                            <span><%= link_to(t(:label_irm_common_logout),logout_url) %></span>
-                          </div>
-                        </span>
                         <span id="pageMenu" class="menuParent" style="float:right">
                           <div  class="menuLabel">
-                            <span tabindex="0" id="userNavLabel" style=""><%= level_one_current_name %></span>
+                            <span tabindex="0" id="pageMenuTop" style=""><%= level_one_current_name %></span>
+                            <div id="pageMenu-arrow"></div>
                           </div>
                           <div class="menuContent" >
                             <%= level_one_menu %>
+                          </div>
+                        </span>
+                        <span id="settingMenu" class="menuParent" style="float:right">
+                          <div  class="menuLabel">
+                            <span tabindex="0" style="" id="userNavTop" >liu hailor</span>
+                            <div id="settingMenu-arrow"></div>
+                          </div>
+                          <div class="menuContent" >
+                            <%= setting_menu%>
+                            <div class="menuItem"><%= link_to(t(:label_irm_common_logout),logout_url) %></div>
                           </div>
                         </span>
                       </div>

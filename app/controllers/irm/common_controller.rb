@@ -18,6 +18,9 @@ class Irm::CommonController < ApplicationController
     redirect_to login_url
   end
 
+  def forgot_password
+    
+  end
   private
   #验证用户登录是否成功
   #成功,则转向用户的默认页面
@@ -50,7 +53,7 @@ class Irm::CommonController < ApplicationController
     if(params[:rememberme])
       cookies[:username] = params[:username]
     else
-      cookies[:username] = nil
+      cookies.delete(:username)
     end
     # generate a key and set cookie if autologin
     #if params[:autologin] && Setting.autologin?

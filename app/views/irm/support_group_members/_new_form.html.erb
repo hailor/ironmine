@@ -1,16 +1,4 @@
-<div class="bPageTitle">
-  <div class="ptBody">
-    <div class="content">
-      <h1 class="pageType"></h1>
-      <h2 class="pageDescription"><%= t(:label_irm_support_group_member_new) %></h2>
-      <div class="blank">&nbsp;</div>
-    </div>
-    <div class="links">
-      <a href="javascript:void(0);" class="configLinks">此页面的帮助</a>
-    </div>
-    <div class="ptBreadcrumb"></div>
-  </div>
-</div>
+<%= page_title %>
 <div class="filterOverview">
     <div class="bFilterView">
       <%= form_tag(:action => "select_person",:support_group_code=>@support_group_code,:person_name=>@person_name) do %>
@@ -35,24 +23,24 @@
 <%= hidden_field_tag "person_name",@person_name%>
 <%= hidden_field_tag "return_url",@return_url%>
 <div class="srch">
-<div class="pbHeader">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <tbody>
-        <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_select_result) %>&nbsp;<%= t(:label_detail_info) %></h2></td>
-          <td id="topButtonRow1" class="pbButton">
-            <div class="button"><%= f.submit t(:save)%></div>
-            <% if !@return_url.blank? %>
-              <div class="button"><%= link_to t(:cancel), @return_url%></div>
-            <% else %>
-              <div class="button"><%= link_to t(:cancel), {:action => "select_person",:support_group_code=>@support_group_code,
-                                                           :person_name=>@person_name}%></div>
-            <% end %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_select_result) %>&nbsp;<%= t(:label_detail_info) %></h2></td>
+              <td id="topButtonRow1" class="pbButton">
+                <div class="button"><%= f.submit t(:save)%></div>
+                <% if !@return_url.blank? %>
+                  <div class="button"><%= link_to t(:cancel), @return_url%></div>
+                <% else %>
+                  <div class="button"><%= link_to t(:cancel), {:action => "select_person",:support_group_code=>@support_group_code,
+                                                               :person_name=>@person_name}%></div>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
 </div>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbBody">

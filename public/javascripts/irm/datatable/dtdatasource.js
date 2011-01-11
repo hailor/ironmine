@@ -1,4 +1,4 @@
-YUI.add("irmdtdatasource",function(Y){
+YUI.add("dtdatasource",function(Y){
     function IrmDTDataSource() {
         IrmDTDataSource.superclass.constructor.apply(this, arguments);
     }

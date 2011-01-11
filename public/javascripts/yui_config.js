@@ -4,8 +4,12 @@ var yuiConfig = {
     //root :'/javascripts/yui3.3/',
     //combine: true,
     modules:{
-        irmdtdatasource:{
-            fullpath:"/javascripts/irm/irm-dtdatasource.js",
+        dtdatasource:{
+            fullpath:"/javascripts/irm/datatable/dtdatasource.js",
+            requires: ["datatable-datasource"]
+        },
+        dtselector:{
+            fullpath:"/javascripts/irm/datatable/dtselector.js",
             requires: ["datatable-datasource"]
         },
         gallerywidgetio:{

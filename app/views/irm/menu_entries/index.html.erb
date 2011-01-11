@@ -1,3 +1,54 @@
-
-    <div id="container1" class="container"><%= render 'show_parent'%></div>
-    <div id="container2" class="container"><%= render 'data_grid'%></div>
+<%= page_title %>
+<div class="filterOverview">
+    <div class="bFilterView">
+      <%= form_tag(:action => "select_parent") do %>
+      <span class="bFilter">
+        <label style="text-align: left; font-weight: bold; padding-right: 0.69em;"><%= t(:label_irm_menu) %>：</label>
+        <span class="fBody">
+            <%= select("menu","menu_code", available_menus.collect{|p| [p[:name], p.menu_code]}, {:include_blank => t(:select)}) %>
+            <%= submit_tag t(:jump), :title => t(:jump), :class => "btn" %>
+        </span>
+        <span class="fFooter">
+        </span>
+      </span>
+      <% end %>
+    </div>
+</div>
+<% if @menu %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_menu_entry_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:action => "new", :menu_code => @menu.menu_code}%></div>
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="menu_entries_list" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+          </div>
+        </div>
+        <%= datatable("menu_entries_list",url_for(:controller => "irm/menu_entries", :action=>"get_data", :menu_code => @menu.menu_code,:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template"},
+                       {:key=>"display_sequence",:label=>t(:label_irm_menu_entry_display_sequence),:sortable=>true},
+                       {:key=>"name",:label=>t(:label_irm_menu_entry_name),:sortable=>true},
+                       {:key=>"description",:label=>t(:label_irm_menu_entry_description),:sortable=>true},
+                       {:key=>"sub_menu_code",:label=>t(:label_irm_menu_entry_sub_menu),:sortable=>true},
+                       {:key=>"permission_code",:label=>t(:label_irm_menu_entry_page),:sortable=>true},
+                       {:key=>"icon",:label=>t(:label_irm_menu_entry_icon),:sortable=>true},
+                       {:key=>"css_name",:label=>t(:label_irm_menu_entry_css_name),:sortable=>true},
+                       {:key=>"display_flag",:label=>t(:label_irm_menu_entry_display_flag),:sortable=>true},
+                       {:key=>"status_code",:label=>t(:active),:sortable=>true}]) %>
+      </div>
+    </div>
+</div>
+<% end %>

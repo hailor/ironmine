@@ -1,16 +1,4 @@
-<div class="bPageTitle">
-  <div class="ptBody">
-    <div class="content">
-      <h1 class="pageType"><%=t(:label_irm_condition_edit)%></h1>
-      <h2 class="pageDescription"><%=t(:label_irm_condition_edit)%></h2>
-      <div class="blank">&nbsp;</div>
-    </div>
-    <div class="links">
-      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%><</a>
-    </div>
-    <div class="ptBreadcrumb"></div>
-  </div>
-</div>
+<%= page_title %>
 
 <%= form_for(@condition,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
 <div id="ep" class="bEditBlock bPageBlock">

@@ -1,4 +1,36 @@
 module ApplicationHelper
+  def page_title(title = "", description = "")
+    page_title = ""
+    page_description = ""
+    b_description = ""
+    if @current_menu_entry && @current_menu_entry.permission_code
+      permission = Irm::Permission.list_all.where(:id => @current_permission.id).first
+      if @current_menu_entry.icon
+        page_description << content_tag(:img, "", :src => '/images/s.gif', :class => @current_menu_entry.icon + " pageTitleIcon")
+      end
+      if !title.blank?
+        page_title << content_tag(:h1, title, :class => "pageType")
+      else
+        page_title << content_tag(:h1, @current_menu_entry[:name], :class => "pageType")
+      end
+      if !description.blank?
+        page_description << content_tag(:h2, description, :class => "pageDescription")
+      else
+        page_description << content_tag(:h2, permission[:name], :class => "pageDescription")
+      end
+      if !permission[:description].blank?
+        b_description << content_tag(:div, permission[:description], :class => "bDescription")  
+      end
+    else
+      page_title << content_tag(:h1, title, :class => "pageType")
+      page_description << content_tag(:h2, description, :class => "pageDescription")
+    end
+    content = raw(content_tag(:div, raw(page_title + page_description), :class => "content"))
+    pt_body = raw(content_tag(:div, content, :class => "ptBody"))
+    b_page_title = raw(content_tag(:div, pt_body, :class => "bPageTitle"))
+    raw(b_page_title + raw(b_description))
+  end
+  
   #显示form提交的出错信息
   def error_message_for(*args)
     lis=""
@@ -54,7 +86,7 @@ module ApplicationHelper
     end
     columns_conf.chop!
     data_fields.chop!
-    script = %Q(GY.use("irm","datasource-get", "datasource-jsonschema","irmdtdatasource","datatable-sort","datatable-colresize",function(Y) {
+    script = %Q(GY.use("irm","datasource-get", "datasource-jsonschema","dtdatasource","datatable-sort","datatable-colresize",function(Y) {
          var #{id}Cols = [#{columns_conf}],
          #{id}Datasource = new Y.DataSource.Get({source:'#{source_url}'})
                    .plug(Y.Plugin.DataSourceJSONSchema, {

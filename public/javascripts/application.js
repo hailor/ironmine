@@ -32,7 +32,6 @@ YUI.add('irm', function(Y) {
       overlay.render();
 
       menuNode.delegate("mouseenter",function(e){
-        console.log("enter");
         if(!this.hasClass("menuLabelHover"))
           this.addClass("menuLabelHover");
       },".menuLabel");
@@ -60,7 +59,6 @@ YUI.add('irm', function(Y) {
         else{
           menuContent.removeClass("menuContentVisual");
           overlay.set("visible",false);
-          console.log("close");
         }
       },"*");
 
@@ -127,6 +125,7 @@ GY.use('node',function(Y){
       this.set('value',this.get('value').toString().toUpperCase());
    });
 });
+
 
 function show_irm_calendar(YAHOO,Event,Dom,id_button,id_date_field,id_cal){
         var dialog, calendar;
@@ -233,3 +232,9 @@ function show_irm_calendar(YAHOO,Event,Dom,id_button,id_date_field,id_cal){
             dialog.show();
         });
 }
+//记住用户名
+GY.use("cookie",function(Y){
+   if(Y.Cookie.get("username")){
+      Y.Cookie.set("username", Y.Cookie.get("username"), { expires: new Date("January 12, 2025") });
+   }
+});
