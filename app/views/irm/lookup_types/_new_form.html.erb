@@ -1,54 +1,88 @@
-<div id="id_new_lookup_type">
-    <%= form_for(@lookup_type,:url=>{:action=>"create"}) do |f| %>
-       <div class="container">
-                    <div class="containerheader colorheader">
-                    	<div class="floatleft headertitle"><%=t(:label_new_lookup_type)%></div>
-                    </div>
-                    <table class="twocolumnstable" cellspacing="0">
-                    	<tr>
-                        	<td class="twocolumn">
-                               <table class="itemdetailtable">
-                               	<tr><td class="itemdetailtablelabel"><%=(t :label_lookup_types)%>:</td>
-                                    <td><%=f.text_field :lookup_type,:required=>true,:irm_uppercase=>true %></td>
-                                </tr>
-                                <tr><td class="itemdetailtablelabel"><%=(t :label_meaning)%>:</td>
-                                  <td><%=f.text_field :meaning,:required=>true%></td>
-                                </tr>
-                                <tr><td class="itemdetailtablelabel"><%=(t :label_description)%>:</td>
-                                  <td><%=f.text_field :description%></td>
-                                </tr>
-                               </table>
-                            </td>
-                        	<td class="twocolumn" cellspacing="0">
-                               <table class="itemdetailtable">
-                                <div id="id_lookup_level">
-                               	<tr><td class="floatleft"><%=f.radio_button :lookup_level,Irm::Constant::GLOBAL_LOOKUP_LEVEL,:disabled=>"disabled"%>
-                               	      <%=t(:label_global_level)%>
-                                   </td>
-                                   <td></td>
-                                </tr>
-                                <tr>
-                                  <td class="floatleft"><%=f.radio_button :lookup_level,Irm::Constant::EXTENDED_LOOKUP_LEVEL,:disabled=>"disabled"%>
-                                      <%=t(:label_extended_level)%>
-                                  </td>
-                                  <td></td>
-                                </tr>
-                                <tr>
-                                  <td class="floatleft"><%=f.radio_button :lookup_level,Irm::Constant::USER_LOOKUP_LEVEL,:checked => true%>
-                                      <%=t(:label_user_level)%>
-                                  </td>
-                                  <td></td>
-                                </tr>
-                                </div>
-                               </table>
-                            </td>
-                            <td width="20%">&nbsp;</td>
-                        </tr>
-                    </table>
-                    <div class="containerfooter">
-                    	<div class="button floatright" ><%=link_to t(:save),{:controller=>"irm/lookup_types",:action=>"create"}, :script=>"/replace(system_message_box,system_message_box);replace(id_new_lookup_type,id_edit_lookup_type);reload_grid('id_lookup_type_grid');/replace(system_message_box,system_message_box);" ,:action_type=>"ajaxSubmit"%></div>
-                        <div class="button floatright"><a href="javascript:void(0);"><%= t(:cancel) %></a></div>
-                    </div>
-          </div>
-    <% end %>
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%=t(:label_irm_lookup_type_new)%></h1>
+      <h2 class="pageDescription"><%=t(:label_irm_lookup_type_new)%></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%></a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
 </div>
+
+<%= form_for(@lookup_type,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_lookup_type_new)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @lookup_type%>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+          <span class="requiredLegend">
+            <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+            </span>
+          <span class="requiredMark">*</span>
+          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+          </span>
+      </span>
+      <h3><%=t(:label_irm_lookup_type_info)%></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_lookup_types)%></label></td>
+              <td class="dataCol"><%=f.text_field :lookup_type,:required=>true,:irm_uppercase=>true %></td>
+              <td class="labelCol"><label><%=f.radio_button :lookup_level,Irm::Constant::GLOBAL_LOOKUP_LEVEL,:disabled=>"disabled"%>
+                               	      <%=t(:label_global_level)%></label></td>
+              <td class="dataCol"></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_meaning)%></label></td>
+              <td class="dataCol"><%=f.text_field :meaning,:required=>true%></td>
+              <td class="labelCol"><label><%=f.radio_button :lookup_level,Irm::Constant::EXTENDED_LOOKUP_LEVEL,:disabled=>"disabled"%>
+                                      <%=t(:label_extended_level)%></label></td>
+              <td class="dataCol"></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_lookup_type_description)%></label></td>
+              <td class="dataCol"><%=f.text_area :description,:rows=>4%></td>
+              <td class="labelCol"><label><%=f.radio_button :lookup_level,Irm::Constant::USER_LOOKUP_LEVEL,:checked => true%>
+                                      <%=t(:label_user_level)%></label></td>
+              <td class="dataCol"></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
+
+

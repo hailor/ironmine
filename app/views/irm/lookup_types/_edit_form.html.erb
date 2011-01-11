@@ -1,59 +1,89 @@
-  <div id="id_edit_lookup_type">
-    <%= error_message_for @lookup_type %>
-      <%= form_for(@lookup_type,:url=>{:action=>"update"}) do |f| %>
-         <div class="container">
-                      <div class="containerheader colorheader">
-                          <div class="floatleft headertitle"><%=t(:label_edit_lookup_type)%>--<%=@lookup_type.lookup_type%></div>
-                      </div>
-                      <table class="twocolumnstable" cellspacing="0">
-                          <tr>
-                              <td class="twocolumn">
-                                 <table class="itemdetailtable">
-                                    <tr><td class="itemdetailtablelabel"><%=(t :label_lookup_types)%>:</td>
-                                    <td><%=f.text_field :lookup_type, :irm_uppercase=>true,:readonly=>true%>
-                                        <%=f.hidden_field :id%>
-                                    </td>
-                                  </tr>
-                                  <tr><td class="itemdetailtablelabel"><%=(t :label_meaning)%>:</td>
-                                    <td><%=f.text_field :meaning ,:value=>@lookup_type[:meaning], :required=>true%></td>
-                                  </tr>
-                                  <tr><td class="itemdetailtablelabel"><%=(t :label_description)%>:</td>
-                                    <td><%=f.text_field :description,:value=>@lookup_type[:description]%></td>
-                                  </tr>
-                                 </table>
-                              </td>
-                              <td class="twocolumn" cellspacing="0">
-                                 <table class="itemdetailtable">
-                                  <div id="id_lookup_level">
-                                     <tr><td class="floatleft"><%=f.radio_button :lookup_level,Irm::Constant::GLOBAL_LOOKUP_LEVEL,:checked => true,:disabled=>"disabled"%>
-                                           <%=t(:label_global_level)%>
-                                     </td>
-                                     <td></td>
-                                  </tr>
-                                  <tr>
-                                    <td class="floatleft"><%=f.radio_button :lookup_level,Irm::Constant::EXTENDED_LOOKUP_LEVEL,:disabled=>"disabled"%>
-                                        <%=t(:label_extended_level)%>
-                                    </td>
-                                    <td></td>
-                                  </tr>
-                                  <tr>
-                                    <td class="floatleft"><%=f.radio_button :lookup_level,Irm::Constant::USER_LOOKUP_LEVEL,:disabled=>"disabled"%>
-                                        <%=t(:label_user_level)%>
-                                    </td>
-                                    <td></td>
-                                  </tr>
-                                  </div>
-                                 </table>
-                              </td>
-                              <td width="20%">&nbsp;</td>
-                          </tr>
-                      </table>
-                      <div class="containerfooter">
-                          <div class="button floatright" ><%=link_to t(:save),{:controller=>"irm/lookup_types",:action=>"update"}, :script=>"/replace(system_message_box,system_message_box);reload_grid('id_lookup_type_grid');/replace(system_message_box,system_message_box);",:action_type=>"ajaxSubmit"%></div>
-                          <div class="button floatright"><%=link_to t(:cancel),{:controller=>"irm/lookup_types",:action=>"index"},
-                                                                              :script=>"/replace(id_lookup_type_index,id_lookup_type_index);/",
-                                                                              :action_type=>"ajaxLink"%></div>
-                      </div>
-            </div>
-      <% end %>
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%=t(:label_irm_lookup_type_edit)%></h1>
+      <h2 class="pageDescription"><%=t(:label_irm_lookup_type_edit)%></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%><</a>
+    </div>
+    <div class="ptBreadcrumb"></div>
   </div>
+</div>
+
+<%= form_for(@lookup_type,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_lookup_type_edit)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @lookup_type%>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend"><span class="requiredExampleOuter">
+          <span class="requiredExample">&nbsp;</span></span>
+           <span class="requiredMark">*</span><span class="requiredText"> = <%=t(:label_is_required)%></span></span></span>
+      <h3><%=t(:label_irm_lookup_type_info)%></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_lookup_types)%></label></td>
+              <td class="dataCol"><%=f.text_field :lookup_type,:required=>true,:irm_uppercase=>true %></td>
+              <td class="labelCol"><label><%=f.radio_button :lookup_level,Irm::Constant::GLOBAL_LOOKUP_LEVEL,:disabled=>"disabled"%>
+                               	      <%=t(:label_global_level)%></label></td>
+              <td class="dataCol"></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_meaning)%></label></td>
+              <td class="dataCol"><%=f.text_field :meaning,:required=>true,:value=>@lookup_type[:meaning]%></td>
+              <td class="labelCol"><label><%=f.radio_button :lookup_level,Irm::Constant::EXTENDED_LOOKUP_LEVEL,:disabled=>"disabled"%>
+                                      <%=t(:label_extended_level)%></label></td>
+              <td class="dataCol"></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_lookup_type_description)%></label></td>
+              <td class="dataCol"><%=f.text_area :description,:rows=>4,:value=>@lookup_type[:description]%></td>
+              <td class="labelCol"><label><%=f.radio_button :lookup_level,Irm::Constant::USER_LOOKUP_LEVEL,:checked => true%>
+                                      <%=t(:label_user_level)%></label></td>
+              <td class="dataCol"></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_status_code)%></label></td>
+              <td class="dataCol"><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@lookup_type.status_code)%>
+              </td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>

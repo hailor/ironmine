@@ -15,10 +15,11 @@ Ironmine::Application.routes.draw do
     match '/lookup_types/get_lookup_values(.:format)'=>"lookup_types#get_lookup_values",:via=>:get
     match '/lookup_types(/index)(.:format)'=>"lookup_types#index",:via=>:get
     match '/lookup_types/:id/edit(.:format)'=>"lookup_types#edit",:via=>:get
-    match '/lookup_types/update'=>"lookup_types#update"
+    match '/lookup_types/:id'=>"lookup_types#update",:via=>:put
     match '/lookup_types/check_lookup_code'=>"lookup_types#check_lookup_code"
     match '/lookup_types/get_lookup_values'=>"lookup_types#get_lookup_values"
     match '/lookup_types/:id/add_code'=>"lookup_types#add_code"
+    match '/lookup_types/:id(.:format)'=>"lookup_types#show"
     #product modules
     match '/product_modules(/index)(.:format)' => "product_modules#index", :via => :get
     match '/product_modules/:id/edit(.:format)' => "product_modules#edit", :via => :get
@@ -79,6 +80,18 @@ Ironmine::Application.routes.draw do
     match '/conditions/create(.:format)' => "conditions#create", :via => :post
     match '/conditions/:id/multilingual_edit(.:format)' => "conditions#multilingual_edit", :via => :get
     match '/conditions/:id/multilingual_update(.:format)' => "conditions#multilingual_update", :via => :put
+    #lookup_values
+    match '/lookup_values(/index)(.:format)' => "lookup_values#index", :via => :get
+    match '/lookup_values/get_data(.:format)' => "lookup_values#get_data"
+    match '/lookup_values/:id/edit(.:format)' => "lookup_values#edit", :via => :get
+    match '/lookup_values/:id(.:format)' => "lookup_values#update", :via => :put
+    match '/lookup_values/new(.:format)' => "lookup_values#new", :via => :get    
+    match '/lookup_values/create(.:format)' => "lookup_values#create", :via => :post
+    match '/lookup_values/get_lookup_values(.:format)' => "lookup_values#get_lookup_values", :via => :get
+    match '/lookup_values/:id/multilingual_edit(.:format)' => "lookup_values#multilingual_edit", :via => :get
+    match '/lookup_values/:id/multilingual_update(.:format)' => "lookup_values#multilingual_update", :via => :put    
+    match '/lookup_values/select_lookup_type(.:format)' => "lookup_values#select_lookup_type"
+    match '/lookup_values/:id(.:format)' => "lookup_values#show", :via => :get
 
     #actions
     match '/actions(/index)(.:format)' => "actions#index", :via => :get
@@ -188,6 +201,7 @@ Ironmine::Application.routes.draw do
     match '/mail_templates/:id/multilingual_edit(.:format)'=>"mail_templates#multilingual_edit",:via=>:get
     match '/mail_templates/:id/multilingual_update(.:format)'=>"mail_templates#multilingual_update",:via=>:put
     match '/mail_templates/get_current_language(.:format)'=>"mail_templates#get_current_language",:via=>:get
+    match '/mail_templates/:id(.:format)'=>"mail_templates#show ",:via=>:get
 
     #currencies
     match '/currencies(/index)(.:format)' => "currencies#index", :via => :get

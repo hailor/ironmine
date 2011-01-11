@@ -15,6 +15,12 @@ class Irm::LookupValue < ActiveRecord::Base
   scope :query_by_lookup_type,lambda{|lookup_type|where(:lookup_type=>lookup_type)}
   scope :query_by_lookup_code,lambda{|lookup_code|where(:lookup_code=>lookup_code)}
 
+  scope :query_wrap_info,lambda{|language| select("#{table_name}.*,#{Irm::LookupValuesTl.table_name}.meaning,#{Irm::LookupValuesTl.table_name}.description,"+
+                                                          "v1.meaning status_meaning").
+                                                   joins(",irm_lookup_values_vl v1").
+                                                   where("v1.lookup_type='SYSTEM_STATUS_CODE' AND v1.lookup_code = #{table_name}.status_code AND "+
+                                                         "v1.language=?",language)}
+
   def self.check_lookup_code_exist(lookup_type,lookup_code)
      exist_lookup_code=Irm::LookupValue.query_by_lookup_code(lookup_code).
           query_by_lookup_type(lookup_type)

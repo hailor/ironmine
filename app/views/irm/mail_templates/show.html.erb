@@ -1,0 +1,73 @@
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%= t(:label_irm_mail_template_show) %></h1>
+      <h2 class="pageDescription"><%=@mail_template.template_code%></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks">编辑局部</a>|
+      <a href="javascript:void(0);" class="configLinks">用户简档</a>|
+      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%></a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
+</div>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_mail_template_show) %>&nbsp;<%= t(:label_detail_info) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @mail_template}%></div>
+            <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_mail_template_entity_code)%></label></td>
+              <td class="data2Col"><%=@mail_template[:entity_meaning]%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_mail_template_template_code)%></label></td>
+              <td class="data2Col"><%=@mail_template[:template_code]%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_mail_template_name)%></label></td>
+              <td class="data2Col"><%=@mail_template[:name]%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_mail_template_description)%></label></td>
+              <td class="data2Col"><%=@mail_template[:description]%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_mail_template_subject)%></label></td>
+              <td class="data2Col"><%=@mail_template[:subject]%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_mail_template_from)%></label></td>
+              <td class="data2Col"><%=@mail_template.from%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_mail_template_template_type)%></label></td>
+              <td class="data2Col"><%=@mail_template.template_type%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_mail_template_mail_body)%></label></td>
+              <td class="data2Col" colspan="3"><%=@mail_template[:mail_body]%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

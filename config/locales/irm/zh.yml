@@ -86,6 +86,7 @@ zh:
   label_add_another_lookup_value: 增加新的快速编码值
   label_delete_last_lookup_value: 删除最后一行的快速编码值
   label_new_lookup_type: 新建快速编码
+  label_irm_lookup_type_edit: 编辑快速编码
   label_irm_lookup_type_lookup_type: 快速编码类型
   label_irm_lookup_type_meaning: 含义
   lable_irm_lookup_type_editing_multilingual: 编辑多语言
@@ -97,6 +98,16 @@ zh:
   label_new_lookup_type: 创建快速编码类型
   label_list_lookup_types: 快速编码类型列表
   label_add_lookup_code: 添加快速编码
+  label_irm_lookup_type_new: 新建快速编码类型
+  label_irm_lookup_type_list: 快速编码类型列表
+  label_irm_lookup_type_info: 快速编码类型信息
+  label_irm_lookup_type_show: 快速编码类型
+  label_irm_lookup_value_index: 快速编码
+  label_irm_lookup_value_list: 快速编码
+  label_lookup_value_new: 新建快速编码
+  label_irm_lookup_value_info: 快速编码信息
+  label_lookup_value_edit: 编辑快速编码
+  label_lookup_value_show: 快速编码
   #=========================end irm lookup_types_controller================#
   #=========================    irm product_modules_controller=====================#
   label_irm_product_module: 产品模块
@@ -319,6 +330,8 @@ zh:
   label_irm_mail_template_status_code: 记录状态
   label_irm_mail_template_multilingual: 多语言
   label_irm_mail_template_multilingual_edit: 多语言编辑
+  label_irm_mail_template_info: 邮件模板信息
+  label_irm_mail_template_show: 邮件模板
   #==================end irm mail_templates_controller=======================#
   #=========================    irm currencies_controller=======================#
   label_irm_currency_currency_code: 编码
