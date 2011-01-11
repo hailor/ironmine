@@ -74,6 +74,7 @@ en:
   label_add_another_lookup_value: add another lookup value
   label_delete_last_lookup_value: delete last lookup value
   label_new_lookup_type: New Lookup Type
+  label_irm_lookup_type_edit: Edit Lookup Type
   label_irm_lookup_type_lookup_type: Lookup Type
   label_irm_lookup_type_meaning: Meaning
   label_irm_lookup_value_meaning: Meaning
@@ -86,6 +87,16 @@ en:
   label_new_lookup_type: New Lookup Type
   label_list_lookup_types: Lookup Type List
   label_add_lookup_code: Add Lookup Code
+  label_irm_lookup_type_new: New Lookup Type
+  label_irm_lookup_type_list: List Lookup Type
+  label_irm_lookup_type_info: Lookup Type Info
+  label_irm_lookup_type_show: Lookup Type
+  label_irm_lookup_value_index: Lookup Value Index
+  label_irm_lookup_value_list: Lookup Value
+  label_lookup_value_new: New Lookup Value
+  label_irm_lookup_value_info: Lookup Value Info
+  label_lookup_value_edit: Lookup Value Edit
+  label_lookup_value_show: Lookup Value
   #=========================end irm lookup_types_controller=======================#
   #=========================    irm languages_controller=======================#
   label_irm_language: Language Module
@@ -202,6 +213,9 @@ en:
   label_irm_mail_template_status_code: Status Code
   label_irm_mail_template_multilingual: Multilingual
   label_irm_mail_template_multilingual_edit: Mutlilingual Edit
+  label_irm_mail_template_info: Mail Template Info
+  label_irm_mail_template_show: Mail Template
+  label_irm_mail_template_edit: Edit Template
   #==================end irm mail_templates_controller=======================#
   #=========================    irm currencies_controller=======================#
   label_irm_currency_currency_code: Code

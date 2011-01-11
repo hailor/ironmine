@@ -21,9 +21,13 @@ class Irm::MailTemplatesController < ApplicationController
     end
   end
 
+  def show
+    @mail_template = Irm::MailTemplate.multilingual.query_wrap_info(I18n::locale).find(params[:id])
+  end
+
   # GET /mail_templates/1/edit
   def edit
-    @mail_template = Irm::MailTemplate.multilingual.find(params[:id])
+    @mail_template = Irm::MailTemplate.multilingual.query_wrap_info(I18n::locale).find(params[:id])
   end
 
   # POST /mail_templates
@@ -87,10 +91,10 @@ class Irm::MailTemplatesController < ApplicationController
   end
 
   def get_data
-    @mail_template= Irm::MailTemplate.multilingual.query_wrap_info(I18n::locale)
+    @mail_templates= Irm::MailTemplate.multilingual.query_wrap_info(I18n::locale)
+    @mail_templates,count = paginate(@mail_templates)
     respond_to do |format|
-      format.json {render :json=>@mail_template.to_dhtmlxgrid_json(['R',:entity_meaning,:template_code,:name,:description,:status_meaning,
-                                                             {:value => 'M', :controller => 'irm/mail_templates',:action =>  'multilingual_edit', :id => 'id', :action_type => 'ajaxLink',:view_port=>'id_mail_template_list', :script => '/replace(id_mail_template_list,id_mail_template_multilingual);/'}],@mail_template.size)}
+      format.json {render :json=>to_jsonp(@mail_templates.to_grid_json(['R',:entity_meaning,:template_code,:name,:description,:status_meaning],count))}
     end
   end
 

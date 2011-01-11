@@ -1,0 +1,101 @@
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%= t(:label_irm_lookup_type_show) %></h1>
+      <h2 class="pageDescription"><%=@lookup_type.lookup_type%></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks">编辑局部</a>|
+      <a href="javascript:void(0);" class="configLinks">用户简档</a>|
+      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%></a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
+</div>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_lookup_type_show) %>&nbsp;<%= t(:label_detail_info) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @lookup_type}%></div>
+            <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+            <td class="labelCol"><label><%=(t :label_lookup_types)%></label></td>
+              <td class="dataCol"><%=@lookup_type.lookup_type%></td>
+              <td class="labelCol"><label><%=radio_button_tag :lookup_level,@lookup_type.lookup_level,{:disabled=>true}%>
+                               	      <%=t(:label_global_level)%></label></td>
+              <td class="dataCol"></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_meaning)%></label></td>
+              <td class="dataCol"><%=@lookup_type[:meaning]%></td>
+              <td class="labelCol"><label><%=radio_button_tag :lookup_level,@lookup_type.lookup_level,{:disabled=>true}%>
+                                      <%=t(:label_extended_level)%></label></td>
+              <td class="dataCol"></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_lookup_type_description)%></label></td>
+              <td class="dataCol"><%=@lookup_type[:description]%></td>
+              <td class="labelCol"><label><%=radio_button_tag :lookup_level,@lookup_type.lookup_level,:checked => true%>
+                                      <%=t(:label_user_level)%></label></td>
+              <td class="dataCol"></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_site_list) %></h2></td>
+              <td class="pbButton">
+                <div class="button"><%= link_to t(:add), {:controller=>"irm/lookup_values",:action => "new",:lookup_type=>@lookup_type.lookup_type,:_from=>"lookup_type"}%></div>
+              </td>
+              <td class="pbHelp">
+                <select title="显示所选内容" name="hotlist_mode" id="hotlist_mode"><option value="2">最近创建</option>
+                <option value="1">最近修改</option>
+                <option selected="selected" value="3">最近查看</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="lookup_type" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:controller=>"irm/lookup_values",:action=>"edit",:id=>"{id}",:_from=>"lookup_type"}) %>|<%= link_to(t(:show),{:controller=>"irm/lookup_values",:action=>"show",:id=>"{id}",:_from=>"lookup_type"}) %>
+          </div>
+        </div>
+        <%= datatable("lookup_type",url_for(:controller=>"irm/lookup_values",:action=>"get_lookup_values", :lookup_type=>@lookup_type.lookup_type),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template"},
+                       {:key=>"lookup_code",:label=>(t :label_irm_lookup_value_lookup_code),:sortable=>true},
+                       {:key=>"meaning",:label=>t(:label_irm_lookup_value_meaning),:sortable=>true},
+                       {:key=>"description",:label=>t(:label_irm_lookup_type_description),:sortable=>true},
+                       {:key=>"start_date_active",:label=>t(:label_start_date_active),:sortable=>true},
+                       {:key=>"end_date_active",:label=>t(:label_end_date_active),:sortable=>true},
+                       {:key=>"status_meaning",:label=>t(:label_status_code),:sortable=>true}],
+                       {:row_perpage=>5}) %>
+      </div>
+    </div>
+</div>
+

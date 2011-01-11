@@ -180,4 +180,19 @@ module ApplicationHelper
   def link_back(text = t(:back))
     link_to text, {}, {:href => "javascript:history.back();"}
   end
+
+  #构建日历控件，其中text_field是输入的日期框，id_button是点击日历的
+  #button，而id_cal是日历显示的ID，最好不一致
+  def calendar_view(id_text_field,id_button,id_cal)
+    script = %Q(
+       GY.use( 'yui2-calendar','yui2-container',function(Y) {
+            var YAHOO = Y.YUI2;
+            var Event = YAHOO.util.Event,Dom = YAHOO.util.Dom;
+             YAHOO.util.Event.onDOMReady(function () {
+                show_irm_calendar(YAHOO,Event,Dom,#{id_text_field},#{id_button},#{id_cal});
+             });
+       });
+    )
+    javascript_tag(script)
+  end
 end

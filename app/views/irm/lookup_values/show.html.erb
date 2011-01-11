@@ -1,0 +1,63 @@
+<div class="bPageTitle">
+  <div class="ptBody">
+    <div class="content">
+      <h1 class="pageType"><%= t(:label_lookup_value_show) %></h1>
+      <h2 class="pageDescription"><%=@lookup_value.lookup_code%></h2>
+      <div class="blank">&nbsp;</div>
+    </div>
+    <div class="links">
+      <a href="javascript:void(0);" class="configLinks">编辑局部</a>|
+      <a href="javascript:void(0);" class="configLinks">用户简档</a>|
+      <a href="javascript:void(0);" class="configLinks"><%=t(:label_help_about_page)%></a>
+    </div>
+    <div class="ptBreadcrumb"></div>
+  </div>
+</div>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_lookup_value_show) %>&nbsp;<%= t(:label_detail_info) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @lookup_value}%></div>
+            <div class="button"><%= link_to t(:new), {:action => "new"}%></div>            
+            <% if @_from.to_s == "lookup_value_group" %>
+              <div class="button"><%= link_to t(:back), @return_url%></div>
+            <% else %>
+              <div class="button"><%= link_to t(:back), {:action => "index",:lookup_type=>@lookup_value.lookup_type}%></div>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_lookup_code)%></label></td>
+              <td class="dataCol"><%=@lookup_value.lookup_code%></td>
+              <td class="labelCol"><label><%=(t :label_lookup_types)%></label></td>
+              <td class="dataCol"><%=@lookup_type_meaning%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_meaning)%></label></td>
+              <td class="dataCol"><%=@lookup_value[:meaning]%></td>
+              <td class="labelCol"><label><%=(t :label_start_date_active)%></label></td>
+              <td class="dataCol"><%=@lookup_value.start_date_active%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_description)%></label></td>
+              <td class="dataCol"><%=@lookup_value[:meaning]%></td>
+              <td class="labelCol"><label><%=(t :label_end_date_active)%></label></td>
+              <td class="dataCol"><%=@lookup_value.end_date_active%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
