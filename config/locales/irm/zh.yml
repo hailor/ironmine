@@ -290,6 +290,7 @@ zh:
   label_irm_function_edit: 编辑功能
   label_irm_function_function_code: 功能编码
   label_irm_function_name: 名称
+  label_irm_function_name_full: 功能名称
   label_irm_function_description: 描述
   label_irm_function_permission: 管理权限
   label_irm_function_permission_add: 添加/移除权限

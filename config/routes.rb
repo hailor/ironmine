@@ -165,15 +165,14 @@ Ironmine::Application.routes.draw do
     match '/function_groups/new(.:format)' => "function_groups#new", :via => :get
     match '/function_groups/create(.:format)' => "function_groups#create", :via => :post
     match '/function_groups/:id/show(.:format)' => "function_groups#show", :via => :get
-    match '/function_groups/:id/multilingual_edit(.:format)' => "function_groups#multilingual_edit", :via => :get
-    match '/function_groups/:id/multilingual_update(.:format)' => "function_groups#multilingual_update", :via => :put
     match '/function_groups/get_data(.:format)' => "function_groups#get_data"
-    match '/function_groups/:function_group_id/function_index(.:format)' => "function_groups#function_index", :via => :get
-    match '/function_groups/:function_group_id/add_function(.:format)' => "function_groups#add_functions", :via => :get
-    match '/function_groups/:function_group_id/edit_own_functions(.:format)' => "function_groups#edit_own_functions", :via => :get
-    match '/function_groups/:function_group_id/get_own_functions(.:format)' => "function_groups#get_own_functions", :via => :get
-    match '/function_groups/:function_group_id/get_available_functions(.:format)' => "function_groups#get_available_functions", :via => :get
-    match '/function_groups/:function_group_id/update_functions(.:format)' => "function_groups#update_functions", :via => :post
+    match '/function_groups/:group_id/add_functions(.:format)' => "function_groups#add_functions", :via => :get
+    match '/function_groups/:group_code/get_available_functions(.:format)' => "function_groups#get_available_functions", :via => :get
+    match '/function_groups/:group_id/select_functions(.:format)' => "function_groups#select_functions"
+    match '/function_groups/:group_id/add_functions(.:format)' => "function_groups#add_functions", :via => :post
+    match '/function_groups/:group_id/:function_id/remove_function(.:format)' => "function_groups#remove_function", :via => :get
+    match '/function_groups/:group_code/get_own_functions(.:format)' => "function_groups#get_own_functions", :via => :get
+    match '/function_groups/:group_id/:function_id/remove_function(.:format)' => "function_groups#remove_function", :via => :get
     # navigations
     match '/navigations/entrance(.:format)' =>'navigations#entrance'
     match '/navigations/workspace(.:format)' =>'navigations#workspace'
