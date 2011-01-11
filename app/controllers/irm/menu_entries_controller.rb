@@ -27,6 +27,7 @@ class Irm::MenuEntriesController < ApplicationController
   def new
     @menu_entry = Irm::MenuEntry.new
     @menu = Irm::Menu.multilingual.where(:menu_code => params[:menu_code]).first
+    @return_url=request.env['HTTP_REFERER']
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @menu_entry }
@@ -34,11 +35,17 @@ class Irm::MenuEntriesController < ApplicationController
   end
 
   def create
+    return_url = params[:return_url]
     @menu_entry = Irm::MenuEntry.new(params[:irm_menu_entry])
     respond_to do |format|
       if @menu_entry.save
-        format.html { redirect_to({:action=>"index", :menu_code => @menu_entry.menu_code}, :notice =>t(:successfully_created)) }
-        format.xml  { render :xml => @menu_entry, :status => :created, :location => @menu_entry }
+        if return_url.blank?
+          format.html { redirect_to({:action=>"index", :menu_code => @menu_entry.menu_code}, :notice =>t(:successfully_created)) }
+          format.xml  { render :xml => @menu_entry, :status => :created, :location => @menu_entry }
+        else
+          format.html { redirect_to(return_url, :notice =>t(:successfully_created)) }
+          format.xml  { render :xml => @menu_entry, :status => :created, :location => @menu_entry }
+        end
       else
         @menu = Irm::Menu.where(:menu_code => @menu_entry.menu_code).first
         format.html { render :action => "new"}

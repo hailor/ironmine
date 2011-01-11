@@ -48,6 +48,7 @@ Ironmine::Application.routes.draw do
     match '/menus/:id/edit(.:format)' => "menus#edit", :via => :get
     match '/menus/:id(.:format)' => "menus#update", :via => :put
     match '/menus/:id/show(.:format)' => "menus#show", :via => :get
+    match '/menus/:entry_id/:id/remove_entry(.:format)' => "menus#remove_entry", :via => :get
     #menu_entries
     match '/menu_entries(/index)(.:format)' => "menu_entries#index", :via => :get
     match '/menu_entries/:menu_code/new(.:format)' => "menu_entries#new", :via => :get

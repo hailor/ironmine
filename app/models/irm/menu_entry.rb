@@ -10,6 +10,7 @@ class Irm::MenuEntry < ActiveRecord::Base
   
   # 验证权限编码唯一性
   validates_presence_of :menu_code
+  validates_uniqueness_of :sub_menu_code, :scope => :menu_code
 #  validates_presence_of :sub_menu_code, :if => Proc.new { |i| i.permission_code.blank? }
 #  validates_presence_of :permission_code, :if => Proc.new { |i| i.sub_menu_code.blank? }
   validates_with MenuEntryValidator

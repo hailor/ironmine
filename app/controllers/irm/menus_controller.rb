@@ -28,7 +28,6 @@ class Irm::MenusController < ApplicationController
 
   def new
     @menu = Irm::Menu.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @menu }
@@ -58,5 +57,16 @@ class Irm::MenusController < ApplicationController
 
   def show
     @menu = Irm::Menu.multilingual.find(params[:id])
+  end
+
+  def remove_entry
+    return_url = params[:return_url]
+    menu_entry = Irm::MenuEntry.where(:id => params[:entry_id]).first
+    menu_entry.destroy
+    if return_url.blank?
+      redirect_to({:action=>"show", :id=> params[:id]})
+    else
+      redirect_to(return_url)
+    end
   end
 end
