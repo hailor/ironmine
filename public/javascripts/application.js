@@ -125,8 +125,6 @@ GY.use('node',function(Y){
       this.set('value',this.get('value').toString().toUpperCase());
    });
 });
-
-
 function show_irm_calendar(YAHOO,Event,Dom,id_button,id_date_field,id_cal){
         var dialog, calendar;
         var showBtn = Dom.get(id_button);
