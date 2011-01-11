@@ -10,6 +10,7 @@ class Irm::LookupType < ActiveRecord::Base
   query_extend
 
   validates_uniqueness_of :lookup_type
+  validates :lookup_type,:presence => true
 
   scope :query_by_lookup_type,lambda{|lookup_type| where(:lookup_type=>lookup_type)}
 
