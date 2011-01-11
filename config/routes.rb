@@ -132,6 +132,7 @@ Ironmine::Application.routes.draw do
     match '/auth_sources/:id/multilingual_edit(.:format)' => "auth_sources#multilingual_edit", :via => :get
     match '/auth_sources/:id/multilingual_update(.:format)' => "auth_sources#multilingual_update", :via => :put
     match '/auth_sources/get_data(.:format)' => "auth_sources#get_data"
+    match '/auth_sources/:id/show(.:format)' => "auth_sources#show", :via => :get
     #scripts
     match '/scripts(/index)(.:format)' => "scripts#index", :via => :get
     match '/scripts/get_data(.:format)' => "scripts#get_data"
