@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddCmsHomePermissionMenu < ActiveRecord::Migration
   def self.up
     cms_home_index = Irm::Permission.new(:permission_code=>'CMS_HOME_INDEX',

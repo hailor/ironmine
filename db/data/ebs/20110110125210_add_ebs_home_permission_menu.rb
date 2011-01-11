@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddEbsHomePermissionMenu < ActiveRecord::Migration
   def self.up
     ebs_home_index = Irm::Permission.new(:permission_code=>'EBS_HOME_INDEX',
