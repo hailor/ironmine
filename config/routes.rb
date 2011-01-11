@@ -476,11 +476,11 @@ Ironmine::Application.routes.draw do
   end
 
   scope :module => "cms" do
-    match '/home(/index)(.:format)' => "home#index", :via => :get
+    match '/cmshome(/index)(.:format)' => "home#index", :via => :get
   end
 
   scope :module => "ebs" do
-    match '/home(/index)(.:format)' => "home#index", :via => :get
+    match '/ebshome(/index)(.:format)' => "home#index", :via => :get
   end  
 
   match '/demo(/index)' => 'demo#index'
