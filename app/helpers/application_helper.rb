@@ -189,7 +189,7 @@ module ApplicationHelper
             var YAHOO = Y.YUI2;
             var Event = YAHOO.util.Event,Dom = YAHOO.util.Dom;
              YAHOO.util.Event.onDOMReady(function () {
-                show_irm_calendar(YAHOO,Event,Dom,#{id_text_field},#{id_button},#{id_cal});
+                show_irm_calendar(YAHOO,Event,Dom,"#{id_button}","#{id_text_field}","#{id_cal}");
              });
        });
     )
