@@ -506,24 +506,18 @@ zh:
   #=========================end irm site_groups_controller=======================#
   #=========================end irm flex_values_controller=======================#
   #=========================irm general_category_controller=======================#
-  label_irm_general_category: 类别
-  label_irm_general_category_list: 类别列表
-  label_irm_general_category_new: 创建类别
-  label_irm_general_category_edit: 编辑类别
+  label_irm_general_category: 公共分类
+  label_irm_general_category_list: 公共分类列表
+  label_irm_general_category_new: 创建公共分类
+  label_irm_general_category_edit: 编辑公共分类
   label_irm_general_category_type: 类型
   label_irm_general_category_company: 公司
   label_irm_general_category_segment1: 第一段
   label_irm_general_category_segment2: 第二段
   label_irm_general_category_segment3: 第三段
-  label_irm_general_category_concact_segment: 类别
-  error_segment_combination_existed: 同一公司下不能有相同的段组合
+  label_irm_general_category_concact_segment: 分类组合
+  error_segment_combination_existed: 同一公司下不能有相同的分类组合
   #=========================end operational_catalogs_controller=======================#
-  #=========================irm op_catalog_accesses_controller=======================#
-  label_irm_op_catalog_access: 服务类别控制
-  label_irm_op_catalog_access_icm: ICM
-  label_irm_op_catalog_access_csi: CSI
-  label_irm_op_catalog_access_skm: SKM
-  #=========================end op_catalog_accesses_controller=======================#
   #=========================    irm support_groups_controller=======================#
   label_irm_support_group_company_name: 公司名称
   label_irm_support_group_organization_name: 组织名称
