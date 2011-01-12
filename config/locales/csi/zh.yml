@@ -15,4 +15,9 @@ zh:
    label_csi_survey_closed_datetime: 关闭时间
    label_csi_survey_same_ip_allow_flag: 同一个IP是否允许提交
    label_csi_survey_status_code: 记录状态
+   label_csi_survey_setting: 设置
+   label_csi_survey_access_control: 访问控制
+   label_csi_survey_edit: 编辑调查问卷
+   label_csi_survey_show: 调查问卷
+   label_csi_survey_list: 调查问卷列表
    #========================= end   irm regions_controller=======================#

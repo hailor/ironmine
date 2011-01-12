@@ -15,4 +15,9 @@ en:
    label_csi_survey_closed_datetime: Closed Datetime
    label_csi_survey_same_ip_allow_flag: Same Ip Allow
    label_csi_survey_status_code: Status Code
+   label_csi_survey_setting: Setting
+   label_csi_survey_access_control: Access Control
+   label_csi_survey_edit: Edit Survey
+   label_csi_survey_show: Survey
+   label_csi_survey_list: Survey List
    #========================= end   irm regions_controller=======================#

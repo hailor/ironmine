@@ -1,4 +1,5 @@
 class Csi::SurveysController < ApplicationController
+  layout "setting" 
   # GET /surveys
   # GET /surveys.xml
   def index
@@ -40,11 +41,11 @@ class Csi::SurveysController < ApplicationController
   # POST /surveys
   # POST /surveys.xml
   def create
-    @survey = Csi::Survey.new(params[:survey])
+    @survey = Csi::Survey.new(params[:csi_survey])
 
     respond_to do |format|
       if @survey.save
-        format.html { redirect_to(@survey, :notice => 'Survey was successfully created.') }
+        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @survey, :status => :created, :location => @survey }
       else
         format.html { render :action => "new" }
@@ -59,8 +60,8 @@ class Csi::SurveysController < ApplicationController
     @survey = Csi::Survey.find(params[:id])
 
     respond_to do |format|
-      if @survey.update_attributes(params[:survey])
-        format.html { redirect_to(@survey, :notice => 'Survey was successfully updated.') }
+      if @survey.update_attributes(params[:csi_survey])
+        format.html { redirect_to(@survey, :notice => t(:successfully_updated)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -78,6 +79,14 @@ class Csi::SurveysController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(surveys_url) }
       format.xml  { head :ok }
+    end
+  end
+
+  def get_data
+    @surveys= Csi::Survey.query_common
+    @surveys,count = paginate(@surveys)
+    respond_to do |format|
+      format.json {render :json=>to_jsonp(@surveys.to_grid_json(['R',:title,:description,:status_meaning], count))}
     end
   end
 end

@@ -1,10 +1,104 @@
-<p id="notice"><%= notice %></p>
+<%= page_title %>
 
-<p>
-  <b>Title:</b>
-  <%= @survey.title %>
-</p>
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_csi_survey_show) %>&nbsp;<%= t(:label_detail_info) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @survey}%></div>
+            <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_csi_survey_title)%></label></td>
+              <td class="dataCol"><%=@survey.title%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_csi_survey_description)%></label></td>
+              <td class="dataCol"><%= @survey.description%></td>
+              <td class="labelCol"><label><%=(t :label_csi_survey_thanks_message)%></label></td>
+              <td class="dataCol"><%= @survey.thanks_message%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pbSubheader tertiaryPalette">&nbsp;
+      <h3><%=t(:label_csi_survey_setting)%><span class="titleSeparatingColon"></span></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+           <tr>
+              <td class="labelCol"><label><%=(t :label_csi_survey_email_notify)%></label></td>
+              <td class="dataCol"><%=@survey.email_notify%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_csi_survey_publish_response)%></label></td>
+              <td class="dataCol"><%=@survey.publish_response%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_csi_survey_comment_flag)%></label></td>
+              <td class="dataCol"><%=@survey.comment_flag%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pbSubheader tertiaryPalette">&nbsp;
+      <h3><%=t(:label_csi_survey_access_control)%><span class="titleSeparatingColon"></span></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+           <tr>
+              <td class="labelCol"><label><%=(t :label_csi_survey_password)%></label></td>
+              <td class="dataCol"><%= @survey.password %></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_csi_survey_closed_datetime)%></label></td>
+              <td class="dataCol"><%= @survey.closed_datetime%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_csi_survey_same_ip_allow_flag)%></label></td>
+              <td class="dataCol"><%=@survey.same_ip_allow_flag%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
 
+    <div id="survey_subject" class="datatable" style="width:100%;">
+          <div id="id" style="display:none">
+            <%= link_to(t(:add),{:action=>"new"}) %> %>
+          </div>
+    </div>
+        <%= datatable("survey_subject",url_for(:action=>"get_data",:format=>"json"),
+                  [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"50%"},
+                   {:key=>"title",:label=>t(:label_csi_survey_title),:sortable=>true},
+                   {:key=>"description",:label=>t(:label_csi_survey_description),:sortable=>true},
+                   {:key=>"status_meaning",:label=>t(:label_csi_survey_status_code),:sortable=>true}],
+                   {:row_perpage=>5})%>
 
-<%= link_to 'Edit', edit_survey_path(@survey) %> |
-<%= link_to 'Back', surveys_path %>
+  </div>
+</div>
+

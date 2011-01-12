@@ -497,7 +497,18 @@ Ironmine::Application.routes.draw do
 
   scope :module => "ebs" do
     match '/ebshome(/index)(.:format)' => "home#index", :via => :get
-  end  
+  end
+
+  scope :module => "csi" do
+    #surveys
+    match '/surveys(/index)(.:format)' => "surveys#index", :via => :get
+    match '/surveys/get_data(.:format)' => "surveys#get_data"
+    match '/surveys/:id/edit(.:format)' => "surveys#edit", :via => :get
+    match '/surveys/:id(.:format)' => "surveys#update", :via => :put
+    match '/surveys/new(.:format)' => "surveys#new", :via => :get
+    match '/surveys/:id(.:format)' => "surveys#show", :via => :get
+    match '/surveys/create(.:format)' => "surveys#create", :via => :post
+  end
 
   match '/demo(/index)' => 'demo#index'
   themes_for_rails
