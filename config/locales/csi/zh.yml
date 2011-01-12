@@ -1,0 +1,18 @@
+zh:
+   #========================= start irm regions_controller=======================#
+   label_csi_survey_new: 新建调查问卷
+   label_csi_survey_info: 调查问卷
+   label_csi_survey_company: 公司名称
+   label_csi_survey_title: 问卷题目
+   label_csi_survey_description: 描述
+   label_csi_survey_email_notify: 是否Email提醒
+   label_csi_survey_notify_url: 提醒的URL地址
+   label_csi_survey_notify_type: 提醒类型
+   label_csi_survey_thanks_message: 感谢
+   label_csi_survey_publish_response: 是否公开结果
+   label_csi_survey_comment_flag: 是否可以评论
+   label_csi_survey_password: 密码
+   label_csi_survey_closed_datetime: 关闭时间
+   label_csi_survey_same_ip_allow_flag: 同一个IP是否允许提交
+   label_csi_survey_status_code: 记录状态
+   #========================= end   irm regions_controller=======================#

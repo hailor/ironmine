@@ -29,7 +29,7 @@ class Irm::Function < ActiveRecord::Base
     where("#{Irm::FunctionsTl.table_name}.function_id = #{table_name}.id").
     where("#{Irm::FunctionsTl.table_name}.language = ?", I18n.locale)
   }
-  \
+  
   # 菜单子项
   has_many :function_members
   has_many :permissions, :through => :function_members
