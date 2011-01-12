@@ -42,6 +42,18 @@
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_auth_source_attr_login)%></label></td>
+              <td class="dataCol"><%=@auth_source.attr_login %></td>
+              <td class="labelCol"><label><%=t(:label_irm_auth_source_attr_firstname)%></label></td>
+              <td class="dataCol"><%= @auth_source.attr_firstname %></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_auth_source_attr_email)%></label></td>
+              <td class="dataCol"><%= @auth_source.attr_email%></td>
+              <td class="labelCol"><%=t(:label_irm_auth_source_attr_lastname)%></td>
+              <td class="dataCol"><%= @auth_source.attr_lastname %></td>
+            </tr>        
         </tbody>
       </table>
     </div>
