@@ -78,7 +78,13 @@ module ApplicationHelper
     end
     columns_conf.chop!
     data_fields.chop!
+
+
+    load_str = "#{id}Datatable.datasource.load()"
+    load_str = "//does not load at init" if options[:not_load]
+
     script = %Q(GY.use("irm","datasource-get", "datasource-jsonschema","dtdatasource","datatable-sort","datatable-colresize",function(Y) {
+       Y.on("domready",function(){
          var #{id}Cols = [#{columns_conf}],
          #{id}Datasource = new Y.DataSource.Get({source:'#{source_url}'})
                    .plug(Y.Plugin.DataSourceJSONSchema, {
@@ -89,8 +95,10 @@ module ApplicationHelper
          }),
          #{id}Datatable = new Y.DataTable.Base({columnset:#{id}Cols})
              .plug(Y.Plugin.IrmDTDataSource, {datasource:#{id}Datasource}).plug(Y.Plugin.DataTableSort).plug(Y.Plugin.DataTableColResize).render("##{id}");
-         #{id}Datatable.datasource.load({request:{start:0,count:#{row_perpage}}});
-         Y.mix(Y.irm,{#{id}Datatable:#{id}Datatable});
+         #{id}Datatable.datasource.paginate({start:0,count:#{row_perpage}});
+         #{load_str}
+         Y.irm.setAttribute('#{id}Datatable',#{id}Datatable,'Datatable');
+        });
      });)
     javascript_tag(script)
   end
