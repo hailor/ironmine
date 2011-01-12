@@ -8,9 +8,9 @@ var yuiConfig = {
             fullpath:"/javascripts/irm/datatable/dtdatasource.js",
             requires: ["datatable-datasource"]
         },
-        dtselector:{
-            fullpath:"/javascripts/irm/datatable/dtselector.js",
-            requires: ["datatable-datasource"]
+        dtsearchbox:{
+            fullpath:"/javascripts/irm/datatable/dtsearchbox.js",
+            requires: []
         },
         gallerywidgetio:{
             fullpath:"/javascripts/gallery/widget-io.js",
