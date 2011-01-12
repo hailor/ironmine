@@ -5,8 +5,8 @@ class AddGeneralCategoriesMenuAndPermissions < ActiveRecord::Migration
                                              :page_controller=>'irm/general_categories',
                                              :page_action=>'index',
                                              :not_auto_mult=>true)
-    irm_cate_index.permissions_tls.build(:language=>'zh',:name=>'公共分类',:description=>'',:source_lang=>'en')
-    irm_cate_index.permissions_tls.build(:language=>'en',:name=>'General Categories',:description=>'',:source_lang=>'en')
+    irm_cate_index.permissions_tls.build(:language=>'zh',:name=>'公共分类首页',:description=>'',:source_lang=>'en')
+    irm_cate_index.permissions_tls.build(:language=>'en',:name=>'General Categories Index',:description=>'',:source_lang=>'en')
     irm_cate_index.save
 
     irm_cate_new = Irm::Permission.new(:permission_code=>'IRM_GEN_CATEGORY_NEW',
@@ -14,7 +14,7 @@ class AddGeneralCategoriesMenuAndPermissions < ActiveRecord::Migration
                                              :page_action=>'new',
                                              :not_auto_mult=>true)
     irm_cate_new.permissions_tls.build(:language=>'zh',:name=>'创建公共分类',:description=>'',:source_lang=>'en')
-    irm_cate_new.permissions_tls.build(:language=>'en',:name=>'Create General Categories',:description=>'',:source_lang=>'en')
+    irm_cate_new.permissions_tls.build(:language=>'en',:name=>'Create General Category',:description=>'',:source_lang=>'en')
     irm_cate_new.save
 
     irm_cate_edit = Irm::Permission.new(:permission_code=>'IRM_GEN_CATEGORY_EDIT',
@@ -22,8 +22,16 @@ class AddGeneralCategoriesMenuAndPermissions < ActiveRecord::Migration
                                              :page_action=>'edit',
                                              :not_auto_mult=>true)
     irm_cate_edit.permissions_tls.build(:language=>'zh',:name=>'编辑公共分类',:description=>'',:source_lang=>'en')
-    irm_cate_edit.permissions_tls.build(:language=>'en',:name=>'Edit General Categories',:description=>'',:source_lang=>'en')
+    irm_cate_edit.permissions_tls.build(:language=>'en',:name=>'Edit General Category',:description=>'',:source_lang=>'en')
     irm_cate_edit.save
+
+    irm_cate_show = Irm::Permission.new(:permission_code=>'IRM_GEN_CATEGORY_SHOW',
+                                             :page_controller=>'irm/general_categories',
+                                             :page_action=>'show',
+                                             :not_auto_mult=>true)
+    irm_cate_show.permissions_tls.build(:language=>'zh',:name=>'查看公共分类',:description=>'',:source_lang=>'en')
+    irm_cate_show.permissions_tls.build(:language=>'en',:name=>'Show General Category',:description=>'',:source_lang=>'en')
+    irm_cate_show.save
 
     cate_index_page = Irm::MenuEntry.new(:menu_code=>'IRM_COMMON_SETTING_MENU',
                                          :permission_code=>'IRM_GEN_CATEGORY_INDEX',
