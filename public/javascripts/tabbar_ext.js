@@ -358,7 +358,7 @@ RelatedListPanel.prototype.showRL = function(rlId, forceResize) {
     if (linkletNode.className.indexOf("linkletOn") > 0 && (!forceResize)) {
         return;
     }
-    panelShadowNode.style.top = (linkletNode.offsetTop + linkletNode.offsetHeight+8) + "px";
+    panelShadowNode.style.top = (linkletNode.offsetTop + linkletNode.offsetHeight+120) + "px";
     if (this.isConsole) {
         panelShadowNode.style.left = (getObjX(this.getHoverableLinksNode()) - 4) + "px";
         panelShadowNode.style.width = (relatedListNode.offsetWidth - 3) + "px";

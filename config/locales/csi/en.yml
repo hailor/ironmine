@@ -1,0 +1,18 @@
+en:
+   #========================= start irm regions_controller=======================#
+   label_csi_survey_new: New Survey
+   label_csi_survey_info: Survey
+   label_csi_survey_company: Company
+   label_csi_survey_title: Title
+   label_csi_survey_description: Description
+   label_csi_survey_email_notify: Email_notify
+   label_csi_survey_notify_url: Notify Url
+   label_csi_survey_notify_type: Notify Type
+   label_csi_survey_thanks_message: Thanks Message
+   label_csi_survey_publish_response: publish Response
+   label_csi_survey_comment_flag: Comment Flag
+   label_csi_survey_password: Survey Password
+   label_csi_survey_closed_datetime: Closed Datetime
+   label_csi_survey_same_ip_allow_flag: Same Ip Allow
+   label_csi_survey_status_code: Status Code
+   #========================= end   irm regions_controller=======================#
