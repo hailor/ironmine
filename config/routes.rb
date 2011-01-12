@@ -316,18 +316,16 @@ Ironmine::Application.routes.draw do
     match '/site_groups/:id/multilingual_site_edit(.:format)' => "site_groups#multilingual_site_edit", :via => :get
     match '/site_groups/:id/multilingual_site_update(.:format)' => "site_groups#multilingual_site_update", :via => :put
 
-    #operational_catalogs
-    match '/operational_catalogs(/index)(.:format)' => "operational_catalogs#index", :via => :get
-    match '/operational_catalogs/new(.:format)' => "operational_catalogs#new", :via => :get
-    match '/operational_catalogs/create(.:format)' => "operational_catalogs#create", :via => :post
-    match '/operational_catalogs/get_data(.:format)' => "operational_catalogs#get_data"
-    match '/operational_catalogs/:id/edit(.:format)' => "operational_catalogs#edit", :via => :get
-    match '/operational_catalogs/:id(.:format)' => "operational_catalogs#update", :via => :put
-    match '/operational_catalogs/update_segment_options(.:format)' => "operational_catalogs#update_segment_options"
-    match '/operational_catalogs/:id/show(.:format)' => "operational_catalogs#show", :via => :get
-    #op_catalog_accesses
-    match '/op_catalog_accesses/:operational_catalog_id(/index)(.:format)' => "op_catalog_accesses#index", :via => :get
-    match '/op_catalog_accesses/:operational_catalog_id/get_data(.:format)' => "op_catalog_accesses#get_data"
+    #general_categories
+    match '/general_categories(/index)(.:format)' => "general_categories#index", :via => :get
+    match '/general_categories/new(.:format)' => "general_categories#new"
+    match '/general_categories/create(.:format)' => "general_categories#create", :via => :post
+    match '/general_categories/get_data(.:format)' => "general_categories#get_data"
+    match '/general_categories/:id/edit(.:format)' => "general_categories#edit", :via => :get
+    match '/general_categories/:id(.:format)' => "general_categories#update", :via => :put
+    match '/general_categories/update_segment_options(.:format)' => "general_categories#update_segment_options"
+    match '/general_categories/:id/show(.:format)' => "general_categories#show", :via => :get
+    
     #support_groups
     match '/support_groups(/index)(.:format)' => "support_groups#index", :via => :get
     match '/support_groups/:id/edit(.:format)' => "support_groups#edit", :via => :get

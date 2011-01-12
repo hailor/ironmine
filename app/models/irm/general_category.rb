@@ -1,14 +1,15 @@
-class Irm::OperationalCatalog < ActiveRecord::Base
-  set_table_name :irm_operational_catalogs
+# -*- coding: utf-8 -*-
+class Irm::GeneralCategory < ActiveRecord::Base
+  set_table_name :irm_general_categories
   validates_presence_of :company_id
-
+  validates_presence_of :category_type
   validate:unique_segment?
   query_extend
   #查找运营分类列表
     scope :list_all, lambda{
-    select("#{table_name}.*, cpt.name company_name, ifstl.id_flex_structure_name catalog_type_name, fvt1.flex_value_meaning segment1_name, fvt2.flex_value_meaning segment2_name, fvt3.flex_value_meaning segment3_name").
+    select("#{table_name}.*, cpt.name company_name, ifstl.id_flex_structure_name category_type_name, fvt1.flex_value_meaning segment1_name, fvt2.flex_value_meaning segment2_name, fvt3.flex_value_meaning segment3_name").
     select("CONCAT_WS(ifst.concatenated_segment_delimiter, fvt1.flex_value_meaning, fvt2.flex_value_meaning, fvt3.flex_value_meaning) concat_segment_name").
-    joins("LEFT OUTER JOIN #{Irm::IdFlexStructure.table_name} ifst ON ifst.id_flex_structure_code = 'OPERATIONAL_CATALOG'").
+    joins("LEFT OUTER JOIN #{Irm::IdFlexStructure.table_name} ifst ON ifst.id_flex_structure_code = #{table_name}.category_type").
     joins("LEFT OUTER JOIN #{Irm::IdFlexSegment.table_name} ifs1 ON ifs1.segment_name = 'segment1' AND ifs1.id_flex_code = ifst.id_flex_code AND ifs1.id_flex_num = ifst.id_flex_num").
     joins("LEFT OUTER JOIN #{Irm::IdFlexSegment.table_name} ifs2 ON ifs2.segment_name = 'segment2' AND ifs2.id_flex_code = ifst.id_flex_code AND ifs2.id_flex_num = ifst.id_flex_num").
     joins("LEFT OUTER JOIN #{Irm::IdFlexSegment.table_name} ifs3 ON ifs3.segment_name = 'segment3' AND ifs3.id_flex_code = ifst.id_flex_code AND ifs3.id_flex_num = ifst.id_flex_num").
@@ -26,7 +27,7 @@ class Irm::OperationalCatalog < ActiveRecord::Base
   }
   private
     def unique_segment?
-      if Irm::OperationalCatalog.where("segment1 = ? AND segment2 = ? AND segment3 = ? AND company_id = ?", segment1, segment2, segment3, company_id).size != 0
+      if Irm::GeneralCategory.where("segment1 = ? AND segment2 = ? AND segment3 = ? AND company_id = ? AND category_type = ?", segment1, segment2, segment3, company_id, category_type).size != 0
        errors.add(:company_id, I18n.t(:error_segment_combination_existed))
       end
     end

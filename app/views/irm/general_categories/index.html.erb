@@ -5,7 +5,7 @@
         <table cellpadding="0" cellspacing="0" border="0">
           <tbody>
             <tr>
-              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_operational_catalog_list) %></h2></td>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_general_category_list) %></h2></td>
               <td id="topButtonRow" class="pbButton">
                 <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
               </td>
@@ -20,18 +20,19 @@
         </table>
       </div>
       <div class="pbBody">
-        <div id="operational_catalogs_list" class="datatable" style="width:100%">
+        <div id="general_categories_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
-        <%= datatable("operational_catalogs_list",url_for(:action=>"get_data",:format=>"json"),
+        <%= datatable("general_categories_list",url_for(:action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
-                       {:key=>"company_name",:label=>t(:label_irm_operational_catalog_company),:sortable=>true},
-                       {:key=>"segment1_name",:label=>t(:label_irm_operational_catalog_segment1),:sortable=>true},
-                       {:key=>"segment2_name",:label=>t(:label_irm_operational_catalog_segment2),:sortable=>true},
-                       {:key=>"segment3_name",:label=>t(:label_irm_operational_catalog_segment3),:sortable=>true},
-                       {:key=>"concat_segment_name",:label=>t(:label_irm_operational_catalog_concact_segment),:sortable=>true},
+                       {:key=>"company_name",:label=>t(:label_irm_general_category_company),:sortable=>true},
+                       {:key=>"category_type_name",:label=>t(:label_irm_general_category_type),:sortable=>true},
+                       {:key=>"segment1_name",:label=>t(:label_irm_general_category_segment1),:sortable=>true},
+                       {:key=>"segment2_name",:label=>t(:label_irm_general_category_segment2),:sortable=>true},
+                       {:key=>"segment3_name",:label=>t(:label_irm_general_category_segment3),:sortable=>true},
+                       {:key=>"concat_segment_name",:label=>t(:label_irm_general_category_concact_segment),:sortable=>true},
                        {:key=>"status_code",:label=>t(:label_irm_permission_status_code),:sortable=>true}])%>
       </div>
     </div>

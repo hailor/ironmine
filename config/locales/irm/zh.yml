@@ -505,16 +505,17 @@ zh:
   label_irm_site_show: 地点
   #=========================end irm site_groups_controller=======================#
   #=========================end irm flex_values_controller=======================#
-  #=========================irm operational_catalogs_controller=======================#
-  label_irm_operational_catalog: 服务类别
-  label_irm_operational_catalog_list: 服务类别列表
-  label_irm_operational_catalog_new: 创建服务类别
-  label_irm_operational_catalog_edit: 编辑服务类别
-  label_irm_operational_catalog_company: 公司
-  label_irm_operational_catalog_segment1: 第一段
-  label_irm_operational_catalog_segment2: 第二段
-  label_irm_operational_catalog_segment3: 第三段
-  label_irm_operational_catalog_concact_segment: 类别
+  #=========================irm general_category_controller=======================#
+  label_irm_general_category: 类别
+  label_irm_general_category_list: 类别列表
+  label_irm_general_category_new: 创建类别
+  label_irm_general_category_edit: 编辑类别
+  label_irm_general_category_type: 类型
+  label_irm_general_category_company: 公司
+  label_irm_general_category_segment1: 第一段
+  label_irm_general_category_segment2: 第二段
+  label_irm_general_category_segment3: 第三段
+  label_irm_general_category_concact_segment: 类别
   error_segment_combination_existed: 同一公司下不能有相同的段组合
   #=========================end operational_catalogs_controller=======================#
   #=========================irm op_catalog_accesses_controller=======================#
