@@ -429,4 +429,21 @@ en:
   label_irm_support_group_member_group_list: List Support Group List
   label_irm_support_group_member_info: Support Group Member
   #=========================end irm  support_group_controller=======================#
-
+  #=========================    irm filters_controller=======================#
+  label_irm_view_filter_new: New view filter
+  label_irm_view_filter_edit: Edit view filter
+  label_irm_view_filter_step_one: Step 1. View info
+  label_irm_view_filter_view_name: View name
+  label_irm_view_filter_view_code: View code
+  label_irm_view_filter_view_condition_clause: Condition clause
+  label_irm_view_filter_default_flag: As default
+  label_irm_view_filter_restrict_visibility: Only for me
+  label_irm_view_filter_step_two: Steop 2.
+  irm_filter_criterions_column_code: Field
+  irm_filter_criterions_operator_code: Operator
+  irm_filter_criterions_filter_value: Value
+  view_filter_use_invalid_seq_num: Invalid sequence number
+  view_filter_use_invalid_key_word: Invalid keyword
+  view_filter_use_invalid_syntax: Syntax Error
+  irm_view_filter: View Filter
+  #=========================end irm support_group_controller=======================#
