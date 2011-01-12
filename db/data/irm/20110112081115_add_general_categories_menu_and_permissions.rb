@@ -37,8 +37,8 @@ class AddGeneralCategoriesMenuAndPermissions < ActiveRecord::Migration
                                          :permission_code=>'IRM_GEN_CATEGORY_INDEX',
                                          :display_sequence=>35,
                                          :not_auto_mult=>true)
-    cate_index_page.menu_entries_tls.build(:language=>'zh',:name=>'设置公共分类',:description=>'设置公共分类',:source_lang=>'en')
-    cate_index_page.menu_entries_tls.build(:language=>'en',:name=>'Set General Categories',:description=>'Set General Categories',:source_lang=>'en')
+    cate_index_page.menu_entries_tls.build(:language=>'zh',:name=>'公共分类',:description=>'公共分类',:source_lang=>'en')
+    cate_index_page.menu_entries_tls.build(:language=>'en',:name=>'General Categories',:description=>'General Categories',:source_lang=>'en')
     cate_index_page.save
   end
 
