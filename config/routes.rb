@@ -118,6 +118,7 @@ Ironmine::Application.routes.draw do
     match '/identities/update_info(.:format)' => "identities#update_info", :via => :put
     match '/identities/edit_password(.:format)' => "identities#edit_password", :via => :get
     match '/identities/update_password(.:format)' => "identities#update_password", :via => :put
+    match '/identities/:id/show(.:format)' => "identities#show"
 
     #global_settings
     match '/global_settings(/index)(.:format)' => "global_settings#index", :via => :get

@@ -35,11 +35,11 @@ class Irm::IdentitiesController < ApplicationController
 
     respond_to do |format|
       if @identity.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+        format.xml  { render :xml => @identity, :status => :created, :location => @identity }
       else
-         @error = @identity
-         format.html { render "error_message" }
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @identity.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -49,11 +49,11 @@ class Irm::IdentitiesController < ApplicationController
 
     respond_to do |format|
       if @identity.update_attributes(params[:irm_identity])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
       else
-        @error = @identity
-        format.html { render "error_message" }
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @identity.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -69,13 +69,11 @@ class Irm::IdentitiesController < ApplicationController
   end
 
   def get_data
-    @identitys = Irm::Identity.query_all.with_language
+    identities_scope = Irm::Identity.query_all.with_language
+    identities,count = paginate(identities_scope)
     respond_to do |format|
-      format.json  {render :json => @identitys.to_dhtmlxgrid_json(['0',:login_name,:full_name,
-                                                                     :email,:language_description,:status_code,
-                                                                    {:value => 'M', :controller => 'irm/permissions',:action =>  'multilingual_edit', :id => 'id', :action_type => 'multilingual',:view_port=>'data_area', :script => ''}
-                                                                    ], @identitys.size) }
-    end
+      format.json  {render :json => to_jsonp(identities.to_grid_json([:login_name,:full_name,:email,:language_description,:status_code], count)) }
+    end    
   end
   #个人信息显示页面
   def my_info
@@ -110,7 +108,7 @@ class Irm::IdentitiesController < ApplicationController
     respond_to do |format|
       if(params[:irm_identity][:old_password]&&check_password(params[:irm_identity][:old_password]))
         if @identity.update_attributes(params[:irm_identity])
-          format.html {redirect_to({:action=>"my_info",:format=>:js},:notice=>t(:successfully_updated))}
+          format.html {redirect_to({:action=>"edit_password"},:notice=>t(:successfully_updated))}
         else
           @identity.password = "" if @identity.password.eql?("*")
           format.html {render("edit_password")}
@@ -122,6 +120,9 @@ class Irm::IdentitiesController < ApplicationController
     end
   end
 
+  def show
+     @identity = Irm::Identity.find(params[:id])
+  end
   private
 
   def check_password(password)
