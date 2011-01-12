@@ -1,30 +1,37 @@
-    <div id="data_area" class="container">
-        <div class="containerheader">
-           <div class="floatleft headertitle"><%=t(:label_irm_identity_list)%></div>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_identity_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:controller => "irm/identities", :action => "new"}%></div>
+              </td>
+              <td class="pbHelp">
+                <select title="显示所选内容" name="hotlist_mode" id="hotlist_mode"><option value="2">最近创建</option>
+                <option value="1">最近修改</option>
+                <option selected="selected" value="3">最近查看</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="identities_list" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:controller => "irm/identities", :action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:controller => "irm/identities", :action=>"show",:id=>"{id}"}) %>
+          </div>
         </div>
-        <div id="identities_grid" class="datagrid"
-            action_type="ajaxDhtmlxGrid"
-            grid_header=" , <%=t(:label_irm_identity_login_name)%>,<%=t(:label_irm_identity_full_name)%>,
-            <%=t(:label_irm_identity_email)%>,<%=t(:label_irm_identity_language_code)%>,<%=t(:label_irm_identity_status_code)%>"
-            grid_width="20,100,100,100,100,80"
-            grid_col_types="ra,ro,ro,ro,ro,ro"
-            grid_onRowDblClicked="dblClickHandler"
-            grid_OnRowSelected="rowSelectedHandler"
-            grid_paging_skin="bricks"
-            enable_paging="true, 15, null, 'pagingArea', true, 'infoArea'"
-            grid_load="'<%= url_for(:action => "get_data", :controller => "irm/identities", :format=>:json) %>',function(){init('#identitys_grid');},'json'">
-        </div>
-        <span id="infoArea"></span>
-        <span id="recfound"></span>
-        <script>
-            function dblClickHandler(rId, cInd){
-                processDblClicked("form_area","form_area","<%= url_for(:action => "edit", :controller => "irm/identities", :id => ":id") %>", rId);
-            }
-            function rowSelectedHandler(id, ind){
-                dhtmlx_grid_array['identities_grid'].cells(id, 0).setValue("1");
-            }
-        </script>
-        <div class="containerfooter">
-          <div class="floatleft"><span id="pagingArea"></span></div>
-        </div>
+        <%= datatable("identities_list",url_for(:controller => "irm/identities", :action=>"get_data",:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
+                       {:key=>"login_name",:label=>t(:label_irm_identity_login_name),:sortable=>true},
+                       {:key=>"full_name",:label=>t(:label_irm_identity_full_name),:sortable=>true},
+                       {:key=>"email",:label=>t(:label_irm_identity_email),:sortable=>true},
+                       {:key=>"language_description",:label=>t(:label_irm_identity_language_code),:sortable=>true},
+                       {:key=>"status_code",:label=>t(:active),:sortable=>true}
+                       ])%>
+      </div>
     </div>
+</div>    
