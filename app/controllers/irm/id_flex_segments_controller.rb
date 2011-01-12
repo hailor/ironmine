@@ -1,9 +1,7 @@
 class Irm::IdFlexSegmentsController < ApplicationController
   def index
-    @id_flex_structure = Irm::IdFlexStructure.list_all.where(:id => params[:id_flex_structure_id]).first()
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @id_flex_structure }
     end
   end
 

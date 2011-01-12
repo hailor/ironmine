@@ -118,7 +118,7 @@ class AddIdFlexMenuAndPermissions < ActiveRecord::Migration
                                          :not_auto_mult=>true)
     idflexseg_index_page.menu_entries_tls.build(:language=>'zh',:name=>'设置弹性域段值',:description=>'',:source_lang=>'en')
     idflexseg_index_page.menu_entries_tls.build(:language=>'en',:name=>'Set Flex Segments',:description=>'',:source_lang=>'en')
-    idflexseg_index_page.save   
+    idflexseg_index_page.save
   end
 
   def self.down
