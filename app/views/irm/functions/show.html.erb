@@ -8,7 +8,7 @@
           <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_function) %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @function}%></div>
-            <div class="button"><%= link_back %></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"} %></div>
           </td>
         </tr>
       </tbody>
@@ -19,10 +19,16 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_function_name)%></label></td>
-              <td class="dataCol"><div><%= @function[:name]%></div></td>
               <td class="labelCol"><label><%=(t :label_irm_function_function_code)%></label></td>
               <td class="dataCol"><div><%= @function.function_code%></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>        
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_function_name)%></label></td>
+              <td class="dataCol"><div><%= @function[:name]%></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=t(:label_irm_function_description)%></label></td>
@@ -32,7 +38,7 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :active)%></label></td>
-              <td class="dataCol"><div><%= @function.status_code%></div></td>
+              <td class="dataCol"><div><%= @function[:status_meaning]%></div></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
@@ -50,7 +56,7 @@
             <tr>
               <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_permission_list) %></h2></td>
               <td class="pbButton">
-                
+                <div class="button"><%= link_to t(:add), {:action => "select_permissions", :function_id => @function}%></div>
               </td>
               <td class="pbHelp">
                 <select title="显示所选内容" name="hotlist_mode" id="hotlist_mode"><option value="2">最近创建</option>
@@ -63,19 +69,19 @@
         </table>
       </div>
       <div class="pbBody">
-        <div id="function_list" class="datatable" style="width:100%">
+        <div id="permissions_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:remove),{:action=>"edit",:id=>"{id}"}) %>
+            <%= link_to(t(:remove),{:action=>"remove_permission",:permission_id=>"{id}", :function_id => @function}) %>
           </div>
         </div>
-        <%= datatable("function_list",url_for(:controller => "irm/permissions", :function_id => @function, :action=>"get_data",:format=>"json"),
+        <%= datatable("permissions_list",url_for(:controller => "irm/permissions", :function_code => @function.function_code, :action=>"function_get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
                        {:key=>"product_module_name",:label=>t(:label_irm_permission_product_name),:sortable=>true},
                        {:key=>"permission_code",:label=>t(:label_irm_permission_permission_code),:sortable=>true},
                        {:key=>"name",:label=>t(:label_irm_permission_name),:sortable=>true},
                        {:key=>"page_controller",:label=>t(:label_irm_permission_page_controller),:sortable=>true},
                        {:key=>"page_action",:label=>t(:label_irm_permission_page_action),:sortable=>true},
-                       {:key=>"status_code",:label=>t(:label_irm_permission_status_code),:sortable=>true}])%>
+                       {:key=>"status_meaning",:label=>t(:label_irm_permission_status_code),:sortable=>true}])%>
       </div>
     </div>
 </div>

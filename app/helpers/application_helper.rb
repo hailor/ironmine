@@ -1,26 +1,34 @@
 module ApplicationHelper
   def page_title(title = "", description = "")
-    title_tags = ""
+    page_title = ""
+    page_description = ""
+    b_description = ""
     if @current_menu_entry && @current_menu_entry.permission_code
       permission = Irm::Permission.list_all.where(:id => @current_permission.id).first
       if @current_menu_entry.icon
-        title_tags << content_tag(:img, "", :src => '/images/s.gif', :class => @current_menu_entry.icon + " pageTitleIcon")
+        page_description << content_tag(:img, "", :src => '/images/s.gif', :class => @current_menu_entry.icon + " pageTitleIcon")
       end
       if !title.blank?
-        title_tags << title
+        page_title << content_tag(:h1, title, :class => "pageType")
       else
-        title_tags << content_tag(:h1, "", :class => "pageType")
+        page_title << content_tag(:h1, @current_menu_entry[:name], :class => "pageType")
       end
       if !description.blank?
-        title_tags << description
+        page_description << content_tag(:h2, description, :class => "pageDescription")
       else
-        title_tags << content_tag(:h2, permission[:name], :class => "pageDescription")
+        page_description << content_tag(:h2, permission[:name], :class => "pageDescription")
       end
+      if !permission[:description].blank?
+        b_description << content_tag(:div, permission[:description], :class => "bDescription")  
+      end
+    else
+      page_title << content_tag(:h1, title, :class => "pageType")
+      page_description << content_tag(:h2, description, :class => "pageDescription")
     end
-    content = raw(content_tag(:div, raw(title_tags), :class => "content"))
+    content = raw(content_tag(:div, raw(page_title + page_description), :class => "content"))
     pt_body = raw(content_tag(:div, content, :class => "ptBody"))
     b_page_title = raw(content_tag(:div, pt_body, :class => "bPageTitle"))
-    raw(b_page_title)
+    raw(b_page_title + raw(b_description))
   end
   
   #显示form提交的出错信息
@@ -183,5 +191,20 @@ module ApplicationHelper
   
   def link_back(text = t(:back))
     link_to text, {}, {:href => "javascript:history.back();"}
+  end
+
+  #构建日历控件，其中text_field是输入的日期框，id_button是点击日历的
+  #button，而id_cal是日历显示的ID，最好不一致
+  def calendar_view(id_text_field,id_button,id_cal)
+    script = %Q(
+       GY.use( 'yui2-calendar','yui2-container',function(Y) {
+            var YAHOO = Y.YUI2;
+            var Event = YAHOO.util.Event,Dom = YAHOO.util.Dom;
+             YAHOO.util.Event.onDOMReady(function () {
+                show_irm_calendar(YAHOO,Event,Dom,"#{id_button}","#{id_text_field}","#{id_cal}");
+             });
+       });
+    )
+    javascript_tag(script)
   end
 end

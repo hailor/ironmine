@@ -1,32 +1,38 @@
-    <div id="data_area">
-        <div class="containerheader">
-           <div class="floatleft headertitle"><%=t(:label_irm_auth_source_list)%></div>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_auth_source_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:controller => "irm/auth_sources", :action => "new"}%></div>
+              </td>
+              <td class="pbHelp">
+                <select title="显示所选内容" name="hotlist_mode" id="hotlist_mode"><option value="2">最近创建</option>
+                <option value="1">最近修改</option>
+                <option selected="selected" value="3">最近查看</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="auth_sources_list" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:controller => "irm/auth_sources", :action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:controller => "irm/auth_sources", :action=>"show",:id=>"{id}"}) %>
+          </div>
         </div>
-        <div id="auth_sources_grid" class="datagrid"
-            action_type="ajaxDhtmlxGrid"
-            grid_header=" , <%=t(:label_irm_auth_source_name)%>,
-            <%=t(:label_irm_auth_source_host)%>,<%=t(:label_irm_auth_source_port)%>,
-            <%=t(:label_irm_auth_source_account)%>,<%=t(:label_irm_auth_source_base_dn)%>,<%=t(:label_irm_auth_source_attr_login)%>,
-            <%=t(:status)%>"
-            grid_width="20,100,100,100,80,80,80,80"
-            grid_col_types="ra,ro,ro,ro,ro,ro,ro,ro"
-            grid_onRowDblClicked="dblClickHandler"
-            grid_OnRowSelected="rowSelectedHandler"
-            grid_paging_skin="bricks"
-            enable_paging="true, 15, null, 'pagingArea', true, 'infoArea'"
-            grid_load="'<%= url_for(:action => "get_data", :controller => "irm/auth_sources", :format=>:json) %>',function(){init('#auth_sources_grid');},'json'">
-        </div>
-        <span id="infoArea"></span>
-        <span id="recfound"></span>
-        <script>
-            function dblClickHandler(rId, cInd){
-                processDblClicked("container1","auth_source_edit","<%= url_for(:action => "edit", :controller => "irm/auth_sources", :id => ":id") %>", rId);
-            }
-            function rowSelectedHandler(id, ind){
-                dhtmlx_grid_array['auth_sources_grid'].cells(id, 0).setValue("1");
-            }
-        </script>
-        <div class="containerfooter">
-          <div class="floatleft"><span id="pagingArea"></span></div>
-        </div>
+        <%= datatable("auth_sources_list",url_for(:controller => "irm/auth_sources", :action=>"get_data",:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
+                       {:key=>"name",:label=>t(:label_irm_auth_source_name),:sortable=>true},
+                       {:key=>"host",:label=>t(:label_irm_auth_source_host),:sortable=>true},
+                       {:key=>"port",:label=>t(:label_irm_auth_source_port),:sortable=>true},
+                       {:key=>"account",:label=>t(:label_irm_auth_source_account),:sortable=>true},
+                       {:key=>"base_dn",:label=>t(:label_irm_auth_source_base_dn),:sortable=>true},
+                       {:key=>"attr_login",:label=>t(:label_irm_auth_source_attr_login),:sortable=>true},
+                       {:key=>"status_meaning",:label=>t(:active),:sortable=>true}])%>
+      </div>
     </div>
+</div>    

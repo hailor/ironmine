@@ -1,7 +1,6 @@
  <body id="loginpage">
         <div id="pagewrap">
           <div id="newheader">
-            
           </div>
           <div id="gradientwrap">
             <div class="bottom">
@@ -29,7 +28,7 @@
                       </div>
                       <div class="login_button">
                         <%= link_to t(:label_irm_common_login),{},:type=>"submit",:id=>"sumbitlogin"%>
-                        <a href="javascript:void(0);" class="forgotpass">忘记了密码？</a>
+                        <%= link_to t(:label_irm_common_forgot_password), {:controller => "irm/common", :action => "forgot_password"}, {:class => "forgotpass"}%>
                       </div>
                  <%end%>
                   <div class="signupbox">

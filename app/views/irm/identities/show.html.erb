@@ -1,5 +1,43 @@
-<p id="notice"><%= notice %></p>
+<%= page_title %>
 
-
-<%= link_to 'Edit', edit_product_module_path(@identity) %> |
-<%= link_to 'Back', product_modules_path %>
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_identity) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @identity}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"} %></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_identity_login_name)%></label></td>
+              <td class="dataCol"><%= @identity.login_name %></td>
+              <td class="labelCol"><%= t(:label_irm_identity_full_name) %></td>
+              <td class="dataCol"><%= @identity.full_name%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%= t(:label_irm_identity_email)%></label></td>
+              <td class="dataCol"><%= @identity.email %></td>
+              <td class="labelCol"><%= t(:label_irm_identity_language_code) %></td>
+              <td class="dataCol"><%= @identity.language_code %></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :active)%></label></td>
+              <td class="dataCol"><%= @identity.status_code%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -7,7 +7,7 @@
           <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_menu) %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @menu}%></div>
-            <div class="button"><%= link_back %></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"} %></div>
           </td>
         </tr>
       </tbody>
@@ -55,7 +55,7 @@
             <tr>
               <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_menu_entry_list) %></h2></td>
               <td class="pbButton">
-                <div class="button"><%= link_to t(:add), {:action => "new"}%></div>
+                <div class="button"><%= link_to t(:add), {:controller => "irm/menu_entries", :action => "new", :menu_code => @menu.menu_code, :return_url => @return_url}%></div>
               </td>
               <td class="pbHelp">
                 <select title="显示所选内容" name="hotlist_mode" id="hotlist_mode"><option value="2">最近创建</option>
@@ -70,7 +70,8 @@
       <div class="pbBody">
         <div id="menu_entries_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:remove),{:action=>"edit",:id=>"{id}"}) %>
+            <%= link_to(t(:edit),{:controller => "irm/menu_entries", :action=>"edit",:id=>"{id}"}) %>|
+            <%= link_to(t(:remove),{:controller => "irm/menus", :action=>"remove_entry",:entry_id=>"{id}", :id => @menu}) %>
           </div>
         </div>
         <%= datatable("menu_entries_list",url_for(:controller => "irm/menu_entries", :action=>"get_data", :menu_code => @menu.menu_code,:format=>"json"),

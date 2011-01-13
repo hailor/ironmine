@@ -8,7 +8,7 @@
   <%= csrf_meta_tag %>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/application.css"></link>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/common.css"></link>
-  <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/test.css"></link>
+  <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/tabbar.css"></link>
 
 
   <script type="text/javascript">
@@ -29,25 +29,44 @@
                   <td class="left">
                     <img width="175" height="65" title="salesforce.com" id="phHeaderLogoImage" src="/themes/salesforce2/images/sales_logo_aloha_win11.png">
                   </td>
+                  <td class="searchCell">
+                    <form id="phSearchForm">
+                      <div id="phSearchContainer" class="headerSearchContainer">
+                        <div class="headerSearchLeftRoundedCorner">
+                          <div class="searchBoxClearContainer">
+                            <input id="phSearchInput" class="headerSearchBoxGhostText" type="text" size="20" maxlength="100">
+                          </div>
+                          <div id="searchButtonContainer" class="headerSearchRightRoundedCorner">
+                            <input id="phSearchButton" type="button" value="<%= t(:search) %>">
+                          </div>
+                        </div>
+                        <div id="searchOptionsContainer" class="headerSearchOptions">
+                          <a href="javascript:void(0);" class="headerSearchOptionsLink"><%= t(:options) %></a>
+                        </div>
+                      </div>
+                    </form>
+                  </td>
                   <td class="right vtop">
                     <div class="multiforce">
                       <div class="messages"></div>
                       <div>
+                        <span id="pageMenu" class="menuParent" style="float:right">
+                          <div  class="menuLabel">
+                            <span tabindex="0" id="pageMenuTop" style=""><%= level_one_current_name %></span>
+                            <div id="pageMenu-arrow"></div>
+                          </div>
+                          <div class="menuContent" >
+                            <%= level_one_menu %>
+                          </div>
+                        </span>
                         <span id="settingMenu" class="menuParent" style="float:right">
                           <div  class="menuLabel">
-                            <span tabindex="0" style="">liu hailor</span>
+                            <span tabindex="0" style="" id="userNavTop" >liu hailor</span>
+                            <div id="settingMenu-arrow"></div>
                           </div>
                           <div class="menuContent" >
                             <%= setting_menu%>
                             <div class="menuItem"><%= link_to(t(:label_irm_common_logout),logout_url) %></div>
-                          </div>
-                        </span>
-                        <span id="pageMenu" class="menuParent" style="float:right">
-                          <div  class="menuLabel">
-                            <span tabindex="0" id="userNavLabel" style=""><%= level_one_current_name %></span>
-                          </div>
-                          <div class="menuContent" >
-                            <%= level_one_menu %>
                           </div>
                         </span>
                       </div>

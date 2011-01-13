@@ -50,6 +50,8 @@ zh:
   operation: 操作
   jump: 转至！
   remove: 移除
+  search: 搜索
+  options: 选项
   #常用语句
   notice_account_invalid_creditentials: 用户名或密码错误
   successfully_updated: 已经成功更新数据
@@ -86,6 +88,7 @@ zh:
   label_add_another_lookup_value: 增加新的快速编码值
   label_delete_last_lookup_value: 删除最后一行的快速编码值
   label_new_lookup_type: 新建快速编码
+  label_irm_lookup_type_edit: 编辑快速编码
   label_irm_lookup_type_lookup_type: 快速编码类型
   label_irm_lookup_type_meaning: 含义
   lable_irm_lookup_type_editing_multilingual: 编辑多语言
@@ -97,6 +100,16 @@ zh:
   label_new_lookup_type: 创建快速编码类型
   label_list_lookup_types: 快速编码类型列表
   label_add_lookup_code: 添加快速编码
+  label_irm_lookup_type_new: 新建快速编码类型
+  label_irm_lookup_type_list: 快速编码类型列表
+  label_irm_lookup_type_info: 快速编码类型信息
+  label_irm_lookup_type_show: 快速编码类型
+  label_irm_lookup_value_index: 快速编码
+  label_irm_lookup_value_list: 快速编码
+  label_lookup_value_new: 新建快速编码
+  label_irm_lookup_value_info: 快速编码信息
+  label_lookup_value_edit: 编辑快速编码
+  label_lookup_value_show: 快速编码
   #=========================end irm lookup_types_controller================#
   #=========================    irm product_modules_controller=====================#
   label_irm_product_module: 产品模块
@@ -125,6 +138,7 @@ zh:
   label_irm_common_username: 用户名
   label_irm_common_password: 密码
   label_irm_common_logout: 退出系统
+  label_irm_common_forgot_password: 忘记密码？
   #=========================    end common_controller=======================#
   #=========================    irm menus_controller=======================#  
   label_irm_menu: 菜单
@@ -221,6 +235,7 @@ zh:
   label_irm_identity_new_password_confirmation: 确认密码
   label_irm_identity_edit_info: 编辑个人信息
   label_irm_identity_edit_password: 修改个人密码
+  label_irm_identity: 账号
   #=========================    end irm identities_controller=======================#
 
   #=========================    irm global_settings_controller=======================#
@@ -248,6 +263,7 @@ zh:
   label_irm_auth_source_list: 认证源列表
   label_irm_auth_source_new: 创建认证源
   label_irm_auth_source_edit: 编辑认证源
+  label_irm_auth_source_data_info: LDAP数据属性
   #=========================    end auth_sources_controller=======================#
   #=========================    irm scripts_controller=======================#
   label_irm_script_script_code: 编码
@@ -276,6 +292,7 @@ zh:
   label_irm_function_edit: 编辑功能
   label_irm_function_function_code: 功能编码
   label_irm_function_name: 名称
+  label_irm_function_name_full: 功能名称
   label_irm_function_description: 描述
   label_irm_function_permission: 管理权限
   label_irm_function_permission_add: 添加/移除权限
@@ -321,6 +338,8 @@ zh:
   label_irm_mail_template_status_code: 记录状态
   label_irm_mail_template_multilingual: 多语言
   label_irm_mail_template_multilingual_edit: 多语言编辑
+  label_irm_mail_template_info: 邮件模板信息
+  label_irm_mail_template_show: 邮件模板
   #==================end irm mail_templates_controller=======================#
   #=========================    irm currencies_controller=======================#
   label_irm_currency_currency_code: 编码
@@ -486,24 +505,19 @@ zh:
   label_irm_site_show: 地点
   #=========================end irm site_groups_controller=======================#
   #=========================end irm flex_values_controller=======================#
-  #=========================irm operational_catalogs_controller=======================#
-  label_irm_operational_catalog: 服务类别
-  label_irm_operational_catalog_list: 服务类别列表
-  label_irm_operational_catalog_new: 创建服务类别
-  label_irm_operational_catalog_edit: 编辑服务类别
-  label_irm_operational_catalog_company: 公司
-  label_irm_operational_catalog_segment1: 第一段
-  label_irm_operational_catalog_segment2: 第二段
-  label_irm_operational_catalog_segment3: 第三段
-  label_irm_operational_catalog_concact_segment: 类别
-  error_segment_combination_existed: 同一公司下不能有相同的段组合
+  #=========================irm general_category_controller=======================#
+  label_irm_general_category: 公共分类
+  label_irm_general_category_list: 公共分类列表
+  label_irm_general_category_new: 创建公共分类
+  label_irm_general_category_edit: 编辑公共分类
+  label_irm_general_category_type: 类型
+  label_irm_general_category_company: 公司
+  label_irm_general_category_segment1: 第一段
+  label_irm_general_category_segment2: 第二段
+  label_irm_general_category_segment3: 第三段
+  label_irm_general_category_concact_segment: 分类组合
+  error_segment_combination_existed: 同一公司下不能有相同的分类组合
   #=========================end operational_catalogs_controller=======================#
-  #=========================irm op_catalog_accesses_controller=======================#
-  label_irm_op_catalog_access: 服务类别控制
-  label_irm_op_catalog_access_icm: ICM
-  label_irm_op_catalog_access_csi: CSI
-  label_irm_op_catalog_access_skm: SKM
-  #=========================end op_catalog_accesses_controller=======================#
   #=========================    irm support_groups_controller=======================#
   label_irm_support_group_company_name: 公司名称
   label_irm_support_group_organization_name: 组织名称

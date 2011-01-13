@@ -10,6 +10,16 @@ class Irm::LookupType < ActiveRecord::Base
   query_extend
 
   validates_uniqueness_of :lookup_type
+  validates :lookup_type,:presence => true
+
+  scope :query_by_lookup_type,lambda{|lookup_type| where(:lookup_type=>lookup_type)}
+
+
+  scope :query_wrap_info,lambda{|language| select("#{table_name}.*,#{Irm::LookupTypesTl.table_name}.meaning,#{Irm::LookupTypesTl.table_name}.description,"+
+                                                          "v1.meaning status_meaning").
+                                                   joins(",irm_lookup_values_vl v1").
+                                                   where("v1.lookup_type='SYSTEM_STATUS_CODE' AND v1.lookup_code = #{table_name}.status_code AND "+
+                                                         "v1.language=?",language)}
 
   def wrap_meaning
     self[:meaning]

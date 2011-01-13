@@ -20,7 +20,7 @@
           <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_flex_value) %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @flex_value.flex_value_set_id  }%></div>
-            <div class="button"><%= link_back t(:back)%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index", :value_set_id => @flex_value.flex_value_set_id  }%></div>
           </td>
         </tr>
       </tbody>
@@ -40,11 +40,11 @@
               <td class="labelCol"><label><%=(t :label_irm_flex_value_start_date_active)%></label></td>
               <td class="dataCol"><%= @flex_value.start_date_active%></td>
               <td class="labelCol"><label><%=(t :label_irm_flex_value_end_date_active)%></label></td>
-              <td class="dataCol"><%= @flex_value.end_date_active%></td>
+              <td class="dataCol"><div><%= @flex_value.end_date_active%></div></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_flex_value_description)%></label></td>
-              <td class="dataCol"><%= @flex_value[:description]%></td>
+              <td class="dataCol"><div><%= @flex_value[:description]%></div></td>
               <td class="labelCol"><label><%=(t :label_irm_flex_value_position)%></label></td>
               <td class="dataCol"><%= @flex_value.display_sequence%></td>
             </tr>

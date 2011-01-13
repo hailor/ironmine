@@ -1,10 +1,4 @@
 @charset "utf-8";
-body {font-family:'Arial','Helvetica',sans-serif;}
-body, td {color:#222222; font-family:Arial,Helvetica,sans-serif;}
-body {font-size:75% !important;}
-img {border:0 none;}
-body a:hover{color: #015BA7;}
-
 a.headerSearchOptionsLink, a.headerSearchOptionsLink:hover{color: #fff; font-size: 0.92em;}
 a.headerSearchOptionsLink{text-decoration: none;}
 
@@ -448,15 +442,13 @@ body .bPageTitle .ptBody {
     padding-top:5px;
     width:100%;
 }
-.setupTab .bPageTitle .ptBody .content, .sysAdminTab .bPageTitle .ptBody .content {padding-left:0;}
-.setupTab .bPageTitle .ptBody .content, .sysAdminTab .bPageTitle .ptBody .content {padding-left:10px;}
 .bPageTitle .ptBody .content {
     float:left;
     padding-left:5px;
     vertical-align:middle;
     width:70%;
 }
-.setupTab .bPageTitle .ptBody .pageType, .setupTab .bPageTitle .ptBody .pageDescription, .sysAdminTab .bPageTitle .ptBody .pageType, .sysAdminTab .bPageTitle .ptBody .pageDescription {margin-left:0;}
+
 body .bPageTitle .ptBody .pageDescription {
     font-size:25px;
     font-weight:normal;
@@ -1080,73 +1072,3 @@ body.homeTab .componentDate {margin-left:10px;}
 .componentDate {font-size:0.91em;margin-top:5px;}
 
 .bMiniTab {margin-bottom: 5px;}
-
-.menuParent {
-    text-align: left;
-}
-.menuParent div.menuLabel {
-     -moz-border-radius: 11px 11px 11px 11px;
-    -webkit-border-radius: 11px;
-    padding: 0 15px;
-    height: 24px;
-    line-height: 24px;
- }
-.menuParent div.menuLabel .menuButtonArrow{
-     float:right;
-     padding-right:10px;
- }
-
-.menuParent div.menuLabelHover{
-    -moz-border-radius: 11px 11px 11px 11px;
-    -webkit-border-radius: 11px;
-    background:white;
-    color: #1797C0;
- }
-.menuParent div.menuLabelClick{
-    -moz-border-radius: 11px 11px 0 0;
-    -webkit-border-top-left-radius: 11px;
-    -webkit-border-top-right-radius: 11px;
-    -webkit-border-bottom-right-radius: 0;
-    -webkit-border-bottom-left-radius: 0;    
-    background:white;
-    color: #1797C0;
- }
-
-.menuParent div.menuContent{
-    display:none;
-    padding: 3px 15px 3px 15px;
-    -moz-box-shadow: 0 2px 4px rgba(127, 127, 127, 0.3);
- }
-.menuParent div.menuContentVisual{
-    display:block;
-    -moz-border-radius: 11px 0 11px 11px;
-    -webkit-border-top-left-radius: 11px;
-    -webkit-border-bottom-right-radius: 11px;
-    -webkit-border-bottom-left-radius: 11px;
-    background:white;
-    min-width: 150px;
- }
-
-.menuParent div.menuContent a {
-    -moz-border-radius: 11px 11px 11px 11px;
-    -webkit-border-radius: 11px;
-    color: #333435;
-    margin: 0 0;
-    padding: 4px 15px;
-    text-decoration: none;
-    z-index:10000;
-    display: block;
-}
-
-.menuParent div.menuContent a:hover {
-    background-color:#E3F3FF;
-}
-
-.menuLabel {
-    color: #fff;
-    cursor: pointer;
-}
-.menuItem {
-    color: #fff;
-    font-weight: normal;
-}

@@ -9,7 +9,7 @@
           <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_flex_value_edit)%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_back t(:cancel)%></div>
+            <div class="button"><%= link_to( t(:cancel), {:action => "index", :value_set_id => @flex_value.flex_value_set_id  })%></div>
           </td>
         </tr>
       </tbody>
@@ -44,9 +44,11 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_flex_value_start_date_active)%></label></td>
-              <td class="dataCol"><%=f.text_field :start_date_active, :required => true%></td>
+              <td class="dataCol"><%=f.text_field :start_date_active, :required => true, :id => "caldata1"%></td>
+              <%= calendar_view("caldata1","caldata1","cal1") %>
               <td class="labelCol"><label><%=(t :label_irm_flex_value_end_date_active)%></label></td>
-              <td class="dataCol"><%=f.text_field :end_date_active%></td>
+              <td class="dataCol"><%=f.text_field :end_date_active, :id => "caldata2"%></td>
+              <%= calendar_view("caldata2","caldata2","cal2") %>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_flex_value_description)%></label></td>

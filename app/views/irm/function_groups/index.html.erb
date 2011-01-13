@@ -40,17 +40,17 @@
         </table>
       </div>
       <div class="pbBody">
-        <div id="pizza" class="datatable" style="width:100%">
+        <div id="function_groups_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
-        <%= datatable("pizza",url_for(:action=>"get_data",:format=>"json"),
+        <%= datatable("function_groups_list",url_for(:action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template"},
                        {:key=>"group_code",:label=>t(:label_irm_function_group_group_code),:sortable=>true},
                        {:key=>"name",:label=>t(:label_irm_function_group_name),:sortable=>true},
                        {:key=>"description",:label=>t(:label_irm_function_group_description),:sortable=>true},
-                       {:key=>"status_code",:label=>t(:active),:sortable=>true}]) %>
+                       {:key=>"status_meaning",:label=>t(:active),:sortable=>true}]) %>
       </div>
     </div>
 </div>

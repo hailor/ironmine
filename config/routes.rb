@@ -1,10 +1,10 @@
 Ironmine::Application.routes.draw do
-
   scope :module => "irm" do
     root :to => "navigations#entrance"
     match 'login'=>'common#login',:as=>:login
     match 'combo'=>'navigations#combo'
     match 'logout'=>'common#logout',:as=>:logout
+    match 'forgot_password' => "common#forgot_password"
     #lookup_types
     match '/lookup_types/new(.:format)'=>"lookup_types#new",:via=>:get
     match '/lookup_types/create(.:format)'=>"lookup_types#create",:via=>:post
@@ -15,10 +15,11 @@ Ironmine::Application.routes.draw do
     match '/lookup_types/get_lookup_values(.:format)'=>"lookup_types#get_lookup_values",:via=>:get
     match '/lookup_types(/index)(.:format)'=>"lookup_types#index",:via=>:get
     match '/lookup_types/:id/edit(.:format)'=>"lookup_types#edit",:via=>:get
-    match '/lookup_types/update'=>"lookup_types#update"
+    match '/lookup_types/:id'=>"lookup_types#update",:via=>:put
     match '/lookup_types/check_lookup_code'=>"lookup_types#check_lookup_code"
     match '/lookup_types/get_lookup_values'=>"lookup_types#get_lookup_values"
     match '/lookup_types/:id/add_code'=>"lookup_types#add_code"
+    match '/lookup_types/:id(.:format)'=>"lookup_types#show"
     #product modules
     match '/product_modules(/index)(.:format)' => "product_modules#index", :via => :get
     match '/product_modules/:id/edit(.:format)' => "product_modules#edit", :via => :get
@@ -46,6 +47,7 @@ Ironmine::Application.routes.draw do
     match '/menus/:id/edit(.:format)' => "menus#edit", :via => :get
     match '/menus/:id(.:format)' => "menus#update", :via => :put
     match '/menus/:id/show(.:format)' => "menus#show", :via => :get
+    match '/menus/:entry_id/:id/remove_entry(.:format)' => "menus#remove_entry", :via => :get
     #menu_entries
     match '/menu_entries(/index)(.:format)' => "menu_entries#index", :via => :get
     match '/menu_entries/:menu_code/new(.:format)' => "menu_entries#new", :via => :get
@@ -64,6 +66,7 @@ Ironmine::Application.routes.draw do
     match '/permissions/create(.:format)' => "permissions#create", :via => :post
     match '/permissions/:id/multilingual_edit(.:format)' => "permissions#multilingual_edit", :via => :get
     match '/permissions/:id/multilingual_update(.:format)' => "permissions#multilingual_update", :via => :put
+    match '/permissions/:function_code/function_get_data(.:format)' => "permissions#function_get_data"
     match '/permissions/get_data(.:format)' => "permissions#get_data"
     match '/permissions/:id/show(.:format)' => "permissions#show", :via => :get
     match '/permissions/data_grid(.:format)' => "permissions#data_grid", :via => :get
@@ -77,6 +80,18 @@ Ironmine::Application.routes.draw do
     match '/conditions/create(.:format)' => "conditions#create", :via => :post
     match '/conditions/:id/multilingual_edit(.:format)' => "conditions#multilingual_edit", :via => :get
     match '/conditions/:id/multilingual_update(.:format)' => "conditions#multilingual_update", :via => :put
+    #lookup_values
+    match '/lookup_values(/index)(.:format)' => "lookup_values#index", :via => :get
+    match '/lookup_values/get_data(.:format)' => "lookup_values#get_data"
+    match '/lookup_values/:id/edit(.:format)' => "lookup_values#edit", :via => :get
+    match '/lookup_values/:id(.:format)' => "lookup_values#update", :via => :put
+    match '/lookup_values/new(.:format)' => "lookup_values#new", :via => :get    
+    match '/lookup_values/create(.:format)' => "lookup_values#create", :via => :post
+    match '/lookup_values/get_lookup_values(.:format)' => "lookup_values#get_lookup_values", :via => :get
+    match '/lookup_values/:id/multilingual_edit(.:format)' => "lookup_values#multilingual_edit", :via => :get
+    match '/lookup_values/:id/multilingual_update(.:format)' => "lookup_values#multilingual_update", :via => :put    
+    match '/lookup_values/select_lookup_type(.:format)' => "lookup_values#select_lookup_type"
+    match '/lookup_values/:id(.:format)' => "lookup_values#show", :via => :get
 
     #actions
     match '/actions(/index)(.:format)' => "actions#index", :via => :get
@@ -102,6 +117,7 @@ Ironmine::Application.routes.draw do
     match '/identities/update_info(.:format)' => "identities#update_info", :via => :put
     match '/identities/edit_password(.:format)' => "identities#edit_password", :via => :get
     match '/identities/update_password(.:format)' => "identities#update_password", :via => :put
+    match '/identities/:id/show(.:format)' => "identities#show"
 
     #global_settings
     match '/global_settings(/index)(.:format)' => "global_settings#index", :via => :get
@@ -117,6 +133,7 @@ Ironmine::Application.routes.draw do
     match '/auth_sources/:id/multilingual_edit(.:format)' => "auth_sources#multilingual_edit", :via => :get
     match '/auth_sources/:id/multilingual_update(.:format)' => "auth_sources#multilingual_update", :via => :put
     match '/auth_sources/get_data(.:format)' => "auth_sources#get_data"
+    match '/auth_sources/:id/show(.:format)' => "auth_sources#show", :via => :get
     #scripts
     match '/scripts(/index)(.:format)' => "scripts#index", :via => :get
     match '/scripts/get_data(.:format)' => "scripts#get_data"
@@ -137,12 +154,12 @@ Ironmine::Application.routes.draw do
     match '/functions/create(.:format)' => "functions#create", :via => :post
     match '/functions/:id/show(.:format)' => "functions#show", :via => :get
     match '/functions/get_data(.:format)' => "functions#get_data"
-    match '/functions/:function_id/permission_index(.:format)' => "functions#permission_index", :via => :get
-    match '/functions/:function_id/add_permission(.:format)' => "functions#add_permission", :via => :get
-    match '/functions/:function_id/edit_own_permissions(.:format)' => "functions#edit_own_permissions", :via => :get
-    match '/functions/:function_id/get_own_permissions(.:format)' => "functions#get_own_permissions", :via => :get
-    match '/functions/:function_id/get_available_permissions(.:format)' => "functions#get_available_permissions", :via => :get
-    match '/functions/:function_id/update_permissions(.:format)' => "functions#update_permissions", :via => :post
+    match '/functions/:function_id/add_permissions(.:format)' => "functions#add_permissions", :via => :get
+    match '/functions/:function_code/get_available_permissions(.:format)' => "functions#get_available_permissions", :via => :get
+    match '/functions/:function_id/select_permissions(.:format)' => "functions#select_permissions"
+    match '/functions/:function_id/add_permissions(.:format)' => "functions#add_permissions", :via => :post
+    match '/functions/:function_id/:permission_id/remove_permission(.:format)' => "functions#remove_permission", :via => :get
+    
     #function_groups
     match '/function_groups(/index)(.:format)' => "function_groups#index", :via => :get
     match '/function_groups/:id/edit(.:format)' => "function_groups#edit", :via => :get
@@ -150,15 +167,14 @@ Ironmine::Application.routes.draw do
     match '/function_groups/new(.:format)' => "function_groups#new", :via => :get
     match '/function_groups/create(.:format)' => "function_groups#create", :via => :post
     match '/function_groups/:id/show(.:format)' => "function_groups#show", :via => :get
-    match '/function_groups/:id/multilingual_edit(.:format)' => "function_groups#multilingual_edit", :via => :get
-    match '/function_groups/:id/multilingual_update(.:format)' => "function_groups#multilingual_update", :via => :put
     match '/function_groups/get_data(.:format)' => "function_groups#get_data"
-    match '/function_groups/:function_group_id/function_index(.:format)' => "function_groups#function_index", :via => :get
-    match '/function_groups/:function_group_id/add_function(.:format)' => "function_groups#add_functions", :via => :get
-    match '/function_groups/:function_group_id/edit_own_functions(.:format)' => "function_groups#edit_own_functions", :via => :get
-    match '/function_groups/:function_group_id/get_own_functions(.:format)' => "function_groups#get_own_functions", :via => :get
-    match '/function_groups/:function_group_id/get_available_functions(.:format)' => "function_groups#get_available_functions", :via => :get
-    match '/function_groups/:function_group_id/update_functions(.:format)' => "function_groups#update_functions", :via => :post
+    match '/function_groups/:group_id/add_functions(.:format)' => "function_groups#add_functions", :via => :get
+    match '/function_groups/:group_code/get_available_functions(.:format)' => "function_groups#get_available_functions", :via => :get
+    match '/function_groups/:group_id/select_functions(.:format)' => "function_groups#select_functions"
+    match '/function_groups/:group_id/add_functions(.:format)' => "function_groups#add_functions", :via => :post
+    match '/function_groups/:group_id/:function_id/remove_function(.:format)' => "function_groups#remove_function", :via => :get
+    match '/function_groups/:group_code/get_own_functions(.:format)' => "function_groups#get_own_functions", :via => :get
+    match '/function_groups/:group_id/:function_id/remove_function(.:format)' => "function_groups#remove_function", :via => :get
     # navigations
     match '/navigations/entrance(.:format)' =>'navigations#entrance'
     match '/navigations/workspace(.:format)' =>'navigations#workspace'
@@ -184,6 +200,7 @@ Ironmine::Application.routes.draw do
     match '/mail_templates/:id/multilingual_edit(.:format)'=>"mail_templates#multilingual_edit",:via=>:get
     match '/mail_templates/:id/multilingual_update(.:format)'=>"mail_templates#multilingual_update",:via=>:put
     match '/mail_templates/get_current_language(.:format)'=>"mail_templates#get_current_language",:via=>:get
+    match '/mail_templates/:id(.:format)'=>"mail_templates#show ",:via=>:get
 
     #currencies
     match '/currencies(/index)(.:format)' => "currencies#index", :via => :get
@@ -298,18 +315,16 @@ Ironmine::Application.routes.draw do
     match '/site_groups/:id/multilingual_site_edit(.:format)' => "site_groups#multilingual_site_edit", :via => :get
     match '/site_groups/:id/multilingual_site_update(.:format)' => "site_groups#multilingual_site_update", :via => :put
 
-    #operational_catalogs
-    match '/operational_catalogs(/index)(.:format)' => "operational_catalogs#index", :via => :get
-    match '/operational_catalogs/new(.:format)' => "operational_catalogs#new", :via => :get
-    match '/operational_catalogs/create(.:format)' => "operational_catalogs#create", :via => :post
-    match '/operational_catalogs/get_data(.:format)' => "operational_catalogs#get_data"
-    match '/operational_catalogs/:id/edit(.:format)' => "operational_catalogs#edit", :via => :get
-    match '/operational_catalogs/:id(.:format)' => "operational_catalogs#update", :via => :put
-    match '/operational_catalogs/update_segment_options(.:format)' => "operational_catalogs#update_segment_options"
-    match '/operational_catalogs/:id/show(.:format)' => "operational_catalogs#show", :via => :get
-    #op_catalog_accesses
-    match '/op_catalog_accesses/:operational_catalog_id(/index)(.:format)' => "op_catalog_accesses#index", :via => :get
-    match '/op_catalog_accesses/:operational_catalog_id/get_data(.:format)' => "op_catalog_accesses#get_data"
+    #general_categories
+    match '/general_categories(/index)(.:format)' => "general_categories#index", :via => :get
+    match '/general_categories/new(.:format)' => "general_categories#new"
+    match '/general_categories/create(.:format)' => "general_categories#create", :via => :post
+    match '/general_categories/get_data(.:format)' => "general_categories#get_data"
+    match '/general_categories/:id/edit(.:format)' => "general_categories#edit", :via => :get
+    match '/general_categories/:id(.:format)' => "general_categories#update", :via => :put
+    match '/general_categories/update_segment_options(.:format)' => "general_categories#update_segment_options"
+    match '/general_categories/:id/show(.:format)' => "general_categories#show", :via => :get
+    
     #support_groups
     match '/support_groups(/index)(.:format)' => "support_groups#index", :via => :get
     match '/support_groups/:id/edit(.:format)' => "support_groups#edit", :via => :get
@@ -378,8 +393,8 @@ Ironmine::Application.routes.draw do
     match '/id_flex_structures/create(.:format)' => "id_flex_structures#create", :via => :post
     match '/id_flex_structures/:id/show(.:format)' => "id_flex_structures#show", :via => :get
     #id_flex_segments
-    match '/id_flex_segments/:id_flex_structure_id(/index)(.:format)' => "id_flex_segments#index", :via => :get
-    match '/id_flex_segments/:id_flex_structure_id/get_data(.:format)' => "id_flex_segments#get_data"
+    match '/id_flex_segments(/index)(.:format)' => "id_flex_segments#index", :via => :get
+    match '/id_flex_segments/get_data(.:format)' => "id_flex_segments#get_data"
     match '/id_flex_segments/:id/edit(.:format)' => "id_flex_segments#edit", :via => :get
     match '/id_flex_segments/:id(.:format)' => "id_flex_segments#update", :via => :put
     match '/id_flex_segments/:id_flex_code/:id_flex_num/new(.:format)' => "id_flex_segments#new", :via => :get
@@ -478,6 +493,14 @@ Ironmine::Application.routes.draw do
     match '/incident_statuses/get_data(.:format)' => "incident_statuses#get_data"
     match '/incident_statuses/:id(.:format)' => "incident_statuses#show", :via => :get
   end
+
+  scope :module => "cms" do
+    match '/cmshome(/index)(.:format)' => "home#index", :via => :get
+  end
+
+  scope :module => "ebs" do
+    match '/ebshome(/index)(.:format)' => "home#index", :via => :get
+  end  
 
   match '/demo(/index)' => 'demo#index'
   themes_for_rails

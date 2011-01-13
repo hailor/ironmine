@@ -22,12 +22,15 @@ class LabellingFormBuilder  < ActionView::Helpers::FormBuilder
   end
 
   def select(field, choices, options = {}, html_options = {})
-    if !options.delete(:normal)
+    if options.delete(:normal)
       super
     else
-      label_for_field(field, options) + super
+      if html_options[:required]
+        label_for_field(super(field,choices, options, html_options.merge!({:required=>true})), html_options)
+      else
+        super
+      end
     end
-
   end
   
   def check_box(method, options = {}, checked_value = "Y", unchecked_value = "N")

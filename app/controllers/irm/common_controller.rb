@@ -18,6 +18,9 @@ class Irm::CommonController < ApplicationController
     redirect_to login_url
   end
 
+  def forgot_password
+    
+  end
   private
   #验证用户登录是否成功
   #成功,则转向用户的默认页面

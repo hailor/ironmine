@@ -1,0 +1,58 @@
+<%= page_title %>
+<div class="filterOverview">
+    <div class="bFilterView">
+      <%= form_tag(:action => "select_functions", :group_id=>@function_group) do %>
+      <%= hidden_field_tag "return_url",@return_url%>
+      <span class="bFilter">
+        <label style="text-align: left; font-weight: bold; padding-right: 0.69em;"><%= t(:label_irm_function_name_full) %>：</label>
+        <span class="fBody">
+            <%= text_field_tag :function_name,@function_name%>
+            <%= submit_tag t(:search), :title => t(:search), :class => "btn" %>
+        </span>
+        <span class="fFooter">
+        </span>
+      </span>
+      <% end %>
+    </div>
+</div>
+<% if @function_name && !@function_name.blank? %>
+<%= form_tag({:action => 'add_functions',:group_id => @function_group}) do%>
+<%= hidden_field_tag "return_url", @return_url%>
+<%= hidden_field_tag "group_code", @function_group.group_code%>
+<div class="srch">
+    <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_select_result) %>&nbsp;<%= t(:label_detail_info) %></h2></td>
+              <td id="topButtonRow1" class="pbButton">
+                <div class="button"><%= submit_tag t(:save)%></div>
+                <% if !@return_url.blank? %>
+                  <div class="button"><%= link_to t(:cancel), @return_url%></div>
+                <% else %>
+                  <div class="button"><%= link_to t(:cancel), {:action => "select_functions",:group_id=>@function_group}%></div>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+</div>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbBody">
+        <div id="owned_functions_list" class="datatable" style="width:100%;">
+          <div id="id" style="display:none">
+             <%= check_box_tag "irm_group_functions[ids][]","{id}"%>
+          </div>
+        </div>
+        <%= datatable("owned_functions_list",url_for(:action=>"get_available_functions", :group_code=>@function_group.group_code, :function_name => @function_name),
+                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
+                   {:key=>"function_code",:label=>t(:label_irm_function_function_code),:sortable=>true},
+                   {:key=>"name",:label=>t(:label_irm_function_name),:sortable=>true},
+                   {:key=>"description",:label=>t(:label_irm_function_description),:sortable=>true}
+                   ],
+                   {:row_perpage=>5})%>
+  </div>
+</div>
+<% end %>
+<% end %>

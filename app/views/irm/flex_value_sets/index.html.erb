@@ -1,24 +1,4 @@
 <%= page_title %>
-<div class="filterOverview">
-    <div class="bFilterView">
-      <span class="bFilter">
-        <label style="text-align: left; font-weight: bold; padding-right: 0.69em;" for="fcf">视图：</label>
-        <span class="fBody">
-            <select title="视图：" name="fcf" id="fcf">
-                <option selected="selected" value="">全部客户</option>
-                <option value="">我的客户</option>
-                <option value="">新建本周</option>
-                <option value="">最近已查看客户</option>
-            </select>
-            <input type="button" title="转至！" name="go" class="btn" value=" 转至！ ">
-        </span>
-        <span class="fFooter">
-          <a href="javascript:void(0);">编辑</a> |
-          <a href="javascript:void(0);">创建新视图</a>
-        </span>
-      </span>
-    </div>
-</div>
 <div class="listRelatedObject setupBlock">
     <div class="bPageBlock">
       <div class="pbHeader">
@@ -40,12 +20,12 @@
         </table>
       </div>
       <div class="pbBody">
-        <div id="pizza" class="datatable" style="width:100%">
+        <div id="flex_value_sets_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
-        <%= datatable("pizza",url_for(:action=>"get_data",:format=>"json"),
+        <%= datatable("flex_value_sets_list",url_for(:action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template"},
                        {:key=>"flex_value_set_name",:label=>t(:label_irm_value_set_name),:sortable=>true},
                        {:key=>"description",:label=>t(:label_irm_value_set_description),:sortable=>true},

@@ -1,10 +1,7 @@
 class Irm::AuthSourcesController < ApplicationController
   def index
-    @auth_source = Irm::AuthSource.new
-
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @auth_source }
     end
   end
 
@@ -35,11 +32,11 @@ class Irm::AuthSourcesController < ApplicationController
     @auth_source.company_id = Irm::Company.current.id
     respond_to do |format|
       if @auth_source.save
-        flash[:successful_message] = (t :successfully_created)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+        format.xml  { render :xml => @auth_source, :status => :created, :location => @auth_source }
       else
-         @error = @auth_source
-         format.html { render "error_message" }
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @auth_source.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -49,11 +46,11 @@ class Irm::AuthSourcesController < ApplicationController
 
     respond_to do |format|
       if @auth_source.update_attributes(params[:irm_auth_source])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "successful_info" }
+        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
       else
-        @error = @auth_source
-        format.html { render "error_message" }
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @auth_source.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -68,26 +65,11 @@ class Irm::AuthSourcesController < ApplicationController
     end
   end
 
-  def multilingual_edit
-    @auth_source = Irm::AuthSource.find(params[:id])
-  end
-
-  def multilingual_update
-    @auth_source = Irm::AuthSource.find(params[:id])
-    @auth_source.not_auto_mult=true
-    respond_to do |format|
-      if @auth_source.update_attributes(params[:irm_auth_source])
-        format.html { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
-      else
-        format.html { render({:action=>"multilingual_edit"}) }
-      end
-    end
-  end
-
   def get_data
-    @auth_sources = Irm::AuthSource.all
+    auth_sources_scope = Irm::AuthSource.where("1=1")
+    auth_sources,count = paginate(auth_sources_scope)
     respond_to do |format|
-      format.json  {render :json => @auth_sources.to_dhtmlxgrid_json(['0',:name, :host, :port, :account, :base_dn,:attr_login,:status_code,], @auth_sources.size) }
-    end
+      format.json  {render :json => to_jsonp(auth_sources.to_grid_json([:name, :host, :port, :account, :base_dn,:attr_login, :status_meaning], count)) }
+    end    
   end
 end

@@ -3,6 +3,8 @@ class MenuRework < ActiveRecord::Migration
   def self.up
     Irm::Menu.delete_all
     Irm::MenuEntry.delete_all
+    Irm::MenusTl.delete_all
+    Irm::MenuEntriesTl.delete_all
     setting_entrance_menu = Irm::Menu.new(:menu_code=>'IRM_SETTING_ENTRANCE_MENU',:not_auto_mult=>true)
     setting_entrance_menu.menus_tls.build(:language=>'zh',:name=>'系统设置顶层菜单',:description=>'系统设置顶层菜单',:source_lang=>'en')
     setting_entrance_menu.menus_tls.build(:language=>'en',:name=>'Top System Setting Menu',:description=>'Top System Setting Menu',:source_lang=>'en')

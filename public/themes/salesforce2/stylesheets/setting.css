@@ -1,8 +1,5 @@
 @charset "utf-8";
-body, td {color:#222222; font-family:Arial,Helvetica,sans-serif;}
-body {font-size:75% !important;}
-img {border:0 none !important;}
-body a:hover{color: #015BA7;}
+
 
 a.headerSearchOptionsLink, a.headerSearchOptionsLink:hover{color: #fff; font-size: 0.92em;}
 a.headerSearchOptionsLink{text-decoration: none;}
@@ -276,127 +273,12 @@ body .bodyDiv #bd_r {
     width:5px;
 }
 
-#newheader {
-    background:url("../images/header_bg.gif") no-repeat scroll 0 7px transparent;
-    height:91px;
-    overflow:visible;
-    padding-bottom:0 !important;
-    text-align:left;
-    width:955px;
-}
 #pagewrap {
 margin:0 auto;
 padding:0 10px;
 width:990px;
 }
-#loginpage #gradientwrap {
-    background:url("../images/bk_bluegradient_top.png") no-repeat scroll 0 0 transparent;
-    width:956px;
-}
-#gradientwrap {
-    overflow:visible;
-}
-#loginpage #gradientwrap .bottom {
-    background:url("../images/bk_bluegradient_bottom.png") no-repeat scroll 0 100% transparent;
-    margin:0;
-    overflow:hidden;
-    padding:41px 0 0 33px;
-    width:100%;
-}
-.login_form_box {
-    float:left;
-    margin-bottom:9px;
-    width:395px;
-}
-.login_form_box .content_new {
-    background:url("../images/login_form_new.png") no-repeat scroll 0 0 transparent;
-    height:auto !important;
-    margin:0;
-    min-height:331px;
-    overflow:hidden;
-    padding:39px 10px 13px 41px;
-    width:395px;
-}
 
-#loginpage #gradientwrap .login_form_box .bottom_new {
-    background:url("../images/login_form_bottom_new.png") no-repeat scroll 0 100% transparent;
-    display:block;
-    height:28px;
-    margin:0;
-    padding:0;
-}
-.login_form_box #login_form div {
-    background:none no-repeat scroll 0 0 transparent;
-    overflow:hidden;
-    padding-bottom:7px;
-    position:relative;
-    width:100%;
-}
-.login_form_box #login_form .inputbox label {
-    height:1.333em;
-    padding-bottom:4px;
-    padding-right:2px;
-    padding-top:4px;
-}
-.login_form_box #login_form div span {
-    display:block;
-    height:2.167em;
-    padding:3px 0 0;
-    width:300px;
-}
-.login_form_box #login_form input.txtbox {
-    height:1.8em;
-    height:1.333em\9;/* for ie */
-    margin:0;
-    width:280px;
-}
-.login_form_box #login_form {
-    color:#666666;
-    font-size:12px;
-    line-height:14px;
-}
-.inputs {
-    padding-left:10px;
-}
-.login_form_box #login_form .rememberme_txt {
-    background-image:none;
-    float:none;
-    font-size:12px;
-    line-height:14px;
-    min-height:2.833em;
-    padding:0 0 0 10px;
-    width:auto;
-
-}
-.login_form_box #login_form .rememberme_txt input {float:left;}
-.login_form_box #login_form .rememberme_txt label {
-    float:left;
-    line-height:20px;
-}
-.login_form_box #login_form .rememberme_txt {font-size:12px;line-height:14px;}
-div.login_button a[type=submit] {
-    -moz-border-radius: 3px 3px 3px 3px;
-    -webkit-border-radius: 3px;
-    background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
-    border-color: #B5B5B5 #B5B5B5 #7F7F7F;
-	border-width: 1px;
-    border-style: solid;
-	text-decoration: none;
-	color:#333333;
-	display: inline-block;
-	padding: 0 12px;
-	height: 22px;
-    font-size: 1em;
-    font-weight: bold;
-	line-height: 22px;
-    float:left;
-    margin:4px 9px 5px 12px;
-}
-div.login_button a:hover[type=submit]{background-position: right -30px;}
-.login_form_box #login_form .login_button {
-    height:2.833em;
-    padding-bottom:1.75em;
-}
 
 div.button {
 	float: left;
@@ -438,16 +320,6 @@ div.button input[type="submit"] {
 }
 div.button input[type="submit"]:hover{background-position: right -30px; cursor: pointer;}
 
-.login_form_box #login_form .forgotpass {
-    background-color:#FFFFFF;
-    color:#356FB6;
-    display:block;
-    margin-left:65px;
-    margin-right:30px;
-    margin-top:8px;
-    text-decoration:none;
-    width:160px;
-}
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, sub, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
     border:0 none;
     font-family:inherit;
@@ -458,65 +330,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     outline:0 none;
     padding:0;
     vertical-align:baseline;
-}
-#signupcontent .signupbox, .login_form_box .signupbox {
-    background:url("../images/horizontal_rule_dotted362.png") no-repeat scroll 0 0 transparent;
-    color:#333333;
-    font-size:14px;
-    line-height:17px;
-    margin:0;
-    padding:20px 0 0;
-    text-align:center;
-    width:320px;
-}
-.shoutout .promo .overlay {
-    background:url("../images/bk_promo_overlay3.png") no-repeat scroll 0 0 transparent;
-    display:block;
-    height:411px;
-    position:absolute;
-    width:489px;
-}
-#shoutoutcontent .shoutout {
-    margin:0 0 0 8px;
-    overflow:hidden;
-    padding:0 0 1px;
-}
-.shoutout {
-    float:left;
-    margin-bottom:10px;
-    padding-left:8px;
-}
-.infobar {
-    background:url("../images/bk_infobar.gif") no-repeat scroll 0 0 transparent;
-    clear:both;
-    color:#666666;
-    overflow:hidden;
-    padding:15px 0 0 27px;
-    width:100%;
-}
-.infobar_bottom {
-    background:url("../images/bk_infobar_bottom.gif") no-repeat scroll 0 0 transparent;
-    clear:both;
-    display:block;
-    height:24px;
-    margin:0 0 34px;
-}
-.infobar .col1 {padding-left:22px;}
-
-.infobar .col {
-    float:left;
-    font-size:12px;
-    line-height:14px;
-    margin:0 31px 0 0;
-    width:381px;
-}
-.infobar .col h2 {
-    background:url("../images/horizontal_rule378.gif") no-repeat scroll 0 100% transparent;
-    font-size:15px;
-    font-weight:bold;
-    line-height:17px;
-    margin:0 0 4px;
-    padding:4px 0;
 }
 
 /********body cell*******/
@@ -534,15 +347,22 @@ body .bPageTitle .ptBody {
     padding-top:5px;
     width:100%;
 }
+
+.bDescription {
+    margin:16px 0;
+    padding:0;
+}
 .setupTab .bPageTitle .ptBody .content, .sysAdminTab .bPageTitle .ptBody .content {padding-left:0;}
-.setupTab .bPageTitle .ptBody .content, .sysAdminTab .bPageTitle .ptBody .content {padding-left:5px;}
 .bPageTitle .ptBody .content {
     float:left;
     padding-left:5px;
     vertical-align:middle;
     width:70%;
 }
-.setupTab .bPageTitle .ptBody .pageType, .setupTab .bPageTitle .ptBody .pageDescription, .sysAdminTab .bPageTitle .ptBody .pageType, .sysAdminTab .bPageTitle .ptBody .pageDescription {margin-left:0;}
+.setupTab .bPageTitle .ptBody .pageType, .setupTab .bPageTitle .ptBody .pageDescription, .sysAdminTab .bPageTitle .ptBody .pageType, .sysAdminTab .bPageTitle .ptBody .pageDescription {
+    margin-left:0;
+    margin-bottom: 5px;
+}
 body .bPageTitle .ptBody .pageDescription {
     font-size:25px;
     font-weight:normal;
