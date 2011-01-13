@@ -49,6 +49,8 @@ Y.extend(IrmDTSearchBox, Y.Plugin.Base, {
           if(e.keyCode==13){
             var value = e.container.one(".searchBoxInput").get("value");
             var name = e.container.one(".searchSelect").get("value");
+            value = value.replace(/\s*$/,"");
+            value = value.replace(/^\s*/,"");
             var options={};
             options[name] = value;
             this.get('host').datasource.query(options);
