@@ -639,4 +639,7 @@ zh:
   view_filter_use_invalid_key_word: 关键字错误
   view_filter_use_invalid_syntax: 语法错误
   irm_view_filter: 视图
+  label_irm_view_filter_step_three: 步骤 3。限制可视性
+  label_irm_view_filter_restrict_visibility_for_me: 仅对我可见
+  label_irm_view_filter_restrict_visibility_for_all: 所有用户皆可见
   #=========================end irm support_group_controller=======================#

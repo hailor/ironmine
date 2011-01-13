@@ -446,4 +446,7 @@ en:
   view_filter_use_invalid_key_word: Invalid keyword
   view_filter_use_invalid_syntax: Syntax Error
   irm_view_filter: View Filter
+  label_irm_view_filter_step_three: Steop 3.
+  label_irm_view_filter_restrict_visibility_for_me: Only for me
+  label_irm_view_filter_restrict_visibility_for_all: For all user
   #=========================end irm support_group_controller=======================#
