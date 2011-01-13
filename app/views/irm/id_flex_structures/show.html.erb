@@ -8,7 +8,7 @@
           <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_id_flex_structure) %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @id_flex_structure}%></div>
-            <div class="button"><%= link_back %></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index", :id_flex_code => @id_flex_structure.id_flex_code}%></div>
           </td>
         </tr>
       </tbody>
@@ -72,7 +72,7 @@
       <div class="pbBody">
         <div id="pizza" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:controller => "irm/id_flex_segments", :action => "edit", :id => "{id}"}) %>|<%= link_to(t(:show),{:controller => "irm/id_flex_segments", :action => "show", :id => "{id}"}) %>|<%= link_to(t(:remove),{}) %>
+            <%= link_to(t(:edit),{:controller => "irm/id_flex_segments", :action => "edit", :id => "{id}"}) %>|<%= link_to(t(:show),{:controller => "irm/id_flex_segments", :action => "show", :id => "{id}"}) %>
           </div>
         </div>
         <%= datatable("pizza",url_for(:controller => "irm/id_flex_segments", :action=>"get_data", :id_flex_structure_id => @id_flex_structure,:format=>"json"),

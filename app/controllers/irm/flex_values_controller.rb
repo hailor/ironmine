@@ -8,14 +8,21 @@ class Irm::FlexValuesController < ApplicationController
 
   def edit
     @flex_value = Irm::FlexValue.multilingual.find(params[:id])
+    @return_url=request.env['HTTP_REFERER']
   end
 
   def update
     @flex_value = Irm::FlexValue.find(params[:id])
+    return_url = params[:return_url]
     respond_to do |format|
       if @flex_value.update_attributes(params[:irm_flex_value])
-        format.html { redirect_to({:action=>"index", :value_set_id => @flex_value.flex_value_set_id}, :notice => t(:successfully_updated)) }
-        format.xml  { head :ok }
+        if return_url.blank?
+          format.html { redirect_to({:action=>"index", :value_set_id => @flex_value.flex_value_set_id}, :notice => t(:successfully_updated)) }
+          format.xml  { head :ok }
+        else
+          format.html { redirect_to(return_url, :notice =>t(:successfully_created)) }
+          format.xml  { render :xml => @flex_value, :status => :created, :location => @flex_value }
+        end        
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @flex_value.errors, :status => :unprocessable_entity }
@@ -24,6 +31,7 @@ class Irm::FlexValuesController < ApplicationController
   end
 
   def new
+    @return_url=request.env['HTTP_REFERER']
     @value_set = Irm::FlexValueSet.find(params[:value_set_id]) if params[:value_set_id]
     @flex_value = Irm::FlexValue.new
     respond_to do |format|
@@ -34,11 +42,17 @@ class Irm::FlexValuesController < ApplicationController
 
   def create
     @flex_value = Irm::FlexValue.new(params[:irm_flex_value])
+    return_url = params[:return_url]
 #    @flex_value.value_set_code = @value_set.value_set_code
     respond_to do |format|
       if @flex_value.save
-        format.html { redirect_to({:action=>"index", :value_set_id => @flex_value.flex_value_set_id}, :notice =>t(:successfully_created)) }
-        format.xml  { render :xml => @flex_value, :status => :created, :location => @flex_value }
+        if return_url.blank?
+          format.html { redirect_to({:action=>"index", :value_set_id => @flex_value.flex_value_set_id}, :notice =>t(:successfully_created)) }
+          format.xml  { render :xml => @flex_value, :status => :created, :location => @flex_value }
+        else
+          format.html { redirect_to(return_url, :notice =>t(:successfully_created)) }
+          format.xml  { render :xml => @flex_value, :status => :created, :location => @flex_value }
+        end        
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @flex_value.errors, :status => :unprocessable_entity }
@@ -57,12 +71,17 @@ class Irm::FlexValuesController < ApplicationController
   end
 
   def destroy
-    @flex_value = Irm::FlexValue.find(params[:delete_list])
-
+    @flex_value = Irm::FlexValue.find(params[:id])
+    return_url = params[:return_url]
     respond_to do |format|
       if @flex_value.destroy
-         flash[:successful_message] = (t :successfully_deleted)
-         format.html { render "successful_info" }
+        if return_url.blank?
+          format.html { redirect_to({:action=>"index", :value_set_id => @flex_value.flex_value_set_id}, :notice =>t(:successfully_created)) }
+          format.xml  { render :xml => @flex_value, :status => :created, :location => @flex_value }
+        else
+          format.html { redirect_to(return_url, :notice =>t(:successfully_created)) }
+          format.xml  { render :xml => @flex_value, :status => :created, :location => @flex_value }
+        end
       else
          @error = @flex_value
          format.html { render "error_message" }

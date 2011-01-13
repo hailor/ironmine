@@ -1,6 +1,7 @@
 <%= page_title %>
 
 <%= form_for(@flex_value,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+<%= hidden_field_tag "return_url",@return_url%>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -9,7 +10,11 @@
           <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_flex_value_edit)%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_to( t(:cancel), {:action => "index", :value_set_id => @flex_value.flex_value_set_id  })%></div>
+            <% if @return_url.blank?%>
+                <div class="button"><%= link_to( t(:cancel), {:action => "index", :value_set_id => @flex_value.flex_value_set_id  })%></div>
+            <% else %>
+                <div class="button"><%= link_to t(:cancel), @return_url%></div>
+            <% end %>            
           </td>
         </tr>
       </tbody>
@@ -18,8 +23,15 @@
   <div class="pbBody">
     <%= error_for @flex_value%>
     <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
-      <span class="pbSubExtra"><span class="requiredLegend"><span class="requiredExampleOuter"><span class="requiredExample">&nbsp;</span></span><span class="requiredMark">*</span><span class="requiredText"> = 必填信息</span></span></span>
-      <h3>一般信息</h3>
+      <span class="pbSubExtra">
+        <span class="requiredLegend">
+          <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+          </span><span class="requiredMark">*</span>
+          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+        </span>
+      </span>
+      <h3><%= t(:label_common_info) %></h3>
     </div>
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
@@ -73,7 +85,11 @@
           <td class="pbTitle"></td>
           <td id="bottomButtonRow" class="pbButtonb">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_back t(:cancel)%></div>
+            <% if @return_url.blank?%>
+                <div class="button"><%= link_to( t(:cancel), {:action => "index", :value_set_id => @flex_value.flex_value_set_id  })%></div>
+            <% else %>
+                <div class="button"><%= link_to t(:cancel), @return_url%></div>
+            <% end %>           
           </td>
         </tr>
       </tbody>

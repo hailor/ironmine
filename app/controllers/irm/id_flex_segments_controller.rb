@@ -19,17 +19,24 @@ class Irm::IdFlexSegmentsController < ApplicationController
   end
 
   def edit
+    @return_url=request.env['HTTP_REFERER']    
     @id_flex_segment = Irm::IdFlexSegment.multilingual.find(params[:id])
     @id_flex_structure = Irm::IdFlexStructure.multilingual.where(:id_flex_code => @id_flex_segment.id_flex_code, :id_flex_num => @id_flex_segment.id_flex_num).first()
   end
 
   def update
+    return_url = params[:return_url]    
     @id_flex_segment = Irm::IdFlexSegment.find(params[:id])
     @id_flex_structure = Irm::IdFlexStructure.where(:id_flex_code => @id_flex_segment.id_flex_code, :id_flex_num => @id_flex_segment.id_flex_num).first()
     respond_to do |format|
       if @id_flex_segment.update_attributes(params[:irm_id_flex_segment])
-        format.html { redirect_to({:controller => "irm/id_flex_structures", :action=>"show", :id => @id_flex_structure}, :notice => t(:successfully_updated)) }
-        format.xml  { head :ok }
+        if return_url.blank?
+          format.html { redirect_to({:controller => "irm/id_flex_structures", :action=>"show", :id => @id_flex_structure}, :notice => t(:successfully_updated)) }
+          format.xml  { head :ok }
+        else
+          format.html { redirect_to(return_url, :notice =>t(:successfully_created)) }
+          format.xml  { head :ok }
+        end
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @id_flex_structure.errors, :status => :unprocessable_entity }
@@ -38,6 +45,7 @@ class Irm::IdFlexSegmentsController < ApplicationController
   end
 
   def new
+    @return_url=request.env['HTTP_REFERER']
     @id_flex_segment = Irm::IdFlexSegment.new
     @id_flex_structure = Irm::IdFlexStructure.multilingual.where(:id_flex_code => params[:id_flex_code], :id_flex_num => params[:id_flex_num]).first()
     respond_to do |format|
@@ -47,16 +55,26 @@ class Irm::IdFlexSegmentsController < ApplicationController
   end
   
   def create
+    return_url = params[:return_url]        
     @id_flex_segment = Irm::IdFlexSegment.new(params[:irm_id_flex_segment])
     @id_flex_structure = Irm::IdFlexStructure.multilingual.where(:id_flex_code => @id_flex_segment.id_flex_code, :id_flex_num => @id_flex_segment.id_flex_num).first()
     respond_to do |format|
       if @id_flex_segment.save
-        format.html { redirect_to({:controller => "irm/id_flex_structures", :action=>"show", :id => @id_flex_structure}, :notice => t(:successfully_updated)) }
-        format.xml  { head :ok }
+        if return_url.blank?
+          format.html { redirect_to({:controller => "irm/id_flex_structures", :action=>"show", :id => @id_flex_structure}, :notice => t(:successfully_updated)) }
+          format.xml  { head :ok }
+        else
+          format.html { redirect_to(return_url, :notice =>t(:successfully_created)) }
+          format.xml  { render :xml => @id_flex_segment, :status => :created, :location => @id_flex_segment }
+        end
       else
         format.html { render :action => "new"}
         format.xml  { render :xml => @id_flex_segment.errors, :status => :unprocessable_entity }
       end
     end
-  end  
+  end
+
+  def destroy
+
+  end
 end
