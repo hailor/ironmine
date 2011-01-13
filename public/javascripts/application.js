@@ -162,19 +162,10 @@ function show_irm_calendar(YAHOO,Event,Dom,id_button,id_date_field,id_cal){
                 dialog = new YAHOO.widget.Dialog("container", {
                     visible: false,
                     context: [id_button, "tl", "bl"],
-                    buttons: [{
-                        text: "Reset",
-                        handler: resetHandler,
-                        isDefault: true
-                    },
-                    {
-                        text: "Close",
-                        handler: closeHandler
-                    }],
                     draggable: false,
-                    close: true
+                    close: false
                 });
-                dialog.setHeader('Pick A Date');
+//                dialog.setHeader('Pick A Date');
                 dialog.setBody('<div id='+id_cal+'></div>');
                 dialog.render(document.body);
                 dialog.showEvent.subscribe(function () {
