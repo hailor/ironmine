@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddIrmPermissionsViewColumn < ActiveRecord::Migration
   def self.up
     column_a = Irm::ViewColumn.new({:filter_type=>"IRM_PERMISSIONS_INDEX_A",
