@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddFlexValueMenuData < ActiveRecord::Migration
   def self.up
     flex_value_index_page = Irm::MenuEntry.new(:menu_code=>'IRM_COMMON_SETTING_MENU',
