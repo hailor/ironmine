@@ -113,13 +113,13 @@ class AddIdFlexMenuAndPermissions < ActiveRecord::Migration
     irm_idflexseg_show.permissions_tls.build(:language=>'en',:name=>'Show Flex Segment',:description=>'Show Flex Segment', :source_lang=>'en')
     irm_idflexseg_show.save
 
-    idflexseg_index_page = Irm::MenuEntry.new(:menu_code=>'IRM_COMMON_SETTING_MENU',
-                                         :permission_code=>'IRM_ID_FLEX_SEGMENT_INDEX',
-                                         :display_sequence=>100,
-                                         :not_auto_mult=>true)
-    idflexseg_index_page.menu_entries_tls.build(:language=>'zh',:name=>'弹性域段值',:description=>'弹性域段值',:source_lang=>'en')
-    idflexseg_index_page.menu_entries_tls.build(:language=>'en',:name=>'Flex Segments',:description=>'Flex Segments',:source_lang=>'en')
-    idflexseg_index_page.save
+#    idflexseg_index_page = Irm::MenuEntry.new(:menu_code=>'IRM_COMMON_SETTING_MENU',
+#                                         :permission_code=>'IRM_ID_FLEX_SEGMENT_INDEX',
+#                                         :display_sequence=>100,
+#                                         :not_auto_mult=>true)
+#    idflexseg_index_page.menu_entries_tls.build(:language=>'zh',:name=>'弹性域段值',:description=>'弹性域段值',:source_lang=>'en')
+#    idflexseg_index_page.menu_entries_tls.build(:language=>'en',:name=>'Flex Segments',:description=>'Flex Segments',:source_lang=>'en')
+#    idflexseg_index_page.save
   end
 
   def self.down
