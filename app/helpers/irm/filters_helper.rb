@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module Irm::FiltersHelper
   def available_view_column(filter_type,current_vale=nil)
     nullable_options_for_select(view_filter_columns(filter_type),current_vale)
