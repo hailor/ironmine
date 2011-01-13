@@ -26,7 +26,11 @@ module Irm::FiltersHelper
 
   def available_view_filter(filter_type)
     filters = view_filters(filter_type)
-    current = filters.detect{|f| f.default_flag.eql?(Irm::Constant::SYS_YES)}||{:id=>-1}
+    # 取得我的默认选项
+    current = filters.detect{|f| f.default_flag.eql?(Irm::Constant::SYS_YES)&&f.own_id.eql?(Irm::Identity.current.id)}
+    # 如果我的默认选项不存在，则使用全局默认选项
+    current = filters.detect{|f| f.default_flag.eql?(Irm::Constant::SYS_YES)} unless current
+    current ||= {:id=>nil}
     options_from_collection_for_select(filters,:id,:view_name,current[:id])
   end
 
@@ -50,7 +54,7 @@ module Irm::FiltersHelper
   end
 
   def view_filters(filter_type)
-    Irm::ViewFilter.query_by_filter_type(filter_type)
+    Irm::ViewFilter.hold.query_by_filter_type(filter_type)
   end
 
   def view_filter_operators
