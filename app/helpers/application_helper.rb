@@ -93,7 +93,7 @@ module ApplicationHelper
     load_str = "//does not load at init" if options[:not_load]
 
     search_str = ""
-    search_str = ".plug(Y.Plugin.IrmDTSearchBox,{searchDom:'#{search_box}'})"
+    search_str = ".plug(Y.Plugin.IrmDTSearchBox,{searchDom:'#{search_box}'})" if search_box
 
     script = %Q(GY.use("irm","datasource-get", "datasource-jsonschema","dtdatasource","datatable-sort","dtsearchbox",function(Y) {
        Y.on("domready",function(){
