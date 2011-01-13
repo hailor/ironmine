@@ -54,11 +54,16 @@ Y.mix(IrmDTDataSource, {
         initialRequest: {
             setter: "_setInitialRequest"
         }
+
+
     }
 });
 
     Y.extend(IrmDTDataSource, Y.Plugin.DataTableDataSource, {
         _loadRequest: {},
+        _paginateOptions: {start:0,count:20},
+        _filterOptions: {},
+        _queryOptions: {},
         initializer: function(config) {
           if(!Y.Lang.isUndefined(config.initialRequest)) {
             this.load({request:config.initialRequest});
@@ -68,7 +73,13 @@ Y.mix(IrmDTDataSource, {
         load: function(config) {
             config = config || {};
             config.request = config.request || this.get("initialRequest")||{};
-            this._loadRequest = Y.clone(config);
+            this._loadRequest = Y.clone(config,true);
+            Y.mix(config.request,this._paginateOptions,true);
+            //mix in filterOptions
+            Y.mix(config.request,this._filterOptions,true);
+            //mix in queryOptions
+            Y.mix(config.request,this._queryOptions,true);
+
             config.callback = config.callback || {
                 success: Y.bind(this.onDataReturnInitializeTable, this),
                 failure: Y.bind(this.onDataReturnInitializeTable, this),
@@ -92,8 +103,20 @@ Y.mix(IrmDTDataSource, {
         },
         reload: function(){
           this.load(this._loadRequest);
-        }
-        ,
+        },
+        filter: function(options){
+          this._filterOptions = options;
+          Y.mix(this._paginateOptions,{start:0},true);
+          this.reload();
+        },
+        query: function(options){
+          this._queryOptions = options;
+          Y.mix(this._paginateOptions,{start:0},true);
+          this.reload();
+        },
+        paginate: function(options){
+          Y.mix(this._paginateOptions,options,true);
+        },
         onDataReturnInitializeTable : function(e) {
           this.get("host").set("recordset", new Y.Recordset({records: e.response.results,sort:{sort:function(){alert("sort")}}}));
         },

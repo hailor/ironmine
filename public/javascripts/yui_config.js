@@ -4,13 +4,17 @@ var yuiConfig = {
     //root :'/javascripts/yui3.3/',
     //combine: true,
     modules:{
+        irm:{
+            fullpath:"/javascripts/irm/core.js",
+            requires: ['base',"overlay","node-event-simulate","event-custom","event-mouseenter"]
+        },
         dtdatasource:{
             fullpath:"/javascripts/irm/datatable/dtdatasource.js",
             requires: ["datatable-datasource"]
         },
-        dtselector:{
-            fullpath:"/javascripts/irm/datatable/dtselector.js",
-            requires: ["datatable-datasource"]
+        dtsearchbox:{
+            fullpath:"/javascripts/irm/datatable/dtsearchbox.js",
+            requires: []
         },
         gallerywidgetio:{
             fullpath:"/javascripts/gallery/widget-io.js",

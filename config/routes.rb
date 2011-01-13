@@ -423,6 +423,11 @@ Ironmine::Application.routes.draw do
     match '/setting/common(.:format)' =>'setting#common'
     #home
     match '/home(/index)(.:format)' => "home#index", :via => :get
+    #view_filter
+    match '/filters/:pid/new/:ft(.:format)' => "filters#new", :via => :get
+    match '/filters/:pid/create(.:format)' => "filters#create", :via => :post
+    match '/filters/:pid/:id/edit(.:format)' => "filters#edit", :via => :get
+    match '/filters/:pid/:id(.:format)' => "filters#update", :via => :put
   end
 
   scope :module => "icm" do

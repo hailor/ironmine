@@ -105,3 +105,4 @@ en:
         greater_than_start_date: "must be greater than start date"
         not_same_project: "doesn't belong to the same project"
         circular_dependency: "This relation would create a circular dependency"
+        invaliddate: " invalid date formate,correct such as 2008-10-10"
