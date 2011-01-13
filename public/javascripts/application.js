@@ -1,3 +1,4 @@
+// irm模块公共的方法
 YUI.add('irm', function(Y) {
 
     Y.namespace('irm');
@@ -16,6 +17,7 @@ YUI.add('irm', function(Y) {
     Y.irm.handleClick = function(){
         Y.one("#content").addClass("ccc");
       };
+    //表格模板formatter
     // {tbody, tr, td, classnames, headers, rowindex, record, column, data, value}
     Y.irm.template = function(o){
        var templateNode = this._parentNode.one("#"+o.column.get("key"));
@@ -26,11 +28,11 @@ YUI.add('irm', function(Y) {
            return o.value;
        }
     };
-
+    //表格显示行号列
     Y.irm.rownum = function(o){
       return o.rowindex;
     };
-
+    //菜单式按钮
     Y.irm.menuButton = function(domid,calign,lalign){
       var menuNode = Y.one("#"+domid);
       var menuContent = menuNode.one(".menuContent");
@@ -83,7 +85,7 @@ YUI.add('irm', function(Y) {
           }
       });
     };
-
+    //设置页面导航树
     Y.irm.navTree = function(domid,p_current_permissions,p_current_menus){
         var current_permissions = p_current_permissions;
         var current_menus = p_current_menus;
@@ -125,6 +127,7 @@ YUI.add('irm', function(Y) {
             }
           }
     };
+    //表格过过滤器
     Y.irm.ViewFilter = function (domid){
        Y.on("irm:change",function(e){
            Y.one("#"+domid).all("select.viewFilter").each(function(n){
@@ -150,6 +153,47 @@ YUI.add('irm', function(Y) {
            });
        });
     };
+    //表格过过滤器编辑逻辑
+    Y.irm.rawConditionClause = function (e){
+        var content = Y.one("#rawConditionClause").get("value");
+        var addition = e.target.getAttribute("ref");
+        content = content.replace(/\s*$/,"");
+        content = content.replace(/^\s*/,"");
+        var re = new RegExp(e.target.getAttribute("ref"));
+        var m = re.exec(content);
+        if(e.target.get("value"))
+        {
+            if(m == null){
+
+              if(new RegExp("\\d+").exec(content)!=null)
+                addition = " AND "+ addition;
+              Y.one("#rawConditionClause").set("value",content+ addition);
+            }
+        }
+        else
+        {
+          if(m != null){
+            var originLength = content.length;
+            if(m.index ==0){
+              var rp = new RegExp(addition+"\\s*AND\\s*");
+              content = content.replace(rp,"");
+              rp = new RegExp(addition+"\\s+OR\\s*");
+              content = content.replace(rp,"");
+              if(originLength == content.length)
+                content = content.replace(re,"");
+            }
+            else{
+              var rp = new RegExp("AND\\s*"+addition+"\\s*");
+              content = content.replace(rp,"");
+              rp = new RegExp("OR\\s*"+addition+"\\s*");
+              content = content.replace(rp,"");
+              if(originLength == content.length)
+                content = content.replace(re,"");
+            }
+            Y.one("#rawConditionClause").set("value",content);
+          }
+        }
+      };
 
 }, '0.1.1' /* module version */, {
     requires: ['base',"overlay","node-event-simulate","event-custom","event-mouseenter"]
