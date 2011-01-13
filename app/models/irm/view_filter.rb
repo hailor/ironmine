@@ -17,6 +17,10 @@ class Irm::ViewFilter < ActiveRecord::Base
 
   scope :query_by_filter_type,lambda{|filter_type| where(:filter_type=>filter_type)}
 
+  scope :hold,lambda{
+    where("#{table_name}.own_id = ? OR #{table_name}.restrict_visibility=?",Irm::Identity.current.id,Irm::Constant::SYS_YES)
+  }
+
   def where_clause
     where_conditon = self.condition_clause.dup
     params = where_conditon.scan(/\{\{\S*\}\}/)
@@ -72,8 +76,13 @@ class Irm::ViewFilter < ActiveRecord::Base
     view_filter_criterions.each{|fc| conditions.merge!(fc.seq_num=>fc.to_condition) if fc.column_code&&!fc.column_code.blank?}
     seq_nums = self.raw_condition_clause.scan(/\d+/)
     clause = self.raw_condition_clause.dup
+    # 将数据换成带^符号的数字
+    # 防止参数中出现数字出现替换错误
     seq_nums.each do |sq|
-      clause.gsub!(sq,conditions[sq.to_i])
+      clause.gsub!(sq,"^#{sq}")
+    end
+    seq_nums.each do |sq|
+      clause.gsub!("^#{sq}",conditions[sq.to_i])
     end
     clause
 
