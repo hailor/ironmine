@@ -4,6 +4,10 @@ var yuiConfig = {
     //root :'/javascripts/yui3.3/',
     //combine: true,
     modules:{
+        irm:{
+            fullpath:"/javascripts/irm/core.js",
+            requires: ['base',"overlay","node-event-simulate","event-custom","event-mouseenter"]
+        },
         dtdatasource:{
             fullpath:"/javascripts/irm/datatable/dtdatasource.js",
             requires: ["datatable-datasource"]
