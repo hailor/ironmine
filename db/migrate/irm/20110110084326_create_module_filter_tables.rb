@@ -62,7 +62,7 @@ class CreateModuleFilterTables < ActiveRecord::Migration
         t.integer  "seq_num",              :null => false
         t.string   "column_code",          :limit => 30
         t.string  "operator_code",         :limit => 30
-        t.string   "filter_value",         :limit => 30
+        t.string   "filter_value",         :limit => 150
         t.string   "status_code",          :limit => 30, :null => false
         t.integer  "created_by"
         t.integer  "updated_by"
