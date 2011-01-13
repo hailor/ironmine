@@ -73,7 +73,7 @@ Y.mix(IrmDTDataSource, {
         load: function(config) {
             config = config || {};
             config.request = config.request || this.get("initialRequest")||{};
-            this._loadRequest = Y.clone(config);
+            this._loadRequest = Y.clone(config,true);
             Y.mix(config.request,this._paginateOptions,true);
             //mix in filterOptions
             Y.mix(config.request,this._filterOptions,true);
