@@ -27,14 +27,36 @@ class Irm::ViewFilterCriterion < ActiveRecord::Base
   def validate_data_type_filter_value
     column = Irm::ViewColumn.query_by_filter_type(view_filter.filter_type).query_by_column_code(self.column_code).first    
     operator = self.operator_code
+    validate_filter_value = filter_value.dup
+    validate_filter_value.strip!
+
     case column.column_data_type
       when 'int'
-        validate_int(operator,filter_value)
+        validate_filter_value = process_param(validate_filter_value)
+        validate_int(operator,validate_filter_value)
       when 'date'
-        validate_date(operator,filter_value)
+        validate_filter_value = process_param(validate_filter_value)
+        validate_date(operator,validate_filter_value)
       when 'string'
-        validate_string(operator,filter_value)
+        validate_string(operator,validate_filter_value)
     end
+  end
+
+  def process_param(filter_value)
+    if filter_value.scan(/^\{\{\S+\}\}$/).length==1
+      param = filter_value.scan(/^\{\{\S+\}\}$/).first
+      param.gsub!(/[\{\}]/,"")
+      info = ""
+      begin
+        filter_value = eval(param).to_s
+        rescue StandardError=>text
+          info = text
+      end
+      if !info.blank?
+        errors.add(:filter_value,I18n.t('activerecord.errors.messages.invalid'))
+      end
+    end
+    filter_value
   end
 
   def validate_int(operator,filter_value)
@@ -44,12 +66,10 @@ class Irm::ViewFilterCriterion < ActiveRecord::Base
   end
 
   def validate_date(operator,filter_value)
-    if "IN".eql?(operator)&&filter_value.scan(/\D/).length>0
-      errors.add(:filter_value,I18n.t('activerecord.errors.messages.invalid'))
+    if "IN".eql?(operator)
+      errors.add(:filter_value,I18n.t('activerecord.errors.messages.invalid')) if filter_value.scan(/\D/).length>0
     elsif filter_value.scan(/[^\d\-]/).length>0
       errors.add(:filter_value,I18n.t('activerecord.errors.messages.invaliddate'))
-    elsif "IN".eql?(operator)
-      return
     else
       info = ""
       begin
@@ -65,10 +85,13 @@ class Irm::ViewFilterCriterion < ActiveRecord::Base
   end
 
   def validate_string(operator,filter_value)
-
+    if filter_value.scan(/\{\{\S+\}\}/).length>0
+      errors.add(:filter_value,I18n.t('activerecord.errors.messages.invalid'))
+    end
   end
 
   def parse_condition(column,operator,filter_value)
+    filter_value.strip!
     case column.column_data_type
       when 'int'
         parse_int_condition(operator,filter_value)
@@ -80,7 +103,6 @@ class Irm::ViewFilterCriterion < ActiveRecord::Base
   end
 
   def parse_string_condition(operator,filter_value)
-    filter_value.strip!
     formated_filter_value = %Q('#{filter_value}')
     case
       when OPERATORS[:common].include?(operator)
@@ -98,6 +120,7 @@ class Irm::ViewFilterCriterion < ActiveRecord::Base
 
   def parse_date_condition(operator,filter_value)
     formated_filter_value = %Q({{Date.parse('#{filter_value}')}})
+    formated_filter_value = %Q(#{filter_value}) if filter_value.scan(/^\{\{\S+\}\}$/).length==1
     case
       when OPERATORS[:common].include?(operator)
         parse_common_condition(operator,formated_filter_value)
@@ -107,7 +130,8 @@ class Irm::ViewFilterCriterion < ActiveRecord::Base
   end
 
   def parse_int_condition(operator,filter_value)
-    formated_filter_value = %Q({{#{filter_value.strip}}})
+    formated_filter_value = %Q({{#{filter_value}}})
+    formated_filter_value = %Q(#{filter_value}) if filter_value.scan(/^\{\{\S+\}\}$/).length==1
     case
       when OPERATORS[:common].include?(operator)
         parse_common_condition(operator,formated_filter_value)
