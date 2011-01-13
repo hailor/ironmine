@@ -21,7 +21,8 @@ class Irm::FiltersController < ApplicationController
 
     respond_to do |format|
       if @view_filter.save
-        redirect_back
+        format.html {redirect_back}
+        format.xml  {redirect_back}
       else
         format.html { render "new" }
         format.xml  { render :xml => @view_filter.errors, :status => :unprocessable_entity }
@@ -39,6 +40,7 @@ class Irm::FiltersController < ApplicationController
     respond_to do |format|
       if @view_filter.update_attributes(params[:irm_view_filter])
         format.html {redirect_back}
+        format.xml  {redirect_back}
       else
         format.html { render "edit" }
         format.xml  { render :xml => @action.errors, :status => :unprocessable_entity }
