@@ -21,3 +21,15 @@ en:
    label_csi_survey_show: Survey
    label_csi_survey_list: Survey List
    #========================= end   irm regions_controller=======================#
+   #========================= start irm regions_controller=======================#
+   label_csi_survey_subject_add_subject: New Subject
+   label_csi_survey_subject_info: Survey Subject Info
+   duplicate: Duplicate
+   are_you_sure: Are you Sure
+   required: Required
+   label_csi_survey_subject_untitled_form: Untitle Form
+   label_csi_survey_subject_describe_your_form: Describe Your Form
+   question: Question Name
+   option: Option Name
+   label_csi_survey_subject_other: Other
+   #========================= end   irm regions_controller=======================#

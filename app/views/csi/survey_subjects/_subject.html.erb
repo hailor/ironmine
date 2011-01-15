@@ -1,0 +1,15 @@
+<div class="edit" onmouseover="toggle_opration(this, true);" onmouseout="toggle_opration(this, false);">
+  <div class="opration" style="display:none;">
+      <%= link_to(t(:edit), "#", :onclick => "field_start_editing(this);return false;", :class => 'ag') %>
+      <%= link_to(t(:duplicate), "#", :onclick => "form_dup_field(this);return false;", :class => 'ag') %>
+  </div>
+
+  <div class="question" ondblclick="field_start_editing(this);">
+    <%= render :partial => "/csi/surveys/#{subject.input_type}_field", :locals => {:subject => subject} %>
+  </div>
+
+  <div class="form" style="display:none;">
+    <%= render :partial => "subject_form", :locals => {:parent => parent, :subject => subject} %>
+  </div>
+</div>
+<div style="clear:both"></div>

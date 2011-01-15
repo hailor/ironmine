@@ -55,7 +55,24 @@
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
-
+           <tr>
+              <td class="labelCol"><%=f.check_box :email_notify%></td>
+              <td class="dataCol"><label><%=(t :label_csi_survey_email_notify)%></label></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><%=f.check_box :publish_response%></td>
+              <td class="dataCol"><label><%=(t :label_csi_survey_publish_response)%></label></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><%=f.check_box :comment_flag%></td>
+              <td class="dataCol"><label><%=(t :label_csi_survey_comment_flag)%></label></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
         </tbody>
       </table>
     </div>

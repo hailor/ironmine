@@ -21,3 +21,15 @@ zh:
    label_csi_survey_show: 调查问卷
    label_csi_survey_list: 调查问卷列表
    #========================= end   irm regions_controller=======================#
+   #========================= start irm regions_controller=======================#
+   label_csi_survey_subject_add_subject: 新问题
+   label_csi_survey_subject_info: 调查问卷题目详细信息
+   duplicate: 复制
+   are_you_sure: 你确定嘛
+   required: 必填
+   label_csi_survey_subject_untitled_form: 未命名的表单
+   label_csi_survey_subject_describe_your_form: 描述你的表单
+   question: 问题名称
+   option: 选项
+   label_csi_survey_subject_other: 其他
+   #========================= end   irm regions_controller=======================#

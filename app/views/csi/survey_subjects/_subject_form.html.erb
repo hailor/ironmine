@@ -1,0 +1,30 @@
+<%= form_for [parent, subject], :url =>{:controller=>"csi/survey_subjects",:action=>"create"},
+             :html => {:class => 'field_form'}, :remote => true do |form| %>
+  <p>
+    <%= form.label :name, t(:title) %>
+    <%= form.text_field :name, :onfocus => "clear_initial(this);",:onblur => "set_initial(this)" %>
+    <%= form.hidden_field :uuid %>
+    <%= form.hidden_field :seq_num,:class => 'field_position' %>
+  </p>
+  <p>
+    <%= form.label :prompt, t(:hints) %>
+    <%= form.text_field :prompt %>
+  </p>
+
+  <p>
+    <%= form.label :input_type, t(:type) %>
+    <%= form.select :input_type, Csi::SurveySubject::TYPES.map{|h| [t(h[0]), h[1]]},{},
+                    :onchange => "field_input_changed(this)" %>
+  </p>
+
+  <div class="input_options">
+    <%= render :partial => "/csi/survey_subjects/#{subject.input_type}_form",
+               :locals => {:form => form, :field => subject,:parent => parent, :row => @row} %>
+  </div>
+
+  <p style='margin-top:10px;'>
+    <%= form.submit t(:save), :onclick => 'field_done_editing(this);return false;',:class => 'commit' %>
+    <%= form.check_box :required_flag %>
+    <%= form.label :required_flag, t(:required) %>
+  </p>
+<% end %>

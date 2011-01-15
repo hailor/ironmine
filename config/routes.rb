@@ -508,6 +508,14 @@ Ironmine::Application.routes.draw do
     match '/surveys/new(.:format)' => "surveys#new", :via => :get
     match '/surveys/:id(.:format)' => "surveys#show", :via => :get
     match '/surveys/create(.:format)' => "surveys#create", :via => :post
+    #survey_subjects
+    match '/survey_subjects(/index)(.:format)' => "survey_subjects#index", :via => :get
+    match '/survey_subjects/get_data(.:format)' => "survey_subjects#get_data"
+    match '/survey_subjects/:id/edit(.:format)' => "survey_subjects#edit", :via => :get
+    match '/survey_subjects/:id(.:format)' => "survey_subjects#update", :via => :put
+    match '/survey_subjects/new(.:format)' => "survey_subjects#new", :via => :get
+    match '/survey_subjects/:id(.:format)' => "survey_subjects#show", :via => :get
+    match '/survey_subjects/create(.:format)' => "survey_subjects#create", :via => :post
   end
 
   match '/demo(/index)' => 'demo#index'
