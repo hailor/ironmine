@@ -315,18 +315,16 @@ Ironmine::Application.routes.draw do
     match '/site_groups/:id/multilingual_site_edit(.:format)' => "site_groups#multilingual_site_edit", :via => :get
     match '/site_groups/:id/multilingual_site_update(.:format)' => "site_groups#multilingual_site_update", :via => :put
 
-    #operational_catalogs
-    match '/operational_catalogs(/index)(.:format)' => "operational_catalogs#index", :via => :get
-    match '/operational_catalogs/new(.:format)' => "operational_catalogs#new", :via => :get
-    match '/operational_catalogs/create(.:format)' => "operational_catalogs#create", :via => :post
-    match '/operational_catalogs/get_data(.:format)' => "operational_catalogs#get_data"
-    match '/operational_catalogs/:id/edit(.:format)' => "operational_catalogs#edit", :via => :get
-    match '/operational_catalogs/:id(.:format)' => "operational_catalogs#update", :via => :put
-    match '/operational_catalogs/update_segment_options(.:format)' => "operational_catalogs#update_segment_options"
-    match '/operational_catalogs/:id/show(.:format)' => "operational_catalogs#show", :via => :get
-    #op_catalog_accesses
-    match '/op_catalog_accesses/:operational_catalog_id(/index)(.:format)' => "op_catalog_accesses#index", :via => :get
-    match '/op_catalog_accesses/:operational_catalog_id/get_data(.:format)' => "op_catalog_accesses#get_data"
+    #general_categories
+    match '/general_categories(/index)(.:format)' => "general_categories#index", :via => :get
+    match '/general_categories/new(.:format)' => "general_categories#new"
+    match '/general_categories/create(.:format)' => "general_categories#create", :via => :post
+    match '/general_categories/get_data(.:format)' => "general_categories#get_data"
+    match '/general_categories/:id/edit(.:format)' => "general_categories#edit", :via => :get
+    match '/general_categories/:id(.:format)' => "general_categories#update", :via => :put
+    match '/general_categories/update_segment_options(.:format)' => "general_categories#update_segment_options"
+    match '/general_categories/:id/show(.:format)' => "general_categories#show", :via => :get
+    
     #support_groups
     match '/support_groups(/index)(.:format)' => "support_groups#index", :via => :get
     match '/support_groups/:id/edit(.:format)' => "support_groups#edit", :via => :get
@@ -395,8 +393,8 @@ Ironmine::Application.routes.draw do
     match '/id_flex_structures/create(.:format)' => "id_flex_structures#create", :via => :post
     match '/id_flex_structures/:id/show(.:format)' => "id_flex_structures#show", :via => :get
     #id_flex_segments
-    match '/id_flex_segments/:id_flex_structure_id(/index)(.:format)' => "id_flex_segments#index", :via => :get
-    match '/id_flex_segments/:id_flex_structure_id/get_data(.:format)' => "id_flex_segments#get_data"
+    match '/id_flex_segments(/index)(.:format)' => "id_flex_segments#index", :via => :get
+    match '/id_flex_segments/get_data(.:format)' => "id_flex_segments#get_data"
     match '/id_flex_segments/:id/edit(.:format)' => "id_flex_segments#edit", :via => :get
     match '/id_flex_segments/:id(.:format)' => "id_flex_segments#update", :via => :put
     match '/id_flex_segments/:id_flex_code/:id_flex_num/new(.:format)' => "id_flex_segments#new", :via => :get
@@ -425,6 +423,11 @@ Ironmine::Application.routes.draw do
     match '/setting/common(.:format)' =>'setting#common'
     #home
     match '/home(/index)(.:format)' => "home#index", :via => :get
+    #view_filter
+    match '/filters/:pid/new/:ft(.:format)' => "filters#new", :via => :get
+    match '/filters/:pid/create(.:format)' => "filters#create", :via => :post
+    match '/filters/:pid/:id/edit(.:format)' => "filters#edit", :via => :get
+    match '/filters/:pid/:id(.:format)' => "filters#update", :via => :put
   end
 
   scope :module => "icm" do

@@ -94,16 +94,7 @@ class ApplicationController < ActionController::Base
 
   # 设置当前页面对应的菜单数据
   def menu_setup
-    @setting_menus = default_setting_menus
-    @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>params[:controller],:page_action=>params[:action]})
-    if @page_menus[0]&&@page_menus[0].eql?("IRM_SETTING_ENTRANCE_MENU")
-      @setting_menus = @page_menus.dup
-      self.class.layout "setting"
-      @page_menus = (session[:entrance_menu]||default_menus)[0..1]
-    else
-      @page_menus << params[:mc] if(params[:mc])
-      session[:entrance_menu] = @page_menus.dup if @page_menus.length>1
-    end
+    process_menu
   end
 
   # 设置当前菜单项
@@ -133,7 +124,7 @@ class ApplicationController < ActionController::Base
   end
 
   #返回默认的页面
-  def redirect_back_or_default(default)
+  def redirect_back_or_default(default=nil)
     #解释back_url从中取得参数
     back_url = CGI.unescape(params[:back_url].to_s)
     if !back_url.blank?
@@ -148,18 +139,34 @@ class ApplicationController < ActionController::Base
         # redirect to default
       end
     end
-    redirect_to default
+    if default
+      redirect_to default
+    else
+      entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>"IRM_ENTRANCE_MENU"})
+      redirect_to({:controller => entrance[:page_controller], :action => entrance[:page_action]})
+    end
+
   end
 
   #进行分页，返回分页后的scope和scope的记录的总记录数
   def paginate(scoped,offset=nil,limit=nil)
+     scoped = data_filter(scoped)
      offset ||= (params[:start]||0).to_i
      limit ||= params[:count]||25
      [scoped.offset(offset).limit(limit),scoped.count]
   end
-
+  # 加入jsonp格式
   def to_jsonp(json)
     %Q(#{params[:callback]}(#{json});)    
+  end
+
+  # 处理传入的filter
+  def data_filter(scoped)
+    if(params[:_view_filter_id])
+      session[:_view_filter_id] = params[:_view_filter_id]
+      scoped = scoped.where(Irm::ViewFilter.find(params[:_view_filter_id]).where_clause)
+    end
+    scoped
   end
 
 
@@ -224,6 +231,22 @@ class ApplicationController < ActionController::Base
   def set_language_if_valid(lang)
     if l = find_language(lang)
       ::I18n.locale = l
+    end
+  end
+
+
+  def process_menu(permission=nil)
+    permission ||= {:page_controller=>params[:controller],:page_action=>params[:action]}
+    @menu_permission = permission.dup
+    @setting_menus = default_setting_menus
+    @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>permission[:page_controller],:page_action=>permission[:page_action]})
+    if @page_menus[0]&&@page_menus[0].eql?("IRM_SETTING_ENTRANCE_MENU")
+      @setting_menus = @page_menus.dup
+      self.class.layout "setting"
+      @page_menus = (session[:entrance_menu]||default_menus)[0..1]
+    else
+      @page_menus << params[:mc] if(params[:mc])
+      session[:entrance_menu] = @page_menus.dup if @page_menus.length>1
     end
   end
 

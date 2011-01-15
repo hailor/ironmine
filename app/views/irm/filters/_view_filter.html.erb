@@ -1,0 +1,17 @@
+<div id="<%= datatable_id %>ViewFilterOverview" style="display:none" class="filterOverview">
+  <div class="bFilterView">
+    <span class="bFilter">
+      <label style="text-align: left; font-weight: bold; padding-right: 0.69em;" for="fcf"><%= t(:irm_view_filter) %></label>
+      <span class="fBody">
+        <select id="<%= datatable_id %>ViewFilter" class="viewFilter" ref="<%= datatable_id %>Datatable">
+          <%=available_view_filter(filter_type)%>
+        </select>
+      </span>
+      <span class="fFooter">
+       <%= link_to(t(:edit),{:controller => "irm/filters", :action=>"edit",:id=>"{id}",:pid=>@current_permission.id,:back_url=>back_url},{:id=>"#{datatable_id}ViewFilterEditLink"}) %> |
+       <%= link_to(t(:create),{:controller => "irm/filters", :action=>"new",:ft=>filter_type,:pid=>@current_permission.id,:back_url=>back_url}) %>
+      </span>
+    </span>
+  </div>
+</div>
+<%= view_filter_script(datatable_id) %>

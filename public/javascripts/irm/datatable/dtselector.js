@@ -5,46 +5,11 @@ YUI.add("dtselector",function(Y){
     function IrmDTSelector() {
         IrmDTSelector.superclass.constructor.apply(this, arguments);
     }
-/////////////////////////////////////////////////////////////////////////////
-//
-// STATIC PROPERTIES
-//
-/////////////////////////////////////////////////////////////////////////////
 Y.mix(IrmDTSelector, {
-    /**
-     * The namespace for the plugin. This will be the property on the host which
-     * references the plugin instance.
-     *
-     * @property NS
-     * @type String
-     * @static
-     * @final
-     * @value "selector"
-     */
     NS: "selector",
-
-    /**
-     * Class name.
-     *
-     * @property NAME
-     * @type String
-     * @static
-     * @final
-     * @value "dataTableDataSource"
-     */
     NAME: "dataTableSelector",
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// ATTRIBUTES
-//
-/////////////////////////////////////////////////////////////////////////////
     ATTRS: {
-        /**
-        * @attribute datasource
-        * @description Pointer to DataSource instance.
-        * @type Arrary
-        */
+
         selectedItems: {
             setter: "_setSelectedItems"
         },
@@ -60,19 +25,6 @@ Y.extend(IrmDTSelector, Y.Plugin.Base, {
             return items||[]
         },
 
-
-        /////////////////////////////////////////////////////////////////////////////
-        //
-        // METHODS
-        //
-        /////////////////////////////////////////////////////////////////////////////
-        /**
-        * Initializer.
-        *
-        * @method initializer
-        * @param config {Object} Config object.
-        * @private
-        */
         initializer: function(config) {
            this.doBefore("_attachTheadThNode", this._beforeAttachTheadThNode);
            //this.doBefore("_setColumnset", this._beforeSetColumnset);
@@ -83,7 +35,6 @@ Y.extend(IrmDTSelector, Y.Plugin.Base, {
             //Y.log(o);
             o.th=Y.Lang.substitute(this.thTemplate, o);
         }
-
 
     });
 

@@ -505,24 +505,19 @@ zh:
   label_irm_site_show: 地点
   #=========================end irm site_groups_controller=======================#
   #=========================end irm flex_values_controller=======================#
-  #=========================irm operational_catalogs_controller=======================#
-  label_irm_operational_catalog: 服务类别
-  label_irm_operational_catalog_list: 服务类别列表
-  label_irm_operational_catalog_new: 创建服务类别
-  label_irm_operational_catalog_edit: 编辑服务类别
-  label_irm_operational_catalog_company: 公司
-  label_irm_operational_catalog_segment1: 第一段
-  label_irm_operational_catalog_segment2: 第二段
-  label_irm_operational_catalog_segment3: 第三段
-  label_irm_operational_catalog_concact_segment: 类别
-  error_segment_combination_existed: 同一公司下不能有相同的段组合
+  #=========================irm general_category_controller=======================#
+  label_irm_general_category: 公共分类
+  label_irm_general_category_list: 公共分类列表
+  label_irm_general_category_new: 创建公共分类
+  label_irm_general_category_edit: 编辑公共分类
+  label_irm_general_category_type: 类型
+  label_irm_general_category_company: 公司
+  label_irm_general_category_segment1: 第一段
+  label_irm_general_category_segment2: 第二段
+  label_irm_general_category_segment3: 第三段
+  label_irm_general_category_concact_segment: 分类组合
+  error_segment_combination_existed: 同一公司下不能有相同的分类组合
   #=========================end operational_catalogs_controller=======================#
-  #=========================irm op_catalog_accesses_controller=======================#
-  label_irm_op_catalog_access: 服务类别控制
-  label_irm_op_catalog_access_icm: ICM
-  label_irm_op_catalog_access_csi: CSI
-  label_irm_op_catalog_access_skm: SKM
-  #=========================end op_catalog_accesses_controller=======================#
   #=========================    irm support_groups_controller=======================#
   label_irm_support_group_company_name: 公司名称
   label_irm_support_group_organization_name: 组织名称
@@ -641,3 +636,24 @@ zh:
   label_irm_support_group_member_infoL: 支持组成员
   label_irm_select_result: 搜索结果
   #=========================end irm  support_group_controller=======================#
+  #=========================    irm filters_controller=======================#
+  label_irm_view_filter_new: 新建视图
+  label_irm_view_filter_edit: 编辑视图
+  label_irm_view_filter_step_one: 步骤 1。输入视图名称
+  label_irm_view_filter_view_name: 视图名称
+  label_irm_view_filter_view_code: 视图唯一名称
+  label_irm_view_filter_view_condition_clause: 高级筛选器条件
+  label_irm_view_filter_default_flag: 默认选项
+  label_irm_view_filter_restrict_visibility: 只有我可见
+  label_irm_view_filter_step_two: 步骤 2。指定过滤条件
+  irm_filter_criterions_column_code: 字段
+  irm_filter_criterions_operator_code: 运算符
+  irm_filter_criterions_filter_value: 值
+  view_filter_use_invalid_seq_num: 行号错误
+  view_filter_use_invalid_key_word: 关键字错误
+  view_filter_use_invalid_syntax: 语法错误
+  irm_view_filter: 视图
+  label_irm_view_filter_step_three: 步骤 3。限制可视性
+  label_irm_view_filter_restrict_visibility_for_me: 仅对我可见
+  label_irm_view_filter_restrict_visibility_for_all: 所有用户皆可见
+  #=========================end irm support_group_controller=======================#

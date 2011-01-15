@@ -69,6 +69,7 @@ module ApplicationHelper
   # 生成YUI表格
   def datatable(id,source_url,columns,options={})
     row_perpage = options[:row_perpage]||20
+    search_box = options[:search_box]
     columns_conf = ""
     data_fields = ""
     columns.each do |c|
@@ -86,7 +87,16 @@ module ApplicationHelper
     end
     columns_conf.chop!
     data_fields.chop!
-    script = %Q(GY.use("irm","datasource-get", "datasource-jsonschema","dtdatasource","datatable-sort","datatable-colresize",function(Y) {
+
+
+    load_str = "#{id}Datatable.datasource.load()"
+    load_str = "//does not load at init" if options[:not_load]
+
+    search_str = ""
+    search_str = ".plug(Y.Plugin.IrmDTSearchBox,{searchDom:'#{search_box}'})" if search_box
+
+    script = %Q(GY.use("irm","datasource-get", "datasource-jsonschema","dtdatasource","datatable-sort","dtsearchbox",function(Y) {
+       Y.on("domready",function(){
          var #{id}Cols = [#{columns_conf}],
          #{id}Datasource = new Y.DataSource.Get({source:'#{source_url}'})
                    .plug(Y.Plugin.DataSourceJSONSchema, {
@@ -96,9 +106,11 @@ module ApplicationHelper
              }
          }),
          #{id}Datatable = new Y.DataTable.Base({columnset:#{id}Cols})
-             .plug(Y.Plugin.IrmDTDataSource, {datasource:#{id}Datasource}).plug(Y.Plugin.DataTableSort).plug(Y.Plugin.DataTableColResize).render("##{id}");
-         #{id}Datatable.datasource.load({request:{start:0,count:#{row_perpage}}});
-         Y.mix(Y.irm,{#{id}Datatable:#{id}Datatable});
+             .plug(Y.Plugin.IrmDTDataSource, {datasource:#{id}Datasource}).plug(Y.Plugin.DataTableSort)#{search_str}.render("##{id}");
+         #{id}Datatable.datasource.paginate({start:0,count:#{row_perpage}});
+         #{load_str}
+         Y.irm.setAttribute('#{id}Datatable',#{id}Datatable,'Datatable');
+        });
      });)
     javascript_tag(script)
   end

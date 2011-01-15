@@ -27,8 +27,8 @@ module Irm::SettingHelper
     # 当前页面选中的权限
     # 将controller的index也加入选中列表
     permssions = []
-    permssions << Irm::MenuManager.permission_by_url(params[:controller],params[:action])[:permission_code].downcase if  Irm::MenuManager.permission_by_url(params[:controller],params[:action]||"index")
-    permssions << Irm::MenuManager.permission_by_url(params[:controller],"index")[:permission_code].downcase if  Irm::MenuManager.permission_by_url(params[:controller],"index")
+    permssions << Irm::MenuManager.permission_by_url(@menu_permission[:page_controller],@menu_permission[:page_action])[:permission_code].downcase if  Irm::MenuManager.permission_by_url(@menu_permission[:page_controller],@menu_permission[:page_action]||"index")
+    permssions << Irm::MenuManager.permission_by_url(@menu_permission[:page_controller],"index")[:permission_code].downcase if  Irm::MenuManager.permission_by_url(@menu_permission[:page_controller],"index")
     # 当前页面对应的菜单
     menus = @setting_menus.dup
     #如果菜单菜单中只有一个菜单则返回
@@ -82,9 +82,9 @@ module Irm::SettingHelper
     odd_index.each do |i|
       tr = ""
       e = entries[i]
-      tr << content_tag(:td,("•"+link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]})).html_safe,{:width=>"50%"}) if e
+      tr << content_tag(:td,("• "+link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]})).html_safe,{:width=>"50%"}) if e
       e = entries[i+1]
-      tr << content_tag(:td,("•"+link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]})).html_safe,{:width=>"50%"}) if e
+      tr << content_tag(:td,("• "+link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]})).html_safe,{:width=>"50%"}) if e
       content << content_tag(:tr,tr.html_safe)
     end
     raw content
