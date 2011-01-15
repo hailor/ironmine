@@ -9,6 +9,9 @@
               <td id="topButtonRow" class="pbButton">
                 <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
               </td>
+              <td class="pbHelp">
+                <div id="priorityCodesSearchBox"></div>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -21,14 +24,13 @@
         </div>
         <%= datatable("priority_code",url_for(:action=>"get_data",:format=>"json"),
                   [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"50%"},
-                   {:key=>"company_name",:label=>t(:label_icm_priority_code_company),:sortable=>true},
-                   {:key=>"priority_code",:label=>t(:label_icm_priority_code_priority_code),:sortable=>true},
-                   {:key=>"name",:label=>t(:label_icm_priority_code_name),:sortable=>true},
-                   {:key=>"description",:label=>t(:label_icm_priority_code_description),:sortable=>true},
+                   {:key=>"company_name",:label=>t(:label_icm_priority_code_company),:sortable=>true,:searchable=>true},
+                   {:key=>"priority_code",:label=>t(:label_icm_priority_code_priority_code),:sortable=>true,:searchable=>true},
+                   {:key=>"name",:label=>t(:label_icm_priority_code_name),:sortable=>true,:searchable=>true},
                    {:key=>"low_weight_value",:label=>t(:label_icm_priority_code_low_weight_value),:sortable=>true},
                    {:key=>"high_weight_value",:label=>t(:label_icm_priority_code_high_weight_value),:sortable=>true},
                    {:key=>"status_meaning",:label=>t(:label_irm_script_status_code),:sortable=>true}],
-                   {:row_perpage=>5})%>
+                   {:row_perpage=>5,:search_box=>"priorityCodesSearchBox"})%>
       </div>
     </div>
 </div>

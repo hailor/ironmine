@@ -14,10 +14,8 @@ class Icm::PriorityCode < ActiveRecord::Base
   query_extend
 
 
-  scope :list_all,lambda{
-    joins("LEFT OUTER JOIN #{Irm::LookupValue.view_name} ON  #{Irm::LookupValue.view_name}.lookup_type = 'SYSTEM_STATUS_CODE' AND #{Irm::LookupValue.view_name}.lookup_code = #{table_name}.status_code AND #{Icm::PriorityCodesTl.table_name}.language = #{Irm::LookupValue.view_name}.language").
+  scope :with_company,lambda{
     joins("LEFT OUTER JOIN #{Irm::Company.view_name} ON #{Irm::Company.view_name}.id = #{table_name}.company_id AND #{Icm::PriorityCodesTl.table_name}.language = #{Irm::Company.view_name}.language").
-    select("#{table_name}.*,#{Irm::LookupValue.view_name}.meaning status_meaning,#{Icm::PriorityCodesTl.table_name}.description,#{Icm::PriorityCodesTl.table_name}.name name,#{Irm::Company.view_name}.name company_name").
-    order("company_id,#{Irm::LookupValue.view_name}.id")
+    select("#{Irm::Company.view_name}.name company_name")
   }
 end

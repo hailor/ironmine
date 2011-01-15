@@ -42,7 +42,7 @@
             <tr>
               <td class="labelCol"><label for="impact_range_name"><%=(t :label_icm_impact_range_name)%></label></td>
               <td class="dataCol"><%=f.text_field :name, :required=>true,:id=>"impact_range_name"%></td>
-<td class="labelCol"><div><label for="impact_range_weight_values"><%=(t :label_icm_impact_range_weight_values)%></label></div></td>
+              <td class="labelCol"><div><label for="impact_range_weight_values"><%=(t :label_icm_impact_range_weight_values)%></label></div></td>
               <td class="dataCol"><div><%=f.text_field :weight_values,:required=>true,:id=>"impact_range_weight_values"%></div></td>
             </tr>
             <tr>
@@ -54,8 +54,8 @@
             <tr>
               <td class="labelCol"><label for="impact_range_description"><%=t(:label_icm_impact_range_description)%></label></td>
               <td class="dataCol"><%= f.text_area :description, :rows => 4,:id=>"impact_range_description"%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol empty"><label for="status_code"><%=(t :label_irm_script_status_code)%></label></td>
+              <td class="dataCol empty"><%=f.select :status_code,nullable_collection_options(available_status,:lookup_code,:wrap_meaning,@impact_range.status_code),{},{:id=>"status_code"}%></td>           
             </tr>
         </tbody>
       </table>

@@ -29,7 +29,8 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_icm_priority_code_company)%></label></td>
-              <td class="dataCol"><%=@priority_code.company_name%></td>
+              <td class="dataCol"><%=f.select :company_id,nullable_options_for_select(selectable_companies,@priority_code.company_id),
+                                                    {},{:require=>true}%></td>
               <td class="labelCol"><label><%=(t :label_icm_priority_code_priority_code)%></label></td>
               <td class="dataCol"><%=@priority_code.priority_code%></td>
             </tr>
@@ -47,8 +48,7 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_script_status_code)%></label></td>
-              <td class="dataCol"><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@priority_code.status_code)%></td>
+              <td class="dataCol"><%=f.select :status_code,nullable_collection_options(available_status,:lookup_code,:wrap_meaning,@priority_code.status_code)%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>

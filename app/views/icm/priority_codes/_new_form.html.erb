@@ -33,8 +33,7 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_icm_priority_code_company)%></label></td>
-              <td class="dataCol"><%=f.select :company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                    options_for_select(selectable_companies,@priority_code.company_id),
+              <td class="dataCol"><%=f.select :company_id,nullable_options_for_select(selectable_companies,@priority_code.company_id),
                                                     {},{:require=>true}%></td>
               <td class="labelCol"><label><%=(t :label_icm_priority_code_priority_code)%></label></td>
               <td class="dataCol"><%=f.text_field :priority_code, :required=>true,:irm_uppercase=>true%></td>
