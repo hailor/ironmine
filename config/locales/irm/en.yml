@@ -36,6 +36,8 @@ en:
   button_add_file: Add File
   more: More
   jump: Jump
+  name: Name
+  description: Description
   actionview_instancetag_blank_option: Please Select
   #usual words
   notice_account_invalid_creditentials: User or Password Error

@@ -502,6 +502,17 @@ Ironmine::Application.routes.draw do
     match '/ebshome(/index)(.:format)' => "home#index", :via => :get
   end  
 
+  scope :module => "skm" do
+    #entry_statuses
+    match '/entry_statuses(/index)(.:format)' => "entry_statuses#index", :via => :get
+    match '/entry_statuses/:id/edit(.:format)' => "entry_statuses#edit", :via => :get
+    match '/entry_statuses/:id(.:format)' => "entry_statuses#update", :via => :put
+    match '/entry_statuses/new(.:format)' => "entry_statuses#new", :via => :get
+    match '/entry_statuses/create(.:format)' => "entry_statuses#create", :via => :post
+    match '/entry_statuses/get_data(.:format)' => "entry_statuses#get_data"
+    match '/entry_statuses/:id(.:format)' => "entry_statuses#show", :via => :get    
+  end
+  
   match '/demo(/index)' => 'demo#index'
   themes_for_rails
 end
