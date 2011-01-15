@@ -84,8 +84,8 @@ module Irm::QueryExtend
         end
 
         def status_meaning(status_lookup = "status_lookup",current_table="#{table_name}", column_name="")
-          joins(",irm_lookup_values_vl #{status_lookup}").
-          where("#{status_lookup}.lookup_type='SYSTEM_STATUS_CODE' AND #{status_lookup}.lookup_code = #{current_table}.status_code and #{status_lookup}.language = ?",I18n.locale).
+          joins("JOIN irm_lookup_values_vl #{status_lookup}").
+          where("#{status_lookup}.lookup_type='SYSTEM_STATUS_CODE' AND #{status_lookup}.lookup_code = #{current_table}.status_code AND #{status_lookup}.language = ?",I18n.locale).
           select("#{status_lookup}.meaning #{(column_name + "_" ) unless column_name.blank?}status_meaning")
         end
         

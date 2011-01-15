@@ -70,6 +70,8 @@ zh:
   label_help_about_page: 此页面帮助
   label_detail_info: 详细信息
   label_are_you_sure: 你确定要删除数据吗?
+  display_sequence: 显示顺序
+  default_flag: 默认
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=====================#
   label_lookup_types: 快速编码类型

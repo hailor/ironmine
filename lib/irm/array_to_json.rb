@@ -6,7 +6,7 @@ module Irm::ArrayToJson
     if total > 0
       json << %Q(,"items":[)
       each do |elem|
-        elem.id ||= index(elem)
+        elem.id = index(elem) unless elem.id
         json << %Q({"id":"#{elem.id}",)
         couples = elem.attributes.symbolize_keys
         attributes.each do |atr|

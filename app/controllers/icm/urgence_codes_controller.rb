@@ -9,7 +9,7 @@ class Icm::UrgenceCodesController < ApplicationController
   end
 
   def show
-    @urgence_code = Icm::UrgenceCode.multilingual.list_all(I18n::locale).find(params[:id])
+    @urgence_code = Icm::UrgenceCode.multilingual.with_company.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,7 +27,7 @@ class Icm::UrgenceCodesController < ApplicationController
   end
 
   def edit
-    @urgence_code = Icm::UrgenceCode.multilingual.list_all(I18n::locale).find(params[:id])
+    @urgence_code = Icm::UrgenceCode.multilingual.with_company.find(params[:id])
   end
 
   def create
@@ -82,11 +82,15 @@ class Icm::UrgenceCodesController < ApplicationController
   end
 
   def get_data
-    @urgence_codes = Icm::UrgenceCode.multilingual.list_all(I18n::locale)
-    @urgence_codes,count = paginate(@urgence_codes)
+    urgence_codes_scope = Icm::UrgenceCode.multilingual.with_company.status_meaning
+    urgence_codes_scope = urgence_codes_scope.match_value("#{Irm::Company.view_name}.name",params[:company_name])
+    urgence_codes_scope = urgence_codes_scope.match_value("#{Icm::UrgenceCode.table_name}.urgency_code",params[:urgency_code])
+    urgence_codes_scope = urgence_codes_scope.match_value("#{Icm::UrgenceCodesTl.table_name}.name",params[:name])
+    urgence_codes_scope = urgence_codes_scope.match_value("#{Icm::UrgenceCode.table_name}.default_flag",params[:default_flag])    
+    urgence_codes,count = paginate(urgence_codes_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(@urgence_codes.to_grid_json(['0',:company_name,:name,:urgency_code,
-                                                                     :weight_values,:description,:status_meaning], count)) }
+      format.json  {render :json => to_jsonp(urgence_codes.to_grid_json([:company_name,:name,:urgency_code,
+                                                                     :weight_values,:default_flag,:display_sequence,:status_meaning], count)) }
     end
   end  
 end
