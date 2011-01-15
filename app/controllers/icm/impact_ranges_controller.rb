@@ -6,7 +6,7 @@ class Icm::ImpactRangesController < ApplicationController
   end
 
   def show
-    @impact_range = Icm::ImpactRange.multilingual.find(params[:id])
+    @impact_range = Icm::ImpactRange.multilingual.with_company.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -65,11 +65,18 @@ class Icm::ImpactRangesController < ApplicationController
   end
   
   def get_data
-    impact_ranges_scope = Icm::ImpactRange.multilingual.list_all
+    impact_ranges_scope = Icm::ImpactRange.multilingual.with_company.status_meaning
+    impact_ranges_scope = impact_ranges_scope.match_value("#{Irm::Company.view_name}.name",params[:company_name])
+    impact_ranges_scope = impact_ranges_scope.match_value("#{Icm::ImpactRange.table_name}.impact_code",params[:impact_code])
+    impact_ranges_scope = impact_ranges_scope.match_value("#{Icm::ImpactRangesTl.table_name}.name",params[:name])
+    impact_ranges_scope = impact_ranges_scope.match_value("#{Icm::ImpactRange.table_name}.default_flag",params[:default_flag])            
     impact_ranges,count = paginate(impact_ranges_scope)
 
     respond_to do |format|
-      format.json  {render :json => to_jsonp(impact_ranges.to_grid_json([:company_name,:name,:impact_code,:weight_values], count)) }
+      format.json  {render :json => to_jsonp(impact_ranges.to_grid_json([:company_name,
+                                                                         :name,:impact_code,
+                                                                         :weight_values,:status_meaning,
+                                                                         :default_flag,:display_sequence], count)) }
     end
   end    
 end

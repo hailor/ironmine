@@ -27,7 +27,7 @@ class Icm::UrgenceCodesController < ApplicationController
   end
 
   def edit
-    @urgence_code = Icm::UrgenceCode.multilingual.with_company.find(params[:id])
+    @urgence_code = Icm::UrgenceCode.multilingual.find(params[:id])
   end
 
   def create
