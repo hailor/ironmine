@@ -19,20 +19,26 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <td class="labelCol"><label><%=(t :label_icm_incident_status_company)%></label></td>
-              <td class="dataCol"><%=@incident_status[:company_name]%></td>
+              <td class="labelCol"><label><%=(t :label_icm_incident_status_phase_code)%></label></td>
+              <td class="dataCol"><%=@incident_status[:phase_name]%></td>
               <td class="labelCol"><label><%=(t :label_icm_incident_status_incident_status_code)%></label></td>
-              <td class="dataCol"><%=@incident_status.incident_status_code%></td>
+              <td class="dataCol"><%= @incident_status.incident_status_code%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_icm_incident_status_name)%></label></td>
               <td class="dataCol"><%= @incident_status[:name]%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><%=t(:display_sequence)%></td>
+              <td class="dataCol"><%= @incident_status.display_sequence%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_icm_incident_status_description)%></label></td>
               <td class="dataCol"><%= @incident_status[:description]%></td>
+              <td class="labelCol"><label><%=(t :default_flag)%></label></td>
+              <td class="dataCol"><%= @incident_status.default_flag%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_script_status_code)%></label></td>
+              <td class="dataCol"><%= @incident_status[:status_meaning]%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
