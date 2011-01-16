@@ -101,7 +101,7 @@ module ApplicationHelper
     select_str = ".plug(Y.Plugin.IrmDTSelector,{mode:'multiple'})" if select&&select.eql?("multiple")
     select_str = ".plug(Y.Plugin.IrmDTSelector,{mode:'single'})" if select&&select.eql?("single")
 
-    script = %Q(GY.use("irm","datasource-get", "datasource-jsonschema","dtdatasource","dtsort","dtsearchbox","dtselector",function(Y) {
+    script = %Q(GY.use("irm","datasource-get", "datasource-jsonschema","dtdatasource","dtsort","dtsearchbox","dtselector","dtcolwidth",function(Y) {
        Y.on("domready",function(){
          var #{id}Cols = [#{columns_conf}],
          #{id}Datasource = new Y.DataSource.Get({source:'#{source_url}'})
@@ -112,7 +112,7 @@ module ApplicationHelper
              }
          }),
          #{id}Datatable = new Y.DataTable.Base({columnset:#{id}Cols})
-             .plug(Y.Plugin.IrmDTDataSource, {datasource:#{id}Datasource})#{select_str}.plug(Y.Plugin.IrmDTSort)#{search_str}.render("##{id}");
+             .plug(Y.Plugin.IrmDTDataSource, {datasource:#{id}Datasource})#{select_str}.plug(Y.Plugin.IrmDTSort)#{search_str}.plug(Y.Plugin.IrmDTColWidth).render("##{id}");
          #{id}Datatable.datasource.paginate({start:0,count:#{row_perpage}});
          #{load_str}
          Y.irm.setAttribute('#{id}Datatable',#{id}Datatable,'Datatable');
