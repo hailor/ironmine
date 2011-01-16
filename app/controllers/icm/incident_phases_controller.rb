@@ -67,11 +67,13 @@ class Icm::IncidentPhasesController < ApplicationController
   end
 
   def get_data
-    incident_phases_scope = Icm::IncidentPhase.multilingual.list_all
+    incident_phases_scope = Icm::IncidentPhase.multilingual.status_meaning
+    incident_phases_scope = incident_phases_scope.match_value("#{Icm::IncidentPhase.table_name}.phase_code",params[:phase_code])
+    incident_phases_scope = incident_phases_scope.match_value("#{Icm::IncidentPhasesTl.table_name}.name",params[:name])
     incident_phases,count = paginate(incident_phases_scope)
 
     respond_to do |format|
-      format.json  {render :json => to_jsonp(incident_phases.to_grid_json([:company_name,:name,:phase_code], count)) }
+      format.json  {render :json => to_jsonp(incident_phases.to_grid_json([:name,:phase_code,:display_sequence,:status_meaning], count)) }
     end
   end     
 end
