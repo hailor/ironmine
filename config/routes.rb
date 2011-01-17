@@ -502,6 +502,40 @@ Ironmine::Application.routes.draw do
     match '/ebshome(/index)(.:format)' => "home#index", :via => :get
   end  
 
+  scope :module => "skm" do
+    #entry_statuses
+    match '/entry_statuses(/index)(.:format)' => "entry_statuses#index", :via => :get
+    match '/entry_statuses/:id/edit(.:format)' => "entry_statuses#edit", :via => :get
+    match '/entry_statuses/:id(.:format)' => "entry_statuses#update", :via => :put
+    match '/entry_statuses/new(.:format)' => "entry_statuses#new", :via => :get
+    match '/entry_statuses/create(.:format)' => "entry_statuses#create", :via => :post
+    match '/entry_statuses/get_data(.:format)' => "entry_statuses#get_data"
+    match '/entry_statuses/:id/show(.:format)' => "entry_statuses#show", :via => :get
+    #entry_elements
+    match '/entry_template_elements(/index)(.:format)' => "entry_template_elements#index", :via => :get
+    match '/entry_template_elements/:id/edit(.:format)' => "entry_template_elements#edit", :via => :get
+    match '/entry_template_elements/:id(.:format)' => "entry_template_elements#update", :via => :put
+    match '/entry_template_elements/new(.:format)' => "entry_template_elements#new", :via => :get
+    match '/entry_template_elements/create(.:format)' => "entry_template_elements#create", :via => :post
+    match '/entry_template_elements/get_data(.:format)' => "entry_template_elements#get_data"
+    match '/entry_template_elements/:id/show(.:format)' => "entry_template_elements#show", :via => :get
+    #entry_templates
+    match '/entry_templates(/index)(.:format)' => "entry_templates#index", :via => :get
+    match '/entry_templates/:id/edit(.:format)' => "entry_templates#edit", :via => :get
+    match '/entry_templates/:id(.:format)' => "entry_templates#update", :via => :put
+    match '/entry_templates/new(.:format)' => "entry_templates#new", :via => :get
+    match '/entry_templates/create(.:format)' => "entry_templates#create", :via => :post
+    match '/entry_templates/get_data(.:format)' => "entry_templates#get_data"
+    match '/entry_templates/:id/show(.:format)' => "entry_templates#show", :via => :get
+    match '/entry_templates/:template_id/:element_id/remove_element(.:format)' => "entry_templates#remove_element", :via => :get
+    match '/entry_templates/:template_id/add_elements(.:format)' => "entry_templates#add_elements", :via => :post
+    match '/entry_templates/:template_id/select_elements(.:format)' => "entry_templates#select_elements", :via => :get
+    match '/entry_templates/:template_id/get_owned_elements_data(.:format)' => "entry_templates#get_owned_elements_data", :via => :get
+    match '/entry_templates/:template_id/get_available_elements(.:format)' => "entry_templates#get_available_elements", :via => :get
+    match '/entry_templates/:template_id:element_id/up_element(.:format)' => "entry_templates#up_element", :via => :get
+    match '/entry_templates/:template_id:element_id/down_element_elements(.:format)' => "entry_templates#down_element", :via => :get
+  end
+  
   match '/demo(/index)' => 'demo#index'
   themes_for_rails
 end

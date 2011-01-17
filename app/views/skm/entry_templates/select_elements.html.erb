@@ -1,0 +1,42 @@
+<%= page_title %>
+<% if @template %>
+    <%= form_tag({:action => 'add_elements',:template_id => @template}) do%>
+        <%= hidden_field_tag "return_url", @return_url%>
+        <div class="srch">
+            <div class="pbHeader">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tbody>
+                    <tr>
+                      <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_select_result) %>&nbsp;<%= t(:label_detail_info) %></h2></td>
+                      <td id="topButtonRow1" class="pbButton">
+                        <div class="button"><%= submit_tag t(:save)%></div>
+                        <% if !@return_url.blank? %>
+                          <div class="button"><%= link_to t(:cancel), @return_url%></div>
+                        <% else %>
+                          <div class="button"><%= link_to t(:cancel), {:action => "show",:id=>@template}%></div>
+                        <% end %>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="ep" class="bEditBlock bPageBlock">
+          <div class="pbBody">
+                <div id="available_elements_list" class="datatable" style="width:100%;">
+                  <div id="id" style="display:none">
+                     <%= check_box_tag "skm_entry_template_elements[ids][]","{id}"%>
+                  </div>
+                </div>
+                <%= datatable("available_elements_list",url_for(:action=>"get_available_elements", :template_id=>@template),
+                          [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
+                           {:key=>"entry_template_element_code",:label=>t(:label_skm_entry_template_element_code),:sortable=>true},
+                           {:key=>"name",:label=>t(:name),:sortable=>true},
+                           {:key=>"description",:label=>t(:description),:sortable=>true},
+                           {:key=>"default_rows",:label=>t(:label_skm_entry_template_element_rows),:sortable=>true}
+                           ],
+                           {:row_perpage=>5})%>
+          </div>
+        </div>
+    <% end %>
+<% end %>

@@ -1,0 +1,85 @@
+<%= page_title %>
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_skm_entry_template) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @entry_template}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_skm_entry_template_code)%></label></td>
+              <td class="dataCol"><%= @entry_template.entry_template_code%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :name)%></label></td>
+              <td class="dataCol"><%= @entry_template.name%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t(:description)%></label></td>
+              <td class="dataCol"><div><%= @entry_template.description%></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :active)%></label></td>
+              <td class="dataCol"><%= @entry_template.status_code%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_skm_entry_template_element_list) %></h2></td>
+              <td class="pbButton">
+                <div class="button"><%= link_to t(:add),
+                {:controller => "skm/entry_templates", :action => "select_elements", :template_id => @entry_template}%></div>
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="entry_elements_list" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%= link_to(t(:move_up), {:controller => "skm/entry_templates", :action => "up_element", :element_id => "{id}", :template_id => @entry_template})%>|
+            <%= link_to(t(:move_down), {:controller => "skm/entry_templates", :action => "down_element", :element_id => "{id}", :template_id => @entry_template})%>|
+            <%= link_to(t(:remove),{:controller => "skm/entry_templates", :action => "remove_element", :element_id => "{id}", :template_id => @entry_template}) %>
+          </div>
+        </div>
+        <%= datatable("entry_elements_list",url_for(:controller => "skm/entry_templates", :action=>"get_owned_elements_data", :template_id => @entry_template,:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template"},
+                       {:key=>"required_flag",:label=>t(:label_skm_entry_template_element_required),:sortable=>true},
+                       {:key=>"entry_template_element_code",:label=>t(:label_skm_entry_template_element_code),:sortable=>true},
+                       {:key=>"name",:label=>t(:name),:sortable=>true},
+                       {:key=>"description",:label=>t(:description),:sortable=>true},
+                       {:key=>"default_rows",:label=>t(:label_skm_entry_template_element_rows),:sortable=>true}
+                       ]) %>
+      </div>
+    </div>
+</div>
