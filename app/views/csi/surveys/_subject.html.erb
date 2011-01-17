@@ -1,0 +1,6 @@
+<div class='subject' id="<%= subject.id %>">
+  <div class="question" id="question<%= subject.id %>">
+    <%= render :partial => "/csi/surveys/#{subject.input_type}_field",
+               :locals => {:subject => subject} %>
+  </div>
+</div>

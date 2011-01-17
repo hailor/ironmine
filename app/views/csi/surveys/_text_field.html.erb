@@ -1,10 +1,10 @@
-<div class="field">
-  <%= label_tag field.id,field.name, :class => "q_title" %><%=content_tag(:abbr,'*',:class=> 'required') if field.required %>
+<div class="subject">
+  <%= label_tag subject.id,subject.name, :class => "q_title" %><%=content_tag(:abbr,'*',:class=> 'required') if subject.required %>
 
   <div class="input">
-    <%= text_area_tag "row[f#{field.id}]", nil,:size => "60x8" %>
-    <span id="<%=field.id%>_field" class='error'></span>
+    <%= text_area_tag "row[f#{subject.id}]", nil,:size => "60x8" %>
+    <span id="<%=subject.id%>_subject" class='error'></span>
     <br />
-    <span class="prompt"><%=h field.prompt %></span>
+    <span class="prompt"><%=h subject.prompt %></span>
   </div>
 </div>

@@ -32,4 +32,24 @@ en:
    question: Question Name
    option: Option Name
    label_csi_survey_subject_other: Other
+   label_csi_survey_subject_title: Title
+   label_csi_survey_subject_prompt: Prompt
+   label_csi_survey_subject_input_type: Input Type
+   label_csi_survey_users_short_answer: User Answer
+   text: Text
+   paragraph_text: Paragraph text
+   multi_choice: Multiple choice
+   checkboxes: Checkboxes
+   choose_from_a_list: Choose from a list
+   page_break: Page Break
+   label_csi_survey_subject_seq_num: Subject Seq
+   label_csi_survey_subject_users_long_answer: User Long Answer
+   label_csi_survey_subjects_add_other: Add Other
+   label_csi_survey_subjects_other: Other
+   untitled_form: Untitled form
+   describe_your_form: Describe your form.
+   label_csi_survey_subjects_option_one: "Option #1"
+   label_irm_survey_subject_edit: Edit Survey Subject
+   label_irm_survey_subject_info: Survey Info
+   submit: Submit
    #========================= end   irm regions_controller=======================#

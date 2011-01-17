@@ -1,0 +1,20 @@
+<% if @survey.closed_datetime.blank? || @survey.closed_datetime > Date.today %>
+  <div id='errors' class='error'></div>
+  <%= form_tag({:controller=>"csi/surveys",:action=>"create"}) do %>
+
+    <% @subjects.each do |subject| %>
+      <%= render :partial => '/csi/surveys/subject', :object => subject,
+                 :locals => {:parent => @survey}%>
+    <% end %>
+
+    <%= hidden_field_tag 'page', @page %>
+    <p>
+    <% if @survey.total_page == 1 || @page == @survey.total_page %>
+      <%= submit_tag t(:submit)%>
+    <% else %>
+      <%= submit_tag t(:next) %>
+    <% end %>
+    <% end %>
+<% else %>
+  <%= t(:survey_closed) %>
+<% end %>

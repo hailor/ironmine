@@ -88,5 +88,39 @@ class Csi::SurveysController < ApplicationController
     respond_to do |format|
       format.json {render :json=>to_jsonp(@surveys.to_grid_json(['R',:title,:description,:status_meaning], count))}
     end
+  end 
+
+  def password
+    @survey = Csi::Survey.find(params[:id]) rescue nil
+
+    respond_to do |format|
+      if @survey
+        session[@survey.id] = params[:password] if params[:password]
+        format.html {redirect_to({:action=>"reply"})}
+      else
+        flash[:notice] = "对不起，您访问的表单不存在"
+        format.html { redirect_to root_path}
+      end
+    end
+  end
+
+  def reply
+    @survey = Csi::Survey.find(params[:id]) rescue nil
+
+    respond_to do |format|
+      if @survey && !@survey.password.blank? &&
+          session[@survey.id] != @survey.password
+        format.html { render 'password'}
+      elsif @survey
+        @page = (params[:page] || 1).to_i
+        @page = 1 if @page < 1 || @page > @survey.total_page + 1
+        @subjects = @survey.find_subjects_by_page(@page)
+
+        format.html {  render 'reply'}
+      else
+        flash[:notice] = t(:form_no_exist)
+        format.html { redirect_to root_path}
+      end
+    end
   end
 end

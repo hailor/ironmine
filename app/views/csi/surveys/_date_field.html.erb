@@ -1,9 +1,9 @@
-<%= label_tag field.id,field.name, :class => "q_title" %>
-<%=content_tag(:abbr,'*',:class=> 'required') if field.required %>
+<%= label_tag subject.id,subject.name, :class => "q_title" %>
+<%=content_tag(:abbr,'*',:class=> 'required') if subject.required_flag %>
 
 <div class="input">
-  <%= text_field_tag "row[f#{field.id}]", '', :id => "row_f#{field.id}" %>  
-  <span id="<%=field.id%>_field" class='error'></span>
+  <%= text_field_tag "row[f#{subject.id}]", '', :id => "row_f#{subject.id}" %>
+  <span id="<%=subject.id%>_field" class='error'></span>
   <br />
-  <span class="prompt"><%=h field.prompt %></span>
+  <span class="prompt"><%=h subject.prompt %></span>
 </div>

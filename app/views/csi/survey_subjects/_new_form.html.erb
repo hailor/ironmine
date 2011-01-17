@@ -1,10 +1,12 @@
 <%= page_title %>
+<div id="new_form">
 <%= form_for(@survey_subject,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_csi_survey_new)%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
             <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
@@ -30,11 +32,10 @@
     </div>
     <div class="pbSubsection">
        <div id="id_form">
-           <div id="subject_template" style="display:none;">
-              <%= render :partial => "subject", :locals => 
-                      {:parent => @survey, :subject => @survey_subject} %>
-           </div>
-       </div>
+         <div class="form">
+            <%= render :partial => "subject_form", :locals => {:parent => @survey, :subject => @survey_subject} %>
+         </div>
+       </div>       
     </div>
   </div>
   <div class="pbBottomButtons">
@@ -52,3 +53,12 @@
   </div>
 </div>
 <% end %>
+</div>
+
+<div id="hidden_form">
+  <% ['string', 'text', 'radio', 'check', 'drop'].each do |input| %>
+    <div id="<%= input %>_type" style="display:none">
+         <%= render :partial => "#{input}_form", :locals => {:parent => @survey, :subject => nil} %>
+    </div>
+  <% end %>
+</div>
