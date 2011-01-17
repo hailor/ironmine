@@ -113,7 +113,12 @@ class AddEntryTemplatesMenuAndPermissionData < ActiveRecord::Migration
     skm_menu.menus_tls.build(:language => 'zh', :name => '知识库', :description => "知识库", :source_lang => 'en')
     skm_menu.menus_tls.build(:language => 'en', :name => 'Service Knowledge Manager', :description => 'Service Knowledge Manager', :source_lang => 'en')
     skm_menu.save
-    
+
+    skm_gs_menu = Irm::Menu.new(:menu_code => 'SKM_GENERAL_SETTING_MENU',:not_auto_mult=>true)
+    skm_gs_menu.menus_tls.build(:language => 'zh', :name => '一般设置', :description => "一般设置", :source_lang => 'en')
+    skm_gs_menu.menus_tls.build(:language => 'en', :name => 'General Setting', :description => 'General Setting', :source_lang => 'en')
+    skm_gs_menu.save
+
     skm_menu_entry = Irm::MenuEntry.new(:menu_code=>'IRM_ADMIN_MENU',
                                          :sub_menu_code=>'SKM_SETTING_MENU',
                                          :display_sequence=>60,
@@ -122,7 +127,15 @@ class AddEntryTemplatesMenuAndPermissionData < ActiveRecord::Migration
     skm_menu_entry.menu_entries_tls.build(:language=>'en',:name=>'Service Knowledge Manager',:description=>'Service Knowledge Manager',:source_lang=>'en')
     skm_menu_entry.save
 
-    skm_template_index_page = Irm::MenuEntry.new(:menu_code=>'SKM_SETTING_MENU',
+    skm_gs_menu_entry = Irm::MenuEntry.new(:menu_code=>'SKM_SETTING_MENU',
+                                         :sub_menu_code=>'SKM_GENERAL_SETTING_MENU',
+                                         :display_sequence=>10,
+                                         :not_auto_mult=>true)
+    skm_gs_menu_entry.menu_entries_tls.build(:language=>'zh',:name=>'一般设置',:description=>'一般设置',:source_lang=>'en')
+    skm_gs_menu_entry.menu_entries_tls.build(:language=>'en',:name=>'General Setting',:description=>'General Setting',:source_lang=>'en')
+    skm_gs_menu_entry.save
+
+    skm_template_index_page = Irm::MenuEntry.new(:menu_code=>'SKM_GENERAL_SETTING_MENU',
                                          :permission_code=>'SKM_ENTRY_TEM_INDEX',
                                          :display_sequence=>10,
                                          :not_auto_mult=>true)
@@ -130,7 +143,7 @@ class AddEntryTemplatesMenuAndPermissionData < ActiveRecord::Migration
     skm_template_index_page.menu_entries_tls.build(:language=>'en',:name=>'SKM Entry Templates',:description=>'SKM Entry Templates',:source_lang=>'en')
     skm_template_index_page.save
 
-    skm_status_index_page = Irm::MenuEntry.new(:menu_code=>'SKM_SETTING_MENU',
+    skm_status_index_page = Irm::MenuEntry.new(:menu_code=>'SKM_GENERAL_SETTING_MENU',
                                          :permission_code=>'SKM_ENTRY_STA_INDEX',
                                          :display_sequence=>20,
                                          :not_auto_mult=>true)
@@ -138,7 +151,7 @@ class AddEntryTemplatesMenuAndPermissionData < ActiveRecord::Migration
     skm_status_index_page.menu_entries_tls.build(:language=>'en',:name=>'SKM Entry Statuses',:description=>'SKM Entry Statuses',:source_lang=>'en')
     skm_status_index_page.save
 
-    skm_ele_index_page = Irm::MenuEntry.new(:menu_code=>'SKM_SETTING_MENU',
+    skm_ele_index_page = Irm::MenuEntry.new(:menu_code=>'SKM_GENERAL_SETTING_MENU',
                                          :permission_code=>'SKM_ENTRY_TEM_ELE_INDEX',
                                          :display_sequence=>30,
                                          :not_auto_mult=>true)
