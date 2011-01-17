@@ -25,7 +25,7 @@
           </div>
         </div>
         <%= datatable("permissions_list",url_for(:controller => "irm/permissions", :action=>"get_data",:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
                        {:key=>"product_module_name",:label=>t(:label_irm_permission_product_name),:sortable=>true},
                        {:key=>"permission_code",:label=>t(:label_irm_permission_permission_code),:sortable=>true},
                        {:key=>"name",:label=>t(:label_irm_permission_name),:sortable=>true},
