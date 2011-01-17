@@ -139,23 +139,23 @@ class AddEntryTemplatesMenuAndPermissionData < ActiveRecord::Migration
                                          :permission_code=>'SKM_ENTRY_TEM_INDEX',
                                          :display_sequence=>10,
                                          :not_auto_mult=>true)
-    skm_template_index_page.menu_entries_tls.build(:language=>'zh',:name=>'知识库文章模板',:description=>'知识库文章模板',:source_lang=>'en')
+    skm_template_index_page.menu_entries_tls.build(:language=>'zh',:name=>'文章模板',:description=>'文章模板',:source_lang=>'en')
     skm_template_index_page.menu_entries_tls.build(:language=>'en',:name=>'SKM Entry Templates',:description=>'SKM Entry Templates',:source_lang=>'en')
     skm_template_index_page.save
 
     skm_status_index_page = Irm::MenuEntry.new(:menu_code=>'SKM_GENERAL_SETTING_MENU',
                                          :permission_code=>'SKM_ENTRY_STA_INDEX',
-                                         :display_sequence=>20,
+                                         :display_sequence=>30,
                                          :not_auto_mult=>true)
-    skm_status_index_page.menu_entries_tls.build(:language=>'zh',:name=>'知识库文章状态',:description=>'知识库文章状态',:source_lang=>'en')
+    skm_status_index_page.menu_entries_tls.build(:language=>'zh',:name=>'文章状态',:description=>'文章状态',:source_lang=>'en')
     skm_status_index_page.menu_entries_tls.build(:language=>'en',:name=>'SKM Entry Statuses',:description=>'SKM Entry Statuses',:source_lang=>'en')
     skm_status_index_page.save
 
     skm_ele_index_page = Irm::MenuEntry.new(:menu_code=>'SKM_GENERAL_SETTING_MENU',
                                          :permission_code=>'SKM_ENTRY_TEM_ELE_INDEX',
-                                         :display_sequence=>30,
+                                         :display_sequence=>20,
                                          :not_auto_mult=>true)
-    skm_ele_index_page.menu_entries_tls.build(:language=>'zh',:name=>'知识库模板元素',:description=>'知识库模板元素',:source_lang=>'en')
+    skm_ele_index_page.menu_entries_tls.build(:language=>'zh',:name=>'模板元素',:description=>'模板元素',:source_lang=>'en')
     skm_ele_index_page.menu_entries_tls.build(:language=>'en',:name=>'SKM Entry Template Elements',:description=>'SKM Entry Template Elements',:source_lang=>'en')
     skm_ele_index_page.save       
   end
