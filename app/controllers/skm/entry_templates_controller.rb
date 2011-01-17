@@ -70,7 +70,11 @@ class Skm::EntryTemplatesController < ApplicationController
   def add_elements
     return_url=params[:return_url]
     params[:skm_entry_template_elements][:ids].each do |p|
-      Skm::EntryTemplateDetail.create({:entry_template_id => params[:template_id], :entry_template_element_id => p})
+      element = Skm::EntryTemplateElement.find(p)
+      Skm::EntryTemplateDetail.create({:entry_template_id => params[:template_id],
+                                       :entry_template_element_id => p,
+                                       :default_rows => element.default_rows,
+                                       :line_num => Skm::EntryTemplateDetail.max_line_num(params[:template_id]) + 1})
     end
 
     flash[:notice] = t(:successfully_updated)
@@ -113,5 +117,35 @@ class Skm::EntryTemplatesController < ApplicationController
   def select_elements
     @return_url= params[:return_url] || request.env['HTTP_REFERER']
     @template = Skm::EntryTemplate.find(params[:template_id])  
+  end
+
+  def up_element
+    return_url=params[:return_url]        
+    detail = Skm::EntryTemplateDetail.where(:entry_template_id => params[:template_id], :entry_template_element_id => params[:element_id]).first
+    pre_detail = detail.pre_detail
+    pre_line_num = pre_detail.line_num
+    cur_line_num = detail.line_num
+    detail.update_attribute(:line_num, pre_line_num)
+    pre_detail.update_attribute(:line_num, cur_line_num)
+    if return_url.blank?
+      redirect_to({:action=>"show", :id=> params[:template_id]})
+    else
+      redirect_to(return_url)
+    end        
+  end
+
+  def down_element
+    return_url=params[:return_url]    
+    detail = Skm::EntryTemplateDetail.where(:entry_template_id => params[:template_id], :entry_template_element_id => params[:element_id]).first
+    next_detail = detail.next_detail
+    next_line_num = next_detail.line_num
+    cur_line_num = detail.line_num
+    detail.update_attribute(:line_num, next_line_num)
+    next_detail.update_attribute(:line_num, cur_line_num)
+    if return_url.blank?
+      redirect_to({:action=>"show", :id=> params[:template_id]})
+    else
+      redirect_to(return_url)
+    end        
   end
 end

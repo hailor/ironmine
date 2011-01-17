@@ -67,6 +67,8 @@
       <div class="pbBody">
         <div id="entry_elements_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
+            <%= link_to(t(:move_up), {:controller => "skm/entry_templates", :action => "up_element", :element_id => "{id}", :template_id => @entry_template})%>|
+            <%= link_to(t(:move_down), {:controller => "skm/entry_templates", :action => "down_element", :element_id => "{id}", :template_id => @entry_template})%>|
             <%= link_to(t(:remove),{:controller => "skm/entry_templates", :action => "remove_element", :element_id => "{id}", :template_id => @entry_template}) %>
           </div>
         </div>

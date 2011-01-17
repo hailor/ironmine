@@ -532,6 +532,8 @@ Ironmine::Application.routes.draw do
     match '/entry_templates/:template_id/select_elements(.:format)' => "entry_templates#select_elements", :via => :get
     match '/entry_templates/:template_id/get_owned_elements_data(.:format)' => "entry_templates#get_owned_elements_data", :via => :get
     match '/entry_templates/:template_id/get_available_elements(.:format)' => "entry_templates#get_available_elements", :via => :get
+    match '/entry_templates/:template_id:element_id/up_element(.:format)' => "entry_templates#up_element", :via => :get
+    match '/entry_templates/:template_id:element_id/down_element_elements(.:format)' => "entry_templates#down_element", :via => :get
   end
   
   match '/demo(/index)' => 'demo#index'

@@ -10,7 +10,8 @@ class Skm::EntryTemplateElement < ActiveRecord::Base
     select("#{table_name}.*, et.required_flag required_flag").
     joins(",#{Skm::EntryTemplateDetail.table_name} et").
     where("et.entry_template_id = ?", template_id).
-    where("et.entry_template_element_id = #{table_name}.id")
+    where("et.entry_template_element_id = #{table_name}.id").
+    order("et.line_num ASC")
   }
 
   scope :without_template, lambda{|template_id|
