@@ -263,3 +263,20 @@ div.srch .pbTitle {
 }
 div.srch table {border-spacing:0;width:100%;}
 /*************************************************************************************/
+.bPageBlock .noLineShow .detailList tr td, .bPageBlock .noLineShow .detailList tr th, .hoverDetail .bPageBlock .noLineShow .detailList tr td, .hoverDetail .bPageBlock .noLineShow .detailList tr th {
+    border-bottom:0;
+}
+/********* tab color border *******************/
+.lightBlueBorder .tertiaryPalette {
+    background-color:#fff !important;
+    border-color:#CFEEF8 !important;
+}
+
+
+.lightBlue .bPageTitle .secondaryPalette {
+    -moz-border-radius:4px 4px 4px 4px;
+    -webkit-border-radius: 4px;
+    background-color:#CFEEF8;
+    border-color:#CFEEF8;
+}
+.lightBlue .bPageTitle .secondaryPalette .title {padding:5px 4px; font-weight: bold; color: #fff;}
