@@ -20,8 +20,12 @@ en:
    label_csi_survey_edit: Edit Survey
    label_csi_survey_show: Survey
    label_csi_survey_list: Survey List
+   label_csi_survey_closed: Survey Closed
+   label_csi_survey_required_input: Required Input
+   reply: Preview
    #========================= end   irm regions_controller=======================#
    #========================= start irm regions_controller=======================#
+   label_csi_survey_subject: Subject
    label_csi_survey_subject_add_subject: New Subject
    label_csi_survey_subject_info: Survey Subject Info
    duplicate: Duplicate

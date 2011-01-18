@@ -9,6 +9,7 @@ class Csi::SubjectOption < ActiveRecord::Base
                      subject_id,option_type)
   }
 
+
   def self.delete_by_subject(subject_id)
     delete_all :subject_id=>subject_id
   end

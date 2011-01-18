@@ -46,13 +46,21 @@ class Csi::SurveySubjectsController < ApplicationController
   def create
     @survey_subject = Csi::SurveySubject.new(params[:csi_survey_subject])
     @subject_options= params[:options]
+    @commit = params[:commit]
 
     respond_to do |format|
       if @survey_subject.save
-        @subject_options.each do |option|
-           @survey_subject.subject_options.create({:value=>option})
+        if !@subject_options.blank?
+           @subject_options.each do |option|
+              @survey_subject.subject_options.create({:value=>option})
+           end
+        end        
+        if @commit == t(:save_and_new)
+          format.html { redirect_to({:action=>"new",:survey_id=>@survey_subject.survey_id},
+                                    :notice => t(:successfully_created)) }
+        else
+          format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_created)) }
         end
-        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @survey_subject, :status => :created, :location => @survey_subject }
       else
         format.html { render :action => "new" }

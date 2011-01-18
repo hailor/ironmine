@@ -123,4 +123,41 @@ class Csi::SurveysController < ApplicationController
       end
     end
   end
+
+  def create_result
+    puts '1111111111111'+params[:result].blank?.inspect
+    @survey_results = params[:result]
+    if !@survey_results.blank?
+       puts '22222222222222222222222222'
+       @survey_results.each do |survey_result|
+             puts '0000000000000'+survey_result.inspect
+             subject_id = survey_result[0]
+             results = survey_result[1]
+             if results.is_a?(Array)
+                if results.include?('_other')
+                  results.delete('_other')
+                  other_result=results.detect {|c| c.is_a?(Hash)}
+                  Csi::SurveyResult.create({:subject_id=>subject_id,
+                                            :subject_result=>other_result['other'],
+                                            :option_type=>"other"})
+                end
+                results.each do |result|
+                  if !result.is_a?(Hash)
+                     Csi::SurveyResult.create({:subject_id=>subject_id,
+                                               :subject_result=>result,
+                                               :option_type=>"normal"})
+                  end
+                end
+             else
+                Csi::SurveyResult.create({:subject_id=>subject_id,
+                                          :subject_result=>results})
+             end
+       end
+    end
+
+    respond_to do |format|
+        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_created)) }
+        format.xml  { render :xml => @survey, :status => :created, :location => @survey }
+    end
+  end
 end

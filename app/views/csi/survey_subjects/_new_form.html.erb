@@ -9,6 +9,7 @@
           <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_csi_survey_new)%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= f.submit t(:save_and_new)%></div>
             <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
           </td>
         </tr>
@@ -45,7 +46,9 @@
           <td class="pbTitle"></td>
           <td id="bottomButtonRow" class="pbButtonb">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+            <div class="button"><%= f.submit t(:save_and_new)%></div>
+            <div class="button"><%= link_to t(:cancel), {:controller=>"csi/surveys",
+                                                         :action => "show",:id=>@survey_id}%></div>
           </td>
         </tr>
       </tbody>

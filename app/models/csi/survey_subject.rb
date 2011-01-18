@@ -10,7 +10,11 @@ class Csi::SurveySubject < ActiveRecord::Base
               ['page_break', 'page']]
 
 
-  
+
+  scope :query_by_subject_id,lambda{|subject_id|
+                        select("#{table_name}.required_flag").
+                        where(:id=>subject_id)
+  }
 
 
 end

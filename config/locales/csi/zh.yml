@@ -20,8 +20,12 @@ zh:
    label_csi_survey_edit: 编辑调查问卷
    label_csi_survey_show: 调查问卷
    label_csi_survey_list: 调查问卷列表
+   label_csi_survey_closed: 调查问卷已关闭
+   label_csi_survey_required_input: 必答题
+   reply: 预览
    #========================= end   irm regions_controller=======================#
    #========================= start irm regions_controller=======================#
+   label_csi_survey_subject: 题目
    label_csi_survey_subject_add_subject: 新问题
    label_csi_survey_subject_info: 调查问卷题目详细信息
    duplicate: 复制

@@ -89,7 +89,7 @@
 
     <div id="survey_subject" class="datatable" style="width:100%;">
           <div id="id" style="display:none">
-            <%= link_to(t(:add),{:action=>"new"}) %> %>
+            <%= link_to(t(:add),{:controller=>"csi/survey_subjects",:action=>"new",:survey_id=>"{id}"})%>
           </div>
     </div>
         <%= datatable("survey_subject",url_for(:action=>"get_data",:format=>"json"),

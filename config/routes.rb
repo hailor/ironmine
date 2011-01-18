@@ -509,10 +509,10 @@ Ironmine::Application.routes.draw do
     match '/surveys/:id/edit(.:format)' => "surveys#edit", :via => :get
     match '/surveys/:id(.:format)' => "surveys#update", :via => :put
     match '/surveys/new(.:format)' => "surveys#new", :via => :get
-
     match '/surveys/reply/:id(.:format)' => "surveys#reply", :via => :get
     match '/surveys/create(.:format)' => "surveys#create", :via => :post
     match '/surveys/password'=> "surveys#password", :via => :post
+    match '/surveys/create_result' => "surveys#create_result", :via => :post
     match '/surveys/:id(.:format)' => "surveys#show", :via => :get
     #survey_subjects
     match '/survey_subjects(/index)(.:format)' => "survey_subjects#index", :via => :get
