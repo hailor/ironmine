@@ -20,15 +20,21 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_icm_impact_range_company)%></label></td>
-              <td class="dataCol"><%= Irm::Company.multilingual.find(@impact_range.company_id).name%></td>
-              <td class="labelCol"><label><%=(t :label_icm_impact_range_weight_values)%></label></td>
-              <td class="dataCol"><div><%= @impact_range.weight_values%></div></td>
+              <td class="dataCol"><%= @impact_range[:company_name]%></td>
+              <td class="labelCol"><label><%=(t :label_icm_impact_range_impact_code)%></label></td>
+              <td class="dataCol"><%= @impact_range.impact_code%></td>              
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_icm_impact_range_name)%></label></td>
               <td class="dataCol"><%= @impact_range[:name]%></td>
-              <td class="labelCol"><label><%=(t :label_icm_impact_range_impact_code)%></label></td>
-              <td class="dataCol"><%= @impact_range.impact_code%></td>
+              <td class="labelCol"><label><%=(t :label_icm_impact_range_weight_values)%></label></td>
+              <td class="dataCol"><div><%= @impact_range.weight_values%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=(t :display_sequence)%></label></td>
+              <td class="dataCol"><%= @impact_range[:display_sequence]%></td>
+              <td class="labelCol"><label ><%=(t :default_flag)%></label></td>
+              <td class="dataCol"><%= @impact_range[:default_flag]%></td>
             </tr>
             <tr>
               <td class="labelCol"><%=t(:label_icm_impact_range_description)%></td>

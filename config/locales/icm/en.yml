@@ -79,7 +79,7 @@ en:
   label_icm_incident_status_edit: Edit incident status
   label_icm_incident_status_name: Name
   label_icm_incident_status_incident_status_code: Code
-  label_icm_incident_status_company: Company
+  label_icm_incident_status_phase_code: Incident phase
   label_icm_incident_status_new: New incident status
   label_icm_incident_status_description: Description
   label_icm_incident_status_info: Incident Status Info

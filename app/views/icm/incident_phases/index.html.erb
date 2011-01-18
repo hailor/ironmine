@@ -10,10 +10,7 @@
                 <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
               </td>
               <td class="pbHelp">
-                <select title="显示所选内容" name="hotlist_mode" id="hotlist_mode"><option value="2">最近创建</option>
-                <option value="1">最近修改</option>
-                <option selected="selected" value="3">最近查看</option>
-                </select>
+                <div id="incidentPhasesSearchBox"></div>
               </td>
             </tr>
           </tbody>
@@ -27,10 +24,11 @@
         </div>
         <%= datatable("pizza",url_for(:action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
-                       {:key=>"company_name",:label=>t(:label_icm_incident_phase_company),:sortable=>true},
-                       {:key=>"name",:label=>t(:label_icm_incident_phase_name),:sortable=>true},
-                       {:key=>"phase_code",:label=>t(:label_icm_incident_phase_phase_code),:sortable=>true}
-                       ])%>
+                       {:key=>"name",:label=>t(:label_icm_incident_phase_name),:sortable=>true,:searchable=>true},
+                       {:key=>"phase_code",:label=>t(:label_icm_incident_phase_phase_code),:sortable=>true,:searchable=>true},
+                       {:key=>"display_sequence",:label=>t(:display_sequence),:sortable=>true},
+                       {:key=>"status_meaning",:label=>t(:label_irm_script_status_code),:sortable=>true}
+                       ],:search_box=>"incidentPhasesSearchBox")%>
       </div>
     </div>
 </div>

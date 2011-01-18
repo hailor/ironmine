@@ -78,7 +78,7 @@ zh:
   label_icm_incident_status_edit: 编辑事故单状态
   label_icm_incident_status_name: 名称
   label_icm_incident_status_incident_status_code: 简称
-  label_icm_incident_status_company: 公司
+  label_icm_incident_status_phase_code: 阶段
   label_icm_incident_status_new: 新建事故单状态
   label_icm_incident_status_description: 描述
   label_icm_incident_status_info: 事故单状态信息

@@ -36,6 +36,8 @@ en:
   button_add_file: Add File
   more: More
   jump: Jump
+  name: Name
+  description: Description
   actionview_instancetag_blank_option: Please Select
   #usual words
   notice_account_invalid_creditentials: User or Password Error
@@ -58,6 +60,8 @@ en:
   error_invalid_data: Error：Invalid Data。
   check_error_msg_and_fix: Please check all error to correct data。
   label_are_you_sure: Are you sure?
+  display_sequence: Display Sequence
+  default_flag: As Default
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type

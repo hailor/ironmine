@@ -12,7 +12,19 @@ var yuiConfig = {
             fullpath:"/javascripts/irm/datatable/dtdatasource.js",
             requires: ["datatable-datasource"]
         },
+        dtcolwidth:{
+            fullpath:"/javascripts/irm/datatable/dtcolwidth.js",
+            requires: ["datatable"]
+        },
+        dtsort:{
+            fullpath:"/javascripts/irm/datatable/dtsort.js",
+            requires: ['datatable']
+        },
         dtsearchbox:{
+            fullpath:"/javascripts/irm/datatable/dtselector.js",
+            requires: []
+        },
+        dtselector:{
             fullpath:"/javascripts/irm/datatable/dtsearchbox.js",
             requires: []
         },

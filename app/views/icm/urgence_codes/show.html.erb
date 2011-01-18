@@ -31,6 +31,12 @@
               <td class="dataCol"><%= @urgence_code[:weight_values]%></td>
             </tr>
             <tr>
+              <td class="labelCol"><label ><%=(t :display_sequence)%></label></td>
+              <td class="dataCol"><%= @urgence_code[:display_sequence]%></td>
+              <td class="labelCol"><label ><%=(t :default_flag)%></label></td>
+              <td class="dataCol"><%= @urgence_code[:default_flag]%></td>
+            </tr>
+            <tr>
               <td class="labelCol"><label><%=(t :label_icm_urgence_code_description)%></label></td>
               <td class="dataCol"><%= @urgence_code[:description]%></td>
               <td class="labelCol empty">&nbsp;</td>

@@ -70,6 +70,8 @@ module ApplicationHelper
   def datatable(id,source_url,columns,options={})
     row_perpage = options[:row_perpage]||20
     search_box = options[:search_box]
+    select = options[:select]
+    columns.insert(0,{:key=>"dt_selector",:width=>"36px"}) if select&&(select.eql?("multiple")||select.eql?("single"))
     columns_conf = ""
     data_fields = ""
     columns.each do |c|
@@ -95,7 +97,11 @@ module ApplicationHelper
     search_str = ""
     search_str = ".plug(Y.Plugin.IrmDTSearchBox,{searchDom:'#{search_box}'})" if search_box
 
-    script = %Q(GY.use("irm","datasource-get", "datasource-jsonschema","dtdatasource","datatable-sort","dtsearchbox",function(Y) {
+    select_str = ""
+    select_str = ".plug(Y.Plugin.IrmDTSelector,{mode:'multiple'})" if select&&select.eql?("multiple")
+    select_str = ".plug(Y.Plugin.IrmDTSelector,{mode:'single'})" if select&&select.eql?("single")
+
+    script = %Q(GY.use("irm","datasource-get", "datasource-jsonschema","dtdatasource","dtsort","dtsearchbox","dtselector","dtcolwidth",function(Y) {
        Y.on("domready",function(){
          var #{id}Cols = [#{columns_conf}],
          #{id}Datasource = new Y.DataSource.Get({source:'#{source_url}'})
@@ -106,7 +112,7 @@ module ApplicationHelper
              }
          }),
          #{id}Datatable = new Y.DataTable.Base({columnset:#{id}Cols})
-             .plug(Y.Plugin.IrmDTDataSource, {datasource:#{id}Datasource}).plug(Y.Plugin.DataTableSort)#{search_str}.render("##{id}");
+             .plug(Y.Plugin.IrmDTDataSource, {datasource:#{id}Datasource})#{select_str}.plug(Y.Plugin.IrmDTSort)#{search_str}.plug(Y.Plugin.IrmDTColWidth).render("##{id}");
          #{id}Datatable.datasource.paginate({start:0,count:#{row_perpage}});
          #{load_str}
          Y.irm.setAttribute('#{id}Datatable',#{id}Datatable,'Datatable');

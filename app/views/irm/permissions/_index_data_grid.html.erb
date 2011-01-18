@@ -21,17 +21,34 @@
             <%= link_to(t(:edit),{:controller => "irm/permissions", :action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:controller => "irm/permissions", :action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
+        <div id="paging">
+
+        </div>
         <%= datatable("permissions_list",url_for(:controller => "irm/permissions", :action=>"get_data",:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
                        {:key=>"product_module_name",:label=>t(:label_irm_permission_product_name),:sortable=>true},
                        {:key=>"permission_code",:label=>t(:label_irm_permission_permission_code),:sortable=>true,:searchable=>true},
                        {:key=>"name",:label=>t(:label_irm_permission_name),:sortable=>true,:searchable=>true},
                        {:key=>"page_controller",:label=>t(:label_irm_permission_page_controller),:sortable=>true,:searchable=>true},
                        {:key=>"page_action",:label=>t(:label_irm_permission_page_action),:sortable=>true},
-                       {:key=>"status_meaning",:label=>t(:label_irm_permission_status_code),:sortable=>true}],{:not_load=>true,:search_box=>"permissionsSearchBox"})%>
+                       {:key=>"status_meaning",:label=>t(:label_irm_permission_status_code),:sortable=>true}],
+                       {:not_load=>true,:search_box=>"permissionsSearchBox",:select=>"multiple"})%>
       </div>
     </div>
 </div>
 <script type="text/javascript">
+    GY.use('yui2-paginator', function(Y) {
+      var YAHOO = Y.YUI2;
+      var paginator = new YAHOO.widget.Paginator({
+          rowsPerPage : 10,
+          totalRecords : 1000,
+          containers : 'paging'
+      });
+      paginator.render();
+      var paginate = function(state){
+        paginator.setState(state);
+      };
+      paginator.subscribe('changeRequest', paginate);
+  });
 
 </script>

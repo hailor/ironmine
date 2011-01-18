@@ -62,7 +62,7 @@ module Irm
         end
         
         permissions.each do |p|
-          permission_data={:id=>p.id,
+          permission_data={:pid=>p.id,
                            :permission_code=>p.permission_code,
                            :permission_type => p.permission_type,
                            :page_controller=>p.page_controller,

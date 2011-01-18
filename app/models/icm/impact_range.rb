@@ -14,9 +14,9 @@ class Icm::ImpactRange < ActiveRecord::Base
   query_extend
 
 
-  scope :list_all,lambda{
+  scope :with_company,lambda{
     joins("LEFT OUTER JOIN #{Irm::Company.view_name} ON #{Irm::Company.view_name}.id = #{table_name}.company_id AND #{Icm::ImpactRangesTl.table_name}.language = #{Irm::Company.view_name}.language").
-    select("#{table_name}.*,#{Icm::ImpactRangesTl.table_name}.name,#{Icm::ImpactRangesTl.table_name}.description,#{Irm::Company.view_name}.name company_name")
+    select("#{Irm::Company.view_name}.name company_name")
   }
   
 end
