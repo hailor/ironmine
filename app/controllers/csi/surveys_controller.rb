@@ -98,7 +98,7 @@ class Csi::SurveysController < ApplicationController
         session[@survey.id] = params[:password] if params[:password]
         format.html {redirect_to({:action=>"reply"})}
       else
-        flash[:notice] = "对不起，您访问的表单不存在"
+        flash[:notice] = t(:label_csi_survey_no_form)
         format.html { redirect_to root_path}
       end
     end
@@ -125,12 +125,9 @@ class Csi::SurveysController < ApplicationController
   end
 
   def create_result
-    puts '1111111111111'+params[:result].blank?.inspect
     @survey_results = params[:result]
     if !@survey_results.blank?
-       puts '22222222222222222222222222'
        @survey_results.each do |survey_result|
-             puts '0000000000000'+survey_result.inspect
              subject_id = survey_result[0]
              results = survey_result[1]
              if results.is_a?(Array)

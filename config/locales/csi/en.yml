@@ -23,6 +23,7 @@ en:
    label_csi_survey_closed: Survey Closed
    label_csi_survey_required_input: Required Input
    reply: Preview
+   label_csi_survey_no_form: No Form
    #========================= end   irm regions_controller=======================#
    #========================= start irm regions_controller=======================#
    label_csi_survey_subject: Subject

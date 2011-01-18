@@ -23,6 +23,7 @@ zh:
    label_csi_survey_closed: 调查问卷已关闭
    label_csi_survey_required_input: 必答题
    reply: 预览
+   label_csi_survey_no_form: 没有这个调查问卷
    #========================= end   irm regions_controller=======================#
    #========================= start irm regions_controller=======================#
    label_csi_survey_subject: 题目
