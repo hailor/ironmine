@@ -86,20 +86,20 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <td class="labelCol"><%=f.check_box :email_notify%></td>
-              <td class="dataCol"><label><%=(t :label_csi_survey_email_notify)%></label></td>
+              <td class="labelCol"><label><%=(t :label_csi_survey_password)%></label></td>
+              <td class="dataCol"><%= f.text_field :password %></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
-              <td class="labelCol"><%=f.check_box :publish_response%></td>
-              <td class="dataCol"><label><%=(t :label_csi_survey_publish_response)%></label></td>
+              <td class="labelCol"><label><%=(t :label_csi_survey_closed_datetime)%></label></td>
+              <td class="dataCol"><%= f.text_field :closed_datetime,:id=>"id_closed_datatime"%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
-              <td class="labelCol"><%=f.check_box :comment_flag%></td>
-              <td class="dataCol"><label><%=(t :label_csi_survey_comment_flag)%></label></td>
+              <td class="labelCol"><%=f.check_box :same_ip_allow_flag%></td>
+              <td class="dataCol"><label><%=(t :label_csi_survey_same_ip_allow_flag)%></label></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
