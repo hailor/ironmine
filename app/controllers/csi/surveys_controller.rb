@@ -1,5 +1,5 @@
 class Csi::SurveysController < ApplicationController
-  layout "setting" 
+  #layout "setting" 
   # GET /surveys
   # GET /surveys.xml
   def index
@@ -99,7 +99,7 @@ class Csi::SurveysController < ApplicationController
         format.html {redirect_to({:action=>"reply"})}
       else
         flash[:notice] = t(:label_csi_survey_no_form)
-        format.html { redirect_to root_path}
+        format.html { redirect_to({:action=>"index"})}
       end
     end
   end
@@ -115,17 +115,18 @@ class Csi::SurveysController < ApplicationController
         @page = (params[:page] || 1).to_i
         @page = 1 if @page < 1 || @page > @survey.total_page + 1
         @subjects = @survey.find_subjects_by_page(@page)
-
         format.html {  render 'reply'}
       else
-        flash[:notice] = t(:form_no_exist)
-        format.html { redirect_to root_path}
+        flash[:notice] = t(:label_csi_survey_no_form)
+        format.html { redirect_to({:action=>"index"})}
       end
     end
   end
 
   def create_result
     @survey_results = params[:result]
+    @survey_id = params[:survey_id]
+    @thank_message = Csi::Survey.find(@survey_id).thanks_message
     if !@survey_results.blank?
        @survey_results.each do |survey_result|
              subject_id = survey_result[0]
@@ -151,9 +152,10 @@ class Csi::SurveysController < ApplicationController
              end
        end
     end
+    flash[:notice] = @thank_message.to_s
 
     respond_to do |format|
-        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_created)) }
+        format.html { redirect_to({:action=>"index"}, :notice => @thank_message) }
         format.xml  { render :xml => @survey, :status => :created, :location => @survey }
     end
   end

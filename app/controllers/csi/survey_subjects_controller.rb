@@ -90,16 +90,4 @@ class Csi::SurveySubjectsController < ApplicationController
       end
     end
   end
-
-  # DELETE /survey_subjects/1
-  # DELETE /survey_subjects/1.xml
-  def destroy
-    @survey_subject = Csi::SurveySubject.find(params[:id])
-    @survey_subject.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(survey_subjects_url) }
-      format.xml  { head :ok }
-    end
-  end
 end
