@@ -84,3 +84,35 @@ zh:
   label_icm_incident_status_info: 事故单状态信息
   label_icm_incident_status_show: 事故单状态
   #========================= end icm incident_statuses_controller=======================#
+  #=========================    icm incident_requests_controller=======================#
+  label_icm_incident_request_list: 事故单列表
+  label_icm_incident_request_new: 新建事故单
+  label_icm_incident_request_service_code: 服务
+  label_icm_incident_requset_base_info: 基本信息
+  label_icm_incident_request_title: 标题
+  label_icm_incident_request_summary: 信息
+  label_icm_incident_requset_addition_info: 附加信息
+  label_icm_incident_request_requested_by: 客户
+  label_icm_incident_request_contact: 联系人(电话)
+  label_icm_incident_request_urgence_code: 紧急度
+  label_icm_incident_request_impact_range_code: 影响度
+  label_icm_incident_request_support_group: 支持组
+  label_icm_incident_request_support_person: 支持人员
+  label_icm_incident_request_request_type_code: 请求类型
+  label_icm_incident_request_incident_status_code: 状态
+  label_icm_incident_request_report_source_code: 来源类型
+  label_icm_incident_request_request_number: 事故单号
+  label_icm_incident_request_contact_number: 联系电话
+  label_icm_incident_request_priority: 优先级
+  label_incident_request: 事故单
+  label_icm_incident_request_submitted_by: 提交人
+  label_icm_incident_request_incident_phase_code: 阶段
+  label_icm_incident_request_submitted_date: 提交日期    
+  #========================= end icm incident_requests_controller=======================#
+  #=========================    icm incident_journals_controller=======================#
+  label_icm_incident_reply_support_group_id: 转交组
+  label_icm_incident_reply_support_person_id: 转交人
+  label_icm_incident_reply_incident_status_code: 新状态
+  label_icm_incident_journal_list: 事故单历史
+  label_icm_incident_journal_new: 回复
+  #========================= end icm incident_journals_controller=======================#

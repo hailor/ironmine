@@ -87,4 +87,35 @@ en:
   label_irm_incident_status_list: List Incident Status
   label_icm_incident_status_show: Incident Status
   #========================= end icm incident_statuses_controller=======================#
-
+  #=========================    icm incident_requests_controller=======================#
+  label_icm_incident_request_list: Incident request list
+  label_icm_incident_request_new: New incident request
+  label_icm_incident_request_service_code: Service
+  label_icm_incident_requset_base_info: Base information
+  label_icm_incident_request_title: Title
+  label_icm_incident_request_summary: Summary
+  label_icm_incident_requset_addition_info: Addition information
+  label_icm_incident_request_requested_by: Customer
+  label_icm_incident_request_contact: Contact(phone)
+  label_icm_incident_request_urgence_code: Urgence
+  label_icm_incident_request_impact_range_code: Impact range
+  label_icm_incident_request_support_group: Support group
+  label_icm_incident_request_support_person: Supporter
+  label_icm_incident_request_request_type_code: Request type
+  label_icm_incident_request_incident_status_code: Status
+  label_icm_incident_request_report_source_code: Report source
+  label_icm_incident_request_request_number: Serial number
+  label_icm_incident_request_contact_number: Contact number
+  label_icm_incident_request_priority: Priority
+  label_incident_request: Incident request
+  label_icm_incident_request_submitted_by: Submit by
+  label_icm_incident_request_incident_phase_code: Phase
+  label_icm_incident_request_submitted_date: Submit date
+  #========================= end iicm incident_requests_controller=======================#
+  #=========================    icm incident_journals_controller=======================#
+  label_icm_incident_reply_support_group_id: Referred group
+  label_icm_incident_reply_support_person_id: Referred person
+  label_icm_incident_reply_incident_status_code: New Incident Status
+  label_icm_incident_journal_list: Request histories
+  label_icm_incident_journal_new: Reply
+  #========================= end icm incident_journals_controller=======================#
