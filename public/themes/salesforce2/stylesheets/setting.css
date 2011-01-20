@@ -514,6 +514,8 @@ body .bPageBlock, body #bodyCell .bResource .secondaryPalette, body .secondaryPa
     border-left:1px solid #EAEAEA;
     border-right:1px solid #EAEAEA;
 }
+
+
 .bEditBlock .pbHeader > table, .apexp .bPageBlock.apexDefaultPageBlock .pbHeader > table, #ep.bLayoutBlock .pbHeader > table {border-bottom:1px solid #DBDBDB;padding:5px 0;}
 .setupTab form#editPage .pbBody .pbSubheader.first {
 border-top:0 none;

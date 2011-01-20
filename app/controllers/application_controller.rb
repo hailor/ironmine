@@ -162,7 +162,7 @@ class ApplicationController < ActionController::Base
 
   # 处理传入的filter
   def data_filter(scoped)
-    if(params[:_view_filter_id])
+    if(params[:_view_filter_id] && !params[:_view_filter_id].blank?)
       session[:_view_filter_id] = params[:_view_filter_id]
       scoped = scoped.where(Irm::ViewFilter.find(params[:_view_filter_id]).where_clause)
     end
@@ -269,6 +269,9 @@ class ApplicationController < ActionController::Base
     end
     menus
   end
+
+
+
 
 
 end

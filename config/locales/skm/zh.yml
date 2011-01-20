@@ -1,0 +1,33 @@
+zh:
+  irm: "irm"
+  #========================entry statuses=====================================
+  label_skm_entry_status: 知识库文章状态
+  label_skm_entry_status_name: 状态名称
+  label_skm_entry_status_description: 状态描述
+  label_skm_entry_status_visiable: 可见
+  label_skm_entry_status_new: 创建知识库文章状态
+  label_skm_entry_status_edit: 修改知识库文章状态
+  label_skm_entry_status_code: 状态编码
+  label_skm_entry_status_list: 知识库文章状态列表
+
+  #========================entry templates===============================
+  label_skm_entry_template: 知识库文章模板
+  label_skm_entry_template_name: 模板名称
+  label_skm_entry_template_description: 模板描述
+  label_skm_entry_template_list: 模板列表
+  label_skm_entry_template_new: 创建模板
+  label_skm_entry_template_edit: 编辑模板
+  label_skm_entry_template_code: 模板编码
+
+  #=========================entry template elements=====================
+  label_skm_entry_template_element: 模板元素
+  label_skm_entry_template_element_name: 模板元素名称
+  label_skm_entry_template_element_description: 模板元素描述
+  label_skm_entry_template_element_list: 模板元素列表
+  label_skm_entry_template_element_owned: 已有的模板元素
+  label_skm_entry_template_element_edit: 编辑模板元素
+  label_skm_entry_template_element_new: 创建模板元素
+  label_skm_entry_template_element_required: 必须
+  label_skm_entry_template_element_rows: 显示行数
+  label_skm_entry_template_element_code: 元素编码
+  

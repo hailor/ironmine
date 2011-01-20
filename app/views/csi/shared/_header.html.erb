@@ -1,0 +1,25 @@
+<div class='header'>
+  <div class="logo span-16" >
+    <a href="/"><img alt="Logo" src="/images/logo.png" /></a>
+  </div>
+  <div class='login'>   
+    <ul class="panel">  
+    <% if logged_in? %>
+      <li><%=link_to(t(:my_surveys), forms_path)%></li>
+      <li><%=link_to(t(:account),account_path) %></li>
+      <li><%= link_to(t(:logout), logout_path,:class=>'last') %></li>
+    <% else %> 
+      <li><%= link_to t(:home), root_path %></li>
+      <li><%= link_to t(:signup), signup_path %></li>
+      <li><a href="http://blog.<%= request.domain %>"><%= t(:blog) %></a></li>    
+      <li><a href='/login' class='last'><span><%= t(:login) %></span></a></li> 
+    <% end %>                                                     
+     </ul>   
+    <%= render :partial => '/shared/notice' %>
+  </div>  
+</div>
+<% if logged_in? && current_user.temp? %>
+<div style="padding:10px 10px;background:#FF8888;color:#333;font-size:14px;">
+  <%= t(:temp_account) %><%= link_to t(:create_real_account), signup_path,:class => 'ag' %>
+</div>
+<% end %>

@@ -1,0 +1,15 @@
+<div id="options">
+  <% Csi::SubjectOption.query_by_subject_id(subject.id,'radio').each do |option| %>
+    <%= render :partial => '/csi/shared/radio_option', :locals =>
+            {:value => option.value} %>
+  <% end if subject %>
+  <% if subject.nil? || subject.subject_options.size == 0 %>
+    <%= render :partial => '/csi/shared/radio_option', :locals =>
+            {:value => t(:label_csi_survey_subjects_option_one)} %>
+  <% end %>
+</div>
+<input type="radio" style="opacity:0.5;"/>
+    <%= text_field_tag "option", "", :onfocus => "subject_add_option(this, 'radio');", :style => "opacity:0.5;" %>
+    <%= check_box_tag "csi_survey_subject[other_input]", "1", subject.nil? ? false : subject.other_input,
+                      :onchange => 'toggle_other(this);'%>
+  <%= t(:label_csi_survey_subjects_add_other) %>
