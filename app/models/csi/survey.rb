@@ -9,7 +9,7 @@ class Csi::Survey < ActiveRecord::Base
   scope :query_by_person_id,lambda{|person_id| where(:person_id=>person_id)}
   scope :query_common,where("1=1")
 
-  before_create :generate_survey_code
+  after_create :generate_survey_code
 
 
   def total_page
@@ -34,6 +34,7 @@ class Csi::Survey < ActiveRecord::Base
   private
   def generate_survey_code
     self.survey_code = "CSI"+ 1000000.to_s + (id % 1000000).to_s
+    self.update_attribute(:survey_code,self.survey_code)
   end
 
 end

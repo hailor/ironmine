@@ -87,16 +87,29 @@
       </table>
     </div>
 
+     <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_site_list) %></h2></td>
+              <td class="pbButton">
+                <div class="button"><%= link_to t(:add), {:controller=>"csi/survey_subjects",
+                                                          :action=>"new",:survey_id=>@survey.id}%></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+     </div>
     <div id="survey_subject" class="datatable" style="width:100%;">
           <div id="id" style="display:none">
-            <%= link_to(t(:add),{:controller=>"csi/survey_subjects",:action=>"new",:survey_id=>"{id}"})%>
           </div>
     </div>
-        <%= datatable("survey_subject",url_for(:action=>"get_data",:format=>"json"),
-                  [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"50%"},
-                   {:key=>"title",:label=>t(:label_csi_survey_title),:sortable=>true},
-                   {:key=>"description",:label=>t(:label_csi_survey_description),:sortable=>true},
-                   {:key=>"status_meaning",:label=>t(:label_csi_survey_status_code),:sortable=>true}],
+        <%= datatable("survey_subject",url_for(:controller=>"csi/survey_subjects",:action=>"get_data",:id=>@survey.id),
+                  [{:key=>"seq_num",:label=>t(:label_csi_survey_subject_seq_num),:sortable=>true,:width=>"70px"},
+                   {:key=>"name",:label=>t(:label_csi_survey_subject_title),:sortable=>true},
+                   {:key=>"prompt",:label=>t(:label_csi_survey_subject_prompt),:sortable=>true},
+                   {:key=>"required_flag",:label=>t(:required),:sortable=>true},
+                   {:key=>"input_type",:label=>t(:label_csi_survey_subject_input_type),:sortable=>true}],
                    {:row_perpage=>5})
         %>
 

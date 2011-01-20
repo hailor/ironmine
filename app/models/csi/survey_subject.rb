@@ -16,5 +16,6 @@ class Csi::SurveySubject < ActiveRecord::Base
                         where(:id=>subject_id)
   }
 
+  scope :query_by_survey_id,lambda{|survey_id| where(:survey_id=>survey_id)}
 
 end

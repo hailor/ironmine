@@ -59,7 +59,8 @@ class Csi::SurveySubjectsController < ApplicationController
           format.html { redirect_to({:action=>"new",:survey_id=>@survey_subject.survey_id},
                                     :notice => t(:successfully_created)) }
         else
-          format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_created)) }
+          format.html { redirect_to({:controller=>"csi/surveys",:action=>"show",
+                                     :id=>@survey_subject.survey_id}, :notice => t(:successfully_created)) }
         end
         format.xml  { render :xml => @survey_subject, :status => :created, :location => @survey_subject }
       else
@@ -88,6 +89,14 @@ class Csi::SurveySubjectsController < ApplicationController
         format.html { render :action => "edit" }
         format.xml  { render :xml => @survey_subject.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+
+  def get_data
+    @survey_subjects= Csi::SurveySubject.query_by_survey_id(params[:id])
+    @survey_subjects,count = paginate(@survey_subjects)
+    respond_to do |format|
+      format.json {render :json=>to_jsonp(@survey_subjects.to_grid_json(['R',:seq_num,:name,:prompt,:required_flag,:input_type], count))}
     end
   end
 end
