@@ -7,7 +7,10 @@ class Csi::Survey < ActiveRecord::Base
   has_many :survey_subjects
 
   scope :query_by_person_id,lambda{|person_id| where(:person_id=>person_id)}
-  scope :query_common,where("1=1")
+  scope :query_wrap_info,lambda{|language| select("#{table_name}.*,v1.meaning status_meaning").
+                                                   joins(",irm_lookup_values_vl v1").
+                                                   where("v1.lookup_type='SYSTEM_STATUS_CODE' AND v1.lookup_code = #{table_name}.status_code AND "+
+                                                         "v1.language=?",language)}
 
   after_create :generate_survey_code
 

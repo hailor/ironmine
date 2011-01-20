@@ -83,7 +83,7 @@ class Csi::SurveysController < ApplicationController
   end
 
   def get_data
-    @surveys= Csi::Survey.query_common
+    @surveys= Csi::Survey.query_wrap_info(I18n::locale)
     @surveys,count = paginate(@surveys)
     respond_to do |format|
       format.json {render :json=>to_jsonp(@surveys.to_grid_json(['R',:title,:description,:status_meaning], count))}
