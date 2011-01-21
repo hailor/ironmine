@@ -1,4 +1,7 @@
 <%= form_for(@entry_header,:url=>{:action=>"new"},:builder => LabellingFormBuilder, :html => {:name => "new_skm_entry_header"}) do |f| %>
+    <%= f.hidden_field :entry_template_id %>
+    <%= f.hidden_field :entry_title %>
+    <%= f.hidden_field :keyword_tags %>
 <div  class="bWizardBlock">
     <div class="pbWizardTitle tertiaryPalette">
         <div class="ptRightTitle">
@@ -15,38 +18,9 @@
     <div class="pbWizardBody">
       <div class="secondaryPalette">
         <div class="pbBody">
-            <div class="pbSubheader first tertiaryPalette">
-              <h3>主题</h3>
-            </div>
-            <div class="pbSubsection">
-              <table class="detailList" cellpadding="0" cellspacing="0" border="0" style="width:10%;padding-left: 20%;">
-                <tbody>
-                    <tr>
-                      <td class="labelCol"></td>
-                      <td class="labelCol" style="text-align:center">主题类型</td>
-                      <td class="labelCol" style="text-align:center">主题</td>
-                    </tr>
-                <% counter = 1 %>
-                <% @entry_header.entry_subjects.each do |e| %>
-                <%= fields_for("skm_entry_header[entry_subjects][counter]", e) do |es| %>
-                    <tr id="tr_<%= counter.to_s %>">
-                      <td class="labelCol"><%= link_to t(:delete), {}, :href => "javascript:void(0);", :onclick => "delete_subject(#{counter})" %></td>
-                      <td class="dataCol"><%= select "subject_type", counter.to_s, available_entry_subject_types.collect{|p| [p[:flex_value_meaning], p.id]}%></td>
-                      <td class="dataCol"><%= es.select :subject_id, available_entry_subject_types.collect{|p| [p[:flex_value_meaning], p.id]}%></td>
-                    </tr>
-                <% counter = counter + 1 %>
-                <% end %>
-                <% end %>
-                    <tr>
-                      <td class="labelCol"></td>
-                      <td class="labelCol" style="text-align:center"><%= link_to "增加主题", {}, :href => "javascript:void(0);"%></td>
-                      <td class="labelCol" style="text-align:center"></td>
-                    </tr>
-                </tbody>
-              </table>
-            </div>
+
+        </div>
       </div>
-    </div>
     </div>
     <div class="pbWizardFooter">
         <div class="pbBottomButtons">

@@ -534,6 +534,19 @@ Ironmine::Application.routes.draw do
     match '/entry_templates/:template_id/get_available_elements(.:format)' => "entry_templates#get_available_elements", :via => :get
     match '/entry_templates/:template_id:element_id/up_element(.:format)' => "entry_templates#up_element", :via => :get
     match '/entry_templates/:template_id:element_id/down_element_elements(.:format)' => "entry_templates#down_element", :via => :get
+    #entry_headers
+    match '/entry_headers(/index)(.:format)' => "entry_headers#index", :via => :get
+    match '/entry_headers/:id/edit(.:format)' => "entry_headers#edit", :via => :get
+    match '/entry_headers/:id/update(.:format)' => "entry_headers#update", :via => :put
+    match '/entry_headers/new(.:format)' => "entry_headers#new"
+    match '/entry_headers/create(.:format)' => "entry_headers#create", :via => :post
+    match '/entry_headers/get_data(.:format)' => "entry_headers#get_data"
+    match '/entry_headers/:doc_number/get_history_entries_data(.:format)' => "entry_headers#get_history_entries_data"
+    match '/entry_headers/:id/show(.:format)' => "entry_headers#show", :via => :get
+    match '/entry_headers/new_step_1(.:format)' => "entry_headers#new_step_1", :via => :get
+    match '/entry_headers/new_step_2(.:format)' => "entry_headers#new_step_2", :via => :get
+    match '/entry_headers/new_step_3(.:format)' => "entry_headers#new_step_3", :via => :get
+    match '/entry_headers/new_step_4(.:format)' => "entry_headers#new_step_4", :via => :get
   end
   
   match '/demo(/index)' => 'demo#index'

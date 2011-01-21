@@ -107,7 +107,7 @@ class Skm::EntryTemplatesController < ApplicationController
   end
 
   def get_owned_elements_data
-    entry_elements_scope = Skm::EntryTemplateElement.with_template(params[:template_id])
+    entry_elements_scope = Skm::EntryTemplateElement.with_template(params[:template_id_t] || params[:template_id])
     entry_elements,count = paginate(entry_elements_scope)
     respond_to do |format|
       format.json  {render :json => to_jsonp(entry_elements.to_grid_json(['0',:required_flag, :entry_template_element_code, :name,:description, :default_rows], count)) }
