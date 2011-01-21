@@ -3,6 +3,10 @@ class Icm::IncidentJournalsController < ApplicationController
   before_filter :setup_up_incident_request
   before_filter :backup_incident_request ,:only=>[:create,:update]
 
+  def index
+   redirect_to :action=>"new"
+  end
+
   # GET /incident_journals/new
   # GET /incident_journals/new.xml
   def new
@@ -28,6 +32,7 @@ class Icm::IncidentJournalsController < ApplicationController
     respond_to do |format|
       if @incident_reply.valid? && @incident_request.update_attributes(@incident_reply.attributes)
         process_change_attributes(@incident_reply.attributes,@incident_request,@incident_request_bak,@incident_journal)
+        process_files(@incident_journal)
         format.html { redirect_to({:action => "new"}, :notice => 'Incident journal was successfully created.') }
         format.xml  { render :xml => @incident_journal, :status => :created, :location => @incident_journal }
       else
@@ -74,6 +79,16 @@ class Icm::IncidentJournalsController < ApplicationController
                                      :property_key=>key.to_s,
                                      :old_value=>ovalue,
                                      :new_value=>nvalue}) if !ovalue.eql?(nvalue)
+    end
+  end
+
+  def process_files(ref_journal)
+    @files = []
+    params[:files].each do |key,value|
+      @files << Irm::AttachmentVersion.create({:source_id=>ref_journal.id,
+                                               :source_type=>ref_journal.class.name,
+                                               :data=>value[:file],
+                                               :description=>value[:description]}) if(value[:file]&&!value[:file].blank?)
     end
   end
 

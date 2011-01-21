@@ -19,7 +19,7 @@
       <div class="pbBody">
         <div id="incident_requests" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:label_icm_reply),{:controller=>"icm/incident_journals",:action=>"new",:request_id=>"{id}"}) %>
           </div>
         </div>
         <%= datatable("incident_requests",url_for(:action=>"get_data",:format=>"json"),
