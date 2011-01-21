@@ -95,8 +95,8 @@ class Csi::SurveysController < ApplicationController
 
     respond_to do |format|
       if @survey
-        session[@survey.id] = params[:password] if params[:password]
-        format.html {redirect_to({:action=>"reply"})}
+        session[:survey_password] = params[:password] if params[:password]
+        format.html {redirect_to({:action=>"reply",:id=>params[:id]})}
       else
         flash[:notice] = t(:label_csi_survey_no_form)
         format.html { redirect_to({:action=>"index"})}
@@ -110,7 +110,7 @@ class Csi::SurveysController < ApplicationController
     
     respond_to do |format|
       if @survey && !@survey.password.blank? &&
-          session[@survey.id] != @survey.password
+        session[:survey_password] != @survey.password
         format.html { render 'password'}
       elsif @survey
         @page = (params[:page] || 1).to_i
@@ -131,6 +131,9 @@ class Csi::SurveysController < ApplicationController
     @return_url = params[:return_url]
     @error = Array.new
     @thank_message = Csi::Survey.find(@survey_id).thanks_message
+    if @thank_message.blank?
+      @thank_message = t(:label_csi_default_thanks_message)
+    end
     save_flag= true
     if !@survey_results.blank?
        begin

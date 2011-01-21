@@ -12,6 +12,7 @@ zh:
    label_csi_survey_publish_response: 是否公开结果
    label_csi_survey_comment_flag: 是否可以评论
    label_csi_survey_password: 密码
+   label_csi_survey_please_input: 请输入密码
    label_csi_survey_closed_datetime: 关闭时间
    label_csi_survey_same_ip_allow_flag: 同一个IP是否允许提交
    label_csi_survey_status_code: 记录状态
