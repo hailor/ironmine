@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddEntryHeaderIndexPermission < ActiveRecord::Migration
   def self.up
     skm_header_index = Irm::Permission.new(:permission_code=>'SKM_ENTRY_HEADERS_INDEX',
