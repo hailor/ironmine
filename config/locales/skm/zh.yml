@@ -30,4 +30,18 @@ zh:
   label_skm_entry_template_element_required: 必须
   label_skm_entry_template_element_rows: 显示行数
   label_skm_entry_template_element_code: 元素编码
+
+  #=========================entry headers================================
+  label_skm_entry_header: 知识库文章
+  label_skm_entry_header_list: 知识库文章列表
+  label_skm_entry_header_new: 创建知识库文章
+  label_skm_entry_header_edit: 编辑知识库文章
+  label_skm_entry_header_title: 标题
+  label_skm_entry_header_keyword_tags: 关键字
+  label_skm_entry_header_version: 文档版本
+  label_skm_entry_header_doc_number: 文章编码
+  label_skm_entry_header_status_code: 文档状态
+  label_skm_entry_header_published_date: 发布日期
+  label_skm_entry_header_history_list: 历史版本列表
+
   

@@ -1,6 +1,8 @@
 class Irm::AttachmentVersion < ActiveRecord::Base
   set_table_name :irm_attachment_versions
 
+  belongs_to :attachment
+
   has_attached_file :data,:styles => {:thumb=> "60x60>", :small => "100x100>" }
   validates_attachment_presence :data
   validates_attachment_size :data, :less_than => 10.megabytes
@@ -30,5 +32,6 @@ class Irm::AttachmentVersion < ActiveRecord::Base
   def setup_attachment_id
     self.attachment_id  = 0 unless self.attachment_id 
   end
+
 
 end

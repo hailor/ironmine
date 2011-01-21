@@ -1,0 +1,124 @@
+<%= form_for(@entry_header,:url=>{:action=>"new"},:builder => LabellingFormBuilder, :html => {:name => "new_skm_entry_header"}) do |f| %>
+<div  class="bWizardBlock">
+    <div class="pbWizardTitle tertiaryPalette">
+        <div class="ptRightTitle">
+            第 2 步，共 4 步
+        </div>
+        <h2>
+            步骤 2。 填写文章内容
+        </h2>
+    </div>
+  <div class="pbBody">
+    <div class="pbDescription ">
+      根据步骤1中所选模板的结构，填入文章内容    
+    </div>
+    <div class="pbWizardBody">
+      <div class="secondaryPalette">
+        <div class="pbBody">
+            <div class="pbSubheader first tertiaryPalette">
+              <span class="pbSubExtra">
+                <span class="requiredLegend">
+                  <span class="requiredExampleOuter">
+                    <span class="requiredExample">&nbsp;</span>
+                  </span><span class="requiredMark">*</span>
+                  <span class="requiredText"> = <%=t(:label_is_required)%></span>
+                </span>
+              </span>
+              <h3><%= t(:label_common_info) %></h3>
+            </div>
+            <div class="pbSubsection">
+              <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+                    <%= f.hidden_field :entry_template_id %>
+                <tbody>
+                    <tr>
+                      <td class="labelCol"><label><%=(t :label_skm_entry_header_title)%></label></td>
+                      <td class="data2Col"><%= f.text_field :entry_title, :size => 20, :required => true%></td>
+                    </tr>
+                    <tr>
+                      <td class="labelCol"><label><%=(t :label_skm_entry_header_keyword_tags)%></label></td>
+                      <td class="data2Col"><%= f.text_field :keyword_tags, :size => 40%></td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+            <% if session[:skm_entry_details] %>
+                <% @elements.each do |e| %>
+                <div class="pbSubheader tertiaryPalette">
+                  <h3><%= e.element_name %><%= e.required_flag == "Y" ? "(必填)" : "" %></h3>
+                </div>
+                <div class="pbSubsection">
+                  <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                        <tr>
+                          <%= fields_for("skm_entry_details[]", e) do |ef|%>
+                          <td><%= ef.text_area :entry_content, {:rows => e.default_rows, :style => "width:100%;", :value => session[:skm_entry_details][e.id.to_s.to_sym][:entry_content]} %></td>
+                              <%= ef.hidden_field :default_rows, :value => e.default_rows %>
+                              <%= ef.hidden_field :element_name, :value => e.element_name %>
+                              <%= ef.hidden_field :element_description, :value => e.element_description %>
+                              <%= ef.hidden_field :required_flag, :value => e.required_flag %>
+                              <%= ef.hidden_field :line_num, :value => e.line_num %>
+                              <%= ef.hidden_field :entry_template_element_id, :value => e.entry_template_element_id %>
+                          <% end %>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <% end %>              
+            <% else %>
+                <% @elements.each do |e| %>
+                <div class="pbSubheader tertiaryPalette">
+                  <h3><%= e.element_name %><%= e.required_flag == "Y" ? "(必填)" : "" %></h3>
+                </div>
+                <div class="pbSubsection">
+                  <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                        <tr>
+                          <%= fields_for("skm_entry_details[]", e) do |ef|%>
+                          <td><%= ef.text_area :entry_content, {:rows => e.default_rows, :style => "width:100%;"} %></td>
+                              <%= ef.hidden_field :default_rows, :value => e.default_rows %>
+                              <%= ef.hidden_field :element_name, :value => e.element_name %>
+                              <%= ef.hidden_field :element_description, :value => e.element_description %>
+                              <%= ef.hidden_field :required_flag, :value => e.required_flag %>
+                              <%= ef.hidden_field :line_num, :value => e.line_num %>
+                              <%= ef.hidden_field :entry_template_element_id, :value => e.entry_template_element_id %>
+                          <% end %>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <% end %>          
+            <% end %>
+
+      </div>
+    </div>
+    </div>
+    <div class="pbWizardFooter">
+        <div class="pbBottomButtons">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tbody>
+                <tr>
+                  <td class="pbTitle"></td>
+                  <td id="bottomButtonRow" class="pbButtonb">
+                    <div class="button"><%= link_to t(:last), {}, {:href => "javascript:void(0);", :onclick => "submit_last()"}%></div>
+                    <div class="button"><%= link_to t(:next), {}, {:href => "javascript:void(0);", :onclick => "submit_next()"}%></div>
+                    <div class="button"><%= link_to t(:cancel), {:action => "index"} %></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  function submit_next(){
+    document.new_skm_entry_header.action = "new?step=3";
+    new_skm_entry_header.submit();
+  }
+
+  function submit_last(){
+    document.new_skm_entry_header.action = "new?step=1";
+    new_skm_entry_header.submit();
+  }
+</script>
+<% end %>

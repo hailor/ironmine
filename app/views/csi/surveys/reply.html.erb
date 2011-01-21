@@ -11,7 +11,7 @@
         <% if @survey.closed_datetime.blank? || @survey.closed_datetime > Date.today %>
           <div id='errors' class='error'></div>
           <%= form_tag({:controller=>"csi/surveys",:action=>"create_result"},:remote => true) do %>
-
+             <%= hidden_field_tag :format,"js" %>
             <% i = 0%>
             <% @subjects.each do |subject| %>
               <% i=i+1 %>

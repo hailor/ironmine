@@ -95,8 +95,8 @@ class Csi::SurveysController < ApplicationController
 
     respond_to do |format|
       if @survey
-        session[@survey.id] = params[:password] if params[:password]
-        format.html {redirect_to({:action=>"reply"})}
+        session[:survey_password] = params[:password] if params[:password]
+        format.html {redirect_to({:action=>"reply",:id=>params[:id]})}
       else
         flash[:notice] = t(:label_csi_survey_no_form)
         format.html { redirect_to({:action=>"index"})}
@@ -110,7 +110,7 @@ class Csi::SurveysController < ApplicationController
     
     respond_to do |format|
       if @survey && !@survey.password.blank? &&
-          session[@survey.id] != @survey.password
+        session[:survey_password] != @survey.password
         format.html { render 'password'}
       elsif @survey
         @page = (params[:page] || 1).to_i
@@ -129,57 +129,53 @@ class Csi::SurveysController < ApplicationController
     @survey_id = params[:survey_id]
     @survey= Csi::Survey.find(@survey_id)
     @return_url = params[:return_url]
-    @error = Hash.new
+    @error = Array.new
     @thank_message = Csi::Survey.find(@survey_id).thanks_message
+    if @thank_message.blank?
+      @thank_message = t(:label_csi_default_thanks_message)
+    end
     save_flag= true
     if !@survey_results.blank?
        begin
           Csi::SurveyResult.transaction do
             @survey_results.each do |survey_result|
-             subject_id = survey_result[0]
+             @subject_id = survey_result[0]
              results = survey_result[1]
-               if results.is_a?(Array)
-                    puts '000000000000='+subject_id
+               if results.is_a?(Array)                    
                     if results.include?('_other')
                       results.delete('_other')
                       other_result=results.detect {|c| c.is_a?(Hash)}
-                          @survey_result=Csi::SurveyResult.new({:subject_id=>subject_id,
+                          @survey_result=Csi::SurveyResult.new({:subject_id=>@subject_id,
                                                  :subject_result=>other_result['other'],
                                                  :option_type=>"other"})
                           @survey_result.save!
-                          if !@survey_result.errors.blank?
-                             @error.merge!({subject_id=>@survey_result.errors})
-                          end
 
                     end
                     results.each do |result|
                       if results[0].is_a?(Hash)
-                        @error.merge!({subject_id=>I18n.t(:label_csi_message_blank)})
+                        @error << [@subject_id]
                       else
                         if !result.is_a?(Hash)
-                         @survey_result=Csi::SurveyResult.new({:subject_id=>subject_id,
+                         @survey_result=Csi::SurveyResult.new({:subject_id=>@subject_id,
                                                                :subject_result=>result,
                                                                :option_type=>"normal"})
                          @survey_result.save!
-                         if !@survey_result.errors.blank?
-                             @error.merge!({subject_id=>@survey_result.errors})
-                         end
                         end
                       end                      
                     end
                else
-                  @survey_result = Csi::SurveyResult.new({:subject_id=>subject_id,
+                  @survey_result = Csi::SurveyResult.new({:subject_id=>@subject_id,
                                                           :subject_result=>results})
                   @survey_result.save!
-                  if !@survey_result.errors.blank?
-                    @error.merge!({subject_id=>@survey_result.errors})
-                  end
                end
              end
           end
        rescue ActiveRecord::RecordInvalid => invalid
        # do whatever you wish to warn the user, or log something
-       save_flag=false
+         save_flag=false
+         if !@survey_result.errors.blank?
+           @error << [@subject_id]
+         end
        end
     end
     flash[:notice] = @thank_message.to_s
@@ -188,6 +184,9 @@ class Csi::SurveysController < ApplicationController
         if save_flag
           format.html { redirect_to({:action=>"thanks",:survey_id=>@survey_id,:return_url=>@return_url}, :notice => @thank_message) }
           format.xml  { render :xml => @survey, :status => :created, :location => @survey }
+          format.js   {
+            render 'thanks'
+          }
         else
           if @survey
             @page = (params[:page] || 1).to_i
@@ -195,6 +194,7 @@ class Csi::SurveysController < ApplicationController
             @subjects = @survey.find_subjects_by_page(@page)
           end
           format.html { render 'reply' }
+          format.js
           format.xml  { render :xml => @survey, :status => :created, :location => @survey }
         end
     end

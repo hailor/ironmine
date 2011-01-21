@@ -1,6 +1,7 @@
 <tr>
    <td class="dataCol">
-      <%= text_field_tag "result[#{subject.id}]", '', :id => "row_f#{subject.id}" %>
+      <%= text_field_tag "result[#{subject.id}]", '' %>
+      <span id="id_<%=subject.id%>" style="color:#FF0000;"></span>
       <br />
       <span class="prompt"><%=h subject.prompt %></span>
    </td>
