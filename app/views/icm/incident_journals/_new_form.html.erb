@@ -128,7 +128,7 @@
      <%= list_journals(@incident_request) %>
    </div>
 </div>
-<%= form_for(@incident_reply,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+<%= form_for(@incident_reply,:url=>{:action=>"create"},:builder => LabellingFormBuilder,:html => { :multipart => true }) do |f| %>
 <div id="reply" class="bEditBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -165,11 +165,35 @@
             <tr>
               <%= fields_for @incident_journal,:as=>"incident_journal",:normal=>true do |sub_f|%>
                 <%= sub_f.hidden_field(:incident_request_id) %>    
-              <td class="labelCol"></td>
+              <td class="labelCol">Comments</td>
               <td class="dataCol" colspan="3" width="82%">
                 <%= sub_f.text_area :message_body ,:id=>"msgEditor",:style=>"display:none;"%>
               </td>
               <% end%>
+            </tr>
+            <tr>
+              <td class="labelCol">Files</td>
+              <td class="dataCol" colspan="3" width="82%">
+
+              <table>
+                <tbody id="fileTemplate" style="display:none" seq="0">
+                <tr id="file_{seq}" class="fileArea">
+                    <td><input type="file" name="{ref}[{seq}][file]" accept="image/gif,image/png"/></td>
+                    <td class="labelCol">Description</td>
+                    <td><input type="text" name="{ref}[{seq}][description]" size="40"/></td>
+                    <td><a class="deleteAttach" delete_ref="file_{seq}" href="javascript:void(0)">delete</a></td>
+                </tr>
+                </tbody>
+                <tbody id="fileContent">
+
+                </tbody>
+                <tbody id="fileButtons">
+                  <tr>
+                    <td><a id="addButton" href="javascript:void(0)">Add a attachment</a></td>
+                  </tr>
+                </tbody>
+              </table>
+              </td>
             </tr>
         </tbody>
       </table>
@@ -192,13 +216,9 @@
 </div>
 <% end %>
 
-<button id="showhtml" value="xxx">show</button>
-<div id="editor_cont">
-    <div id="editor" style="width:400px;"></div>
-</div>
 <script type="text/javascript">
 
-GY.use('node','yui2-editor', function(Y) {
+GY.use('node','substitute','yui2-editor', function(Y) {
   var YAHOO = Y.YUI2;
   var editor = new YAHOO.widget.Editor('msgEditor', {
         height:'200px',
@@ -223,6 +243,19 @@ GY.use('node','yui2-editor', function(Y) {
     Y.one("#new_icm_incident_reply").on("submit",function(){
       editor.saveHTML();    
     });
+
+    Y.one("#fileButtons #addButton").on('click',function(){
+      var templateContainer = Y.one("#fileTemplate");
+      var seq = templateContainer.getAttribute("seq");
+      templateContainer.setAttribute("seq",parseInt(seq)+1);
+      var template = templateContainer.getContent();
+      var row =  Y.Lang.substitute(template,{seq:seq,ref:"files"});
+      Y.one("#fileContent").appendChild(row);
+    });
+    Y.one("#fileContent").delegate("click",function(e){
+        Y.log(this.getAttribute("delete_ref"));
+        Y.one("#"+this.getAttribute("delete_ref")).remove();
+    },'.deleteAttach')
 });
 </script>
 
