@@ -1,0 +1,10 @@
+<%journals.each_with_index do |journal,index|  %>
+ <div class="reply">
+   <div id="journal_<%= journal.id %>" class="replyHeader"><a href="#journal_<%= journal.id %>">#<%= index+1%></a>
+     <h3><%= journal[:replied_name]  %> <%= format_date(journal[:created_at])  %></h3>
+   </div>
+   <div class="replyHeaderSection">
+     <%= raw journal[:message_body]  %>
+   </div>
+ </div>
+<%end %>

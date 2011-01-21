@@ -88,6 +88,10 @@ module Irm::QueryExtend
           where("#{status_lookup}.lookup_type='SYSTEM_STATUS_CODE' AND #{status_lookup}.lookup_code = #{current_table}.status_code AND #{status_lookup}.language = ?",I18n.locale).
           select("#{status_lookup}.meaning #{(column_name + "_" ) unless column_name.blank?}status_meaning")
         end
+
+        def order_display(current_table="#{table_name}")
+          order("#{current_table}.display_sequence")
+        end
         
       end
     end

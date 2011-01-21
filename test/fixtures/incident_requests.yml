@@ -1,0 +1,33 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  summary: MyText
+  request_type_code: MyString
+  service_code: MyString
+  requestted_by: 1
+  submitted_by: 1
+  impact_range_code: MyString
+  urgence_code_code: MyString
+  contact_id: 1
+  contact_number: MyString
+  report_source_code: MyString
+  incident_status_code: MyString
+  support_group_id: 1
+  support_person_id: 1
+
+two:
+  title: MyString
+  summary: MyText
+  request_type_code: MyString
+  service_code: MyString
+  requestted_by: 1
+  submitted_by: 1
+  impact_range_code: MyString
+  urgence_code_code: MyString
+  contact_id: 1
+  contact_number: MyString
+  report_source_code: MyString
+  incident_status_code: MyString
+  support_group_id: 1
+  support_person_id: 1

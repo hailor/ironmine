@@ -18,4 +18,9 @@ class Icm::PriorityCode < ActiveRecord::Base
     joins("LEFT OUTER JOIN #{Irm::Company.view_name} ON #{Irm::Company.view_name}.id = #{table_name}.company_id AND #{Icm::PriorityCodesTl.table_name}.language = #{Irm::Company.view_name}.language").
     select("#{Irm::Company.view_name}.name company_name")
   }
+
+  scope :query_by_weight_value,lambda{|weight_value|
+    where("#{table_name}.high_weight_value >= ? AND #{table_name}.low_weight_value <= ?",weight_value,weight_value)
+  }
+
 end

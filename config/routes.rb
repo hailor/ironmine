@@ -492,6 +492,19 @@ Ironmine::Application.routes.draw do
     match '/incident_statuses/:id/multilingual_update(.:format)' => "incident_statuses#multilingual_update", :via => :put
     match '/incident_statuses/get_data(.:format)' => "incident_statuses#get_data"
     match '/incident_statuses/:id(.:format)' => "incident_statuses#show", :via => :get
+    #incident_requests
+    match '/incident_requests(/index)(.:format)' => "incident_requests#index", :via => :get
+    match '/incident_requests/:id/edit(.:format)' => "incident_requests#edit", :via => :get
+    match '/incident_requests/:id(.:format)' => "incident_requests#update", :via => :put
+    match '/incident_requests/new(.:format)' => "incident_requests#new", :via => :get
+    match '/incident_requests/create(.:format)' => "incident_requests#create", :via => :post
+    match '/incident_requests/get_data(.:format)' => "incident_requests#get_data"
+    match '/incident_requests/:id(.:format)' => "incident_requests#show", :via => :get
+    #incident_journals
+    match '/incident_requests/:request_id/journals/:id/edit(.:format)' => "incident_journals#edit", :via => :get
+    match '/incident_requests/:request_id/journals/:id(.:format)' => "incident_journals#update", :via => :put
+    match '/incident_requests/:request_id/journals/new(.:format)' => "incident_journals#new", :via => :get
+    match '/incident_requests/:request_id/journals/create(.:format)' => "incident_journals#create", :via => :post
   end
 
   scope :module => "cms" do

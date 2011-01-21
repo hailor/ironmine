@@ -1,6 +1,20 @@
 class Irm::Person < ActiveRecord::Base
   set_table_name :irm_people
 
+  PERSON_NAME_FORMATS = {
+    :lastname_firstname => '#{first_name} #{last_name}',
+    :firstname => '#{first_name}',
+    :firstname_lastname => '#{last_name}#{first_name}',
+    :lastname_coma_firstname => '#{last_name},#{first_name}'
+  }
+
+  PERSON_NAME_SQL_FORMATS = {
+    :lastname_firstname => " CONCAT(\#{alias_table_name}.first_name,' ',\#{alias_table_name}.last_name) \#{alias_column_name}",
+    :firstname => " \#{alias_table_name}.first_name \#{alias_column_name}",
+    :firstname_lastname => " CONCAT(\#{alias_table_name}.last_name,\#{alias_table_name}.first_name) \#{alias_column_name}",
+    :lastname_coma_firstname =>  " CONCAT(\#{alias_table_name}.last_name,',',\#{alias_table_name}.first_name) \#{alias_column_name}"
+  }
+
   belongs_to :identity
 
   validates_presence_of :last_name,:first_name,:title,:email_address,:company_id
@@ -9,6 +23,7 @@ class Irm::Person < ActiveRecord::Base
   scope :query_by_identity,lambda{|identity|
     where(:identity_id=>identity)
   }
+
 
   scope :query_wrap_info,lambda{|language| select("#{table_name}.id,irm_identities.login_name,#{table_name}.mobile_phone,CONCAT(#{table_name}.last_name,#{table_name}.first_name) person_name,"+
                                                       "#{table_name}.email_address,v1.meaning status_meaning, v2.name company_name").
@@ -50,6 +65,7 @@ class Irm::Person < ActiveRecord::Base
                                                          "CONCAT(#{table_name}.last_name,#{table_name}.first_name) LIKE '%#{person_name}%' AND " +
                                                          "v1.language=? AND NOT EXISTS (SELECT 1 FROM #{Irm::SupportGroupMember.table_name}  where " +
                                                          "support_group_code=? AND #{Irm::SupportGroupMember.table_name}.person_id = #{table_name}.id)",language,language,support_group_code)}
+
 
   #取得系统当前登陆人员
   def self.current
@@ -94,6 +110,14 @@ class Irm::Person < ActiveRecord::Base
     end
   end
 
+  # 返回人员的全名
+  def name(formatter = nil)
+      eval('"' + (PERSON_NAME_FORMATS[:firstname_lastname]) + '"')
+  end
+  # 取得人员全名的SQL
+  def self.name_to_sql(formatter = nil,alias_table_name="#{table_name}",alias_column_name="name")
+    eval('"' +PERSON_NAME_SQL_FORMATS[:firstname_lastname] + '"')
+  end
 
 
 end

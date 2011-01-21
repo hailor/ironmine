@@ -213,4 +213,8 @@ module ApplicationHelper
     )
     javascript_tag(script)
   end
+
+  def format_date(time)
+    time.strftime('%Y-%m-%d %H:%M:%S')
+  end
 end
