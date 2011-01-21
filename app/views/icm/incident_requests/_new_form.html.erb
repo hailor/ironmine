@@ -1,0 +1,144 @@
+<style type="text/css">
+  select{
+      min-width:128px;
+  }
+</style>
+<%= form_for(@incident_request,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_icm_incident_request_new)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @incident_request %>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend">
+          <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+          </span><span class="requiredMark">*</span>
+          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+        </span>
+      </span>
+      <h3><%= t(:label_common_info) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label for="incident_request_service_code"><%=t(:label_icm_incident_request_service_code)%></label></td>
+              <td class="dataCol"><%=f.select :service_code,nullable_options_for_select(available_service,@incident_request.service_code),
+                                                    {},{:required=>true,:id=>"incident_request_service_code"}%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <div id="head_2_ep" class="pbSubheader tertiaryPalette">
+      <h3><%= t(:label_icm_incident_requset_base_info) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label for="incident_request_title"><%=t(:label_icm_incident_request_title)%></label></td>
+              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_field :title,:size=>80, :required=>true ,:id=>"incident_request_title"%></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="incident_request_summary"><%=t(:label_icm_incident_request_summary)%></label></td>
+              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_area :summary,:rows=>5,:cols=>100, :required=>true ,:id=>"incident_request_summary"%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="head_3_ep" class="pbSubheader tertiaryPalette">
+      <h3><%= t(:label_icm_incident_requset_addition_info) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label for="incident_request_requested_by"><%=t(:label_icm_incident_request_requested_by)%></label></td>
+              <td class="dataCol"><%=f.select :requested_by,nullable_options_for_select(available_person,@incident_request.requested_by),
+                                                    {},{:required=>true,:id=>"incident_request_requested_by"}%></td>
+              <td class="labelCol"><label for="incident_request_contact_id"><%=t(:label_icm_incident_request_contact)%></label></td>
+              <td class="dataCol">
+                <div style="display:inline">
+                <%=f.text_field :contact_id, :size=>10,:id=>"incident_request_contact_id"%>
+                <%=f.text_field :contact_number,:size=>17,:id=>"incident_request_contact_number"%></div>
+              </td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="incident_request_urgence_code"><%=t(:label_icm_incident_request_urgence_code)%></label></td>
+              <td class="dataCol">
+                <%=f.select :urgence_code,options_for_select(available_urgence_code,@incident_request.urgence_code),
+                                                    {},{:required=>true,:id=>"incident_request_urgence_code"}%>
+              </td>
+              <td class="labelCol"><label for="incident_request_impact_range_code"><%=t(:label_icm_incident_request_impact_range_code)%></label></td>
+              <td class="dataCol">
+                <%=f.select :impact_range_code,options_for_select(available_impact_range,@incident_request.impact_range_code),
+                                                    {},{:required=>true,:id=>"incident_request_impact_range_code"}%>
+              </td>
+            </tr>
+            
+            <tr>
+              <td class="labelCol"><label for="incident_request_support_group_id"><%=t(:label_icm_incident_request_support_group)%></label></td>
+              <td class="dataCol"><%=f.text_field :support_group_id,:id=>"incident_request_support_group_id"%></td>
+              <td class="labelCol"><label for="incident_request_support_person_id"><%=t(:label_icm_incident_request_support_person)%></label></td>
+              <td class="dataCol"><%=f.text_field :support_person_id,:id=>"incident_request_support_person_id"%></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="incident_request_request_type_code"><%=t(:label_icm_incident_request_request_type_code)%></label></td>
+              <td class="dataCol">
+                <%=f.select :request_type_code,nullable_options_for_select(available_request_type,@incident_request.request_type_code),
+                                                    {},{:required=>true,:id=>"incident_request_request_type_code"}%>
+              </td>
+              <td class="labelCol"><label for="incident_request_incident_status_code"><%=t(:label_icm_incident_request_incident_status_code)%></label></td>
+              <td class="dataCol">
+                <%=f.select :incident_status_code,options_for_select(available_request_status_code,@incident_request.incident_status_code),
+                                                    {},{:required=>true,:id=>"incident_request_incident_status_code"}%>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="incident_request_report_source_code"><%=t(:label_icm_incident_request_report_source_code)%></label></td>
+              <td class="dataCol">
+                <%=f.select :report_source_code,nullable_options_for_select(available_request_report_source,@incident_request.report_source_code),
+                                                    {},{:required=>true,:id=>"incident_request_report_source_code"}%>
+              </td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>

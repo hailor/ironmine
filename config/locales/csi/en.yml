@@ -15,4 +15,50 @@ en:
    label_csi_survey_closed_datetime: Closed Datetime
    label_csi_survey_same_ip_allow_flag: Same Ip Allow
    label_csi_survey_status_code: Status Code
+   label_csi_survey_setting: Setting
+   label_csi_survey_access_control: Access Control
+   label_csi_survey_edit: Edit Survey
+   label_csi_survey_show: Survey
+   label_csi_survey_list: Survey List
+   label_csi_survey_closed: Survey Closed
+   label_csi_survey_required_input: Required Input
+   reply: Preview
+   label_csi_survey_no_form: No Form
+   label_csi_default_thanks_message: Your answer has been submitted successfully.
+   return: Return
+   label_csi_message_blank: This Question can't be blank
+   label_csi_survey_please_input: Please Input Survey PassWord
+   #========================= end   irm regions_controller=======================#
+   #========================= start irm regions_controller=======================#
+   label_csi_survey_subject: Subject
+   label_csi_survey_subject_add_subject: New Subject
+   label_csi_survey_subject_info: Survey Subject Info
+   duplicate: Duplicate
+   are_you_sure: Are you Sure
+   required: Required
+   label_csi_survey_subject_untitled_form: Untitle Form
+   label_csi_survey_subject_describe_your_form: Describe Your Form
+   question: Question Name
+   option: Option Name
+   label_csi_survey_subject_other: Other
+   label_csi_survey_subject_title: Title
+   label_csi_survey_subject_prompt: Prompt
+   label_csi_survey_subject_input_type: Input Type
+   label_csi_survey_users_short_answer: User Answer
+   text: Text
+   paragraph_text: Paragraph text
+   multi_choice: Multiple choice
+   checkboxes: Checkboxes
+   choose_from_a_list: Choose from a list
+   page_break: Page Break
+   label_csi_survey_subject_seq_num: Subject Seq
+   label_csi_survey_subject_users_long_answer: User Long Answer
+   label_csi_survey_subjects_add_other: Add Other
+   label_csi_survey_subjects_other: Other
+   untitled_form: Untitled form
+   describe_your_form: Describe your form.
+   label_csi_survey_subjects_option_one: "Option #1"
+   label_irm_survey_subject_edit: Edit Survey Subject
+   label_irm_survey_subject_info: Survey Info
+   submit: Submit
    #========================= end   irm regions_controller=======================#

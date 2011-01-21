@@ -1,0 +1,19 @@
+<tr>
+   <td class="dataCol">
+        <%  subject.subject_options.each do |option| %>
+          <p>
+          <%=check_box_tag "result[#{subject.id}][]", option.value %>
+          <%=option.value %>
+          </p>
+        <% end %>
+        <p style="<%= 'display:none;' if !subject.other_input %>" class="question_other">
+        <input name="<%= "result[#{subject.id}][]" %>" value="_other" type="checkbox"/>
+        <%= t(:label_csi_survey_subjects_other) %>
+        <%= text_field_tag "result[#{subject.id}][][other]", '' %></p>
+        <span id="id_<%=subject.id%>" style="color:	#FF0000;"></span>
+        <br />
+        <span class="prompt"><%=h subject.prompt %></span>
+   </td>
+   <td class="labelCol empty"></td>
+   <td class="dataCol empty"></td>
+</tr>

@@ -1,0 +1,11 @@
+<tr>
+   <td class="dataCol">
+        <%= text_area_tag "result[#{subject.id}]", nil,:size => "60x8" %>
+        <span id="id_<%=subject.id%>" style="color:#FF0000;"></span>
+        <br />
+        <span class="prompt"><%=h subject.prompt %></span>
+   </td>
+   <td class="labelCol empty"></td>
+   <td class="dataCol empty"></td>
+</tr>
+

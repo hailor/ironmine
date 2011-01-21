@@ -1,0 +1,26 @@
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <br>
+      <p style="padding-left: 30%;">
+        <% if @survey.thanks_message.blank? %>
+          <span><%= t(:label_csi_default_thanks_message) %></span>
+        <% else %>
+          <span><%=simple_format @survey.thanks_message %></span>
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= link_to t(:return), @return_url%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

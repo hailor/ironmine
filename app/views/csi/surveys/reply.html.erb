@@ -1,0 +1,51 @@
+<div class="lightBlue">
+    <div class="bPageTitle">
+        <div class="secondaryPalette" style="background-color:#1797C0;">
+          <h1 class="title"><%= @survey.title%></h1>
+        </div>
+    </div>
+</div>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+    <div id="id_survey_reply">
+        <% if @survey.closed_datetime.blank? || @survey.closed_datetime > Date.today %>
+          <div id='errors' class='error'></div>
+          <%= form_tag({:controller=>"csi/surveys",:action=>"create_result"},:remote => true) do %>
+             <%= hidden_field_tag :format,"js" %>
+            <% i = 0%>
+            <% @subjects.each do |subject| %>
+              <% i=i+1 %>
+              <%= render :partial => '/csi/surveys/subject', :object => subject,
+                         :locals => {:parent => @survey,:num=>i}%>
+            <% end %>
+
+            <%= hidden_field_tag 'page', @page %>
+            <%= hidden_field_tag 'return_url', @return_url %>
+            <%= hidden_field_tag 'survey_id', @survey.id %>
+            <p>
+            <div class="pbBottomButtons">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tbody>
+                    <tr>
+                      <td class="pbTitle"></td>
+                      <td id="bottomButtonRow" class="pbButtonb">
+                        <div class="button">
+                          <div class="button"><% if @survey.total_page == 1 || @page == @survey.total_page %>
+                            <%= submit_tag t(:submit)%>
+                          <% else %>
+                             <%= submit_tag t(:next) %>
+                          <% end %></div>
+                          <div class="button"><%= link_to t(:cancel), @return_url%></div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+              
+           <% end %>
+        <% else %>
+          <%= t(:label_csi_survey_closed) %>
+        <% end %>
+    </div>
+</div>

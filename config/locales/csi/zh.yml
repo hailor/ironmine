@@ -3,7 +3,7 @@ zh:
    label_csi_survey_new: 新建调查问卷
    label_csi_survey_info: 调查问卷
    label_csi_survey_company: 公司名称
-   label_csi_survey_title: 问卷题目
+   label_csi_survey_title: 问卷名称
    label_csi_survey_description: 描述
    label_csi_survey_email_notify: 是否Email提醒
    label_csi_survey_notify_url: 提醒的URL地址
@@ -12,7 +12,53 @@ zh:
    label_csi_survey_publish_response: 是否公开结果
    label_csi_survey_comment_flag: 是否可以评论
    label_csi_survey_password: 密码
+   label_csi_survey_please_input: 请输入密码
    label_csi_survey_closed_datetime: 关闭时间
    label_csi_survey_same_ip_allow_flag: 同一个IP是否允许提交
    label_csi_survey_status_code: 记录状态
+   label_csi_survey_setting: 设置
+   label_csi_survey_access_control: 访问控制
+   label_csi_survey_edit: 编辑调查问卷
+   label_csi_survey_show: 调查问卷
+   label_csi_survey_list: 调查问卷列表
+   label_csi_survey_closed: 调查问卷已关闭
+   label_csi_survey_required_input: 必答题
+   reply: 预览
+   label_csi_survey_no_form: 没有这个调查问卷
+   label_csi_default_thanks_message: 您的回答已成功提交.
+   return: 返回
+   label_csi_message_blank: 该题不能为空
+   #========================= end   irm regions_controller=======================#
+   #========================= start irm regions_controller=======================#
+   label_csi_survey_subject: 题目
+   label_csi_survey_subject_add_subject: 新问题
+   label_csi_survey_subject_info: 调查问卷题目详细信息
+   duplicate: 复制
+   are_you_sure: 你确定嘛
+   required: 必填
+   label_csi_survey_subject_untitled_form: 未命名的表单
+   label_csi_survey_subject_describe_your_form: 描述你的表单
+   question: 问题名称
+   option: 选项
+   label_csi_survey_subject_other: 其他
+   label_csi_survey_subject_title: 标题
+   label_csi_survey_subject_prompt: 提示
+   label_csi_survey_subject_input_type: 输入类型
+   label_csi_survey_users_short_answer: 用户回答
+   text: 单行文本
+   paragraph_text: 大段文本
+   multi_choice: 单选题
+   checkboxes: 多选题
+   choose_from_a_list: 下拉列表
+   page_break: 分页符
+   label_csi_survey_subject_seq_num: 问题顺序
+   label_csi_survey_subject_users_long_answer: 用户较长的回答
+   label_csi_survey_subjects_add_other: 允许用户填写其它选择
+   label_csi_survey_subjects_other: 其他
+   untitled_form: 未命名表单
+   describe_your_form: 描述您的表单
+   label_csi_survey_subjects_option_one: "选项 #1"
+   label_irm_survey_subject_edit: 编辑调查问卷题目
+   label_irm_survey_subject_info: 调查问卷题目信息
+   submit: 提交
    #========================= end   irm regions_controller=======================#

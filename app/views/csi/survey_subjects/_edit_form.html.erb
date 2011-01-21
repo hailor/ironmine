@@ -1,0 +1,58 @@
+<%= page_title %>
+<div id="edit_form">
+<%= form_for(@survey_subject,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_survey_subject_edit)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @survey_subject%>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend"><span class="requiredExampleOuter">
+          <span class="requiredExample">&nbsp;</span></span>
+           <span class="requiredMark">*</span><span class="requiredText"> = <%=t(:label_is_required)%></span></span></span>
+      <h3><%=t(:label_irm_survey_subject_info)%></h3>
+    </div>
+    <div class="pbSubsection">
+      <div id="id_form">
+         <div class="form">
+            <%= render :partial => "subject_form", :locals => {:parent => @survey, :subject => @survey_subject} %>
+         </div>         
+       </div>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
+</div>
+
+<div id="hidden_form">
+  <% ['string', 'text', 'radio', 'check', 'drop'].each do |input| %>
+    <div id="<%= input %>_type" style="display:none">
+         <%= render :partial => "#{input}_form", :locals => {:parent => @survey, :subject => nil} %>
+    </div>
+  <% end %>
+</div>

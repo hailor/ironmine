@@ -1,0 +1,35 @@
+<%%= page_title %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%%= t(:label_<%= singular_name %>_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%%= link_to t(:new), {:action => "new"}%></div>
+              </td>
+              <td class="pbHelp">
+                <div id="<%= plural_name %>SearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="<%= plural_name %>" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+          </div>
+        </div>
+        <%%= datatable("<%= plural_name %>",url_for(:action=>"get_data",:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
+                       <% attributes.each_with_index do |attribute, i|-%>
+                       { :key => "<%= attribute.name %>", :label => t(:<%= singular_name %>_<%= attribute.name %>,:searchable=>true) }<% if i < attributes.size-1 -%>,<% end %>
+                       <% end -%>
+                       ],{:row_perpage=>20,:search_box=>"<%= plural_name %>SearchBox"})%>
+      </div>
+    </div>
+</div>
+
+

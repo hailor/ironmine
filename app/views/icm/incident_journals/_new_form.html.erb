@@ -1,0 +1,229 @@
+<style type="text/css">
+  ul{
+      padding-left: 40px;
+  }
+  ol{
+      padding-left: 40px;
+  }
+  div.reply{
+      margin-bottom: 2px;
+      border: 1px solid #0F5C8E;
+  }
+  div.reply div.replyHeader{
+      padding: 5px 5px 5px 5px;
+      background: none repeat scroll 0 0 #ADCBE7;
+  }
+  div.reply div.replyHeaderSection{
+    padding: 5px 5px 5px 5px;
+  }
+  .yui-skin-sam .yui-toolbar-container div.yui-toolbar-subcont{
+    border-bottom-width: 1px;
+    padding-bottom: 0;
+    padding-left: 1px;
+  }        
+</style>
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_incident_request) %>:<%=@incident_request[:title]%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @incident_request}%></div>
+            <div class="button"><%= link_to t(:back), {:controller=>"icm/incident_requests",:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pbBody">
+    <div class="pbSubheader tertiaryPalette">
+      <h3>状态信息<span class="titleSeparatingColon">:</span></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_icm_incident_request_incident_phase_code)%></label></td>
+              <td class="dataCol"><div><%= @incident_request[:incident_phase_name] %></div></td>
+              <td class="labelCol"><label ><%=t(:label_icm_incident_request_incident_status_code)%></label></td>
+              <td class="dataCol"><div><%= @incident_request[:incident_status_name] %></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_icm_incident_request_submitted_by)%></label></td>
+              <td class="dataCol"><div><%= @incident_request[:submitted_name] %></div></td>
+              <td class="labelCol"><label ><%=t(:label_icm_incident_request_submitted_date)%></label></td>
+              <td class="dataCol"><div><%= format_date(@incident_request[:submitted_date]) %></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_icm_incident_request_support_group)%></label></td>
+              <td class="dataCol"><div><%= @incident_request[:support_group_name] %></div></td>
+              <td class="labelCol"><label ><%=t(:label_icm_incident_request_support_person)%></label></td>
+              <td class="dataCol"><div><%= @incident_request[:support_person_name] %></div></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pbSubheader tertiaryPalette">
+      <h3>基本信息<span class="titleSeparatingColon">:</span></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_icm_incident_request_service_code)%></label></td>
+              <td class="dataCol"><div><%= @incident_request[:service_name] %></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_icm_incident_request_title)%></label></td>
+              <td class="dataCol"><div><%= @incident_request[:title] %></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_icm_incident_request_requested_by)%></label></td>
+              <td class="dataCol"><div><%= @incident_request[:requested_name] %></div></td>
+              <td class="labelCol"><label ><%=t(:label_icm_incident_request_contact)%></label></td>
+              <td class="dataCol"><div><%= @incident_request[:contact_name] %>(<%= @incident_request[:contact_number] %>)</div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_icm_incident_request_priority)%></label></td>
+              <td class="dataCol"><div><%= @incident_request[:priority_name] %></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_icm_incident_request_urgence_code)%></label></td>
+              <td class="dataCol"><div><%= @incident_request[:urgence_name] %></div></td>
+              <td class="labelCol"><label ><%=t(:label_icm_incident_request_impact_range_code)%></label></td>
+              <td class="dataCol"><div><%= @incident_request[:impact_range_name] %></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_icm_incident_request_request_type_code)%></label></td>
+              <td class="dataCol"><div><%= @incident_request[:request_type_name] %></div></td>
+              <td class="labelCol"><label ><%=t(:label_icm_incident_request_report_source_code)%></label></td>
+              <td class="dataCol"><div><%= @incident_request[:report_source_name] %></div></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<div id="histories" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_icm_incident_journal_list)%></h2></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+     <%= list_journals(@incident_request) %>
+   </div>
+</div>
+<%= form_for(@incident_reply,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+<div id="reply" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_icm_incident_journal_new)%></h2></td>
+          <td class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_icm_incident_reply_support_group_id)%></label></td>
+              <td class="dataCol"><div><%= f.text_field :support_group_id %></div></td>
+              <td class="labelCol"><label ><%=t(:label_icm_incident_reply_support_person_id)%></label></td>
+              <td class="dataCol"><div><%= f.text_field :support_person_id %></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="incident_request_incident_status_code"><%=t(:label_icm_incident_reply_incident_status_code)%></label></td>
+              <td class="dataCol">
+                <%=f.select :incident_status_code,nullable_options_for_select(available_request_status_code,@incident_reply.incident_status_code),
+                                                    {},{:id=>"incident_request_incident_status_code"}%>
+              </td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <%= fields_for @incident_journal,:as=>"incident_journal",:normal=>true do |sub_f|%>
+                <%= sub_f.hidden_field(:incident_request_id) %>    
+              <td class="labelCol"></td>
+              <td class="dataCol" colspan="3" width="82%">
+                <%= sub_f.text_area :message_body ,:id=>"msgEditor",:style=>"display:none;"%>
+              </td>
+              <% end%>
+            </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>  
+</div>
+<% end %>
+
+<button id="showhtml" value="xxx">show</button>
+<div id="editor_cont">
+    <div id="editor" style="width:400px;"></div>
+</div>
+<script type="text/javascript">
+
+GY.use('node','yui2-editor', function(Y) {
+  var YAHOO = Y.YUI2;
+  var editor = new YAHOO.widget.Editor('msgEditor', {
+        height:'200px',
+        width:'84%',
+        toolbar: {
+            buttons: [
+                { group: 'textstyle',
+                    buttons: [
+                        { type: 'push', label: 'Bold', value: 'bold' },
+                        { type: 'push', label: 'Italic', value: 'italic' },
+                        { type: 'push', label: 'Underline', value: 'underline' },
+                        { type: 'push', label: 'Create an Unordered List', value: 'insertunorderedlist' },
+	                    { type: 'push', label: 'Create an Ordered List', value: 'insertorderedlist' },
+                        { type: 'color', label: 'Font Color', value: 'forecolor', disabled: true },
+                        { type: 'color', label: 'Background Color', value: 'backcolor', disabled: true }
+                    ]
+                }
+            ]
+        }
+    });
+    editor.render();
+    Y.one("#new_icm_incident_reply").on("submit",function(){
+      editor.saveHTML();    
+    });
+});
+</script>
+
+
