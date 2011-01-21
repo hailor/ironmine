@@ -157,10 +157,25 @@ YUI(yuiConfig).use('node-base', 'node-event-delegate', 'io-form', 'rails-ujs', '
 			success:  function(tid, response) { element.fire('ajax:success', {}, response); },
 			failure:  function(tid, response) { element.fire('ajax:failure', {}, response); }
 		};
+
+        // Define a function to handle the response data.
+        function complete(id, o, args) {
+          var id = id; // Transaction ID.
+          var data = o.responseText; // Response data.
+          var args = args[1]; // 'ipsum'.
+          //when javascript,eval data,may be a bug
+          eval(data);
+        }
+
+        // Subscribe to event "io:complete", and pass an array
+        // as an argument to the event handler "complete".
+        Y.on('io:complete', complete, Y, { 'foo':'bar' });
 		
 		Y.io(url, cfg);
 		
 		element.fire('ajax:after');
+
+
 		e.preventDefault();
 	}
 

@@ -26,7 +26,7 @@ en:
    label_csi_survey_no_form: No Form
    label_csi_default_thanks_message: Your answer has been submitted successfully.
    return: Return
-   label_csi_message_blank: isn't Blank
+   label_csi_message_blank: This Question can't be blank
    #========================= end   irm regions_controller=======================#
    #========================= start irm regions_controller=======================#
    label_csi_survey_subject: Subject

@@ -10,6 +10,7 @@
         <input name="<%= "result[#{subject.id}][]" %>" value="_other" type="checkbox"/>
         <%= t(:label_csi_survey_subjects_other) %>
         <%= text_field_tag "result[#{subject.id}][][other]", '' %></p>
+        <span id="id_<%=subject.id%>" style="color:	#FF0000;"></span>
         <br />
         <span class="prompt"><%=h subject.prompt %></span>
    </td>

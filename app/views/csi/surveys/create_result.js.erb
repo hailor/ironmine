@@ -1,0 +1,4 @@
+GY.use('node',function (Y){
+   var subject_id = "<%=@error[0]%>";
+   Y.one("#id_"+subject_id).setContent("<%=t(:error)%>:<%=t(:label_csi_message_blank)%>");
+});
