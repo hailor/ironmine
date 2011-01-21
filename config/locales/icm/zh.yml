@@ -85,6 +85,7 @@ zh:
   label_icm_incident_status_show: 事故单状态
   #========================= end icm incident_statuses_controller=======================#
   #=========================    icm incident_requests_controller=======================#
+  label_icm_reply: 回复
   label_icm_incident_request_list: 事故单列表
   label_icm_incident_request_new: 新建事故单
   label_icm_incident_request_service_code: 服务
