@@ -15,6 +15,16 @@ class Irm::AttachmentVersion < ActiveRecord::Base
     end
   end
 
+  def self.dataurl(attributes,style_name="original")
+    attributes.merge!({:class_name=>self.name,:name=>"data"})
+    Irm::PaperclipHelper.gurl(attributes,style_name)
+  end
+
+  def self.datapath(attributes,style_name="original")
+    attributes.merge!({:class_name=>self.name,:name=>"data"})
+    Irm::PaperclipHelper.gpath(attributes,style_name)
+  end
+
 
   private
   def setup_attachment_id
