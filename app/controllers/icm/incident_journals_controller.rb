@@ -3,6 +3,10 @@ class Icm::IncidentJournalsController < ApplicationController
   before_filter :setup_up_incident_request
   before_filter :backup_incident_request ,:only=>[:create,:update]
 
+  def index
+   redirect_to :action=>"new"
+  end
+
   # GET /incident_journals/new
   # GET /incident_journals/new.xml
   def new
