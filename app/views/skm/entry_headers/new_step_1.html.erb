@@ -31,7 +31,7 @@
                 <tbody>
                     <tr>
                       <td class="labelCol">
-                        <%= f.select :entry_template_id, available_entry_templates.collect{|p| [p.entry_template_code, p.id]}, {},{:style => "width: 100%;min-height: 200px; min-width: 180px;", :id => "template_select", :size => "18" , :selected => (@entry_header.entry_template_id ? @entry_header.entry_template_id : false)} %>
+                        <%= f.select :entry_template_id, available_entry_templates.collect{|p| [p.name, p.id]}, {},{:style => "width: 100%;min-height: 200px; min-width: 180px;", :id => "template_select", :size => "18" , :selected => (@entry_header.entry_template_id ? @entry_header.entry_template_id : false)} %>
                       </td>
                       <td class="data2Col">
                         <div id="entry_elements_list" class="datatable" style="width:100%;">
