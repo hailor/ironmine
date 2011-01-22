@@ -89,7 +89,7 @@ class Icm::IncidentJournalsController < ApplicationController
                                                :source_type=>ref_journal.class.name,
                                                :data=>value[:file],
                                                :description=>value[:description]}) if(value[:file]&&!value[:file].blank?)
-    end
+    end if params[:files]
   end
 
 end
