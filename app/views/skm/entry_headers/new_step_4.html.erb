@@ -11,8 +11,8 @@
     <div class="pbHeader">
     <div class="pbBody lightBlueBorder noLineShow">
       <div class="pbDescription" style="margin-bottom: -15px;">
-        <div style="font-weight: bold;font-size: 15px;float:left;"><%= t:label_skm_entry_header_title%>: <%= @entry_header.entry_title %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-        <div><%= t:label_skm_entry_header_keyword_tags %>: <%= @entry_header.keyword_tags.blank? ? t(:none) : @entry_header.keyword_tags %></div>
+        <div style="font-weight: bold;font-size: 15px;float:left;"><%= t(:label_skm_entry_header_title)%>: <%= @entry_header.entry_title %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <div><%= t(:label_skm_entry_header_keyword_tags) %>: <%= @entry_header.keyword_tags.blank? ? t(:none) : @entry_header.keyword_tags %></div>
       </div>
     <% session[:skm_entry_details].each do |k,e| %>
         <div class="pbSubheader tertiaryPalette">
