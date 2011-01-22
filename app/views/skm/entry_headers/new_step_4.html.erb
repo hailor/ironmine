@@ -38,8 +38,9 @@
                   <td class="pbTitle"></td>
                   <td id="bottomButtonRow" class="pbButtonb">
                     <div class="button"><%= link_to t(:last), {}, {:href => "javascript:void(0);", :onclick => "submit_last()"}%></div>
-                    <div class="button"><%= link_to t(:done), {}, {:href => "javascript:void(0);", :onclick => "submit_next()"}%></div>
-                    <div class="button"><%= link_to t(:cancel), {:action => "index"} %></div>
+                    <div class="button"><%= link_to t(:save_as_draft), {}, :href => "javascript:void(0);", :onclick => "submit_draft();"%></div>
+                    <div class="button"><%= link_to t(:save_as_published), {}, :href => "javascript:void(0);", :onclick => "submit_published();"%></div>
+                    <div class="button"><%= link_to t(:cancel), {:controller => "skm/entry_headers", :action => "index"}  %></div>
                   </td>
                 </tr>
               </tbody>
@@ -48,14 +49,18 @@
     </div>
 </div>
 <script type="text/javascript">
-  function submit_next(){
-    document.new_skm_entry_header.action = "create";
-    new_skm_entry_header.submit();
-  }
-
   function submit_last(){
     document.new_skm_entry_header.action = "new?step=3";
     new_skm_entry_header.submit();
   }
+  function submit_draft(){
+    document.new_skm_entry_header.action = "create?status='DRAFT'";
+    edit_form.submit();
+  }
+
+  function submit_published(){
+    document.new_skm_entry_header.action = "create?status='PUBLISHED'";
+    new_skm_entry_header.submit();
+  }        
 </script>
 <% end %>
