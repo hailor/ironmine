@@ -119,4 +119,11 @@ en:
   label_icm_incident_reply_incident_status_code: New Incident Status
   label_icm_incident_journal_list: Request histories
   label_icm_incident_journal_new: Reply
+  label_icm_incident_journal_back_to_request_list: Back to request list
+  label_icm_incident_request_base_info: Base information
+  label_icm_incident_request_status_info: Status information
+  label_icm_incident_journal_reply: Comments
+  label_icm_incident_journal_attachment: Attachments
+  label_icm_incident_journal_attachment_desc: Description
+  label_icm_incident_journal_add_attachment: Add a attachment
   #========================= end icm incident_journals_controller=======================#
