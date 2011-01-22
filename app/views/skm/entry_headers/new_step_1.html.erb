@@ -37,11 +37,11 @@
                         <div id="entry_elements_list" class="datatable" style="width:100%;">
                         </div>
                         <%= datatable("entry_elements_list",url_for(:controller => "skm/entry_templates", :action=>"get_owned_elements_data", :template_id => @entry_header.entry_template_id ? @entry_header.entry_template_id : "-1" ,:format=>"json"),
-                                      [{:key=>"required_flag",:label=>t(:label_skm_entry_template_element_required)},
-                                       {:key=>"entry_template_element_code",:label=>t(:label_skm_entry_template_element_code)},
-                                       {:key=>"name",:label=>t(:name)},
+                                      [{:key=>"required_flag",:label=>t(:label_skm_entry_template_element_required), :width => "30px"},
+                                       {:key=>"entry_template_element_code",:label=>t(:label_skm_entry_template_element_code), :width => "100px"},
+                                       {:key=>"name",:label=>t(:name), :width => "200px"},
                                        {:key=>"description",:label=>t(:description)},
-                                       {:key=>"default_rows",:label=>t(:label_skm_entry_template_element_rows)}
+                                       {:key=>"default_rows",:label=>t(:label_skm_entry_template_element_rows), :width => "100px"}
                                        ]) %>
                       </td>
                     </tr>
