@@ -10,7 +10,7 @@ class Skm::EntryHeader < ActiveRecord::Base
   scope :history_entry, where("#{table_name}.history_flag = ?", Irm::Constant::SYS_YES)
 
   def self.generate_doc_number(prefix = "")
-      num = Time.now.strftime("%y%m%d").to_i * 1000000 + id % 1000000
+      num = Time.now.strftime("%y%m%d").to_i * 1000000 + rand(10)
       return prefix + num.to_s
   end
 
