@@ -18,10 +18,6 @@ class Icm::IncidentJournalsController < ApplicationController
     end
   end
 
-  # GET /incident_journals/1/edit
-  def edit
-    @incident_journal = IncidentJournal.find(params[:id])
-  end
 
   # POST /incident_journals
   # POST /incident_journals.xml
@@ -42,21 +38,6 @@ class Icm::IncidentJournalsController < ApplicationController
     end
   end
 
-  # PUT /incident_journals/1
-  # PUT /incident_journals/1.xml
-  def update
-    @incident_journal = IncidentJournal.find(params[:id])
-
-    respond_to do |format|
-      if @incident_journal.update_attributes(params[:incident_journal])
-        format.html { redirect_to(@incident_journal, :notice => 'Incident journal was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @incident_journal.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
 
   private
   def setup_up_incident_request
