@@ -116,4 +116,11 @@ zh:
   label_icm_incident_reply_incident_status_code: 新状态
   label_icm_incident_journal_list: 事故单历史
   label_icm_incident_journal_new: 回复
+  label_icm_incident_journal_back_to_request_list: 返回事故单列表
+  label_icm_incident_request_base_info: 基本信息
+  label_icm_incident_request_status_info: 状态信息
+  label_icm_incident_journal_reply: 回复信息
+  label_icm_incident_journal_attachment: 附件
+  label_icm_incident_journal_attachment_desc: 附件描述
+  label_icm_incident_journal_add_attachment: 添加新附件
   #========================= end icm incident_journals_controller=======================#

@@ -61,7 +61,7 @@
           <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_incident_request) %>:<%=@incident_request[:title]%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @incident_request}%></div>
-            <div class="button"><%= link_to t(:back), {:controller=>"icm/incident_requests",:action => "index"}%></div>
+            <div class="button"><%= link_to t(:label_icm_incident_journal_back_to_request_list), {:controller=>"icm/incident_requests",:action => "index"}%></div>
           </td>
         </tr>
       </tbody>
@@ -70,7 +70,7 @@
 
   <div class="pbBody">
     <div class="pbSubheader tertiaryPalette">
-      <h3>状态信息<span class="titleSeparatingColon">:</span></h3>
+      <h3><%= t(:label_icm_incident_request_status_info) %><span class="titleSeparatingColon">:</span></h3>
     </div>
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
@@ -97,7 +97,7 @@
       </table>
     </div>
     <div class="pbSubheader tertiaryPalette">
-      <h3>基本信息<span class="titleSeparatingColon">:</span></h3>
+      <h3> <%= t(:label_icm_incident_request_base_info) %> <span class="titleSeparatingColon">:</span></h3>
     </div>
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
@@ -168,7 +168,6 @@
           <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_icm_incident_journal_new)%></h2></td>
           <td class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_back t(:cancel)%></div>
           </td>
         </tr>
       </tbody>
@@ -196,21 +195,21 @@
             <tr>
               <%= fields_for @incident_journal,:as=>"incident_journal",:normal=>true do |sub_f|%>
                 <%= sub_f.hidden_field(:incident_request_id) %>    
-              <td class="labelCol">Comments</td>
+              <td class="labelCol"><%= t(:label_icm_incident_journal_reply) %></td>
               <td class="dataCol" colspan="3" width="82%">
                 <%= sub_f.text_area :message_body ,:id=>"msgEditor",:style=>"display:none;"%>
               </td>
               <% end%>
             </tr>
             <tr>
-              <td class="labelCol">Files</td>
+              <td class="labelCol"><%= t(:label_icm_incident_journal_attachment) %></td>
               <td class="dataCol" colspan="3" width="82%">
 
               <table>
                 <tbody id="fileTemplate" style="display:none" seq="0">
                 <tr id="file_{seq}" class="fileArea">
-                    <td><input type="file" name="{ref}[{seq}][file]" accept="image/gif,image/png"/></td>
-                    <td class="labelCol">Description</td>
+                    <td><input type="file" name="{ref}[{seq}][file]"/></td>
+                    <td class="labelCol"><%= t(:label_icm_incident_journal_attachment_desc) %></td>
                     <td><input type="text" name="{ref}[{seq}][description]" size="40"/></td>
                     <td><a class="deleteAttach" delete_ref="file_{seq}" href="javascript:void(0)">delete</a></td>
                 </tr>
@@ -220,7 +219,7 @@
                 </tbody>
                 <tbody id="fileButtons">
                   <tr>
-                    <td><a id="addButton" href="javascript:void(0)">Add a attachment</a></td>
+                    <td><a id="addButton" href="javascript:void(0)"><%= t(:label_icm_incident_journal_add_attachment) %></a></td>
                   </tr>
                 </tbody>
               </table>
@@ -238,7 +237,6 @@
           <td class="pbTitle"></td>
           <td id="bottomButtonRow" class="pbButtonb">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_back t(:cancel)%></div>
           </td>
         </tr>
       </tbody>
