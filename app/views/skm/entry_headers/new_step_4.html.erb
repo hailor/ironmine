@@ -2,10 +2,10 @@
 <div class="bWizardBlock bDetailBlock">
     <div class="pbWizardTitle tertiaryPalette">
         <div class="ptRightTitle">
-            第 4 步，共 4 步
+            <%= t(:step_n_total_m, :n => "3", :m => "3") %>
         </div>
         <h2>
-            步骤 4。 预览知识库文章
+            <%= t(:step_n, :n => "3") %><%= t(:notice_skm_entry_header_preview_entry)%>
         </h2>
     </div>
     <div class="pbHeader">
@@ -50,7 +50,7 @@
 </div>
 <script type="text/javascript">
   function submit_last(){
-    document.new_skm_entry_header.action = "new?step=3";
+    document.new_skm_entry_header.action = "new?step=2";
     new_skm_entry_header.submit();
   }
   function submit_draft(){
