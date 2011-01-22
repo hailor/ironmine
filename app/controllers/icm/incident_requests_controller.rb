@@ -83,7 +83,7 @@ class Icm::IncidentRequestsController < ApplicationController
 
   private
   def prepared_for_create(incident_request)
-    incident_request.submitted_by = Irm::Person.current.id
+    incident_request.submitted_by = Irm::Person.first.id
     incident_request.submitted_date = Time.now
   end
 end
