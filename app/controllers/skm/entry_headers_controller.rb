@@ -12,6 +12,7 @@ class Skm::EntryHeadersController < ApplicationController
 
   def show
     @entry_header = Skm::EntryHeader.find(params[:id])
+    @return_url=request.env['HTTP_REFERER']  
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @entry_header }
@@ -93,6 +94,7 @@ class Skm::EntryHeadersController < ApplicationController
 
   def edit
     @entry_header = Skm::EntryHeader.find(params[:id])
+    @return_url=request.env['HTTP_REFERER']
   end
 
   def create
@@ -123,6 +125,7 @@ class Skm::EntryHeadersController < ApplicationController
   end
 
   def update
+    return_url = params[:return_url]
     if params[:new]
       old_header = Skm::EntryHeader.find(params[:id])
       @entry_header = Skm::EntryHeader.new(old_header.attributes)
@@ -137,9 +140,14 @@ class Skm::EntryHeadersController < ApplicationController
             detail = Skm::EntryDetail.new(old_detail.attributes)
             detail.update_attributes(v)
             @entry_header.entry_details << detail
-          end          
-          format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
-          format.xml  { render :xml => @entry_header, :status => :created, :location => @entry_header }
+          end
+          if return_url.blank?
+            format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+            format.xml  { render :xml => @entry_header, :status => :created, :location => @entry_header }
+          else
+            format.html { redirect_to(return_url, :notice =>t(:successfully_created)) }
+            format.xml  { render :xml => @entry_header, :status => :created, :location => @entry_header }
+          end
         else
           format.html { render :action => "edit" }
           format.xml  { render :xml => @entry_header.errors, :status => :unprocessable_entity }
@@ -155,8 +163,13 @@ class Skm::EntryHeadersController < ApplicationController
             detail = Skm::EntryDetail.find(k)
             detail.update_attributes(v)
           end
-          format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
-          format.xml  { head :ok }
+          if return_url.blank?
+            format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
+            format.xml  { head :ok }
+          else
+            format.html { redirect_to(return_url, :notice =>t(:successfully_created)) }
+            format.xml  { render :xml => @entry_header, :status => :created, :location => @entry_header }
+          end
         else
           format.html { render :action => "edit" }
           format.xml  { render :xml => @entry_header.errors, :status => :unprocessable_entity }
