@@ -60,7 +60,7 @@
         <tr>
           <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_incident_request) %>:<%=@incident_request[:title]%></h2></td>
           <td id="topButtonRow" class="pbButton">
-            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @incident_request}%></div>
+            <div class="button"><%= link_to t(:edit), {:controller=>"icm/incident_requests",:action => "edit", :id => @incident_request.id}%></div>
             <div class="button"><%= link_to t(:label_icm_incident_journal_back_to_request_list), {:controller=>"icm/incident_requests",:action => "index"}%></div>
           </td>
         </tr>
@@ -211,7 +211,7 @@
                     <td><input type="file" name="{ref}[{seq}][file]"/></td>
                     <td class="labelCol"><%= t(:label_icm_incident_journal_attachment_desc) %></td>
                     <td><input type="text" name="{ref}[{seq}][description]" size="40"/></td>
-                    <td><a class="deleteAttach" delete_ref="file_{seq}" href="javascript:void(0)">delete</a></td>
+                    <td><a class="deleteAttach" delete_ref="file_{seq}" href="javascript:void(0)"><%= t(:delete) %></a></td>
                 </tr>
                 </tbody>
                 <tbody id="fileContent">
