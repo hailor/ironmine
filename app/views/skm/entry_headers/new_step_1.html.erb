@@ -2,15 +2,15 @@
 <div  class="bWizardBlock">
     <div class="pbWizardTitle tertiaryPalette">
         <div class="ptRightTitle">
-            第 1 步，共 4 步
+            <%= t(:step_n_total_m, :n => "1", :m => "4") %>
         </div>
         <h2>
-            步骤 1。 选择知识库文章模板
+            <%= t(:step_n, :n => "1") %><%= t(:notice_skm_entry_header_choice_template) %>
         </h2>
     </div>
   <div class="pbBody">
     <div class="pbDescription ">
-    选择一个知识库文章模板，模板将决定随后创建的文章结构。
+    <%= t(:notice_skm_entry_step_1_desc) %>
     </div>
     <div class="pbWizardBody">
       <div class="secondaryPalette">

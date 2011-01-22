@@ -43,5 +43,11 @@ zh:
   label_skm_entry_header_status_code: 文档状态
   label_skm_entry_header_published_date: 发布日期
   label_skm_entry_header_history_list: 历史版本列表
+  notice_skm_entry_step_1_desc: 选择一个知识库文章模板，模板将决定随后创建的文章结构。
+  notice_skm_entry_step_2_desc: 根据步骤1中所选模板的结构，填入文章内容
+  notice_skm_entry_step_3_desc: 为文章添加附件，以及选择所涉及到的主题
+  notice_skm_entry_header_choice_template: 选择知识库模板
+  notice_skm_entry_header_input_content: 输入文章内容
+  notice_skm_entry_header_subject_and_att: 选择附件和主题
 
   
