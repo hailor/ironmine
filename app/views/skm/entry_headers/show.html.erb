@@ -13,12 +13,29 @@
       </tbody>
     </table>
   </div>
+  
   <div class="pbBody lightBlueBorder  noLineShow">
+        <div class="pbSubheader tertiaryPalette">
+          <h3>导航目录</h3>
+        </div>
+        <div class="pbSubsection">
+          <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <% @entry_header.entry_details.each do |e| %>
+                    <tr>
+                      <td><a href="#<%= e.id%>"><%= e.element_name %></a></td>
+                    </tr>
+                <% end %>
+            </tbody>
+          </table>
+        </div>
     <% @entry_header.entry_details.each do |e| %>
         <div class="pbSubheader tertiaryPalette">
           <h3><%= raw(e.element_name) %></h3>
+          <div style="float:right"><a href="javascript:void(0);" onclick="scrollTo(0, 0);"><%= t(:go_to_top) %></a></div>
         </div>
         <div class="pbSubsection">
+          <a id="<%= e.id %>" name="<%= e.id %>">&nbsp;</a>
           <table class="detailList" cellpadding="0" cellspacing="0" border="0">
             <tbody>
                 <tr>
