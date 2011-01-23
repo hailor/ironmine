@@ -85,10 +85,34 @@ class Skm::EntryHeadersController < ApplicationController
   end
 
   def new_step_4
+#    @entry_header = Skm::EntryHeader.new
+#    session[:skm_entry_header].each do |k, v|
+#      @entry_header[k.to_sym] = v
+#    end
+#    @entry_subject = Skm::EntrySubject.new
+
     @entry_header = Skm::EntryHeader.new
     session[:skm_entry_header].each do |k, v|
       @entry_header[k.to_sym] = v
     end
+    @entry_details = []
+    session[:skm_entry_details].each do |k, v|
+      t = Skm::EntryDetail.new(v)
+      @entry_details << t
+    end
+
+    content_validate_flag = true
+    @entry_details.each do |ed|
+      (content_validate_flag = false ) if !ed.valid?
+    end
+    if !@entry_header.valid? || !content_validate_flag
+      @elements = Skm::EntryTemplateDetail.owned_elements(@entry_header.entry_template_id)
+      respond_to do |format|
+        format.html { render :action => "new_step_2" }
+        format.xml  { render :xml => @entry_header.errors, :status => :unprocessable_entity }
+      end
+    end
+    3.times { @entry_header.entry_subjects.build }
     @entry_subject = Skm::EntrySubject.new
   end
 
