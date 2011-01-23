@@ -8,6 +8,7 @@ class Skm::EntryHeader < ActiveRecord::Base
   scope :draft, where("#{table_name}.entry_status_code = ?", "DRAFT")
   scope :current_entry, where("#{table_name}.history_flag = ?", Irm::Constant::SYS_NO)
   scope :history_entry, where("#{table_name}.history_flag = ?", Irm::Constant::SYS_YES)
+  scope :list_all, select("#{table_name}.*, CONCAT('[', #{table_name}.doc_number, ']', #{table_name}.entry_title) full_title")
 
   def self.generate_doc_number(prefix = "")
       num = Time.now.strftime("%y%m%d").to_i * 1000000 + rand(10)

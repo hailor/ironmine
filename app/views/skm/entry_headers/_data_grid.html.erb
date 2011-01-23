@@ -25,11 +25,8 @@
         </div>
         <%= datatable("entry_headers_list",url_for(:action=>"get_data",:format=>"json"),
                   [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"120px"},
-                   {:key=>"doc_number",:label=>t(:label_skm_entry_header_doc_number),:sortable=>true, :searchable => true},
-                   {:key=>"entry_title",:label=>t(:label_skm_entry_header_title),:sortable=>true, :searchable => true},
-                   {:key=>"version_number",:label=>t(:label_skm_entry_header_version),:sortable=>true},
-                   {:key=>"keyword_tags",:label=>t(:label_skm_entry_header_keyword_tags),:sortable=>true, :searchable => true},
-                   {:key=>"published_date",:label=>t(:label_skm_entry_header_published_date),:sortable=>true}], 
+                   {:key=>"full_title",:label=>t(:label_skm_entry_header_title),:sortable=>true, :searchable => true},
+                   {:key=>"published_date",:label=>t(:label_skm_entry_header_published_date),:sortable=>true, :width => "150px"}], 
                    {:search_box => "entryHeadersSearchBox"})%>
       </div>
     </div>
