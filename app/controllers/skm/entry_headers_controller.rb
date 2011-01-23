@@ -220,4 +220,17 @@ class Skm::EntryHeadersController < ApplicationController
       format.json  {render :json => to_jsonp(entry_histories.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date], count)) }
     end    
   end
+
+  def index_search
+    @search_value = params[:search_value]
+  end
+
+  def index_search_get_data
+    entry_headers_scope = Skm::EntryHeader.list_all.published.current_entry
+    entry_headers_scope = entry_headers_scope.match_value("#{Skm::EntryHeader.table_name}.entry_title",params[:search_value]) if params[:search_value]
+    entry_headers,count = paginate(entry_headers_scope)
+    respond_to do |format|
+      format.json  {render :json => to_jsonp(entry_headers.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date], count)) }
+    end
+  end
 end

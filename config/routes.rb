@@ -584,6 +584,8 @@ Ironmine::Application.routes.draw do
     match '/entry_headers/new_step_2(.:format)' => "entry_headers#new_step_2", :via => :get
     match '/entry_headers/new_step_3(.:format)' => "entry_headers#new_step_3", :via => :get
     match '/entry_headers/new_step_4(.:format)' => "entry_headers#new_step_4", :via => :get
+    match '/entry_headers/index_search(.:format)' => "entry_headers#index_search", :via => :post
+    match '/entry_headers/index_search_get_data(.:format)' => "entry_headers#index_search_get_data"
   end
   
   match '/demo(/index)' => 'demo#index'
