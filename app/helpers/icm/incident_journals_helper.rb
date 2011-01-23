@@ -19,5 +19,15 @@ module Icm::IncidentJournalsHelper
      content_tag(:div,file_lists.html_safe,{:class=>"fileList"})
   end
 
+  def incident_close_code
+    close = Icm::IncidentStatus.enabled.query_by_close_flag(Irm::Constant::SYS_YES).first
+    close ||= {:incident_status_code=>"CLOSE_STATUS"}
+    close[:incident_status_code]
+  end
+
+  def available_close_code
+    Icm::CloseReason.multilingual.collect{|i|[i[:name],i[:close_code]]}
+  end
+
 
 end

@@ -502,8 +502,8 @@ Ironmine::Application.routes.draw do
     match '/incident_requests/:id(.:format)' => "incident_requests#show", :via => :get
     #incident_journals
     match '/incident_requests/:request_id/journals(/index)(.:format)' => "incident_journals#index", :via => :get    
-    #match '/incident_requests/:request_id/journals/:id/edit(.:format)' => "incident_journals#edit", :via => :get
-    #match '/incident_requests/:request_id/journals/:id(.:format)' => "incident_journals#update", :via => :put
+    match '/incident_requests/:request_id/journals/edit_close(.:format)' => "incident_journals#edit_close", :via => :get
+    match '/incident_requests/:request_id/journals/update_close(.:format)' => "incident_journals#update_close", :via => :put
     match '/incident_requests/:request_id/journals/new(.:format)' => "incident_journals#new", :via => :get
     match '/incident_requests/:request_id/journals/create(.:format)' => "incident_journals#create", :via => :post
   end

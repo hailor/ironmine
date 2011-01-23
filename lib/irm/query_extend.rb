@@ -92,7 +92,9 @@ module Irm::QueryExtend
         def order_display(current_table="#{table_name}")
           order("#{current_table}.display_sequence")
         end
-        
+        def order_id(current_table="#{table_name}")
+          order("#{current_table}.id")
+        end
       end
     end
 end

@@ -83,6 +83,7 @@ zh:
   label_icm_incident_status_description: 描述
   label_icm_incident_status_info: 事故单状态信息
   label_icm_incident_status_show: 事故单状态
+  label_icm_incident_close_flag: 关闭状态
   #========================= end icm incident_statuses_controller=======================#
   #=========================    icm incident_requests_controller=======================#
   label_icm_reply: 回复
@@ -108,7 +109,8 @@ zh:
   label_incident_request: 事故单
   label_icm_incident_request_submitted_by: 提交人
   label_icm_incident_request_incident_phase_code: 阶段
-  label_icm_incident_request_submitted_date: 提交日期    
+  label_icm_incident_request_submitted_date: 提交日期
+  label_icm_incident_request_close_reason_code: 关闭原因
   #========================= end icm incident_requests_controller=======================#
   #=========================    icm incident_journals_controller=======================#
   label_icm_incident_reply_support_group_id: 转交组
@@ -123,4 +125,6 @@ zh:
   label_icm_incident_journal_attachment: 附件
   label_icm_incident_journal_attachment_desc: 附件描述
   label_icm_incident_journal_add_attachment: 添加新附件
+  label_icm_incident_journal_close: 关闭事故单
+  label_icm_incident_joural_back_to_request: 返回事故单
   #========================= end icm incident_journals_controller=======================#
