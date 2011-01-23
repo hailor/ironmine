@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddSkmIndexSearchPermissions < ActiveRecord::Migration
   def self.up
     skm_header_index_search = Irm::Permission.new(:permission_code=>'SKM_ENTRY_HEADERS_IND_SEAR',
