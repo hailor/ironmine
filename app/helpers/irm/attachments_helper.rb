@@ -1,0 +1,2 @@
+module Irm::AttachmentsHelper
+end
