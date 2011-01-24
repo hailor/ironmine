@@ -1,4 +1,4 @@
-<%= page_title %>
+<%= setting_title %>
 <%= form_for(@site,:url=>{:controller=>"irm/sites",:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
 <%=f.hidden_field :site_group_code,:value=>@site.site_group_code%>
 <%= hidden_field_tag :return_url,@return_url %>

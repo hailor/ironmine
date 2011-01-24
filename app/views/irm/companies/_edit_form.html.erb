@@ -1,4 +1,4 @@
-<%= page_title %>
+<%= setting_title %>
 
 <%= form_for(@company,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
 <%= hidden_field_tag :return_url,@return_url %>

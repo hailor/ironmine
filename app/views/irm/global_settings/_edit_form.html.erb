@@ -1,4 +1,4 @@
-<%= page_title %>
+<%= setting_title %>
 
 <%= form_for(@global_setting,:url=>{:action=>"update", :id => @global_setting},:builder => LabellingFormBuilder, :html => {:method => :put, :id => "edit_setting_form", :multipart => true}) do |f| %>
 <div id="ep" class="bEditBlock bPageBlock">
