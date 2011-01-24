@@ -1,3 +1,14 @@
+<%= page_title %>
+<div class="bOverviewSearch">
+  <div>
+    <div class="pbSearch">
+      <%= form_tag("/entry_headers/index_search", :method => :post) do %>
+        <%= text_field_tag "search_value", "", :size => 30 %>
+        <%= submit_tag t(:search), :class => "btn" %>
+      <% end %>
+    </div>
+  </div>
+</div>
 <div class="listRelatedObject setupBlock">
     <div class="bPageBlock">
       <div class="pbHeader">
@@ -23,10 +34,10 @@
             <%= link_to(t(:save_page),{}, :href => "javascript:void(0);") %>
           </div>
         </div>
-        <%= datatable("entry_headers_list",url_for(:action=>"get_data",:format=>"json"),
+        <%= datatable("entry_headers_list",url_for(:action=>"index_search_get_data",:format=>"json", :search_value => @search_value),
                   [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"120px"},
                    {:key=>"full_title",:label=>t(:label_skm_entry_header_title),:sortable=>true, :searchable => true},
-                   {:key=>"published_date",:label=>t(:label_skm_entry_header_published_date),:sortable=>true, :width => "180px"}], 
+                   {:key=>"published_date",:label=>t(:label_skm_entry_header_published_date),:sortable=>true, :width => "180px"}],
                    {:search_box => "entryHeadersSearchBox"})%>
       </div>
     </div>

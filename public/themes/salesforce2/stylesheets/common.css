@@ -6,6 +6,71 @@ body a:hover{color: #015BA7;}
 a {color:#333435;}
 
 /***************** top search area ***********************/
+.bPageTitle {margin-bottom:15px;}
+body.detailPage .bPageTitle {margin-bottom:0;}
+body .bPageTitle {padding:10px 0 0;}
+body .bPageTitle .ptBody {
+    background-color:transparent;
+    color:#000000;
+    padding:0;
+}
+.bPageTitle .ptBody {
+    overflow:hidden;
+    padding-bottom:5px;
+    padding-top:5px;
+    width:100%;
+}
+
+.bDescription {
+    margin:16px 0;
+    padding:0;
+}
+.setupTab .bPageTitle .ptBody .content, .sysAdminTab .bPageTitle .ptBody .content {padding-left:0;}
+.bPageTitle .ptBody .content {
+    float:left;
+    padding-left:5px;
+    vertical-align:middle;
+    width:70%;
+}
+.setupTab .bPageTitle .ptBody .pageType, .setupTab .bPageTitle .ptBody .pageDescription, .sysAdminTab .bPageTitle .ptBody .pageType, .sysAdminTab .bPageTitle .ptBody .pageDescription {
+    margin-left:0;
+    margin-bottom: 5px;
+}
+body .bPageTitle .ptBody .pageDescription {
+    font-size:25px;
+    font-weight:normal;
+    line-height:1.1em;
+}
+.bPageTitle .ptBody .pageDescription {font-size:109%;font-weight:bold;}
+.bPageTitle h1, .bPageTitle h2 {display:block;}
+.bPageTitle .content .blank {clear:both;font-size:0;}
+body .bPageTitle .ptBody .links {padding-top:0;}
+.bPageTitle .ptBody .links {
+    float:right;
+    font-size:91%;
+    padding:10px 5px 0 0;
+    text-align:right;
+    vertical-align:middle;
+    white-space:nowrap;
+}
+body .bPageTitle .ptBody .links a, body .bPageTitle .ptBody .links .configLinks, body .bPageTitle .ptBody .links .helpLink, body .bPageTitle .ptBody .links span {
+color:#015BA7;
+text-decoration:none;
+}
+.bPageTitle .ptBreadcrumb {
+    height:auto;
+    margin-bottom:0;
+    margin-top:3px;
+}
+.bPageTitle .ptBreadcrumb {
+    font-family:'Verdana','Geneva',sans-serif;
+    font-size:91.3%;
+    height:15px;
+    margin-bottom:-15px;
+    vertical-align:middle;
+}
+body .bodyDiv .bOverviewSearch {margin:5px;padding:0 10px 10px;}
+.bOverviewSearch .pbSearch {margin-top:5px;}
 .bPageHeader .phHeader td.searchCell {vertical-align:middle;white-space:nowrap;}
 .headerSearchContainer {
     border:0 none;
@@ -445,7 +510,7 @@ body .bPageBlock .pbBody {padding:0;}
 body .bPageBlock, body .bPageBlock .pbBody, body .bPageBlock .pbBottomButtons {
     background-color:transparent;
     background-image:none;
-    margin:0;
+    margin:0 0 10px 0;
 }
 .bTask .bPageBlock .pbBody {padding:5px 20px 0 !important;}
 .bPageBlock .setupOverview a, .bPageBlock .setupResource a {text-decoration:none;}

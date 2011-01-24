@@ -203,21 +203,34 @@ class Skm::EntryHeadersController < ApplicationController
   end
 
   def get_data
-    entry_headers_scope = Skm::EntryHeader.published.current_entry
+    entry_headers_scope = Skm::EntryHeader.list_all.published.current_entry
     entry_headers_scope = entry_headers_scope.match_value("#{Skm::EntryHeader.table_name}.doc_number",params[:doc_number]) if params[:doc_number]
     entry_headers_scope = entry_headers_scope.match_value("#{Skm::EntryHeader.table_name}.keyword_tags",params[:keyword_tags]) if params[:keyword_tags]
     entry_headers_scope = entry_headers_scope.match_value("#{Skm::EntryHeader.table_name}.entry_title",params[:entry_title]) if params[:entry_title]
     entry_headers,count = paginate(entry_headers_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(entry_headers.to_grid_json(['0',:entry_status_code, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date], count)) }
+      format.json  {render :json => to_jsonp(entry_headers.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date], count)) }
     end
   end
 
   def get_history_entries_data
-    entry_histories_scope = Skm::EntryHeader.published.history_entry.where(:doc_number => params[:doc_number])
+    entry_histories_scope = Skm::EntryHeader.list_all.published.history_entry.where(:doc_number => params[:doc_number])
     entry_histories,count = paginate(entry_histories_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(entry_histories.to_grid_json(['0',:entry_status_code, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date], count)) }
+      format.json  {render :json => to_jsonp(entry_histories.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date], count)) }
     end    
+  end
+
+  def index_search
+    @search_value = params[:search_value]
+  end
+
+  def index_search_get_data
+    entry_headers_scope = Skm::EntryHeader.list_all.published.current_entry
+    entry_headers_scope = entry_headers_scope.match_value("#{Skm::EntryHeader.table_name}.entry_title",params[:search_value]) if params[:search_value]
+    entry_headers,count = paginate(entry_headers_scope)
+    respond_to do |format|
+      format.json  {render :json => to_jsonp(entry_headers.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date], count)) }
+    end
   end
 end

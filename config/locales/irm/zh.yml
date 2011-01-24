@@ -671,3 +671,13 @@ zh:
   label_irm_view_filter_restrict_visibility_for_me: 仅对我可见
   label_irm_view_filter_restrict_visibility_for_all: 所有用户皆可见
   #=========================end irm support_group_controller=======================#
+  #========================= irm roles ===================================
+  label_irm_role_list: 角色列表
+  label_irm_role: 角色
+  label_irm_role_new: 创建角色
+  label_irm_role_edit: 编辑角色
+  label_irm_role_code: 角色编码
+  label_irm_role_name: 角色名称
+  label_irm_role_description: 角色描述
+  label_irm_role_menu: 菜单
+  
