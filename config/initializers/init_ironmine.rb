@@ -84,4 +84,4 @@ Paperclip::Attachment.default_options[:path] = ":rails_root/public/upload/:class
 
 
 # format xml
-ActiveRecord::XmlSerializer::Attribute.send(:extend,Irm::XmlAttribute)
+ActiveRecord::XmlSerializer::Attribute.send(:include,Irm::XmlAttribute)

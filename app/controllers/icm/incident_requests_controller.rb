@@ -15,10 +15,7 @@ class Icm::IncidentRequestsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  {
-                    @incident_request = Icm::IncidentRequest.find(params[:id])
-                    render :xml => @incident_request
-                   }
+      format.xml  { render :xml => @incident_request }
     end
   end
 
@@ -81,8 +78,7 @@ class Icm::IncidentRequestsController < ApplicationController
                                                                           :urgence_name,:impact_range_name,
                                                                           :contact_name,:contact_number,
                                                                           :report_source_name,:priority_name,:incident_status_name],count))}
-      format.xml {incident_requests = Icm::IncidentRequest.all
-                  render :xml => incident_requests}
+      format.xml { render :xml => incident_requests }
     end
   end
 
