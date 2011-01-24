@@ -78,6 +78,7 @@ class Icm::IncidentRequestsController < ApplicationController
                                                                           :urgence_name,:impact_range_name,
                                                                           :contact_name,:contact_number,
                                                                           :report_source_name,:priority_name,:incident_status_name],count))}
+      format.xml { render :xml => incident_requests }
     end
   end
 

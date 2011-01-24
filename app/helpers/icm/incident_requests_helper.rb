@@ -4,7 +4,11 @@ module Icm::IncidentRequestsHelper
   end
 
   def available_person
-    Irm::Person.all.collect{|p|[p.name,p[:id]]}
+    Irm::Person.query_by_support_staff_flag(Irm::Constant::SYS_NO).order_id.all.collect{|p|[p.name,p[:id]]}
+  end
+
+  def available_supporter
+    Irm::Person.query_by_support_staff_flag(Irm::Constant::SYS_YES).order_id.all.collect{|p|[p.name,p[:id]]}
   end
 
   def available_urgence_code
@@ -20,11 +24,11 @@ module Icm::IncidentRequestsHelper
   end
 
   def available_request_type
-    Irm::LookupValue.query_by_lookup_type("ICM_REQUEST_TYPE_CODE").multilingual.collect{|p|[p[:meaning],p[:lookup_code]]}
+    Irm::LookupValue.query_by_lookup_type("ICM_REQUEST_TYPE_CODE").multilingual.order_id.collect{|p|[p[:meaning],p[:lookup_code]]}
   end
 
   def available_request_status_code
-    Icm::IncidentStatus.multilingual.order_display.collect{|i|[i[:name],i[:incident_status_code]]}
+    Icm::IncidentStatus.multilingual.query_by_close_flag(Irm::Constant::SYS_NO).order_display.collect{|i|[i[:name],i[:incident_status_code]]}
   end
 
   def available_request_report_source

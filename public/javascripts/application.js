@@ -105,6 +105,27 @@ GY.use("cookie",function(Y){
       Y.Cookie.set("username", Y.Cookie.get("username"), { expires: new Date("January 12, 2025") });
    }
 });
+YUI(yuiConfig).use('node-base', 'node-event-delegate', 'io-form','yui2-container',function(Y){
+    var YAHOO = Y.YUI2;
+    var doc = Y.one(document);
+    doc.delegate('click', showDialog, 'a[type=dialog][zone]');
+
+    function showDialog(e){
+        var zone = this.getAttribute("zone");
+        check(zone);
+        var dialog = new YAHOO.widget.Panel(this.getAttribute("zone"), { height:"320px",width:"320px", visible:false, constraintoviewport:true } );
+        dialog.render();
+        dialog.show();
+        alert(doc.one("#"+zone).getContent());
+    }
+
+    function check(zone){
+        if(!doc.one("#"+zone)){
+          doc.one('body').appendChild(Y.Node.create("<div id='"+zone+"'></div>"))
+        }
+    }
+});
+
 
 
 

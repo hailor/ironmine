@@ -31,6 +31,11 @@ var yuiConfig = {
         gallerywidgetio:{
             fullpath:"/javascripts/gallery/widget-io.js",
             requires: ["io-base"]
+        },
+        dialog:{
+            fullpath:"/javascripts/irm/dialog/dialog-base.js",
+            requires: ["'widget', 'widget-stdmod', 'widget-position', 'widget-stack', 'widget-position-align', 'widget-position-constrain'"],
+            "skinnable": true
         }
     },
     groups: {
