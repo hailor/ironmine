@@ -24,13 +24,13 @@
             <%= link_to(t(:edit),{:controller => "irm/roles", :action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:controller => "irm/roles", :action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
-        <%= datatable("roles_list",url_for(:controller => "irm/permissions", :action=>"get_data",:format=>"json"),
+        <%= datatable("roles_list",url_for(:controller => "irm/roles", :action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
                        {:key=>"role_code",:label=>t(:label_irm_role_code),:sortable=>true},
                        {:key=>"name",:label=>t(:name),:sortable=>true},
                        {:key=>"description",:label=>t(:description),:sortable=>true},
                        {:key=>"menu_name",:label=>t(:label_irm_role_menu),:sortable=>true},
-                       {:key=>"status_meaning",:label=>t(:active),:sortable=>true}])%>
+                       {:key=>"status_code",:label=>t(:active),:sortable=>true}])%>
       </div>
     </div>
 </div>

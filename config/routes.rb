@@ -428,6 +428,14 @@ Ironmine::Application.routes.draw do
     match '/filters/:pid/create(.:format)' => "filters#create", :via => :post
     match '/filters/:pid/:id/edit(.:format)' => "filters#edit", :via => :get
     match '/filters/:pid/:id(.:format)' => "filters#update", :via => :put
+    #role
+    match '/roles(/index)(.:format)' => "roles#index", :via => :get
+    match '/roles/:id/edit(.:format)' => "roles#edit", :via => :get
+    match '/roles/:id(.:format)' => "roles#update", :via => :put
+    match '/roles/new(.:format)' => "roles#new", :via => :get
+    match '/roles/create(.:format)' => "roles#create", :via => :post
+    match '/roles/get_data(.:format)' => "roles#get_data"
+    match '/roles/:id/show(.:format)' => "roles#show", :via => :get
   end
 
   scope :module => "icm" do

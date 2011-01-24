@@ -64,10 +64,10 @@ class Irm::RolesController < ApplicationController
   end
   
   def get_data
-    roles_scope = Irm::Role.list_all.status_meaning
+    roles_scope = Irm::Role.list_all
     roles,count = paginate(roles_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(roles.to_grid_json([:name,:role_code,:status_meaning, :menu_name], count)) }
+      format.json  {render :json => to_jsonp(roles.to_grid_json([:name,:role_code,:status_code, :menu_name, :description], count)) }
     end
   end
   
