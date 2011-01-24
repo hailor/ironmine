@@ -14,7 +14,7 @@
       </tbody>
     </table>
   </div>
-  <div class="pbBody lightBlueBorder noLineShow">
+  <div class="pbBody">
     <div class="pbSubheader tertiaryPalette">
       <img title="隐藏部分 - 其他信息" style="cursor: pointer;" name="其他信息" class="hideListButton" alt="隐藏部分 - 其他信息" src="/images/s.gif">
       <h3>其他信息<span class="titleSeparatingColon">:</span></h3>
@@ -33,11 +33,11 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :description)%></label></td>
-              <td class="data2Col"><%= @role[:description]%></td>
+              <td class="data2Col"><div><%= @role[:description]%></div></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_role_menu)%></label></td>
-              <td class="data2Col"><%= @role.menu_name%></td>
+              <td class="data2Col"><div><%= @role[:menu_name]%></div></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :active)%></label></td>
