@@ -6,6 +6,9 @@ class Irm::Role < ActiveRecord::Base
   has_many :roles_tls,:dependent => :destroy
   acts_as_multilingual
 
+  has_many :person_roles
+  has_many :people, :through => :person_roles
+  
   # 验证权限编码唯一性
   validates_presence_of :role_code
   validates_uniqueness_of :role_code, :if => Proc.new { |i| !i.role_code.blank? }
