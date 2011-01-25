@@ -75,7 +75,7 @@
           </div>
         </div>
         <%= datatable("function_groups_list",url_for(:action=>"get_own_functions", :group_code => @function_group.group_code,:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template"},
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template", :width => "40px"},
                        {:key=>"function_code",:label=>t(:label_irm_function_function_code),:sortable=>true},
                        {:key=>"name",:label=>t(:label_irm_function_name),:sortable=>true},
                        {:key=>"description",:label=>t(:label_irm_function_description),:sortable=>true},

@@ -18,17 +18,16 @@
       <div class="pbBody">
         <div id="permissions_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:controller => "irm/permissions", :action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:controller => "irm/permissions", :action=>"show",:id=>"{id}"}) %>
+            <%= link_to(t(:edit),{:controller => "irm/permissions", :action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:controller => "irm/permissions", :action=>"show",:id=>"{id}"}) %>
           </div>
           <div id="status_code" style="display:none">
             <%= check_img("{status_code}") %>
           </div>
         </div>
         <div id="paging">
-
         </div>
         <%= datatable("permissions_list",url_for(:controller => "irm/permissions", :action=>"get_data",:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
                        {:key=>"product_module_name",:label=>t(:label_irm_permission_product_name),:sortable=>true},
                        {:key=>"permission_code",:label=>t(:label_irm_permission_permission_code),:sortable=>true,:searchable=>true},
                        {:key=>"name",:label=>t(:label_irm_permission_name),:sortable=>true,:searchable=>true},

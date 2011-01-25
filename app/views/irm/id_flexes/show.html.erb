@@ -75,7 +75,7 @@
           </div>
         </div>
         <%= datatable("flex_structures_list",url_for(:controller => "irm/id_flex_structures", :action=>"get_data", :id_flex_code => @id_flex.id_flex_code,:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template"},
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template", :width => "40px"},
                        {:key=>"id_flex_structure_code",:label=>t(:label_irm_id_flex_structure_code),:sortable=>true},
                        {:key=>"id_flex_structure_name",:label=>t(:label_irm_id_flex_structure_name),:sortable=>true},
                        {:key=>"description",:label=>t(:label_irm_id_flex_structure_description),:sortable=>true},
