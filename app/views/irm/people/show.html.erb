@@ -149,7 +149,7 @@
                  </td>
                  <td class="labelCol"><label>
                      <%=t(:label_irm_person_unrestricted_access_flag)%></label></td>
-                <td class="dataCol"><%=@person.unrestricted_access_flag%></td>
+                <td class="dataCol"><%= check_img(@person.unrestricted_access_flag)%></td>
              </tr>
              <tr>
                   <td class="labelCol"><label><%=t(:label_irm_person_notification_lang)%></label>
@@ -157,7 +157,7 @@
                  <td class="dataCol"><%=@person[:notification_lang_name]%></td>
                   <td class="labelCol"><label>
                      <%=t(:label_irm_person_notification_flag)%></label></td>
-                  <td class="dataCol"><%=@person.notification_flag%></td>
+                  <td class="dataCol"><%= check_img(@person.notification_flag)%></td>
              </tr>
         </tbody>
       </table>
