@@ -13,7 +13,8 @@ class Irm::PeopleController < ApplicationController
   def show
     @person = Irm::Person.query_by_company_id(I18n::locale).query_show_wrap_info(I18n::locale).find(params[:id])
     @company_access_count= Irm::CompanyAccess.query_by_person_id(params[:id]).query_wrap_info(I18n::locale).size
-    @support_group_count = Irm::SupportGroupMember.query_support_group_by_person_id(I18n::locale,params[:id]).size 
+    @support_group_count = Irm::SupportGroupMember.query_support_group_by_person_id(I18n::locale,params[:id]).size
+    @owned_roles_count = @person.roles.size 
   end
 
   # GET /people/new
@@ -100,5 +101,29 @@ class Irm::PeopleController < ApplicationController
 
   def choose_company
     @person_id = params[:person_id]
+  end
+
+  def get_owned_roles
+    roles_scope = Irm::Role.list_all.enabled.belongs_to_person(params[:person_id])
+    roles,count = paginate(roles_scope)
+    respond_to do |format|
+      format.json  {render :json => to_jsonp(roles.to_grid_json([:name,:role_code,:status_code, :menu_name, :description], count)) }
+    end    
+  end
+
+  def get_available_roles
+    roles_scope = Irm::Role.list_all.enabled.without_person(params[:person_id])
+    roles,count = paginate(roles_scope)
+    respond_to do |format|
+      format.json  {render :json => to_jsonp(roles.to_grid_json([:name,:role_code,:status_code, :menu_name, :description], count)) }
+    end   
+  end
+
+  def remove_role
+    
+  end
+
+  def select_roles
+    
   end
 end
