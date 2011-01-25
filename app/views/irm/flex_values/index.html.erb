@@ -33,21 +33,15 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_value_set_name)%></label></td>
-              <td class="dataCol"><%= @value_set.flex_value_set_name%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="data2Col"><%= @value_set.flex_value_set_name%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_value_set_description)%></label></td>
-              <td class="dataCol"><%= @value_set.description%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="data2Col"><%= @value_set.description%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :active)%></label></td>
-              <td class="dataCol"><%= @value_set.status_code%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="data2Col"><%= check_img(@value_set.status_code)%></td>
             </tr>
         </tbody>
       </table>

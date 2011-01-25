@@ -20,12 +20,15 @@
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
+          <div id="status_code" style="display:none">
+            <%= check_img("{status_code}") %>
+          </div>          
         </div>
         <%= datatable("flex_value_sets_list",url_for(:action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template", :width => "80px"},
                        {:key=>"flex_value_set_name",:label=>t(:label_irm_value_set_name),:sortable=>true},
                        {:key=>"description",:label=>t(:label_irm_value_set_description),:sortable=>true},
-                       {:key=>"status_code",:label=>t(:active),:sortable=>true}]) %>
+                       {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template"}]) %>
       </div>
     </div>
 </div>

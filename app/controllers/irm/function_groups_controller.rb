@@ -71,7 +71,7 @@ class Irm::FunctionGroupsController < ApplicationController
     function_groups_scope = Irm::FunctionGroup.multilingual.status_meaning
     function_groups,count = paginate(function_groups_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(function_groups.to_grid_json([:group_code,:name,:description,:status_meaning], count)) }
+      format.json  {render :json => to_jsonp(function_groups.to_grid_json([:group_code,:name,:description,:status_meaning, :status_code], count)) }
     end    
   end
 
@@ -107,7 +107,7 @@ class Irm::FunctionGroupsController < ApplicationController
     functions_scope = Irm::Function.list_all.status_meaning.belong_to_group(params[:group_code])
     functions,count = paginate(functions_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(functions.to_grid_json([:function_code,:name,:description,:status_meaning], count)) }
+      format.json  {render :json => to_jsonp(functions.to_grid_json([:function_code,:name,:description,:status_meaning, :status_code], count)) }
     end    
   end
   

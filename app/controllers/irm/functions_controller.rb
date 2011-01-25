@@ -68,7 +68,7 @@ class Irm::FunctionsController < ApplicationController
     functions_scope = Irm::Function.multilingual.status_meaning
     functions,count = paginate(functions_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(functions.to_grid_json([:function_code,:name,:description,:status_meaning], count)) }
+      format.json  {render :json => to_jsonp(functions.to_grid_json([:function_code,:name,:description,:status_meaning, :status_code], count)) }
     end        
   end
 

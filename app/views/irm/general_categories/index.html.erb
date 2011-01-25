@@ -20,6 +20,9 @@
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
+          <div id="status_code" style="display:none">
+            <%= check_img("{status_code}") %>
+          </div>                  
         </div>
         <%= datatable("general_categories_list",url_for(:action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
@@ -29,7 +32,7 @@
                        {:key=>"segment2_name",:label=>t(:label_irm_general_category_segment2),:sortable=>true},
                        {:key=>"segment3_name",:label=>t(:label_irm_general_category_segment3),:sortable=>true},
                        {:key=>"concat_segment_name",:label=>t(:label_irm_general_category_concact_segment),:sortable=>true},
-                       {:key=>"status_code",:label=>t(:label_irm_permission_status_code),:sortable=>true}])%>
+                       {:key=>"status_code",:label=>t(:label_irm_permission_status_code),:sortable=>true,:formatter=>"Y.irm.template"}])%>
       </div>
     </div>
 </div>
