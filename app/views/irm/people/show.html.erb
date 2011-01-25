@@ -174,8 +174,9 @@
                 <h3 id="id_person_company_access_title"><%=t(:label_irm_person_company_access)%></h3>
               </td>
               <td class="pbButton">
-                <div class="button"><%= link_to t(:edit), {:controller=>"irm/company_accesses",
-                                                          :action => "new",:person_id=>@person.id}%></div>
+                <div class="button"><%= link_to t(:edit), "#",
+                                                :onclick=>"navigateToUrl('#{url_for(:controller=>"irm/company_accesses",
+                                                          :action => "new",:person_id=>@person.id)}');"%></div>
               </td>
               <td class="pbHelp">
               </td>
