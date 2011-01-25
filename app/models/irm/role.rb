@@ -32,6 +32,8 @@ class Irm::Role < ActiveRecord::Base
   scope :belongs_to_person, lambda{|person_id|
     joins(",#{Irm::PersonRole.table_name}").
     where("#{Irm::PersonRole.table_name}.person_id = ?", person_id).
-    where("#{Irm::PersonRole.table_name}.role_id = #{table_name}.id")  }
+    where("#{Irm::PersonRole.table_name}.role_id = #{table_name}.id")
+  }
 
+  scope :query_by_role_name, lambda {|name| where("#{Irm::RolesTl.table_name}.name LIKE '%#{name}%'")}  
 end
