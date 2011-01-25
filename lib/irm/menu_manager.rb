@@ -49,7 +49,7 @@ module Irm::MenuManager
           tmp_menu_entries = m.menu_entries.where("sub_menu_code IS NOT NULL").order(:display_sequence)
           menu_entries = []
           tmp_menu_entries.each do |tm|
-            data = {:menu_entry_id=>tm.id,:sub_menu_code=>tm.sub_menu_code,:permission_code=>tm.permission_code,:display_flag=>tm.display_flag}
+            data = {:menu_entry_id=>tm.id,:sub_menu_code=>tm.sub_menu_code,:permission_code=>tm.permission_code,:display_flag=>tm.display_flag,:display_sequence=>tm.display_sequence}
             tm.menu_entries_tls.each do |mt|
               data.merge!({mt.language.to_sym=>{:name=>mt.name,:description=>mt.description}})
             end
@@ -59,7 +59,7 @@ module Irm::MenuManager
           tmp_permission_entries = m.menu_entries.where("sub_menu_code IS NULL AND permission_code IS NOT NULL").order(:display_sequence)
           permission_entries = []
           tmp_permission_entries.each do |tp|
-            data = {:menu_entry_id=>tp.id,:permission_code=>tp.permission_code,:display_flag=>tp.display_flag}
+            data = {:menu_entry_id=>tp.id,:permission_code=>tp.permission_code,:display_flag=>tp.display_flag,:display_sequence=>tp.display_sequence}
             tp.menu_entries_tls.each do |mt|
               data.merge!({mt.language.to_sym=>{:name=>mt.name,:description=>mt.description}})
             end
@@ -69,7 +69,7 @@ module Irm::MenuManager
           menu_data = {:menu_entries=>menu_entries,
                        :permission_entries=>permission_entries,
                        :menu_code=>m.menu_code,
-                       :icon=>m.icon
+                       :leaf_flag=>m.leaf_flag
                        }
 
           menus_cache.merge!({m.menu_code=>menu_data})
@@ -206,10 +206,12 @@ module Irm::MenuManager
             Rails.logger.warn("Not exists menu:#{me[:sub_menu_code]} or permission:#{me[:permission_code]},Please check!")
             next
           end
+          sub_menu = menus[me[:sub_menu_code]]
           entries_options = {:menu_entry_id=>me[:menu_entry_id],
                              :menu_code => me[:sub_menu_code],
                              :entry_type=>"MENU",
-                             :icon=>menu_icon(me[:sub_menu_code]),
+                             :leaf_flag=>sub_menu[:leaf_flag],
+                             :display_sequence => me[:display_sequence],
                              :name=>me[::I18n.locale.to_sym][:name],
                              :description=>me[::I18n.locale.to_sym][:description],
                              :permission_code=>me[:permission_code]}
@@ -220,7 +222,7 @@ module Irm::MenuManager
             # 1，菜单子项下有可显示的权限
             # 2，菜单为设置类菜单
             # 3，菜单的权限编码为空
-            if(show_options&&must_permission_code&&entries_options[:permission_code].nil?)
+            if(show_options&&must_permission_code&&entries_options[:permission_code].nil?&&entries_options[:leaf_flag].eql?(Irm::Constant::SYS_NO))
               entries_options.merge!({:permission_code=>"IRM_SETTING_COMMON"})
               show_options = menu_showable(me.merge(:permission_code=>entries_options[:permission_code]))
             end
@@ -233,12 +235,13 @@ module Irm::MenuManager
           end
           entries_options = {:menu_entry_id=>pe[:menu_entry_id],
                              :entry_type=>"PERMISSION",
+                             :display_sequence => pe[:display_sequence],
                              :name=>pe[::I18n.locale.to_sym][:name],
                              :description=>pe[::I18n.locale.to_sym][:description],
                              :permission_code=>pe[:permission_code]}
           sub_entries<< entries_options.merge!(permission_url_options(pe[:permission_code])) if pe[:display_flag].eql?("Y")&&check_permission(pe[:permission_code])
         end
-        sub_entries
+        sub_entries.sort {|x,y| x[:display_sequence] <=> y[:display_sequence] } 
       end
 
       # 供外部调用
@@ -350,10 +353,7 @@ module Irm::MenuManager
       def items
         Ironmine::STORAGE.get(:menu_manager_items)||{}
       end
-
-      def menu_icon(menu_code)
-        menus[menu_code][:icon]
-      end
-      private :map,:items,:menu_icon
+      
+      private :map,:items
     end
 end

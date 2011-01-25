@@ -26,7 +26,7 @@
           </div>
         </div>
         <%= datatable("pizza",url_for(:action=>"get_data",:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
                        {:key=>"product_module_name",:label=>t(:label_icm_close_reason_company),:sortable=>true},
                        {:key=>"permission_code",:label=>t(:label_icm_close_reason_name),:sortable=>true},
                        {:key=>"name",:label=>t(:label_icm_close_reason_close_code),:sortable=>true},
