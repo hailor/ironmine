@@ -126,6 +126,12 @@ YUI.add('irm', function(Y) {
               selectedNode.addClass("setupHighlightLeaf");
             }
           }
+          for(var i = 0;i<current_menus.length;i++){
+            var selectedNode = Y.one("#"+domid).one("div.setupLeaf[mi='"+current_menus[i]+"']");
+            if(selectedNode){
+              selectedNode.addClass("setupHighlightLeaf");
+            }
+          }
     };
     //表格过过滤器
     Y.irm.ViewFilter = function (domid){
