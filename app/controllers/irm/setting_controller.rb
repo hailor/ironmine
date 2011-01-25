@@ -4,6 +4,6 @@ class Irm::SettingController < ApplicationController
   end
 
   def common
-    @setting_menus = Irm::MenuManager.parent_menus_by_menu(params[:mc])  
+    @setting_menus = Irm::MenuManager.parent_menus_by_menu(params[:mc])+[params[:mc]]
   end
 end

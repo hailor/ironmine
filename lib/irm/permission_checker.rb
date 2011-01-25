@@ -10,8 +10,9 @@ class Irm::PermissionChecker
   def self.allow_to_permission?(permission)
     permission = Irm::Permission.to_permission(permission) unless permission.is_a?(Irm::Permission)
     if permission&&permission.enabled?&&Irm::Person.current
-      #Irm::Person.current.allow_to?(permission,project)
-      true
+      allowed_menus = Irm::Person.current.allowed_menus
+      menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>permission.page_controller,:page_action=>permission.page_action},allowed_menus)
+      menus.size>0
     else
       true
     end    

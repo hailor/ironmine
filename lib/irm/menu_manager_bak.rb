@@ -1,5 +1,7 @@
-module Irm::RoleManager
-     class << self
+# 用来管理系统的菜单
+module Irm
+  module MenuManagerBak
+    class << self
 
       # 系统中所有菜单，以HASH形式保存
       def menus
@@ -15,35 +17,19 @@ module Irm::RoleManager
         items[:permission_codes]
       end
 
-      # 所有权限对应的上级菜单，以HASH形式保存
+      # 所有权限对应的菜单，以HASH形式保存
       def permission_menus
         items[:permission_menus]
       end
 
-      # 所有菜单对应的上级菜单，以HASH形式保存
-      def menu_menus
-        items[:menu_menus]
-      end
-
       #初始化菜单和权限缓存
       def reset_menu
-        # 生成菜单缓存
-        prepare_menu_cache
-        # 生成权限缓存
-        prepare_permission_cache
-        # 初始化权限对应的菜单
-        setup_permission_menus
-
-        rescue =>text
-          puts("Init menu error:#{text}")
-      end
-
-
-
-      # =====================================生成菜单缓存===============================================
-      def prepare_menu_cache
         menus = Irm::Menu.enabled
+        permissions = Irm::Permission.all
         menus_cache = {}
+        permissions_cache = {}
+        permission_codes_cache = {}
+
         menus.each do |m|
           # 子菜单项
           tmp_menu_entries = m.menu_entries.where("sub_menu_code IS NOT NULL").order(:display_sequence)
@@ -74,17 +60,7 @@ module Irm::RoleManager
 
           menus_cache.merge!({m.menu_code=>menu_data})
         end
-        map do |m|
-          m.merge!({:menus=>menus_cache})
-        end
-      end
-
-
-      # =====================================生成权限缓存===============================================
-      def prepare_permission_cache
-        permissions = Irm::Permission.all
-        permissions_cache = {}
-        permission_codes_cache = {}
+        
         permissions.each do |p|
           permission_data={:pid=>p.id,
                            :permission_code=>p.permission_code,
@@ -103,85 +79,14 @@ module Irm::RoleManager
         end
 
         map do |m|
-          m.merge!({:permissions=>permissions_cache,:permission_codes=>permission_codes_cache})
+          m.merge!({:menus=>menus_cache,:permissions=>permissions_cache,:permission_codes=>permission_codes_cache})  
         end
-      end
+        # 初始化权限对应的菜单
+        setup_permission_menus
 
-      # =====================================生成权限的上层菜单，及菜单的上层菜单缓存===============================================
-       # 生成权限对应的菜单列表
-      def prepare_parent_menu
-        permission_menus_cache = {}
-        menu_menus_cache = {}
-        map do |m|
-          m.merge!({:permission_menus=>permission_menus_cache,:menu_menus=>menu_menus_cache})
-        end
-        top_menus.each do |m|
-          expand_permission([m])
-        end
+        rescue =>text
+          puts("Init menu error:#{text}")
       end
-
-      # 取得系统中的顶级菜单
-      # TODO 从角色表中取得角色对应的顶级菜单
-      def top_menus
-        Irm::MenuEntry.where("NOT EXISTS(SELECT 1 FROM #{Irm::MenuEntry.table_name} mea WHERE #{Irm::MenuEntry.table_name}.menu_code = mea.sub_menu_code)").
-            select("#{Irm::MenuEntry.table_name}.menu_code").collect{|m| m.menu_code}.uniq
-      end
-
-      # 递归寻找菜单下的权限
-      # 展开权限
-      # menu_path 菜单路径
-      def expand_permission(menu_path)
-        # 复制路径
-        temp_menu_path = menu_path.dup
-        # 取得当前菜单编码
-        current_menu_code = temp_menu_path.last
-        # 取得当前菜单
-        current_menu = menus[current_menu_code]
-        return unless current_menu
-
-        current_menu[:permission_entries].each do |pe|
-          if(permissions[pe[:permission_code]].nil?)
-            Rails.logger.warn("Not exists  permission:#{pe[:permission_code]},Please check!")
-            next
-          end
-          merge_permission_menu({:permission_code=>pe[:permission_code],:path=>temp_menu_path})
-        end
-        current_menu[:menu_entries].each do |me|
-          if(menus[me[:sub_menu_code]].nil?)
-            Rails.logger.warn("Not exists menu:#{me[:sub_menu_code]} or permission:#{me[:permission_code]},Please check!")
-            next
-          end
-          if(me[:permission_code]&&!permissions[me[:permission_code]].nil?)
-            merge_permission_menu({:permission_code=>me[:permission_code],:path=>temp_menu_path+[me[:sub_menu_code]]})
-          end
-          merge_menu_menu({:sub_menu_code=>me[:sub_menu_code],:path=>temp_menu_path})
-          expand_permission(temp_menu_path+[me[:sub_menu_code]])
-        end
-      end
-      # 存储权限菜单数据
-      def merge_permission_menu(pm)
-        if(pm[:permission_code])
-          permission = permissions[pm[:permission_code]]
-          key = Irm::Permission.url_key(permission[:page_controller],permission[:page_action])
-          if permission_menus[key]
-            permission_menus[key].push(pm[:path])
-          else
-            permission_menus.merge!({key=>[pm[:path]]})
-          end
-        end
-      end
-
-      # 存储权限菜单数据
-      def merge_menu_menu(mm)
-        if(mm[:sub_menu_code])
-          if menu_menus[mm[:sub_menu_code]]
-            menu_menus[mm[:sub_menu_code]].push(mm[:path])
-          else
-            menu_menus.merge!({mm[:sub_menu_code]=>[mm[:path]]})
-          end
-        end
-      end
-
 
 
 
@@ -230,15 +135,15 @@ module Irm::RoleManager
                              :name=>pe[::I18n.locale.to_sym][:name],
                              :description=>pe[::I18n.locale.to_sym][:description],
                              :permission_code=>pe[:permission_code]}
-          sub_entries<< entries_options.merge!(permission_url_options(pe[:permission_code])) if pe[:display_flag].eql?("Y")
+          sub_entries<< entries_options.merge!(permission_url_options(pe[:permission_code])) if pe[:display_flag].eql?("Y")&&check_permission(pe[:permission_code])
         end
         sub_entries
       end
 
       # 确定菜单是否可显示
       def menu_showable(menu_entry)
-        if(menu_entry[:permission_code])
-          return permission_url_options(menu_entry[:permission_code])
+        if(menu_entry[:permission_code]&&check_permission(menu_entry[:permission_code]))
+          return permission_url_options(menu_entry[:permission_code])    
         else
           menu = menu_by_code(menu_entry[:sub_menu_code])
           if menu
@@ -248,46 +153,41 @@ module Irm::RoleManager
             end
 
             menu[:permission_entries].each do |pe|
-              return permission_url_options(pe[:permission_code])
+              return permission_url_options(pe[:permission_code]) if check_permission(pe[:permission_code])
             end
           end
         end
         false
       end
 
+      # 检查permission的权限
+      def check_permission(permission_code)
+        return true if permission_code.nil?||permissions[permission_code].nil?
+        permission = permissions[permission_code].dup
+        Irm::PermissionChecker.allow_to_permission?(permission)
+      end
+
       # 使用permission_code取得permission中的url 参数
+      # is_permission 表示权限还是菜单
       def permission_url_options(permission_code)
         permission = permissions[permission_code]
         if permission
           {:page_controller=>permission[:page_controller],:page_action=>permission[:page_action]}
         else
           {}
-        end
+        end  
       end
 
-      #通过权限链接取得菜单列表
-      def parent_menus_by_permission(options={},top_menu=nil)
-        parent_menus =  permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions",options[:page_action]||"index")]
-        parent_menus ||= permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions","index")]
-        return [] if !parent_menus||parent_menus.size<1
-        if !top_menu.nil?
-          menu_menus[menu_code].each do |pms|
-            return pms.dup if pms.first.eql?(top_menu)
-          end
-        end
-        menu_menus[menu_code].first.dup
+      #通过权限编辑取得菜单列表
+      def parent_menus_by_permission(options={})
+        menus =  permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions",options[:page_action]||"index")]||[]
+        return menus.dup unless menus.size==0
+        (permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions","index")]||[]).dup
       end
 
       # 通过菜单取得上层菜单列表
-      def parent_menus_by_menu(menu_code,top_menu=nil)
-        parent_menus = menu_menus[menu_code]
-        return [] if !parent_menus||parent_menus.size<1
-        if !top_menu.nil?
-          menu_menus[menu_code].each do |pms|
-            return pms.dup if pms.first.eql?(top_menu)
-          end
-        end
-        menu_menus[menu_code].first.dup
+      def parent_menus_by_menu(menu_code)
+        permission_parent_menus(menu_code) << menu_code
       end
 
 
@@ -310,6 +210,41 @@ module Irm::RoleManager
       def menu_icon(menu_code)
         menus[menu_code][:icon]
       end
+      # 生成权限对应的菜单列表
+      def setup_permission_menus
+        permission_menus_cache = {}
+        permissions.values.each do |p|
+          permission_menus_cache.merge!({Irm::Permission.url_key(p[:page_controller],p[:page_action])=>permission_parent_menus(p[:permission_code])})
+        end
+        map do |m|
+          m.merge!({:permission_menus=>permission_menus_cache})
+        end
+      end
 
+
+      def permission_parent_menus(permission_code)
+        menu_codes = []
+        menu_code = parent_menu(permission_code)
+        while menu_code
+          menu_codes << menu_code
+          menu_code = parent_menu(menu_code)
+        end
+        menu_codes.reverse
+      end
+
+      def parent_menu(pm_code)
+        menus.values.each do |m|
+          if(m[:menu_entries].detect{|me| me[:sub_menu_code].eql?(pm_code)}||m[:permission_entries].detect{|pe| pe[:permission_code].eql?(pm_code)})
+            return m[:menu_code]
+          else
+            tme = m[:menu_entries].detect{|me| me[:permission_code].eql?(pm_code)}
+            if tme
+              return tme[:sub_menu_code]
+            end
+          end
+        end
+        nil
+      end
     end
+  end
 end
