@@ -26,12 +26,15 @@
 
 <div id="RLPanelShadow" class="RLPanelShadow" style="display: none;">
   <div class="rls_top">
-  <div class="rls_tl"></div>
-  <div class="rls_tr"></div>
+     <div class="rls_tl"></div>
+     <div class="rls_tr"></div>
   </div>
   <div class="rls_l"></div>
   <div class="rls_r"></div>
-  <div id="RLPanel" class="RLPanel">
+  <div id="RLPanel" class="RLPanel" onblur="relatedListPanel.hideRLDelayed(null, 100);"
+      onfocus="relatedListPanel.showRL();"
+      onmouseover="relatedListPanel.showRL();"
+      onmouseout="relatedListPanel.hideRLDelayed(null, 100);" >
     <iframe frameborder="0" title="隐藏框架 - 忽略"
             src="/images/emptyHtmlDoc.html"
             name="RLPanelFrame" id="RLPanelFrame" style="height: 101px;">
