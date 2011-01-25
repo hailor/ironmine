@@ -18,4 +18,8 @@ class Icm::IncidentStatus < ActiveRecord::Base
     select("#{Icm::IncidentPhase.view_name}.name phase_name")
 
   }
+
+  scope :query_by_close_flag,lambda{|flag|
+    where("#{table_name}.close_flag = ?" ,flag)
+  }
 end

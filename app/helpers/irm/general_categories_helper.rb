@@ -8,4 +8,8 @@ module Irm::GeneralCategoriesHelper
   def available_category_types
     Irm::IdFlexStructure.query_by_flex_code("CATALOGS").multilingual.collect{|m| [m[:id_flex_structure_name], m.id_flex_structure_code]}
   end
+
+  def available_general_categories
+    Irm::GeneralCategory.list_all.enable
+  end
 end

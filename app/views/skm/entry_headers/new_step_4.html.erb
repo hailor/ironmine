@@ -1,0 +1,66 @@
+<%= form_for(@entry_header,:url=>{:action=>"new"},:builder => LabellingFormBuilder, :html => {:name => "new_skm_entry_header"}) do |f| %>
+<div class="bWizardBlock bDetailBlock">
+    <div class="pbWizardTitle tertiaryPalette">
+        <div class="ptRightTitle">
+            <%= t(:step_n_total_m, :n => "3", :m => "3") %>
+        </div>
+        <h2>
+            <%= t(:step_n, :n => "3") %><%= t(:notice_skm_entry_header_preview_entry)%>
+        </h2>
+    </div>
+    <div class="pbHeader">
+    <div class="pbBody lightBlueBorder noLineShow">
+      <div class="pbDescription" style="margin-bottom: -15px;">
+        <div style="font-weight: bold;font-size: 15px;float:left;"><%= t(:label_skm_entry_header_title)%>: <%= @entry_header.entry_title %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <div><%= t(:label_skm_entry_header_keyword_tags) %>: <%= @entry_header.keyword_tags.blank? ? t(:none) : @entry_header.keyword_tags %></div>
+      </div>
+    <% session[:skm_entry_details].each do |k,e| %>
+        <div class="pbSubheader tertiaryPalette">
+          <h3><%= raw(e[:element_name]) %></h3>
+        </div>
+        <div class="pbSubsection">
+          <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <tr>
+                  <td><%= raw(e[:entry_content]) %></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+    <% end %>
+    </div>
+  </div>
+    <div class="pbWizardFooter">
+        <div class="pbBottomButtons">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tbody>
+                <tr>
+                  <td class="pbTitle"></td>
+                  <td id="bottomButtonRow" class="pbButtonb">
+                    <div class="button"><%= link_to t(:last), {}, {:href => "javascript:void(0);", :onclick => "submit_last()"}%></div>
+                    <div class="button"><%= link_to t(:save_as_draft), {}, :href => "javascript:void(0);", :onclick => "submit_draft();"%></div>
+                    <div class="button"><%= link_to t(:save_as_published), {}, :href => "javascript:void(0);", :onclick => "submit_published();"%></div>
+                    <div class="button"><%= link_to t(:cancel), {:controller => "skm/entry_headers", :action => "index"}  %></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+  function submit_last(){
+    document.new_skm_entry_header.action = "new?step=2";
+    new_skm_entry_header.submit();
+  }
+  function submit_draft(){
+    document.new_skm_entry_header.action = "create?status=DRAFT";
+    new_skm_entry_header.submit();
+  }
+
+  function submit_published(){
+    document.new_skm_entry_header.action = "create?status=PUBLISHED";
+    new_skm_entry_header.submit();
+  }        
+</script>
+<% end %>

@@ -43,7 +43,7 @@ Y.extend(IrmDTSearchBox, Y.Plugin.Base, {
           var cols = this.get("searchColumns");
           for(var i=0;i<cols.length;i++)
             options+=Y.Lang.substitute(OPTION,{key:cols[i].key,label:cols[i].label})
-          Y.one("#"+this.get("searchDom")).setContent(INPUT+Y.Lang.substitute(SELECT,{options:options}));
+          Y.one("#"+this.get("searchDom")).setContent(Y.Lang.substitute(SELECT,{options:options})+INPUT);
         },
         _executeQuery:function(e){
           if(e.keyCode==13){

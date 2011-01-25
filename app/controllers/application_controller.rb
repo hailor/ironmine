@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  theme Irm::GlobalSetting.all.first().theme_name.to_sym
+  theme :salesforce2
   protect_from_forgery
   helper :all
   #ajax请求不使用layout
@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   # 检查是否需要登录
   def check_if_login_required
     # 如果用户已经登录,则无需登录,否则转向登录页面
-     if Irm::Identity.current.logged?||(@current_permission&&@current_permission.publiced?)
+     if Irm::Identity.current.logged?||params[:format].eql?("xml")||(@current_permission&&@current_permission.publiced?)
        return true
      else
         require_login
@@ -191,6 +191,7 @@ class ApplicationController < ActionController::Base
       #转向登录页面
       respond_to do |format|
         format.html { redirect_to :controller => "irm/common", :action => "login", :back_url => url }
+        format.xml { render :xml=>Irm::Identity.current,:status=> :unprocessable_entity }
       end
       return false
     end

@@ -1,12 +1,4 @@
-<%= page_title %>
-<div class="lightBlue">
-    <div class="bPageTitle">
-        <div class="secondaryPalette">
-          <h1 class="title">任务示例</h1>
-        </div>
-    </div>
-</div>
-
+<%= setting_show_title(:show_data => @permission.permission_code) %>
 <div id="ep" class="bDetailBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -21,7 +13,7 @@
       </tbody>
     </table>
   </div>
-  <div class="pbBody lightBlueBorder noLineShow">
+  <div class="pbBody">
     <div class="pbSubheader tertiaryPalette">
       <img title="隐藏部分 - 其他信息" style="cursor: pointer;" name="其他信息" class="hideListButton" alt="隐藏部分 - 其他信息" src="/images/s.gif">
       <h3>其他信息<span class="titleSeparatingColon">:</span></h3>

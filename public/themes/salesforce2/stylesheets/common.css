@@ -6,6 +6,71 @@ body a:hover{color: #015BA7;}
 a {color:#333435;}
 
 /***************** top search area ***********************/
+.bPageTitle {margin-bottom:15px;}
+body.detailPage .bPageTitle {margin-bottom:0;}
+body .bPageTitle {padding:10px 0 0;}
+body .bPageTitle .ptBody {
+    background-color:transparent;
+    color:#000000;
+    padding:0;
+}
+.bPageTitle .ptBody {
+    overflow:hidden;
+    padding-bottom:5px;
+    padding-top:5px;
+    width:100%;
+}
+
+.bDescription {
+    margin:16px 0;
+    padding:0;
+}
+.setupTab .bPageTitle .ptBody .content, .sysAdminTab .bPageTitle .ptBody .content {padding-left:0;}
+.bPageTitle .ptBody .content {
+    float:left;
+    padding-left:5px;
+    vertical-align:middle;
+    width:70%;
+}
+.setupTab .bPageTitle .ptBody .pageType, .setupTab .bPageTitle .ptBody .pageDescription, .sysAdminTab .bPageTitle .ptBody .pageType, .sysAdminTab .bPageTitle .ptBody .pageDescription {
+    margin-left:0;
+    margin-bottom: 5px;
+}
+body .bPageTitle .ptBody .pageDescription {
+    font-size:25px;
+    font-weight:normal;
+    line-height:1.1em;
+}
+.bPageTitle .ptBody .pageDescription {font-size:109%;font-weight:bold;}
+.bPageTitle h1, .bPageTitle h2 {display:block;}
+.bPageTitle .content .blank {clear:both;font-size:0;}
+body .bPageTitle .ptBody .links {padding-top:0;}
+.bPageTitle .ptBody .links {
+    float:right;
+    font-size:91%;
+    padding:10px 5px 0 0;
+    text-align:right;
+    vertical-align:middle;
+    white-space:nowrap;
+}
+body .bPageTitle .ptBody .links a, body .bPageTitle .ptBody .links .configLinks, body .bPageTitle .ptBody .links .helpLink, body .bPageTitle .ptBody .links span {
+color:#015BA7;
+text-decoration:none;
+}
+.bPageTitle .ptBreadcrumb {
+    height:auto;
+    margin-bottom:0;
+    margin-top:3px;
+}
+.bPageTitle .ptBreadcrumb {
+    font-family:'Verdana','Geneva',sans-serif;
+    font-size:91.3%;
+    height:15px;
+    margin-bottom:-15px;
+    vertical-align:middle;
+}
+body .bodyDiv .bOverviewSearch {margin:5px;padding:0 10px 10px;}
+.bOverviewSearch .pbSearch {margin-top:5px;}
 .bPageHeader .phHeader td.searchCell {vertical-align:middle;white-space:nowrap;}
 .headerSearchContainer {
     border:0 none;
@@ -266,6 +331,52 @@ div.srch table {border-spacing:0;width:100%;}
 .bPageBlock .noLineShow .detailList tr td, .bPageBlock .noLineShow .detailList tr th, .hoverDetail .bPageBlock .noLineShow .detailList tr td, .hoverDetail .bPageBlock .noLineShow .detailList tr th {
     border-bottom:0;
 }
+.bWizardBlock .detailList .data2Col,.bPageBlock .detailList .data2Col {
+    padding:2px 2px 2px 10px;
+    text-align:left;
+    width:82%;
+}
+.bWizardBlock .pbBottomButtons > table > tbody > tr > td, .bEditBlock .pbHeader > table > tbody > tr > td, .bPageBlock .pbHeader > table > tbody > tr > td, .bLayoutBlock .pbHeader > table > tbody > tr > td, .bEditBlock .pbBottomButtons > table > tbody > tr > td, .bPageBlock .pbBottomButtons > table > tbody > tr > td, .bLayoutBlock .pbBottomButtons > table > tbody > tr > td {
+    padding:5px 12px;
+}
+.bWizardBlock .pbHeader table, .bWizardBlock .pbBottomButtons table, .bPageBlock .pbHeader table, .bPageBlock .pbBottomButtons table {border-spacing:0;width:100%;}
+.bWizardBlock .pbTitle, .bPageBlock .pbTitle {
+    color:#222222;
+    font-size:91%;
+    margin:0;
+    vertical-align:middle;
+    width:30%;
+}
+.bWizardBlock .pbWizardBody {padding-bottom: 10px;}
+/************************** step view ***********************************/
+.bWizardBlock .pbWizardTitle {background-image:none;}
+.bWizardBlock .pbWizardTitle {
+    -moz-border-radius-topleft:5px;
+    -moz-border-radius-topright:5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    font-size:1.15em;
+    padding:8px 12px;
+}
+
+.bWizardBlock .tertiaryPalette{background-color:#1797C0;border-color:#1797C0;}
+.bWizardBlock .pbWizardTitle .ptRightTitle {float:right;}
+.bWizardBlock .pbWizardTitle {color:white;font-weight:bold;}
+.bWizardBlock .pbDescription {padding:10px;}
+.bWizardBlock .pbWizardBody, .bWizardBlock .pbDescription {border-top:1px solid #FFFFFF;}
+.bWizardBlock > .pbBody {
+    -moz-border-radius-bottomleft:5px;
+    -moz-border-radius-bottomright:5px;
+    -webkit-border-top-left-radius: 0;
+    -webkit-border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    background:none repeat scroll 0 0 #F8F8F8;
+    border:1px solid #EAEAEA;
+    padding:0;
+}
 /********* tab color border *******************/
 .lightBlueBorder .tertiaryPalette {
     background-color:#fff !important;
@@ -280,3 +391,311 @@ div.srch table {border-spacing:0;width:100%;}
     border-color:#CFEEF8;
 }
 .lightBlue .bPageTitle .secondaryPalette .title {padding:5px 4px; font-weight: bold; color: #fff;}
+/********body cell*******/
+.bPageTitle {margin-bottom:15px;}
+body.detailPage .bPageTitle {margin-bottom:0;}
+body .bPageTitle {padding:10px 0 0;}
+body .bPageTitle .ptBody {
+    background-color:transparent;
+    color:#000000;
+    padding:0;
+}
+.bPageTitle .ptBody {
+    overflow:hidden;
+    padding-bottom:5px;
+    padding-top:5px;
+    width:100%;
+}
+.bPageTitle .ptBody .content {
+    float:left;
+    padding-left:5px;
+    vertical-align:middle;
+    width:70%;
+}
+
+body .bPageTitle .ptBody .pageDescription {
+    font-size:25px;
+    font-weight:normal;
+    line-height:1.1em;
+}
+.bPageTitle .ptBody .pageDescription {font-size:109%;font-weight:bold;}
+.bPageTitle h1, .bPageTitle h2 {display:block;}
+.bPageTitle .content .blank {clear:both;font-size:0;}
+body .bPageTitle .ptBody .links {padding-top:0;}
+.bPageTitle .ptBody .links {
+    float:right;
+    font-size:91%;
+    padding:10px 5px 0 0;
+    text-align:right;
+    vertical-align:middle;
+    white-space:nowrap;
+}
+body .bPageTitle .ptBody .links a, body .bPageTitle .ptBody .links .configLinks, body .bPageTitle .ptBody .links .helpLink, body .bPageTitle .ptBody .links span {
+color:#015BA7;
+text-decoration:none;
+}
+.bPageTitle .ptBreadcrumb {
+    height:auto;
+    margin-bottom:0;
+    margin-top:3px;
+}
+.bPageTitle .ptBreadcrumb {
+    font-family:'Verdana','Geneva',sans-serif;
+    font-size:91.3%;
+    height:15px;
+    margin-bottom:-15px;
+    vertical-align:middle;
+}
+.setupTab.detailPage div.bDetailBlock.bPageBlock[id="ep"] {margin-bottom:20px;}
+body.detailPage .bDetailBlock.bPageBlock[id^="ep"] {
+    background-color:inherit;
+    border:inherit;
+    margin-bottom:auto;
+}
+body .bDetailBlock.bPageBlock, body .individualPalette .bDetailBlock.bPageBlock {
+    background-color:transparent;
+    border:0 none;
+    margin-bottom:25px;
+}
+body .bPageBlock.bDetailBlock .pbHeader {border:0 none;}
+body .bPageBlock .pbHeader {
+    background-color:transparent;
+    margin:0;
+    padding:0;
+}
+.bPageBlock .pbHeader {
+    background-color:#EEECD1;
+    border-bottom:1px solid #FFFFFF;
+    margin:0 2px 0 0;
+    padding-bottom:2px;
+}
+.bPageBlock .pbHeader table, .bPageBlock .pbBottomButtons table {border-spacing:0;width:100%;}
+.bPageBlock {font-size:105%;}
+.bPageBlock {
+    background-color:#222222;
+    background-image:url("../images/bgPageBlockLeft.gif");
+    background-position:left bottom;
+    background-repeat:no-repeat;
+    border-top:4px solid #222222;
+    clear:both;
+    margin-bottom:9px;
+    padding-bottom:9px;
+}
+.bEditBlock .pbHeader > table > tbody > tr > td, .bPageBlock .pbHeader > table > tbody > tr > td, .bLayoutBlock .pbHeader > table > tbody > tr > td, .bEditBlock .pbBottomButtons > table > tbody > tr > td, .bPageBlock .pbBottomButtons > table > tbody > tr > td, .bLayoutBlock .pbBottomButtons > table > tbody > tr > td {
+    padding:5px 12px;
+}
+body .bRelatedList .pbTitle h3, body .bPageBlock .pbTitle h2, body .bPageBlock .pbTitle h3, body .bSubBlock h3.lbHeader {
+    color:#000000;
+    font-size:15px;
+    font-weight: bold;
+}
+.pbHeader .pbTitle h2, .pbHeader .pbTitle h3 {
+    color:#333333;
+    display:block;
+    margin:0 0 0 4px;
+    padding:0;
+}
+.bPageBlock .pbTitle {
+    color:#222222;
+    font-size:91%;
+    margin:0;
+    vertical-align:middle;
+    width:30%;
+}
+.bPageBlock .pbButton {
+    padding:1px 0;
+    vertical-align:middle;
+}
+body .bPageBlock .pbBody {padding:0;}
+body .bPageBlock, body .bPageBlock .pbBody, body .bPageBlock .pbBottomButtons {
+    background-color:transparent;
+    background-image:none;
+    margin:0 0 10px 0;
+}
+.bTask .bPageBlock .pbBody {padding:5px 20px 0 !important;}
+.bPageBlock .setupOverview a, .bPageBlock .setupResource a {text-decoration:none;}
+.bPageBlock .setupOverview a:hover, .bPageBlock .setupResource a:hover {text-decoration:underline;}
+.bWizardBlock .detailList, .bPageBlock .detailList {width:100%;}
+body .bWizardBlock .labelCol, body .bDetailBlock.bPageBlock .pbBody .labelCol, body .bDetailBlock.bPageBlock .pbBody .dataCol, body .bDetailBlock.bPageBlock .pbBody .data2Col, body .bPageBlock.bEditBlock .pbBody .labelCol, body .bPageBlock.bEditBlock .pbBody .dataCol, body .bPageBlock.bEditBlock .pbBody .data2Col {
+    padding-bottom:3px;
+    padding-top:3px;
+}
+body .bWizardBlock.pbBody.labelCol, body .bPageBlock .pbBody .labelCol {color:#4A4A56;}
+body .bPageBlock .pbBody .labelCol, body .bPageBlock .pbBody .dataCol, body .bPageBlock .pbBody .data2Col {
+    padding-bottom:5px;
+    padding-top:5px;
+}
+.bWizardBlock .detailList .labelCol, .bPageBlock .detailList .labelCol {white-space:nowrap;}
+.bWizardBlock .detailList .labelCol, .bPageBlock .detailList .labelCol {width:18%;}
+.bWizardBlock .detailList .dataCol, .bPageBlock .detailList .dataCol {width:32%;}
+.bWizardBlock .dataCol,.bPageBlock .dataCol {padding:2px 2px 2px 10px;text-align:left;}
+.bPageBlock textarea {font-size: 12px;}
+
+body .bPageBlock .detailList tr td, body .bPageBlock .detailList tr th, body table.list tr td, body table.list tr th, body .hoverDetail .bPageBlock .detailList tr td, body .hoverDetail .bPageBlock .detailList tr th {
+    border-color:#ECECEC;
+}
+.bPageBlock .detailList tr td, .bPageBlock .detailList tr th, .hoverDetail .bPageBlock .detailList tr td, .hoverDetail .bPageBlock .detailList tr th {
+    border-bottom:1px solid #E3DEB8;
+}
+.bPageBlock .detailList th, .bPageBlock .detailList td {vertical-align:top;}
+.bWizardBlock .labelCol, .bPageBlock .labelCol {
+    color:#333333;
+    font-size:91%;
+    font-weight:bold;
+    padding:2px 10px 2px 2px;
+    text-align:right;
+}
+body .bDetailBlock.bPageBlock .pbBody .dataCol {border-right-color:transparent;}
+body .bPageTitle .ptBody .pageType {
+    color:#4A4A56;
+    font-size:0.9em;
+    font-weight:bold;
+    padding-left:1px;
+}
+div#bodyDiv_setup > table.outer {background-color:#F2F2F3;}
+body .bodyDiv #bodyTable {padding-left:0;padding-right:0;}
+.outer {margin:0;}
+
+.setupTab .mComponent .cHeader, .setupTab .genericTable, .setupTab .bSubBlock, .setupTab .bPageBlock {border-top:3px solid #747E96;}
+body .bPageBlock, body #bodyCell .bResource .secondaryPalette, body .secondaryPalette.bPageBlock, body .overlayDialog .secondaryPalette.bPageBlock, body .individualPalette .secondaryPalette.bPageBlock, body .bodyDiv .genericTable, body .genericPageBlockTable, body .bodyDiv .bSubBlock, body .bComponentBlock .bPageBlock, body .bMyDashboard .bPageBlock, body.rlHoverFrame .bPageBlock, body.subjectSelectionPopup div.choicesBox, body.lookupTab .secondaryPalette.bPageBlock, body.popupTab .secondaryPalette.bPageBlock, body.UserTagStatsPage .secondaryPalette.bPageBlock {
+    -moz-border-radius:4px 4px 4px 4px;
+    -webkit-border-radius: 4px;
+    background-color:#F8F8F8;
+    border-bottom:1px solid #EAEAEA;
+    border-left:1px solid #EAEAEA;
+    border-right:1px solid #EAEAEA;
+}
+.bEditBlock .pbHeader > table, .apexp .bPageBlock.apexDefaultPageBlock .pbHeader > table, #ep.bLayoutBlock .pbHeader > table {border-bottom:1px solid #DBDBDB;padding:5px 0;}
+.setupTab form#editPage .pbBody .pbSubheader.first {
+border-top:0 none;
+}
+form .pbBody .pbSubheader {
+    background-image:url("../images/opacity75.png");
+    border-top:1px solid #FFFFFF;
+    border-width:1px 0 0;
+    color:#000000;
+    padding:4px 16px;
+}
+body .bEditBlock .pbBody .pbSubheader, body .bWizardBlock .pbBody .pbSubheader {
+    background-image:url("../images/opacity75.png");
+    border-top:1px solid #FFFFFF;
+    border-width:1px 0 0;
+    color:#000000;
+    padding:4px 16px;
+}
+.bWizardBlock .pbSubsection, .bWizardBlock .pbSubsection {margin-top: 7px;padding: 0 12px;}
+body .bWizardBlock .pbBody .pbSubheader h3, body .bWizardBlock .bPageBlock .pbBody .pbSubheader label {font-size:14px;}
+.bWizardBlock .requiredLegend {background-color:transparent;color:#000000;font-weight:normal;padding:0 2px;}
+
+body .bDetailBlock.bPageBlock .pbBody .pbSubheader, body.FindSimilarOppsSearchUi .bPageBlock .pbBody .pbSubheader {background-color:transparent;}
+body .bPageBlock .pbBody .pbSubheader {
+    border-style:solid;
+    border-width:2px 0 0;
+    color:#27282E;
+    padding:4px 3px;
+}
+body .bPageBlock .pbBody .pbSubheader .hideListButton {
+    background:url("../images/twisty_sprite.png") no-repeat scroll 0 -11px transparent;
+}
+
+body .bPageBlock .pbBody .pbSubheader img {
+background-repeat:no-repeat;
+height:11px;
+margin-right:4px;
+width:11px;
+}
+
+.hideListButton {
+    background-image:url("../images/twistySubhDown.gif");
+    background-position:0 0;
+    height:10px;
+    width:16px;
+}
+
+.accountTab .tertiaryPalette, .individualPalette .accountBlock .tertiaryPalette, .layoutEdit .individualPalette .accountBlock .tertiaryPalette {
+    background-color:#8A9EBE;
+    border-color:#8A9EBE;
+}
+body .bEditBlock .pbBody .pbSubheader.first {border-top:medium none;}
+.setupTab .tertiaryPalette, .individualPalette .setupBlock .tertiaryPalette, .layoutEdit .individualPalette .setupBlock .tertiaryPalette {
+    background-color:#8E9DBE;
+    border-color:#8E9DBE;
+}
+.pbSubheader.first {margin-top:0;}
+.pbSubheader {
+    background-color:#222222;
+    font-size:91%;
+    font-weight:bold;
+    margin-bottom:2px;
+    margin-top:15px;
+    overflow:hidden;
+    padding:2px 2px 2px 5px;
+}
+body .bPageBlock .pbBody .pbSubheader h3, body .bWizardBlock .bPageBlock .pbBody .pbSubheader label {font-size:1.2em;}
+h1, h2, h3, h4, h5, h6 {
+    display:inline;
+    font-family:'Verdana','Geneva',sans-serif;
+    font-size:100%;
+    margin:0;
+}
+
+.bEditBlock .pbSubheader .pbSubExtra {margin-right:0;}
+.pbSubheader .pbSubExtra {float:right;margin-right:2em;}
+.bEditBlock .requiredLegend {background-color:transparent;}
+.requiredLegend {
+    background-color:#FFFFFF;
+    color:#000000;
+    font-weight:normal;
+    padding:0 2px;
+}
+.requiredExample {
+    border-left:3px solid #CC0000;
+    font-size:80%;
+    vertical-align:1px;
+    width:100%;
+}
+.requiredExampleOuter {
+    margin:0 0.2em 0 0.3em;
+    padding:1px 0;
+}
+.bEditBlock .requiredMark, .pbSubheader .requiredLegend .requiredMark {
+    color:#F8F8F8;
+    margin-right:2px;
+}
+.pbSubheader .requiredLegend .requiredMark {
+    color:white;
+    display:none;
+    position:absolute;
+}
+.editPage .bPageBlock .detailList tr td, .editPage .bPageBlock .detailList tr th {border-bottom:medium none;}
+.bEditBlock.bPageBlock .detailList tr td, .bEditBlock.bPageBlock .detailList tr th {border-bottom-width:0;}
+form .pbBottomButtons {
+    border-top:1px solid #DBDBDB;
+}
+body .bEditBlock .pbBottomButtons, body .apexp .bPageBlock.apexDefaultPageBlock .pbBottomButtons {margin-top:20px;}
+form .pbBottomButtons > table {border-top:1px solid #FFFFFF;padding:0 !important;}
+
+/************** error messages and input required ******************/
+.bWizardBlock .requiredInput, .bPageBlock .requiredInput {height:100%;position:relative;}
+.bWizardBlock .requiredInput .requiredBlock, .bPageBlock .requiredInput .requiredBlock {
+    background-color:#CC0000;
+    bottom:1px;
+    left:-4px;
+    position:absolute;
+    top:1px;
+    width:3px;
+}
+.bWizardBlock .detailList .errorMsg, .bPageBlock .detailList .errorMsg {
+    padding-left:3px;
+}
+.errorStyle, .errorMsg, .importantWarning, .pbBody .errorStyle a, .pbBody .errorMsg a {
+    color:#D74C3B;
+}
+.bPageBlock .detailList .error, .bPageTitle .tagDropDown #tag_edit_error, .bPageTitle .tagDropDown .tagDropDownContent .error, .tagRenameMenu .error, .inlineEditDiv .error, .inlineEditRequiredDiv .error {
+    border:2px solid #CC0000;
+}
+.bPageBlock .pbError, .editListError {
+    color:#CC0000;
+    font-weight:bold;
+    text-align:center;
+}

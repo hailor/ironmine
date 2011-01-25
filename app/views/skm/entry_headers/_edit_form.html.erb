@@ -1,22 +1,23 @@
-<%= page_title %>
-<%= form_for(@entry_status,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+<%= app_title %>
+<%= form_for(@entry_header,:url=>{:action=>"update"},:builder => LabellingFormBuilder, :html => {:name => "edit_form", :id => "edit_form"}) do |f| %>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_skm_entry_status_new)%></h2></td>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_skm_entry_header_edit)%></h2></td>
           <td id="topButtonRow" class="pbButton">
-            <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+            <div class="button"><%= link_to t(:save_as_draft), {}, :href => "javascript:void(0);", :onclick => "submit_draft();"%></div>
+            <div class="button"><%= link_to t(:save_as_published), {}, :href => "javascript:void(0);", :onclick => "submit_published();"%></div>
+            <div class="button"><%= link_to t(:cancel), {:controller => "skm/entry_headers", :action => "index"}  %></div>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
   <div class="pbBody">
-    <%= error_for @entry_status%>
-    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+    <%= error_for @entry_header%>
+    <div class="pbSubheader first tertiaryPalette">
       <span class="pbSubExtra">
         <span class="requiredLegend">
           <span class="requiredExampleOuter">
@@ -31,38 +32,36 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <td class="labelCol"><label><%=(t :label_skm_entry_status_code)%></label></td>
-              <td class="dataCol"><%= @entry_status.entry_status_code%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><label><%=(t :label_skm_entry_header_doc_number)%></label></td>
+              <td class="data2Col"><%= @entry_header.doc_number%></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=(t :name)%></label></td>
-              <td class="dataCol"><%=f.text_field :name, :required=>true%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>                        
-            <tr>
-              <td class="labelCol"><label><%=t(:description)%></label></td>
-              <td class="dataCol"><%= f.text_area :description, :rows => 4%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><label><%=(t :label_skm_entry_header_title)%></label></td>
+              <td class="data2Col"><%=f.text_field :entry_title, :required=>true%></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=(t :label_skm_entry_status_visiable)%></label></td>
-              <td class="dataCol"><%=f.check_box :visiable_flag, :value => "Y"%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :active)%></label></td>
-              <td class="dataCol"><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><label><%=(t :label_skm_entry_header_keyword_tags)%></label></td>
+              <td class="data2Col"><%=f.text_field :keyword_tags%></td>
             </tr>
         </tbody>
       </table>
     </div>
+    <% @entry_header.entry_details.order("line_num ASC").each do |ed| %>
+    <div class="pbSubheader tertiaryPalette">
+      <h3><%= ed.element_name %>&nbsp;<%= ed.required_flag == "Y" ? "(必填)" : "" %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <%= fields_for("skm_entry_details[]", ed) do |ef| %>
+            <tr>
+              <td><%= ef.text_area :entry_content, {:rows => ed.default_rows, :style => "width:100%;", :value => ed.entry_content}%></td>
+            </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+    <% end %>
   </div>
   <div class="pbBottomButtons">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -70,12 +69,38 @@
         <tr>
           <td class="pbTitle"></td>
           <td id="bottomButtonRow" class="pbButtonb">
-            <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+            <div class="button"><%= link_to t(:save_as_draft), {}, :href => "javascript:void(0);", :onclick => "submit_draft();"%></div>
+            <div class="button"><%= link_to t(:save_as_published), {}, :href => "javascript:void(0);", :onclick => "submit_published();"%></div>
+            <div class="button"><%= link_to t(:cancel), {:controller => "skm/entry_headers", :action => "index"}  %></div>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+<script type="text/javascript">
+  function submit_draft(){
+    if (confirm("文章内容已被修改，是否保存为新的版本？"))
+    {
+        document.edit_form.action = "<%= @entry_header.id%>/update?status='DRAFT'&new=1";
+    }
+    else
+    {
+        document.edit_form.action = "<%= @entry_header.id%>/update?status='DRAFT'";
+    }
+    edit_form.submit();
+  }
+
+  function submit_published(){
+    if (confirm("文章内容已被修改，是否保存为新的版本？"))
+    {
+        document.edit_form.action = "update?status='PUBLISHED'&new=1";
+    }
+    else
+    {
+        document.edit_form.action = "update?status='PUBLISHED'";
+    }
+    edit_form.submit();
+  }
+</script>    
 <% end %>

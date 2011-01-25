@@ -1,0 +1,78 @@
+<%= form_for(@entry_header,:url=>{:action=>"new", :step => "2"},:builder => LabellingFormBuilder) do |f| %>
+<div  class="bWizardBlock">
+    <div class="pbWizardTitle tertiaryPalette">
+        <div class="ptRightTitle">
+            <%= t(:step_n_total_m, :n => "1", :m => "3") %>
+        </div>
+        <h2>
+            <%= t(:step_n, :n => "1") %><%= t(:notice_skm_entry_header_choice_template) %>
+        </h2>
+    </div>
+  <div class="pbBody">
+    <div class="pbDescription ">
+    <%= t(:notice_skm_entry_step_1_desc) %>
+    </div>
+    <div class="pbWizardBody">
+      <div class="secondaryPalette">
+        <div class="pbBody ">
+            <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+              <span class="pbSubExtra">
+                <span class="requiredLegend">
+                  <span class="requiredExampleOuter">
+                    <span class="requiredExample">&nbsp;</span>
+                  </span><span class="requiredMark">*</span>
+                  <span class="requiredText"> = <%=t(:label_is_required)%></span>
+                </span>
+              </span>
+              <h3><%= t(:label_common_info) %></h3>
+            </div>
+            <div class="pbSubsection">
+              <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                    <tr>
+                      <td class="labelCol">
+                        <%= f.select :entry_template_id, available_entry_templates.collect{|p| [p.name, p.id]}, {},{:style => "width: 100%;min-height: 200px; min-width: 180px;", :id => "template_select", :size => "18" , :selected => (@entry_header.entry_template_id ? @entry_header.entry_template_id : false)} %>
+                      </td>
+                      <td class="data2Col">
+                        <div id="entry_elements_list" class="datatable" style="width:100%;">
+                        </div>
+                        <%= datatable("entry_elements_list",url_for(:controller => "skm/entry_templates", :action=>"get_owned_elements_data", :template_id => @entry_header.entry_template_id ? @entry_header.entry_template_id : "-1" ,:format=>"json"),
+                                      [{:key=>"required_flag",:label=>t(:label_skm_entry_template_element_required), :width => "30px"},
+                                       {:key=>"entry_template_element_code",:label=>t(:label_skm_entry_template_element_code), :width => "100px"},
+                                       {:key=>"name",:label=>t(:name), :width => "200px"},
+                                       {:key=>"description",:label=>t(:description)},
+                                       {:key=>"default_rows",:label=>t(:label_skm_entry_template_element_rows), :width => "100px"}
+                                       ]) %>
+                      </td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+      </div>      
+    </div>
+    <div class="pbWizardFooter">
+        <div class="pbBottomButtons">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tbody>
+                <tr>
+                  <td class="pbTitle"></td>
+                  <td id="bottomButtonRow" class="pbButtonb">
+                    <div class="button"><%= f.submit t :next%></div>
+                    <div class="button"><%= link_to t(:cancel), {:action => "index"} %></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+       GY.use(function(Y) {
+           Y.one("select#template_select").on("change", function(e){
+               Y.irm.entry_elements_listDatatable.datasource.query({template_id_t:this.get("value")});
+           })
+       });
+</script>
+<% end %>

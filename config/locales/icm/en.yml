@@ -86,8 +86,10 @@ en:
   label_irm_incident_status_new: New Incident Status
   label_irm_incident_status_list: List Incident Status
   label_icm_incident_status_show: Incident Status
+  label_icm_incident_close_flag: Close
   #========================= end icm incident_statuses_controller=======================#
   #=========================    icm incident_requests_controller=======================#
+  label_icm_reply: Reply
   label_icm_incident_request_list: Incident request list
   label_icm_incident_request_new: New incident request
   label_icm_incident_request_service_code: Service
@@ -111,6 +113,7 @@ en:
   label_icm_incident_request_submitted_by: Submit by
   label_icm_incident_request_incident_phase_code: Phase
   label_icm_incident_request_submitted_date: Submit date
+  label_icm_incident_request_close_reason_code: Close reason
   #========================= end iicm incident_requests_controller=======================#
   #=========================    icm incident_journals_controller=======================#
   label_icm_incident_reply_support_group_id: Referred group
@@ -118,4 +121,13 @@ en:
   label_icm_incident_reply_incident_status_code: New Incident Status
   label_icm_incident_journal_list: Request histories
   label_icm_incident_journal_new: Reply
+  label_icm_incident_journal_back_to_request_list: Back to request list
+  label_icm_incident_request_base_info: Base information
+  label_icm_incident_request_status_info: Status information
+  label_icm_incident_journal_reply: Comments
+  label_icm_incident_journal_attachment: Attachments
+  label_icm_incident_journal_attachment_desc: Description
+  label_icm_incident_journal_add_attachment: Add a attachment
+  label_icm_incident_journal_close: Close incident request
+  label_icm_incident_joural_back_to_request: Back to incident
   #========================= end icm incident_journals_controller=======================#

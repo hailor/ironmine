@@ -1,7 +1,11 @@
 class Icm::IncidentJournalsController < ApplicationController
 
   before_filter :setup_up_incident_request
-  before_filter :backup_incident_request ,:only=>[:create,:update]
+  before_filter :backup_incident_request ,:only=>[:create,:update_close]
+
+  def index
+   redirect_to :action=>"new"
+  end
 
   # GET /incident_journals/new
   # GET /incident_journals/new.xml
@@ -14,10 +18,6 @@ class Icm::IncidentJournalsController < ApplicationController
     end
   end
 
-  # GET /incident_journals/1/edit
-  def edit
-    @incident_journal = IncidentJournal.find(params[:id])
-  end
 
   # POST /incident_journals
   # POST /incident_journals.xml
@@ -27,7 +27,8 @@ class Icm::IncidentJournalsController < ApplicationController
     perform_create
     respond_to do |format|
       if @incident_reply.valid? && @incident_request.update_attributes(@incident_reply.attributes)
-        process_change_attributes(@incident_reply.attributes,@incident_request,@incident_request_bak,@incident_journal)
+        process_change_attributes(@incident_reply.attributes.keys,@incident_request,@incident_request_bak,@incident_journal)
+        process_files(@incident_journal)
         format.html { redirect_to({:action => "new"}, :notice => 'Incident journal was successfully created.') }
         format.xml  { render :xml => @incident_journal, :status => :created, :location => @incident_journal }
       else
@@ -37,17 +38,27 @@ class Icm::IncidentJournalsController < ApplicationController
     end
   end
 
-  # PUT /incident_journals/1
-  # PUT /incident_journals/1.xml
-  def update
-    @incident_journal = IncidentJournal.find(params[:id])
-
+  def edit_close
+    @incident_journal = @incident_request.incident_journals.build()
     respond_to do |format|
-      if @incident_journal.update_attributes(params[:incident_journal])
-        format.html { redirect_to(@incident_journal, :notice => 'Incident journal was successfully updated.') }
-        format.xml  { head :ok }
+      format.html # new.html.erb
+      format.xml  { render :xml => @incident_journal }
+    end
+  end
+
+
+  def update_close
+
+    @incident_journal = @incident_request.incident_journals.build(params[:icm_incident_journal])
+    perform_create
+    respond_to do |format|
+      if @incident_journal.valid?&&@incident_request.update_attributes(params[:icm_incident_request])
+        process_change_attributes([:incident_status_code,:close_reason_code],@incident_request,@incident_request_bak,@incident_journal)
+        process_files(@incident_journal)
+        format.html { redirect_to({:action => "new"}) }
+        format.xml  { render :xml => @incident_journal, :status => :created, :location => @incident_journal }
       else
-        format.html { render :action => "edit" }
+        format.html { render :action => "edit_close" }
         format.xml  { render :xml => @incident_journal.errors, :status => :unprocessable_entity }
       end
     end
@@ -67,7 +78,7 @@ class Icm::IncidentJournalsController < ApplicationController
   end
 
   def process_change_attributes(attributes,new_value,old_value,ref_journal)
-    attributes.each do |key,value|
+    attributes.each do |key|
       ovalue = old_value.send(key)
       nvalue = new_value.send(key)
         Icm::IncidentHistory.create({:journal_id=>ref_journal.id,
@@ -75,6 +86,16 @@ class Icm::IncidentJournalsController < ApplicationController
                                      :old_value=>ovalue,
                                      :new_value=>nvalue}) if !ovalue.eql?(nvalue)
     end
+  end
+
+  def process_files(ref_journal)
+    @files = []
+    params[:files].each do |key,value|
+      @files << Irm::AttachmentVersion.create({:source_id=>ref_journal.id,
+                                               :source_type=>ref_journal.class.name,
+                                               :data=>value[:file],
+                                               :description=>value[:description]}) if(value[:file]&&!value[:file].blank?)
+    end if params[:files]
   end
 
 end

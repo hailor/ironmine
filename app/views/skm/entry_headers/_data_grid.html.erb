@@ -4,30 +4,30 @@
         <table cellpadding="0" cellspacing="0" border="0">
           <tbody>
             <tr>
-              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_skm_entry_status_list) %></h2></td>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_skm_entry_header_list) %></h2></td>
               <td id="topButtonRow" class="pbButton">
                 <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
               </td>
               <td class="pbHelp">
-                <div id="statusesSearchBox"></div>
+                <div id="entryHeadersSearchBox"></div>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="pbBody">
-        <div id="entry_statuses_list" class="datatable" style="width:100%">
+        <div id="entry_headers_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:controller => "skm/entry_statuses", :action=>"edit",:id=>"{id}"}) %>
-          </div>          
+            <%= link_to(t(:edit),{:controller => "skm/entry_headers", :action=>"edit",:id=>"{id}"}) %>&nbsp;|
+            <%= link_to(t(:show),{:controller => "skm/entry_headers", :action=>"show",:id=>"{id}"}) %>&nbsp;|
+            <%= link_to(t(:save_page),{}, :href => "javascript:void(0);") %>
+          </div>
         </div>
-        <%= datatable("entry_statuses_list",url_for(:action=>"get_data",:format=>"json"),
-                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
-                   {:key=>"entry_status_code",:label=>t(:label_skm_entry_status_code),:sortable=>true, :searchable => true},
-                   {:key=>"name",:label=>t(:name),:sortable=>true, :searchable => true},
-                   {:key=>"description",:label=>t(:description),:sortable=>true},
-                   {:key=>"visiable_flag",:label=>t(:label_skm_entry_status_visiable),:sortable=>true},
-                   {:key=>"status_meaning",:label=>t(:active),:sortable=>true}], {:search_box => "statusesSearchBox"})%>
+        <%= datatable("entry_headers_list",url_for(:action=>"get_data",:format=>"json"),
+                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"120px"},
+                   {:key=>"full_title",:label=>t(:label_skm_entry_header_title),:sortable=>true, :searchable => true},
+                   {:key=>"published_date",:label=>t(:label_skm_entry_header_published_date),:sortable=>true, :width => "180px"}], 
+                   {:search_box => "entryHeadersSearchBox"})%>
       </div>
     </div>
 </div>

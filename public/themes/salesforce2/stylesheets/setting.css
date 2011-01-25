@@ -333,69 +333,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 /********body cell*******/
-.bPageTitle {margin-bottom:15px;}
-body.detailPage .bPageTitle {margin-bottom:0;}
-body .bPageTitle {padding:10px 0 0;}
-body .bPageTitle .ptBody {
-    background-color:transparent;
-    color:#000000;
-    padding:0;
-}
-.bPageTitle .ptBody {
-    overflow:hidden;
-    padding-bottom:5px;
-    padding-top:5px;
-    width:100%;
-}
-
-.bDescription {
-    margin:16px 0;
-    padding:0;
-}
-.setupTab .bPageTitle .ptBody .content, .sysAdminTab .bPageTitle .ptBody .content {padding-left:0;}
-.bPageTitle .ptBody .content {
-    float:left;
-    padding-left:5px;
-    vertical-align:middle;
-    width:70%;
-}
-.setupTab .bPageTitle .ptBody .pageType, .setupTab .bPageTitle .ptBody .pageDescription, .sysAdminTab .bPageTitle .ptBody .pageType, .sysAdminTab .bPageTitle .ptBody .pageDescription {
-    margin-left:0;
-    margin-bottom: 5px;
-}
-body .bPageTitle .ptBody .pageDescription {
-    font-size:25px;
-    font-weight:normal;
-    line-height:1.1em;
-}
-.bPageTitle .ptBody .pageDescription {font-size:109%;font-weight:bold;}
-.bPageTitle h1, .bPageTitle h2 {display:block;}
-.bPageTitle .content .blank {clear:both;font-size:0;}
-body .bPageTitle .ptBody .links {padding-top:0;}
-.bPageTitle .ptBody .links {
-    float:right;
-    font-size:91%;
-    padding:10px 5px 0 0;
-    text-align:right;
-    vertical-align:middle;
-    white-space:nowrap;
-}
-body .bPageTitle .ptBody .links a, body .bPageTitle .ptBody .links .configLinks, body .bPageTitle .ptBody .links .helpLink, body .bPageTitle .ptBody .links span {
-color:#015BA7;
-text-decoration:none;
-}
-.bPageTitle .ptBreadcrumb {
-    height:auto;
-    margin-bottom:0;
-    margin-top:3px;
-}
-.bPageTitle .ptBreadcrumb {
-    font-family:'Verdana','Geneva',sans-serif;
-    font-size:91.3%;
-    height:15px;
-    margin-bottom:-15px;
-    vertical-align:middle;
-}
 .setupTab.detailPage div.bDetailBlock.bPageBlock[id="ep"] {margin-bottom:20px;}
 body.detailPage .bDetailBlock.bPageBlock[id^="ep"] {
     background-color:inherit;
@@ -419,7 +356,6 @@ body .bPageBlock .pbHeader {
     margin:0 2px 0 0;
     padding-bottom:2px;
 }
-.bPageBlock .pbHeader table, .bPageBlock .pbBottomButtons table {border-spacing:0;width:100%;}
 .bPageBlock {font-size:105%;}
 .bPageBlock {
     background-color:#222222;
@@ -431,9 +367,7 @@ body .bPageBlock .pbHeader {
     margin-bottom:9px;
     padding-bottom:9px;
 }
-.bEditBlock .pbHeader > table > tbody > tr > td, .bPageBlock .pbHeader > table > tbody > tr > td, .bLayoutBlock .pbHeader > table > tbody > tr > td, .bEditBlock .pbBottomButtons > table > tbody > tr > td, .bPageBlock .pbBottomButtons > table > tbody > tr > td, .bLayoutBlock .pbBottomButtons > table > tbody > tr > td {
-    padding:5px 12px;
-}
+
 body .bRelatedList .pbTitle h3, body .bPageBlock .pbTitle h2, body .bPageBlock .pbTitle h3, body .bSubBlock h3.lbHeader {
     color:#000000;
     font-size:15px;
@@ -445,13 +379,7 @@ body .bRelatedList .pbTitle h3, body .bPageBlock .pbTitle h2, body .bPageBlock .
     margin:0 0 0 4px;
     padding:0;
 }
-.bPageBlock .pbTitle {
-    color:#222222;
-    font-size:91%;
-    margin:0;
-    vertical-align:middle;
-    width:30%;
-}
+
 .bPageBlock .pbButton {
     padding:1px 0;
     vertical-align:middle;
@@ -465,17 +393,10 @@ body .bPageBlock, body .bPageBlock .pbBody, body .bPageBlock .pbBottomButtons {
 .bTask .bPageBlock .pbBody {padding:5px 20px 0 !important;}
 .bPageBlock .setupOverview a, .bPageBlock .setupResource a {text-decoration:none;}
 .bPageBlock .setupOverview a:hover, .bPageBlock .setupResource a:hover {text-decoration:underline;}
-.bPageBlock .detailList {width:100%;}
-body .bDetailBlock.bPageBlock .pbBody .labelCol, body .bDetailBlock.bPageBlock .pbBody .dataCol, body .bDetailBlock.bPageBlock .pbBody .data2Col, body .bPageBlock.bEditBlock .pbBody .labelCol, body .bPageBlock.bEditBlock .pbBody .dataCol, body .bPageBlock.bEditBlock .pbBody .data2Col {
-    padding-bottom:3px;
-    padding-top:3px;
-}
-body .bPageBlock .pbBody .labelCol {color:#4A4A56;}
 body .bPageBlock .pbBody .labelCol, body .bPageBlock .pbBody .dataCol, body .bPageBlock .pbBody .data2Col {
     padding-bottom:5px;
     padding-top:5px;
 }
-.bPageBlock .detailList .labelCol {white-space:nowrap;}
 .bPageBlock .detailList .labelCol {width:18%;}
 .bPageBlock .detailList .dataCol {width:32%;}
 .bPageBlock .dataCol {padding:2px 2px 2px 10px;text-align:left;}
@@ -609,37 +530,13 @@ h1, h2, h3, h4, h5, h6 {
     position:absolute;
 }
 .editPage .bPageBlock .detailList tr td, .editPage .bPageBlock .detailList tr th {border-bottom:medium none;}
-.bEditBlock.bPageBlock .detailList tr td, .bEditBlock.bPageBlock .detailList tr th {border-bottom-width:0;}
 form .pbBottomButtons {
     border-top:1px solid #DBDBDB;
 }
 body .bEditBlock .pbBottomButtons, body .apexp .bPageBlock.apexDefaultPageBlock .pbBottomButtons {margin-top:20px;}
 form .pbBottomButtons > table {border-top:1px solid #FFFFFF;padding:0 !important;}
 
-/************** error messages and input required ******************/
-.bPageBlock .requiredInput {height:100%;position:relative;}
-.bPageBlock .requiredInput .requiredBlock {
-    background-color:#CC0000;
-    bottom:1px;
-    left:-4px;
-    position:absolute;
-    top:1px;
-    width:3px;
-}
-.bPageBlock .detailList .errorMsg {
-    padding-left:3px;
-}
-.errorStyle, .errorMsg, .importantWarning, .pbBody .errorStyle a, .pbBody .errorMsg a {
-    color:#D74C3B;
-}
-.bPageBlock .detailList .error, .bPageTitle .tagDropDown #tag_edit_error, .bPageTitle .tagDropDown .tagDropDownContent .error, .tagRenameMenu .error, .inlineEditDiv .error, .inlineEditRequiredDiv .error {
-    border:2px solid #CC0000;
-}
-.bPageBlock .pbError, .editListError {
-    color:#CC0000;
-    font-weight:bold;
-    text-align:center;
-}
+
 /********************************************************************/
 .listRelatedObject .pbBody {padding: 0 !important;}
 .datatable table{width:100%;}

@@ -43,7 +43,7 @@ class Icm::IncidentRequestsController < ApplicationController
     prepared_for_create(@incident_request)
     respond_to do |format|
       if @incident_request.save
-        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_created)) }
+        format.html { redirect_to({:controller=>"icm/incident_journals",:action=>"new",:request_id=>@incident_request.id}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @incident_request, :status => :created, :location => @incident_request }
       else
         format.html { render :action => "new" }
@@ -78,12 +78,13 @@ class Icm::IncidentRequestsController < ApplicationController
                                                                           :urgence_name,:impact_range_name,
                                                                           :contact_name,:contact_number,
                                                                           :report_source_name,:priority_name,:incident_status_name],count))}
+      format.xml { render :xml => incident_requests }
     end
   end
 
   private
   def prepared_for_create(incident_request)
-    incident_request.submitted_by = Irm::Person.current.id
+    incident_request.submitted_by = Irm::Person.first.id
     incident_request.submitted_date = Time.now
   end
 end

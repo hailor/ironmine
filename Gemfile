@@ -18,6 +18,8 @@ gem "spreadsheet"
 
 gem "rufus-scheduler"
 
+gem "paperclip", "~> 2.3"
+
 #gem 'composite_primary_keys', '=3.1.0'
 #gem "rmmseg"
 

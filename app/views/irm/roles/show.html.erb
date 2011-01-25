@@ -1,0 +1,50 @@
+<%= setting_show_title(:show_data => @role.role_code) %>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_role) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @role}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubheader tertiaryPalette">
+      <img title="隐藏部分 - 其他信息" style="cursor: pointer;" name="其他信息" class="hideListButton" alt="隐藏部分 - 其他信息" src="/images/s.gif">
+      <h3>其他信息<span class="titleSeparatingColon">:</span></h3>
+    </div>
+
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_role_code)%></label></td>
+              <td class="data2Col"><%= @role.role_code%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_role_name)%></label></td>
+              <td class="data2Col"><%= @role[:name]%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :description)%></label></td>
+              <td class="data2Col"><div><%= @role[:description]%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_role_menu)%></label></td>
+              <td class="data2Col"><div><%= @role[:menu_name]%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :active)%></label></td>
+              <td class="data2Col"><%= @role.status_code%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

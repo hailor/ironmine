@@ -1,54 +1,73 @@
-<%= page_title %>
+<%= app_title %>
 <div id="ep" class="bDetailBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_permission) %></h2></td>
-          <td id="topButtonRow" class="pbButton">
-            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @entry_status}%></div>
+          <td class="pbTitle" style="width:60%"><h2 style="float:left;">[<%= @entry_header.doc_number%>]&nbsp;&nbsp;&nbsp;</h2><h2><%= @entry_header.entry_title %></h2></td>
+          <td id="topButtonRow" class="pbButton" style="float:right;">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @entry_header}%></div>
             <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div class="pbBody">
-    <div class="pbSubsection">
-      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
-        <tbody>
-            <tr>
-              <td class="labelCol"><label><%=(t :label_skm_entry_status_code)%></label></td>
-              <td class="dataCol"><%= @entry_status.entry_status_code%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :name)%></label></td>
-              <td class="dataCol"><%= @entry_status[:name]%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=t(:description)%></label></td>
-              <td class="dataCol"><%= @entry_status[:description]%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :label_skm_entry_status_visiable)%></label></td>
-              <td class="dataCol"><%= @entry_status.visiable_flag%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :active)%></label></td>
-              <td class="dataCol"><%= @entry_status.status_code%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-        </tbody>
-      </table>
-    </div>
+  
+  <div class="pbBody lightBlueBorder  noLineShow">
+        <div class="pbSubheader tertiaryPalette">
+          <h3>导航目录</h3>
+        </div>
+        <div class="pbSubsection">
+          <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <% @entry_header.entry_details.each do |e| %>
+                    <tr>
+                      <td><a href="#<%= e.id%>"><%= e.element_name %></a></td>
+                    </tr>
+                <% end %>
+            </tbody>
+          </table>
+        </div>
+    <% @entry_header.entry_details.each do |e| %>
+        <div class="pbSubheader tertiaryPalette">
+          <h3><%= raw(e.element_name) %></h3>
+          <div style="float:right"><a href="javascript:void(0);" onclick="scrollTo(0, 0);"><%= t(:go_to_top) %></a></div>
+        </div>
+        <div class="pbSubsection">
+          <a id="<%= e.id %>" name="<%= e.id %>">&nbsp;</a>
+          <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <tr>
+                  <td><%= raw(e.entry_content) %></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+    <% end %>
   </div>
+</div>
+
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_skm_entry_header_history_list) %></h2></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="entry_headers_list" class="datatable" style="width:100%">
+        </div>
+        <%= datatable("entry_headers_list",url_for(:controller => "skm/entry_headers",:action=>"get_history_entries_data",:doc_number => @entry_header.doc_number,:format=>"json"),
+                  [{:key=>"doc_number",:label=>t(:label_skm_entry_header_doc_number),:sortable=>true, :searchable => true},
+                   {:key=>"entry_title",:label=>t(:label_skm_entry_header_title),:sortable=>true, :searchable => true},
+                   {:key=>"version_number",:label=>t(:label_skm_entry_header_version),:sortable=>true},
+                   {:key=>"keyword_tags",:label=>t(:label_skm_entry_header_keyword_tags),:sortable=>true, :searchable => true},
+                   {:key=>"published_date",:label=>t(:label_skm_entry_header_published_date),:sortable=>true}])%>
+      </div>
+    </div>
 </div>

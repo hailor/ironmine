@@ -46,10 +46,16 @@
               <td class="dataCol"><%=f.text_field :display_sequence, :required=>true %></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=(t :label_icm_incident_status_description)%></label></td>
-              <td class="dataCol"><%=f.text_area :description,:rows=>4%></td>
               <td class="labelCol"><label><%=(t :default_flag)%></label></td>
               <td class="dataCol"><%=f.check_box :default_flag%></td>
+              <td class="labelCol"><label><%=(t :label_icm_incident_close_flag)%></label></td>
+              <td class="dataCol"><%=f.check_box :close_flag%></td>              
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_icm_incident_status_description)%></label></td>
+              <td class="dataCol"><%=f.text_area :description,:rows=>4%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
             </tr>
         </tbody>
       </table>

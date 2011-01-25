@@ -428,6 +428,14 @@ Ironmine::Application.routes.draw do
     match '/filters/:pid/create(.:format)' => "filters#create", :via => :post
     match '/filters/:pid/:id/edit(.:format)' => "filters#edit", :via => :get
     match '/filters/:pid/:id(.:format)' => "filters#update", :via => :put
+    #role
+    match '/roles(/index)(.:format)' => "roles#index", :via => :get
+    match '/roles/:id/edit(.:format)' => "roles#edit", :via => :get
+    match '/roles/:id(.:format)' => "roles#update", :via => :put
+    match '/roles/new(.:format)' => "roles#new", :via => :get
+    match '/roles/create(.:format)' => "roles#create", :via => :post
+    match '/roles/get_data(.:format)' => "roles#get_data"
+    match '/roles/:id/show(.:format)' => "roles#show", :via => :get
   end
 
   scope :module => "icm" do
@@ -501,8 +509,9 @@ Ironmine::Application.routes.draw do
     match '/incident_requests/get_data(.:format)' => "incident_requests#get_data"
     match '/incident_requests/:id(.:format)' => "incident_requests#show", :via => :get
     #incident_journals
-    match '/incident_requests/:request_id/journals/:id/edit(.:format)' => "incident_journals#edit", :via => :get
-    match '/incident_requests/:request_id/journals/:id(.:format)' => "incident_journals#update", :via => :put
+    match '/incident_requests/:request_id/journals(/index)(.:format)' => "incident_journals#index", :via => :get    
+    match '/incident_requests/:request_id/journals/edit_close(.:format)' => "incident_journals#edit_close", :via => :get
+    match '/incident_requests/:request_id/journals/update_close(.:format)' => "incident_journals#update_close", :via => :put
     match '/incident_requests/:request_id/journals/new(.:format)' => "incident_journals#new", :via => :get
     match '/incident_requests/:request_id/journals/create(.:format)' => "incident_journals#create", :via => :post
   end
@@ -572,6 +581,21 @@ Ironmine::Application.routes.draw do
     match '/entry_templates/:template_id/get_available_elements(.:format)' => "entry_templates#get_available_elements", :via => :get
     match '/entry_templates/:template_id:element_id/up_element(.:format)' => "entry_templates#up_element", :via => :get
     match '/entry_templates/:template_id:element_id/down_element_elements(.:format)' => "entry_templates#down_element", :via => :get
+    #entry_headers
+    match '/entry_headers(/index)(.:format)' => "entry_headers#index", :via => :get
+    match '/entry_headers/:id/edit(.:format)' => "entry_headers#edit", :via => :get
+    match '/entry_headers/:id/update(.:format)' => "entry_headers#update", :via => :put
+    match '/entry_headers/new(.:format)' => "entry_headers#new"
+    match '/entry_headers/create(.:format)' => "entry_headers#create", :via => :post
+    match '/entry_headers/get_data(.:format)' => "entry_headers#get_data"
+    match '/entry_headers/:doc_number/get_history_entries_data(.:format)' => "entry_headers#get_history_entries_data"
+    match '/entry_headers/:id/show(.:format)' => "entry_headers#show", :via => :get
+    match '/entry_headers/new_step_1(.:format)' => "entry_headers#new_step_1", :via => :get
+    match '/entry_headers/new_step_2(.:format)' => "entry_headers#new_step_2", :via => :get
+    match '/entry_headers/new_step_3(.:format)' => "entry_headers#new_step_3", :via => :get
+    match '/entry_headers/new_step_4(.:format)' => "entry_headers#new_step_4", :via => :get
+    match '/entry_headers/index_search(.:format)' => "entry_headers#index_search", :via => :post
+    match '/entry_headers/index_search_get_data(.:format)' => "entry_headers#index_search_get_data"
   end
   
   match '/demo(/index)' => 'demo#index'

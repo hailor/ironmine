@@ -1,0 +1,66 @@
+<%= form_for(@entry_header,:url=>{:action=>"new"},:builder => LabellingFormBuilder, :html => {:name => "new_skm_entry_header"}) do |f| %>
+    <%= f.hidden_field :entry_template_id %>
+    <%= f.hidden_field :entry_title %>
+    <%= f.hidden_field :keyword_tags %>
+<div  class="bWizardBlock">
+    <div class="pbWizardTitle tertiaryPalette">
+        <div class="ptRightTitle">
+            <%= t(:step_n_total_m, :n => "3", :m => "4") %>
+        </div>
+        <h2>
+            <%= t(:step_n, :n => "3") %><%= t(:notice_skm_entry_header_subject_and_att) %>
+        </h2>
+    </div>
+  <div class="pbBody">
+    <div class="pbDescription ">
+      <%= t(:notice_skm_entry_step_3_desc) %>      
+    </div>
+    <div class="pbWizardBody">
+      <div class="secondaryPalette">
+        <div class="pbBody">
+
+        </div>
+      </div>
+    </div>
+    <div class="pbWizardFooter">
+        <div class="pbBottomButtons">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tbody>
+                <tr>
+                  <td class="pbTitle"></td>
+                  <td id="bottomButtonRow" class="pbButtonb">
+                    <div class="button"><%= link_to t(:last), {}, {:href => "javascript:void(0);", :onclick => "submit_last()"}%></div>
+                    <div class="button"><%= link_to t(:next), {}, {:href => "javascript:void(0);", :onclick => "submit_next()"}%></div>
+                    <div class="button"><%= link_to t(:cancel), {:action => "index"} %></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  function submit_next(){
+    document.new_skm_entry_header.action = "new?step=4";
+    new_skm_entry_header.submit();
+  }
+
+  function submit_last(){
+    document.new_skm_entry_header.action = "new?step=2";
+    new_skm_entry_header.submit();
+  }
+
+  function delete_subject(tar){
+    GY.use(function(Y){
+        Y.one("#tr_" + tar).remove();
+    })
+  }
+
+  function add_subject(tar){
+    GY.use(function(Y){
+        Y.one("#tr_");
+    })
+  }
+</script>
+<% end %>
