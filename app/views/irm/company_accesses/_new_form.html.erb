@@ -1,4 +1,4 @@
-<%= page_title %>
+<%= setting_title %>
 
 <%= form_for(@company_access,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
 <%= hidden_field_tag "person_id",@person_id%>    

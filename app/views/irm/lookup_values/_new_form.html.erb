@@ -1,4 +1,4 @@
-<%= page_title %>
+<%= setting_title %>
 
 <%= form_for(@lookup_value,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
 <%= hidden_field_tag :lookup_type,@lookup_type %>

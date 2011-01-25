@@ -436,6 +436,8 @@ en:
   label_irm_person_other_info: Other Info
   label_irm_person_company_access_flag: Company Access
   label_irm_person_support_stuff_flag: Support Stuff
+  label_irm_person_owned_roles: Owned Roles
+  label_irm_person_available_roles: Available Roles  
   #=========================end irm people_controller=======================#
   #=========================    irm company_access_controller=======================#
   label_irm_company_access_new: New Company Access

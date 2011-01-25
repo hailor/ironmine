@@ -1,11 +1,11 @@
-<%= page_title %>
-<%= form_for(@permission,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+<%= setting_title %>
+<%= form_for(@role,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_permission_new)%></h2></td>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_role_new)%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
             <div class="button"><%= link_back t(:cancel)%></div>
@@ -15,14 +15,13 @@
     </table>
   </div>
   <div class="pbBody">
-    <%= error_for @permission%>
+    <%= error_for @role%>
     <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
       <span class="pbSubExtra">
         <span class="requiredLegend">
           <span class="requiredExampleOuter">
             <span class="requiredExample">&nbsp;</span>
-          </span><span class="requiredMark">*</span>
-          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+          </span><span class="requiredText"> = <%=t(:label_is_required)%></span>
         </span>
       </span>
       <h3><%= t(:label_common_info) %></h3>
@@ -32,7 +31,7 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_role_code)%></label></td>
-              <td class="data2Col"><%= f.text_field :role_code, :required => true%></td>
+              <td class="data2Col"><%= f.text_field :role_code, :required => true, :irm_uppercase => "true"%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :name)%></label></td>

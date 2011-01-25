@@ -19,7 +19,8 @@ class Irm::Person < ActiveRecord::Base
 
   validates_presence_of :last_name,:first_name,:title,:email_address,:company_id
   validates_uniqueness_of :email_address, :if => Proc.new { |i| !i.email_address.blank? }
-
+  has_many :person_roles
+  has_many :roles, :through => :person_roles
   query_extend
   scope :query_by_identity,lambda{|identity|
     where(:identity_id=>identity)

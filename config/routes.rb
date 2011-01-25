@@ -364,7 +364,13 @@ Ironmine::Application.routes.draw do
     match '/people/create(.:format)' => "people#create", :via => :post
     match '/people/:id/multilingual_edit(.:format)' => "people#multilingual_edit", :via => :get
     match '/people/:id/multilingual_update(.:format)' => "people#multilingual_update", :via => :put
-    match '/people/choose_company(.:format)' => "people#choose_company"    
+    match '/people/choose_company(.:format)' => "people#choose_company"
+    match '/people/:person_id/add_roles(.:format)' => "people#add_roles", :via => :get
+    match '/people/:person_id/get_available_roles(.:format)' => "people#get_available_roles", :via => :get
+    match '/people/:person_id/select_roles(.:format)' => "people#select_roles"
+    match '/people/:person_id/add_roles(.:format)' => "people#add_roles", :via => :post
+    match '/people/:person_id/:role_id/remove_role(.:format)' => "people#remove_role", :via => :get
+    match '/people/:person_id/get_owned_roles(.:format)' => "people#get_owned_roles", :via => :get
     #company_accesses
     match '/company_accesses(/index)(.:format)' => "company_accesses#index", :via => :get
     match '/company_accesses/:id/edit(.:format)' => "company_accesses#edit", :via => :get
@@ -428,6 +434,14 @@ Ironmine::Application.routes.draw do
     match '/filters/:pid/create(.:format)' => "filters#create", :via => :post
     match '/filters/:pid/:id/edit(.:format)' => "filters#edit", :via => :get
     match '/filters/:pid/:id(.:format)' => "filters#update", :via => :put
+    #role
+    match '/roles(/index)(.:format)' => "roles#index", :via => :get
+    match '/roles/:id/edit(.:format)' => "roles#edit", :via => :get
+    match '/roles/:id(.:format)' => "roles#update", :via => :put
+    match '/roles/new(.:format)' => "roles#new", :via => :get
+    match '/roles/create(.:format)' => "roles#create", :via => :post
+    match '/roles/get_data(.:format)' => "roles#get_data"
+    match '/roles/:id/show(.:format)' => "roles#show", :via => :get
   end
 
   scope :module => "icm" do

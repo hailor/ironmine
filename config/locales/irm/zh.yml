@@ -606,6 +606,8 @@ zh:
   label_irm_person_other_info: 其他信息
   label_irm_person_company_access_flag: 是否可以访问
   label_irm_person_support_stuff_flag: 是否支持组
+  label_irm_person_owned_roles: 已经拥有的角色
+  label_irm_person_available_roles: 可用角色
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: 弹性域

@@ -1,4 +1,4 @@
-<%= page_title %>
+<%= setting_title %>
 <%= form_for(@role,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
@@ -21,8 +21,7 @@
         <span class="requiredLegend">
           <span class="requiredExampleOuter">
             <span class="requiredExample">&nbsp;</span>
-          </span><span class="requiredMark">*</span>
-          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+          </span><span class="requiredText"> = <%=t(:label_is_required)%></span>
         </span>
       </span>
       <h3><%= t(:label_common_info) %></h3>
