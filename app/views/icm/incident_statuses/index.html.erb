@@ -23,13 +23,13 @@
           </div>
         </div>
         <%= datatable("incident_status",url_for(:action=>"get_data",:format=>"json"),
-                  [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"50%"},
+                  [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"70px"},
                    {:key=>"phase_name",:label=>t(:label_icm_incident_status_phase_code),:sortable=>true,:searchable=>true},
                    {:key=>"incident_status_code",:label=>t(:label_icm_incident_status_incident_status_code),:sortable=>true,:searchable=>true},
                    {:key=>"name",:label=>t(:label_icm_incident_status_name),:sortable=>true,:searchable=>true},
                    {:key=>"display_sequence",:label=>t(:display_sequence),:sortable=>true},
                    {:key=>"default_flag",:label=>t(:default_flag),:sortable=>true},
-                   {:key=>"status_meaning",:label=>t(:label_irm_script_status_code),:sortable=>true}],
+                   {:key=>"status_meaning",:label=>t(:label_irm_script_status_code),:sortable=>true,:width=>"70px"}],
                    {:row_perpage=>5,:search_box=>"incidentStatusesSearchBox"})%>
       </div>
     </div>

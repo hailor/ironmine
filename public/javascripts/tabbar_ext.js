@@ -282,7 +282,7 @@ RelatedListPanel.prototype.showRLDelayed = function(rlId) {
 RelatedListPanel.prototype.hideRLDelayed = function(rlId, delay) {
     this.clearshowmenu();
     if (!delay) {
-        delay = 500;
+        delay = 50;
     }
     if (!rlId) {
         rlId = this.currentListId;

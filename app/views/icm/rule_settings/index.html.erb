@@ -20,14 +20,14 @@
           </div>
         </div>
         <%= datatable("rule_setting",url_for(:action=>"get_data",:format=>"json"),
-                  [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"50%"},
+                  [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"70px"},
                    {:key=>"company_name",:label=>t(:label_icm_rule_setting_company),:sortable=>true},
                    {:key=>"report_date_changable",:label=>t(:label_icm_rule_setting_report_date_changable),:sortable=>true},
                    {:key=>"respond_date_changable",:label=>t(:label_icm_rule_setting_respond_date_changable),:sortable=>true},
                    {:key=>"slove_date_changable",:label=>t(:label_icm_rule_setting_description),:sortable=>true},
                    {:key=>"process_name",:label=>t(:label_icm_rule_setting_assignment_process_code),:sortable=>true},
                    {:key=>"auto_closure_days",:label=>t(:label_icm_rule_setting_auto_closure_days),:sortable=>true},
-                   {:key=>"status_meaning",:label=>t(:label_irm_script_status_code),:sortable=>true}],
+                   {:key=>"status_meaning",:label=>t(:label_irm_script_status_code),:sortable=>true,:width=>"70px"}],
                    {:row_perpage=>5})%>
       </div>
     </div>

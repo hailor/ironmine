@@ -22,6 +22,13 @@
     <span class="listTitle"><%= t(:label_irm_person_support_group) %>
     <span class="count">[<%= @support_group_count %>]</span></span>
   </a>
+  <span class="pipe"> | </span>
+  <a id="id_owned_roles_link" href="#id_owned_roles"
+     class="linklet" onmouseover="relatedListPanel.showRLDelayed('id_owned_roles');"
+     onmouseout="relatedListPanel.hideRLDelayed('id_owned_roles');">
+    <span class="listTitle"><%= t(:label_irm_person_owned_roles) %>
+    <span class="count">[<%= @owned_roles_count %>]</span></span>
+  </a>  
 </div>
 
 <div id="RLPanelShadow" class="RLPanelShadow" style="display: none;">
@@ -37,7 +44,7 @@
       onmouseout="relatedListPanel.hideRLDelayed(null, 100);" >
     <iframe frameborder="0" title="隐藏框架 - 忽略"
             src="/images/emptyHtmlDoc.html"
-            name="RLPanelFrame" id="RLPanelFrame" style="height: 101px;">
+            name="RLPanelFrame" id="RLPanelFrame" style="height: 101px;" allowtransparency="true">
     </iframe>
   </div>
   <div class="rls_bottom">
@@ -145,7 +152,7 @@
                  </td>
                  <td class="labelCol"><label>
                      <%=t(:label_irm_person_unrestricted_access_flag)%></label></td>
-                <td class="dataCol"><%=@person.unrestricted_access_flag%></td>
+                <td class="dataCol"><%= check_img(@person.unrestricted_access_flag)%></td>
              </tr>
              <tr>
                   <td class="labelCol"><label><%=t(:label_irm_person_notification_lang)%></label>
@@ -153,7 +160,7 @@
                  <td class="dataCol"><%=@person[:notification_lang_name]%></td>
                   <td class="labelCol"><label>
                      <%=t(:label_irm_person_notification_flag)%></label></td>
-                  <td class="dataCol"><%=@person.notification_flag%></td>
+                  <td class="dataCol"><%= check_img(@person.notification_flag)%></td>
              </tr>
         </tbody>
       </table>
@@ -237,6 +244,36 @@
         <div class="pbFooter secondaryPalette">
         <div class="bg"></div>
         </div>
+      </div>
+    </div>
+</div>
+
+<div id="id_owned_roles" class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_person_owned_roles) %></h2></td>
+              <td class="pbButton">
+                <div class="button"><%= link_to t(:add), {:action => "select_roles", :person_id => @person.id}%></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="roles_list" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%= link_to(t(:remove),{:action=>"remove_role",:role_id=>"{id}", :person_id => @person}) %>
+          </div>
+        </div>
+        <%= datatable("roles_list",url_for(:controller => "irm/people", :action=>"get_owned_roles", :person_id => @person,:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50px"},
+                       {:key=>"role_code",:label=>t(:label_irm_role_code),:sortable=>true},
+                       {:key=>"name",:label=>t(:name),:sortable=>true},
+                       {:key=>"description",:label=>t(:description),:sortable=>true},
+                       {:key=>"menu_name",:label=>t(:label_irm_role_menu),:sortable=>true}])%>        
       </div>
     </div>
 </div>

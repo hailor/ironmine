@@ -83,6 +83,10 @@ class Irm::Person < ActiveRecord::Base
     Irm::Permission.enabled.query_by_person(self.id)
   end
 
+  def allowed_menus
+    ["IRM_SETTING_ENTRANCE_MENU","IRM_ENTRANCE_MENU"]
+  end
+
   #权限字符串
   def permissions_to_s
     prmissions_s = ""

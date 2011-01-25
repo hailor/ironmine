@@ -20,6 +20,9 @@
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:controller => "irm/permissions", :action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:controller => "irm/permissions", :action=>"show",:id=>"{id}"}) %>
           </div>
+          <div id="status_code" style="display:none">
+            <%= check_img("{status_code}") %>
+          </div>
         </div>
         <div id="paging">
 
@@ -31,7 +34,7 @@
                        {:key=>"name",:label=>t(:label_irm_permission_name),:sortable=>true,:searchable=>true},
                        {:key=>"page_controller",:label=>t(:label_irm_permission_page_controller),:sortable=>true,:searchable=>true},
                        {:key=>"page_action",:label=>t(:label_irm_permission_page_action),:sortable=>true},
-                       {:key=>"status_meaning",:label=>t(:label_irm_permission_status_code),:sortable=>true}],
+                       {:key=>"status_code",:label=>t(:label_irm_permission_status_code),:formatter=>"Y.irm.template",:sortable=>true}],
                        {:not_load=>true,:search_box=>"permissionsSearchBox",:select=>"multiple"})%>
       </div>
     </div>

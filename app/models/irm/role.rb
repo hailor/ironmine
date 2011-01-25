@@ -25,6 +25,15 @@ class Irm::Role < ActiveRecord::Base
     where("#{Irm::RolesTl.table_name}.role_id = #{table_name}.id").
     where("#{Irm::RolesTl.table_name}.language = ?", I18n.locale)
   
+  scope :without_person, lambda{|person_id|
+    where("#{table_name}.id NOT IN (SELECT t.role_id FROM #{Irm::PersonRole.table_name} t WHERE t.role_id = #{table_name}.id AND t.person_id = ?)", person_id)
+  }
 
+  scope :belongs_to_person, lambda{|person_id|
+    joins(",#{Irm::PersonRole.table_name}").
+    where("#{Irm::PersonRole.table_name}.person_id = ?", person_id).
+    where("#{Irm::PersonRole.table_name}.role_id = #{table_name}.id")
+  }
 
+  scope :query_by_role_name, lambda {|name| where("#{Irm::RolesTl.table_name}.name LIKE '%#{name}%'")}  
 end
