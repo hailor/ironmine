@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddPermissionShowPermissionData < ActiveRecord::Migration
   def self.up
     irm_permissions_show = Irm::Permission.new(:permission_code=>'IRM_PERMISSIONS_SHOW',
