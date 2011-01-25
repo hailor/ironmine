@@ -24,7 +24,8 @@ class Csi::SurveySubjectsController < ApplicationController
   # GET /survey_subjects/new
   # GET /survey_subjects/new.xml
   def new
-    @survey_subject = Csi::SurveySubject.new(:input_type=>'string')
+    @next_seq_num = Csi::SurveySubject.get_max_seq_num(params[:survey_id])
+    @survey_subject = Csi::SurveySubject.new(:input_type=>'string',:seq_num=>@next_seq_num)
     @survey_id = params[:survey_id]
     @survey = Csi::Survey.find(params[:survey_id])
 
@@ -37,8 +38,9 @@ class Csi::SurveySubjectsController < ApplicationController
   # GET /survey_subjects/1/edit
   def edit
     @survey_subject = Csi::SurveySubject.find(params[:id])
-    @survey_id = params[:survey_id]
-    @survey = Csi::Survey.find(params[:survey_id])
+    @survey_id = @survey_subject[:survey_id]
+    @survey = Csi::Survey.find(@survey_id)
+    @return_url=request.env['HTTP_REFERER']
   end
 
   # POST /survey_subjects
@@ -47,6 +49,7 @@ class Csi::SurveySubjectsController < ApplicationController
     @survey_subject = Csi::SurveySubject.new(params[:csi_survey_subject])
     @subject_options= params[:options]
     @commit = params[:commit]
+    @survey_id= params[:survey_id]
 
     respond_to do |format|
       if @survey_subject.save
@@ -75,6 +78,8 @@ class Csi::SurveySubjectsController < ApplicationController
   def update
     @survey_subject = Csi::SurveySubject.find(params[:id])
     @subject_options= params[:options]
+    @return_url= params[:return_url]
+    @survey_id= params[:survey_id]
 
     respond_to do |format|
       if @survey_subject.update_attributes(params[:csi_survey_subject])
@@ -83,12 +88,26 @@ class Csi::SurveySubjectsController < ApplicationController
         @subject_options.each do |option|
            @survey_subject.subject_options.create({:value=>option})
         end
-        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
+        format.html { redirect_to(@return_url, :notice => t(:successfully_updated)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @survey_subject.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+
+  # DELETE /surveys/1
+  # DELETE /surveys/1.xml
+  def destroy
+    @survey_subject = Csi::SurveySubject.find(params[:id])
+    @survey_id = @survey_subject.survey_id
+    @survey_subject.destroy
+
+    respond_to do |format|
+      format.html { redirect_to({:controller=>"csi/surveys",:action=>"show",
+                                 :id=>@survey_id}) }
+      format.xml  { head :ok }
     end
   end
 
