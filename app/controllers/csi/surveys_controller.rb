@@ -130,6 +130,8 @@ class Csi::SurveysController < ApplicationController
     @survey= Csi::Survey.find(@survey_id)
     @return_url = params[:return_url]
     @error = Array.new
+    @response_batch = Time.now.to_i.to_s+Irm::Person.current.id.to_s+rand(9).to_s
+    @response_time = Time.now
     @thank_message = Csi::Survey.find(@survey_id).thanks_message
     if @thank_message.blank?
       @thank_message = t(:label_csi_default_thanks_message)
@@ -147,6 +149,9 @@ class Csi::SurveysController < ApplicationController
                       other_result=results.detect {|c| c.is_a?(Hash)}
                           @survey_result=Csi::SurveyResult.new({:subject_id=>@subject_id,
                                                  :subject_result=>other_result['other'],
+                                                 :person_id =>Irm::Person.current,
+                                                 :response_batch=>@response_batch,
+                                                 :response_time=>@response_time,
                                                  :option_type=>"other"})
                           @survey_result.save!
 
@@ -158,6 +163,9 @@ class Csi::SurveysController < ApplicationController
                         if !result.is_a?(Hash)
                          @survey_result=Csi::SurveyResult.new({:subject_id=>@subject_id,
                                                                :subject_result=>result,
+                                                               :person_id =>Irm::Person.current,
+                                                               :response_batch=>@response_batch,
+                                                               :response_time=>@response_time,
                                                                :option_type=>"normal"})
                          @survey_result.save!
                         end
@@ -165,6 +173,9 @@ class Csi::SurveysController < ApplicationController
                     end
                else
                   @survey_result = Csi::SurveyResult.new({:subject_id=>@subject_id,
+                                                          :person_id =>Irm::Person.current,
+                                                          :response_batch=>@response_batch,
+                                                          :response_time=>@response_time,
                                                           :subject_result=>results})
                   @survey_result.save!
                end
@@ -203,5 +214,11 @@ class Csi::SurveysController < ApplicationController
   def thanks
     @survey = Csi::Survey.find(params[:survey_id])
     @return_url=params[:return_url]
+  end
+
+  def show_result
+    @survey_id = params[:id]
+    @subjects = Csi::SurveySubject.query_by_survey_id(@survey_id)
+    @batch_results = Csi::SurveyResult.query_distinct_response_batch(@survey_id)
   end
 end

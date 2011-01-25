@@ -8,3 +8,5 @@
 #   inflect.irregular 'person', 'people'
 #   inflect.uncountable %w( fish sheep )
 # end
+
+Time::DATE_FORMATS[:datetime_short]    = '%Y/%m/%d %I:%M'

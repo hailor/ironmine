@@ -33,12 +33,15 @@
 
 <div id="RLPanelShadow" class="RLPanelShadow" style="display: none;">
   <div class="rls_top">
-  <div class="rls_tl"></div>
-  <div class="rls_tr"></div>
+     <div class="rls_tl"></div>
+     <div class="rls_tr"></div>
   </div>
   <div class="rls_l"></div>
   <div class="rls_r"></div>
-  <div id="RLPanel" class="RLPanel">
+  <div id="RLPanel" class="RLPanel" onblur="relatedListPanel.hideRLDelayed(null, 100);"
+      onfocus="relatedListPanel.showRL();"
+      onmouseover="relatedListPanel.showRL();"
+      onmouseout="relatedListPanel.hideRLDelayed(null, 100);" >
     <iframe frameborder="0" title="隐藏框架 - 忽略"
             src="/images/emptyHtmlDoc.html"
             name="RLPanelFrame" id="RLPanelFrame" style="height: 101px;" allowtransparency="true">
@@ -178,8 +181,9 @@
                 <h3 id="id_person_company_access_title"><%=t(:label_irm_person_company_access)%></h3>
               </td>
               <td class="pbButton">
-                <div class="button"><%= link_to t(:edit), {:controller=>"irm/company_accesses",
-                                                          :action => "new",:person_id=>@person.id}%></div>
+                <div class="button"><%= link_to t(:edit), "#",
+                                                :onclick=>"navigateToUrl('#{url_for(:controller=>"irm/company_accesses",
+                                                          :action => "new",:person_id=>@person.id)}');"%></div>
               </td>
               <td class="pbHelp">
               </td>
