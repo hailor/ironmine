@@ -252,7 +252,7 @@
             <tr>
               <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_person_owned_roles) %></h2></td>
               <td class="pbButton">
-                <div class="button"><%= link_to t(:add), {:action => "select_roles", :person_id => @person}%></div>
+                <div class="button"><%= link_to t(:add), {:action => "select_roles", :person_id => @person.id}%></div>
               </td>
             </tr>
           </tbody>

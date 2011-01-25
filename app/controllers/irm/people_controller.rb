@@ -112,7 +112,7 @@ class Irm::PeopleController < ApplicationController
   end
 
   def get_available_roles
-    roles_scope = Irm::Role.list_all.enabled.without_person(params[:person_id])
+    roles_scope = Irm::Role.list_all.enabled.query_by_role_name(params[:role_name]).without_person(params[:person_id])
     roles,count = paginate(roles_scope)
     respond_to do |format|
       format.json  {render :json => to_jsonp(roles.to_grid_json([:name,:role_code,:status_code, :menu_name, :description], count)) }
@@ -120,10 +120,34 @@ class Irm::PeopleController < ApplicationController
   end
 
   def remove_role
-    
+    return_url=params[:return_url]
+    person_role = Irm::PersonRole.where(:person_id => params[:person_id], :role_id => params[:role_id]).first
+    person_role.destroy
+    if return_url.blank?
+      redirect_to({:action=>"show", :id=> params[:person_id]})
+    else
+      redirect_to(return_url)
+    end        
   end
 
   def select_roles
-    
+    @return_url=params[:return_url]||request.env['HTTP_REFERER']
+    @person = Irm::Person.find(params[:person_id])
+    @role_name = params[:role_name] if params[:role_name]
+  end
+
+  def add_roles
+    return_url=params[:return_url]
+#    permissions = Irm::Permission.where("id IN (?)", params[:irm_function_permissions][:permission_code])
+    params[:irm_person_roles][:ids].each do |p|
+      Irm::PersonRole.create({:role_id => Irm::Role.find(p).id, :person_id => params[:person_id]})
+    end
+
+    flash[:notice] = t(:successfully_updated)
+    if return_url.blank?
+      redirect_to({:action=>"select_roles", :person_id=> params[:person_id]})
+    else
+      redirect_to(return_url)
+    end    
   end
 end
