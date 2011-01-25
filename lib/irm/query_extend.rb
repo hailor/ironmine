@@ -78,7 +78,7 @@ module Irm::QueryExtend
         def crop(options)
           return {} unless options.is_a?(Hash)
           options.keys.each do |key|
-            options.delete(key) unless self.respond_to?(key.to_sym)
+            options.delete(key) unless self.new.respond_to?(key.to_sym)
           end
           options
         end

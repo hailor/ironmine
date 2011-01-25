@@ -235,18 +235,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
+  # 菜单显示使用的常量
+  # @menu_permission当前页面上菜单 对应的权限
   def process_menu(permission=nil)
     permission ||= {:page_controller=>params[:controller],:page_action=>params[:action]}
     @menu_permission = permission.dup
     @setting_menus = default_setting_menus
-    @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>permission[:page_controller],:page_action=>permission[:page_action]})
+    allowed_menus = Irm::Person.current.allowed_menus
+    @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>permission[:page_controller],:page_action=>permission[:page_action]},allowed_menus,(session[:entrance_menu]||default_menus)[1])
     if @page_menus[0]&&@page_menus[0].eql?("IRM_SETTING_ENTRANCE_MENU")
       @setting_menus = @page_menus.dup
       self.class.layout "setting"
       @page_menus = (session[:entrance_menu]||default_menus)[0..1]
     else
-      @page_menus << params[:mc] if(params[:mc])
       session[:entrance_menu] = @page_menus.dup if @page_menus.length>1
     end
   end
@@ -270,9 +271,5 @@ class ApplicationController < ActionController::Base
     end
     menus
   end
-
-
-
-
 
 end
