@@ -19,22 +19,18 @@
       <div class="pbBody">
         <div id="incident_requests" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:label_icm_reply),{:controller=>"icm/incident_journals",:action=>"new",:request_id=>"{id}"}) %>
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:label_icm_reply),{:controller=>"icm/incident_journals",:action=>"new",:request_id=>"{id}"}) %>
           </div>
         </div>
         <%= datatable("incident_requests",url_for(:action=>"get_data",:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
-                       { :key => "request_number", :label => t(:label_icm_incident_request_request_number),:searchable=>true },
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
+                       { :key => "request_number", :label => t(:label_icm_incident_request_request_number),:searchable=>true,:width=>"120px"},
                        { :key => "title", :label => t(:label_icm_incident_request_title),:searchable=>true },                                            
                        { :key => "incident_status_name", :label => t(:label_icm_incident_request_incident_status_code,:searchable=>true) },
                        { :key => "service_name", :label => t(:label_icm_incident_request_service_code,:searchable=>true) },                       
                        { :key => "request_type_name", :label => t(:label_icm_incident_request_request_type_code,:searchable=>true) },
                        { :key => "requested_name", :label => t(:label_icm_incident_request_requested_by,:searchable=>true) },
-                       { :key => "impact_range_name", :label => t(:label_icm_incident_request_impact_range_code,:searchable=>true) },
-                       { :key => "urgence_name", :label => t(:label_icm_incident_request_urgence_code,:searchable=>true) },
                        { :key => "priority_name", :label => t(:label_icm_incident_request_priority,:searchable=>true) },
-                       { :key => "contact_name", :label => t(:label_icm_incident_request_contact,:searchable=>true) },
-                       { :key => "contact_number", :label => t(:label_icm_incident_request_contact_number,:searchable=>true) },
                        { :key => "report_source_name", :label => t(:label_icm_incident_request_report_source_code,:searchable=>true) },
                        ],{:row_perpage=>20,:search_box=>"incident_requestsSearchBox"})%>
 
