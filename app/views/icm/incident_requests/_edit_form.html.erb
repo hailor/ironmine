@@ -107,7 +107,7 @@
               <td class="labelCol"><label for="incident_request_support_group_id"><%=t(:label_icm_incident_request_support_group)%></label></td>
               <td class="dataCol"><%=f.text_field :support_group_id,:id=>"incident_request_support_group_id"%></td>
               <td class="labelCol"><label for="incident_request_support_person_id"><%=t(:label_icm_incident_request_support_person)%></label></td>
-              <td class="dataCol"><%=f.select :requested_by,nullable_options_for_select(available_supporter,@incident_request.support_person_id),
+              <td class="dataCol"><%=f.select :support_person_id,nullable_options_for_select(available_supporter,@incident_request.support_person_id),
                                                     {},{:id=>"incident_request_support_person_id"}%></td>
             </tr>
 

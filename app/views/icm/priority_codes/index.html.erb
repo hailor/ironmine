@@ -19,11 +19,11 @@
       <div class="pbBody">
         <div id="priority_code" class="datatable" style="width:100%;">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
         <%= datatable("priority_code",url_for(:action=>"get_data",:format=>"json"),
-                  [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"70px"},
+                  [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"80px"},
                    {:key=>"company_name",:label=>t(:label_icm_priority_code_company),:sortable=>true,:searchable=>true},
                    {:key=>"priority_code",:label=>t(:label_icm_priority_code_priority_code),:sortable=>true,:searchable=>true},
                    {:key=>"name",:label=>t(:label_icm_priority_code_name),:sortable=>true,:searchable=>true},

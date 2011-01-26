@@ -306,6 +306,53 @@ module Irm::MenuManager
             end
           end
         end
+        return [] unless allowed_menus.size>0
+        if !top_menu.nil?
+          allowed_menus.each do |pms|
+            return pms.dup if pms.include?(top_menu)
+          end
+        end
+        allowed_menus.first.dup
+      end
+
+      #通过权限链接取得菜单列表
+      def parent_menus_by_permission_with_access(options={},allowed_menu_codes=[{:menu_code=>"IRM_ENTRANCE_MENU",:access=>"VIEW"},{:menu_code=>"IRM_SETTING_ENTRANCE_MENU",:access=>"ALL"}],top_menu=nil)
+        parent_menus =  permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions",options[:page_action]||"index")]
+        parent_menus ||= permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions","index")]
+        return [] unless parent_menus&&parent_menus.size>0
+        allowed_menus = []
+        # 如果为setting下的权限，则表示可以无限制访问
+        if(options[:page_controller].eql?("irm/setting")||options[:page_controller].eql?("irm/permissions"))
+          allowed_menus =  parent_menus.dup
+        else
+          page_action = options[:page_action]||"index"
+          # 如果是查看类型的页面则不进行 权限方式检查
+          if(page_action.include?("index")||page_action.include?("show"))
+            parent_menus.each do |pms|
+              allowed_menu_codes.each do |ams|
+                if pms.include?(ams[:menu_code])
+                  allowed_menus << pms
+                  break
+                end
+              end
+            end
+          else
+            accesses = []
+            parent_menus.each do |pms|
+              allowed_menu_codes.each do |amc|
+                idx = pms.index(amc[:menu_code])
+                accesses << [idx,amc[:access],pms]
+              end
+            end
+            # 进行权限优先级判断
+            accesses.dup.each do |a|
+              accesses.delete_if{|item| item[0]<a[0]&&item[2].eql?(a[2])}
+            end
+            # 删除查看类型的菜单路径
+            accesses.delete_if{|item| item[1].eql?("VIEW")}
+            allowed_menus = accesses.collect{|item| item[2]} if allowed_menus.size>0
+          end
+        end
 
         return [] unless allowed_menus.size>0
         if !top_menu.nil?

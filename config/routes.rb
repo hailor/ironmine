@@ -442,6 +442,10 @@ Ironmine::Application.routes.draw do
     match '/roles/create(.:format)' => "roles#create", :via => :post
     match '/roles/get_data(.:format)' => "roles#get_data"
     match '/roles/:id/show(.:format)' => "roles#show", :via => :get
+    #dev_tools
+    match '/dev_tools(/index)(.format)' => 'dev_tools#index', :via => :get
+    match '/dev_tools/show_permissions(.format)' => 'dev_tools#show_permissions', :via => :get
+    match '/dev_tools/show_permissions_data(.format)' => 'dev_tools#show_permissions_data', :via => :get
   end
 
   scope :module => "icm" do
