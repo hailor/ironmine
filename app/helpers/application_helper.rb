@@ -330,7 +330,7 @@ module ApplicationHelper
   end
 
   def check_img(value = "")
-     content_tag(:img, "",{:class => "checkImg", :width => "21", :height => "16",
+     content_tag(:img, "",{:class => "checkImg", :width => "21", :height => "14",
                            :src => theme_image_path("#{value}.png") }) if !value.blank?
   end
 end
