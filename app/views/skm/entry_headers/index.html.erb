@@ -9,4 +9,5 @@
     </div>
   </div>
 </div>
-<%= render "data_grid" %>
+<div id="tabView" class="bMiniTab"></div>
+<%= tabview("tabView", {t(:label_irm_permission) => 'permissions/data_grid.js', t(:label_irm_product_module) => 'product_modules/data_grid.js'}) %>

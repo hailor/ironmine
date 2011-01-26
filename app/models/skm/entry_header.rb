@@ -10,6 +10,12 @@ class Skm::EntryHeader < ActiveRecord::Base
   scope :history_entry, where("#{table_name}.history_flag = ?", Irm::Constant::SYS_YES)
   scope :list_all, select("#{table_name}.*, CONCAT('[', #{table_name}.doc_number, ']', #{table_name}.entry_title) full_title")
 
+  scope :my_favorites, lambda{|person_id|
+    joins("#{Skm::EntryFavorites.table_name} ef").
+    where("ef.entry_header_id = #{table_name}.id").
+    where("ef.person_id = ?", person_id)
+  }
+  
   def self.generate_doc_number(prefix = "")
       num = Time.now.strftime("%y%m%d").to_i * 1000000 + rand(10)
       return prefix + num.to_s
