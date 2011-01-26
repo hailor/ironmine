@@ -22,7 +22,7 @@
             <%= link_to(t(:show),{:controller => "skm/entry_headers", :action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
-        <%= datatable("favorites_list",url_for(:action=>"get_data",:format=>"json"),
+        <%= datatable("favorites_list",url_for(:action=>"my_favorites_data",:format=>"json", :person_id => Irm::Person.current.id),
                   [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"40px"},
                    {:key=>"full_title",:label=>t(:label_skm_entry_header_title),:sortable=>true,:formatter=>"Y.irm.template"},
                    {:key=>"published_date",:label=>t(:label_skm_entry_header_published_date),:sortable=>true, :width => "180px"}
