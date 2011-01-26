@@ -74,15 +74,15 @@
       <div class="pbBody">
         <div id="site" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
         <%= datatable("site",url_for(:action=>"get_data",:site_group_code => @site_group.group_code),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
                        {:key=>"site_code",:label=>t(:label_irm_site_site_code)},
                        {:key=>"name",:label=>t(:label_irm_site_name)},
                        {:key=>"description",:label=>t(:label_irm_site_description)},
-                       {:key=>"status_meaning",:label=>t(:label_irm_site_status_code)}])%>
+                       {:key=>"status_meaning",:label=>t(:label_irm_site_status_code),:width=>"40px"}])%>
       </div>
     </div>
 </div>

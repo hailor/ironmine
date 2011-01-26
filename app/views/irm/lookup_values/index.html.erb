@@ -84,19 +84,19 @@
       <div class="pbBody">
         <div id="lookup_value" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:controller=>"irm/lookup_values",:action=>"edit",:id=>"{id}",:lookup_type=>"{lookup_type}"}) %>|
+            <%= link_to(t(:edit),{:controller=>"irm/lookup_values",:action=>"edit",:id=>"{id}",:lookup_type=>"{lookup_type}"}) %>&nbsp;&nbsp;
             <%= link_to(t(:show),{:controller=>"irm/lookup_values",:action=>"show",:id=>"{id}",:lookup_type=>"{lookup_type}"}) %>
           </div>
         </div>
         <%= datatable("lookup_value",url_for(:controller=>"irm/lookup_values",:action=>"get_lookup_values", :lookup_type=>@lookup_type.lookup_type),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template"},
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
                        {:key=>"lookup_type",:label=>(t :label_lookup_types),:sortable=>true},
                        {:key=>"lookup_code",:label=>(t :label_irm_lookup_value_lookup_code),:sortable=>true},
                        {:key=>"meaning",:label=>t(:label_irm_lookup_value_meaning),:sortable=>true},
                        {:key=>"description",:label=>t(:label_irm_lookup_type_description),:sortable=>true},
                        {:key=>"start_date_active",:label=>t(:label_start_date_active),:sortable=>true},
                        {:key=>"end_date_active",:label=>t(:label_end_date_active),:sortable=>true},
-                       {:key=>"status_meaning",:label=>t(:label_status_code),:sortable=>true}],
+                       {:key=>"status_meaning",:label=>t(:label_status_code),:sortable=>true,:width=>"40px"}],
                        {:row_perpage=>20}) %>
       </div>
     </div>

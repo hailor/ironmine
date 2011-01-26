@@ -237,7 +237,7 @@
             <%= datatable("support_group",url_for(:controller=>"irm/people",:action=>"get_support_group",:person_id=>@person.id),
                               [{:key=>"support_group_name",:label=>t(:label_irm_support_group_name),:sortable=>true},
                                {:key=>"description",:label=>t(:label_irm_support_group_description),:sortable=>true},
-                               {:key=>"status_meaning",:label=>t(:label_irm_support_group_status_code),:sortable=>true}],
+                               {:key=>"status_meaning",:label=>t(:label_irm_support_group_status_code),:sortable=>true,:width=>"80px"}],
                                {:row_perpage=>5})%>
           <!-- End company access table -->
         </div>

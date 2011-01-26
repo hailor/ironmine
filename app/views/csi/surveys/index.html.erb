@@ -16,16 +16,16 @@
       <div class="pbBody">
         <div id="survey" class="datatable" style="width:100%;">
           <div id="id" style="display:none">
-            <%= link_to(t(:reply),{:action=>"reply",:id=>"{id}"}) %>|
-            <%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>|
-            <%= link_to(t(:result),{:action=>"show_result",:id=>"{id}"}) %>
+            <%= link_to(t(:reply),{:action=>"reply",:id=>"{id}"}) %>&nbsp;&nbsp;
+            <%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>&nbsp;&nbsp;
+            <%= link_to(t(:result),{:action=>"show_result",:id=>"{id}"}) %>&nbsp;&nbsp;
           </div>
         </div>
-        <%= datatable("survey",url_for(:action=>"get_data",:format=>"json"),
+        <%= datatable("survey",url_for(:action=>"get_data"),
                   [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"120px"},
                    {:key=>"title",:label=>t(:label_csi_survey_title),:sortable=>true},
                    {:key=>"description",:label=>t(:label_csi_survey_description),:sortable=>true},
-                   {:key=>"status_meaning",:label=>t(:label_csi_survey_status_code),:sortable=>true}],
+                   {:key=>"status_meaning",:label=>t(:label_csi_survey_status_code),:sortable=>true,:width=>"40px"}],
                    {:row_perpage=>20})%>
       </div>
     </div>

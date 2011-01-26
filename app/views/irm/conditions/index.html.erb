@@ -16,16 +16,16 @@
       <div class="pbBody">
         <div id="condition" class="datatable" style="width:100%;">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
         <%= datatable("condition",url_for(:action=>"get_data",:format=>"json"),
-                  [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"50%"},
+                  [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"80px"},
                    {:key=>"entity_meaning",:label=>t(:label_irm_condition_entity_code),:sortable=>true},
                    {:key=>"condition_code",:label=>t(:label_irm_condition_condition_code),:sortable=>true},
                    {:key=>"name",:label=>t(:label_irm_condition_name),:sortable=>true},
                    {:key=>"description",:label=>t(:label_irm_condition_description),:sortable=>true},
-                   {:key=>"status_meaning",:label=>t(:label_irm_condition_status_code),:sortable=>true}],
+                   {:key=>"status_meaning",:label=>t(:label_irm_condition_status_code),:sortable=>true,:width=>"40px"}],
                    {:row_perpage=>5})%>
       </div>
     </div>
