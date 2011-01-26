@@ -98,7 +98,7 @@ class Irm::ProductModulesController < ApplicationController
     product_modules_scope = Irm::ProductModule.multilingual.status_meaning
     product_modules,count = paginate(product_modules_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(product_modules.to_grid_json([:product_short_name,:name,:description,:installed_flag,:status_meaning], count)) }
+      format.json  {render :json => to_jsonp(product_modules.to_grid_json([:product_short_name,:name,:description,:installed_flag,:status_meaning, :status_code], count)) }
     end
   end
 

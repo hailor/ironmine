@@ -309,4 +309,28 @@ module ApplicationHelper
   def format_date(time)
     time.strftime('%Y-%m-%d %H:%M:%S')
   end
+
+  def show_check_box(value = "", y_value = "")
+    tags = ""
+    if !y_value.blank?
+      value = Irm::Constant::SYS_YES if value == y_value
+    end
+    if value == Irm::Constant::SYS_YES
+      tags << content_tag(:img, "",
+                          {:class => "checkImg", :width => "21", :height => "16",
+                           :title => I18n.t(:label_checked), :alt => I18n.t(:label_checked),
+                           :src => theme_image_path("checkbox_checked.png") })
+    else
+      tags << content_tag(:img, "",
+                          {:class => "checkImg", :width => "21", :height => "16",
+                           :title => I18n.t(:label_unchecked), :alt => I18n.t(:label_unchecked),
+                           :src => theme_image_path("checkbox_unchecked.png") })
+    end
+    raw(tags)
+  end
+
+  def check_img(value = "")
+     content_tag(:img, "",{:class => "checkImg", :width => "21", :height => "16",
+                           :src => theme_image_path("#{value}.png") }) if !value.blank?
+  end
 end

@@ -22,38 +22,26 @@
               <td class="dataCol">
               <%= @general_category.category_type_name%>
               </td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
             </tr>             
             <tr>
               <td class="labelCol"><label><%= t :label_irm_general_category_company%></label></td>
-              <td class="dataCol"><div><%= @general_category.company_name%></div></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="data2Col"><div><%= @general_category.company_name%></div></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=t :label_irm_general_category_segment1%></label></td>
-              <td class="dataCol"><div><%= @general_category.segment1_name%></div></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="data2Col"><div><%= @general_category.segment1_name%></div></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=t :label_irm_general_category_segment2%></label></td>
-              <td class="dataCol"><div><%= @general_category.segment2_name%></div></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="data2Col"><div><%= @general_category.segment2_name%></div></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=t :label_irm_general_category_segment3%></label></td>
-              <td class="dataCol"><div><%= @general_category.segment3_name%></div></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="data2Col"><div><%= @general_category.segment3_name%></div></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :active)%></label></td>
-              <td class="dataCol"><div><%= @general_category.status_code%></div></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="data2Col"><div><%= check_img(@general_category.status_code)%></div></td>
             </tr>
         </tbody>
       </table>

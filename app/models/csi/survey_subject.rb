@@ -3,6 +3,7 @@ class Csi::SurveySubject < ActiveRecord::Base
 
   belongs_to :survey
   has_many :subject_options,:foreign_key=>"subject_id"
+  validates_presence_of :name,:seq_num
 
   TYPES = [['text', 'string'], ['paragraph_text', 'text'],
               ['multi_choice', 'radio'], ['checkboxes', 'check'],
@@ -17,5 +18,11 @@ class Csi::SurveySubject < ActiveRecord::Base
   }
 
   scope :query_by_survey_id,lambda{|survey_id| where(:survey_id=>survey_id)}
+
+  def self.get_max_seq_num(survey_id)
+     next_seq_num = self.query_by_survey_id(survey_id).maximum("seq_num")
+     next_seq_num = (next_seq_num/10.round + 1)*10
+     next_seq_num
+  end
 
 end

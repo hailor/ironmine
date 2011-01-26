@@ -24,7 +24,8 @@ function subject_input_changed(e){
 
 function subject_remove_option(e){
   GY.use('node',function (Y){
-     e.parent().remove();
+    // e.parent().remove();
+      e.parentNode.parentNode.removeChild(e.parentNode);
   });
 }
 

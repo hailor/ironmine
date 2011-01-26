@@ -69,7 +69,7 @@ class Irm::AuthSourcesController < ApplicationController
     auth_sources_scope = Irm::AuthSource.where("1=1")
     auth_sources,count = paginate(auth_sources_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(auth_sources.to_grid_json([:name, :host, :port, :account, :base_dn,:attr_login, :status_meaning], count)) }
+      format.json  {render :json => to_jsonp(auth_sources.to_grid_json([:name, :host, :port, :account, :base_dn,:attr_login, :status_meaning, :status_code], count)) }
     end    
   end
 end

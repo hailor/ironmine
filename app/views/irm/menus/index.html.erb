@@ -22,15 +22,18 @@
       <div class="pbBody">
         <div id="menus_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
+          <div id="status_code" style="display:none">
+            <%= check_img("{status_code}") %>
+          </div>                
         </div>
         <%= datatable("menus_list",url_for(:action=>"get_data",:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template"},
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template", :width => "80px"},
                        {:key=>"menu_code",:label=>t(:label_irm_menu_menu_code),:sortable=>true},
                        {:key=>"name",:label=>t(:label_irm_menu_name),:sortable=>true},
                        {:key=>"description",:label=>t(:label_irm_menu_description),:sortable=>true},
-                       {:key=>"status_code",:label=>t(:active),:sortable=>true}]) %>
+                       {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template"}]) %>
       </div>
     </div>
 </div>

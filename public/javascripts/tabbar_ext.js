@@ -282,7 +282,7 @@ RelatedListPanel.prototype.showRLDelayed = function(rlId) {
 RelatedListPanel.prototype.hideRLDelayed = function(rlId, delay) {
     this.clearshowmenu();
     if (!delay) {
-        delay = 500;
+        delay = 50;
     }
     if (!rlId) {
         rlId = this.currentListId;
@@ -369,9 +369,9 @@ RelatedListPanel.prototype.showRL = function(rlId, forceResize) {
         } else {
             panelShadowNode.style.left = (getObjX(this.getHoverableLinksNode()) - 14) + "px";
         }
-        panelShadowNode.style.width = (relatedListNode.offsetWidth) + "px";
+        panelShadowNode.style.width = (relatedListNode.offsetWidth+ 5) + "px";
     }
-    panelFrameNode.style.height = (relatedListNode.offsetHeight+10) + "px";
+    panelFrameNode.style.height = (relatedListNode.offsetHeight+1) + "px";
     panelFrameNode.style.width = (relatedListNode.offsetWidth) + "px";
     panelShadowNode.style.display = "block";
     linkletNode.className += " linkletOn";

@@ -41,7 +41,7 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :active)%></label></td>
-              <td class="data2Col"><%= @role.status_code%></td>
+              <td class="data2Col"><%= check_img(@role.status_code)%></td>
             </tr>
         </tbody>
       </table>

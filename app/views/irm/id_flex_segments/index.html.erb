@@ -22,17 +22,20 @@
       <div class="pbBody">
         <div id="id_flex_segments_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:controller => "irm/id_flex_segments", :action => "edit", :id => "{id}"}) %>|<%= link_to(t(:show),{:controller => "irm/id_flex_segments", :action => "show", :id => "{id}"}) %>|<%= link_to(t(:remove),{}) %>
+            <%= link_to(t(:edit),{:controller => "irm/id_flex_segments", :action => "edit", :id => "{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:controller => "irm/id_flex_segments", :action => "show", :id => "{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:remove),{}) %>
           </div>
+          <div id="status_code" style="display:none">
+            <%= check_img("{status_code}") %>
+          </div>                  
         </div>
         <%= datatable("id_flex_segments_list",url_for(:controller => "irm/id_flex_segments", :action=>"get_data", :format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template"},
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template", :width => "120px"},
                        {:key=>"segment_num",:label=>t(:label_irm_id_flex_segment_segment_num),:sortable=>true},
                        {:key=>"segment_name",:label=>t(:label_irm_id_flex_segment_name),:sortable=>true},
                        {:key=>"form_left_prompt",:label=>t(:label_irm_id_flex_segment_form_left_prompt),:sortable=>true},
                        {:key=>"description",:label=>t(:label_irm_id_flex_segment_description),:sortable=>true},
                        {:key=>"value_set_name",:label=>t(:label_irm_value_set),:sortable=>true},
-                       {:key=>"status_code",:label=>t(:active),:sortable=>true}]) %>
+                       {:key=>"status_code",:label=>t(:active),:formatter=>"Y.irm.template",:sortable=>true}]) %>
       </div>
     </div>
 </div>

@@ -19,21 +19,15 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_value_set_name)%></label></td>
-              <td class="dataCol"><%= @value_set.flex_value_set_name%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="data2Col"><%= @value_set.flex_value_set_name%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_value_set_description)%></label></td>
-              <td class="dataCol"><%= @value_set.description%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="data2Col"><div><%= @value_set.description%></div></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :active)%></label></td>
-              <td class="dataCol"><%= @value_set.status_code%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="data2Col"><%= check_img(@value_set.status_code)%></td>
             </tr>
         </tbody>
       </table>
@@ -62,13 +56,13 @@
         </table>
       </div>
       <div class="pbBody">
-        <div id="pizza" class="datatable" style="width:100%">
+        <div id="values_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
             <%= link_to(t(:remove),{:controller => "irm/flex_values", :action=>"destroy",:id=>"{id}", :return_url => @return_url}) %>
           </div>
         </div>
-        <%= datatable("pizza",url_for(:controller => "irm/flex_values", :value_set_id => @value_set, :action=>"get_data",:format=>"json", :value_set_id => @value_set),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
+        <%= datatable("values_list",url_for(:controller => "irm/flex_values", :value_set_id => @value_set, :action=>"get_data",:format=>"json", :value_set_id => @value_set),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"40px"},
                        {:key=>"display_sequence",:label=>t(:label_irm_flex_value_position)},
                        {:key=>"flex_value",:label=>t(:label_irm_flex_value_name)},
                        {:key=>"description",:label=>t(:label_irm_flex_value_description)},
