@@ -604,6 +604,9 @@ Ironmine::Application.routes.draw do
     match '/entry_headers/new_step_4(.:format)' => "entry_headers#new_step_4", :via => :get
     match '/entry_headers/index_search(.:format)' => "entry_headers#index_search", :via => :post
     match '/entry_headers/index_search_get_data(.:format)' => "entry_headers#index_search_get_data"
+    match '/entry_headers/:person_id/my_favorites_data' => "entry_headers#my_favorites_data"
+    match '/entry_headers/:person_id/my_favorites' => "entry_headers#my_favorites", :via => :get
+    match '/entry_headers/:person_id/:id/add_favorites' => "entry_headers#add_favorites", :via => :get
   end
   
   match '/demo(/index)' => 'demo#index'
