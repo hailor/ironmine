@@ -1,6 +1,8 @@
 class Csi::Survey < ActiveRecord::Base
   set_table_name :csi_surveys
 
+  query_extend
+
   validates_presence_of :title
   validates_uniqueness_of :title
 

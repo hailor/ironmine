@@ -193,12 +193,18 @@
         </div>
         <div id="id_company_access" class="pbBody">
           <div id="person" class="datatable" style="width:100%;">
-          </div>
+            <div id="company_access_flag" style="display:none">
+              <%= check_img("{company_access_flag}") %>
+            </div>
+            <div id="support_stuff_flag" style="display:none">
+              <%= check_img("{support_stuff_flag}") %>
+            </div>
+          </div>          
           <!-- Begin company access table -->
             <%= datatable("person",url_for(:controller=>"irm/company_accesses",:action=>"get_data",:person_id=>@person.id),
                               [{:key=>"company_name",:label=>t(:label_irm_person_company),:sortable=>true},
-                               {:key=>"company_access_flag",:label=>t(:label_irm_person_company_access_flag),:sortable=>true},
-                               {:key=>"support_stuff_flag",:label=>t(:label_irm_person_support_stuff_flag),:sortable=>true}],
+                               {:key=>"company_access_flag",:label=>t(:label_irm_person_company_access_flag),:formatter=>"Y.irm.template",:sortable=>true},
+                               {:key=>"support_stuff_flag",:label=>t(:label_irm_person_support_stuff_flag),:formatter=>"Y.irm.template",:sortable=>true}],
                                {:row_perpage=>5})%>
           <!-- End company access table -->
         </div>
@@ -237,7 +243,7 @@
             <%= datatable("support_group",url_for(:controller=>"irm/people",:action=>"get_support_group",:person_id=>@person.id),
                               [{:key=>"support_group_name",:label=>t(:label_irm_support_group_name),:sortable=>true},
                                {:key=>"description",:label=>t(:label_irm_support_group_description),:sortable=>true},
-                               {:key=>"status_meaning",:label=>t(:label_irm_support_group_status_code),:sortable=>true}],
+                               {:key=>"status_meaning",:label=>t(:label_irm_support_group_status_code),:sortable=>true,:width=>"80px"}],
                                {:row_perpage=>5})%>
           <!-- End company access table -->
         </div>

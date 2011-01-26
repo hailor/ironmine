@@ -16,11 +16,11 @@
       <div class="pbBody">
         <div id="rule_setting" class="datatable" style="width:100%;">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
         <%= datatable("rule_setting",url_for(:action=>"get_data",:format=>"json"),
-                  [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"70px"},
+                  [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"80px"},
                    {:key=>"company_name",:label=>t(:label_icm_rule_setting_company),:sortable=>true},
                    {:key=>"report_date_changable",:label=>t(:label_icm_rule_setting_report_date_changable),:sortable=>true},
                    {:key=>"respond_date_changable",:label=>t(:label_icm_rule_setting_respond_date_changable),:sortable=>true},

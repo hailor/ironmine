@@ -68,6 +68,8 @@ class Irm::LookupTypesController < ApplicationController
 
   def get_lookup_types
     @lookup_types = Irm::LookupType.multilingual.query_wrap_info(I18n::locale)
+    @lookup_types = @lookup_types.match_value("#{Irm::LookupType.table_name}.lookup_type",params[:lookup_type])
+    @lookup_types = @lookup_types.match_value("#{Irm::LookupTypesTl.table_name}.meaning",params[:meaning])
     @lookup_types,count = paginate(@lookup_types)
     respond_to do |format|
       format.json  {render :json => to_jsonp(@lookup_types.to_grid_json(['R',:lookup_level,:lookup_type,:meaning,:description,:status_meaning],

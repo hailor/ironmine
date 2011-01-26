@@ -89,6 +89,8 @@ class Irm::RegionsController < ApplicationController
 
   def get_data
     @regions= Irm::Region.multilingual.query_wrap_info(I18n::locale)
+    @regions = @regions.match_value("#{Irm::Region.table_name}.region_code",params[:region_code])
+    @regions = @regions.match_value("#{Irm::RegionsTl.table_name}.name",params[:name])
     @regions,count = paginate(@regions)
     respond_to do |format|
       format.json {render :json=>to_jsonp(@regions.to_grid_json(['R',:region_code,:name,:description,:status_meaning], count))}

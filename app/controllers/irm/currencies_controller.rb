@@ -85,6 +85,8 @@ class Irm::CurrenciesController < ApplicationController
 
   def get_data
     @currencies= Irm::Currency.multilingual.query_wrap_info(I18n::locale)
+    @currencies = @currencies.match_value("#{Irm::Currency.table_name}.currency_code",params[:currency_code])
+    @currencies = @currencies.match_value("#{Irm::CurrenciesTl.table_name}.name",params[:name])
     @currencies,count = paginate(@currencies)
     respond_to do |format|
       format.json {render :json=>to_jsonp(@currencies.to_grid_json(['R',:currency_code,:name,:description, :precision,:status_meaning], count))}

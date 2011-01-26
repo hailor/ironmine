@@ -85,6 +85,10 @@ class Irm::DepartmentsController < ApplicationController
 
   def get_data
     @departments= Irm::Department.multilingual.query_wrap_info(I18n::locale)
+    @departments = @departments.match_value("v2.company_name",params[:company_name])
+    @departments = @departments.match_value("v3.organization_name",params[:organization_name])
+    @departments = @departments.match_value("#{Irm::Department.table_name}.short_name",params[:short_name])
+    @departments = @departments.match_value("#{Irm::DepartmentsTl.table_name}.name",params[:name])
     @departments,count = paginate(@departments)
     respond_to do |format|
       format.json {render :json=>to_jsonp(@departments.to_grid_json(['R',:company_name,:organization_name,:short_name,:name,:description,:status_meaning], count))}

@@ -17,7 +17,6 @@ Ironmine::Application.routes.draw do
     match '/lookup_types/:id/edit(.:format)'=>"lookup_types#edit",:via=>:get
     match '/lookup_types/:id'=>"lookup_types#update",:via=>:put
     match '/lookup_types/check_lookup_code'=>"lookup_types#check_lookup_code"
-    match '/lookup_types/get_lookup_values'=>"lookup_types#get_lookup_values"
     match '/lookup_types/:id/add_code'=>"lookup_types#add_code"
     match '/lookup_types/:id(.:format)'=>"lookup_types#show"
     #product modules
@@ -193,14 +192,13 @@ Ironmine::Application.routes.draw do
     match '/mail_templates/copy_template(.:format)'=>"mail_templates#copy_template",:via=>:post
     match '/mail_templates/test_mail_template'=>"mail_templates#test_mail_template"
     match '/mail_templates(/index)(.:format)'=>"mail_templates#index",:via=>:get
-    match '/mail_templates/:id/show(.:format)'=>"mail_templates#show",:via=>:get
     match '/mail_templates/:id/edit(.:format)'=>"mail_templates#edit",:via=>:get
     match '/mail_templates/:id(.:format)'=>"mail_templates#update",:via=>:put
     match '/mail_templates/:id(.:format)'=>"mail_templates#destroy",:via=>:delete
     match '/mail_templates/:id/multilingual_edit(.:format)'=>"mail_templates#multilingual_edit",:via=>:get
     match '/mail_templates/:id/multilingual_update(.:format)'=>"mail_templates#multilingual_update",:via=>:put
     match '/mail_templates/get_current_language(.:format)'=>"mail_templates#get_current_language",:via=>:get
-    match '/mail_templates/:id(.:format)'=>"mail_templates#show ",:via=>:get
+    match '/mail_templates/:id(.:format)'=>"mail_templates#show",:via=>:get
 
     #currencies
     match '/currencies(/index)(.:format)' => "currencies#index", :via => :get
@@ -442,6 +440,10 @@ Ironmine::Application.routes.draw do
     match '/roles/create(.:format)' => "roles#create", :via => :post
     match '/roles/get_data(.:format)' => "roles#get_data"
     match '/roles/:id/show(.:format)' => "roles#show", :via => :get
+    #dev_tools
+    match '/dev_tools(/index)(.format)' => 'dev_tools#index', :via => :get
+    match '/dev_tools/show_permissions(.format)' => 'dev_tools#show_permissions', :via => :get
+    match '/dev_tools/show_permissions_data(.format)' => 'dev_tools#show_permissions_data', :via => :get
   end
 
   scope :module => "icm" do

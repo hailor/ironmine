@@ -1,14 +1,3 @@
-<script type="text/javascript" charset="utf-8">
-$(document).ready(function(){
-    $("#irm_mail_template_entity_code").attr('disabled','disabled');
-    $("input[type=radio]").attr('disabled','disabled');
-    $('input[type=text]:not([readonly]):first').focus();
-    $('input[required]').css("background-color","#FFFFCC");
-    $('input[readonly]').css("background-color","#CCCCCC");
-    $('textarea[required]').css("background-color","#FFFFCC");
-    $('input[type=submit]').css("cursor","pointer");
- });
-</script>
 <%= fields_for(current_language_mail_template,:builder => LabellingFormBuilder) do |f| %>
          <div id="id_mail_template">
            <table class="paddedtable" cellspacing="0">

@@ -16,16 +16,15 @@
       <div class="pbBody">
         <div id="language" class="datatable" style="width:100%;">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
         <%= datatable("language",url_for(:action=>"get_data",:format=>"json"),
-                  [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"50%"},
+                  [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"80px"},
                    {:key=>"language_code",:label=>t(:label_irm_language_language_code),:sortable=>true},
                    {:key=>"installed_flag",:label=>t(:label_irm_language_installed_flag),:sortable=>true},
                    {:key=>"description",:label=>t(:label_irm_language_description),:sortable=>true},
-                   {:key=>"status_meaning",:label=>t(:label_irm_language_status_code),:sortable=>true}],
-                   {:row_perpage=>5})%>
+                   {:key=>"status_meaning",:label=>t(:label_irm_language_status_code),:sortable=>true,:width=>"40px"}])%>
       </div>
     </div>
 </div>

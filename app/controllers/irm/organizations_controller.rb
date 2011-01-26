@@ -86,6 +86,9 @@ class Irm::OrganizationsController < ApplicationController
 
   def get_data
     @organizations= Irm::Organization.multilingual.query_wrap_info(I18n::locale)
+    @organizations = @organizations.match_value("#{Irm::Organization.table_name}.organization_code",params[:organization_code])
+    @organizations = @organizations.match_value("v2.company_name",params[:company_name])
+    @organizations = @organizations.match_value("#{Irm::OrganizationsTl.table_name}.name",params[:name])
     @organizations,count = paginate(@organizations)
     respond_to do |format|
       format.json {render :json=>to_jsonp(@organizations.to_grid_json(['R',:company_name,:short_name,:name,:description,:status_meaning], count))}

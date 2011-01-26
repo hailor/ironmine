@@ -10,6 +10,7 @@ class Irm::Company < ActiveRecord::Base
 
   validates_presence_of :short_name
   validates_uniqueness_of :short_name,:if => Proc.new { |i| !i.short_name.blank? }
+  validates_format_of :short_name, :with => /^[A-Z0-9_]*$/ ,:if=>Proc.new{|i| !i.short_name.blank?}
 
   scope :query_wrap_info,lambda{|language| select("#{table_name}.*,#{Irm::CompaniesTl.table_name}.name,#{Irm::CompaniesTl.table_name}.description,"+
                                                           "v1.meaning company_type_meaning,v2.meaning status_meaning").

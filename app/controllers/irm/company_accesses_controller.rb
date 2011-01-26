@@ -18,6 +18,8 @@ class Irm::CompanyAccessesController < ApplicationController
 
     Irm::CompanyAccess.delete_all(person_id)
     (params[:irm_company_access] || []).each {|company_id,company_access|
+       @company_access_flag='N'
+       @support_stuff_flag='N'
        if company_access.has_key?("accessable_company_id")
          @accessable_company_id = company_access[:accessable_company_id]
        end
@@ -27,10 +29,13 @@ class Irm::CompanyAccessesController < ApplicationController
        if company_access.has_key?("support_stuff_flag")
          @support_stuff_flag = company_access[:support_stuff_flag]
        end
-       Irm::CompanyAccess.create({:person_id=>person_id,
+       #
+       if(@company_access_flag!='N'||@support_stuff_flag !='N')
+          Irm::CompanyAccess.create({:person_id=>person_id,
                                   :accessable_company_id=>@accessable_company_id,
                                   :company_access_flag=>@company_access_flag,
                                   :support_stuff_flag=>@support_stuff_flag})
+       end
     }
     flash[:notice] = t(:successfully_updated)
     if return_url.blank?

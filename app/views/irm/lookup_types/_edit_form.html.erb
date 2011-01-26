@@ -50,8 +50,7 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_status_code)%></label></td>
-              <td class="dataCol"><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@lookup_type.status_code)%>
+              <td class="dataCol"><%=f.select :status_code,options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@lookup_type.status_code)%>
               </td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>

@@ -1,16 +1,3 @@
-<script type="text/javascript" charset="utf-8">
-$(document).ready(function(){
-  $("input[type=radio]").attr('disabled','disabled');
-  $("select#id_mail_template_multilingual").val("<%=@local_language_code%>");
-  $("select#id_mail_template_multilingual").live('change',function(){
-       var id_value_string = $(this).val();
-       var template_id =  $("#id_mail_template_id").val();
-       var url="/mail_templates/get_current_language";
-       var formData="language_code="+id_value_string+"&id="+template_id;
-       $.get(url, formData);
-       });
- });
-</script>
 <div id="id_mail_template_multilingual">
     <%= form_tag("/mail_templates/#{params[:id]}/multilingual_update",:method=>:put) do %>
                 <div class="containerheader">

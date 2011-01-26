@@ -34,17 +34,15 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_department_company_name)%></label></td>
-              <td class="dataCol"><%=f.select(:company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_company,:id,:wrap_name),
+              <td class="dataCol"><%=f.select(:company_id,options_from_collection_for_select(available_company,:id,:wrap_name),
                                                 {},:action=>url_for(:controller=>"irm/organizations",:action=>"belongs_to",:company_id=>"cascade_id"),:choice_title=>t(:actionview_instancetag_blank_option),
                                   :cascade=>"organization_select")%></td>
               <td class="labelCol"><label><%=(t :label_irm_department_organization_name)%></label></td>
-              <td class="dataCol"><%=f.select(:organization_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_organization,:id,:wrap_name),{},:id=>"organization_select")%></td>
+              <td class="dataCol"><%=f.select(:organization_id,options_from_collection_for_select(available_organization,:id,:wrap_name),{},:id=>"organization_select")%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_department_short_name)%></label></td>
-              <td class="dataCol"><%=f.text_field :short_name, :required=>true%></td>
+              <td class="dataCol"><%=f.text_field :short_name, :required=>true,:irm_uppercase=>true%></td>
               <td class="labelCol"><label><%=(t :label_irm_department_name)%></label></td>
               <td class="dataCol"><%=f.text_field :name, :required=>true%></td>
             </tr>
