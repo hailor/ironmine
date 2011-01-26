@@ -89,6 +89,8 @@ class Irm::SiteGroupsController < ApplicationController
 
   def get_data
     @site_groups= Irm::SiteGroup.multilingual.query_wrap_info(I18n::locale)
+    @site_groups = @site_groups.match_value("#{Irm::SiteGroupsTl.table_name}.name",params[:name])
+    @site_groups = @site_groups.match_value("#{Irm::SiteGroup.table_name}.group_code",params[:group_code])
     @site_groups,count = paginate(@site_groups)
     respond_to do |format|
       format.json {render :json=>to_jsonp(@site_groups.to_grid_json(['R',:region_name,:group_code,:name,:description,:status_meaning], count))}

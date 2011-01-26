@@ -92,6 +92,8 @@ class Irm::MailTemplatesController < ApplicationController
 
   def get_data
     @mail_templates= Irm::MailTemplate.multilingual.query_wrap_info(I18n::locale)
+    @mail_templates = @mail_templates.match_value("#{Irm::MailTemplate.table_name}.template_code",params[:template_code])
+    @mail_templates = @mail_templates.match_value("#{Irm::MailTemplatesTl.table_name}.name",params[:name])
     @mail_templates,count = paginate(@mail_templates)
     respond_to do |format|
       format.json {render :json=>to_jsonp(@mail_templates.to_grid_json(['R',:entity_meaning,:template_code,:name,:description,:status_meaning],count))}

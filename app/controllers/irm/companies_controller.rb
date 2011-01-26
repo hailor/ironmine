@@ -95,6 +95,8 @@ class Irm::CompaniesController < ApplicationController
 
   def get_data
     @companies= Irm::Company.multilingual.query_wrap_info(I18n::locale)
+    @companies = @companies.match_value("#{Irm::Company.table_name}.short_name",params[:short_name])
+    @companies = @companies.match_value("#{Irm::CompaniesTl.table_name}.name",params[:name])
     @companies,count = paginate(@companies)
     respond_to do |format|
       format.json {render :json=>to_jsonp(@companies.to_grid_json(['R',:company_type_meaning,:short_name,:name,:description, :status_meaning], count))}

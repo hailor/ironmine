@@ -89,6 +89,8 @@ class Irm::ConditionsController < ApplicationController
 
   def get_data
     @conditions= Irm::Condition.multilingual.query_wrap_info(I18n::locale)
+    @conditions = @conditions.match_value("#{Irm::Condition.table_name}.condition_code",params[:condition_code])
+    @conditions = @conditions.match_value("#{Irm::ConditionsTl.table_name}.name",params[:name])
     @conditions,count = paginate(@conditions)
     respond_to do |format|
       format.json {render :json=>to_jsonp(@conditions.to_grid_json(['R',:entity_meaning,:condition_code,:name,:description, :status_meaning], count))}

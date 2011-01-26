@@ -89,9 +89,11 @@ class Irm::ActionsController < ApplicationController
 
   def get_data
     @actions= Irm::Action.multilingual.query_wrap_info(I18n::locale)
+    @actions = @actions.match_value("#{Irm::Action.table_name}.action_code",params[:action_code])
+    @actions = @actions.match_value("#{Irm::ActionsTl.table_name}.name",params[:name])
     @actions,count = paginate(@actions)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(@actions.to_grid_json(['R',:entity_meaning,:action_code,:name,:description,:handler,:status_meaning],count))}
+      format.json {render :json=>to_jsonp(@actions.to_grid_json([:entity_meaning,:action_code,:name,:description,:handler,:status_meaning],count))}
     end
   end
 end

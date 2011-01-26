@@ -9,6 +9,9 @@
               <td id="topButtonRow" class="pbButton">
                 <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
               </td>
+              <td class="pbHelp">
+                <div id="permissionsSearchBox"></div>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -22,11 +25,11 @@
           </div>
         </div>
         <%= datatable("survey",url_for(:action=>"get_data"),
-                  [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"120px"},
-                   {:key=>"title",:label=>t(:label_csi_survey_title),:sortable=>true},
+                  [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"140px"},
+                   {:key=>"title",:label=>t(:label_csi_survey_title),:sortable=>true,:searchable=>true},
                    {:key=>"description",:label=>t(:label_csi_survey_description),:sortable=>true},
                    {:key=>"status_meaning",:label=>t(:label_csi_survey_status_code),:sortable=>true,:width=>"40px"}],
-                   {:row_perpage=>20})%>
+                   {:search_box=>"permissionsSearchBox"})%>
       </div>
     </div>
 </div>

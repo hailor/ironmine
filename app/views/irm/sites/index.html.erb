@@ -62,10 +62,7 @@
                 <div class="button"><%= link_to t(:new), {:action => "new", :site_group_code => @site_group.group_code}%></div>
               </td>
               <td class="pbHelp">
-                <select title="显示所选内容" name="hotlist_mode" id="hotlist_mode"><option value="2">最近创建</option>
-                <option value="1">最近修改</option>
-                <option selected="selected" value="3">最近查看</option>
-                </select>
+                <div id="permissionsSearchBox"></div>
               </td>
             </tr>
           </tbody>
@@ -79,10 +76,11 @@
         </div>
         <%= datatable("site",url_for(:action=>"get_data",:site_group_code => @site_group.group_code),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
-                       {:key=>"site_code",:label=>t(:label_irm_site_site_code)},
-                       {:key=>"name",:label=>t(:label_irm_site_name)},
+                       {:key=>"site_code",:label=>t(:label_irm_site_site_code),:searchable=>true},
+                       {:key=>"name",:label=>t(:label_irm_site_name),:searchable=>true},
                        {:key=>"description",:label=>t(:label_irm_site_description)},
-                       {:key=>"status_meaning",:label=>t(:label_irm_site_status_code),:width=>"40px"}])%>
+                       {:key=>"status_meaning",:label=>t(:label_irm_site_status_code),:width=>"40px"}],
+                       {:search_box=>"permissionsSearchBox"})%>
       </div>
     </div>
 </div>

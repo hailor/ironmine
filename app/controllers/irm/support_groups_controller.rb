@@ -73,6 +73,10 @@ class Irm::SupportGroupsController < ApplicationController
 
   def get_data
     @support_groups= Irm::SupportGroup.multilingual.query_wrap_info(I18n::locale)
+    @support_groups = @support_groups.match_value("#{Irm::SupportGroup.table_name}.group_code",params[:group_code])
+    @support_groups = @support_groups.match_value("#{Irm::SupportGroupsTl.table_name}.name",params[:name])
+    @support_groups = @support_groups.match_value("v2.company_name",params[:company_name])
+    @support_groups = @support_groups.match_value("v3.organization_name",params[:organization_name])
     @support_groups,count = paginate(@support_groups)
     respond_to do |format|
       format.json {render :json=>to_jsonp(@support_groups.to_grid_json(['R',:company_name,:organization_name,:group_code,:name,
