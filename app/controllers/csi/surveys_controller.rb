@@ -1,5 +1,4 @@
 class Csi::SurveysController < ApplicationController
-  #layout "setting" 
   # GET /surveys
   # GET /surveys.xml
   def index
