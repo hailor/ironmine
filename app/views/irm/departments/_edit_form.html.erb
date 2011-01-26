@@ -31,7 +31,7 @@
               <td class="labelCol"><label><%=(t :label_irm_department_company_name)%></label></td>
               <td class="dataCol"><%=@department[:company_name]%></td>
               <td class="labelCol"><label><%=(t :label_irm_department_organization_name)%></label></td>
-              <td class="dataCol"><%=@department[:organization_name]%></td>
+              <td class="dataCol"><%=f.select(:organization_id,options_from_collection_for_select(available_organization,:id,:wrap_name),{},:id=>"organization_select")%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_department_short_name)%></label></td>
@@ -42,9 +42,8 @@
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_department_description)%></label></td>
               <td class="dataCol"><%=f.text_area :description,:value=>@department[:description],:rows=>4%></td>
-              <td class="labelCol empty"><label><%=(t :label_irm_script_status_code)%></label></td>
-              <td class="dataCol empty"><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@department.status_code)%></td>
+              <td class="labelCol"><label><%=(t :label_irm_script_status_code)%></label></td>
+              <td class="dataCol"><%=f.select :status_code,options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@department.status_code)%></td>
             </tr>
         </tbody>
       </table>

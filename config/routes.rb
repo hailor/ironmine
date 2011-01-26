@@ -198,7 +198,7 @@ Ironmine::Application.routes.draw do
     match '/mail_templates/:id/multilingual_edit(.:format)'=>"mail_templates#multilingual_edit",:via=>:get
     match '/mail_templates/:id/multilingual_update(.:format)'=>"mail_templates#multilingual_update",:via=>:put
     match '/mail_templates/get_current_language(.:format)'=>"mail_templates#get_current_language",:via=>:get
-    match '/mail_templates/:id(.:format)'=>"mail_templates#show ",:via=>:get
+    match '/mail_templates/:id(.:format)'=>"mail_templates#show",:via=>:get
 
     #currencies
     match '/currencies(/index)(.:format)' => "currencies#index", :via => :get

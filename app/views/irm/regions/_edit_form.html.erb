@@ -29,9 +29,8 @@
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_region_region_code)%></label></td>
               <td class="dataCol"><%=@region.region_code%></td>
-              <td class="labelCol empty"><label><%=(t :label_irm_script_status_code)%></label></td>
-              <td class="dataCol empty"><%=f.select :status_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@region.status_code)%></td>
+              <td class="labelCol"><label><%=(t :label_irm_script_status_code)%></label></td>
+              <td class="dataCol"><%=f.select :status_code,options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@region.status_code)%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_region_name)%></label></td>

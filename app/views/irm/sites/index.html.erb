@@ -44,7 +44,7 @@
               <td class="labelCol"><label><%=(t :label_irm_site_description)%></label></td>
               <td class="dataCol"><%= @site_group[:description]%></td>
               <td class="labelCol"><label><%=(t :active)%></label></td>
-              <td class="dataCol"><%= @site_group.status_code%></td>
+              <td class="dataCol"><%= @site_group[:status_meaning]%></td>
             </tr>
         </tbody>
       </table>
