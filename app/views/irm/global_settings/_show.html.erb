@@ -20,15 +20,15 @@
         <tbody>
             <tr>
               <td class="labelCol"><%= t(:label_irm_global_setting_theme_name)%></td>
-              <td class="dataCol"><div><%= @global_setting.theme_name %></div></td>
+              <td class="data2Col"><div><%= @global_setting.theme_name %></div></td>
+            </tr>
+            <tr>
               <td class="labelCol"><%= t(:label_irm_global_setting_upload_file_limit) %></td>
-              <td class="dataCol"><div><%= @global_setting.upload_file_limit %></div></td>
+              <td class="data2Col"><div><%= @global_setting.upload_file_limit %></div></td>
             </tr>
             <tr>
               <td class="labelCol"><%= t(:label_irm_global_setting_timezone)%></td>
-              <td class="dataCol"><div><%= @global_setting.timezone %></div></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="data2Col"><div><%= @global_setting[:timezone_meaning] %></div></td>
             </tr>
         </tbody>
       </table>
