@@ -107,6 +107,8 @@
                                     :survey_id=>@survey.id}) %>&nbsp;&nbsp;
               <%= link_to(t(:delete),{:controller=>"csi/survey_subjects",:action=>"destroy",:id=>"{id}",:survey_id=>@survey.id},:confirm => t(:label_are_you_sure) ,
                                       :method => :delete) %>
+            <% else %>
+              <%= t(:edit) %>&nbsp;&nbsp;<%= t(:delete) %>
             <% end %>
           </div>
     </div>
