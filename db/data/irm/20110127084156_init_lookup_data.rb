@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitLookupData < ActiveRecord::Migration
   def self.up
     Irm::LookupValue.find(:all).each do |f|

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddInitLookupData < ActiveRecord::Migration
   def self.up
     icm_process_type=Irm::LookupType.new(:lookup_level=>'GLOBAL',:lookup_type=>'ICM_PROCESS_TYPE',:status_code=>'ENABLED',:not_auto_mult=>true)
