@@ -28,7 +28,7 @@ module ApplicationHelper
     content = raw(content_tag(:div, raw(page_title + page_description), :class => "content"))
     pt_body = raw(content_tag(:div, content, :class => "ptBody"))
     b_page_title = raw(content_tag(:div, pt_body, :class => "bPageTitle"))
-    raw(b_page_title + raw(b_description))
+    raw(b_page_title)
   end
 
   def setting_title(params = {:title => "", :description => ""})
@@ -59,7 +59,7 @@ module ApplicationHelper
     content = raw(content_tag(:div, raw(page_title + page_description), :class => "content"))
     pt_body = raw(content_tag(:div, content, :class => "ptBody"))
     b_page_title = raw(content_tag(:div, pt_body, :class => "bPageTitle"))
-    raw(b_page_title + raw(b_description))
+    raw(b_page_title)
   end
 
   def app_title(params = {:title => "", :description => ""})
@@ -93,7 +93,7 @@ module ApplicationHelper
     content = raw(content_tag(:div, raw(page_title + page_description), :class => "content"))
     pt_body = raw(content_tag(:div, content, :class => "ptBody"))
     b_page_title = raw(content_tag(:div, pt_body, :class => "bPageTitle"))
-    raw(b_page_title + raw(b_description))
+    raw(b_page_title)
   end  
 
   def setting_show_title(params = {})
@@ -120,7 +120,7 @@ module ApplicationHelper
     content = raw(content_tag(:div, raw(page_title + page_description), :class => "content"))
     pt_body = raw(content_tag(:div, content, :class => "ptBody"))
     b_page_title = raw(content_tag(:div, pt_body, :class => "bPageTitle"))
-    raw(b_page_title + raw(b_description))
+    raw(b_page_title)
   end
   
   #显示form提交的出错信息
