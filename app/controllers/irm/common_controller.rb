@@ -61,7 +61,7 @@ class Irm::CommonController < ApplicationController
     #  cookies[:autologin] = { :value => token.value, :expires => 1.year.from_now }
     #end
     #call_hook(:controller_account_success_authentication_after, {:user => user })
-    entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>"IRM_ENTRANCE_MENU"})
+    entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>"Irm::Constant::TOP_BUSSINESS_MENU"})
     redirect_back_or_default :controller => entrance[:page_controller], :action => entrance[:page_action]
   end
 
