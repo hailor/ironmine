@@ -1,6 +1,6 @@
 Ironmine::Application.routes.draw do
   scope :module => "irm" do
-    root :to => "navigations#entrance"
+    root :to => "navigations#index"
     match 'login'=>'common#login',:as=>:login
     match 'combo'=>'navigations#combo'
     match 'logout'=>'common#logout',:as=>:logout
@@ -176,15 +176,6 @@ Ironmine::Application.routes.draw do
     match '/function_groups/:group_code/get_own_functions(.:format)' => "function_groups#get_own_functions", :via => :get
     match '/function_groups/:group_id/:function_id/remove_function(.:format)' => "function_groups#remove_function", :via => :get
     # navigations
-    match '/navigations/entrance(.:format)' =>'navigations#entrance'
-    match '/navigations/workspace(.:format)' =>'navigations#workspace'
-    match '/navigations/my_page(.:format)' =>'navigations#my_page'
-    match '/navigations/my_setting(.:format)' =>'navigations#my_setting'
-    match '/navigations/admin(.:format)' =>'navigations#admin'
-    match '/navigations/advance_setting(.:format)' =>'navigations#advance_setting'
-    match '/navigations/base_setting(.:format)' =>'navigations#base_setting'
-    match '/navigations/icm_setting(.:format)' =>'navigations#icm_setting'
-    match '/navigations/common(.:format)' =>'navigations#common'
     #mail_templates
     match '/mail_templates/new(.:format)'=>"mail_templates#new",:via=>:get
     match '/mail_templates/get_data(.:format)' => "mail_templates#get_data"
