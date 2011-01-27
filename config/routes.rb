@@ -109,15 +109,15 @@ Ironmine::Application.routes.draw do
     match '/identities/:id/update(.:format)' => "identities#update", :via => :put
     match '/identities/new(.:format)' => "identities#new", :via => :get
     match '/identities/create(.:format)' => "identities#create", :via => :post
-    match '/identities/:id/multilingual_edit(.:format)' => "identities#multilingual_edit", :via => :get
-    match '/identities/:id/multilingual_update(.:format)' => "identities#multilingual_update", :via => :put
     match '/identities/get_data(.:format)' => "identities#get_data"
-    match '/identities/my_info(.:format)' => "identities#my_info", :via => :get
-    match '/identities/edit_info(.:format)' => "identities#edit_info", :via => :get
-    match '/identities/update_info(.:format)' => "identities#update_info", :via => :put
-    match '/identities/edit_password(.:format)' => "identities#edit_password", :via => :get
-    match '/identities/update_password(.:format)' => "identities#update_password", :via => :put
     match '/identities/:id/show(.:format)' => "identities#show"
+
+    #my_info
+    match '/my_info(/index)(.:format)' => "my_info#index", :via => :get
+    match '/my_info/edit(.:format)' => "my_info#edit", :via => :get
+    match '/my_info/update(.:format)' => "my_info#update", :via => :put
+    match '/my_info/edit_password(.:format)' => "my_info#edit_password", :via => :get
+    match '/my_info/update_password(.:format)' => "my_info#update_password", :via => :put
 
     #global_settings
     match '/global_settings(/index)(.:format)' => "global_settings#index", :via => :get
