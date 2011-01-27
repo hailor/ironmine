@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitIrmBaseMenus < ActiveRecord::Migration
   def self.up
     Irm::Menu.delete_all

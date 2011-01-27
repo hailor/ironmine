@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitCsiBasePermissions < ActiveRecord::Migration
   def self.up
     csi_surveys_create= Irm::Permission.new(:permission_code=>'CSI_SURVEYS_CREATE',:page_controller=>'csi/surveys',:page_action=>'create',:not_auto_mult=>true)

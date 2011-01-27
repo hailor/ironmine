@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitIrmBasePermissions < ActiveRecord::Migration
   def self.up
     Irm::Permission.delete_all

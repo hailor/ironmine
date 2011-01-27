@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitIcmBaseMenus < ActiveRecord::Migration
   def self.up
     icm_icm_admin_general_menu= Irm::Menu.new(:menu_code=>'ICM_ADMIN_GENERAL_MENU',:leaf_flag=>'N',:not_auto_mult=>true)

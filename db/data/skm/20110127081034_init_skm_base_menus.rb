@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitSkmBaseMenus < ActiveRecord::Migration
   def self.up
     skm_irm_soc_service_knowledge_menu= Irm::Menu.new(:menu_code=>'IRM_SOC_SERVICE_KNOWLEDGE_MENU',:leaf_flag=>'N',:not_auto_mult=>true)

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitEbsBasePermissions < ActiveRecord::Migration
   def self.up
     ebs_home_index= Irm::Permission.new(:permission_code=>'EBS_HOME_INDEX',:page_controller=>'ebs/home',:page_action=>'index',:not_auto_mult=>true)

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitIcmBasePermissions < ActiveRecord::Migration
   def self.up
     icm_close_reasons_create= Irm::Permission.new(:permission_code=>'ICM_CLOSE_REASONS_CREATE',:page_controller=>'icm/close_reasons',:page_action=>'create',:not_auto_mult=>true)

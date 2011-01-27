@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitSkmBasePermissions < ActiveRecord::Migration
   def self.up
     skm_entry_headers_create= Irm::Permission.new(:permission_code=>'SKM_ENTRY_HEADERS_CREATE',:page_controller=>'skm/entry_headers',:page_action=>'create',:not_auto_mult=>true)
