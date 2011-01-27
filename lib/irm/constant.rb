@@ -26,6 +26,6 @@ module Irm
     ACCESS_VIEW = 'VIEW'
     ACCESS_EDIT_VIEW = 'EDIT_VIEW'
     ACCESS_NONE = 'NONE'
-    VIEW_ACTION = ['show','index','get']
+    EDIT_ACTION = ['new','create','edit','update']
   end
 end
