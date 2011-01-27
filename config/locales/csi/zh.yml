@@ -64,4 +64,5 @@ zh:
    label_irm_survey_subject_edit: 编辑调查问卷题目
    label_irm_survey_subject_info: 调查问卷题目信息
    submit: 提交
+   label_csi_survey_subject_list: 题目列表
    #========================= end   irm regions_controller=======================#
