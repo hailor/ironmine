@@ -76,8 +76,8 @@
         </div>
         <%= datatable("site",url_for(:action=>"get_data",:site_group_code => @site_group.group_code),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
-                       {:key=>"site_code",:label=>t(:label_irm_site_site_code),:searchable=>true},
-                       {:key=>"name",:label=>t(:label_irm_site_name),:searchable=>true},
+                       {:key=>"site_code",:label=>t(:label_irm_site_site_code),:searchable=>true,:width=>"10%"},
+                       {:key=>"name",:label=>t(:label_irm_site_name),:searchable=>true,:width=>"20%"},
                        {:key=>"description",:label=>t(:label_irm_site_description)},
                        {:key=>"status_meaning",:label=>t(:label_irm_site_status_code),:width=>"40px"}],
                        {:search_box=>"permissionsSearchBox"})%>

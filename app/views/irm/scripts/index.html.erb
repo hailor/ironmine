@@ -24,7 +24,7 @@
         </div>
         <%= datatable("script",url_for(:action=>"get_data",:format=>"json"),
                   [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"80px"},
-                   {:key=>"entity_meaning",:label=>t(:label_irm_script_script_code),:sortable=>true},
+                   {:key=>"entity_meaning",:label=>t(:label_irm_script_script_code),:sortable=>true,:width=>"80px"},
                    {:key=>"condition_name",:label=>t(:label_irm_script_condition),:sortable=>true,:searchable=>true},
                    {:key=>"action_name",:label=>t(:label_irm_script_action),:sortable=>true,:searchable=>true},
                    {:key=>"template_name",:label=>t(:label_irm_script_template),:sortable=>true,:searchable=>true},
