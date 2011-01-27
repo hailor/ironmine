@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddInitPermissions < ActiveRecord::Migration
   def self.up
     Irm::Permission.find(:all).each do |f|
