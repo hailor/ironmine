@@ -84,7 +84,7 @@ class Irm::Person < ActiveRecord::Base
   end
 
   def allowed_menus
-    ["IRM_SETTING_ENTRANCE_MENU","IRM_ENTRANCE_MENU"]
+    [{:menu_code=>"IRM_ENTRANCE_MENU",:access=>"EDIT_VIEW"},{:menu_code=>"IRM_SETTING_ENTRANCE_MENU",:access=>"EDIT_VIEW"}]
   end
 
   #权限字符串

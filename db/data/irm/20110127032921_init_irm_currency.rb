@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitIrmCurrency < ActiveRecord::Migration
   def self.up
     #初始化currency，删除所有的币种

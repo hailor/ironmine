@@ -1,6 +1,6 @@
 Ironmine::Application.routes.draw do
   scope :module => "irm" do
-    root :to => "navigations#entrance"
+    root :to => "navigations#index"
     match 'login'=>'common#login',:as=>:login
     match 'combo'=>'navigations#combo'
     match 'logout'=>'common#logout',:as=>:logout
@@ -108,15 +108,15 @@ Ironmine::Application.routes.draw do
     match '/identities/:id/update(.:format)' => "identities#update", :via => :put
     match '/identities/new(.:format)' => "identities#new", :via => :get
     match '/identities/create(.:format)' => "identities#create", :via => :post
-    match '/identities/:id/multilingual_edit(.:format)' => "identities#multilingual_edit", :via => :get
-    match '/identities/:id/multilingual_update(.:format)' => "identities#multilingual_update", :via => :put
     match '/identities/get_data(.:format)' => "identities#get_data"
-    match '/identities/my_info(.:format)' => "identities#my_info", :via => :get
-    match '/identities/edit_info(.:format)' => "identities#edit_info", :via => :get
-    match '/identities/update_info(.:format)' => "identities#update_info", :via => :put
-    match '/identities/edit_password(.:format)' => "identities#edit_password", :via => :get
-    match '/identities/update_password(.:format)' => "identities#update_password", :via => :put
     match '/identities/:id/show(.:format)' => "identities#show"
+
+    #my_info
+    match '/my_info(/index)(.:format)' => "my_info#index", :via => :get
+    match '/my_info/edit(.:format)' => "my_info#edit", :via => :get
+    match '/my_info/update(.:format)' => "my_info#update", :via => :put
+    match '/my_info/edit_password(.:format)' => "my_info#edit_password", :via => :get
+    match '/my_info/update_password(.:format)' => "my_info#update_password", :via => :put
 
     #global_settings
     match '/global_settings(/index)(.:format)' => "global_settings#index", :via => :get
@@ -144,46 +144,7 @@ Ironmine::Application.routes.draw do
     match '/scripts/create(.:format)' => "scripts#create", :via => :post
     match '/scripts/:id/multilingual_edit(.:format)' => "scripts#multilingual_edit", :via => :get
     match '/scripts/:id/multilingual_update(.:format)' => "scripts#multilingual_update", :via => :put
-
-    #functions
-    match '/functions(/index)(.:format)' => "functions#index", :via => :get
-    match '/functions/:id/edit(.:format)' => "functions#edit", :via => :get
-    match '/functions/:id(.:format)' => "functions#update", :via => :put
-    match '/functions/new(.:format)' => "functions#new", :via => :get
-    match '/functions/create(.:format)' => "functions#create", :via => :post
-    match '/functions/:id/show(.:format)' => "functions#show", :via => :get
-    match '/functions/get_data(.:format)' => "functions#get_data"
-    match '/functions/:function_id/add_permissions(.:format)' => "functions#add_permissions", :via => :get
-    match '/functions/:function_code/get_available_permissions(.:format)' => "functions#get_available_permissions", :via => :get
-    match '/functions/:function_id/select_permissions(.:format)' => "functions#select_permissions"
-    match '/functions/:function_id/add_permissions(.:format)' => "functions#add_permissions", :via => :post
-    match '/functions/:function_id/:permission_id/remove_permission(.:format)' => "functions#remove_permission", :via => :get
-    
-    #function_groups
-    match '/function_groups(/index)(.:format)' => "function_groups#index", :via => :get
-    match '/function_groups/:id/edit(.:format)' => "function_groups#edit", :via => :get
-    match '/function_groups/:id(.:format)' => "function_groups#update", :via => :put
-    match '/function_groups/new(.:format)' => "function_groups#new", :via => :get
-    match '/function_groups/create(.:format)' => "function_groups#create", :via => :post
-    match '/function_groups/:id/show(.:format)' => "function_groups#show", :via => :get
-    match '/function_groups/get_data(.:format)' => "function_groups#get_data"
-    match '/function_groups/:group_id/add_functions(.:format)' => "function_groups#add_functions", :via => :get
-    match '/function_groups/:group_code/get_available_functions(.:format)' => "function_groups#get_available_functions", :via => :get
-    match '/function_groups/:group_id/select_functions(.:format)' => "function_groups#select_functions"
-    match '/function_groups/:group_id/add_functions(.:format)' => "function_groups#add_functions", :via => :post
-    match '/function_groups/:group_id/:function_id/remove_function(.:format)' => "function_groups#remove_function", :via => :get
-    match '/function_groups/:group_code/get_own_functions(.:format)' => "function_groups#get_own_functions", :via => :get
-    match '/function_groups/:group_id/:function_id/remove_function(.:format)' => "function_groups#remove_function", :via => :get
     # navigations
-    match '/navigations/entrance(.:format)' =>'navigations#entrance'
-    match '/navigations/workspace(.:format)' =>'navigations#workspace'
-    match '/navigations/my_page(.:format)' =>'navigations#my_page'
-    match '/navigations/my_setting(.:format)' =>'navigations#my_setting'
-    match '/navigations/admin(.:format)' =>'navigations#admin'
-    match '/navigations/advance_setting(.:format)' =>'navigations#advance_setting'
-    match '/navigations/base_setting(.:format)' =>'navigations#base_setting'
-    match '/navigations/icm_setting(.:format)' =>'navigations#icm_setting'
-    match '/navigations/common(.:format)' =>'navigations#common'
     #mail_templates
     match '/mail_templates/new(.:format)'=>"mail_templates#new",:via=>:get
     match '/mail_templates/get_data(.:format)' => "mail_templates#get_data"
