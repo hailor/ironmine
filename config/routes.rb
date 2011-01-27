@@ -17,7 +17,6 @@ Ironmine::Application.routes.draw do
     match '/lookup_types/:id/edit(.:format)'=>"lookup_types#edit",:via=>:get
     match '/lookup_types/:id'=>"lookup_types#update",:via=>:put
     match '/lookup_types/check_lookup_code'=>"lookup_types#check_lookup_code"
-    match '/lookup_types/get_lookup_values'=>"lookup_types#get_lookup_values"
     match '/lookup_types/:id/add_code'=>"lookup_types#add_code"
     match '/lookup_types/:id(.:format)'=>"lookup_types#show"
     #product modules
@@ -184,14 +183,13 @@ Ironmine::Application.routes.draw do
     match '/mail_templates/copy_template(.:format)'=>"mail_templates#copy_template",:via=>:post
     match '/mail_templates/test_mail_template'=>"mail_templates#test_mail_template"
     match '/mail_templates(/index)(.:format)'=>"mail_templates#index",:via=>:get
-    match '/mail_templates/:id/show(.:format)'=>"mail_templates#show",:via=>:get
     match '/mail_templates/:id/edit(.:format)'=>"mail_templates#edit",:via=>:get
     match '/mail_templates/:id(.:format)'=>"mail_templates#update",:via=>:put
     match '/mail_templates/:id(.:format)'=>"mail_templates#destroy",:via=>:delete
     match '/mail_templates/:id/multilingual_edit(.:format)'=>"mail_templates#multilingual_edit",:via=>:get
     match '/mail_templates/:id/multilingual_update(.:format)'=>"mail_templates#multilingual_update",:via=>:put
     match '/mail_templates/get_current_language(.:format)'=>"mail_templates#get_current_language",:via=>:get
-    match '/mail_templates/:id(.:format)'=>"mail_templates#show ",:via=>:get
+    match '/mail_templates/:id(.:format)'=>"mail_templates#show",:via=>:get
 
     #currencies
     match '/currencies(/index)(.:format)' => "currencies#index", :via => :get
@@ -597,6 +595,12 @@ Ironmine::Application.routes.draw do
     match '/entry_headers/new_step_4(.:format)' => "entry_headers#new_step_4", :via => :get
     match '/entry_headers/index_search(.:format)' => "entry_headers#index_search", :via => :post
     match '/entry_headers/index_search_get_data(.:format)' => "entry_headers#index_search_get_data"
+    match '/entry_headers/:person_id/my_favorites_data' => "entry_headers#my_favorites_data"
+    match '/entry_headers/:person_id/my_favorites' => "entry_headers#my_favorites", :via => :get
+    match '/entry_headers/:person_id/:id/add_favorites' => "entry_headers#add_favorites", :via => :get
+    match '/entry_headers/data_grid(.:format)' => "entry_headers#data_grid", :via => :get
+    match '/entry_headers/my_favorites(.:format)' => "entry_headers#my_favorites", :via => :get
+    match '/entry_headers/remove_favorite(.:format)' => "entry_headers#remove_favorite", :via => :get
   end
   
   match '/demo(/index)' => 'demo#index'

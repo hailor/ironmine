@@ -1,4 +1,16 @@
 /******login form and login forgot password form**********************/
+
+#main-logo {
+background:url("../images/main-logo.png") no-repeat scroll left top transparent;
+    display:block;
+    height:124px;
+    margin:4px 0 0 16px;
+    overflow:hidden;
+    position:absolute;
+    width:300px;
+    z-index:10;
+}
+
 .login_form_box #login_form .loginError {
     color:#FF0000;
     padding-bottom:10px;

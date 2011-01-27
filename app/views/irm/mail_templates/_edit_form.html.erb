@@ -57,6 +57,11 @@
                     <%=f.radio_button :template_type,"simple"%><%=t(:label_irm_mail_simple_template_type)%></td>
             </tr>
             <tr>
+              <td class="labelCol"><label><%=(t :label_irm_mail_template_status_code)%></label></td>
+              <td class="dataCol"><%=f.select :status_code,options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@mail_template.status_code)%>
+              </td>
+            </tr>
+            <tr>
               <td class="labelCol"><label><%=t(:label_irm_mail_template_mail_body)%></label></td>
               <td class="data2Col" colspan="3"><%=f.text_area :mail_body ,:cols => 85, :rows => 15,:required=>true,:value=>@mail_template[:mail_body]%></td>
             </tr>

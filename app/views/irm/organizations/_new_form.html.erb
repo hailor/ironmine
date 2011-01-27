@@ -35,12 +35,19 @@
               <td class="labelCol"><label><%=(t :label_irm_organization_company_name)%></label></td>
               <td class="dataCol"><%=f.select(:company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
                                                 options_from_collection_for_select(available_company,:id,:wrap_name),
-                                                {},:action=>url_for(:controller=>"irm/organizations",:action=>"belongs_to",:company_id=>"cascade_id"),:choice_title=>t(:actionview_instancetag_blank_option),
-                                  :cascade=>"organization_select")%></td>
+                                                {},:action=>url_for(:controller=>"irm/organizations",:action=>"belongs_to",:company_id=>"cascade_id"),
+                                                :choice_title=>t(:actionview_instancetag_blank_option),
+                                  :cascade=>"organization_select",:required=>true)%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
               <td class="labelCol"><label><%=(t :label_irm_organization_short_name)%></label></td>
               <td class="dataCol"><%=f.text_field :short_name, :irm_uppercase=>true,:required=>true%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
             </tr>
-            <tr>              
+            <tr>
               <td class="labelCol"><label><%=(t :label_irm_organization_name)%></label></td>
               <td class="dataCol"><%=f.text_field :name, :required=>true%></td>
               <td class="labelCol empty">&nbsp;</td>

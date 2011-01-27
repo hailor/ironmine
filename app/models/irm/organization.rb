@@ -6,7 +6,7 @@ class Irm::Organization < ActiveRecord::Base
   has_many :organizations_tls,:dependent => :destroy
   acts_as_multilingual
 
-  validates_presence_of :short_name
+  validates_presence_of :short_name,:company_id
   validates_uniqueness_of :short_name, :if => Proc.new { |i| !i.short_name.blank? }
   validates_format_of :short_name, :with => /^[A-Z0-9_]*$/ ,:if=>Proc.new{|i| !i.short_name.blank?}
 

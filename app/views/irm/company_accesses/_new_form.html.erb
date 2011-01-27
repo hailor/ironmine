@@ -1,5 +1,5 @@
+<%= stylesheet_link_tag "/javascripts/yui3.3/datatable/assets/skins/sam/datatable.css"%>
 <%= setting_title %>
-
 <%= form_for(@company_access,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
 <%= hidden_field_tag "person_id",@person_id%>    
 <%= hidden_field_tag "return_url",@return_url%>    
@@ -20,30 +20,42 @@
   <div class="pbBody">
     <%= error_for @company_access%>
     <div class="pbSubsection">
-      <table cellspacing="0" cellpadding="0" border="0" class="detailList" style="padding-left: 10px;">
-        <tbody>
-        <tr class="tdSectionRowHeader">
-          <th scope="col" class="tdTableColumnHeader" align="left" style="font-weight:bold;"><%= t(:label_irm_company_name) %></th>
-          <th scope="col" align="left" style="font-weight:bold;"><%= t(:label_irm_person_company_access_flag) %></th>
-          <th scope="col" align="left" style="font-weight:bold;"><%= t(:label_irm_person_support_stuff_flag) %></th>
-        </tr>
+      <br>
+      <div class="datatable">
+      <div class="yui3-widget yui3-datatable">
+        <div class="yui3-datatable-content">
+      <table cellspacing="0" cellpadding="0" border="0" class='grid'>
+        <thead class="yui3-datatable-columns">
+            <tr class="yui3-datatable-first yui3-datatable-last">
+              <th class="yui3-column"><div class="yui3-datatable-liner"><%= t(:label_irm_company_name) %></div></th>
+              <th class="yui3-column"><div class="yui3-datatable-liner"><%= t(:label_irm_person_company_access_flag) %></div></th>
+              <th class="yui3-column"><div class="yui3-datatable-liner"><%= t(:label_irm_person_support_stuff_flag) %></div></th>
+            </tr>
+        </thead>
+        <tbody class="yui3-datatable-data">
           <% for company in @companies %>
-            <tr class="tdSectionRow" >
+            <tr class="yui3-datatable-even">
                 <%= hidden_field_tag "irm_company_access[#{company.id}][accessable_company_id]",company.id %>
                 <%= hidden_field_tag "irm_company_access[#{company.id}][person_id]",@person_id%>
-                <td align="left"><%= company[:name] %></td>
-                <td>
-                    <%= check_box_tag "irm_company_access[#{company.id}][company_access_flag]",'Y',
+                <td class="yui3-column"><div class='yui3-datatable-liner'><%= company[:name] %></div></td>
+                <td class="yui3-column">
+                    <div class='yui3-datatable-liner'><%= check_box_tag "irm_company_access[#{company.id}][company_access_flag]",'Y',
                                       company_access_flag(@person_id,company.id,"company_access_flag")%>
+                    </div>
                 </td>
-                <td>
+                <td class="yui3-column">
+                    <div class='yui3-datatable-liner'>
                     <%= check_box_tag "irm_company_access[#{company.id}][support_stuff_flag]",'Y',
                                       company_access_flag(@person_id,company.id,"support_stuff_flag")%>
+                    </div>
                 </td>
             </tr>
         <% end %>
         </tbody>
       </table>
+    </div>
+  </div>
+</div>
     </div>
   </div>
   <div class="pbBottomButtons">

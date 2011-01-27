@@ -51,8 +51,7 @@
         <tbody>
              <tr>
                  <td class="labelCol"><label><%=t(:label_irm_person_company)%></label></td>
-                 <td class="dataCol"><%=f.select(:company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                           options_from_collection_for_select(available_company,:id,:wrap_name,@person.company_id),
+                 <td class="dataCol"><%=f.select(:company_id,options_from_collection_for_select(available_company,:id,:wrap_name,@person.company_id),
                                            {},:action=>url_for(:controller=>"irm/organizations",
                                                                :action=>"belongs_to",
                                                                :company_id=>"cascade_id"),
@@ -135,6 +134,11 @@
                   <td class="labelCol"><label>
                      <%=t(:label_irm_person_notification_flag)%></label></td>
                   <td class="dataCol"><%=f.check_box :notification_flag%></td>
+             </tr>
+             <tr>
+              <td class="labelCol"><label><%=(t :label_irm_person_status_code)%></label></td>
+              <td class="dataCol"><%=f.select :status_code,options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@person.status_code)%>
+              </td>
              </tr>
         </tbody>
       </table>
