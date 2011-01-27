@@ -242,13 +242,17 @@ class ApplicationController < ActionController::Base
     @menu_permission = permission.dup
     @setting_menus = default_setting_menus
     allowed_menus = Irm::Person.current.allowed_menus
-    @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>permission[:page_controller],:page_action=>permission[:page_action]},allowed_menus,(session[:entrance_menu]||default_menus)[1])
+    @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>permission[:page_controller],:page_action=>permission[:page_action]},allowed_menus,session[:top_menu])
     if @page_menus[0]&&@page_menus[0].eql?(Irm::Constant::TOP_SETTING_MENU)
       @setting_menus = @page_menus.dup
       self.class.layout "setting"
       @page_menus = (session[:entrance_menu]||default_menus)[0..1]
+      # 保存这一次的菜单路径
+      session[:top_menu] = @setting_menus[1]
     else
       session[:entrance_menu] = @page_menus.dup if @page_menus.length>1
+      # 保存这一次的菜单路径
+      session[:top_menu] = @page_menus[1]
     end
   end
 
