@@ -35,7 +35,7 @@ class Irm::Identity < ActiveRecord::Base
 
   def self.list_all
     select_all.
-        real.with_language
+        real.with_language(I18n.locale)
   end
 
   def before_save
