@@ -1,4 +1,4 @@
-<%= page_title %>
+<%= app_title %>
 
 <%= form_for(@survey,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
 <%= hidden_field_tag :return_url,:value=>@return_url %>
