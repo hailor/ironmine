@@ -64,4 +64,5 @@ en:
    label_irm_survey_subject_edit: Edit Survey Subject
    label_irm_survey_subject_info: Survey Info
    submit: Submit
+   label_csi_survey_subject_list: Subject List
    #========================= end   irm regions_controller=======================#

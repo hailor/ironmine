@@ -2,7 +2,7 @@ class Irm::GlobalSettingsController < ApplicationController
   # GET /global_settings
   # GET /global_settings.xml
   def index
-    @global_setting = Irm::GlobalSetting.all.first
+    @global_setting = Irm::GlobalSetting.list_all.first
 
     respond_to do |format|
       format.html # index.html.erb

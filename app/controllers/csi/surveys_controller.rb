@@ -25,6 +25,7 @@ class Csi::SurveysController < ApplicationController
   # GET /surveys/new.xml
   def new
     @survey =Csi:: Survey.new
+    @return_url=request.env['HTTP_REFERER']
 
     respond_to do |format|
       format.html # new.html.erb
@@ -60,7 +61,7 @@ class Csi::SurveysController < ApplicationController
 
     respond_to do |format|
       if @survey.update_attributes(params[:csi_survey])
-        format.html { redirect_to(@survey, :notice => t(:successfully_updated)) }
+        format.html { redirect_to({:action=>"show",:id=>@survey.id}, :notice => t(:successfully_updated)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

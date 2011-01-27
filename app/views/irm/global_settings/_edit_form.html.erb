@@ -33,15 +33,15 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%= t(:label_irm_global_setting_theme_name)%></label></td>
-              <td class="dataCol"><%=f.select :theme_name, available_themes, {:include_blank => false}%></td>
+              <td class="data2Col"><%=f.select :theme_name, available_themes, {:include_blank => false}%></td>
+            </tr>
+            <tr>
               <td class="labelCol"><label><%= t(:label_irm_global_setting_upload_file_limit) %></label></td>
-              <td class="dataCol"><%=f.text_field :upload_file_limit, :irm_numberonly => true, :required => true%></td>
+              <td class="data2Col"><%=f.text_field :upload_file_limit, :irm_numberonly => true, :required => true%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%= t(:label_irm_global_setting_timezone)%></label></td>
-              <td class="dataCol"><%=f.select :timezone, available_timezone, {:include_blank => false}%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="data2Col"><%=f.select :timezone, available_timezone, {:include_blank => false}%></td>
             </tr>
         </tbody>
       </table>
