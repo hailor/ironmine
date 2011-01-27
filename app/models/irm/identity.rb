@@ -19,13 +19,24 @@ class Irm::Identity < ActiveRecord::Base
   #加入activerecord的通用方法和scope
   query_extend
 
+
   scope :query_all,lambda{where("#{table_name}.type IS NULL")}
 
-  scope :with_language,lambda{
-    joins("LEFT OUTER JOIN #{Irm::Language.view_name} ON #{Irm::Language.view_name}.language_code=#{table_name}.language_code").
-    select("#{table_name}.*,#{Irm::Language.view_name}.description language_description").
-    where("#{Irm::Language.view_name}.language = ?",I18n.locale)
+  scope :with_language,lambda{|language|
+    joins("LEFT OUTER JOIN #{Irm::Language.view_name} ON #{Irm::Language.view_name}.language_code=#{table_name}.language_code AND #{Irm::Language.view_name}.language = '#{language}'").
+    select("#{Irm::Language.view_name}.description language_description")
   }
+
+  scope :real,lambda{where("#{table_name}.type IS NULL")}
+
+  scope :select_all,lambda{
+    select("#{table_name}.*")
+  }
+
+  def self.list_all
+    select_all.
+        real.with_language
+  end
 
   def before_save
      #如果password变量值不为空,则修改密码
