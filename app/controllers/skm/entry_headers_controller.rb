@@ -53,17 +53,19 @@ class Skm::EntryHeadersController < ApplicationController
   
   def new_step_2
     @entry_header = Skm::EntryHeader.new
-    session[:skm_entry_header].each do |k, v|
-      @entry_header[k.to_sym] = v
-    end
-    if @entry_header.entry_template_id
+    if !session[:skm_entry_header] || !session[:skm_entry_header][:entry_template_id]
       @templates = Skm::EntryTemplate.enabled
+      @entry_header.errors.add(:entry_template_id, t(:error_choice_template))
       respond_to do |format|
         format.html { render :action => "new_step_1" }
         format.xml  { render :xml => @entry_header.errors, :status => :unprocessable_entity }
       end
+    else
+      session[:skm_entry_header].each do |k, v|
+        @entry_header[k.to_sym] = v
+      end
+      @elements = Skm::EntryTemplateDetail.owned_elements(@entry_header.entry_template_id)
     end
-    @elements = Skm::EntryTemplateDetail.owned_elements(@entry_header.entry_template_id)
   end  
 
   def new_step_3
