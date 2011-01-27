@@ -91,7 +91,7 @@
         <table cellpadding="0" cellspacing="0" border="0">
           <tbody>
             <tr>
-              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_site_list) %></h2></td>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_csi_survey_subject_list) %></h2></td>
               <td class="pbButton">
                 <div class="button"><%= link_to t(:add), {:controller=>"csi/survey_subjects",
                                                           :action=>"new",:survey_id=>@survey.id}%></div>
@@ -115,8 +115,7 @@
                    {:key=>"seq_num",:label=>t(:label_csi_survey_subject_seq_num),:sortable=>true,:width=>"70px"},
                    {:key=>"name",:label=>t(:label_csi_survey_subject_title),:sortable=>true},
                    {:key=>"prompt",:label=>t(:label_csi_survey_subject_prompt),:sortable=>true},
-                   {:key=>"required_flag",:label=>t(:required),:sortable=>true},
-                   {:key=>"input_type",:label=>t(:label_csi_survey_subject_input_type),:sortable=>true}],
+                   {:key=>"required_flag",:label=>t(:required),:sortable=>true}],
                    {:row_perpage=>20})
         %>
 

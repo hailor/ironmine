@@ -60,7 +60,7 @@ class Csi::SurveysController < ApplicationController
 
     respond_to do |format|
       if @survey.update_attributes(params[:csi_survey])
-        format.html { redirect_to(@survey, :notice => t(:successfully_updated)) }
+        format.html { redirect_to({:action=>"show",:id=>@survey.id}, :notice => t(:successfully_updated)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

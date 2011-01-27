@@ -21,7 +21,11 @@ class Csi::SurveySubject < ActiveRecord::Base
 
   def self.get_max_seq_num(survey_id)
      next_seq_num = self.query_by_survey_id(survey_id).maximum("seq_num")
-     next_seq_num = (next_seq_num/10.round + 1)*10
+     if next_seq_num.blank?
+       next_seq_num = 10
+     else
+       next_seq_num = (next_seq_num/10.round + 1)*10       
+     end
      next_seq_num
   end
 
