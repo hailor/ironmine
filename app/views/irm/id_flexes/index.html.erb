@@ -26,7 +26,7 @@
           </div>
           <div id="status_code" style="display:none">
             <%= check_img("{status_code}") %>
-          </div>                                
+          </div>
         </div>
         <%= datatable("pizza",url_for(:action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},

@@ -21,16 +21,19 @@
       <div class="pbBody">
         <div id="identities_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:controller => "irm/identities", :action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:controller => "irm/identities", :action=>"show",:id=>"{id}"}) %>
+            <%= link_to(t(:edit),{:controller => "irm/identities", :action=>"edit",:id=>"{id}"}) %>&nbsp;<%= link_to(t(:show),{:controller => "irm/identities", :action=>"show",:id=>"{id}"}) %>
           </div>
+          <div id="status_code" style="display:none">
+            <%= check_img("{status_code}") %>
+          </div>          
         </div>
         <%= datatable("identities_list",url_for(:controller => "irm/identities", :action=>"get_data",:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
                        {:key=>"login_name",:label=>t(:label_irm_identity_login_name),:sortable=>true},
                        {:key=>"full_name",:label=>t(:label_irm_identity_full_name),:sortable=>true},
                        {:key=>"email",:label=>t(:label_irm_identity_email),:sortable=>true},
                        {:key=>"language_description",:label=>t(:label_irm_identity_language_code),:sortable=>true},
-                       {:key=>"status_code",:label=>t(:active),:sortable=>true}
+                       {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template",:width=>"80px"}
                        ])%>
       </div>
     </div>

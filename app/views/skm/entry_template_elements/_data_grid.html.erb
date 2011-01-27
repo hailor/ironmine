@@ -19,15 +19,18 @@
         <div id="entry_elements_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:controller => "skm/entry_template_elements", :action=>"edit",:id=>"{id}"}) %>
-          </div>          
+          </div>
+          <div id="status_code" style="display:none">
+            <%= check_img("{status_code}") %>
+          </div>               
         </div>
         <%= datatable("entry_elements_list",url_for(:controller => "skm/entry_template_elements", :action=>"get_data", :format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template"},
-                       {:key=>"entry_template_element_code",:label=>t(:label_skm_entry_template_element_code),:sortable=>true, :searchable => true},
-                       {:key=>"name",:label=>t(:name),:sortable=>true, :searchable => true},
+                       {:key=>"entry_template_element_code",:label=>t(:label_skm_entry_template_element_code),:sortable=>true, :searchable => true, :width => "15%"},
+                       {:key=>"name",:label=>t(:name),:sortable=>true, :searchable => true, :width => "25%"},
                        {:key=>"description",:label=>t(:description),:sortable=>true},
-                       {:key=>"default_rows",:label=>t(:label_skm_entry_template_element_rows),:sortable=>true},
-                       {:key=>"status_code",:label=>t(:active),:sortable=>true}
+                       {:key=>"default_rows",:label=>t(:label_skm_entry_template_element_rows),:sortable=>true, :width => "80px"},
+                       {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "80px"}
                        ], {:search_box => "elementsSearchBox"}) %>
       </div>
     </div>

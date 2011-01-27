@@ -69,10 +69,10 @@ class Irm::IdentitiesController < ApplicationController
   end
 
   def get_data
-    identities_scope = Irm::Identity.query_all.with_language
+    identities_scope = Irm::Identity.query_all.with_language.status_meaning
     identities,count = paginate(identities_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(identities.to_grid_json([:login_name,:full_name,:email,:language_description,:status_code], count)) }
+      format.json  {render :json => to_jsonp(identities.to_grid_json([:login_name,:full_name,:email,:language_description,:status_code, :status_meaning], count)) }
     end    
   end
   #个人信息显示页面
