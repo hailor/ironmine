@@ -9,6 +9,7 @@
                 <div class="button"><%= link_to t(:new), {:controller => "irm/roles", :action => "new"}%></div>
               </td>
               <td class="pbHelp">
+                <div id="rolesSearchBox"></div>
               </td>
             </tr>
           </tbody>
@@ -29,7 +30,8 @@
                        {:key=>"name",:label=>t(:name),:sortable=>true, :width => "20%",:searchable=>true},
                        {:key=>"description",:label=>t(:description),:sortable=>true},
                        {:key=>"menu_name",:label=>t(:label_irm_role_menu),:sortable=>true,:searchable=>true},
-                       {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}])%>
+                       {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}],
+                       {:search_box=>"rolesSearchBox"})%>
       </div>
     </div>
 </div>
