@@ -3,6 +3,7 @@ Ironmine::Application.routes.draw do
     root :to => "navigations#index"
     match 'login'=>'common#login',:as=>:login
     match 'combo'=>'navigations#combo'
+    match 'access_deny' => 'navigations#access_deny'
     match 'logout'=>'common#logout',:as=>:logout
     match 'forgot_password' => "common#forgot_password"
     #lookup_types

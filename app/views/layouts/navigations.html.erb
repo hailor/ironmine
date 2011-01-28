@@ -1,0 +1,110 @@
+<html>
+<head>
+  <title>Ironmine</title>
+
+  <script type="text/javascript" src="/javascripts/yui3.3/yui/yui-min.js"></script>
+  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "tabbar_ext" %>
+  <%= javascript_include_tag "survey" %>
+  <%= csrf_meta_tag %>
+  <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/application.css"></link>
+  <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/common.css"></link>
+  <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/tabbar.css"></link>
+
+</head>
+<body id ="homePage" class="homeTab homepage sfdcBody yui3-skin-sam yui-skin-sam">
+    <div id="contentWrapper">
+        <div id="AppBodyHeader" class="bPageHeader">
+            <table id="phHeader" class="phHeader" cellpadding="0" cellspacing="0" border="0">
+              <tbody>
+                <tr>
+                  <td class="left">
+                    <img width="175" height="65" title="salesforce.com" id="phHeaderLogoImage" src="/themes/salesforce2/images/logo.png">
+                  </td>
+                  <td class="searchCell">
+                    <form id="phSearchForm">
+                      <div id="phSearchContainer" class="headerSearchContainer">
+                        <div class="headerSearchLeftRoundedCorner">
+                          <div class="searchBoxClearContainer">
+                            <input id="phSearchInput" class="headerSearchBoxGhostText" type="text" size="20" maxlength="100">
+                          </div>
+                          <div id="searchButtonContainer" class="headerSearchRightRoundedCorner">
+                            <input id="phSearchButton" type="button" value="<%= t(:search) %>">
+                          </div>
+                        </div>
+                        <div id="searchOptionsContainer" class="headerSearchOptions">
+                          <a href="javascript:void(0);" class="headerSearchOptionsLink"><%= t(:options) %></a>
+                        </div>
+                      </div>
+                    </form>
+                  </td>
+                  <td class="right vtop">
+                    <div class="multiforce">
+                      <div id="toolbar"></div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table id="tabsNewBar" class="tabsNewBar" cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div id="tabNavigation" class="tabNavigation">
+                                <div class="tabBarLeft"></div>
+                                <table id="tabBar" class="tab" cellpadding="0" cellspacing="0">
+                                </table>
+                                <div class="tabBarRight"></div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="bodyDiv" class="bodyDiv">
+            <div id="bd_l"></div>
+            <div id="bd_r"></div>
+            <div id="motifCurve">
+                <div id="mc_l"></div>
+                <div id="mc_r"></div>
+            </div>
+            <div id="bd_b">
+                <div id="bd_bl"></div>
+                <div id="bd_br"></div>
+            </div>
+            <div id="sidebarDiv">
+                <div class="sidebarInner">
+                  <div class="sidebarModule">
+                    <div class="sidebarModuleHeader"><h2>快捷菜单</h2></div>
+                    <div class="sidebarModuleBody">
+                      <div class="mruList">
+                        <div class="mruItem">
+                          <a title="[Alt+1]" accesskey="1" class="accountMru" href="/00190000005sBLj"><img title="客户: 123" class="mruIcon" alt="客户: 123" src="/images/s.gif"><span class="mruText">123</span></a>
+                        </div>
+                        <div class="mruItem">
+                          <a title="[Alt+1]" accesskey="1" class="accountMru" href="/00190000005sBLj"><img title="客户: 123" class="mruIcon" alt="客户: 123" src="/images/s.gif"><span class="mruText">123</span></a>
+                        </div>
+                        <div class="mruItem">
+                          <a title="[Alt+1]" accesskey="1" class="accountMru" href="/00190000005sBLj"><img title="客户: 123" class="mruIcon" alt="客户: 123" src="/images/s.gif"><span class="mruText">123</span></a>
+                        </div>
+                        <div class="mruItem">
+                          <a title="[Alt+1]" accesskey="1" class="accountMru" href="/00190000005sBLj"><img title="客户: 123" class="mruIcon" alt="客户: 123" src="/images/s.gif"><span class="mruText">123</span></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <table id="bodyTable" class="outer" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td id="bodyCell" class="oRight">
+                    <%= yield %>
+                  </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,10 +1,14 @@
 # 用于存放IRM模块对应的菜单页面
 class Irm::NavigationsController < ApplicationController
+    layout "navigations"
     skip_before_filter :check_permission,:menu_setup, :menu_entry_setup
   # 顶级菜单对应的菜单页面
   def index
-    entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>Irm::Constant::TOP_BUSSINESS_MENU})
-    redirect_to :controller => entrance[:page_controller], :action => entrance[:page_action]
+    redirect_entrance
+  end
+
+  def access_deny
+    
   end
 
   def combo
