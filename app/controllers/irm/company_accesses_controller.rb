@@ -1,5 +1,9 @@
 class Irm::CompanyAccessesController < ApplicationController
 
+  def index
+    redirect_to({:action=>"new"})
+  end
+
   def new
    @person_id = params[:person_id] if params[:person_id]
    @company_access = Irm::CompanyAccess.new
