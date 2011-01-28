@@ -64,6 +64,7 @@ class Irm::FlexValuesController < ApplicationController
     @value_set = Irm::FlexValueSet.find(params[:value_set_id])
     
     flex_values_scope = Irm::FlexValue.multilingual.where(:flex_value_set_id => params[:value_set_id])
+    flex_values_scope = flex_values_scope.match_value("#{Irm::FlexValue.table_name}.flex_value",params[:flex_value])
     flex_values,count = paginate(flex_values_scope)
     respond_to do |format|
       format.json  {render :json => to_jsonp(flex_values.to_grid_json([:display_sequence,:flex_value,:flex_value_meaning,:description,:start_date_active,:end_date_active,], count)) }

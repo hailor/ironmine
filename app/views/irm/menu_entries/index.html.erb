@@ -26,6 +26,7 @@
                 <div class="button"><%= link_to t(:new), {:action => "new", :menu_code => @menu.menu_code}%></div>
               </td>
               <td class="pbHelp">
+                <div id="entriesSearchBox"></div>
               </td>
             </tr>
           </tbody>
@@ -47,7 +48,8 @@
                        {:key=>"icon",:label=>t(:label_irm_menu_entry_icon),:sortable=>true},
                        {:key=>"css_name",:label=>t(:label_irm_menu_entry_css_name),:sortable=>true},
                        {:key=>"display_flag",:label=>t(:label_irm_menu_entry_display_flag),:sortable=>true},
-                       {:key=>"status_code",:label=>t(:active),:sortable=>true}]) %>
+                       {:key=>"status_code",:label=>t(:active),:sortable=>true}],
+                       {:not_load=>true,:search_box=>"entriesSearchBox",:select=>"multiple"}) %>
       </div>
     </div>
 </div>

@@ -9,6 +9,7 @@
                 <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
               </td>
               <td class="pbHelp">
+                <div id="productModulesSearchBox"></div>
               </td>
             </tr>
           </tbody>
@@ -24,11 +25,12 @@
           </div>
         </div>
         <%= datatable("product_modules_list",url_for(:action=>"get_data",:format=>"json"),
-                  [{:key=>"product_short_name",:label=>t(:label_irm_product_module_product_short_name),:sortable=>true, :width => "15%"},
-                   {:key=>"name",:label=>t(:label_irm_product_module_name),:sortable=>true, :width => "30%"},
+                  [{:key=>"product_short_name",:label=>t(:label_irm_product_module_product_short_name),:sortable=>true, :width => "15%",:searchable=>true},
+                   {:key=>"name",:label=>t(:label_irm_product_module_name),:sortable=>true, :width => "30%",:searchable=>true},
                    {:key=>"description",:label=>t(:label_irm_product_module_description),:sortable=>true},
                    {:key=>"installed_flag",:label=>t(:label_irm_product_module_installed_flag),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"},
-                   {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}])%>
+                   {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}],
+                   {:not_load=>true,:search_box=>"productModulesSearchBox",:select=>"multiple"})%>
       </div>
     </div>
 </div>

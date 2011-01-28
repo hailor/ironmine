@@ -97,6 +97,12 @@ class Irm::GeneralCategoriesController < ApplicationController
 
   def get_data
     general_categories_scope = Irm::GeneralCategory.list_all
+    general_categories_scope = general_categories_scope.match_value("#{Irm::CompaniesTl.table_name}.company_name",params[:company_name])
+    general_categories_scope = general_categories_scope.match_value("#{Irm::IdFlexStructuresTl.table_name}.id_flex_structure_name",params[:category_type_name])
+    general_categories_scope = general_categories_scope.match_value("ifs1.segment_name",params[:segment1_name])
+    general_categories_scope = general_categories_scope.match_value("ifs2.segment_name",params[:segment2_name])
+    general_categories_scope = general_categories_scope.match_value("ifs3.segment_name",params[:segment3_name])
+    general_categories_scope = general_categories_scope.match_value("CONCAT_WS(ifst.concatenated_segment_delimiter, fvt1.flex_value_meaning, fvt2.flex_value_meaning, fvt3.flex_value_meaning)",params[:concat_segment_name])
     general_categories,count = paginate(general_categories_scope)
     respond_to do |format|
       format.json  {render :json => to_jsonp(general_categories.to_grid_json([:company_name, :segment1_name, :segment2_name, :segment3_name, :concat_segment_name, :status_code, :category_type_name], count)) }

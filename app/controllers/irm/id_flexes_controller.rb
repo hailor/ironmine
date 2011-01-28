@@ -66,6 +66,8 @@ class Irm::IdFlexesController < ApplicationController
 
   def get_data
     id_flexes_scope = Irm::IdFlex.where("1=1")
+    id_flexes_scope = id_flexes_scope.match_value("#{Irm::IdFlex.table_name}.id_flex_code",params[:id_flex_code])
+    id_flexes_scope = id_flexes_scope.match_value("#{Irm::IdFlex.table_name}.id_flex_name",params[:id_flex_name])
     id_flexes,count = paginate(id_flexes_scope)
     respond_to do |format|
       format.json  {render :json => to_jsonp(id_flexes.to_grid_json([:id_flex_code,:id_flex_name,:description,:status_code], count)) }
