@@ -19,15 +19,21 @@
         <div id="entry_statuses_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:controller => "skm/entry_statuses", :action=>"edit",:id=>"{id}"}) %>
-          </div>          
+          </div>
+          <div id="status_code" style="display:none">
+            <%= check_img("{status_code}") %>
+          </div>
+          <div id="visiable_flag" style="display:none">
+            <%= check_img("{visiable_flag}") %>
+          </div>               
         </div>
         <%= datatable("entry_statuses_list",url_for(:action=>"get_data",:format=>"json"),
-                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50%"},
-                   {:key=>"entry_status_code",:label=>t(:label_skm_entry_status_code),:sortable=>true, :searchable => true},
-                   {:key=>"name",:label=>t(:name),:sortable=>true, :searchable => true},
+                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"40px"},
+                   {:key=>"entry_status_code",:label=>t(:label_skm_entry_status_code),:sortable=>true, :searchable => true,:width=>"15%"},
+                   {:key=>"name",:label=>t(:name),:sortable=>true, :searchable => true,:width=>"25%"},
                    {:key=>"description",:label=>t(:description),:sortable=>true},
-                   {:key=>"visiable_flag",:label=>t(:label_skm_entry_status_visiable),:sortable=>true},
-                   {:key=>"status_meaning",:label=>t(:active),:sortable=>true}], {:search_box => "statusesSearchBox"})%>
+                   {:key=>"visiable_flag",:label=>t(:label_skm_entry_status_visiable),:formatter=>"Y.irm.template",:sortable=>true,:width=>"40px"},
+                   {:key=>"status_code",:label=>t(:active),:formatter=>"Y.irm.template",:sortable=>true, :width => "40px"}], {:search_box => "statusesSearchBox"})%>
       </div>
     </div>
 </div>

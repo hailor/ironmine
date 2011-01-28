@@ -26,9 +26,9 @@
         </div>
         <%= datatable("flex_value_sets_list",url_for(:action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template", :width => "80px"},
-                       {:key=>"flex_value_set_name",:label=>t(:label_irm_value_set_name),:sortable=>true},
+                       {:key=>"flex_value_set_name",:label=>t(:label_irm_value_set_name),:sortable=>true, :width => "30%"},
                        {:key=>"description",:label=>t(:label_irm_value_set_description),:sortable=>true},
-                       {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template"}]) %>
+                       {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}]) %>
       </div>
     </div>
 </div>

@@ -1,3 +1,4 @@
+<%= app_title %>
 <%= form_for(@entry_header,:url=>{:action=>"new", :step => "2"},:builder => LabellingFormBuilder) do |f| %>
 <div  class="bWizardBlock">
     <div class="pbWizardTitle tertiaryPalette">
@@ -35,13 +36,16 @@
                       </td>
                       <td class="data2Col">
                         <div id="entry_elements_list" class="datatable" style="width:100%;">
+                          <div id="required_flag" style="display:none">
+                            <%= check_img("{required_flag}") %>
+                          </div>
                         </div>
                         <%= datatable("entry_elements_list",url_for(:controller => "skm/entry_templates", :action=>"get_owned_elements_data", :template_id => @entry_header.entry_template_id ? @entry_header.entry_template_id : "-1" ,:format=>"json"),
-                                      [{:key=>"required_flag",:label=>t(:label_skm_entry_template_element_required), :width => "30px"},
+                                      [{:key=>"required_flag",:label=>t(:label_skm_entry_template_element_required), :width => "40px",:formatter=>"Y.irm.template"},
                                        {:key=>"entry_template_element_code",:label=>t(:label_skm_entry_template_element_code), :width => "100px"},
                                        {:key=>"name",:label=>t(:name), :width => "200px"},
                                        {:key=>"description",:label=>t(:description)},
-                                       {:key=>"default_rows",:label=>t(:label_skm_entry_template_element_rows), :width => "100px"}
+                                       {:key=>"default_rows",:label=>t(:label_skm_entry_template_element_rows), :width => "80px"}
                                        ]) %>
                       </td>
                     </tr>

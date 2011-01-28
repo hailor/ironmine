@@ -1,4 +1,4 @@
-<%= page_title %>
+<%= setting_title %>
 <div class="listRelatedObject setupBlock">
     <div class="bPageBlock">
       <div class="pbHeader">
@@ -18,13 +18,22 @@
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
+          <div id="report_date_changable" style="display:none">
+            <%= check_img("{report_date_changable}") %>
+          </div>
+          <div id="respond_date_changable" style="display:none">
+            <%= check_img("{respond_date_changable}") %>
+          </div>
+          <div id="slove_date_changable" style="display:none">
+            <%= check_img("{slove_date_changable}") %>
+          </div>               
         </div>
         <%= datatable("rule_setting",url_for(:action=>"get_data",:format=>"json"),
                   [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"80px"},
                    {:key=>"company_name",:label=>t(:label_icm_rule_setting_company),:sortable=>true},
-                   {:key=>"report_date_changable",:label=>t(:label_icm_rule_setting_report_date_changable),:sortable=>true},
-                   {:key=>"respond_date_changable",:label=>t(:label_icm_rule_setting_respond_date_changable),:sortable=>true},
-                   {:key=>"slove_date_changable",:label=>t(:label_icm_rule_setting_description),:sortable=>true},
+                   {:key=>"report_date_changable",:label=>t(:label_icm_rule_setting_report_date_changable),:sortable=>true,:formatter=>"Y.irm.template"},
+                   {:key=>"respond_date_changable",:label=>t(:label_icm_rule_setting_respond_date_changable),:sortable=>true,:formatter=>"Y.irm.template"},
+                   {:key=>"slove_date_changable",:label=>t(:label_icm_rule_setting_description),:sortable=>true,:formatter=>"Y.irm.template"},
                    {:key=>"process_name",:label=>t(:label_icm_rule_setting_assignment_process_code),:sortable=>true},
                    {:key=>"auto_closure_days",:label=>t(:label_icm_rule_setting_auto_closure_days),:sortable=>true},
                    {:key=>"status_meaning",:label=>t(:label_irm_script_status_code),:sortable=>true,:width=>"70px"}],

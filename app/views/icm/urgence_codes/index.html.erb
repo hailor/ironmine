@@ -1,4 +1,4 @@
-<%= page_title %>
+<%= setting_title %>
 <div class="listRelatedObject setupBlock">
     <div class="bPageBlock">
       <div class="pbHeader">
@@ -21,6 +21,9 @@
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
+          <div id="default_flag" style="display:none">
+            <%= check_img("{default_flag}") %>
+          </div>                  
         </div>
         <%= datatable("urgence_code",url_for(:action=>"get_data",:format=>"json"),
                   [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"80px"},
@@ -29,7 +32,7 @@
                    {:key=>"name",:label=>t(:label_icm_urgence_code_name),:searchable=>true},
                    {:key=>"weight_values",:label=>t(:label_icm_urgence_code_weight_values),:sortable=>true},
                    {:key=>"display_sequence",:label=>t(:display_sequence),:sortable=>true},
-                   {:key=>"default_flag",:label=>t(:default_flag),:sortable=>true,:searchable=>true},
+                   {:key=>"default_flag",:label=>t(:default_flag),:sortable=>true,:searchable=>true, :width => "80px"},
                    {:key=>"status_meaning",:label=>t(:label_irm_script_status_code),:sortable=>true,:width=>"70px"}],
                    {:row_perpage=>5,:search_box=>"urgenceCodesSearchBox"})%>
       </div>

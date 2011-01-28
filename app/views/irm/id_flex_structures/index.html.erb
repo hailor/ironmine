@@ -9,8 +9,6 @@
             <%= submit_tag t(:jump), :title => t(:jump), :class => "btn" %>
         </span>
         <span class="fFooter">
-          <a href="javascript:void(0);">编辑</a> |
-          <a href="javascript:void(0);">创建新视图</a>
         </span>
       </span>
       <% end %>
@@ -28,10 +26,6 @@
                 <div class="button"><%= link_to t(:add), {:action => "new", :id_flex_code => @id_flex.id_flex_code}%></div>
               </td>
               <td class="pbHelp">
-                <select title="显示所选内容" name="hotlist_mode" id="hotlist_mode"><option value="2">最近创建</option>
-                <option value="1">最近修改</option>
-                <option selected="selected" value="3">最近查看</option>
-                </select>
               </td>
             </tr>
           </tbody>
@@ -48,11 +42,11 @@
         </div>
         <%= datatable("pizza",url_for(:action=>"get_data", :id_flex_code => @id_flex.id_flex_code,:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template", :width => "80px"},
-                       {:key=>"id_flex_structure_code",:label=>t(:label_irm_id_flex_structure_code),:sortable=>true},
-                       {:key=>"id_flex_structure_name",:label=>t(:label_irm_id_flex_structure_name),:sortable=>true},
+                       {:key=>"id_flex_structure_code",:label=>t(:label_irm_id_flex_structure_code),:sortable=>true, :width => "15%"},
+                       {:key=>"id_flex_structure_name",:label=>t(:label_irm_id_flex_structure_name),:sortable=>true, :width => "25%"},
                        {:key=>"description",:label=>t(:label_irm_id_flex_structure_description),:sortable=>true},
-                       {:key=>"concatenated_segment_delimiter",:label=>t(:label_irm_id_flex_structure_concatenated_segment_delimiter),:sortable=>true},
-                       {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template"}]) %>
+                       {:key=>"concatenated_segment_delimiter",:label=>t(:label_irm_id_flex_structure_concatenated_segment_delimiter),:sortable=>true, :width => "60px"},
+                       {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}]) %>
       </div>
     </div>
 </div>

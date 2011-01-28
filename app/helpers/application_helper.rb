@@ -28,7 +28,7 @@ module ApplicationHelper
     content = raw(content_tag(:div, raw(page_title + page_description), :class => "content"))
     pt_body = raw(content_tag(:div, content, :class => "ptBody"))
     b_page_title = raw(content_tag(:div, pt_body, :class => "bPageTitle"))
-    raw(b_page_title + raw(b_description))
+    raw(b_page_title)
   end
 
   def setting_title(params = {:title => "", :description => ""})
@@ -59,7 +59,7 @@ module ApplicationHelper
     content = raw(content_tag(:div, raw(page_title + page_description), :class => "content"))
     pt_body = raw(content_tag(:div, content, :class => "ptBody"))
     b_page_title = raw(content_tag(:div, pt_body, :class => "bPageTitle"))
-    raw(b_page_title + raw(b_description))
+    raw(b_page_title)
   end
 
   def app_title(params = {:title => "", :description => ""})
@@ -93,10 +93,40 @@ module ApplicationHelper
     content = raw(content_tag(:div, raw(page_title + page_description), :class => "content"))
     pt_body = raw(content_tag(:div, content, :class => "ptBody"))
     b_page_title = raw(content_tag(:div, pt_body, :class => "bPageTitle"))
-    raw(b_page_title + raw(b_description))
+    raw(b_page_title)
   end  
 
   def setting_show_title(params = {})
+    page_title = ""
+    page_description = ""
+    b_description = ""
+    if @current_menu_entry && @current_menu_entry.permission_code
+      permission = Irm::Permission.list_all.where(:id => @current_permission.id).first
+      if @current_menu_entry.icon
+        page_description << content_tag(:img, "", :src => '/images/s.gif', :class => @current_menu_entry.icon + " pageTitleIcon")
+      end      
+      if params[:title] && !params[:title].blank?
+        page_title << content_tag(:h1, params[:title], :class => "pageType")
+      else
+        page_title << content_tag(:h1, @current_menu_entry[:name], :class => "pageType")
+      end
+      if params[:show_data] && !params[:show_data].blank?
+        page_description << content_tag(:h2, params[:show_data], :class => "pageDescription")
+      end
+      if !permission[:description].blank?
+        b_description << content_tag(:div, permission[:description], :class => "bDescription")
+      end
+    else
+      page_title << content_tag(:h1, params[:title], :class => "pageType")
+      page_description << content_tag(:h2, params[:description], :class => "pageDescription")
+    end
+    content = raw(content_tag(:div, raw(page_title + page_description), :class => "content"))
+    pt_body = raw(content_tag(:div, content, :class => "ptBody"))
+    b_page_title = raw(content_tag(:div, pt_body, :class => "bPageTitle"))
+    raw(b_page_title)
+  end
+
+  def app_show_title(params = {})
     page_title = ""
     page_description = ""
     b_description = ""
@@ -120,8 +150,8 @@ module ApplicationHelper
     content = raw(content_tag(:div, raw(page_title + page_description), :class => "content"))
     pt_body = raw(content_tag(:div, content, :class => "ptBody"))
     b_page_title = raw(content_tag(:div, pt_body, :class => "bPageTitle"))
-    raw(b_page_title + raw(b_description))
-  end
+    raw(b_page_title)
+  end  
   
   #显示form提交的出错信息
   def error_message_for(*args)

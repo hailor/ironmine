@@ -142,7 +142,7 @@ class ApplicationController < ActionController::Base
     if default
       redirect_to default
     else
-      entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>"IRM_ENTRANCE_MENU"})
+      entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>"Irm::Constant::TOP_BUSSINESS_MENU"})
       redirect_to({:controller => entrance[:page_controller], :action => entrance[:page_action]})
     end
 
@@ -242,20 +242,24 @@ class ApplicationController < ActionController::Base
     @menu_permission = permission.dup
     @setting_menus = default_setting_menus
     allowed_menus = Irm::Person.current.allowed_menus
-    @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>permission[:page_controller],:page_action=>permission[:page_action]},allowed_menus,(session[:entrance_menu]||default_menus)[1])
-    if @page_menus[0]&&@page_menus[0].eql?("IRM_SETTING_ENTRANCE_MENU")
+    @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>permission[:page_controller],:page_action=>permission[:page_action]},allowed_menus,session[:top_menu])
+    if @page_menus[0]&&@page_menus[0].eql?(Irm::Constant::TOP_SETTING_MENU)
       @setting_menus = @page_menus.dup
       self.class.layout "setting"
       @page_menus = (session[:entrance_menu]||default_menus)[0..1]
+      # 保存这一次的菜单路径
+      session[:top_menu] = @setting_menus[1]
     else
       session[:entrance_menu] = @page_menus.dup if @page_menus.length>1
+      # 保存这一次的菜单路径
+      session[:top_menu] = @page_menus[1]
     end
   end
 
   # 默认菜单
   def default_menus
-    menus = ["IRM_ENTRANCE_MENU"]
-    entry = Irm::MenuManager.sub_entries_by_menu("IRM_ENTRANCE_MENU")[0]
+    menus = [Irm::Constant::TOP_BUSSINESS_MENU]
+    entry = Irm::MenuManager.sub_entries_by_menu(menus[0])[0]
     if entry && entry[:entry_type].eql?("MENU")
        menus << entry[:menu_code]
     end
@@ -264,8 +268,8 @@ class ApplicationController < ActionController::Base
 
   # 默认设置菜单
   def default_setting_menus
-    menus = ["IRM_SETTING_ENTRANCE_MENU"]
-    entry = Irm::MenuManager.sub_entries_by_menu("IRM_SETTING_ENTRANCE_MENU",true)[0]
+    menus = [Irm::Constant::TOP_SETTING_MENU]
+    entry = Irm::MenuManager.sub_entries_by_menu(menus[0],true)[0]
     if entry && entry[:entry_type].eql?("MENU")
        menus << entry[:menu_code]
     end

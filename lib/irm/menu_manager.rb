@@ -25,6 +25,14 @@ module Irm::MenuManager
         items[:menu_menus]
       end
 
+      def public_permissions
+        items[:public_permissions]
+      end
+
+      def login_permissions
+        items[:login_permissions]
+      end
+
       #初始化菜单和权限缓存
       def reset_menu
         # 生成菜单缓存
@@ -33,6 +41,9 @@ module Irm::MenuManager
         prepare_permission_cache
         # 初始化权限对应的菜单
         prepare_parent_menu
+
+        # 初始化登录可访问和公开权限
+        prepare_public_login_permission
 
         rescue =>text
           puts("Init menu error:#{text}")
@@ -182,7 +193,31 @@ module Irm::MenuManager
         end
       end
       # =====================================处理公开和登录即可访问的权限===============================================
+      def prepare_public_login_permission
+        public_permissions_cache = []
+        login_permissions_cache = []
 
+        permission_menus.each do |pkey,menus|
+          # 检查是否为开发权限
+          origin_length = menus.length
+          menus.delete_if{|m| m[0].eql?(Irm::Constant::TOP_PUBLIC_MENU)}
+          public_permissions_cache<< pkey if origin_length>menus.length
+          # 检查是否为登录可访问权限
+          origin_length = menus.length
+          menus.delete_if{|m| m[0].eql?(Irm::Constant::TOP_LOGIN_MENU)}
+          login_permissions_cache<< pkey if origin_length>menus.length
+        end
+        map do |m|
+          m.merge!({:public_permissions=>public_permissions_cache,:login_permissions=>login_permissions_cache})
+        end
+
+        menu_menus.each do |mkey,menus|
+          menus.delete_if{|m| m[0].eql?(Irm::Constant::TOP_PUBLIC_MENU)||m[0].eql?(Irm::Constant::TOP_LOGIN_MENU)}          
+        end
+      end
+
+      # ==============删除菜单路径中的公开和LOGIN权限===========================================
+      
 
 
       # 供外部调用
@@ -288,7 +323,7 @@ module Irm::MenuManager
       end
 
       #通过权限链接取得菜单列表
-      def parent_menus_by_permission(options={},allowed_menu_codes=["IRM_ENTRANCE_MENU","IRM_SETTING_ENTRANCE_MENU"],top_menu=nil)
+      def parent_menus_by_permission_without_access(options={},allowed_menu_codes=["IRM_ENTRANCE_MENU","IRM_SETTING_ENTRANCE_MENU"],top_menu=nil)
         parent_menus =  permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions",options[:page_action]||"index")]
         parent_menus ||= permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions","index")]
         return [] unless parent_menus&&parent_menus.size>0
@@ -316,42 +351,40 @@ module Irm::MenuManager
       end
 
       #通过权限链接取得菜单列表
-      def parent_menus_by_permission_with_access(options={},allowed_menu_codes=[{:menu_code=>"IRM_ENTRANCE_MENU",:access=>"VIEW"},{:menu_code=>"IRM_SETTING_ENTRANCE_MENU",:access=>"ALL"}],top_menu=nil)
-        parent_menus =  permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions",options[:page_action]||"index")]
-        parent_menus ||= permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions","index")]
+      def parent_menus_by_permission(options={},allowed_menu_codes=[{:menu_code=>"IRM_ENTRANCE_MENU",:access=>"EDIT_VIEW"},{:menu_code=>"IRM_SETTING_ENTRANCE_MENU",:access=>"EDIT_VIEW"}],top_menu=nil)
+        puts "=====#{options.to_json}======#{allowed_menu_codes.to_json}============="
+        permission_key = Irm::Permission.url_key(options[:page_controller],options[:page_action])
+        parent_menus =  permission_menus[permission_key]
+        if(!parent_menus)
+          permission_key =   Irm::Permission.url_key(options[:page_controller],"index")
+          parent_menus =  permission_menus[permission_key]
+        end
         return [] unless parent_menus&&parent_menus.size>0
         allowed_menus = []
-        # 如果为setting下的权限，则表示可以无限制访问
-        if(options[:page_controller].eql?("irm/setting")||options[:page_controller].eql?("irm/permissions"))
+
+        # 如果为登录可访问和公开权限，则不需要进行过滤
+        if(login_permissions.include?(permission_key)||public_permissions.include?(permission_key))
           allowed_menus =  parent_menus.dup
         else
-          page_action = options[:page_action]||"index"
-          # 如果是查看类型的页面则不进行 权限方式检查
-          if(page_action.include?("index")||page_action.include?("show"))
-            parent_menus.each do |pms|
-              allowed_menu_codes.each do |ams|
-                if pms.include?(ams[:menu_code])
-                  allowed_menus << pms
-                  break
-                end
-              end
+          accesses = []
+          parent_menus.each do |pms|
+            allowed_menu_codes.each do |amc|
+              idx = pms.index(amc[:menu_code])
+              accesses << [idx,amc[:access],pms] if idx
             end
-          else
-            accesses = []
-            parent_menus.each do |pms|
-              allowed_menu_codes.each do |amc|
-                idx = pms.index(amc[:menu_code])
-                accesses << [idx,amc[:access],pms]
-              end
-            end
-            # 进行权限优先级判断
-            accesses.dup.each do |a|
-              accesses.delete_if{|item| item[0]<a[0]&&item[2].eql?(a[2])}
-            end
-            # 删除查看类型的菜单路径
-            accesses.delete_if{|item| item[1].eql?("VIEW")}
-            allowed_menus = accesses.collect{|item| item[2]} if allowed_menus.size>0
           end
+          # 进行权限优先级判断
+          accesses.dup.each do |a|
+            accesses.delete_if{|item| item[0]<a[0]&&item[2].eql?(a[2])}
+          end
+          # 删除限制访问的菜单
+          accesses.delete_if{|item| item[1].eql?(Irm::Constant::ACCESS_NONE)}
+          # 如果为编辑类型的权限
+          # 删除查看类型的菜单路径
+          if(Irm::Constant::EDIT_ACTION.detect{|a| options[:page_action].include?(a)})          
+            accesses.delete_if{|item| item[1].eql?(Irm::Constant::ACCESS_VIEW)}
+          end
+          allowed_menus = accesses.collect{|item| item[2]} if accesses.size>0
         end
 
         return [] unless allowed_menus.size>0
@@ -364,7 +397,8 @@ module Irm::MenuManager
       end
 
       # 通过菜单取得上层菜单列表
-      def parent_menus_by_menu(menu_code,allowed_menu_codes=["IRM_ENTRANCE_MENU","IRM_SETTING_ENTRANCE_MENU"],top_menu=nil)
+      def parent_menus_by_menu(menu_code,top_menu=nil)
+        allowed_menu_codes= Irm::Person.current.allowed_menus.collect{|m| m[:menu_code]}
         parent_menus = menu_menus[menu_code]
         return [] unless parent_menus&&parent_menus.size>0
         allowed_menus = []

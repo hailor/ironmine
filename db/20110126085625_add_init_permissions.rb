@@ -1,9 +1,9 @@
+# -*- coding: utf-8 -*-
 class AddInitPermissions < ActiveRecord::Migration
   def self.up
     Irm::Permission.find(:all).each do |f|
       f.destroy
     end
-
     cms_home_index= Irm::Permission.new(:permission_code=>'CMS_HOME_INDEX',:page_controller=>'cms/home',:page_action=>'index',:not_auto_mult=>true)
     cms_home_index.permissions_tls.build(:language=>'zh',:name=>'首页',:description=>'首页',:source_lang=>'en')
     cms_home_index.permissions_tls.build(:language=>'en',:name=>'Index',:description=>'Index',:source_lang=>'en')
@@ -852,14 +852,6 @@ class AddInitPermissions < ActiveRecord::Migration
     irm_identities_edit.permissions_tls.build(:language=>'zh',:name=>'编辑',:description=>'编辑',:source_lang=>'en')
     irm_identities_edit.permissions_tls.build(:language=>'en',:name=>'Edit',:description=>'Edit',:source_lang=>'en')
     irm_identities_edit.save
-    irm_identities_edit_info= Irm::Permission.new(:permission_code=>'IRM_IDENTITIES_EDIT_INFO',:page_controller=>'irm/identities',:page_action=>'edit_info',:not_auto_mult=>true)
-    irm_identities_edit_info.permissions_tls.build(:language=>'zh',:name=>'编辑内容',:description=>'编辑内容',:source_lang=>'en')
-    irm_identities_edit_info.permissions_tls.build(:language=>'en',:name=>'Edit Info',:description=>'Edit Info',:source_lang=>'en')
-    irm_identities_edit_info.save
-    irm_identities_edit_password= Irm::Permission.new(:permission_code=>'IRM_IDENTITIES_EDIT_PASSWORD',:page_controller=>'irm/identities',:page_action=>'edit_password',:not_auto_mult=>true)
-    irm_identities_edit_password.permissions_tls.build(:language=>'zh',:name=>'修改密码',:description=>'修改密码',:source_lang=>'en')
-    irm_identities_edit_password.permissions_tls.build(:language=>'en',:name=>'Change Password',:description=>'Change Password',:source_lang=>'en')
-    irm_identities_edit_password.save
     irm_identities_get_data= Irm::Permission.new(:permission_code=>'IRM_IDENTITIES_GET_DATA',:page_controller=>'irm/identities',:page_action=>'get_data',:not_auto_mult=>true)
     irm_identities_get_data.permissions_tls.build(:language=>'zh',:name=>'取数',:description=>'取数',:source_lang=>'en')
     irm_identities_get_data.permissions_tls.build(:language=>'en',:name=>'Get Data',:description=>'Get Data',:source_lang=>'en')
@@ -868,18 +860,6 @@ class AddInitPermissions < ActiveRecord::Migration
     irm_identities_index.permissions_tls.build(:language=>'zh',:name=>'首页',:description=>'首页',:source_lang=>'en')
     irm_identities_index.permissions_tls.build(:language=>'en',:name=>'Index',:description=>'Index',:source_lang=>'en')
     irm_identities_index.save
-    irm_identities_mu_ed= Irm::Permission.new(:permission_code=>'IRM_IDENTITIES_MU_ED',:page_controller=>'irm/identities',:page_action=>'multilingual_edit',:not_auto_mult=>true)
-    irm_identities_mu_ed.permissions_tls.build(:language=>'zh',:name=>'多语言编辑',:description=>'多语言编辑',:source_lang=>'en')
-    irm_identities_mu_ed.permissions_tls.build(:language=>'en',:name=>'Multilingual Edit',:description=>'Multilingual Edit',:source_lang=>'en')
-    irm_identities_mu_ed.save
-    irm_identities_mu_ud= Irm::Permission.new(:permission_code=>'IRM_IDENTITIES_MU_UD',:page_controller=>'irm/identities',:page_action=>'multilingual_update',:not_auto_mult=>true)
-    irm_identities_mu_ud.permissions_tls.build(:language=>'zh',:name=>'多语言编辑',:description=>'多语言编辑',:source_lang=>'en')
-    irm_identities_mu_ud.permissions_tls.build(:language=>'en',:name=>'Multilingual Edit',:description=>'Multilingual Edit',:source_lang=>'en')
-    irm_identities_mu_ud.save
-    irm_identities_my_info= Irm::Permission.new(:permission_code=>'IRM_IDENTITIES_MY_INFO',:page_controller=>'irm/identities',:page_action=>'my_info',:not_auto_mult=>true)
-    irm_identities_my_info.permissions_tls.build(:language=>'zh',:name=>'我的信息',:description=>'我的信息',:source_lang=>'en')
-    irm_identities_my_info.permissions_tls.build(:language=>'en',:name=>'My Infomations',:description=>'My Infomations',:source_lang=>'en')
-    irm_identities_my_info.save
     irm_identities_new= Irm::Permission.new(:permission_code=>'IRM_IDENTITIES_NEW',:page_controller=>'irm/identities',:page_action=>'new',:not_auto_mult=>true)
     irm_identities_new.permissions_tls.build(:language=>'zh',:name=>'创建',:description=>'创建',:source_lang=>'en')
     irm_identities_new.permissions_tls.build(:language=>'en',:name=>'New',:description=>'New',:source_lang=>'en')
@@ -892,14 +872,6 @@ class AddInitPermissions < ActiveRecord::Migration
     irm_identities_update.permissions_tls.build(:language=>'zh',:name=>'编辑',:description=>'编辑',:source_lang=>'en')
     irm_identities_update.permissions_tls.build(:language=>'en',:name=>'Edit',:description=>'Edit',:source_lang=>'en')
     irm_identities_update.save
-    irm_identities_update_info= Irm::Permission.new(:permission_code=>'IRM_IDENTITIES_UPDATE_INFO',:page_controller=>'irm/identities',:page_action=>'update_info',:not_auto_mult=>true)
-    irm_identities_update_info.permissions_tls.build(:language=>'zh',:name=>'编辑信息',:description=>'编辑信息',:source_lang=>'en')
-    irm_identities_update_info.permissions_tls.build(:language=>'en',:name=>'Edit Info',:description=>'Edit Info',:source_lang=>'en')
-    irm_identities_update_info.save
-    irm_identities_update_password= Irm::Permission.new(:permission_code=>'IRM_IDENTITIES_UPDATE_PASSWORD',:page_controller=>'irm/identities',:page_action=>'update_password',:not_auto_mult=>true)
-    irm_identities_update_password.permissions_tls.build(:language=>'zh',:name=>'忘记密码',:description=>'忘记密码',:source_lang=>'en')
-    irm_identities_update_password.permissions_tls.build(:language=>'en',:name=>'Change Password',:description=>'Change Password',:source_lang=>'en')
-    irm_identities_update_password.save
     irm_id_flexes_create= Irm::Permission.new(:permission_code=>'IRM_ID_FLEXES_CREATE',:page_controller=>'irm/id_flexes',:page_action=>'create',:not_auto_mult=>true)
     irm_id_flexes_create.permissions_tls.build(:language=>'zh',:name=>'创建',:description=>'创建',:source_lang=>'en')
     irm_id_flexes_create.permissions_tls.build(:language=>'en',:name=>'New',:description=>'New',:source_lang=>'en')
@@ -1308,10 +1280,34 @@ class AddInitPermissions < ActiveRecord::Migration
     irm_menu_entries_mu_ud.permissions_tls.build(:language=>'zh',:name=>'多语言编辑',:description=>'多语言编辑',:source_lang=>'en')
     irm_menu_entries_mu_ud.permissions_tls.build(:language=>'en',:name=>'Multilingual Edit',:description=>'Multilingual Edit',:source_lang=>'en')
     irm_menu_entries_mu_ud.save
+    irm_my_info_edit= Irm::Permission.new(:permission_code=>'IRM_MY_INFO_EDIT',:page_controller=>'irm/my_info',:page_action=>'edit',:not_auto_mult=>true)
+    irm_my_info_edit.permissions_tls.build(:language=>'zh',:name=>'编辑',:description=>'编辑',:source_lang=>'en')
+    irm_my_info_edit.permissions_tls.build(:language=>'en',:name=>'Edit',:description=>'Edit',:source_lang=>'en')
+    irm_my_info_edit.save
+    irm_my_info_edit_password= Irm::Permission.new(:permission_code=>'IRM_MY_INFO_EDIT_PASSWORD',:page_controller=>'irm/my_info',:page_action=>'edit_password',:not_auto_mult=>true)
+    irm_my_info_edit_password.permissions_tls.build(:language=>'zh',:name=>'更改密码',:description=>'更改密码',:source_lang=>'en')
+    irm_my_info_edit_password.permissions_tls.build(:language=>'en',:name=>'Change passowrd',:description=>'Change passowrd',:source_lang=>'en')
+    irm_my_info_edit_password.save
+    irm_my_info_index= Irm::Permission.new(:permission_code=>'IRM_MY_INFO_INDEX',:page_controller=>'irm/my_info',:page_action=>'index',:not_auto_mult=>true)
+    irm_my_info_index.permissions_tls.build(:language=>'zh',:name=>'首页',:description=>'首页',:source_lang=>'en')
+    irm_my_info_index.permissions_tls.build(:language=>'en',:name=>'Index',:description=>'Index',:source_lang=>'en')
+    irm_my_info_index.save
+    irm_my_info_update= Irm::Permission.new(:permission_code=>'IRM_MY_INFO_UPDATE',:page_controller=>'irm/my_info',:page_action=>'update',:not_auto_mult=>true)
+    irm_my_info_update.permissions_tls.build(:language=>'zh',:name=>'编辑',:description=>'编辑',:source_lang=>'en')
+    irm_my_info_update.permissions_tls.build(:language=>'en',:name=>'Edit',:description=>'Edit',:source_lang=>'en')
+    irm_my_info_update.save
+    irm_my_info_update_password= Irm::Permission.new(:permission_code=>'IRM_MY_INFO_UPDATE_PASSWORD',:page_controller=>'irm/my_info',:page_action=>'update_password',:not_auto_mult=>true)
+    irm_my_info_update_password.permissions_tls.build(:language=>'zh',:name=>'更改密码',:description=>'更改密码',:source_lang=>'en')
+    irm_my_info_update_password.permissions_tls.build(:language=>'en',:name=>'Change passowrd',:description=>'Change passowrd',:source_lang=>'en')
+    irm_my_info_update_password.save
     irm_navigations_entrance= Irm::Permission.new(:permission_code=>'IRM_NAVIGATIONS_ENTRANCE',:page_controller=>'irm/navigations',:page_action=>'entrance',:not_auto_mult=>true)
     irm_navigations_entrance.permissions_tls.build(:language=>'zh',:name=>'系统入口',:description=>'系统入口',:source_lang=>'en')
-    irm_navigations_entrance.permissions_tls.build(:language=>'en',:name=>'Entrace',:description=>'Entrace',:source_lang=>'en')
+    irm_navigations_entrance.permissions_tls.build(:language=>'en',:name=>'Index',:description=>'Index',:source_lang=>'en')
     irm_navigations_entrance.save
+    irm_navigations_combo= Irm::Permission.new(:permission_code=>'IRM_NAVIGATIONS_COMBO',:page_controller=>'irm/navigations',:page_action=>'combo',:not_auto_mult=>true)
+    irm_navigations_combo.permissions_tls.build(:language=>'zh',:name=>'打包script css',:description=>'打包script css',:source_lang=>'en')
+    irm_navigations_combo.permissions_tls.build(:language=>'en',:name=>'Combo',:description=>'Combo',:source_lang=>'en')
+    irm_navigations_combo.save
     irm_organizations_belongs_to= Irm::Permission.new(:permission_code=>'IRM_ORGANIZATIONS_BELONGS_TO',:page_controller=>'irm/organizations',:page_action=>'belongs_to',:not_auto_mult=>true)
     irm_organizations_belongs_to.permissions_tls.build(:language=>'zh',:name=>'属于',:description=>'属于',:source_lang=>'en')
     irm_organizations_belongs_to.permissions_tls.build(:language=>'en',:name=>'Belongs To',:description=>'Belongs To',:source_lang=>'en')
@@ -2020,6 +2016,7 @@ class AddInitPermissions < ActiveRecord::Migration
     skm_entry_template_ele_update.permissions_tls.build(:language=>'zh',:name=>'编辑',:description=>'编辑',:source_lang=>'en')
     skm_entry_template_ele_update.permissions_tls.build(:language=>'en',:name=>'Edit',:description=>'Edit',:source_lang=>'en')
     skm_entry_template_ele_update.save
+    
 
   end
 
