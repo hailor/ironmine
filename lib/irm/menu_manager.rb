@@ -360,7 +360,9 @@ module Irm::MenuManager
           permission_key =   Irm::Permission.url_key(options[:page_controller],"index")
           parent_menus =  permission_menus[permission_key]
         end
-        return [] unless parent_menus&&parent_menus.size>0
+        return [] unless parent_menus
+        return ["LOGIN_OR_PUBLIC_MENU"] unless parent_menus.size>0
+
         allowed_menus = []
 
         # 如果为登录可访问和公开权限，则不需要进行过滤
