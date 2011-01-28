@@ -47,6 +47,7 @@ class Irm::FlexValueSetsController < ApplicationController
 
   def get_data
     value_sets_scope = Irm::FlexValueSet.where("1=1")
+    value_sets_scope = value_sets_scope.match_value("#{Irm::FlexValueSet.table_name}.flex_value_set_name",params[:flex_value_set_name])
     value_sets,count = paginate(value_sets_scope)
     respond_to do |format|
       format.json  {render :json => to_jsonp(value_sets.to_grid_json([:flex_value_set_name,:description,:status_code], count)) }

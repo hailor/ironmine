@@ -18,12 +18,12 @@ class Irm::Role < ActiveRecord::Base
   query_extend
 
   #查找权限列表
-  scope :list_all, select("#{table_name}.*, #{Irm::RolesTl.table_name}.name name, #{Irm::RolesTl.table_name}.description description, mt.name menu_name").
+  scope :list_all, lambda{select("#{table_name}.*, #{Irm::RolesTl.table_name}.name name, #{Irm::RolesTl.table_name}.description description, mt.name menu_name").
     joins("LEFT OUTER JOIN #{Irm::Menu.table_name} m ON m.menu_code = #{table_name}.menu_code").
     joins("LEFT OUTER JOIN #{Irm::MenusTl.table_name} mt ON mt.language = '#{I18n.locale}' AND mt.menu_id = m.id ").
     joins(",#{Irm::RolesTl.table_name}").
     where("#{Irm::RolesTl.table_name}.role_id = #{table_name}.id").
-    where("#{Irm::RolesTl.table_name}.language = ?", I18n.locale)
+    where("#{Irm::RolesTl.table_name}.language = ?", I18n.locale)}
   
   scope :without_person, lambda{|person_id|
     where("#{table_name}.id NOT IN (SELECT t.role_id FROM #{Irm::PersonRole.table_name} t WHERE t.role_id = #{table_name}.id AND t.person_id = ?)", person_id)
