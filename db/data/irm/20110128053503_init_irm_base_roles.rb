@@ -3,6 +3,7 @@ class InitIrmBaseRoles < ActiveRecord::Migration
   def self.up
     Irm::Role.delete_all
     Irm::RolesTl.delete_all
+    Irm::PersonRole.delete_all
     irm_irm_setting_entrace_role= Irm::Role.new(:role_code=>'IRM_SETTING_ENTRACE_ROLE',:menu_code=>'IRM_SETTING_ENTRANCE_MENU',:not_auto_mult=>true)
     irm_irm_setting_entrace_role.roles_tls.build(:language=>'zh',:source_lang=>'en',:name=>'系统设置顶层角色',:description=>'系统设置顶层角色')
     irm_irm_setting_entrace_role.roles_tls.build(:language=>'en',:source_lang=>'en',:name=>'System setting top role',:description=>'System setting top role')
