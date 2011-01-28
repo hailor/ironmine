@@ -69,6 +69,8 @@ class Irm::IdFlexStructuresController < ApplicationController
 
   def get_data
     id_flex_structures_scope = Irm::IdFlexStructure.list_all.query_by_flex_code(params[:id_flex_code])
+    id_flex_structures_scope = id_flex_structures_scope.match_value("#{Irm::IdFlexStructure.table_name}.id_flex_structure_code",params[:id_flex_structure_code])
+    id_flex_structures_scope = id_flex_structures_scope.match_value("#{Irm::IdFlexStructuresTl.table_name}.id_flex_structure_name",params[:id_flex_structure_name])
     id_flex_structures,count = paginate(id_flex_structures_scope)
     respond_to do |format|
       format.json  {render :json => to_jsonp(id_flex_structures.to_grid_json([:id_flex_structure_code, :id_flex_structure_name,:description, :concatenated_segment_delimiter, :status_code], count)) }

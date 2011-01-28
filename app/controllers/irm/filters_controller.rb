@@ -2,6 +2,11 @@ class Irm::FiltersController < ApplicationController
   before_filter :filters_menu, :only => [:new,:edit]
   # Date.today.prev_month.at_beginning_of_month
   # Date.today.at_beginning_of_week-1
+
+  def index
+    redirect_to({:action => "new"})
+  end
+
   def new
     @view_filter = Irm::ViewFilter.new({:filter_type=>params[:ft]})
     0.upto 4 do |index|

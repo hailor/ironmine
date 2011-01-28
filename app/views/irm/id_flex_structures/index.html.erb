@@ -26,13 +26,14 @@
                 <div class="button"><%= link_to t(:add), {:action => "new", :id_flex_code => @id_flex.id_flex_code}%></div>
               </td>
               <td class="pbHelp">
+                <div id="structuresSearchBox"></div>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="pbBody">
-        <div id="pizza" class="datatable" style="width:100%">
+        <div id="id_flex_structures_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
@@ -40,13 +41,14 @@
             <%= check_img("{status_code}") %>
           </div>                      
         </div>
-        <%= datatable("pizza",url_for(:action=>"get_data", :id_flex_code => @id_flex.id_flex_code,:format=>"json"),
+        <%= datatable("id_flex_structures_list",url_for(:action=>"get_data", :id_flex_code => @id_flex.id_flex_code,:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template", :width => "80px"},
-                       {:key=>"id_flex_structure_code",:label=>t(:label_irm_id_flex_structure_code),:sortable=>true, :width => "15%"},
-                       {:key=>"id_flex_structure_name",:label=>t(:label_irm_id_flex_structure_name),:sortable=>true, :width => "25%"},
+                       {:key=>"id_flex_structure_code",:label=>t(:label_irm_id_flex_structure_code),:sortable=>true,:searchable=>true, :width => "15%"},
+                       {:key=>"id_flex_structure_name",:label=>t(:label_irm_id_flex_structure_name),:sortable=>true,:searchable=>true, :width => "25%"},
                        {:key=>"description",:label=>t(:label_irm_id_flex_structure_description),:sortable=>true},
                        {:key=>"concatenated_segment_delimiter",:label=>t(:label_irm_id_flex_structure_concatenated_segment_delimiter),:sortable=>true, :width => "60px"},
-                       {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}]) %>
+                       {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}],
+                       {:search_box=>"structuresSearchBox"}) %>
       </div>
     </div>
 </div>

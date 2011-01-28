@@ -67,6 +67,10 @@ class Irm::AuthSourcesController < ApplicationController
 
   def get_data
     auth_sources_scope = Irm::AuthSource.where("1=1")
+    auth_sources_scope = auth_sources_scope.match_value("#{Irm::AuthSource.table_name}.name",params[:name])
+    auth_sources_scope = auth_sources_scope.match_value("#{Irm::AuthSource.table_name}.host",params[:host])
+    auth_sources_scope = auth_sources_scope.match_value("#{Irm::AuthSource.table_name}.account",params[:account])
+    auth_sources_scope = auth_sources_scope.match_value("#{Irm::AuthSource.table_name}.attr_login",params[:attr_login])
     auth_sources,count = paginate(auth_sources_scope)
     respond_to do |format|
       format.json  {render :json => to_jsonp(auth_sources.to_grid_json([:name, :host, :port, :account, :base_dn,:attr_login, :status_meaning, :status_code], count)) }

@@ -3,12 +3,12 @@ Ironmine::Application.routes.draw do
     root :to => "navigations#index"
     match 'login'=>'common#login',:as=>:login
     match 'combo'=>'navigations#combo'
+    match 'access_deny' => 'navigations#access_deny'
     match 'logout'=>'common#logout',:as=>:logout
     match 'forgot_password' => "common#forgot_password"
     #lookup_types
     match '/lookup_types/new(.:format)'=>"lookup_types#new",:via=>:get
     match '/lookup_types/create(.:format)'=>"lookup_types#create",:via=>:post
-    match '/lookup_types/successful_info(.:format)'=>"lookup_types#successful_info",:via=>:get
     match '/lookup_types/create_value(.:format)'=>"lookup_types#create_value",:via=>:post
     match '/lookup_types/create_edit_value(.:format)'=>"lookup_types#create_edit_value",:via=>:post
     match '/lookup_types/get_lookup_types(.:format)'=>"lookup_types#get_lookup_types",:via=>:get
@@ -327,8 +327,6 @@ Ironmine::Application.routes.draw do
     match '/company_accesses/:id(.:format)' => "company_accesses#update", :via => :put
     match '/company_accesses/new(.:format)' => "company_accesses#new", :via => :get
     match '/company_accesses/create(.:format)' => "company_accesses#create"
-    match '/company_accesses/:id/multilingual_edit(.:format)' => "company_accesses#multilingual_edit", :via => :get
-    match '/company_accesses/:id/multilingual_update(.:format)' => "company_accesses#multilingual_update", :via => :put
     match '/company_accesses/get_data(.:format)' => "company_accesses#get_data"
     match '/company_accesses/get_company(.:format)' => "company_accesses#get_company"
     #id_flexes
@@ -380,6 +378,7 @@ Ironmine::Application.routes.draw do
     #home
     match '/home(/index)(.:format)' => "home#index", :via => :get
     #view_filter
+    match '/filters/:pid/index/:ft(.:format)' => "filters#index", :via => :get
     match '/filters/:pid/new/:ft(.:format)' => "filters#new", :via => :get
     match '/filters/:pid/create(.:format)' => "filters#create", :via => :post
     match '/filters/:pid/:id/edit(.:format)' => "filters#edit", :via => :get
@@ -396,6 +395,8 @@ Ironmine::Application.routes.draw do
     match '/dev_tools(/index)(.format)' => 'dev_tools#index', :via => :get
     match '/dev_tools/show_permissions(.format)' => 'dev_tools#show_permissions', :via => :get
     match '/dev_tools/show_permissions_data(.format)' => 'dev_tools#show_permissions_data', :via => :get
+    match '/dev_tools/show_missed_permissions(.format)' => 'dev_tools#show_missed_permissions', :via => :get
+    match '/dev_tools/missed_permissions_data(.format)' => 'dev_tools#missed_permissions_data', :via => :get
   end
 
   scope :module => "icm" do

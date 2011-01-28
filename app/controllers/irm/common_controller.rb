@@ -1,6 +1,6 @@
 class Irm::CommonController < ApplicationController
   layout "common"
-  skip_before_filter :check_if_login_required ,:menu_setup,:menu_entry_setup
+  skip_before_filter :check_if_login_required,:check_permission ,:menu_setup,:menu_entry_setup
 
   def login
     if request.get?
@@ -61,8 +61,7 @@ class Irm::CommonController < ApplicationController
     #  cookies[:autologin] = { :value => token.value, :expires => 1.year.from_now }
     #end
     #call_hook(:controller_account_success_authentication_after, {:user => user })
-    entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>Irm::Constant::TOP_BUSSINESS_MENU})
-    redirect_back_or_default :controller => entrance[:page_controller], :action => entrance[:page_action]
+    redirect_back_or_default
   end
 
   def logout_successful(session_id)

@@ -7,6 +7,9 @@ class Irm::IdFlexSegmentsController < ApplicationController
 
   def get_data
     id_flex_segments_scope = Irm::IdFlexSegment.list_all(params[:id_flex_structure_id])
+    id_flex_segments_scope = id_flex_segments_scope.match_value("#{Irm::IdFlexSegmentsTl.table_name}.segment_name",params[:segment_name])
+    id_flex_segments_scope = id_flex_segments_scope.match_value("#{Irm::IdFlexSegmentsTl.table_name}.form_left_prompt",params[:form_left_prompt])
+    id_flex_segments_scope = id_flex_segments_scope.match_value("fvs.flex_value_set_name",params[:value_set_name])
     id_flex_segments,count = paginate(id_flex_segments_scope)
     respond_to do |format|
       format.json  {render :json => to_jsonp(id_flex_segments.to_grid_json([:segment_num, :segment_name, :form_left_prompt, :description, :value_set_name, :status_code], count)) }

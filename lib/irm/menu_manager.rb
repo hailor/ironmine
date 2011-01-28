@@ -318,6 +318,7 @@ module Irm::MenuManager
         if permission
           {:page_controller=>permission[:page_controller],:page_action=>permission[:page_action]}
         else
+          Rails.logger.warn("Not exists  permission:#{permission_code},Please check!")
           {}
         end
       end
@@ -352,7 +353,7 @@ module Irm::MenuManager
 
       #通过权限链接取得菜单列表
       def parent_menus_by_permission(options={},allowed_menu_codes=[{:menu_code=>"IRM_ENTRANCE_MENU",:access=>"EDIT_VIEW"},{:menu_code=>"IRM_SETTING_ENTRANCE_MENU",:access=>"EDIT_VIEW"}],top_menu=nil)
-        puts "=====#{options.to_json}======#{allowed_menu_codes.to_json}============="
+
         permission_key = Irm::Permission.url_key(options[:page_controller],options[:page_action])
         parent_menus =  permission_menus[permission_key]
         if(!parent_menus)
@@ -388,6 +389,7 @@ module Irm::MenuManager
         end
 
         return [] unless allowed_menus.size>0
+        puts "=====#{options.to_json}======#{allowed_menu_codes.to_json}====#{allowed_menus.to_json}========="
         if !top_menu.nil?
           allowed_menus.each do |pms|
             return pms.dup if pms.include?(top_menu)
@@ -398,18 +400,25 @@ module Irm::MenuManager
 
       # 通过菜单取得上层菜单列表
       def parent_menus_by_menu(menu_code,top_menu=nil)
+
         allowed_menu_codes= Irm::Person.current.allowed_menus.collect{|m| m[:menu_code]}
+        # 取得父菜单
         parent_menus = menu_menus[menu_code]
         return [] unless parent_menus&&parent_menus.size>0
-        allowed_menus = []
-        parent_menus.each do |pms|
-          pms.each do |mc|
-            if allowed_menu_codes.include?(mc)
-              allowed_menus << pms
-              break
-            end
-          end
-        end
+        allowed_menus = parent_menus||[]
+        # 如果menu_code是当前允许访问菜单的父菜，则不进行过滤
+        #if(allowed_menu_codes.include?(menu_code)||allowed_menu_codes.detect{|amc| parent_menu?(menu_code,amc)})
+        #  allowed_menus = parent_menus
+        #else
+        #  parent_menus.each do |pms|
+        #    pms.each do |mc|
+        #      if allowed_menu_codes.include?(mc)
+        #        allowed_menus << pms
+        #        break
+        #      end
+        #    end
+        #  end
+        #end
         return [] unless allowed_menus.size>0
         if !top_menu.nil?
           allowed_menus.each do |pms|
@@ -417,6 +426,10 @@ module Irm::MenuManager
           end
         end
         allowed_menus.first.dup
+      end
+      # 判断是否为菜单
+      def parent_menu?(parent,child)
+        menu_menus[child].detect{|i| i.include?(parent)}
       end
 
 

@@ -1,16 +1,16 @@
 class Irm::MyInfoController < ApplicationController
   #个人信息显示页面
   def index
-    @identity = Irm::Identity.query_all.query(Irm::Identity.current.id).with_language.first
+    @identity = Irm::Identity.list_all.query(Irm::Identity.current.id).first
   end
 
   #个人信息编辑页面
   def edit
-    @identity = Irm::Identity.query_all.query(Irm::Identity.current.id).with_language.first
+    @identity =  Irm::Identity.list_all.query(Irm::Identity.current.id).first
   end
   # 更新个人信息
   def update
-    @identity = Irm::Identity.query_all.query(Irm::Identity.current.id).with_language.first
+    @identity =  Irm::Identity.find(Irm::Identity.current.id)
 
     respond_to do |format|
       if @identity.update_attributes(params[:irm_identity])

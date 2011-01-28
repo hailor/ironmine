@@ -10,6 +10,7 @@
                 <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
               </td>
               <td class="pbHelp">
+                <div id="flexValueSetsSearchBox"></div>
               </td>
             </tr>
           </tbody>
@@ -26,9 +27,10 @@
         </div>
         <%= datatable("flex_value_sets_list",url_for(:action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template", :width => "80px"},
-                       {:key=>"flex_value_set_name",:label=>t(:label_irm_value_set_name),:sortable=>true, :width => "30%"},
-                       {:key=>"description",:label=>t(:label_irm_value_set_description),:sortable=>true},
-                       {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}]) %>
+                       {:key=>"flex_value_set_name",:label=>t(:label_irm_value_set_name),:sortable=>true, :width => "30%", :searchable=>true},
+                       {:key=>"description",:label=>t(:label_irm_value_set_description)},
+                       {:key=>"status_code",:label=>t(:active),:formatter=>"Y.irm.template", :width => "40px"}],
+                       {:search_box=>"flexValueSetsSearchBox"}) %>
       </div>
     </div>
 </div>

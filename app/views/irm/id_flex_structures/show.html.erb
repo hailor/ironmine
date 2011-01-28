@@ -66,7 +66,7 @@
         </table>
       </div>
       <div class="pbBody">
-        <div id="pizza" class="datatable" style="width:100%">
+        <div id="id_flex_segments_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:controller => "irm/id_flex_segments", :action => "edit", :id => "{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:controller => "irm/id_flex_segments", :action => "show", :id => "{id}"}) %>
           </div>
@@ -74,7 +74,7 @@
             <%= check_img("{status_code}") %>
           </div>          
         </div>
-        <%= datatable("pizza",url_for(:controller => "irm/id_flex_segments", :action=>"get_data", :id_flex_structure_id => @id_flex_structure,:format=>"json"),
+        <%= datatable("id_flex_segments_list",url_for(:controller => "irm/id_flex_segments", :action=>"get_data", :id_flex_structure_id => @id_flex_structure,:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template", :width => "80px"},
                        {:key=>"segment_num",:label=>t(:label_irm_id_flex_segment_segment_num),:sortable=>true, :width => "80px"},
                        {:key=>"segment_name",:label=>t(:label_irm_id_flex_segment_name),:sortable=>true, :width => "10%"},
