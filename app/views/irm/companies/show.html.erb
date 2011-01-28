@@ -91,7 +91,7 @@
           </div>
           <!-- Begin company access table -->
             <%= datatable("company_location",url_for(:controller=>"irm/locations",:action=>"get_data",:company_id=>@company.id),
-                              [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"50%"},
+                              [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"80px"},
                                {:key=>"organization_name",:label=>t(:label_irm_location_organization),:sortable=>true},
                                {:key=>"department_name",:label=>t(:label_irm_location_department),:sortable=>true},
                                {:key=>"site_group_name",:label=>t(:label_irm_location_site_group),:sortable=>true},
