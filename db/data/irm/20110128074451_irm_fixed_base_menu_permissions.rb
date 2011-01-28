@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class IrmFixedBaseMenuPermissions < ActiveRecord::Migration
   def self.up
     irm_irm_permission_people_menu= Irm::Menu.new(:menu_code=>'IRM_PERMISSION_PEOPLE_MENU',:leaf_flag=>'Y',:not_auto_mult=>true)
