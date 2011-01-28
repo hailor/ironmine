@@ -1,6 +1,6 @@
 class Irm::CommonController < ApplicationController
   layout "common"
-  skip_before_filter :check_if_login_required ,:menu_setup,:menu_entry_setup
+  skip_before_filter :check_if_login_required,:check_permission ,:menu_setup,:menu_entry_setup
 
   def login
     if request.get?
