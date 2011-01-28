@@ -1,0 +1,32 @@
+<div class="bPageTitle">
+  <div class="ptBody secondaryPalette">
+    <div class="greeting">
+      <div class="content">
+          <span class="pageType">
+            <h1 class="currentStatusUserName">
+            </h1>
+          </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="toolsContent">
+    <tbody>
+        <tr>
+          <td>
+            <div class="toolsContentLeft">
+              <div class="bSubBlock">
+                <h3 class="lbHeader">工具列表</h3>
+                <div class="lbBody">
+                  <ul>
+                    <li><%= link_to("查看，导出所有权限",{:action=>"show_permissions"}) %></li>
+                    <li><%= link_to("查看，导出没有添加到数据库的权限",{:action=>"show_missed_permissions"}) %></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+</table>

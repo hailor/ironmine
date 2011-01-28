@@ -57,7 +57,7 @@ class ApplicationController < ActionController::Base
       true 
     elsif @current_permission&&Irm::Person.current&&@current_permission.enabled?&&!Irm::PermissionChecker.allow_to_permission?(@current_permission)
         flash[:error]=t(:access_denied,:permission=>@current_permission.to_s)
-        redirect_to( {:controller => 'irm/my', :action => 'page'})
+        redirect_to({:controller => 'irm/navigations', :action => 'access_deny'})
     end
   end
 
@@ -142,10 +142,19 @@ class ApplicationController < ActionController::Base
     if default
       redirect_to default
     else
-      entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>"Irm::Constant::TOP_BUSSINESS_MENU"})
-      redirect_to({:controller => entrance[:page_controller], :action => entrance[:page_action]})
+      redirect_entrance
     end
 
+  end
+
+  # 跳转到系统入口页面
+  def redirect_entrance
+      entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>Irm::Constant::TOP_BUSSINESS_MENU})
+      if(entrance)
+        redirect_to({:controller => entrance[:page_controller], :action => entrance[:page_action]})
+      else
+        redirect_to({:controller => 'irm/navigations', :action => 'access_deny'})
+      end
   end
 
   #进行分页，返回分页后的scope和scope的记录的总记录数
