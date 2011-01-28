@@ -99,6 +99,10 @@ class Irm::Person < ActiveRecord::Base
     #[{:menu_code=>"IRM_ENTRANCE_MENU",:access=>"EDIT_VIEW"},{:menu_code=>"IRM_SETTING_ENTRANCE_MENU",:access=>"EDIT_VIEW"}]
   end
 
+  def allowed_menus=(allowed)
+    @menu_accesses = allowed  
+  end
+
 
 
   # 返回人员的全名
