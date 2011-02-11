@@ -1,6 +1,17 @@
 # -*- coding: utf-8 -*-
 class InitCsiBasePermissions < ActiveRecord::Migration
   def self.up
+    csi_product = Irm::ProductModule.new({:product_short_name=>"CSI",:installed_flag=>"Y",:not_auto_mult=>true})
+    csi_product.product_modules_tls.build({:name=>"Continual Service Improvement",
+                                    :description=>"Continual Service Improvement",
+                                    :language=>"en",
+                                    :source_lang=>"en"})
+    csi_product.product_modules_tls.build({:name=>"持续服务改进模块",
+                                    :description=>"持续服务改进模块",
+                                    :language=>"zh",
+                                    :source_lang=>"en"})
+    csi_product.save
+
     csi_surveys_create= Irm::Permission.new(:permission_code=>'CSI_SURVEYS_CREATE',:page_controller=>'csi/surveys',:page_action=>'create',:not_auto_mult=>true)
     csi_surveys_create.permissions_tls.build(:language=>'zh',:name=>'创建',:description=>'创建',:source_lang=>'en')
     csi_surveys_create.permissions_tls.build(:language=>'en',:name=>'New',:description=>'New',:source_lang=>'en')

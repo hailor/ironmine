@@ -1,6 +1,16 @@
 # -*- coding: utf-8 -*-
 class InitSkmBasePermissions < ActiveRecord::Migration
   def self.up
+    skm_product = Irm::ProductModule.new({:product_short_name=>"SKM",:installed_flag=>"Y",:not_auto_mult=>true})
+    skm_product.product_modules_tls.build({:name=>"Service Knowledge Manager",
+                                    :description=>"Service Knowledge Manager",
+                                    :language=>"en",
+                                    :source_lang=>"en"})
+    skm_product.product_modules_tls.build({:name=>"知识库模块",
+                                    :description=>"知识库模块",
+                                    :language=>"zh",
+                                    :source_lang=>"en"})
+    skm_product.save    
     skm_entry_headers_create= Irm::Permission.new(:permission_code=>'SKM_ENTRY_HEADERS_CREATE',:page_controller=>'skm/entry_headers',:page_action=>'create',:not_auto_mult=>true)
     skm_entry_headers_create.permissions_tls.build(:language=>'zh',:name=>'创建',:description=>'创建',:source_lang=>'en')
     skm_entry_headers_create.permissions_tls.build(:language=>'en',:name=>'New',:description=>'New',:source_lang=>'en')
