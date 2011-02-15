@@ -6,6 +6,7 @@ class CreateModuleOrgPersonTables < ActiveRecord::Migration
       t.string   "full_name",          :limit => 30
       t.string   "email",              :limit => 60, :null => false
       t.integer  "auth_source_id"
+      t.string  "language_code",       :limit=>30
       t.string   "type",               :limit => 60
       t.string   "status_code",        :limit => 30, :default=>"ENABLED"
       t.integer  "created_by"
