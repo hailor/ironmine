@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddSkmEntryHeadersViewColumns < ActiveRecord::Migration
   def self.up
     column_a = Irm::ViewColumn.new({:filter_type=>"SKM_ENTRY_HEADERS_INDEX_A",
