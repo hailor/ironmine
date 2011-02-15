@@ -32,6 +32,10 @@ var yuiConfig = {
             fullpath:"/javascripts/gallery/widget-io.js",
             requires: ["io-base"]
         },
+        gallerydispatcher:{
+            fullpath:"/javascripts/gallery/gallery-dispatcher.js",
+            requires: []
+        },        
         dialog:{
             fullpath:"/javascripts/irm/dialog/dialog-base.js",
             requires: ["'widget', 'widget-stdmod', 'widget-position', 'widget-stack', 'widget-position-align', 'widget-position-constrain'"],
