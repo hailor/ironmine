@@ -2,7 +2,7 @@
 class AddLooupValueMenu < ActiveRecord::Migration
   def self.up
     delete_entry = Irm::MenuEntry.where(:menu_code =>"IRM_COMMON_SETTING_MENU",:permission_code=>'IRM_LOOKUP_TYPES_INDEX').first
-    delete_entry.destroy
+    delete_entry.destroy if delete_entry 
 
     lookup_setting_menu = Irm::Menu.new(:menu_code=>'IRM_LOOKUP_SETTING_MENU',:leaf_flag=>"Y",:not_auto_mult=>true)
     lookup_setting_menu.menus_tls.build(:language=>'zh',:name=>'快速编码菜单',:description=>'快速编码菜单',:source_lang=>'en')
