@@ -42,7 +42,7 @@ class CreateIrmIdFlexesTables < ActiveRecord::Migration
       t.datetime  "updated_at", :null => false
     end
 
-    add_index :irm_id_flex_structures_tl, ["id_flex_structure_id","language"], :name => "IRM_ID_FLEX_STRUCTURES_TL_U1", :unique => true
+    add_index :irm_id_flex_structures_tl, ["id_flex_code", "id_flex_num","language"], :name => "IRM_ID_FLEX_STRUCTURES_TL_U1", :unique => true
 
     execute('CREATE OR REPLACE VIEW irm_id_flex_structures_vl AS SELECT t.*,tl.id lang_id,tl.id_flex_structure_name,
                                              tl.description,tl.language,tl.source_lang
