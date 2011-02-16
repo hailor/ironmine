@@ -245,7 +245,7 @@ module ApplicationHelper
 
   def tabview(id, srcs = {})
     script = %Q(
-      GY.use("tabview", "gallerywidgetio", function(Y) {
+      GY.use("tabview", "gallerywidgetio", "async-queue", function(Y) {
           TabIO = function(config) {
               TabIO.superclass.constructor.apply(this, arguments);
           };
