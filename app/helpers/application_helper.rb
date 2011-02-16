@@ -279,7 +279,6 @@ module ApplicationHelper
           });
 
           var feeds = #{srcs.to_json};
-
           var tabview = new Y.TabView();
           Y.each(feeds, function(src, label) {
               tabview.add({

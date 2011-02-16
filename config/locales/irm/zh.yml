@@ -42,6 +42,7 @@ zh:
   close: 关闭
   default: 默认
   select: 请选择
+  select_ac: 选择
   save_and_new: 保存并新建
   edit_icon: 修改图标
   error: 错误
