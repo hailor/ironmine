@@ -16,6 +16,7 @@
         <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_csi_survey_result) %></h2></td>
         <td id="topButtonRow" class="pbButton">
           <div class="button"><%= link_to t(:return), {:action=>"index"}%></div>
+          <div class="button"><%= link_to t(:export), {:action=>"export_result",:format => "xls"}%></div>
         </td>
       </tr>
     </tbody>

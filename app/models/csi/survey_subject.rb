@@ -17,6 +17,8 @@ class Csi::SurveySubject < ActiveRecord::Base
                         where(:id=>subject_id)
   }
 
+  scope :order_by_id_desc,order("id desc")
+  
   scope :query_by_survey_id,lambda{|survey_id| where(:survey_id=>survey_id)}
 
   def self.get_max_seq_num(survey_id)

@@ -31,6 +31,7 @@ zh:
    label_csi_survey_timestamps: 时间
    label_csi_survey_result: 调查结果
    result: 结果
+   export: 导出
    #========================= end   irm regions_controller=======================#
    #========================= start irm regions_controller=======================#
    label_csi_survey_subject: 题目
@@ -65,4 +66,5 @@ zh:
    label_irm_survey_subject_info: 调查问卷题目信息
    submit: 提交
    label_csi_survey_subject_list: 题目列表
+   label_csi_survey_person: 被调查人员investigator
    #========================= end   irm regions_controller=======================#

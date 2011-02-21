@@ -11,7 +11,7 @@ class Csi::SurveyResult < ActiveRecord::Base
                                                      survey_id,response_batch,subject_id)}
 
 
-  scope :query_distinct_response_batch,lambda{|survey_id| select("distinct #{table_name}.response_batch,response_time").
+  scope :query_distinct_response_batch,lambda{|survey_id| select("distinct #{table_name}.response_batch,response_time,person_id").
                                                               joins(",#{Csi::SurveySubject.table_name} css").
                                                               where("css.survey_id = ? AND css.id = #{table_name}.subject_id",
                                                                      survey_id)}
