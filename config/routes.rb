@@ -563,6 +563,8 @@ Ironmine::Application.routes.draw do
     match '/entry_headers/data_grid(.:format)' => "entry_headers#data_grid", :via => :get
     match '/entry_headers/my_favorites(.:format)' => "entry_headers#my_favorites", :via => :get
     match '/entry_headers/remove_favorite(.:format)' => "entry_headers#remove_favorite", :via => :get
+    match '/entry_headers/my_drafts(.:format)' => "entry_headers#my_drafts", :via => :get
+    match '/entry_headers/:person_id/my_drafts_data' => "entry_headers#my_drafts_data"
   end
   
   match '/demo(/index)' => 'demo#index'

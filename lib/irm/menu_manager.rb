@@ -229,6 +229,7 @@ module Irm::MenuManager
         permission
       end
 
+      #=================================取得当前用户可以访问的菜单和权限==============================================
       # 供外部调用
       # 通过菜单编码取得子菜单项
       # 在返回子项前进行菜单子项的权限验证
@@ -259,7 +260,7 @@ module Irm::MenuManager
             # 3，菜单的权限编码为空
             if(show_options&&must_permission_code&&entries_options[:permission_code].nil?&&entries_options[:leaf_flag].eql?(Irm::Constant::SYS_NO))
               entries_options.merge!({:permission_code=>"IRM_SETTING_COMMON"})
-              show_options = menu_showable(me.merge(:permission_code=>entries_options[:permission_code]))
+              show_options = menu_showable(me.merge(:permission_code=>entries_options[:permission_code]),false)
             end
             sub_entries<< entries_options.merge!(show_options) if show_options&&me[:display_flag].eql?("Y")
         end
@@ -274,7 +275,7 @@ module Irm::MenuManager
                              :name=>pe[::I18n.locale.to_sym][:name],
                              :description=>pe[::I18n.locale.to_sym][:description],
                              :permission_code=>pe[:permission_code]}
-          sub_entries<< entries_options.merge!(permission_url_options(pe[:permission_code])) if pe[:display_flag].eql?("Y")&&check_permission(pe[:permission_code])
+          sub_entries<< entries_options.merge!(permission_url_options(pe[:permission_code])) if pe[:display_flag].eql?("Y")&&check_permission(pe[:permission_code],menu[:menu_code],true)
         end
         sub_entries.sort {|x,y| x[:display_sequence] <=> y[:display_sequence] } 
       end
@@ -282,15 +283,15 @@ module Irm::MenuManager
       # 供外部调用
       # 确定菜单是否可显示
       # 只要菜单下有一个可以显示的权限，则表示需要显示该菜单
-      def menu_showable(menu_entry)
-        if(menu_entry[:permission_code]&&check_permission(menu_entry[:permission_code]))
+      def menu_showable(menu_entry,must_top=true)
+        if(menu_entry[:permission_code]&&check_permission(menu_entry[:permission_code],menu_entry[:sub_menu_code],must_top))
           return permission_url_options(menu_entry[:permission_code])
         else
           menu = menus[menu_entry[:sub_menu_code]]
           if menu
             
             menu[:permission_entries].each do |pe|
-              return permission_url_options(pe[:permission_code]) if check_permission(pe[:permission_code])
+              return permission_url_options(pe[:permission_code]) if check_permission(pe[:permission_code],menu_entry[:sub_menu_code],must_top)
             end
 
             menu[:menu_entries].each do |me|
@@ -305,10 +306,17 @@ module Irm::MenuManager
 
       # private
       # 检查permission的权限
-      def check_permission(permission_code)
+      def check_permission(permission_code,top_menu=nil,must_top=false)
         return true if permission_code.nil?||permissions[permission_code].nil?
         permission = permissions[permission_code].dup
-        Irm::PermissionChecker.allow_to_permission?(permission)
+        # 参考 permission_checker
+        permission = Irm::Permission.to_permission(permission)
+        if permission&&permission.page_controller&&permission.enabled?&&Irm::Person.current
+          menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>permission.page_controller,:page_action=>permission.page_action},top_menu,must_top)
+          menus.size>0
+        else
+          true
+        end
       end
 
 
@@ -322,45 +330,22 @@ module Irm::MenuManager
           {}
         end
       end
+      #=================================end 取得当前用户可以访问的菜单和权限==============================================
 
       #通过权限链接取得菜单列表
-      def parent_menus_by_permission_without_access(options={},allowed_menu_codes=["IRM_ENTRANCE_MENU","IRM_SETTING_ENTRANCE_MENU"],top_menu=nil)
-        parent_menus =  permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions",options[:page_action]||"index")]
-        parent_menus ||= permission_menus[Irm::Permission.url_key(options[:page_controller]||"irm/permissions","index")]
-        return [] unless parent_menus&&parent_menus.size>0
-        allowed_menus = []
-        # 如果为setting下的权限，则表示可以无限制访问
-        if(options[:page_controller].eql?("irm/setting")||options[:page_controller].eql?("irm/permissions"))
-          allowed_menus =  parent_menus.dup  
-        else
-          parent_menus.each do |pms|
-            pms.each do |menu_code|
-              if allowed_menu_codes.include?(menu_code)
-                allowed_menus << pms
-                break
-              end
-            end
-          end
-        end
-        return [] unless allowed_menus.size>0
-        if !top_menu.nil?
-          allowed_menus.each do |pms|
-            return pms.dup if pms.include?(top_menu)
-          end
-        end
-        allowed_menus.first.dup
-      end
-
-      #通过权限链接取得菜单列表
-      def parent_menus_by_permission(options={},allowed_menu_codes=[{:menu_code=>"IRM_ENTRANCE_MENU",:access=>"EDIT_VIEW"},{:menu_code=>"IRM_SETTING_ENTRANCE_MENU",:access=>"EDIT_VIEW"}],top_menu=nil)
-
+      def parent_menus_by_permission(options={},top_menu=nil,must_top=false)
+        allowed_menu_codes = Irm::Person.current.allowed_menus
         permission_key = Irm::Permission.url_key(options[:page_controller],options[:page_action])
         parent_menus =  permission_menus[permission_key]
         if(!parent_menus)
           permission_key =   Irm::Permission.url_key(options[:page_controller],"index")
           parent_menus =  permission_menus[permission_key]
         end
-        return [] unless parent_menus&&parent_menus.size>0
+        # 如果没有对应的菜单，则返回空数组
+        return [] unless parent_menus
+        # 如果parent_menus为空数组，表示该权限属于PUBLIC 或 LOGIN
+        return ["LOGIN_OR_PUBLIC_MENU"] unless parent_menus.size>0
+
         allowed_menus = []
 
         # 如果为登录可访问和公开权限，则不需要进行过滤
@@ -389,19 +374,20 @@ module Irm::MenuManager
         end
 
         return [] unless allowed_menus.size>0
-        puts "=====#{options.to_json}======#{allowed_menu_codes.to_json}====#{allowed_menus.to_json}========="
+        puts "=====|#{options.to_json}|======|#{allowed_menu_codes.to_json}|==|#{top_menu}|==|#{allowed_menus.to_json}|========="
         if !top_menu.nil?
           allowed_menus.each do |pms|
             return pms.dup if pms.include?(top_menu)
           end
         end
+        return [] if must_top
         allowed_menus.first.dup
       end
 
       # 通过菜单取得上层菜单列表
       def parent_menus_by_menu(menu_code,top_menu=nil)
 
-        allowed_menu_codes= Irm::Person.current.allowed_menus.collect{|m| m[:menu_code]}
+        #allowed_menu_codes= Irm::Person.current.allowed_menus.collect{|m| m[:menu_code]}
         # 取得父菜单
         parent_menus = menu_menus[menu_code]
         return [] unless parent_menus&&parent_menus.size>0

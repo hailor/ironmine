@@ -15,6 +15,11 @@ class Skm::EntryHeader < ActiveRecord::Base
     where("ef.entry_header_id = #{table_name}.id").
     where("ef.person_id = ?", person_id)
   }
+
+  scope :my_drafts, lambda{|person_id|
+    where("#{table_name}.author_id = ?", person_id).
+    where("#{table_name}.entry_status_code = ?", "DRAFT")
+  }
   
   def self.generate_doc_number(prefix = "")
       num = Time.now.strftime("%y%m%d").to_i * 1000000 + rand(10)

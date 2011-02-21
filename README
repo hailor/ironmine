@@ -12,5 +12,7 @@ config step
     username: root
     password: root
     host: localhost
-2,create schema xxxx default character set utf8;
+2,create schema irm_dev default character set utf8;
 3,rake db:migrate
+4,rails server
+5,http://localhost:3000

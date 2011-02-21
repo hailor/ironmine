@@ -144,6 +144,7 @@ class Skm::EntryHeadersController < ApplicationController
     @entry_header.published_date = Time.now
     @entry_header.doc_number = Skm::EntryHeader.generate_doc_number
     @entry_header.version_number = @entry_header.next_version_number
+    @entry_header.author_id = Irm::Person.current.id
     respond_to do |format|
       if @entry_header.save
         session[:skm_entry_header] = nil
@@ -166,6 +167,7 @@ class Skm::EntryHeadersController < ApplicationController
       @entry_header.entry_status_code = "PUBLISHED" if params[:status] && params[:status] == "PUBLISHED"
       @entry_header.entry_status_code = "DRAFT" if params[:status] && params[:status] == "DRAFT"
       @entry_header.version_number = old_header.next_version_number.to_s
+      @entry_header.published_date = Time.now
       respond_to do |format|
         if @entry_header.save && old_header.save && @entry_header.update_attributes(params[:skm_entry_header])
           params[:skm_entry_details].each do |k, v|
@@ -279,4 +281,17 @@ class Skm::EntryHeadersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def my_drafts
+    render :layout => nil
+  end
+
+  def my_drafts_data
+    entry_headers_scope = Skm::EntryHeader.list_all.my_drafts(params[:person_id]).published
+    entry_headers,count = paginate(entry_headers_scope)
+    respond_to do |format|
+      format.json  {render :json => to_jsonp(entry_headers.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date], count)) }
+    end        
+  end
+  
 end

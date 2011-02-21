@@ -50,6 +50,21 @@ YUI.add("gallerywidgetio",function(Y){
         }
     };
 
+    function _parseContent ( content ) {
+        var fragment = Y.Node.create('<div></div>'),
+            o = {};
+
+        fragment.setContent (content);
+        o.css = fragment.all('style, link[type=text/css]').each(function (n) {
+            fragment.removeChild (n);
+        });
+        o.js = fragment.all('script').each(function (n) {
+            fragment.removeChild (n);
+        });
+        o.content = fragment.get ('innerHTML');
+        return o;
+    }
+    
     /* Extend the base plugin class */
     Y.extend(WidgetIO, Y.Plugin.Base, {
         /*
@@ -142,7 +157,6 @@ YUI.add("gallerywidgetio",function(Y){
         _toggleLoadingClass: function(add) {
             this.get('host').get('boundingBox').toggleClass(WidgetIO.LOADING_CLASS_NAME, add);
         }
-
     });
 
     Y.Plugin.WidgetIO = WidgetIO;
