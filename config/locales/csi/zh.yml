@@ -66,5 +66,5 @@ zh:
    label_irm_survey_subject_info: 调查问卷题目信息
    submit: 提交
    label_csi_survey_subject_list: 题目列表
-   label_csi_survey_person: 被调查人员investigator
+   label_csi_survey_person: 参与调查人员
    #========================= end   irm regions_controller=======================#
