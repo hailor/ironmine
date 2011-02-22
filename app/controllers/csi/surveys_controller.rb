@@ -194,7 +194,8 @@ class Csi::SurveysController < ApplicationController
 
     respond_to do |format|
         if save_flag
-          format.html { redirect_to({:action=>"thanks",:survey_id=>@survey_id,:return_url=>@return_url}, :notice => @thank_message) }
+          format.html { redirect_to({:action=>"thanks",:survey_id=>@survey_id,:return_url=>@return_url},
+                                     :notice => @thank_message) }
           format.xml  { render :xml => @survey, :status => :created, :location => @survey }
           format.js   {
             render 'thanks'
