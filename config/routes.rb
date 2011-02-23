@@ -577,6 +577,7 @@ Ironmine::Application.routes.draw do
     match '/file_managements/batch_create(.:format)' => "file_managements#batch_create", :via => :post
     match '/file_managements/get_data(.:format)' => "file_managements#get_data"
     match '/file_managements/:id/show(.:format)' => "file_managements#show", :via => :get
+    match '/file_managements/destroy(.:format)' => "file_managements#destroy"
   end
   
   match '/demo(/index)' => 'demo#index'

@@ -66,4 +66,17 @@ class Skm::FileManagementsController < ApplicationController
   def delete_file
     
   end
+
+  def destroy
+    @file = Irm::Attachment.find(params[:id])
+    respond_to do |format|
+      if @file.destroy
+          format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+          format.xml  { render :xml => @flex_value, :status => :created, :location => @file }
+      else
+         @error = @file
+         format.html { render "error_message" }
+      end
+    end
+  end
 end
