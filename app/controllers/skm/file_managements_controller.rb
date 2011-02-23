@@ -56,10 +56,14 @@ class Skm::FileManagementsController < ApplicationController
     files,count = paginate(files_scope)
     respond_to do |format|
       format.json  {render :json => to_jsonp(files.to_grid_json(['0',:private_flag, :category_id,:description, :data_file_name, :data_content_type, :data_file_size, :data_updated_at, :status_code, :category_name], count)) }
-    end    
+    end
   end
 
   def list_files
+    
+  end
+
+  def delete_file
     
   end
 end

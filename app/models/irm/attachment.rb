@@ -3,7 +3,7 @@ class Irm::Attachment < ActiveRecord::Base
 
   attr_accessor :data
 
-  has_many :attachment_versions
+  has_many :attachment_versions, :dependent => :destroy
   query_extend
   scope :list_all, lambda{
     select("#{table_name}.*, av.category_id category_id, av.data_file_name data_file_name, av.data_content_type data_content_type, av.data_file_size data_file_size, av.data_updated_at data_updated_at, fvt.flex_value_meaning category_name").
