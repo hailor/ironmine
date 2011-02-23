@@ -356,7 +356,7 @@ div.button input[type="submit"]:hover{background-position: right -30px; cursor: 
     text-decoration:none;
     width:160px;
 }
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, sub, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, sub, tt, var, dl, dt, dd, ol, ul, li, form, label, table, caption, tbody, tfoot, thead, tr, th, td {
     border:0 none;
     /*font-family:inherit;*/
     font-size:100%;
@@ -780,3 +780,27 @@ body.homeTab .componentDate {margin-left:10px;}
 .componentDate {font-size:0.91em;margin-top:5px;}
 
 .bMiniTab {margin-bottom: 5px;}
+/************** report **********************/
+.progressIndicator {margin-bottom:15px;overflow:hidden;}
+.progressIndicator h2 {float:left;vertical-align:top;font-weight: bold;}
+.bFilterReport h2 {font-weight: bold;}
+.progressIndicator #status {
+    float:left;
+    font-size:12px;
+    padding-left:12px;
+    vertical-align:top;
+    width:75%;
+}
+.reportParameters .row {margin-bottom:15px;}
+.reportParameters .row tr {vertical-align:top;}
+.reportParameters .row td {padding-right:10px;}
+.reportParameters label, .reportParameters .label {
+    display:block;
+    font-size:12px;
+    margin-top:20px;
+    white-space:nowrap;
+}
+fieldset legend {color:black;font-weight:bold;}
+.reportParameters fieldset label, .reportParameters fieldset .label {margin-top:0;}
+.bFilterReport .reportActions {margin-bottom:15px;white-space:nowrap;}
+.bFilterReport .btn, .bFilterReport .btnDisabled, .bFilterReport .menuButton .menuButtonButton {font-size:12px;margin:0 6px 0 1px;}
