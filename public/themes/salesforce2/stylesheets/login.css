@@ -255,22 +255,15 @@ width:990px;
     text-align:center;
     width:320px;
 }
-.shoutout .promo .overlay {
-    background:url("../images/bk_promo_overlay3.png") no-repeat scroll 0 0 transparent;
-    display:block;
-    height:411px;
-    position:absolute;
-    width:489px;
-}
-#shoutoutcontent .shoutout {
-    margin:0 0 0 8px;
-    overflow:hidden;
-    padding:0 0 1px;
-}
-.shoutout {
+
+#shoutoutframe {
+    border:medium none;
+    border-collapse:collapse;
     float:left;
-    margin-bottom:10px;
-    padding-left:8px;
+    height:420px;
+    margin-bottom:0;
+    margin-left:8px;
+    width:520px;
 }
 .infobar {
     background:url("../images/bk_infobar.gif") no-repeat scroll 0 0 transparent;

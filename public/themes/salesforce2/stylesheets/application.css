@@ -377,23 +377,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     text-align:center;
     width:320px;
 }
-.shoutout .promo .overlay {
-    background:url("../images/bk_promo_overlay3.png") no-repeat scroll 0 0 transparent;
-    display:block;
-    height:411px;
-    position:absolute;
-    width:489px;
-}
-#shoutoutcontent .shoutout {
-    margin:0 0 0 8px;
-    overflow:hidden;
-    padding:0 0 1px;
-}
-.shoutout {
-    float:left;
-    margin-bottom:10px;
-    padding-left:8px;
-}
 .infobar {
     background:url("../images/bk_infobar.gif") no-repeat scroll 0 0 transparent;
     clear:both;
