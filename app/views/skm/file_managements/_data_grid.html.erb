@@ -1,0 +1,36 @@
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_skm_file_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:label_skm_upload_new_file), {:action => "new"}%></div>
+                <div class="button"><%= link_to t(:label_skm_upload_batch_file), {:action => "batch_new"}%></div>
+              </td>
+              <td class="pbHelp">
+                <div id="filesSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="skm_files_list" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:controller => "skm/file_managements", :action => "edit", :id => "{id}"}) %>&nbsp;
+            <%= link_to(t(:show),{:controller => "skm/file_managements", :action => "show", :id => "{id}"}) %>&nbsp;
+            <%= link_to(t(:remove),{}) %>
+          </div>
+        </div>
+        <%= datatable("skm_files_list",url_for(:action=>"get_data",:format=>"json"),
+                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"60px"},
+                   {:key=>"data_file_name",:label=>t(:label_skm_file_name),:sortable=>true, :searchable => true,:width=>"15%"},
+                   {:key=>"category_name",:label=>t(:label_skm_file_category), :width=>"15%"},
+                   {:key=>"description",:label=>t(:description), :searchable => true,:width=>"25%"},
+                   {:key=>"data_file_size",:label=>t(:label_skm_file_size),:sortable=>true, :width => "80px"},
+                   {:key=>"data_updated_at",:label=>t(:label_skm_file_data_updated_at),:sortable=>true,:width=>"40px"}], {:search_box => "filesSearchBox"})%>
+      </div>
+    </div>
+</div>

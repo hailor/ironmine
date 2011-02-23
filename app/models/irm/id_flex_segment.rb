@@ -5,7 +5,7 @@ class Irm::IdFlexSegment < ActiveRecord::Base
   attr_accessor :form_left_prompt,:description
   has_many :id_flex_segments_tls,:dependent => :destroy, :foreign_key => :segment_name, :primary_key => :segment_name
   acts_as_multilingual(:columns =>[:form_left_prompt,:description], :required=>[:form_left_prompt])
-  
+  query_extend
   validates_uniqueness_of :segment_name
   validates_presence_of :segment_name
   

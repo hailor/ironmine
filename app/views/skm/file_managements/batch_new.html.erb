@@ -1,0 +1,133 @@
+<%= app_title %>
+<% category_options = options_for_select(available_file_categories) %>
+<% form_tag({ :action=>"batch_create"}, :id =>"file_form", :name => "file_form", :multipart => true) do %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_skm_file_new)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:upload), {},{:href => "javascript:void(0);", :onclick => "save()"} %></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @files%>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <h3><%= t(:label_skm_upload_batch_file) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+            <th width="30%"></th>
+            <th width="40px"></th>
+            <th><%= t :label_skm_file_name %></th>
+            <th><%= t :label_skm_file_category %></th>
+            <th><%= t :description%></th>
+            <th><%= t :label_skm_file_private_tag%></th>
+          </tr>
+        </thead>
+        <tbody id="file_body">
+            <tr id="file_0">
+              <td class="dataCol"></td>
+              <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(0);"} %></td>
+              <td class="dataCol"><%=file_field_tag "file[0][file]", :required=>true%></td>
+              <td class="dataCol"><%=select_tag "file[0][file_category]", category_options%></td>
+              <td class="dataCol"><%=text_field_tag "file[0][description]", {}, {:rows => 3, :cols => 35}%></td>
+              <td class="dataCol"><%=check_box_tag "file[0][private_flag]"%></td>
+            </tr>
+            <tr id="file_1">
+              <td class="dataCol"></td>
+              <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(1);"} %></td>
+              <td class="dataCol"><%=file_field_tag "file[1][file]", :required=>true%></td>
+              <td class="dataCol"><%=select_tag "file[1][file_category]", category_options%></td>
+              <td class="dataCol"><%=text_field_tag "file[1][description]", {}, {:rows => 3, :cols => 35}%></td>
+              <td class="dataCol"><%=check_box_tag "file[1][private_flag]"%></td>
+            </tr>
+            <tr id="file_2">
+              <td class="dataCol"></td>
+              <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(2);"} %></td>
+              <td class="dataCol"><%=file_field_tag "file[2][file]", :required=>true%></td>
+              <td class="dataCol"><%=select_tag "file[2][file_category]", category_options%></td>
+              <td class="dataCol"><%=text_field_tag "file[2][description]", {}, {:rows => 3, :cols => 35}%></td>
+              <td class="dataCol"><%=check_box_tag "file[2][private_flag]"%></td>
+            </tr>
+            <tr id="file_3">
+              <td class="dataCol"></td>
+              <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(3);"} %></td>
+              <td class="dataCol"><%=file_field_tag "file[3][file]", :required=>true%></td>
+              <td class="dataCol"><%=select_tag "file[3][file_category]", category_options%></td>
+              <td class="dataCol"><%=text_field_tag "file[3][description]", {}, {:rows => 3, :cols => 35}%></td>
+              <td class="dataCol"><%=check_box_tag "file[3][private_flag]"%></td>
+            </tr>
+            <tr id="file_4">
+              <td class="dataCol"></td>
+              <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(4);"} %></td>
+              <td class="dataCol"><%=file_field_tag "file[4][file]", :required=>true%></td>
+              <td class="dataCol"><%=select_tag "file[4][file_category]", category_options%></td>
+              <td class="dataCol"><%=text_field_tag "file[4][description]", {}, {:rows => 3, :cols => 35}%></td>
+              <td class="dataCol"><%=check_box_tag "file[4][private_flag]"%></td>              
+            </tr>                
+        </tbody>
+        <tbody>
+            <tr>
+              <td class="dataCol"></td>
+              <td class="dataCol"></td>
+              <td class="dataCol"><%= link_to t(:label_skm_file_add_line), {}, {:href => "javascript:void(0);", :onclick => "generate_line();"} %></td>
+              <td class="dataCol"></td>
+              <td class="dataCol"></td>
+              <td class="dataCol"></td>
+            </tr>            
+        </tbody>        
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= link_to t(:upload), {},{:href => "javascript:void(0);", :onclick => "save()"} %></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script type="text/javascript">
+  var line_count = 5;
+  
+  function save(){
+    document.file_form.action = "batch_create";
+    file_form.submit();
+  }
+ function delete_line(l)
+ {
+      GY.use(function(Y){
+          Y.one("#file_" + l).remove();
+      })
+  }
+  function generate_line()
+  {
+      GY.use(function(Y){
+          var node = Y.Node.create('<tr id="file_' + line_count + '">'
+                  + '<td class="dataCol"></td>'
+                  + '<td class="dataCol"><a onclick="delete_line(' + line_count + ');" href="javascript:void(0);"><%= t :delete%></a></td>'
+                  + '<td class="dataCol"><input type="file" required="required" name="file[' + line_count + '][file]" id="file_' + line_count + '_file"></td>'
+                  + '<td class="dataCol"><select required="required" name="file[' + line_count + '][file_category]" id="file_' + line_count + '_file_category">' + '<%= category_options.gsub!(/\n+/, "")%>' + '</select></td>'
+                  + '<td class="dataCol"><input type="text" value="" rows="3" name="file[' + line_count + '][description]" id="file_' + line_count + '_description" cols="35"></td>'
+                  + '<td class="dataCol"><input type="checkbox" value="1" name="file[' + line_count + '][private_flag]" id="file_' + line_count + '_private_flag"></td>'
+                  + '</tr>');
+          Y.one("#file_body").appendChild(node);
+      });
+      line_count ++;
+  }
+</script>
+<% end %>
