@@ -5,7 +5,7 @@
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_skm_file_new)%></h2></td>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_skm_file_edit)%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:save), {},{:href => "javascript:void(0);", :onclick => "save()"} %></div>
             <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
@@ -32,19 +32,23 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_skm_file)%></label></td>
-              <td class="data2Col"><%=file_field_tag "file[0][file]", :required=>true%></td>
+              <td class="data2Col"><%= @file[:data_file_name]%></td>
             </tr>
             <tr>
+              <td class="labelCol"><label><%=(t :label_skm_upload_new_file)%></label></td>
+              <td class="data2Col"><%=file_field_tag "file[0][file]", :required=>true%>&nbsp;<%= link_to t(:remove), {}, {:href => "javascript:void(0);", :onclick => "clear_file();"} %></td>
+            </tr>            
+            <tr>
               <td class="labelCol"><label><%=(t :label_skm_file_category)%></label></td>
-              <td class="data2Col"><%=select_tag "file[0][file_category]", options_for_select(available_file_categories), {:required=>true, :include_blank => t(:select)}%></td>
+              <td class="data2Col"><%=select_tag "file[0][file_category]", options_for_select(available_file_categories)%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :description)%></label></td>
-              <td class="data2Col"><%=text_area_tag "file[0][description]", {}, {:rows => 3, :cols => 35}%></td>
+              <td class="data2Col"><%=text_area_tag "file[0][description]", {}, {:rows => 3, :cols => 35, :value => @file[:description]}%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_skm_file_private_tag)%></label></td>
-              <td class="data2Col"><%=check_box_tag "file[0][private_flag]"%></td>
+              <td class="data2Col"><%=check_box_tag "file[0][private_flag]", :value => @file[:private_flag]%></td>
             </tr>
         </tbody>
       </table>

@@ -37,7 +37,7 @@ class Skm::FileManagementsController < ApplicationController
   end
   
   def edit
-    
+    @file = Irm::Attachment.list_all.where("#{Irm::Attachment.table_name}.id = ?", params[:id]).first()
   end
 
   def update
@@ -59,14 +59,6 @@ class Skm::FileManagementsController < ApplicationController
     end
   end
 
-  def list_files
-    
-  end
-
-  def delete_file
-    
-  end
-
   def destroy
     @file = Irm::Attachment.find(params[:id])
     respond_to do |format|
@@ -78,5 +70,13 @@ class Skm::FileManagementsController < ApplicationController
          format.html { render "error_message" }
       end
     end
+  end
+
+  def get_version_files
+    
+  end
+  
+  def remove_version_file
+    
   end
 end
