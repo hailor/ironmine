@@ -194,7 +194,8 @@ class Csi::SurveysController < ApplicationController
 
     respond_to do |format|
         if save_flag
-          format.html { redirect_to({:action=>"thanks",:survey_id=>@survey_id,:return_url=>@return_url}, :notice => @thank_message) }
+          format.html { redirect_to({:action=>"thanks",:survey_id=>@survey_id,:return_url=>@return_url},
+                                     :notice => @thank_message) }
           format.xml  { render :xml => @survey, :status => :created, :location => @survey }
           format.js   {
             render 'thanks'
@@ -222,4 +223,53 @@ class Csi::SurveysController < ApplicationController
     @subjects = Csi::SurveySubject.query_by_survey_id(@survey_id)
     @batch_results = Csi::SurveyResult.query_distinct_response_batch(@survey_id)
   end
+
+  def export_result
+    @survey_id = params[:id]
+    @subjects = Csi::SurveySubject.query_by_survey_id(@survey_id)
+    @batch_results = Csi::SurveyResult.query_distinct_response_batch(@survey_id)
+
+    @export_results = Array.new
+    @export_result = Hash.new
+    @export_headers= Array.new
+    
+    survey_timestamps  = t(:label_csi_survey_timestamps)
+    survey_person = t(:label_csi_survey_person)
+    @export_headers << survey_timestamps
+    @export_headers << survey_person    
+    @subjects.each do |subject|
+      @export_headers << subject.name
+    end
+
+    @batch_results.each do |batch_result|
+      @export_result = {}
+      @export_result = {survey_timestamps=>batch_result.response_time.to_time.to_formatted_s(:datetime_short),
+                        survey_person=>Irm::Person.query_person_name(batch_result.person_id).first[:person_name]}
+      @subjects.each do |subject|
+        @export_result.merge!(subject.name=>get_survey_result(@survey_id,batch_result.response_batch,subject.id))
+      end
+      @export_results <<@export_result
+    end
+
+    respond_to do |format|
+      format.html
+      format.xls {send_data(@export_results.to_xls(:headers => @export_headers,:use_herders=>true)) }
+    end
+  end
+
+  private
+  def get_survey_result(survey_id,response_batch,subject_id)
+    @survey_result = Csi::SurveyResult.query_by_survey_id(survey_id,response_batch,subject_id)
+    @count = Csi::SurveyResult.query_by_survey_id(survey_id,response_batch,subject_id).count
+    @all_survey_result=""
+    @survey_result.each do |t|
+       if @count.to_i == 1
+         @all_survey_result = t[:subject_result]
+       else
+         @all_survey_result = @all_survey_result + t[:subject_result]+','
+       end
+    end
+    @all_survey_result
+  end
+
 end

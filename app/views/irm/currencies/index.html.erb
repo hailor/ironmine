@@ -24,9 +24,9 @@
         </div>
         <%= datatable("currency",url_for(:action=>"get_data",:format=>"json"),
                   [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"80px"},
-                   {:key=>"currency_code",:label=>t(:label_irm_currency_currency_code),:sortable=>true,:searchable=>true},
-                   {:key=>"precision",:label=>t(:label_irm_currency_precision),:sortable=>true},
-                   {:key=>"name",:label=>t(:label_irm_currency_name),:sortable=>true,:searchable=>true},
+                   {:key=>"currency_code",:label=>t(:label_irm_currency_currency_code),:sortable=>true,:searchable=>true,:width=>"10%"},
+                   {:key=>"precision",:label=>t(:label_irm_currency_precision),:sortable=>true,:width=>"40px"},
+                   {:key=>"name",:label=>t(:label_irm_currency_name),:sortable=>true,:searchable=>true,:width=>"20%"},
                    {:key=>"description",:label=>t(:label_irm_currency_description),:sortable=>true},
                    {:key=>"status_meaning",:label=>t(:label_irm_currency_status_code),:sortable=>true,:width=>"40px"}],
                    {:search_box=>"permissionsSearchBox"})%>

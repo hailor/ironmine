@@ -93,8 +93,12 @@
             <tr>
               <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_csi_survey_subject_list) %></h2></td>
               <td class="pbButton">
-                <div class="button"><%= link_to t(:add), {:controller=>"csi/survey_subjects",
+                <% if check_survey_result_exist?(@survey.id) %>
+                  <div class="button"><%= link_to t(:add), {:controller=>"csi/survey_subjects",
                                                           :action=>"new",:survey_id=>@survey.id}%></div>
+                <% else %>
+                  <%= t(:add) %>
+                <% end %>                
               </td>
             </tr>
           </tbody>

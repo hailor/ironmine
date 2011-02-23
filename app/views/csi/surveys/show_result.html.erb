@@ -16,6 +16,9 @@
         <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_csi_survey_result) %></h2></td>
         <td id="topButtonRow" class="pbButton">
           <div class="button"><%= link_to t(:return), {:action=>"index"}%></div>
+          <% if @batch_results.present? %>
+             <div class="button"><%= link_to t(:export), {:action=>"export_result",:format => "xls"}%></div>
+          <% end %>
         </td>
       </tr>
     </tbody>
@@ -35,6 +38,10 @@
                 <div class="yui3-datatable-liner"><%= t(:label_csi_survey_timestamps) %>
                 </div>
               </th>
+              <th class="yui3-column">
+                <div class="yui3-datatable-liner"><%= t(:label_csi_survey_person) %>
+                </div>
+              </th>
               <% @subjects.each do |subject| %>
               <th class="yui3-column">
                 <div class="yui3-datatable-liner">
@@ -50,6 +57,11 @@
             <td class="yui3-column">
               <div class='yui3-datatable-liner'>
                 <%=batch_result.response_time.to_time.to_formatted_s(:datetime_short)%>
+              </div>
+            </td>
+            <td class="yui3-column">
+              <div class='yui3-datatable-liner'>
+                <%=get_survey_person(batch_result.person_id)%>
               </div>
             </td>
             <% @subjects.each do |subject| %>

@@ -26,6 +26,9 @@ class Irm::Person < ActiveRecord::Base
     where(:identity_id=>identity)
   }
 
+  scope :query_person_name,lambda{|person_id|select("CONCAT(#{table_name}.last_name,#{table_name}.first_name) person_name").
+                           where(:id=>person_id)}
+
 
   scope :query_wrap_info,lambda{|language| select("#{table_name}.id,irm_identities.login_name,#{table_name}.mobile_phone,CONCAT(#{table_name}.last_name,#{table_name}.first_name) person_name,"+
                                                       "#{table_name}.email_address,v1.meaning status_meaning, v2.name company_name").

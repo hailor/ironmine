@@ -27,10 +27,11 @@ zh:
    label_csi_survey_no_form: 没有这个调查问卷
    label_csi_default_thanks_message: 您的回答已成功提交.
    return: 返回
-   label_csi_message_blank: 该题不能为空
+   label_csi_message_blank: 该题为必答题，请填写
    label_csi_survey_timestamps: 时间
    label_csi_survey_result: 调查结果
    result: 结果
+   export: 导出
    #========================= end   irm regions_controller=======================#
    #========================= start irm regions_controller=======================#
    label_csi_survey_subject: 题目
@@ -65,4 +66,5 @@ zh:
    label_irm_survey_subject_info: 调查问卷题目信息
    submit: 提交
    label_csi_survey_subject_list: 题目列表
+   label_csi_survey_person: 参与调查人员
    #========================= end   irm regions_controller=======================#
