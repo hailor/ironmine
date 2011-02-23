@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddGeneralCategoryMenu < ActiveRecord::Migration
   def self.up
     irm_menu_entiry_91= Irm::MenuEntry.new(:menu_code=>'IRM_COMMON_SETTING_MENU',:sub_menu_code=>nil,:permission_code=>'IRM_GENERAL_CATEGORIES_INDEX',:display_sequence=>7,:display_flag=>'Y',:not_auto_mult=>true)
