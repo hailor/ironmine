@@ -330,11 +330,11 @@ module Irm::MenuManager
         end
         false
       end
-
-      def role_showable(role_code)
+      # use_default 表示设置类使用setting/common
+      def role_showable(role_code,use_default=true)
         role = roles[role_code]
         if role
-          if("SETTING".eql?(role[:role_type]))
+          if("SETTING".eql?(role[:role_type])&&use_default)
             menu_showable({:sub_menu_code=>role[:menu_code],:permission_code=>"IRM_SETTING_COMMON"})
           else
             menu_showable({:sub_menu_code=>role[:menu_code]})

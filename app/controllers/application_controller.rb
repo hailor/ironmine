@@ -150,9 +150,9 @@ class ApplicationController < ActionController::Base
   # 跳转到系统入口页面
   def redirect_entrance
       entrance = Irm::Person.current.allowed_roles.detect{|r| r[:role_type].eql?("BUSSINESS")&&Irm::MenuManager.role_showable(r[:role_code])}
-      entrance ||= Irm::Person.current.allowed_roles.detect{|r| r[:role_type].eql?("SETTING")&&Irm::MenuManager.role_showable(r[:role_code])}
+      entrance ||= Irm::Person.current.allowed_roles.detect{|r| r[:role_type].eql?("SETTING")&&Irm::MenuManager.role_showable(r[:role_code],false)}
       if(entrance)
-        url = Irm::MenuManager.role_showable(entrance[:role_code])
+        url = Irm::MenuManager.role_showable(entrance[:role_code],false)
         redirect_to({:controller => url[:page_controller], :action => url[:page_action]})
       else
         redirect_to({:controller => 'irm/navigations', :action => 'access_deny'})
