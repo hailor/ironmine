@@ -80,27 +80,25 @@ class Irm::Person < ActiveRecord::Base
 
 
 
-  def allowed_menus
-    if @menu_accesses
-      return @menu_accesses
+  def allowed_roles
+    if @role_accesses
+      return @role_accesses.dup
     else
-      @menu_accesses = []
+      @role_accesses = []
     end
 
     if(self.class.order("id").first.id.eql?(self.id))
-      @menu_accesses = [{:menu_code=>"IRM_ENTRANCE_MENU",:access=>"EDIT_VIEW"},{:menu_code=>"IRM_SETTING_ENTRANCE_MENU",:access=>"EDIT_VIEW"}]
-      return @menu_accesses
+      @role_accesses = Irm::Role.all.collect{|r|{:role_code=>r.role_code,:role_type=>r.role_type,:menu_code=>r.menu_code,:access=>"EDIT_VIEW"} if ["SETTING","BUSSINESS"].include?(r[:role_type]) }.compact
+      return @role_accesses
     end
-    menu_codes = roles.collect{|r| r[:menu_code]}
-    menu_codes.each do |m|
-      @menu_accesses << {:menu_code=>m,:access=>"EDIT_VIEW"}
-    end
-    @menu_accesses
+
+    @role_accesses = roles.collect{|r| {:role_code=>r.role_code,:role_type=>r.role_type,:menu_code=>r.menu_code,:access=>"EDIT_VIEW"} if ["SETTING","BUSSINESS"].include?(r[:role_type]) }.compact
+    @role_accesses.dup
     #[{:menu_code=>"IRM_ENTRANCE_MENU",:access=>"EDIT_VIEW"},{:menu_code=>"IRM_SETTING_ENTRANCE_MENU",:access=>"EDIT_VIEW"}]
   end
 
   def allowed_menus=(allowed)
-    @menu_accesses = allowed  
+    @role_accesses = allowed  
   end
 
 

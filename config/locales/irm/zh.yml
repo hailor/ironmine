@@ -674,7 +674,7 @@ zh:
   label_irm_view_filter_step_three: 步骤 3。限制可视性
   label_irm_view_filter_restrict_visibility_for_me: 仅对我可见
   label_irm_view_filter_restrict_visibility_for_all: 所有用户皆可见
-  #=========================end irm support_group_controller=======================#
+  #=========================end irm filters_controller=======================#
   #========================= irm roles ===================================
   label_irm_role_list: 角色列表
   label_irm_role: 角色
@@ -684,4 +684,5 @@ zh:
   label_irm_role_name: 角色名称
   label_irm_role_description: 角色描述
   label_irm_role_menu: 菜单
-  
+  label_irm_role_type: 角色类型
+  #=========================end irm roles ===================================
