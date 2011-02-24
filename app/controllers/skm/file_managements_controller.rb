@@ -41,7 +41,30 @@ class Skm::FileManagementsController < ApplicationController
   end
 
   def update
-    
+    @file = Irm::Attachment.find(params[:id])
+    if !(params[:file][0][:file].nil? || params[:file][0][:file].blank?)
+      file = params[:file]
+      Irm::Attachment.update_version_files(@file, file, 0, 0)
+    else
+      @file.update_attribute(:description, params[:file][0][:description])
+      @file.update_attribute(:category_id, params[:file][0][:file_category])
+      @file.update_attribute(:private_flag, params[:file][0][:private_flag])
+      file = Irm::AttachmentVersion.where(:id => @file.latest_version_id)
+      if file.any?
+        file.update_attributes(:private_flag => @file.private_flag,
+                               :description => @file.description,
+                               :category_id => @file.category_id)
+      end
+    end
+    respond_to do |format|
+      if @file.save
+        format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+        format.xml  { render :xml => @file, :status => :created, :location => @file }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @file.errors, :status => :unprocessable_entity }
+      end
+    end    
   end
 
   def show
