@@ -10,7 +10,7 @@ module Irm::NavigationsHelper
   end
 
   def level_one_current_name
-    Irm::MenuManager.roles[@page_menus[0]][I18n.locale.to_sym][:description]
+    Irm::MenuManager.roles[@page_menus[0]][I18n.locale.to_sym][:description] if @page_menus[0]
   end
 
   # 生成一级菜单
