@@ -22,7 +22,11 @@ class Skm::FileManagementsController < ApplicationController
       #调用方法创建附件
       Irm::AttachmentVersion.create_verison_files(files,0,0)
     end
-    redirect_to :action => 'index'
+    if params[:act] == "next"
+      redirect_to :action => 'new'
+    else
+      redirect_to :action => 'index'
+    end
   end
 
   def batch_create
@@ -42,18 +46,22 @@ class Skm::FileManagementsController < ApplicationController
 
   def update
     @file = Irm::Attachment.find(params[:id])
-    if !(params[:file][0][:file].nil? || params[:file][0][:file].blank?)
+    infile = {}
+    params[:file].each_value do |p|
+      infile = p
+    end
+    if infile[:file]
       file = params[:file]
-      Irm::Attachment.update_version_files(@file, file, 0, 0)
+      Irm::AttachmentVersion.update_version_files(@file, file, 0, 0)
     else
-      @file.update_attribute(:description, params[:file][0][:description])
-      @file.update_attribute(:category_id, params[:file][0][:file_category])
-      @file.update_attribute(:private_flag, params[:file][0][:private_flag])
+      @file.update_attribute(:description, infile[:description])
+      @file.update_attribute(:file_category, infile[:file_category])
+      @file.update_attribute(:private_flag, infile[:private_flag])
       file = Irm::AttachmentVersion.where(:id => @file.latest_version_id)
       if file.any?
-        file.update_attributes(:private_flag => @file.private_flag,
+        file.first().update_attributes(:private_flag => @file.private_flag,
                                :description => @file.description,
-                               :category_id => @file.category_id)
+                               :category_id => @file.file_category)
       end
     end
     respond_to do |format|
@@ -68,7 +76,7 @@ class Skm::FileManagementsController < ApplicationController
   end
 
   def show
-    
+
   end
   
   def get_data

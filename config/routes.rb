@@ -570,7 +570,7 @@ Ironmine::Application.routes.draw do
     #file_managements
     match '/file_managements(/index)(.:format)' => "file_managements#index", :via => :get
     match '/file_managements/:id/edit(.:format)' => "file_managements#edit", :via => :get
-    match '/file_managements/:id/update(.:format)' => "file_managements#update", :via => :put
+    match '/file_managements/:id/update(.:format)' => "file_managements#update"
     match '/file_managements/new(.:format)' => "file_managements#new"
     match '/file_managements/batch_new(.:format)' => "file_managements#batch_new"
     match '/file_managements/create(.:format)' => "file_managements#create", :via => :post

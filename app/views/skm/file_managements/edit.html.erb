@@ -40,15 +40,15 @@
             </tr>            
             <tr>
               <td class="labelCol"><label><%=(t :label_skm_file_category)%></label></td>
-              <td class="data2Col"><%=select_tag "file[0][file_category]", options_for_select(available_file_categories)%></td>
+              <td class="data2Col"><%=select_tag "file[0][file_category]", options_for_select(available_file_categories, @file[:category_id])%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :description)%></label></td>
-              <td class="data2Col"><%=text_area_tag "file[0][description]", {}, {:rows => 3, :cols => 35, :value => @file[:description]}%></td>
+              <td class="data2Col"><%=text_area_tag "file[0][description]", @file[:description], {:rows => 3, :cols => 35}%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_skm_file_private_tag)%></label></td>
-              <td class="data2Col"><%=check_box_tag "file[0][private_flag]", :value => @file[:private_flag]%></td>
+              <td class="data2Col"><%=check_box_tag "file[0][private_flag]", nil, @file[:private_flag] == "Y"%></td>
             </tr>
         </tbody>
       </table>
@@ -72,6 +72,13 @@
   function save(){
     document.file_form.action = "update";
     file_form.submit();
+  }
+
+  function clear_file()
+  {
+      GY.use(function(Y) {
+          Y.one("#file_0_file").set("value", "")
+      })
   }
 </script>
 <% end %>
