@@ -41,6 +41,10 @@ class Irm::Role < ActiveRecord::Base
 
   scope :setting,lambda{where(:role_type=>"SETTING")}
 
+  scope :assignable,lambda{
+    where("#{table_name}.role_type = ? OR #{table_name}.role_type = ?","SETTING","BUSSINESS")
+  }
+
   def self.setting_role?(role_code)
     role = self.where(:role_code=>role_code).first
     role.setting?
