@@ -34,6 +34,10 @@
               <td class="data2Col"><%= f.text_field :role_code, :required => true, :irm_uppercase => "true"%></td>
             </tr>
             <tr>
+              <td class="labelCol"><label><%=(t :label_irm_role_type)%></label></td>
+              <td class="data2Col"><%=f.select :role_type, available_role_types%></td>
+            </tr>
+            <tr>
               <td class="labelCol"><label><%=(t :name)%></label></td>
               <td class="data2Col"><%=f.text_field :name, :required=>true%></td>
             </tr>
