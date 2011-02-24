@@ -257,19 +257,37 @@ class Csi::SurveysController < ApplicationController
     end
   end
 
-  private
-  def get_survey_result(survey_id,response_batch,subject_id)
-    @survey_result = Csi::SurveyResult.query_by_survey_id(survey_id,response_batch,subject_id)
-    @count = Csi::SurveyResult.query_by_survey_id(survey_id,response_batch,subject_id).count
-    @all_survey_result=""
-    @survey_result.each do |t|
-       if @count.to_i == 1
-         @all_survey_result = t[:subject_result]
-       else
-         @all_survey_result = @all_survey_result + t[:subject_result]+','
-       end
-    end
-    @all_survey_result
+
+  def test
+    pei_hash = {"Monday"=>2000,"Tuesday"=>1000}
+    @data_provider = to_chart_json(pei_hash)
   end
+
+  private
+    def get_survey_result(survey_id,response_batch,subject_id)
+      @survey_result = Csi::SurveyResult.query_by_survey_id(survey_id,response_batch,subject_id)
+      @count = Csi::SurveyResult.query_by_survey_id(survey_id,response_batch,subject_id).count
+      @all_survey_result=""
+      @survey_result.each do |t|
+         if @count.to_i == 1
+           @all_survey_result = t[:subject_result]
+         else
+           @all_survey_result = @all_survey_result + t[:subject_result]+','
+         end
+      end
+      @all_survey_result
+    end
+
+    def to_chart_json(chart_data)
+      json = %Q([)
+      if chart_data.is_a?(Hash)
+        chart_data.each do |key,value|
+          json << %Q({category:"#{key}",value:#{value}},)
+        end
+        json.chomp!(",")
+      end
+      json << "]"
+      json
+    end
 
 end
