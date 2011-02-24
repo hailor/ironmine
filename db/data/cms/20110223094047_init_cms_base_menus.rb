@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitCmsBaseMenus < ActiveRecord::Migration
   def self.up
     cms_irm_change_management_menu= Irm::Menu.new(:menu_code=>'IRM_CHANGE_MANAGEMENT_MENU',:leaf_flag=>'N',:not_auto_mult=>true)

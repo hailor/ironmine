@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddRoleTypeLookupcode < ActiveRecord::Migration
   def self.up
     irm_role_type=Irm::LookupType.new(:lookup_level=>'GLOBAL',:lookup_type=>'IRM_ROLE_TYPE',:status_code=>'ENABLED',:not_auto_mult=>true)

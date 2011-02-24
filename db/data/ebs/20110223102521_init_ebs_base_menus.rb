@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitEbsBaseMenus < ActiveRecord::Migration
   def self.up
     ebs_irm_oracle_ebs_best_menu= Irm::Menu.new(:menu_code=>'IRM_ORACLE_EBS_BEST_MENU',:leaf_flag=>'N',:not_auto_mult=>true)

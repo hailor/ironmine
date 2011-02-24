@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitCsiBaseMenus < ActiveRecord::Migration
   def self.up
     csi_irm_soc_survey_menu= Irm::Menu.new(:menu_code=>'IRM_SOC_SURVEY_MENU',:leaf_flag=>'N',:not_auto_mult=>true)

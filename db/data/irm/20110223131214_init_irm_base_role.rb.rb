@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitIrmBaseRole < ActiveRecord::Migration
   def self.up
     Irm::Role.delete_all
