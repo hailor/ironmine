@@ -24,10 +24,10 @@
         </div>
         <%= datatable("department",url_for(:action=>"get_data",:format=>"json"),
                   [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"80px"},
-                   {:key=>"company_name",:label=>t(:label_irm_department_company_name),:sortable=>true,:searchable=>true},
-                   {:key=>"organization_name",:label=>t(:label_irm_department_organization_name),:sortable=>true,:searchable=>true},
-                   {:key=>"short_name",:label=>t(:label_irm_department_short_name),:sortable=>true,:searchable=>true},
-                   {:key=>"name",:label=>t(:label_irm_department_name),:sortable=>true,:searchable=>true},
+                   {:key=>"company_name",:label=>t(:label_irm_department_company_name),:sortable=>true,:searchable=>true,:width=>"15%"},
+                   {:key=>"organization_name",:label=>t(:label_irm_department_organization_name),:sortable=>true,:searchable=>true,:width=>"15%"},
+                   {:key=>"short_name",:label=>t(:label_irm_department_short_name),:sortable=>true,:searchable=>true,:width=>"10%"},
+                   {:key=>"name",:label=>t(:label_irm_department_name),:sortable=>true,:searchable=>true,:width=>"15%"},
                    {:key=>"description",:label=>t(:label_irm_department_description),:sortable=>true},
                    {:key=>"status_meaning",:label=>t(:label_irm_department_status_code),:sortable=>true,:width=>"40px"}],
                    {:search_box=>"permissionsSearchBox"})%>

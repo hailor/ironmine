@@ -29,7 +29,7 @@
                   </div>
                 </div>
                 <%= datatable("available_elements_list",url_for(:action=>"get_available_elements", :template_id=>@template),
-                          [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"20px"},
+                          [{:key=>"id",:label=>t(:select_ac),:formatter=>"Y.irm.template",:width=>"20px"},
                            {:key=>"entry_template_element_code",:label=>t(:label_skm_entry_template_element_code),:sortable=>true, :width => "15%"},
                            {:key=>"name",:label=>t(:name),:sortable=>true, :width => "25%"},
                            {:key=>"description",:label=>t(:description),:sortable=>true},

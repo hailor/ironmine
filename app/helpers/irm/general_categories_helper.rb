@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
 module Irm::GeneralCategoriesHelper
   def available_category_segment_set(segment, type)
-    set_name = Irm::IdFlexSegment.query_by_structure_code(type).segment(segment.to_s).first().flex_value_set_name
-    Irm::FlexValue.query_by_value_set_name(set_name).multilingual.collect{|m| [m[:flex_value_meaning], m.flex_value]}
+    rt = ""
+    rc = Irm::IdFlexSegment.query_by_structure_code(type).segment(segment.to_s).first()
+    if rc && rc.flex_value_set_name
+      set_name = rc.flex_value_set_name
+      rt = Irm::FlexValue.query_by_value_set_name(set_name).multilingual.collect{|m| [m[:flex_value_meaning], m.flex_value]}
+    end
+    rt
   end
 
   def available_category_types

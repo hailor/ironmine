@@ -498,6 +498,7 @@ Ironmine::Application.routes.draw do
     match '/surveys/create_result' => "surveys#create_result", :via => :post
     match '/surveys/thanks(.:format)' => "surveys#thanks", :via => :get
     match '/surveys/:id/show_result(.:format)' => "surveys#show_result", :via => :get
+    match '/surveys/:id/export_result(.:format)' => "surveys#export_result", :via => :get
     match '/surveys/:id(.:format)' => "surveys#show", :via => :get
     #survey_subjects
     match '/surveys/:survey_id/survey_subjects(/index)(.:format)' => "survey_subjects#index", :via => :get
@@ -563,6 +564,21 @@ Ironmine::Application.routes.draw do
     match '/entry_headers/data_grid(.:format)' => "entry_headers#data_grid", :via => :get
     match '/entry_headers/my_favorites(.:format)' => "entry_headers#my_favorites", :via => :get
     match '/entry_headers/remove_favorite(.:format)' => "entry_headers#remove_favorite", :via => :get
+    match '/entry_headers/my_drafts(.:format)' => "entry_headers#my_drafts", :via => :get
+    match '/entry_headers/:person_id/my_drafts_data' => "entry_headers#my_drafts_data"
+
+    #file_managements
+    match '/file_managements(/index)(.:format)' => "file_managements#index", :via => :get
+    match '/file_managements/:id/edit(.:format)' => "file_managements#edit", :via => :get
+    match '/file_managements/:id/update(.:format)' => "file_managements#update", :via => :put
+    match '/file_managements/new(.:format)' => "file_managements#new"
+    match '/file_managements/batch_new(.:format)' => "file_managements#batch_new"
+    match '/file_managements/create(.:format)' => "file_managements#create", :via => :post
+    match '/file_managements/batch_create(.:format)' => "file_managements#batch_create", :via => :post
+    match '/file_managements/get_data(.:format)' => "file_managements#get_data"
+    match '/file_managements/:id/show(.:format)' => "file_managements#show", :via => :get
+    match '/file_managements/destroy(.:format)' => "file_managements#destroy"
+    match '/file_managements/:id/get_version_files(.:format)' => "file_managements#get_version_files"
   end
   
   match '/demo(/index)' => 'demo#index'

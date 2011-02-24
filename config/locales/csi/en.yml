@@ -31,6 +31,7 @@ en:
    label_csi_survey_timestamps: TimeStamp
    label_csi_survey_result: Survey Result
    result: Result
+   export: Export
    #========================= end   irm regions_controller=======================#
    #========================= start irm regions_controller=======================#
    label_csi_survey_subject: Subject
@@ -65,4 +66,5 @@ en:
    label_irm_survey_subject_info: Survey Info
    submit: Submit
    label_csi_survey_subject_list: Subject List
+   label_csi_survey_person: Investigator
    #========================= end   irm regions_controller=======================#

@@ -22,4 +22,8 @@ module Csi::SurveysHelper
        true
     end
   end
+
+  def get_survey_person(person_id)
+    Irm::Person.query_person_name(person_id).first[:person_name]
+  end
 end

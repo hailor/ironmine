@@ -27,6 +27,7 @@ class Skm::EntryTemplatesController < ApplicationController
 
   def edit
     @entry_template = Skm::EntryTemplate.find(params[:id])
+    @return_url=request.env['HTTP_REFERER']
   end
 
   def create
@@ -44,11 +45,16 @@ class Skm::EntryTemplatesController < ApplicationController
 
   def update
     @entry_template = Skm::EntryTemplate.find(params[:id])
-
+    return_url = params[:return_url]
     respond_to do |format|
       if @entry_template.update_attributes(params[:skm_entry_template])
-        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
-        format.xml  { head :ok }
+        if return_url.blank?
+          format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
+          format.xml  { head :ok }
+        else
+          format.html { redirect_to(return_url, :notice =>t(:successfully_created)) }
+          format.xml  { render :xml => @entry_template, :status => :created, :location => @entry_template }
+        end             
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @entry_template.errors, :status => :unprocessable_entity }

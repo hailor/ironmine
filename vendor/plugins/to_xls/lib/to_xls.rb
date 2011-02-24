@@ -10,6 +10,12 @@ class Array
 
       if options[:only]
         columns = Array(options[:only]) & attributes
+      #for create hash,and get value by headers
+      elsif options[:use_herders]
+        columns =[]
+        options[:headers].each do |t|
+          columns << t.to_sym
+        end
       else
         columns = attributes - Array(options[:except])
       end

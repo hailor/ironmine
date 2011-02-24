@@ -11,4 +11,7 @@
 </div>
 <%= view_filter("SKM_ENTRY_HEADERS_INDEX_A","entry_headers_list") %>
 <div id="tabView" class="bMiniTab"></div>
-<%= tabview("tabView", {t(:label_skm_entry_header) => 'entry_headers/data_grid.js', t(:label_skm_entry_header_my_favorites) => 'entry_headers/my_favorites.js'}) %>
+<%= tabview("tabView",
+            {t(:label_skm_entry_header) => 'entry_headers/data_grid.js',
+             t(:label_skm_entry_header_my_favorites) => 'entry_headers/my_favorites.js'
+            }) %>

@@ -27,5 +27,9 @@ module Irm
     ACCESS_EDIT_VIEW = 'EDIT_VIEW'
     ACCESS_NONE = 'NONE'
     EDIT_ACTION = ['new','create','edit','update']
+
+    #attachment url,path
+    ATTACHMENT_URL = "/upload/:class/:id/:style/:basename.:extension"
+    ATTACHMENT_PATH = ":rails_root/public/upload/:class/:id/:style/:basename.:extension"
   end
 end

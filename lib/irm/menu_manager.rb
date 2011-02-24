@@ -397,7 +397,7 @@ module Irm::MenuManager
         end
 
         return [] unless allowed_menus.size>0
-        puts "=====|#{top_role}|==|========="
+
         if !top_role.nil?
           allowed_menus.each do |pms|
             return pms.dup if pms[0].eql?(top_role)

@@ -24,9 +24,9 @@
         </div>
         <%= datatable("organization",url_for(:action=>"get_data",:format=>"json"),
                   [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"80px"},
-                   {:key=>"company_name",:label=>t(:label_irm_organization_company_name),:sortable=>true,:searchable=>true},
-                   {:key=>"short_name",:label=>t(:label_irm_organization_short_name),:sortable=>true,:searchable=>true},
-                   {:key=>"name",:label=>t(:label_irm_organization_name),:sortable=>true,:searchable=>true},
+                   {:key=>"company_name",:label=>t(:label_irm_organization_company_name),:sortable=>true,:searchable=>true,:width=>"10%"},
+                   {:key=>"short_name",:label=>t(:label_irm_organization_short_name),:sortable=>true,:searchable=>true,:width=>"10%"},
+                   {:key=>"name",:label=>t(:label_irm_organization_name),:sortable=>true,:searchable=>true,:width=>"20%"},
                    {:key=>"description",:label=>t(:label_irm_organization_description),:sortable=>true},
                    {:key=>"status_meaning",:label=>t(:label_irm_organization_status_code),:sortable=>true,:width=>"40px"}],
                    {:search_box=>"permissionsSearchBox"})%>
