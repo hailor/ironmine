@@ -7,7 +7,5 @@ class Irm::SettingController < ApplicationController
     self.class.layout "setting"
     @setting_menus = Irm::MenuManager.parent_menus_by_menu(params[:mc],session[:top_role])+[params[:mc]]
     session[:top_role] = @setting_menus[0] if @setting_menus[0]
-
-    puts "================xxx#{@setting_menus.to_json}==========================="
   end
 end

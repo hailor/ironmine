@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 module Irm::NavigationsHelper
-  def menu_entry_name(id)
-    if(id)
-      Irm::MenuEntry.multilingual_colmun.query(id).first[:name]
-    else
-      "MenuEntry Name"
-    end
-  end
 
   def sub_entries(menu_code)
     Irm::MenuManager.sub_entries_by_menu(menu_code)

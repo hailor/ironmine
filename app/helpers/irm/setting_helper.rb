@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 module Irm::SettingHelper
-  def menu_entry_name(id)
+  def menu_entry_name(id,mc="MISSING_MENU_CODE")
     if(id)
       Irm::MenuEntry.multilingual_colmun.query(id).first[:name]
     else
-      "MenuEntry Name"
+      menu = Irm::Menu.multilingual_colmun.where(:menu_code=>mc).first
+      return menu[:name] if menu
+      "Missing name"
     end
   end
 

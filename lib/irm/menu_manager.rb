@@ -154,7 +154,7 @@ module Irm::MenuManager
           m.merge!({:permission_menus=>permission_menus_cache,:menu_menus=>menu_menus_cache})
         end
         top_roles.each do |r|
-          merge_menu_menu({:sub_menu_code=>r.menu_code,:path=>r.role_code})
+          merge_menu_menu({:sub_menu_code=>r.menu_code,:path=>[r.role_code]})
           expand_permission([r.role_code,r.menu_code])
         end
       end
