@@ -1,6 +1,9 @@
 module Irm::MenuManager
      class << self
 
+      def roles
+        items[:roles]
+      end
       # 系统中所有菜单，以HASH形式保存
       def menus
         items[:menus]
@@ -35,6 +38,8 @@ module Irm::MenuManager
 
       #初始化菜单和权限缓存
       def reset_menu
+        # 生成角色缓存
+        prepare_role_cache
         # 生成菜单缓存
         prepare_menu_cache
         # 生成权限缓存
@@ -49,6 +54,28 @@ module Irm::MenuManager
           puts("Init menu error:#{text}")
       end
 
+      # =====================================生成菜单缓存===============================================
+      def prepare_role_cache
+        roles = Irm::Role.all
+        roles_cache = {}
+        roles.each do |r|
+          role_data={:rid=>r.id,
+                      :role_code=>r.role_code,
+                      :role_type => r.role_type,
+                      :menu_code => r.menu_code,
+                      :status_code=>r.status_code
+                     }
+          roles_tls = r.roles_tls
+          roles_tls.each do |rt|
+            role_data.merge!({rt.language.to_sym=>{:name=>rt.name,:description=>rt.description}})
+          end
+          roles_cache.merge!({r.role_code=>role_data})
+        end
+
+        map do |m|
+          m.merge!({:roles=>roles_cache})
+        end
+      end      
 
 
       # =====================================生成菜单缓存===============================================
@@ -126,16 +153,16 @@ module Irm::MenuManager
         map do |m|
           m.merge!({:permission_menus=>permission_menus_cache,:menu_menus=>menu_menus_cache})
         end
-        top_menus.each do |m|
-          expand_permission([m])
+        top_roles.each do |r|
+          merge_menu_menu({:sub_menu_code=>r.menu_code,:path=>[r.role_code]})
+          expand_permission([r.role_code,r.menu_code])
         end
       end
 
       # 取得系统中的顶级菜单
       # TODO 从角色表中取得角色对应的顶级菜单
-      def top_menus
-        Irm::MenuEntry.where("NOT EXISTS(SELECT 1 FROM #{Irm::MenuEntry.table_name} mea WHERE #{Irm::MenuEntry.table_name}.menu_code = mea.sub_menu_code)").
-            select("#{Irm::MenuEntry.table_name}.menu_code").collect{|m| m.menu_code}.uniq
+      def top_roles
+        Irm::Role.enabled
       end
 
       # 递归寻找菜单下的权限
@@ -200,11 +227,11 @@ module Irm::MenuManager
         permission_menus.each do |pkey,menus|
           # 检查是否为开发权限
           origin_length = menus.length
-          menus.delete_if{|m| m[0].eql?(Irm::Constant::TOP_PUBLIC_MENU)}
+          menus.delete_if{|m| m[0].eql?(Irm::Constant::PUBLICED_ROLE)}
           public_permissions_cache<< pkey if origin_length>menus.length
           # 检查是否为登录可访问权限
           origin_length = menus.length
-          menus.delete_if{|m| m[0].eql?(Irm::Constant::TOP_LOGIN_MENU)}
+          menus.delete_if{|m| m[0].eql?(Irm::Constant::LOGINED_ROLE)}
           login_permissions_cache<< pkey if origin_length>menus.length
         end
         map do |m|
@@ -212,7 +239,7 @@ module Irm::MenuManager
         end
 
         menu_menus.each do |mkey,menus|
-          menus.delete_if{|m| m[0].eql?(Irm::Constant::TOP_PUBLIC_MENU)||m[0].eql?(Irm::Constant::TOP_LOGIN_MENU)}          
+          menus.delete_if{|m| m[0].eql?(Irm::Constant::PUBLICED_ROLE)||m[0].eql?(Irm::Constant::LOGINED_ROLE)}          
         end
       end
 
@@ -275,7 +302,7 @@ module Irm::MenuManager
                              :name=>pe[::I18n.locale.to_sym][:name],
                              :description=>pe[::I18n.locale.to_sym][:description],
                              :permission_code=>pe[:permission_code]}
-          sub_entries<< entries_options.merge!(permission_url_options(pe[:permission_code])) if pe[:display_flag].eql?("Y")&&check_permission(pe[:permission_code],menu[:menu_code],true)
+          sub_entries<< entries_options.merge!(permission_url_options(pe[:permission_code])) if pe[:display_flag].eql?("Y")
         end
         sub_entries.sort {|x,y| x[:display_sequence] <=> y[:display_sequence] } 
       end
@@ -284,19 +311,19 @@ module Irm::MenuManager
       # 确定菜单是否可显示
       # 只要菜单下有一个可以显示的权限，则表示需要显示该菜单
       def menu_showable(menu_entry,must_top=true)
-        if(menu_entry[:permission_code]&&check_permission(menu_entry[:permission_code],menu_entry[:sub_menu_code],must_top))
+        if menu_entry[:permission_code]
           return permission_url_options(menu_entry[:permission_code])
         else
           menu = menus[menu_entry[:sub_menu_code]]
           if menu
             
-            menu[:permission_entries].each do |pe|
-              return permission_url_options(pe[:permission_code]) if check_permission(pe[:permission_code],menu_entry[:sub_menu_code],must_top)
-            end
-
             menu[:menu_entries].each do |me|
               showable = menu_showable(me)
               return showable if showable
+            end
+
+            menu[:permission_entries].each do |pe|
+              return permission_url_options(pe[:permission_code])
             end
 
           end
@@ -304,21 +331,23 @@ module Irm::MenuManager
         false
       end
 
-      # private
-      # 检查permission的权限
-      def check_permission(permission_code,top_menu=nil,must_top=false)
-        return true if permission_code.nil?||permissions[permission_code].nil?
-        permission = permissions[permission_code].dup
-        # 参考 permission_checker
-        permission = Irm::Permission.to_permission(permission)
-        if permission&&permission.page_controller&&permission.enabled?&&Irm::Person.current
-          menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>permission.page_controller,:page_action=>permission.page_action},top_menu,must_top)
-          menus.size>0
+      def role_showable(role_code)
+        role = roles[role_code]
+        if role
+          if("SETTING".eql?(role[:role_type]))
+            menu_showable({:sub_menu_code=>role[:menu_code],:permission_code=>"IRM_SETTING_COMMON"})
+          else
+            menu_showable({:sub_menu_code=>role[:menu_code]})
+          end
         else
-          true
+          false
         end
       end
 
+      def validate_role(role_code)
+        role = roles[role_code]
+        role&&["SETTING","BUSSINESS"].include?(role[:role_type])
+      end
 
       # 使用permission_code取得permission中的url 参数
       def permission_url_options(permission_code)
@@ -333,8 +362,8 @@ module Irm::MenuManager
       #=================================end 取得当前用户可以访问的菜单和权限==============================================
 
       #通过权限链接取得菜单列表
-      def parent_menus_by_permission(options={},top_menu=nil,must_top=false)
-        allowed_menu_codes = Irm::Person.current.allowed_menus
+      def parent_menus_by_permission(options={},top_role=nil,must_top=false)
+        allowed_role_codes = Irm::Person.current.allowed_roles
         permission_key = Irm::Permission.url_key(options[:page_controller],options[:page_action])
         parent_menus =  permission_menus[permission_key]
         if(!parent_menus)
@@ -344,7 +373,7 @@ module Irm::MenuManager
         # 如果没有对应的菜单，则返回空数组
         return [] unless parent_menus
         # 如果parent_menus为空数组，表示该权限属于PUBLIC 或 LOGIN
-        return ["LOGIN_OR_PUBLIC_MENU"] unless parent_menus.size>0
+        return ["LOGINED_OR_PUBLICED_ROLE"] unless parent_menus.size>0
 
         allowed_menus = []
 
@@ -354,30 +383,24 @@ module Irm::MenuManager
         else
           accesses = []
           parent_menus.each do |pms|
-            allowed_menu_codes.each do |amc|
-              idx = pms.index(amc[:menu_code])
-              accesses << [idx,amc[:access],pms] if idx
+            allowed_role_codes.each do |amc|
+              accesses << [amc[:access],pms] if amc[:role_code].eql?(pms[0])
             end
           end
-          # 进行权限优先级判断
-          accesses.dup.each do |a|
-            accesses.delete_if{|item| item[0]<a[0]&&item[2].eql?(a[2])}
-          end
-          # 删除限制访问的菜单
-          accesses.delete_if{|item| item[1].eql?(Irm::Constant::ACCESS_NONE)}
+
           # 如果为编辑类型的权限
           # 删除查看类型的菜单路径
           if(Irm::Constant::EDIT_ACTION.detect{|a| options[:page_action].include?(a)})          
-            accesses.delete_if{|item| item[1].eql?(Irm::Constant::ACCESS_VIEW)}
+            accesses.delete_if{|item| item[0].eql?(Irm::Constant::ACCESS_VIEW)}
           end
-          allowed_menus = accesses.collect{|item| item[2]} if accesses.size>0
+          allowed_menus = accesses.collect{|item| item[1]} if accesses.size>0
         end
 
         return [] unless allowed_menus.size>0
-       
-        if !top_menu.nil?
+
+        if !top_role.nil?
           allowed_menus.each do |pms|
-            return pms.dup if pms.include?(top_menu)
+            return pms.dup if pms[0].eql?(top_role)
           end
         end
         return [] if must_top

@@ -469,4 +469,15 @@ en:
   label_irm_view_filter_step_three: Steop 3.
   label_irm_view_filter_restrict_visibility_for_me: Only for me
   label_irm_view_filter_restrict_visibility_for_all: For all user
-  #=========================end irm support_group_controller=======================#
+  #=========================end irm filters_controller=======================#
+  #========================= irm roles ===================================
+  label_irm_role_list: Role list
+  label_irm_role: Role
+  label_irm_role_new: New role
+  label_irm_role_edit: Edit role
+  label_irm_role_code: Role code
+  label_irm_role_name: Role name
+  label_irm_role_description: Description
+  label_irm_role_menu: Menu
+  label_irm_role_type: Role Type
+  #=========================end irm roles ===================================

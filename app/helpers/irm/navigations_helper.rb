@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 module Irm::NavigationsHelper
-  def menu_entry_name(id)
-    if(id)
-      Irm::MenuEntry.multilingual_colmun.query(id).first[:name]
-    else
-      "MenuEntry Name"
-    end
-  end
 
   def sub_entries(menu_code)
     Irm::MenuManager.sub_entries_by_menu(menu_code)
@@ -17,23 +10,19 @@ module Irm::NavigationsHelper
   end
 
   def level_one_current_name
-    menus = @page_menus.dup
-    return nil unless menus&&menus.size>1
-    entries = Irm::MenuManager.sub_entries_by_menu(menus[0])
-    current_entries = entries.detect{|e| e[:menu_code].eql?(menus[1])}
-    current_entries[:name]
+    Irm::MenuManager.roles[@page_menus[0]][I18n.locale.to_sym][:description]
   end
 
   # 生成一级菜单
   def level_one_menu
-    menus = @page_menus.dup
-    return nil unless menus&&menus.size>1
-    entries = Irm::MenuManager.sub_entries_by_menu(menus[0])
-    current_entries = entries.detect{|e| e[:menu_code].eql?(menus[1])}
+    roles = Irm::Person.current.allowed_roles.collect{|r| r if r[:role_type].eql?("BUSSINESS")}.compact
+    return nil unless roles&&roles.size>0
     links = ""
-    entries.each do |e|
-      next if e[:menu_code].eql?(menus[1])
-      links << content_tag(:span,link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]}),{:class=>"menuItem"})
+    roles.each do |r|
+      next if r[:role_code].eql?(@page_menus[0])
+      role = Irm::MenuManager.roles[r[:role_code]]
+      url = Irm::MenuManager.role_showable(r[:role_code])
+      links << content_tag(:span,link_to(role[I18n.locale][:description],{:controller=>url[:page_controller],:action=>url[:page_action],:mc=>role[:menu_code],:top_role=>role[:role_code]}),{:class=>"menuItem"}) if url
     end
 
     links.html_safe
@@ -43,8 +32,6 @@ module Irm::NavigationsHelper
     menus = @page_menus.dup
     return nil unless menus&&menus.size>1
     entries = Irm::MenuManager.sub_entries_by_menu(menus[1])
-
-    current_entries = entries.detect{|e| e[:menu_code].eql?(menus[2]||"NO_MENU")}
 
     tds = ""
 

@@ -1,22 +1,25 @@
 # -*- coding: utf-8 -*-
 module Irm::SettingHelper
-  def menu_entry_name(id)
+  def menu_entry_name(id,mc="MISSING_MENU_CODE")
     if(id)
       Irm::MenuEntry.multilingual_colmun.query(id).first[:name]
     else
-      "MenuEntry Name"
+      menu = Irm::Menu.multilingual_colmun.where(:menu_code=>mc).first
+      return menu[:name] if menu
+      "Missing name"
     end
   end
 
 
   # 生成设置一级菜单
   def setting_menu
-    menus = @setting_menus.dup
-    return nil unless menus&&menus.size>1
-    entries = Irm::MenuManager.sub_entries_by_menu(menus[0],true)
+    roles = Irm::Person.current.allowed_roles.collect{|r| r if r[:role_type].eql?("SETTING")}.compact
+    return nil unless roles&&roles.size>0
     links = ""
-    entries.each do |e|
-      links << content_tag(:div,link_to(e[:description],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id],:level=>1}),{:class=>"menuItem"})
+    roles.each do |r|
+      role = Irm::MenuManager.roles[r[:role_code]]
+      url = Irm::MenuManager.role_showable(r[:role_code])
+      links << content_tag(:div,link_to(role[I18n.locale][:description],{:controller=>url[:page_controller],:action=>url[:page_action],:mc=>role[:menu_code],:level=>1,:top_role=>role[:role_code]}),{:class=>"menuItem"}) if url
     end
 
     links.html_safe

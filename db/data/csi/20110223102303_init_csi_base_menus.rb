@@ -17,7 +17,7 @@ class InitCsiBaseMenus < ActiveRecord::Migration
     csi_menu_entiry_72= Irm::MenuEntry.new(:menu_code=>'IRM_SOC_SURVEY_MENU',:sub_menu_code=>nil,:permission_code=>'CSI_SURVEYS_INDEX',:display_sequence=>10,:display_flag=>'Y',:not_auto_mult=>true)
     csi_menu_entiry_72.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'问卷调查',:description=>'问卷调查')
     csi_menu_entiry_72.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Survery',:description=>'Survery')
-    csi_menu_entiry_72.save
+    csi_menu_entiry_72.save    
   end
 
   def self.down

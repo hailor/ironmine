@@ -4,7 +4,8 @@ class Irm::SettingController < ApplicationController
   end
 
   def common
-    @setting_menus = Irm::MenuManager.parent_menus_by_menu(params[:mc],session[:top_menu])+[params[:mc]]
-    session[:top_menu] = @setting_menus[1] if @setting_menus[1]
+    self.class.layout "setting"
+    @setting_menus = Irm::MenuManager.parent_menus_by_menu(params[:mc],session[:top_role])+[params[:mc]]
+    session[:top_role] = @setting_menus[0] if @setting_menus[0]
   end
 end
