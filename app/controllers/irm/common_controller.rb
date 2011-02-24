@@ -45,6 +45,7 @@ class Irm::CommonController < ApplicationController
   def successful_authentication(user,session_id)
     # Valid user
     self.logged_user = user
+    person_setup
     Irm::LoginRecord.create({:identity_id=>user.id,
                              :session_id=>session_id,
                              :user_ip=>request.remote_ip,
