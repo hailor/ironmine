@@ -198,6 +198,7 @@ module ApplicationHelper
     data_fields = ""
     columns.each do |c|
       data_fields << %Q("#{c[:field]||c[:key]}",)
+      next if c[:hidden]
       column = "{"
       c.each do |key,value|
         if(!key.to_s.eql?("formatter"))

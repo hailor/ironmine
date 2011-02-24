@@ -5,7 +5,7 @@ class Irm::IdFlexStructure < ActiveRecord::Base
   attr_accessor :id_flex_structure_name,:description
   has_many :id_flex_structures_tls,:dependent => :destroy
   acts_as_multilingual(:columns =>[:id_flex_structure_name,:description], :required=>[:id_flex_structure_name])
-
+  query_extend
   validates_presence_of :id_flex_structure_code
   validates_uniqueness_of :id_flex_structure_code
   scope :query_by_flex_code, lambda{|flex_code| where("#{table_name}.id_flex_code = ?", flex_code)}

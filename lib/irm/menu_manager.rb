@@ -374,7 +374,7 @@ module Irm::MenuManager
         end
 
         return [] unless allowed_menus.size>0
-        puts "=====|#{options.to_json}|======|#{allowed_menu_codes.to_json}|==|#{top_menu}|==|#{allowed_menus.to_json}|========="
+       
         if !top_menu.nil?
           allowed_menus.each do |pms|
             return pms.dup if pms.include?(top_menu)
