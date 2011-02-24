@@ -257,6 +257,7 @@ class ApplicationController < ActionController::Base
     # 如果不是设置类或业务类角色，则只设置业务菜单，不更改layout
     if @page_menus[0].nil?||!Irm::MenuManager.validate_role(@page_menus[0])
       @page_menus = (session[:entrance_menu]||default_menus)[0..1]
+      return
     end
     if @page_menus[0]&&Irm::Role.setting_role?(@page_menus[0])
       @setting_menus = @page_menus.dup
@@ -274,13 +275,21 @@ class ApplicationController < ActionController::Base
   # 默认菜单
   def default_menus
     default_role = Irm::Person.current.allowed_roles.detect{|r| r[:role_type].eql?("BUSSINESS")}
-    [default_role[:role_code],default_role[:menu_code]]
+    if default_role
+      [default_role[:role_code],default_role[:menu_code]]
+    else
+      []
+    end
   end
 
   # 默认设置菜单
   def default_setting_menus
     default_setting_role = Irm::Person.current.allowed_roles.detect{|r| r[:role_type].eql?("SETTING")}
-    [default_setting_role[:role_code],default_setting_role[:menu_code]]
+    if default_setting_role
+      [default_setting_role[:role_code],default_setting_role[:menu_code]]
+    else
+      []
+    end
   end
 
 end
