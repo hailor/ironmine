@@ -478,6 +478,11 @@ Ironmine::Application.routes.draw do
     #incident_reports
     match '/incident_reports/rpt_urgency_summary(.:format)' => "incident_reports#rpt_urgency_summary"
     match '/incident_reports/get_urgency_summary(.:format)' => "incident_reports#get_urgency_summary"
+    match '/incident_reports/rpt_report_source_summary(.:format)' => "incident_reports#rpt_report_source_summary"
+    match '/incident_reports/rpt_report_type_summary(.:format)' => "incident_reports#rpt_report_type_summary"
+    match '/incident_reports/rpt_impact_range_summary(.:format)' => "incident_reports#rpt_impact_range_summary"
+    match '/incident_reports/rpt_priority_code_summary(.:format)' => "incident_reports#rpt_priority_code_summary"
+    match '/incident_reports/get_report_summary(.:format)' => "incident_reports#get_report_summary"
   end
 
   scope :module => "cms" do

@@ -134,6 +134,10 @@ en:
   #=========================    icm incident_reports_controller=======================#
   label_icm_urgency_name: Urgency Name
   label_icm_urgency_count: Urgency Count
+  label_icm_report_source_name: Source Type
+  label_icm_report_source_count: Source Type Count
+  label_icm_report_type_name: Request Type
+  label_icm_report_type_count: Request Type Count
   label_icm_report_time_frame: Time Frame
   label_icm_report_time_frame_column: Column
   label_icm_report_time_frame_start_time: Start Time
