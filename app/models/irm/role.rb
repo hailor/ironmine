@@ -35,5 +35,22 @@ class Irm::Role < ActiveRecord::Base
     where("#{Irm::PersonRole.table_name}.role_id = #{table_name}.id")
   }
 
-  scope :query_by_role_name, lambda {|name| where("#{Irm::RolesTl.table_name}.name LIKE '%#{name}%'")}  
+  scope :query_by_role_name, lambda {|name| where("#{Irm::RolesTl.table_name}.name LIKE '%#{name}%'")}
+
+  scope :query_by_role_code, lambda {|role_code| where(:role_code=>role_code)}
+
+  scope :setting,lambda{where(:role_type=>"SETTING")}
+
+  scope :assignable,lambda{
+    where("#{table_name}.role_type = ? OR #{table_name}.role_type = ?","SETTING","BUSSINESS")
+  }
+
+  def self.setting_role?(role_code)
+    role = self.where(:role_code=>role_code).first
+    role.setting?
+  end
+
+  def setting?
+    self.role_type.eql?("SETTING")
+  end
 end

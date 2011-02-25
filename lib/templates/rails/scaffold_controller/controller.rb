@@ -60,7 +60,7 @@ class <%= controller_class_name %>Controller < ApplicationController
 
     respond_to do |format|
       if @<%= orm_instance.update_attributes("params[:#{singular_table_name}]") %>
-        format.html { redirect_to(@<%= singular_table_name %>, :notice => t(:successfully_updated) }
+        format.html { redirect_to(@<%= singular_table_name %>, :notice => t(:successfully_updated)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

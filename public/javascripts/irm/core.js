@@ -35,6 +35,8 @@ YUI.add('irm', function(Y) {
     //菜单式按钮
     Y.irm.menuButton = function(domid,calign,lalign){
       var menuNode = Y.one("#"+domid);
+      if(!menuNode)
+        return;
       var menuContent = menuNode.one(".menuContent");
       var menuLabel = menuNode.one(".menuLabel");
       var overlay = new Y.Overlay({srcNode:menuContent,visible:false,zIndex:1000});

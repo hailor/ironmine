@@ -1,6 +1,6 @@
 class Irm::FiltersController < ApplicationController
   skip_before_filter :menu_setup
-  before_filter :filters_menu, :only => [:new,:edit]
+  before_filter :filters_menu  #, :only => [:new,:edit]
   # Date.today.prev_month.at_beginning_of_month
   # Date.today.at_beginning_of_week-1
 

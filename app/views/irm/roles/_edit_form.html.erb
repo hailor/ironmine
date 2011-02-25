@@ -38,13 +38,22 @@
               <td class="data2Col"><%=f.text_field :name, :required=>true%></td>
             </tr>
             <tr>
+              <td class="labelCol"><label><%=(t :label_irm_role_type)%></label></td>
+              <td class="data2Col"><%=f.select :role_type, available_role_types%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_role_report_group_code)%></label></td>
+              <td class="data2Col"><%=f.select :report_group_code, available_report_groups%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_role_menu)%></label></td>
+              <td class="data2Col"><%=f.select :menu_code, available_menus.collect{|m| [m[:name], m.menu_code]}, {:include_blank => t(:select)}%></td>
+            </tr>
+            <tr>
               <td class="labelCol"><label><%=(t :description)%></label></td>
               <td class="data2Col"><%=f.text_area :description, :rows => 4%></td>
             </tr>                        
-            <tr>
-              <td class="labelCol"><label><%=(t :label_irm_role_menu)%></label></td>
-              <td class="data2Col"><%=f.select :menu_code, available_menus.collect{|m| [m[:name], m.menu_code]}, {:include_blank => false}%></td>
-            </tr>
+
             <tr>
               <td class="labelCol"><label><%=(t :active)%></label></td>
               <td class="data2Col"><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>

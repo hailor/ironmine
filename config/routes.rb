@@ -1,4 +1,5 @@
 Ironmine::Application.routes.draw do
+
   scope :module => "irm" do
     root :to => "navigations#index"
     match 'login'=>'common#login',:as=>:login
@@ -397,6 +398,35 @@ Ironmine::Application.routes.draw do
     match '/dev_tools/show_permissions_data(.format)' => 'dev_tools#show_permissions_data', :via => :get
     match '/dev_tools/show_missed_permissions(.format)' => 'dev_tools#show_missed_permissions', :via => :get
     match '/dev_tools/missed_permissions_data(.format)' => 'dev_tools#missed_permissions_data', :via => :get
+    #reports
+    match '/reports(/index)(.:format)' => "reports#index", :via => :get
+    match '/reports/:id/edit(.:format)' => "reports#edit", :via => :get
+    match '/reports/:id(.:format)' => "reports#update", :via => :put
+    match '/reports/new(.:format)' => "reports#new", :via => :get
+    match '/reports/create(.:format)' => "reports#create", :via => :post
+    match '/reports/get_data(.:format)' => "reports#get_data"
+    match '/reports/:id(.:format)' => "reports#show", :via => :get
+    match '/reports/:id/multilingual_edit(.:format)' => "reports#multilingual_edit", :via => :get
+    match '/reports/:id/multilingual_update(.:format)' => "reports#multilingual_update", :via => :put
+    #reports
+    match '/report_groups(/index)(.:format)' => "report_groups#index", :via => :get
+    match '/report_groups/:id/edit(.:format)' => "report_groups#edit", :via => :get
+    match '/report_groups/:id(.:format)' => "report_groups#update", :via => :put
+    match '/report_groups/new(.:format)' => "report_groups#new", :via => :get
+    match '/report_groups/create(.:format)' => "report_groups#create", :via => :post
+    match '/report_groups/get_data(.:format)' => "report_groups#get_data"
+    match '/report_groups/:id(.:format)' => "report_groups#show", :via => :get
+    match '/report_groups/:id/multilingual_edit(.:format)' => "report_groups#multilingual_edit", :via => :get
+    match '/report_groups/:id/multilingual_update(.:format)' => "report_groups#multilingual_update", :via => :put
+    #incident_journals
+    match '/report_groups/:group_id/members(/index)(.:format)' => "report_group_members#index", :via => :get
+    match '/report_groups/:group_id/members/new(.:format)' => "report_group_members#new", :via => :get
+    match '/report_groups/:group_id/members/get_data(.:format)' => "report_group_members#get_data", :via => :get
+    match '/report_groups/:group_id/members/get_selectable_data(.:format)' => "report_group_members#get_selectable_data", :via => :get
+    match '/report_groups/:group_id/members/create(.:format)' => "report_group_members#create", :via => :post
+    #match '/report_groups/:group_id/members/:id/edit(.:format)' => "report_group_members#create", :via => :post
+    #match '/report_groups/:group_id/members/:id(.:format)' => "report_group_members#update", :via => :put
+    match '/report_groups/:group_id/members/:id/delete(.:format)' => "report_group_members#destroy", :via => :delete
   end
 
   scope :module => "icm" do
@@ -469,6 +499,7 @@ Ironmine::Application.routes.draw do
     match '/incident_requests/create(.:format)' => "incident_requests#create", :via => :post
     match '/incident_requests/get_data(.:format)' => "incident_requests#get_data"
     match '/incident_requests/:id(.:format)' => "incident_requests#show", :via => :get
+    match '/incident_requests/short_create(.:format)' => "incident_requests#short_create", :via => :post
     #incident_journals
     match '/incident_requests/:request_id/journals(/index)(.:format)' => "incident_journals#index", :via => :get    
     match '/incident_requests/:request_id/journals/edit_close(.:format)' => "incident_journals#edit_close", :via => :get
@@ -581,7 +612,7 @@ Ironmine::Application.routes.draw do
     #file_managements
     match '/file_managements(/index)(.:format)' => "file_managements#index", :via => :get
     match '/file_managements/:id/edit(.:format)' => "file_managements#edit", :via => :get
-    match '/file_managements/:id/update(.:format)' => "file_managements#update", :via => :put
+    match '/file_managements/:id/update(.:format)' => "file_managements#update"
     match '/file_managements/new(.:format)' => "file_managements#new"
     match '/file_managements/batch_new(.:format)' => "file_managements#batch_new"
     match '/file_managements/create(.:format)' => "file_managements#create", :via => :post

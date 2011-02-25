@@ -20,7 +20,6 @@
         <div id="skm_files_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:controller => "skm/file_managements", :action => "edit", :id => "{id}"}) %>&nbsp;
-            <%= link_to(t(:show),{:controller => "skm/file_managements", :action=>"show",:id=>"{id}"}) %>&nbsp;
             <%= link_to(t(:remove),{:controller => "skm/file_managements", :action=>"destroy",:id=>"{id}"}) %>
           </div>
           <div id="data_file_name" style="display:none">
@@ -28,7 +27,7 @@
           </div>
         </div>
         <%= datatable("skm_files_list",url_for(:action=>"get_data",:format=>"json"),
-                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"60px"},
+                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"40px"},
                    {:key=>"data_file_name",:label=>t(:label_skm_file_name),:formatter=>"Y.irm.template",:sortable=>true, :searchable => true,:width=>"15%"},
                    {:key=>"category_name",:label=>t(:label_skm_file_category), :width=>"15%"},
                    {:key=>"description",:label=>t(:description), :searchable => true,:width=>"25%"},

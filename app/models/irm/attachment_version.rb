@@ -183,7 +183,7 @@ class Irm::AttachmentVersion < ActiveRecord::Base
                                                 :attachment_id=>container.id,
                                                 :source_type=>source_type,
                                                 :source_id =>source_id,
-                                                :file_category => attachment['file_category'],
+                                                :category_id => attachment['file_category'],
                                                 :description => attachment['description'].to_s.strip)
         if version.new_record?
            unsaved << version

@@ -149,9 +149,11 @@ class ApplicationController < ActionController::Base
 
   # 跳转到系统入口页面
   def redirect_entrance
-      entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>Irm::Constant::TOP_BUSSINESS_MENU})
+      entrance = Irm::Person.current.allowed_roles.detect{|r| r[:role_type].eql?("BUSSINESS")&&Irm::MenuManager.role_showable(r[:role_code])}
+      entrance ||= Irm::Person.current.allowed_roles.detect{|r| r[:role_type].eql?("SETTING")&&Irm::MenuManager.role_showable(r[:role_code],false)}
       if(entrance)
-        redirect_to({:controller => entrance[:page_controller], :action => entrance[:page_action]})
+        url = Irm::MenuManager.role_showable(entrance[:role_code],false)
+        redirect_to({:controller => url[:page_controller], :action => url[:page_action]})
       else
         redirect_to({:controller => 'irm/navigations', :action => 'access_deny'})
       end
@@ -250,38 +252,44 @@ class ApplicationController < ActionController::Base
     permission ||= {:page_controller=>params[:controller],:page_action=>params[:action]}
     @menu_permission = permission.dup
     @setting_menus = default_setting_menus
-    @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>permission[:page_controller],:page_action=>permission[:page_action]},session[:top_menu])
-    if @page_menus[0]&&@page_menus[0].eql?(Irm::Constant::TOP_SETTING_MENU)
+    session[:top_role] = params[:top_role] if params[:top_role]
+    @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>permission[:page_controller],:page_action=>permission[:page_action]},session[:top_role])
+    # 如果不是设置类或业务类角色，则只设置业务菜单，不更改layout
+    if @page_menus[0].nil?||!Irm::MenuManager.validate_role(@page_menus[0])
+      @page_menus = (session[:entrance_menu]||default_menus)[0..1]
+      return
+    end
+    if @page_menus[0]&&Irm::Role.setting_role?(@page_menus[0])
       @setting_menus = @page_menus.dup
       self.class.layout "setting"
       @page_menus = (session[:entrance_menu]||default_menus)[0..1]
       # 保存这一次的菜单路径
-      session[:top_menu] = @setting_menus[1] if @setting_menus[1]
+      session[:top_role] = @setting_menus[0] if @setting_menus[0]
     else
       session[:entrance_menu] = @page_menus.dup if @page_menus.length>1
       # 保存这一次的菜单路径
-      session[:top_menu] = @page_menus[1] if @setting_menus[1]
+      session[:top_role] = @page_menus[0] if @page_menus[0]
     end
   end
 
   # 默认菜单
   def default_menus
-    menus = [Irm::Constant::TOP_BUSSINESS_MENU]
-    entry = Irm::MenuManager.sub_entries_by_menu(menus[0])[0]
-    if entry && entry[:entry_type].eql?("MENU")
-       menus << entry[:menu_code]
+    default_role = Irm::Person.current.allowed_roles.detect{|r| r[:role_type].eql?("BUSSINESS")}
+    if default_role
+      [default_role[:role_code],default_role[:menu_code]]
+    else
+      []
     end
-    menus
   end
 
   # 默认设置菜单
   def default_setting_menus
-    menus = [Irm::Constant::TOP_SETTING_MENU]
-    entry = Irm::MenuManager.sub_entries_by_menu(menus[0],true)[0]
-    if entry && entry[:entry_type].eql?("MENU")
-       menus << entry[:menu_code]
+    default_setting_role = Irm::Person.current.allowed_roles.detect{|r| r[:role_type].eql?("SETTING")}
+    if default_setting_role
+      [default_setting_role[:role_code],default_setting_role[:menu_code]]
+    else
+      []
     end
-    menus
   end
 
   def show_date(options={})
