@@ -93,7 +93,7 @@ class Irm::LookupValuesController < ApplicationController
     lookup_type=params[:lookup_type]
     @lookup_values = Irm::LookupValue.query_by_lookup_type(lookup_type).query_wrap_info(I18n.locale).multilingual
     @lookup_values = @lookup_values.match_value("#{Irm::LookupValue.table_name}.lookup_code",params[:lookup_code])
-    @lookup_values = @lookup_values.match_value("v1.lookup_type",params[:lookup_type])
+    @lookup_values = @lookup_values.match_value("#{Irm::LookupValue.table_name}.lookup_type",params[:lookup_type])
     @lookup_values = @lookup_values.match_value("#{Irm::LookupValuesTl.table_name}.meaning",params[:meaning])
     @lookup_values,count = paginate(@lookup_values)
     respond_to do |format|
