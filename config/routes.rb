@@ -475,6 +475,9 @@ Ironmine::Application.routes.draw do
     match '/incident_requests/:request_id/journals/update_close(.:format)' => "incident_journals#update_close", :via => :put
     match '/incident_requests/:request_id/journals/new(.:format)' => "incident_journals#new", :via => :get
     match '/incident_requests/:request_id/journals/create(.:format)' => "incident_journals#create", :via => :post
+    #incident_reports
+    match '/incident_reports/rpt_urgency_summary(.:format)' => "incident_reports#rpt_urgency_summary"
+    match '/incident_reports/get_urgency_summary(.:format)' => "incident_reports#get_urgency_summary"
   end
 
   scope :module => "cms" do
@@ -500,6 +503,8 @@ Ironmine::Application.routes.draw do
     match '/surveys/:id/show_result(.:format)' => "surveys#show_result", :via => :get
     match '/surveys/:id/export_result(.:format)' => "surveys#export_result", :via => :get
     match '/surveys/test(.:format)' => "surveys#test", :via => :get
+    match '/surveys/survey_report(.:format)' => "surveys#survey_report", :via => :get
+    match '/surveys/get_survey_report(.:format)' => "surveys#get_survey_report", :via => :get
     match '/surveys/:id(.:format)' => "surveys#show", :via => :get
     #survey_subjects
     match '/surveys/:survey_id/survey_subjects(/index)(.:format)' => "survey_subjects#index", :via => :get

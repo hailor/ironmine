@@ -1,0 +1,98 @@
+<div class="progressIndicator">
+  <h2>报表生成状态：</h2>
+  <div id="status">报表未返回结果。</div>
+  <div class="clearingBox">&nbsp;</div>
+</div>
+<div class="bFilterReport">
+  <h2>报表选项：</h2>
+  <div class="reportParameters">
+    <%= form_tag({}, :method => :get) do %>
+    <div class="row">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+            <tr>
+              <td>
+                <label for="subtotalBy0">汇总信息依据：</label>
+                <select id="subtotalBy0" name="break0"></select>
+              </td>
+              <td>
+                <label for="subtotalBy1">汇总信息依据：</label>
+                <select id="subtotalBy1" name="break0"></select>
+              </td>
+              <td>
+                <fieldset>
+                  <legend>
+                    <strong>时间帧</strong>
+                    <table cellpadding="0" cellspacing="0" border="0">
+                      <tbody>
+                          <tr>
+                            <td>
+                              <label for="interval_c">列</label>
+                              <select id="interval_c" title="日期列" name="interval_c"></select>
+                            </td>
+                            <td>
+                              <label for="interval_s">开始日期</label>
+                              <span class="dateInput dateOnlyInput">
+                                <input id="interval_s" type="text" size="12">
+                              </span>
+                            </td>
+                            <td>
+                              <label for="interval_e">结束日期</label>
+                              <span class="dateInput dateOnlyInput">
+                                <input id="interval_e" type="text" size="12">
+                              </span>
+                            </td>
+                          </tr>
+                      </tbody>
+                    </table>
+                  </legend>
+                </fieldset>
+              </td>
+            </tr>
+            <tr>
+               <td>
+                <label for="subtotalBy2">汇总信息依据：</label>
+                <select id="subtotalBy2" name="break0"></select>
+              </td>
+              <td>
+                <label for="subtotalBy3">汇总信息依据：</label>
+                <select id="subtotalBy3" name="break0"></select>
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="reportActions pbButton">
+    <%= submit_tag t(:submit),{:class =>"btn"}%>
+    <input class="btn" type="submit" value="自定义">    
+    <input class="btn" type="submit" value="另存为">
+    <input class="btn" type="submit" value="导出详细信息">
+  </div>
+  <% end %>
+  <div class="bGeneratedReport">
+    <div class="bPageBlock">
+      <div class="pbBody">
+        <div class="pbSubblock">
+          <div class="pbSubbody">
+            <div class="reportOutput">
+              <div id="fchArea" class="pbBody">
+                    <div id="survey_report" class="datatable" style="width:100%;">
+                    </div>
+                    <%= datatable("survey_report",url_for(:action=>"get_survey_report"),
+                              [{:key=>"urgency_name",:label=>t(:label_csi_survey_title),:sortable=>true,:searchable=>true,:width=>"30%"},
+                               {:key=>"urgency_count",:label=>t(:label_csi_survey_description),:sortable=>true}],
+                               {:row_perpage=>10})%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

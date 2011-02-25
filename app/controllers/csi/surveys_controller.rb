@@ -260,7 +260,15 @@ class Csi::SurveysController < ApplicationController
 
   def test
     pei_hash = {"Monday"=>2000,"Tuesday"=>1000}
-    @data_provider = to_chart_json(pei_hash)
+    @data_provider = to_pie_chart_json(pei_hash)
+  end
+
+
+  def get_survey_report
+    incident_requests = Icm::IncidentRequest.query_by_urgency(I18n.locale)
+    respond_to do |format|
+      format.json {render :json=>to_jsonp(incident_requests.to_grid_json([:urgency_name,:urgency_count], 3))}
+    end
   end
 
   private
@@ -278,7 +286,7 @@ class Csi::SurveysController < ApplicationController
       @all_survey_result
     end
 
-    def to_chart_json(chart_data)
+    def to_pie_chart_json(chart_data)
       json = %Q([)
       if chart_data.is_a?(Hash)
         chart_data.each do |key,value|

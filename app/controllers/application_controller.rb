@@ -284,4 +284,9 @@ class ApplicationController < ActionController::Base
     menus
   end
 
+  def show_date(options={})
+     advance = options[:months_advance]||0
+     (Time.now.advance(:months => advance)).strftime("%Y-%m-%d").to_s
+  end
+
 end

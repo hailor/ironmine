@@ -27,11 +27,12 @@ module Csi::SurveysHelper
     Irm::Person.query_person_name(person_id).first[:person_name]
   end
 
-  def pei_chart(id,options={})
+  #提供构建pie chart 传入的参数width,height
+  def pie_chart(id,data_provider,options={})
     width = options[:width]||200
     height = options[:height]||200
-    data_provider = options[:data_provider]
-    pei_div = content_tag(:div, "",:id=>id,:style=>"width:#{width}px;height:#{height}px;margin:10px 10px 10px 10px;")
+    pei_div = content_tag(:div, "",:id=>id,
+                          :style=>"width:#{width}px;height:#{height}px;margin:10px 10px 10px 10px;")
     script = %Q(
         (function()
           {

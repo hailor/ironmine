@@ -76,6 +76,14 @@ class Icm::IncidentRequest < ActiveRecord::Base
     select("#{table_name}.*")
   }
 
+  #报表使用
+  scope :query_by_urgency,lambda{|language| select("v1.name urgency_name,sum(1) urgency_count").
+                          joins(",icm_urgence_codes_vl v1").
+                          where("v1.urgency_code = #{table_name}.urgence_code AND v1.language = '#{language}'").
+                          group("v1.name")
+  }
+
+
   def self.list_all
     select_all.
         with_request_type(I18n.locale).
