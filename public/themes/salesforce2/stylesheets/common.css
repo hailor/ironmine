@@ -677,8 +677,8 @@ body .bEditBlock .pbBottomButtons, body .apexp .bPageBlock.apexDefaultPageBlock 
 form .pbBottomButtons > table {border-top:1px solid #FFFFFF;padding:0 !important;}
 
 /************** error messages and input required ******************/
-.bWizardBlock .requiredInput, .bPageBlock .requiredInput {height:100%;position:relative;}
-.bWizardBlock .requiredInput .requiredBlock, .bPageBlock .requiredInput .requiredBlock {
+.requiredInput,  .requiredInput {height:100%;position:relative;}
+.requiredInput .requiredBlock, .requiredInput .requiredBlock {
     background-color:#CC0000;
     bottom:1px;
     left:-4px;

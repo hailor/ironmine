@@ -39,7 +39,7 @@ en:
   name: Name
   description: Description
   actionview_instancetag_blank_option: Please Select
-  more_options: More Options
+  more_info: More Info
   #usual words
   notice_account_invalid_creditentials: User or Password Error
   successfully_updated: Successfully Updated
