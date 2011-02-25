@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitModuleReportPermissionMenu < ActiveRecord::Migration
   def self.up
     irm_reports_create= Irm::Permission.new(:permission_code=>'IRM_REPORTS_CREATE',:page_controller=>'irm/reports',:page_action=>'create',:not_auto_mult=>true)

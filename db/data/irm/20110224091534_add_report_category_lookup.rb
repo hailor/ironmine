@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddReportCategoryLookup < ActiveRecord::Migration
   def self.up
     irm_report_category=Irm::LookupType.new(:lookup_level=>'GLOBAL',:lookup_type=>'IRM_REPORT_CATEGORY',:status_code=>'ENABLED',:not_auto_mult=>true)
