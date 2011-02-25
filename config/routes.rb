@@ -499,6 +499,7 @@ Ironmine::Application.routes.draw do
     match '/incident_requests/create(.:format)' => "incident_requests#create", :via => :post
     match '/incident_requests/get_data(.:format)' => "incident_requests#get_data"
     match '/incident_requests/:id(.:format)' => "incident_requests#show", :via => :get
+    match '/incident_requests/short_create(.:format)' => "incident_requests#short_create", :via => :post
     #incident_journals
     match '/incident_requests/:request_id/journals(/index)(.:format)' => "incident_journals#index", :via => :get    
     match '/incident_requests/:request_id/journals/edit_close(.:format)' => "incident_journals#edit_close", :via => :get
@@ -600,7 +601,7 @@ Ironmine::Application.routes.draw do
     #file_managements
     match '/file_managements(/index)(.:format)' => "file_managements#index", :via => :get
     match '/file_managements/:id/edit(.:format)' => "file_managements#edit", :via => :get
-    match '/file_managements/:id/update(.:format)' => "file_managements#update", :via => :put
+    match '/file_managements/:id/update(.:format)' => "file_managements#update"
     match '/file_managements/new(.:format)' => "file_managements#new"
     match '/file_managements/batch_new(.:format)' => "file_managements#batch_new"
     match '/file_managements/create(.:format)' => "file_managements#create", :via => :post

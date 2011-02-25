@@ -287,38 +287,6 @@ div.button {
     line-height: 20px;
 }
 div.disable a{ color: #6E6E6E !important;line-height: 20px;background: none repeat scroll #EDEBE2 !important;}
-div.button a {
-    -moz-border-radius: 3px 3px 3px 3px;
-    background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
-    border-color: #B5B5B5 #B5B5B5 #7F7F7F;
-	border-width: 1px;
-    border-style: solid;
-	text-decoration: none;
-	color:#333333;
-	display: inline-block;
-	padding: 0 8px;
-	height: 20px;
-    font-size: 11px;
-    font-weight: bold;
-	line-height: 20px;
-}
-div.button a:hover{background-position: right -30px;}
-div.button input[type="submit"] {
-    -moz-border-radius: 3px 3px 3px 3px;
-    background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
-    border-color: #B5B5B5 #B5B5B5 #7F7F7F;
-	border-width: 1px;
-    border-style: solid;
-	text-decoration: none;
-	color:#333333;
-	display: inline-block;
-	padding: 0 5px 2px 5px;
-	height: 22px;
-    font-size: 11px;
-    font-weight: bold;
-	line-height: 22px;
-}
-div.button input[type="submit"]:hover{background-position: right -30px; cursor: pointer;}
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, sub, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
     border:0 none;

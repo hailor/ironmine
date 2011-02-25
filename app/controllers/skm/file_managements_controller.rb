@@ -22,7 +22,11 @@ class Skm::FileManagementsController < ApplicationController
       #调用方法创建附件
       Irm::AttachmentVersion.create_verison_files(files,0,0)
     end
-    redirect_to :action => 'index'
+    if params[:act] == "next"
+      redirect_to :action => 'new'
+    else
+      redirect_to :action => 'index'
+    end
   end
 
   def batch_create
@@ -41,11 +45,38 @@ class Skm::FileManagementsController < ApplicationController
   end
 
   def update
-    
+    @file = Irm::Attachment.find(params[:id])
+    infile = {}
+    params[:file].each_value do |p|
+      infile = p
+    end
+    if infile[:file]
+      file = params[:file]
+      Irm::AttachmentVersion.update_version_files(@file, file, 0, 0)
+    else
+      @file.update_attribute(:description, infile[:description])
+      @file.update_attribute(:file_category, infile[:file_category])
+      @file.update_attribute(:private_flag, infile[:private_flag])
+      file = Irm::AttachmentVersion.where(:id => @file.latest_version_id)
+      if file.any?
+        file.first().update_attributes(:private_flag => @file.private_flag,
+                               :description => @file.description,
+                               :category_id => @file.file_category)
+      end
+    end
+    respond_to do |format|
+      if @file.save
+        format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+        format.xml  { render :xml => @file, :status => :created, :location => @file }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @file.errors, :status => :unprocessable_entity }
+      end
+    end    
   end
 
   def show
-    
+
   end
   
   def get_data

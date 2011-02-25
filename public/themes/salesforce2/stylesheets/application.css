@@ -710,6 +710,7 @@ body #sidebarDiv .sidebarInner {
 .mruItem a img {left:5px;position:absolute;}
 .mruItem a .mruText{color: #333435;}
 
+.quickCreateField {padding:1px 2px 5px 4px;}
 body .bodyDiv #bd_b {
     background:url("../images/bd_b.png") repeat-x scroll 0 0 transparent;
     bottom:-20px;

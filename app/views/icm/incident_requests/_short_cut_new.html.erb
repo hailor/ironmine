@@ -1,0 +1,27 @@
+<div class="sidebarModuleHeader"><h2><%= t :label_icm_incident_request_short_new %></h2></div>
+<div class="sidebarModuleBody">
+<%  @incident_request = Icm::IncidentRequest.new%>
+<%= form_for(@incident_request,:url=>{:controller => "icm/incident_requests", :action=>"short_create"},:builder => LabellingFormBuilder) do |f| %>
+    <div class="quickCreateField">
+      <label for="incident_request_requested_by"><%=t(:label_icm_incident_request_requested_by)%></label><br>
+      <%=f.select :requested_by,nullable_options_for_select(available_person,@incident_request.requested_by),
+                                                    {},{:required=>true,:id=>"incident_request_requested_by"}%>
+    </div>      
+    <div class="quickCreateField">
+      <label for="incident_request_service_code"><%=t(:label_icm_incident_request_service_code)%></label><br>
+      <%=f.select :service_code,nullable_options_for_select(available_service,@incident_request.service_code),
+                                                    {},{:required=>true,:id=>"incident_request_service_code"}%>
+    </div>
+    <div class="quickCreateField">
+      <label for="incident_request_title"><%=t(:label_icm_incident_request_title)%></label><br>
+      <%=f.text_field :title,:size=>23, :required=>true ,:id=>"incident_request_title"%>
+    </div>
+    <div class="quickCreateField">
+      <label for="incident_request_summary"><%=t(:label_icm_incident_request_summary)%></label><br>
+      <%=f.text_area :summary,:rows=>2, :cols => 18, :required=>true ,:id=>"incident_request_summary"%>
+    </div>
+    <div class="quickCreateField">
+      <div class="button"><%= f.submit t(:save)%></div><div style="float:right; padding-top: 5px;"><%= link_to t(:more_info), :controller => "icm/incident_requests", :action => "new" %></div><br>
+    </div>
+<% end %>
+</div>

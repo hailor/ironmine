@@ -92,6 +92,7 @@ en:
   label_icm_reply: Reply
   label_icm_incident_request_list: Incident request list
   label_icm_incident_request_new: New incident request
+  label_icm_incident_request_short_new: New incident request
   label_icm_incident_request_service_code: Service
   label_icm_incident_requset_base_info: Base information
   label_icm_incident_request_title: Title

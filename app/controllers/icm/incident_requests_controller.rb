@@ -52,6 +52,27 @@ class Icm::IncidentRequestsController < ApplicationController
     end
   end
 
+  def short_create
+    @incident_request = Icm::IncidentRequest.new(params[:icm_incident_request])
+    @incident_request.urgence_code = "GLOBAL_NORMAL"
+    @incident_request.incident_status_code = "NEW_INCIDENT"
+    @incident_request.request_type_code = "REQUESTED_TO_PERFORM"
+    @incident_request.service_code = "ORAL_EBS_INV"
+    @incident_request.report_source_code = "CUSTOMER_SUBMIT"
+    @incident_request.impact_range_code = "GLOBAL_LOW"
+    #加入创建事故单的默认参数
+    prepared_for_create(@incident_request)
+    respond_to do |format|
+      if @incident_request.save
+        format.html { redirect_to({:controller=>"icm/incident_journals",:action=>"new",:request_id=>@incident_request.id}, :notice => t(:successfully_created)) }
+        format.xml  { render :xml => @incident_request, :status => :created, :location => @incident_request }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @incident_request.errors, :status => :unprocessable_entity }
+      end
+    end      
+  end
+  
   # PUT /incident_requests/1
   # PUT /incident_requests/1.xml
   def update

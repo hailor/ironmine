@@ -89,6 +89,7 @@ zh:
   label_icm_reply: 回复
   label_icm_incident_request_list: 事故单列表
   label_icm_incident_request_new: 新建事故单
+  label_icm_incident_request_short_new: 快速创建事故单
   label_icm_incident_request_service_code: 服务
   label_icm_incident_requset_base_info: 基本信息
   label_icm_incident_request_title: 标题

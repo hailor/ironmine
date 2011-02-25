@@ -41,7 +41,7 @@ class AddFileManagementPermissionData < ActiveRecord::Migration
     skm_file_managements_destroy.permissions_tls.build(:language=>'zh',:name=>'删除',:description=>'删除',:source_lang=>'en')
     skm_file_managements_destroy.permissions_tls.build(:language=>'en',:name=>'Destroy',:description=>'Destroy',:source_lang=>'en')
     skm_file_managements_destroy.save
-    skm_file_managements_get_v_files= Irm::Permission.new(:permission_code=>'SKM_FILE_MANAGEMENTS_GET_V_FILES',:page_controller=>'skm/file_managements',:page_action=>'get_version_files',:not_auto_mult=>true)
+    skm_file_managements_get_v_files= Irm::Permission.new(:permission_code=>'SKM_FILE_MANAGEMENTS_G_V_FILES',:page_controller=>'skm/file_managements',:page_action=>'get_version_files',:not_auto_mult=>true)
     skm_file_managements_get_v_files.permissions_tls.build(:language=>'zh',:name=>'取得文件版本数据',:description=>'取得文件版本数据',:source_lang=>'en')
     skm_file_managements_get_v_files.permissions_tls.build(:language=>'en',:name=>'Get Version Files',:description=>'Get Version Files',:source_lang=>'en')
     skm_file_managements_get_v_files.save
