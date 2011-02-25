@@ -37,9 +37,7 @@
         <div id="reports" class="datatable" style="width:100%">
         </div>
         <%= datatable("reports",url_for(:action=>"get_selectable_data",:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:width=>"70px"},
-
-                       { :key => "report_code", :label => t(:label_irm_report_report_code),:searchable=>true },
+                      [{ :key => "report_code", :label => t(:label_irm_report_report_code),:searchable=>true },
 
                        { :key => "name", :label => t(:label_irm_report_name),:searchable=>true },
 

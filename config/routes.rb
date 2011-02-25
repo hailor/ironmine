@@ -406,8 +406,8 @@ Ironmine::Application.routes.draw do
     match '/reports/create(.:format)' => "reports#create", :via => :post
     match '/reports/get_data(.:format)' => "reports#get_data"
     match '/reports/:id(.:format)' => "reports#show", :via => :get
-    match '/reports/:id/multilingual_edit(.:format)' => "reports#multilingual_site_edit", :via => :get
-    match '/reports/:id/multilingual_update(.:format)' => "reports#multilingual_site_update", :via => :put
+    match '/reports/:id/multilingual_edit(.:format)' => "reports#multilingual_edit", :via => :get
+    match '/reports/:id/multilingual_update(.:format)' => "reports#multilingual_update", :via => :put
     #reports
     match '/report_groups(/index)(.:format)' => "report_groups#index", :via => :get
     match '/report_groups/:id/edit(.:format)' => "report_groups#edit", :via => :get
@@ -416,8 +416,8 @@ Ironmine::Application.routes.draw do
     match '/report_groups/create(.:format)' => "report_groups#create", :via => :post
     match '/report_groups/get_data(.:format)' => "report_groups#get_data"
     match '/report_groups/:id(.:format)' => "report_groups#show", :via => :get
-    match '/report_groups/:id/multilingual_edit(.:format)' => "report_groups#multilingual_site_edit", :via => :get
-    match '/report_groups/:id/multilingual_update(.:format)' => "report_groups#multilingual_site_update", :via => :put
+    match '/report_groups/:id/multilingual_edit(.:format)' => "report_groups#multilingual_edit", :via => :get
+    match '/report_groups/:id/multilingual_update(.:format)' => "report_groups#multilingual_update", :via => :put
     #incident_journals
     match '/report_groups/:group_id/members(/index)(.:format)' => "report_group_members#index", :via => :get
     match '/report_groups/:group_id/members/new(.:format)' => "report_group_members#new", :via => :get
