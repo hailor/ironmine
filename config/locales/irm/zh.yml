@@ -687,4 +687,30 @@ zh:
   label_irm_role_description: 角色描述
   label_irm_role_menu: 菜单
   label_irm_role_type: 角色类型
+  label_irm_role_report_group_code: 报表组
   #=========================end irm roles ===================================
+  #========================= irm reports ===================================
+  label_irm_report_list: 报表列表
+  label_irm_report_report_code: 报表编码
+  label_irm_report_name: 报表名称
+  label_irm_report_category_code: 报表类别
+  label_irm_report_permission_code: 报表页面编码
+  label_irm_report_permission_controller: 报表页面controller
+  label_irm_report_permission_action: 报表页面action
+  label_irm_report_status_code: 状态
+  label_irm_report_new: 新建报表
+  label_irm_report_description: 描述
+  label_irm_report_edit: 编辑报表
+  #========================= end irm reports ===================================
+  #========================= irm report_groups ===================================
+  label_irm_report_group_list: 报表组列表
+  label_irm_report_group_group_code: 组编码
+  label_irm_report_group_name: 组名称
+  label_irm_report_group_description: 描述
+  label_irm_report_group_status_code: 状态
+  label_irm_report_group_new: 新建报表组
+  label_irm_report_group_edit: 编辑报表组
+  #========================= end irm report_groups ===================================
+  #========================= irm report_group_members ===================================
+  label_irm_report_group_member_list: 报表
+  #========================= end irm report_group_members ===================================  

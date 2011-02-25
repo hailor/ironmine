@@ -1,0 +1,2 @@
+module Irm::ReportGroupsHelper
+end

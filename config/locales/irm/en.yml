@@ -480,4 +480,30 @@ en:
   label_irm_role_description: Description
   label_irm_role_menu: Menu
   label_irm_role_type: Role Type
+  label_irm_role_report_group_code: Report group
   #=========================end irm roles ===================================
+  #========================= irm reports ===================================
+  label_irm_report_list: Report list
+  label_irm_report_report_code: Report code
+  label_irm_report_name: Report name
+  label_irm_report_category_code: Category code
+  label_irm_report_permission_code: Permission code
+  label_irm_report_permission_controller: Permission controller
+  label_irm_report_permission_action: Permission action
+  label_irm_report_status_code: Status
+  label_irm_report_new: New report
+  label_irm_report_description: Description
+  label_irm_report_edit: Edit report
+  #========================= end irm reports ===================================  
+  #========================= irm report_groups ===================================
+  label_irm_report_group_list: Report group list
+  label_irm_report_group_group_code: Group code
+  label_irm_report_group_name: Group Name
+  label_irm_report_group_description: Description
+  label_irm_report_group_status_code: Status
+  label_irm_report_group_new: New report group
+  label_irm_report_group_edit: Edit report group
+  #========================= end irm report_groups ===================================
+  #========================= irm report_group_members ===================================
+  label_irm_report_group_member_list: Report group member
+  #========================= end irm report_group_members ===================================

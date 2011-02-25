@@ -1,4 +1,5 @@
 Ironmine::Application.routes.draw do
+
   scope :module => "irm" do
     root :to => "navigations#index"
     match 'login'=>'common#login',:as=>:login
@@ -397,6 +398,35 @@ Ironmine::Application.routes.draw do
     match '/dev_tools/show_permissions_data(.format)' => 'dev_tools#show_permissions_data', :via => :get
     match '/dev_tools/show_missed_permissions(.format)' => 'dev_tools#show_missed_permissions', :via => :get
     match '/dev_tools/missed_permissions_data(.format)' => 'dev_tools#missed_permissions_data', :via => :get
+    #reports
+    match '/reports(/index)(.:format)' => "reports#index", :via => :get
+    match '/reports/:id/edit(.:format)' => "reports#edit", :via => :get
+    match '/reports/:id(.:format)' => "reports#update", :via => :put
+    match '/reports/new(.:format)' => "reports#new", :via => :get
+    match '/reports/create(.:format)' => "reports#create", :via => :post
+    match '/reports/get_data(.:format)' => "reports#get_data"
+    match '/reports/:id(.:format)' => "reports#show", :via => :get
+    match '/reports/:id/multilingual_edit(.:format)' => "reports#multilingual_site_edit", :via => :get
+    match '/reports/:id/multilingual_update(.:format)' => "reports#multilingual_site_update", :via => :put
+    #reports
+    match '/report_groups(/index)(.:format)' => "report_groups#index", :via => :get
+    match '/report_groups/:id/edit(.:format)' => "report_groups#edit", :via => :get
+    match '/report_groups/:id(.:format)' => "report_groups#update", :via => :put
+    match '/report_groups/new(.:format)' => "report_groups#new", :via => :get
+    match '/report_groups/create(.:format)' => "report_groups#create", :via => :post
+    match '/report_groups/get_data(.:format)' => "report_groups#get_data"
+    match '/report_groups/:id(.:format)' => "report_groups#show", :via => :get
+    match '/report_groups/:id/multilingual_edit(.:format)' => "report_groups#multilingual_site_edit", :via => :get
+    match '/report_groups/:id/multilingual_update(.:format)' => "report_groups#multilingual_site_update", :via => :put
+    #incident_journals
+    match '/report_groups/:group_id/members(/index)(.:format)' => "report_group_members#index", :via => :get
+    match '/report_groups/:group_id/members/new(.:format)' => "report_group_members#new", :via => :get
+    match '/report_groups/:group_id/members/get_data(.:format)' => "report_group_members#get_data", :via => :get
+    match '/report_groups/:group_id/members/get_selectable_data(.:format)' => "report_group_members#get_selectable_data", :via => :get
+    match '/report_groups/:group_id/members/create(.:format)' => "report_group_members#create", :via => :post
+    #match '/report_groups/:group_id/members/:id/edit(.:format)' => "report_group_members#create", :via => :post
+    #match '/report_groups/:group_id/members/:id(.:format)' => "report_group_members#update", :via => :put
+    match '/report_groups/:group_id/members/:id/delete(.:format)' => "report_group_members#destroy", :via => :delete
   end
 
   scope :module => "icm" do
