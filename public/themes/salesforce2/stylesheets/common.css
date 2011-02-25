@@ -700,3 +700,36 @@ form .pbBottomButtons > table {border-top:1px solid #FFFFFF;padding:0 !important
     font-weight:bold;
     text-align:center;
 }
+
+div.button a {
+    -moz-border-radius: 3px 3px 3px 3px;
+    background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
+    border-color: #B5B5B5 #B5B5B5 #7F7F7F;
+	border-width: 1px;
+    border-style: solid;
+	text-decoration: none;
+	color:#333333;
+	display: inline-block;
+	padding: 0 8px;
+	height: 20px;
+    font-size: 11px;
+    font-weight: bold;
+	line-height: 20px;
+}
+div.button a:hover{background-position: right -30px;}
+div.button input[type="submit"] {
+    -moz-border-radius: 3px 3px 3px 3px;
+    background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
+    border-color: #B5B5B5 #B5B5B5 #7F7F7F;
+	border-width: 1px;
+    border-style: solid;
+	text-decoration: none;
+	color:#333333;
+	display: inline-block;
+	padding: 0 5px 2px 5px;
+	height: 22px;
+    font-size: 11px;
+    font-weight: bold;
+	line-height: 22px;
+}
+div.button input[type="submit"]:hover{background-position: right -30px; cursor: pointer;}

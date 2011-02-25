@@ -67,6 +67,7 @@ zh:
   step_n_total_m: "第 %{n} 步，共 %{m} 步"
   label_checked: 选取的
   label_unchecked: 未选取的
+  more_options: 更多选项
   #常用语句
   notice_account_invalid_creditentials: 用户名或密码错误
   successfully_updated: 已经成功更新数据

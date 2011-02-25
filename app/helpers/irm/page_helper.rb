@@ -13,4 +13,8 @@ module Irm::PageHelper
   def page_td_sep(options = {})
     content_tag(:td, raw(content_tag(:hr)), options)
   end
+
+  def required_icon
+    content_tag(:span, "*", {:style => "color:red;"})
+  end  
 end
