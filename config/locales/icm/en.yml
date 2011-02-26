@@ -132,3 +132,16 @@ en:
   label_icm_incident_journal_close: Close incident request
   label_icm_incident_joural_back_to_request: Back to incident
   #========================= end icm incident_journals_controller=======================#
+  #=========================    icm incident_reports_controller=======================#
+  label_icm_urgency_name: Urgency Name
+  label_icm_urgency_count: Urgency Count
+  label_icm_report_source_name: Source Type
+  label_icm_report_source_count: Source Type Count
+  label_icm_report_type_name: Request Type
+  label_icm_report_type_count: Request Type Count
+  label_icm_report_time_frame: Time Frame
+  label_icm_report_time_frame_column: Column
+  label_icm_report_time_frame_start_time: Start Time
+  label_icm_report_time_frame_end_time: End Time
+  label_icm_report_param: Report Param
+  #========================= end icm incident_reports_controller=======================#

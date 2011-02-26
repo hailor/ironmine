@@ -1,4 +1,5 @@
 Ironmine::Application.routes.draw do
+
   scope :module => "irm" do
     root :to => "navigations#index"
     match 'login'=>'common#login',:as=>:login
@@ -397,6 +398,35 @@ Ironmine::Application.routes.draw do
     match '/dev_tools/show_permissions_data(.format)' => 'dev_tools#show_permissions_data', :via => :get
     match '/dev_tools/show_missed_permissions(.format)' => 'dev_tools#show_missed_permissions', :via => :get
     match '/dev_tools/missed_permissions_data(.format)' => 'dev_tools#missed_permissions_data', :via => :get
+    #reports
+    match '/reports(/index)(.:format)' => "reports#index", :via => :get
+    match '/reports/:id/edit(.:format)' => "reports#edit", :via => :get
+    match '/reports/:id(.:format)' => "reports#update", :via => :put
+    match '/reports/new(.:format)' => "reports#new", :via => :get
+    match '/reports/create(.:format)' => "reports#create", :via => :post
+    match '/reports/get_data(.:format)' => "reports#get_data"
+    match '/reports/:id(.:format)' => "reports#show", :via => :get
+    match '/reports/:id/multilingual_edit(.:format)' => "reports#multilingual_edit", :via => :get
+    match '/reports/:id/multilingual_update(.:format)' => "reports#multilingual_update", :via => :put
+    #reports
+    match '/report_groups(/index)(.:format)' => "report_groups#index", :via => :get
+    match '/report_groups/:id/edit(.:format)' => "report_groups#edit", :via => :get
+    match '/report_groups/:id(.:format)' => "report_groups#update", :via => :put
+    match '/report_groups/new(.:format)' => "report_groups#new", :via => :get
+    match '/report_groups/create(.:format)' => "report_groups#create", :via => :post
+    match '/report_groups/get_data(.:format)' => "report_groups#get_data"
+    match '/report_groups/:id(.:format)' => "report_groups#show", :via => :get
+    match '/report_groups/:id/multilingual_edit(.:format)' => "report_groups#multilingual_edit", :via => :get
+    match '/report_groups/:id/multilingual_update(.:format)' => "report_groups#multilingual_update", :via => :put
+    #incident_journals
+    match '/report_groups/:group_id/members(/index)(.:format)' => "report_group_members#index", :via => :get
+    match '/report_groups/:group_id/members/new(.:format)' => "report_group_members#new", :via => :get
+    match '/report_groups/:group_id/members/get_data(.:format)' => "report_group_members#get_data", :via => :get
+    match '/report_groups/:group_id/members/get_selectable_data(.:format)' => "report_group_members#get_selectable_data", :via => :get
+    match '/report_groups/:group_id/members/create(.:format)' => "report_group_members#create", :via => :post
+    #match '/report_groups/:group_id/members/:id/edit(.:format)' => "report_group_members#create", :via => :post
+    #match '/report_groups/:group_id/members/:id(.:format)' => "report_group_members#update", :via => :put
+    match '/report_groups/:group_id/members/:id/delete(.:format)' => "report_group_members#destroy", :via => :delete
   end
 
   scope :module => "icm" do
@@ -476,6 +506,14 @@ Ironmine::Application.routes.draw do
     match '/incident_requests/:request_id/journals/update_close(.:format)' => "incident_journals#update_close", :via => :put
     match '/incident_requests/:request_id/journals/new(.:format)' => "incident_journals#new", :via => :get
     match '/incident_requests/:request_id/journals/create(.:format)' => "incident_journals#create", :via => :post
+    #incident_reports
+    match '/incident_reports/rpt_urgency_summary(.:format)' => "incident_reports#rpt_urgency_summary"
+    match '/incident_reports/get_urgency_summary(.:format)' => "incident_reports#get_urgency_summary"
+    match '/incident_reports/rpt_report_source_summary(.:format)' => "incident_reports#rpt_report_source_summary"
+    match '/incident_reports/rpt_report_type_summary(.:format)' => "incident_reports#rpt_report_type_summary"
+    match '/incident_reports/rpt_impact_range_summary(.:format)' => "incident_reports#rpt_impact_range_summary"
+    match '/incident_reports/rpt_priority_code_summary(.:format)' => "incident_reports#rpt_priority_code_summary"
+    match '/incident_reports/get_report_summary(.:format)' => "incident_reports#get_report_summary"
   end
 
   scope :module => "cms" do
@@ -500,6 +538,9 @@ Ironmine::Application.routes.draw do
     match '/surveys/thanks(.:format)' => "surveys#thanks", :via => :get
     match '/surveys/:id/show_result(.:format)' => "surveys#show_result", :via => :get
     match '/surveys/:id/export_result(.:format)' => "surveys#export_result", :via => :get
+    match '/surveys/test(.:format)' => "surveys#test", :via => :get
+    match '/surveys/survey_report(.:format)' => "surveys#survey_report", :via => :get
+    match '/surveys/get_survey_report(.:format)' => "surveys#get_survey_report", :via => :get
     match '/surveys/:id(.:format)' => "surveys#show", :via => :get
     #survey_subjects
     match '/surveys/:survey_id/survey_subjects(/index)(.:format)' => "survey_subjects#index", :via => :get

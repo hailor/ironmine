@@ -129,3 +129,16 @@ zh:
   label_icm_incident_journal_close: 关闭事故单
   label_icm_incident_joural_back_to_request: 返回事故单
   #========================= end icm incident_journals_controller=======================#
+  #=========================    icm incident_reports_controller=======================#
+  label_icm_urgency_name: 紧急度
+  label_icm_urgency_count: 事故单数
+  label_icm_report_source_name: 来源类型
+  label_icm_report_source_count: 事故单数
+  label_icm_report_type_name: 请求类型
+  label_icm_report_type_count: 事故单数
+  label_icm_report_time_frame: 时间帧
+  label_icm_report_time_frame_column: 列
+  label_icm_report_time_frame_start_time: 开始时间
+  label_icm_report_time_frame_end_time: 结束时间
+  label_icm_report_param: 报表选项
+  #========================= end icm incident_reports_controller=======================#

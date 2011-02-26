@@ -1,0 +1,76 @@
+<%= form_for(@report,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_report_edit)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @report %>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend">
+          <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+          </span><span class="requiredMark">*</span>
+          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+        </span>
+      </span>
+      <h3><%= t(:label_common_info) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+
+            <tr>
+              <td class="labelCol"><label for="report_report_code"><%=t(:label_irm_report_report_code)%></label></td>
+              <td class="dataCol"><%=@report.report_code%></td>
+              <td class="labelCol"><label for="report_name"><%=t(:label_irm_report_name)%></label></td>
+              <td class="dataCol"><%=f.text_field :name, :required=>true ,:id=>"report_name"%></td>
+            </tr>
+
+
+            <tr>
+              <td class="labelCol"><label for="report_category_code"><%=t(:label_irm_report_category_code)%></label></td>
+              <td class="dataCol"><%=f.select :category_code,nullable_options_for_select(available_report_categories,@report.category_code),
+                                                    {},{:required=>true,:id=>"report_category_code"}%></td>
+              <td class="labelCol"><label for="report_permission_code"><%=t(:label_irm_report_permission_code)%></label></td>
+              <td class="dataCol"><%=f.select :permission_code,nullable_options_for_select(available_permissions,@report.permission_code),
+                                                    {},{:required=>true,:id=>"report_permission_code"}%></td>
+            </tr>
+
+
+            <tr>
+              <td class="labelCol"><label for="report_description"><%=t(:label_irm_report_description)%></label></td>
+              <td class="dataCol"><%=f.text_area :description,:rows=>4, :id=>"report_description"%></td>
+              <td class="labelCol"><label for="report_status_code"><%=(t :label_irm_report_status_code)%></label></td>
+              <td class="dataCol"><%=f.select :status_code,nullable_collection_options(available_status,:lookup_code,:wrap_meaning,@report.status_code),{},{:required=>true,:id=>"report_status_code"}%></td>
+            </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>

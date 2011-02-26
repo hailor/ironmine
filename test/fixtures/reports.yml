@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  report_code: MyString
+  name: MyString
+  description: MyString
+  permission_code: MyString
+  category_code: MyString
+  status_code: MyString
+
+two:
+  report_code: MyString
+  name: MyString
+  description: MyString
+  permission_code: MyString
+  category_code: MyString
+  status_code: MyString

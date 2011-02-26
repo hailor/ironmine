@@ -1,0 +1,55 @@
+<script type="text/javascript">
+  GY.use(function(Y){
+      Y.on("irm:change",function(e){
+          if(e.details[2]=="Datatable"&&"reportsDatatable"==e.details[0])
+            e.details[1].on("selectedChange",function(e){
+                var selected_code = "";
+                for(var i=0;i<e.details[0].length;i++)
+                  selected_code = selected_code + e.details[0][i].report_code +",";
+                Y.one("#irm_report_group_member_report_code").set("value",selected_code);
+            })
+      });
+  });
+</script>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_report_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <%= form_for(@report_group_member,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+                  <%= f.hidden_field(:report_code) %>
+                  <div class="button"><%= f.submit t(:save)%></div>
+                  <div class="button"><%= link_back t(:cancel)%></div>
+                <% end %>
+              </td>
+              <td class="pbHelp">
+                <div id="reportsSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <%= error_for @report_group_member %>
+        <div id="reports" class="datatable" style="width:100%">
+        </div>
+        <%= datatable("reports",url_for(:action=>"get_selectable_data",:format=>"json"),
+                      [{ :key => "report_code", :label => t(:label_irm_report_report_code),:searchable=>true },
+
+                       { :key => "name", :label => t(:label_irm_report_name),:searchable=>true },
+
+                       { :key => "category_name", :label => t(:label_irm_report_category_code),:searchable=>true },
+
+                       { :key => "permission_controller", :label => t(:label_irm_report_permission_controller),:searchable=>true },
+
+                       { :key => "permission_action", :label => t(:label_irm_report_permission_action) },
+
+                       { :key => "status_meaning", :label => t(:label_irm_report_status_code) }
+
+                       ],{:row_perpage=>20,:search_box=>"reportsSearchBox",:select=>"multiple"})%>
+      </div>
+    </div>
+</div>

@@ -363,4 +363,11 @@ module ApplicationHelper
      content_tag(:img, "",{:class => "checkImg", :width => "21", :height => "14",
                            :src => theme_image_path("#{value}.png") }) if !value.blank?
   end
+
+  def show_date(options={})
+     advance = options[:months_advance]||0
+     (Time.now.advance(:months => advance)).strftime("%Y-%m-%d").to_s
+  end
+
+
 end

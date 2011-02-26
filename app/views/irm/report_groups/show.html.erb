@@ -1,0 +1,95 @@
+<%= page_title %>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= @report_group.group_code  %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @report_group}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+          
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_report_group_group_code)%></label></td>
+              <td class="dataCol"><div><%= @report_group.group_code %></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+          
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_report_group_name)%></label></td>
+              <td class="dataCol"><div><%= @report_group[:name] %></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+          
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_report_group_description)%></label></td>
+              <td class="dataCol"><div><%= @report_group[:description] %></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+          
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_report_group_status_code)%></label></td>
+              <td class="dataCol"><div><%= @report_group[:status_meaning] %></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_report_group_member_list) %></h2></td>
+              <td class="pbButton">
+                <div class="button"><%= link_to t(:add), {:controller => "irm/report_group_members", :action => "new", :group_id => @report_group.id}%></div>
+              </td>
+              <td class="pbHelp">
+                <div id="reportGroupMemebersSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="reports" class="datatable" style="width:100%">
+          <div id="member_id" style="display:none">
+            <%= link_to(t(:delete),{:controller => "irm/report_group_members", :action => "destroy", :group_id => @report_group.id,:id=>"{member_id}"},{:method => :delete}) %>
+          </div>
+        </div>
+        <%= datatable("reports",url_for(:controller => "irm/report_group_members", :action => "get_data", :group_id => @report_group.id,:format=>"json"),
+                      [{:key=>"member_id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"40px"},
+
+                       { :key => "report_code", :label => t(:label_irm_report_report_code),:searchable=>true },
+
+                       { :key => "name", :label => t(:label_irm_report_name),:searchable=>true },
+
+                       { :key => "category_name", :label => t(:label_irm_report_category_code),:searchable=>true },
+
+                       { :key => "permission_controller", :label => t(:label_irm_report_permission_controller),:searchable=>true },
+
+                       { :key => "permission_action", :label => t(:label_irm_report_permission_action) },
+
+                       ],{:row_perpage=>20,:search_box=>"reportGroupMemebersSearchBox"})%>
+      </div>
+    </div>
+</div>

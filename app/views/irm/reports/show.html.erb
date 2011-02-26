@@ -1,0 +1,68 @@
+<%= page_title %>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= @report[:report_code] %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @report}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+          
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_report_report_code)%></label></td>
+              <td class="dataCol"><div><%= @report.report_code %></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+          
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_report_name)%></label></td>
+              <td class="dataCol"><div><%= @report[:name] %></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_report_category_code)%></label></td>
+              <td class="dataCol"><div><%= @report[:category_name] %></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>            
+          
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_report_description)%></label></td>
+              <td class="dataCol"><div><%= @report[:description] %></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+          
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_report_permission_code)%></label></td>
+              <td class="dataCol"><div><%= @report[:permission_controller] %>/<%= @report[:permission_action] %></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+          
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_report_status_code)%></label></td>
+              <td class="dataCol"><div><%= @report[:status_meaning] %></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
