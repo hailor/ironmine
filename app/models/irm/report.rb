@@ -37,6 +37,8 @@ class Irm::Report < ActiveRecord::Base
     where("NOT EXISTS (SELECT 1 FROM #{Irm::ReportGroupMember.table_name} rgm,#{Irm::ReportGroup.table_name} rg WHERE rgm.group_code = rg.group_code AND rgm.report_code = #{table_name}.report_code AND rg.id = ?)",group_id)
   }
 
+  scope :query_by_report_code,lambda{|report_code| where(:report_code=>report_code)}
+
   def self.list_all
     multilingual.with_permission(I18n.locale).with_category(I18n.locale)
   end

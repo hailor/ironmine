@@ -508,3 +508,6 @@ en:
   #========================= irm report_group_members ===================================
   label_irm_report_group_member_list: Report group member
   #========================= end irm report_group_members ===================================
+  #=========================start irm  report_lists_controllers=====================#
+  label_icm_incident_report_all: Incident Report Summary
+  #=========================end irm  report_lists_controllers=======================#

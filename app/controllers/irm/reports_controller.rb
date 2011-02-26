@@ -112,4 +112,8 @@ class Irm::ReportsController < ApplicationController
       format.json {render :json=>to_jsonp(reports.to_grid_json([:name,:description,:report_code,:category_name,:permission_controller,:permission_action,:status_meaning,:status_meaning],count))}
     end
   end
+
+  def report_list
+
+  end
 end

@@ -418,6 +418,8 @@ Ironmine::Application.routes.draw do
     match '/report_groups/:id(.:format)' => "report_groups#show", :via => :get
     match '/report_groups/:id/multilingual_edit(.:format)' => "report_groups#multilingual_edit", :via => :get
     match '/report_groups/:id/multilingual_update(.:format)' => "report_groups#multilingual_update", :via => :put
+    #report_lists
+    match '/report_lists/index(.:format)' => "report_lists#index", :via => :get
     #incident_journals
     match '/report_groups/:group_id/members(/index)(.:format)' => "report_group_members#index", :via => :get
     match '/report_groups/:group_id/members/new(.:format)' => "report_group_members#new", :via => :get
@@ -514,6 +516,7 @@ Ironmine::Application.routes.draw do
     match '/incident_reports/rpt_impact_range_summary(.:format)' => "incident_reports#rpt_impact_range_summary"
     match '/incident_reports/rpt_priority_code_summary(.:format)' => "incident_reports#rpt_priority_code_summary"
     match '/incident_reports/get_report_summary(.:format)' => "incident_reports#get_report_summary"
+    match '/incident_reports/index(.:format)' => "incident_reports#index"
   end
 
   scope :module => "cms" do
