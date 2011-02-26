@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitIncidentReport < ActiveRecord::Migration
   def self.up
     #定义 报表:所有请求-紧急度 的 permission_code
@@ -55,7 +56,8 @@ class InitIncidentReport < ActiveRecord::Migration
     #定义 某时间段所有请求-紧急度 的报表
     rpt_all_urgency_report = Irm::Report.new(:report_code=>"ICM_ALL_URGENCY",
                                              :permission_code=>"ICM_INCIDENT_REPORT_URGENCY",
-                                             :category_code =>"INCIDENT")
+                                             :category_code =>"INCIDENT",
+                                             :not_auto_mult=>true)
     rpt_all_urgency_report.reports_tls.build(:language=>'en',:name=>'All Incident - Urgency',
                                              :description=>'All Incident - Urgency',:source_lang=>'en')
     rpt_all_urgency_report.reports_tls.build(:language=>'zh',:name=>'某时间段所有请求-紧急度',
@@ -65,7 +67,8 @@ class InitIncidentReport < ActiveRecord::Migration
     #定义 某时间段所有请求-来源类型 的报表
     rpt_all_report_source_report = Irm::Report.new(:report_code=>"ICM_ALL_SOURCE_TYPE",
                                              :permission_code=>"ICM_INCIDENT_REPORT_SOURCE",
-                                             :category_code =>"INCIDENT")
+                                             :category_code =>"INCIDENT",
+                                             :not_auto_mult=>true)
     rpt_all_report_source_report.reports_tls.build(:language=>'en',:name=>'All Incident - Report Source',
                                              :description=>'All Incident - Report Source',:source_lang=>'en')
     rpt_all_report_source_report.reports_tls.build(:language=>'zh',:name=>'某时间段所有请求-来源类型',
@@ -75,7 +78,8 @@ class InitIncidentReport < ActiveRecord::Migration
     #定义 某时间段所有请求-请求类型 的报表
     rpt_all_report_type_report = Irm::Report.new(:report_code=>"ICM_ALL_REQUEST_TYPE",
                                              :permission_code=>"ICM_INCIDENT_REPORT_TYPE",
-                                             :category_code =>"incident")
+                                             :category_code =>"INCIDENT",
+                                             :not_auto_mult=>true)
     rpt_all_report_type_report.reports_tls.build(:language=>'en',:name=>'All Incident - Report Type',
                                              :description=>'All Incident - Report Type',:source_lang=>'en')
     rpt_all_report_type_report.reports_tls.build(:language=>'zh',:name=>'某时间段所有请求-请求类型',
@@ -85,7 +89,8 @@ class InitIncidentReport < ActiveRecord::Migration
     #定义 某时间段所有请求-影响度 的报表
     rpt_all_impact_report = Irm::Report.new(:report_code=>"ICM_ALL_IMPACT_RANGE",
                                              :permission_code=>"ICM_REPORT_IMPACT_RANGE",
-                                             :category_code =>"incident")
+                                             :category_code =>"INCIDENT",
+                                             :not_auto_mult=>true)
     rpt_all_impact_report.reports_tls.build(:language=>'en',:name=>'All Incident - Impact',
                                              :description=>'All Incident - Impact',:source_lang=>'en')
     rpt_all_impact_report.reports_tls.build(:language=>'zh',:name=>'某时间段所有请求-影响度',
@@ -95,7 +100,8 @@ class InitIncidentReport < ActiveRecord::Migration
     #定义 某时间段所有请求-优先级 的报表
     rpt_all_priority_report = Irm::Report.new(:report_code=>"ICM_ALL_PRIORITY_CODE",
                                              :permission_code=>"ICM_REPORT_PRIORITY_CODE",
-                                             :category_code =>"incident")
+                                             :category_code =>"INCIDENT",
+                                             :not_auto_mult=>true)
     rpt_all_priority_report.reports_tls.build(:language=>'en',:name=>'All Incident - Priority',
                                              :description=>'All Incident - Priority',:source_lang=>'en')
     rpt_all_priority_report.reports_tls.build(:language=>'zh',:name=>'某时间段所有请求-优先级',
@@ -103,7 +109,8 @@ class InitIncidentReport < ActiveRecord::Migration
     rpt_all_priority_report.save
 
     #定义报表组
-    admin_report_groups = Irm::ReportGroup.new(:group_code=>"ADMIN_REPORT_GROUP")
+    admin_report_groups = Irm::ReportGroup.new(:group_code=>"ADMIN_REPORT_GROUP",
+                                               :not_auto_mult=>true)
     admin_report_groups.report_groups_tls.build(:language=>'zh',:name=>'管理员报表组',
                                               :description=>'管理员报表组',:source_lang=>'en')
     admin_report_groups.report_groups_tls.build(:language=>'en',:name=>'Admin Report Group',

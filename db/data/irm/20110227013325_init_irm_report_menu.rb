@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitIrmReportMenu < ActiveRecord::Migration
   def self.up
     irm_soc_report_list_menu= Irm::Menu.new(:menu_code=>'IRM_REPORT_LISTS_MENU',:leaf_flag=>'N',:not_auto_mult=>true)

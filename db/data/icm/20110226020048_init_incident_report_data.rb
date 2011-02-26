@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitIncidentReportData < ActiveRecord::Migration
   def self.up
 

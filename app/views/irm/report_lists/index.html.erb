@@ -20,57 +20,7 @@
     </div>
     <div class="pbBody">
       <div class="reportList">
-
-        <div class="reportListFolder">
-          <div class="folderName secondaryPalette">
-            <a href="#">
-              <img class="hideListButton" src="/images/s.gif">
-            </a>
-            <h3><%= t(:label_icm_incident_report_all) %></h3>
-          </div>
-          <div class="reportEntry">
-            <%= link_to "某时间段所有请求-紧急度",url_for(:controller=>"icm/incident_reports",
-                                               :action=>"rpt_urgency_summary")%>
-            <span>&nbsp;&ndash;&nbsp;
-              <span class="entryDesc">显示某段时间里面所有请求的紧急度比例
-              </span>
-            </span>
-          </div>
-          <div class="reportEntry">
-            <%= link_to "某时间段所有请求-请求类型",url_for(:controller=>"icm/incident_reports",
-                                               :action=>"rpt_report_source_summary")%>
-            <span>&nbsp;&ndash;&nbsp;
-              <span class="entryDesc">显示某段时间里面所有请求的紧急度比例
-              </span>
-            </span>
-          </div>
-          <div class="reportEntry">
-            <%= link_to "某时间段所有请求-来源类型",url_for(:controller=>"icm/incident_reports",
-                                               :action=>"rpt_report_type_summary")%>
-            <span>&nbsp;&ndash;&nbsp;
-              <span class="entryDesc">显示某段时间里面所有请求的紧急度比例
-              </span>
-            </span>
-          </div>
-          <div class="reportEntry">
-            <%= link_to "某时间段所有请求-影响度",url_for(:controller=>"icm/incident_reports",
-                                               :action=>"rpt_impact_range_summary")%>
-            <span>&nbsp;&ndash;&nbsp;
-              <span class="entryDesc">显示某段时间里面所有请求的紧急度比例
-              </span>
-            </span>
-          </div>
-          <div class="reportEntry">
-            <%= link_to "某时间段所有请求-优先级",url_for(:controller=>"icm/incident_reports",
-                                               :action=>"rpt_priority_code_summary")%>
-            <span>&nbsp;&ndash;&nbsp;
-              <span class="entryDesc">显示某段时间里面所有请求的紧急度比例
-              </span>
-            </span>
-          </div>
-        </div>
-
-
+        <%= raw(show_category_report("","INCIDENT",{:report_group_name=>t(:label_icm_incident_report_all)})) %>
       </div>
     </div>
   </div>

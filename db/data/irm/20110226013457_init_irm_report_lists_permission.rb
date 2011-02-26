@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitIrmReportListsPermission < ActiveRecord::Migration
   def self.up
     irm_report_lists_index= Irm::Permission.new(:permission_code=>'IRM_REPORT_LISTS_INDEX',
