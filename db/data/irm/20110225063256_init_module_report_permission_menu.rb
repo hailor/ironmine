@@ -17,11 +17,11 @@ class InitModuleReportPermissionMenu < ActiveRecord::Migration
     irm_reports_index.permissions_tls.build(:language=>'zh',:name=>'首页',:description=>'首页',:source_lang=>'en')
     irm_reports_index.permissions_tls.build(:language=>'en',:name=>'Index',:description=>'Index',:source_lang=>'en')
     irm_reports_index.save
-    irm_reports_mtl_edit= Irm::Permission.new(:permission_code=>'IRM_REPORTS_MTL_EDIT',:page_controller=>'irm/reports',:page_action=>'multilingual_site_edit',:not_auto_mult=>true)
+    irm_reports_mtl_edit= Irm::Permission.new(:permission_code=>'IRM_REPORTS_MTL_EDIT',:page_controller=>'irm/reports',:page_action=>'multilingual_edit',:not_auto_mult=>true)
     irm_reports_mtl_edit.permissions_tls.build(:language=>'zh',:name=>'多语言编辑',:description=>'多语言编辑',:source_lang=>'en')
     irm_reports_mtl_edit.permissions_tls.build(:language=>'en',:name=>'Multilingual Edit',:description=>'Multilingual Edit',:source_lang=>'en')
     irm_reports_mtl_edit.save
-    irm_reports_mtl_update= Irm::Permission.new(:permission_code=>'IRM_REPORTS_MTL_UPDATE',:page_controller=>'irm/reports',:page_action=>'multilingual_site_update',:not_auto_mult=>true)
+    irm_reports_mtl_update= Irm::Permission.new(:permission_code=>'IRM_REPORTS_MTL_UPDATE',:page_controller=>'irm/reports',:page_action=>'multilingual_update',:not_auto_mult=>true)
     irm_reports_mtl_update.permissions_tls.build(:language=>'zh',:name=>'多语言编辑',:description=>'多语言编辑',:source_lang=>'en')
     irm_reports_mtl_update.permissions_tls.build(:language=>'en',:name=>'Multilingual Edit',:description=>'Multilingual Edit',:source_lang=>'en')
     irm_reports_mtl_update.save
@@ -53,11 +53,11 @@ class InitModuleReportPermissionMenu < ActiveRecord::Migration
     irm_report_groups_index.permissions_tls.build(:language=>'zh',:name=>'首页',:description=>'首页',:source_lang=>'en')
     irm_report_groups_index.permissions_tls.build(:language=>'en',:name=>'Index',:description=>'Index',:source_lang=>'en')
     irm_report_groups_index.save
-    irm_report_groups_mtl_edit= Irm::Permission.new(:permission_code=>'IRM_REPORT_GROUPS_MTL_EDIT',:page_controller=>'irm/report_groups',:page_action=>'multilingual_site_edit',:not_auto_mult=>true)
+    irm_report_groups_mtl_edit= Irm::Permission.new(:permission_code=>'IRM_REPORT_GROUPS_MTL_EDIT',:page_controller=>'irm/report_groups',:page_action=>'multilingual_edit',:not_auto_mult=>true)
     irm_report_groups_mtl_edit.permissions_tls.build(:language=>'zh',:name=>'多语言编辑',:description=>'多语言编辑',:source_lang=>'en')
     irm_report_groups_mtl_edit.permissions_tls.build(:language=>'en',:name=>'Multilingual Edit',:description=>'Multilingual Edit',:source_lang=>'en')
     irm_report_groups_mtl_edit.save
-    irm_report_groups_mtl_update= Irm::Permission.new(:permission_code=>'IRM_REPORT_GROUPS_MTL_UPDATE',:page_controller=>'irm/report_groups',:page_action=>'multilingual_site_update',:not_auto_mult=>true)
+    irm_report_groups_mtl_update= Irm::Permission.new(:permission_code=>'IRM_REPORT_GROUPS_MTL_UPDATE',:page_controller=>'irm/report_groups',:page_action=>'multilingual_update',:not_auto_mult=>true)
     irm_report_groups_mtl_update.permissions_tls.build(:language=>'zh',:name=>'多语言编辑',:description=>'多语言编辑',:source_lang=>'en')
     irm_report_groups_mtl_update.permissions_tls.build(:language=>'en',:name=>'Multilingual Edit',:description=>'Multilingual Edit',:source_lang=>'en')
     irm_report_groups_mtl_update.save
