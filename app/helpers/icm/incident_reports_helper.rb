@@ -1,0 +1,3 @@
+module Icm::IncidentReportsHelper
+  
+end

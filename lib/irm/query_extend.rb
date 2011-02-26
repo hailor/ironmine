@@ -37,6 +37,7 @@ module Irm::QueryExtend
             #动态构建语言查询,传入的column为当前表+字段名
             scope :date_between_value, lambda { |column, value1,value2|
               return {} if (value1.blank?||value2.blank?)
+              value2 = value2.to_date.advance(:days=>1).strftime("%Y-%m-%d") if value2.present?
               where(column.to_sym=>value1..value2)
             }
             #排序构建

@@ -6,6 +6,7 @@
 <div class="bFilterReport">
   <h2>报表选项：</h2>
   <div class="reportParameters">
+    <%= form_tag({}, :method => :get) do %>
     <div class="row">
       <table cellspacing="0" cellpadding="0" border="0">
         <tbody>
@@ -13,6 +14,10 @@
               <td>
                 <label for="subtotalBy0">汇总信息依据：</label>
                 <select id="subtotalBy0" name="break0"></select>
+              </td>
+              <td>
+                <label for="subtotalBy1">汇总信息依据：</label>
+                <select id="subtotalBy1" name="break0"></select>
               </td>
               <td>
                 <fieldset>
@@ -26,13 +31,6 @@
                               <select id="interval_c" title="日期列" name="interval_c"></select>
                             </td>
                             <td>
-                              <label for="interval_q">持续时间</label>
-                              <select id="interval_q" name="interval_q"></select>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td></td>
-                            <td>
                               <label for="interval_s">开始日期</label>
                               <span class="dateInput dateOnlyInput">
                                 <input id="interval_s" type="text" size="12">
@@ -42,7 +40,7 @@
                               <label for="interval_e">结束日期</label>
                               <span class="dateInput dateOnlyInput">
                                 <input id="interval_e" type="text" size="12">
-                              </span>                              
+                              </span>
                             </td>
                           </tr>
                       </tbody>
@@ -51,66 +49,50 @@
                 </fieldset>
               </td>
             </tr>
+            <tr>
+               <td>
+                <label for="subtotalBy2">汇总信息依据：</label>
+                <select id="subtotalBy2" name="break0"></select>
+              </td>
+              <td>
+                <label for="subtotalBy3">汇总信息依据：</label>
+                <select id="subtotalBy3" name="break0"></select>
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
         </tbody>
       </table>
     </div>
   </div>
-  <div class="reportActions">
-    <input class="btn" type="submit" value="自定义">
+  <div class="reportActions pbButton">
+    <%= submit_tag t(:submit),{:class =>"btn"}%>
+    <input class="btn" type="submit" value="自定义">    
     <input class="btn" type="submit" value="另存为">
     <input class="btn" type="submit" value="导出详细信息">
   </div>
+  <% end %>
   <div class="bGeneratedReport">
     <div class="bPageBlock">
       <div class="pbBody">
         <div class="pbSubblock">
           <div class="pbSubbody">
             <div class="reportOutput">
-              <div id="fchArea"></div>
-              <br>
-              <label for="drillbreak">选取上面的行以筛选出所需行，然后依据以下条件继续搜索分层细节：</label>
-              <select id="drillbreak"></select>
-              <input class="btn" type="submit" value="分层细节">
+              <div id="fchArea" class="pbBody">
+                    <div id="survey_report" class="datatable" style="width:100%;">
+                    </div>
+                    <%= datatable("survey_report",url_for(:action=>"get_survey_report"),
+                              [{:key=>"urgency_name",:label=>t(:label_csi_survey_title),:sortable=>true,:searchable=>true,:width=>"30%"},
+                               {:key=>"urgency_count",:label=>t(:label_csi_survey_description),:sortable=>true}],
+                               {:row_perpage=>10})%>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="bPageBlock secondaryPalette">
-    <div class="pbHeader">
-      <div class="buttons">
-        <input class="btn" type="button" value="创建新的自定义报表"> 
-      </div>
-    </div>
-    <div class="pbBody">
-      <div class="reportList">
-        <div class="reportListFolder">
-          <div class="folderName secondaryPalette">
-            <a href="#"><img class="showListButton" src="images/s.gif"></a>
-            <h3>我的个人自定义报表</h3>
-          </div>
-        </div>
-
-        <div class="reportListFolder">
-          <div class="folderName secondaryPalette">
-            <a href="#"><img class="hideListButton" src="images/s.gif"></a>
-            <h3>客户和联系人报表</h3>
-          </div>
-          <div class="reportEntry">
-            <a class="entryName" href="javascript:void(0);">HTML 电子邮件状态报表</a>
-            <span>&nbsp;&ndash;&nbsp;
-              <span class="entryDesc">显示本星期发送的全部 HTML 电子邮件</span>
-            </span>
-          </div>
-          <div class="reportEntry">
-            <a class="entryName" href="javascript:void(0);">已退回的联系人</a>
-            <span>&nbsp;&ndash;&nbsp;
-              <span class="entryDesc">什么联系人有退回的电子邮件地址？</span>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
+
+

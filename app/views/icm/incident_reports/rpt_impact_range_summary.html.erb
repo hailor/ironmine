@@ -1,0 +1,98 @@
+<%= app_title(:description=>"某时间段所有请求-影响度报表") %>
+<div class="bFilterReport">
+  <h2><%=t(:label_icm_report_param) %></h2>
+  <div class="reportParameters">
+    <%= form_tag({}, :method => :get) do %>
+    <div class="row">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+            <tr>
+              <td>
+                <label for="subtotalBy0"><%=t(:label_irm_company_name)%>：</label>
+                <%=select_tag :company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                                options_from_collection_for_select(available_company,:id,:wrap_name,@company_id),:required=>true %>
+              </td>
+              <td>
+                <label for="subtotalBy1"><%=t(:label_icm_incident_request_service_code)%>：</label>
+                <%=select_tag :service_code,nullable_options_for_select(available_service,@service_code),
+                                                    {:required=>true,:id=>"incident_request_service_code"}%>
+              </td>
+              <td>
+                <fieldset>
+                  <legend>
+                    <strong><%= t(:label_icm_report_time_frame) %></strong>
+                    <table cellpadding="0" cellspacing="0" border="0">
+                      <tbody>
+                          <tr>
+                            <td>
+                              <label for="interval_c"><%= t(:label_icm_report_time_frame_column) %></label>
+                              <%=select_tag :table_column,options_from_collection_for_select(get_current_report_column("ICM_ALL_URGENCY"),
+                                                                                             :wrap_table_column,:wrap_column_name),
+                                                    {:required=>true,:id=>"incident_request_service_code"}%>
+                            </td>
+                            <td>
+                              <label for="interval_s"><%= t(:label_icm_report_time_frame_start_time) %></label>
+                              <span class="dateInput dateOnlyInput">
+                                <%= text_field_tag :timeframes_start_date, @timeframes_start_date||show_date(:months_advance=>-1),:id=>"interval_s",:size=>12%>
+                                <%= calendar_view("interval_s","interval_s","cal") %>
+                              </span>
+                            </td>
+                            <td>
+                              <label for="interval_e"><%= t(:label_icm_report_time_frame_end_time) %></label>
+                              <span class="dateInput dateOnlyInput">
+                                <%= text_field_tag :timeframes_end_date, @timeframes_end_date||show_date,:id=>"interval_e",:size=>12%>
+                                <%= calendar_view("interval_e","interval_e","cal") %>
+                              </span>
+                            </td>
+                          </tr>
+                      </tbody>
+                    </table>
+                  </legend>
+                </fieldset>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="reportActions pbButton">
+    <%= submit_tag t(:submit),{:class =>"btn"}%>
+    <input class="btn" type="submit" value="自定义">
+    <input class="btn" type="submit" value="另存为">
+    <input class="btn" type="submit" value="导出详细信息">
+  </div>
+  <% end %>
+  <div class="bGeneratedReport">
+    <div class="bPageBlock">
+      <div class="pbBody">
+        <div class="pbSubblock">
+          <div class="pbSubbody">
+            <div class="reportOutput">
+              <div id="fchArea" class="pbBody" >
+                    <table style="width:100%">
+                      <tr>
+                        <td style="width:40%">
+                            <div id="impact_range_summary" class="datatable">
+                            </div>
+                            <%= datatable("impact_range_summary",url_for(:action=>"get_report_summary",:report_result=>@report_result),
+                                      [{:key=>"impact_range_name",:label=>t(:label_icm_impact_range_name),:width=>"200px"},
+                                       {:key=>"impact_range_count",:label=>t(:label_icm_report_source_count),:width=>"200px"}],
+                                       {:row_perpage=>10})%>
+                        </td>
+                        <td style="width:10%">
+                        </td>
+                        <td style="width:50%">
+                           <%= pie_chart("urgency_summary_chart",@data_provider) %>
+                        </td>
+                      </tr>
+                    </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

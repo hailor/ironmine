@@ -733,3 +733,24 @@ div.button input[type="submit"] {
 	line-height: 22px;
 }
 div.button input[type="submit"]:hover{background-position: right -30px; cursor: pointer;}
+
+.bPageBlock .buttons {padding:3px 20px;text-align:center;}
+.reportList .reportListFolder {padding:5px 0;}
+.reportList .secondaryPalette{
+    background-color:#A55647;
+    border-color:#A55647;
+}
+.reportList .folderName {
+    background-color:#CCCCCC;
+    color:#000000;
+    font-weight:bold;
+    margin-bottom:2px;
+    padding-left:3px;
+}
+.showListButton {
+    background-image:url("../images/twistySubhRight.gif");
+    background-position:0 0;
+    height:10px;
+    width:16px;
+}
+.reportList .reportEntry {padding:1px 0 1px 24px;}

@@ -420,6 +420,9 @@ Ironmine::Application.routes.draw do
     match '/report_groups/:id(.:format)' => "report_groups#show", :via => :get
     match '/report_groups/:id/multilingual_edit(.:format)' => "report_groups#multilingual_edit", :via => :get
     match '/report_groups/:id/multilingual_update(.:format)' => "report_groups#multilingual_update", :via => :put
+
+    #report_lists
+    match '/report_lists/index(.:format)' => "report_lists#index", :via => :get
     #report_groups
     match '/report_groups/:group_id/members(/index)(.:format)' => "report_group_members#index", :via => :get
     match '/report_groups/:group_id/members/new(.:format)' => "report_group_members#new", :via => :get
@@ -518,6 +521,15 @@ Ironmine::Application.routes.draw do
     match '/user_requests/:request_id/journals(/index)(.:format)' => "user_journals#index", :via => :get
     match '/user_requests/:request_id/journals/new(.:format)' => "user_journals#new", :via => :get
     match '/user_requests/:request_id/journals/create(.:format)' => "user_journals#create", :via => :post
+    #incident_reports
+    match '/incident_reports/rpt_urgency_summary(.:format)' => "incident_reports#rpt_urgency_summary"
+    match '/incident_reports/get_urgency_summary(.:format)' => "incident_reports#get_urgency_summary"
+    match '/incident_reports/rpt_report_source_summary(.:format)' => "incident_reports#rpt_report_source_summary"
+    match '/incident_reports/rpt_report_type_summary(.:format)' => "incident_reports#rpt_report_type_summary"
+    match '/incident_reports/rpt_impact_range_summary(.:format)' => "incident_reports#rpt_impact_range_summary"
+    match '/incident_reports/rpt_priority_code_summary(.:format)' => "incident_reports#rpt_priority_code_summary"
+    match '/incident_reports/get_report_summary(.:format)' => "incident_reports#get_report_summary"
+    match '/incident_reports/index(.:format)' => "incident_reports#index"
   end
 
   scope :module => "cms" do
@@ -542,6 +554,9 @@ Ironmine::Application.routes.draw do
     match '/surveys/thanks(.:format)' => "surveys#thanks", :via => :get
     match '/surveys/:id/show_result(.:format)' => "surveys#show_result", :via => :get
     match '/surveys/:id/export_result(.:format)' => "surveys#export_result", :via => :get
+    match '/surveys/test(.:format)' => "surveys#test", :via => :get
+    match '/surveys/survey_report(.:format)' => "surveys#survey_report", :via => :get
+    match '/surveys/get_survey_report(.:format)' => "surveys#get_survey_report", :via => :get
     match '/surveys/:id(.:format)' => "surveys#show", :via => :get
     #survey_subjects
     match '/surveys/:survey_id/survey_subjects(/index)(.:format)' => "survey_subjects#index", :via => :get

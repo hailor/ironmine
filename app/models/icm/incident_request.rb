@@ -86,6 +86,42 @@ class Icm::IncidentRequest < ActiveRecord::Base
     select("#{table_name}.*")
   }
 
+  #报表使用
+  scope :query_by_urgency,lambda{|language| select("v1.name urgency_name,sum(1) urgency_count").
+                          joins(",icm_urgence_codes_vl v1").
+                          where("v1.urgency_code = #{table_name}.urgence_code AND v1.language = '#{language}'").
+                          group("v1.name")
+  }
+
+   scope :query_by_report_source,lambda{|language| select("v1.meaning report_source_name,sum(1) report_source_count").
+                          joins(",irm_lookup_values_vl v1").
+                          where("v1.lookup_code = #{table_name}.report_source_code AND v1.language = '#{language}' AND " +
+                                "v1.lookup_type = 'ICM_REQUEST_REPORT_SOURCE'").
+                          group("v1.meaning")}
+
+
+   scope :query_by_request_type,lambda{|language| select("v1.meaning report_type_name,sum(1) report_type_count").
+                          joins(",irm_lookup_values_vl v1").
+                          where("v1.lookup_code = #{table_name}.request_type_code AND v1.language = '#{language}' AND " +
+                                "v1.lookup_type = 'ICM_REQUEST_TYPE_CODE'").
+                          group("v1.meaning")}
+
+
+   scope :query_by_impact_range,lambda{|language| select("v1.name impact_range_name,sum(1) impact_range_count").
+                          joins(",icm_impact_ranges_vl v1").
+                          where("v1.impact_code = #{table_name}.impact_range_code AND v1.language = '#{language}'").
+                          group("v1.name")}
+
+   scope :query_by_priority_code,lambda{|language| select("v1.name priority_code_name,sum(1) priority_code_count").
+                          joins(",icm_priority_codes_vl v1").
+                          where("v1.priority_code = #{table_name}.priority_code AND v1.language = '#{language}'").
+                          group("v1.name")}
+
+
+
+
+
+
   def self.list_all
     select_all.
         with_request_type(I18n.locale).
