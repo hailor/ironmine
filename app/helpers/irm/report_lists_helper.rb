@@ -2,7 +2,8 @@ module Irm::ReportListsHelper
   
   def show_category_report(role_code,category_code,options={})
      report_group_name = options[:report_group_name]
-     report_list_folder = (link_to content_tag(:img, "", :src => '/images/s.gif',:class=>"hideListButton"),"#")  + content_tag(:h3,report_group_name)
+     report_list_folder = (link_to content_tag(:img, "", :src => '/images/s.gif',:class=>"hideListButton"),"#")  +
+         content_tag(:h3,report_group_name)
      report_list_folder = content_tag(:div,report_list_folder.html_safe,:class=>"folderName secondaryPalette")
      current_category_reports = Irm::Report.query_by_group_and_category("ADMIN_REPORT_GROUP",category_code)
      current_category_reports.each do |report|
