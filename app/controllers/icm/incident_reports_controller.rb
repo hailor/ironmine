@@ -129,7 +129,11 @@ class Icm::IncidentReportsController < ApplicationController
 
    private
     def auto_run?(auto_run)
-      auto_run != Irm::Constant::SYS_YES
+      if auto_run.blank?
+         true
+      else
+         auto_run == Irm::Constant::SYS_YES
+      end
     end
    
     def to_pie_chart_json(chart_data)

@@ -65,6 +65,7 @@ en:
   default_flag: As Default
   report: Report
   go_to_report: Go To Report
+  tool: Tools
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type

@@ -90,6 +90,7 @@ zh:
   default_flag: 默认
   report: 报表
   go_to_report: 转至报表
+  tool: 工具
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=====================#
   label_lookup_types: 快速编码类型
