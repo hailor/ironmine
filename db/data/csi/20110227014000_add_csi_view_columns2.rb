@@ -4,7 +4,7 @@ class AddCsiViewColumns2 < ActiveRecord::Migration
     column_a = Irm::ViewColumn.new({:filter_type=>"CSI_SURVEYS_INDEX_A",
                                     :table_name=>"csi_surveys",
                                     :column_name=>"closed_datetime",
-                                    :column_data_type=>"date",
+                                    :column_data_type=>"string",
                                     :not_auto_mult=>true})
     column_a.view_columns_tls.build({:name=>"Closed Date",
                                     :description=>"Closed Date",
