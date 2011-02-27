@@ -378,6 +378,8 @@ Ironmine::Application.routes.draw do
     match '/setting/common(.:format)' =>'setting#common'
     #home
     match '/home(/index)(.:format)' => "home#index", :via => :get
+    #user_home
+    match '/user_home(/index)(.:format)' => "user_home#index", :via => :get
     #view_filter
     match '/filters/:pid/index/:ft(.:format)' => "filters#index", :via => :get
     match '/filters/:pid/new/:ft(.:format)' => "filters#new", :via => :get
@@ -418,9 +420,10 @@ Ironmine::Application.routes.draw do
     match '/report_groups/:id(.:format)' => "report_groups#show", :via => :get
     match '/report_groups/:id/multilingual_edit(.:format)' => "report_groups#multilingual_edit", :via => :get
     match '/report_groups/:id/multilingual_update(.:format)' => "report_groups#multilingual_update", :via => :put
+
     #report_lists
     match '/report_lists/index(.:format)' => "report_lists#index", :via => :get
-    #incident_journals
+    #report_groups
     match '/report_groups/:group_id/members(/index)(.:format)' => "report_group_members#index", :via => :get
     match '/report_groups/:group_id/members/new(.:format)' => "report_group_members#new", :via => :get
     match '/report_groups/:group_id/members/get_data(.:format)' => "report_group_members#get_data", :via => :get
@@ -508,6 +511,16 @@ Ironmine::Application.routes.draw do
     match '/incident_requests/:request_id/journals/update_close(.:format)' => "incident_journals#update_close", :via => :put
     match '/incident_requests/:request_id/journals/new(.:format)' => "incident_journals#new", :via => :get
     match '/incident_requests/:request_id/journals/create(.:format)' => "incident_journals#create", :via => :post
+    #user_requests
+    match '/user_requests(/index)(.:format)' => "user_requests#index", :via => :get
+    match '/user_requests/new(.:format)' => "user_requests#new", :via => :get
+    match '/user_requests/create(.:format)' => "user_requests#create", :via => :post
+    match '/user_requests/get_data(.:format)' => "user_requests#get_data"
+    match '/user_requests/:id(.:format)' => "user_requests#show", :via => :get
+    #user_journals
+    match '/user_requests/:request_id/journals(/index)(.:format)' => "user_journals#index", :via => :get
+    match '/user_requests/:request_id/journals/new(.:format)' => "user_journals#new", :via => :get
+    match '/user_requests/:request_id/journals/create(.:format)' => "user_journals#create", :via => :post
     #incident_reports
     match '/incident_reports/rpt_urgency_summary(.:format)' => "incident_reports#rpt_urgency_summary"
     match '/incident_reports/get_urgency_summary(.:format)' => "incident_reports#get_urgency_summary"

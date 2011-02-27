@@ -1,0 +1,2 @@
+module Icm::UserJournalsHelper
+end

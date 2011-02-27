@@ -5,7 +5,6 @@ class AddFileManagementMenuData2 < ActiveRecord::Migration
     skm_menu_entiry_85.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'文件管理',:description=>'文件管理')
     skm_menu_entiry_85.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'File Management',:description=>'File Management')
     skm_menu_entiry_85.save
-    
   end
 
   def self.down

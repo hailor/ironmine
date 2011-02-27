@@ -6,6 +6,7 @@ body .bodyDiv {background-color:#FFFFFF;margin:0 10px;min-height: 350px;}
 img {border:0 none !important;}
 body a:hover{color: #015BA7;}
 a {color:#333435;}
+textarea {font-size: 14px;}
 /***************** top search area ***********************/
 .bPageTitle {margin-bottom:15px;}
 body.detailPage .bPageTitle {margin-bottom:0;}
@@ -754,3 +755,4 @@ div.button input[type="submit"]:hover{background-position: right -30px; cursor: 
     width:16px;
 }
 .reportList .reportEntry {padding:1px 0 1px 24px;}
+

@@ -1,0 +1,229 @@
+<div class="bPageTitle">
+  <div class="ptBody secondaryPalette">
+    <a href="javascript:void(0);">
+      <img src="/images/T.png" class="thumbnail_visible" width="45" height="45">
+    </a>
+    <div class="greeting">
+      <div class="content">
+          <span class="pageType">
+            <h1 class="currentStatusUserName">
+              <a href="javascript:void(0);">liu</a>
+            </h1>
+          </span>
+          <span class="pageDescription"><a href="javascript:void(0);">星期六 2011年1月8日</a></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="tabView" class="bMiniTab"></div>
+<%= tabview("tabView", {t(:label_irm_permission) => 'permissions/data_grid.js', t(:label_irm_product_module) => 'product_modules/data_grid.js'}) %>
+  
+<table class="toolsContent">
+    <tbody>
+        <tr>
+          <td>
+            <div class="toolsContentLeft">
+              <div class="bSubBlock">
+                <h3 class="lbHeader">报表</h3>
+                <div class="lbBody">
+                  <ul>
+                    <li><a href="javascript:void(0);">已启用客户</a></li>
+                    <li><a href="javascript:void(0);">已启用客户</a></li>
+                    <li><a href="javascript:void(0);">已启用客户</a></li>
+                    <li><a href="javascript:void(0);">已启用客户</a></li>
+                  </ul>
+                </div>
+                <div class="lbBody">
+                  <div class="mainLink">
+                    <a href="javascript:void(0);">转至报表</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div id="myDrag" class="toolsContentRight">
+              <div class="bSubBlock">
+                <h3 class="lbHeader">报表</h3>
+                <div class="lbBody">
+                  <ul>
+                    <li><a href="javascript:void(0);">导入我的组织的客户 & 联系人</a></li>
+                    <li><a href="javascript:void(0);">导入我的客户 & 联系人</a></li>
+                    <li><a href="javascript:void(0);">批量删除客户</a></li>
+                    <li><a href="javascript:void(0);">转移客户</a></li>
+                    <li><a href="javascript:void(0);">合并客户</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+</table>
+<style type="text/css">
+  div.portalContent div.portalModule{
+    width:100%;
+    overflow:  hidden;
+    clear: both;
+    padding-bottom:1px;
+  }
+  div.portalContent div.moduleAsDrop{
+    min-height:20px;
+    margin-bottom: 5px;
+    border-style: dashed;
+    border-width: 1px;
+  }
+  div.portalContent div.portalModule div.portlet{
+   border-style:solid;
+   border-width:1px;
+   float: left;
+  }
+  div.portalContent div.oneColumn div.portlet{
+    width:100%;
+  }
+  div.portalContent div.twoColumn div.portlet{
+    width:49%;
+  }
+  div.portalContent div.threeColumn div.portlet{
+    width:33%;
+  }
+</style>
+<div id="portalSource" class="portalSource">
+  <div class="portalSourceItem" >ccccccccccccccccccc1xxxxxxxxxxxx</div>
+  <div class="portalSourceItem" >ccccccccccccccccccc2xxxxxxxxxxxx</div>
+  <div class="portalSourceItem" >ccccccccccccccccccc3xxxxxxxxxxxx</div>
+</div>
+<div id="portalContent" class="portalContent">
+  <div class="portalModule threeColumn" id="portalModule13"></div>
+  <div class="portalModule twoColumn" id="portalModule12"></div>
+  <div class="portalModule oneColumn" id="portalModule11"></div>   
+</div>
+
+<script type="text/javascript">
+  GY.use('dd', function(Y) {
+      function Portal() {
+        Portal.superclass.constructor.apply(this, arguments);
+      }
+      Y.mix(Portal,{
+          NAME: 'portal',
+          ATTRS: {
+              domId:{value:""},
+              sourceDomId:{value:""}
+          }
+      });
+      Y.extend(Portal, Y.Base,{
+          initializer: function(config) {
+              var currentPortal = this;
+              this.set("domId",config.domId);
+              this.set("sourceDomId",config.sourceDomId);
+              var modules = Y.all("#"+config.domId+" div.portalModule");
+              modules.each(function(v,k){
+                  var dd = new Y.DD.Drop({
+                      node: v,
+                      padding: '0 20',
+                      bubbles: currentPortal
+                  });
+              });
+              var sources = Y.all("#"+config.sourceDomId+ " .portalSourceItem");
+              sources.each(function(v,k){
+                  var dd = new Y.DD.Drag({
+                      node: v,
+                      bubbles: currentPortal
+                  }).plug(Y.Plugin.DDProxy, {
+                      moveOnEnd: false
+                  });
+                  dd.on('drag:start', Y.bind(currentPortal._handleSourceStart,currentPortal));
+                  dd.on('drag:end', Y.bind(currentPortal._stopper,currentPortal));
+                  dd.on('drag:drophit', Y.bind(currentPortal._stopper,currentPortal));
+
+              });
+              this.on('drop:enter',Y.bind(this._dropEnter,this));
+              this.on('drag:drag',this._dragDrag);
+              this.on('drag:drophit',this._dragDrophit);
+              this.on('drag:start',Y.bind(this._dragStart,this));
+              this.on('drag:end',Y.bind(this._dragEnd,this));
+              this.on('drop:over',this._dropOver);
+
+          },
+          _createMod : function(feed) {
+              var str = '<div class="portlet">' +
+                              '<h2><strong>' + feed.title + '</strong> <a title="minimize module" class="min" href="#"> </a>' +
+                              '<a title="close module" class="close" href="#"></a></h2>' +
+                              '<div class="inner">' +
+                              '    <div class="loading">Feed loading, please wait..</div>' +
+                              '</div>' +
+                        '</div>';
+              return Y.Node.create(str);
+          },
+          _handleSourceStart: function(e){
+              e.stopPropagation();
+              this._setupModule();
+              var drag = e.target,
+                  firstModule = Y.one('#'+this.get("domId")+" .portalModule"),
+                  mod = this._createMod(drag.get('data'));
+              firstModule.appendChild(mod);
+              //drag.get('node').addClass('disabled');
+              drag.set('node',mod);
+              drag.get('dragNode').set('innerHTML', drag.get('node').get('innerHTML'));
+              drag.detachAll('drag:start');
+              drag.detachAll('drag:end');
+              drag.detachAll('drag:drophit');
+              drag.set('target', true);
+              drag._unprep();
+              drag.set('node', mod);
+              drag._prep();              
+
+          },
+          _stopper: function(e){
+              e.stopPropagation();
+          },
+          _setupModule: function(){
+            Y.log("set up module");
+            Y.one("#"+this.get("domId")).all(".portalModule").addClass("moduleAsDrop");
+          },
+          _unsetupModule: function(){
+            Y.one("#"+this.get("domId")).all(".portalModule").removeClass("moduleAsDrop");    
+          },
+          _movePortlet: function(drag,drop){
+              Y.log("i am moving");
+              var dragNode = drag.get('node'),
+                  dropNode = drop.get('node');
+              if(!dropNode.one("#"+dragNode.get("id"))){
+                  dropNode.appendChild(dragNode);
+              }
+              Y.Lang.later(50, Y, function() {
+                  Y.DD.DDM.syncActiveShims(true);
+              });              
+
+          },
+          _dropEnter: function(e){
+              var drag = e.drag,
+                  drop=e.drop;
+              if (drag.get("node").hasClass("portlet")) {
+                      this._movePortlet(drag,drop);
+              }
+          },
+          _dragDrag: function(e){
+            //Y.log("DragDrag");    
+          },
+          _dragDrophit: function(e){
+              Y.log("DragDrophit");
+          },
+          _dragStart: function(e){
+            Y.log("DragStart");
+            this._setupModule();  
+          },
+          _dragEnd: function(e){
+              this._unsetupModule();
+              Y.log("DragEnd");
+          },
+          _dropOver: function(e){
+              //Y.log("DropOver");
+          }
+      });
+      Y.Portal = Portal;
+      var portal = new Portal({domId:"portalContent",sourceDomId:"portalSource"});
+  });
+
+</script>
