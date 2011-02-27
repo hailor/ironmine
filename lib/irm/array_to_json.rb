@@ -30,6 +30,9 @@ module Irm::ArrayToJson
     else
       value = couples[atr]
       value = elem.send(atr.to_sym) if value.blank? && elem.respond_to?(atr) # Required for virtual attributes
+      if value.acts_like?(:BigDecimal)
+        value = value.to_i
+      end
     end
     value
   end

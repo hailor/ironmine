@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitIrmReportTimeframes < ActiveRecord::Migration
   def self.up
     rpt_timeframes_0001=Irm::ReportTimeframes.new(:report_code=>'ICM_ALL_URGENCY',

@@ -35,11 +35,21 @@ class Icm::IncidentRequest < ActiveRecord::Base
     joins("LEFT OUTER JOIN #{Irm::Person.table_name} requested ON  requested.id = #{table_name}.requested_by").
     select("#{Irm::Person.name_to_sql(nil,'requested','requested_name')}")
   }
+
+  scope :query_by_requested,lambda{|requested_by|
+    where(:requested_by=>requested_by)
+  }
+
   # 查询出提交人
   scope :with_submitted_by,lambda{
     joins("LEFT OUTER JOIN #{Irm::Person.table_name} submitted ON  submitted.id = #{table_name}.submitted_by").
     select("#{Irm::Person.name_to_sql(nil,'submitted','submitted_name')}")
   }
+
+  scope :query_by_submitted,lambda{|submitted_by|
+    where(:submitted_by=>submitted_by)
+  }
+
   # 查询出紧急度
   scope :with_urgence,lambda{|language|
     joins("LEFT OUTER JOIN #{Icm::UrgenceCode.view_name} urgence_code ON  urgence_code.urgency_code = #{table_name}.urgence_code AND urgence_code.language= '#{language}'").

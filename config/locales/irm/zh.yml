@@ -714,4 +714,7 @@ zh:
   #========================= end irm report_groups ===================================
   #========================= irm report_group_members ===================================
   label_irm_report_group_member_list: 报表
-  #========================= end irm report_group_members ===================================  
+  #========================= end irm report_group_members ===================================
+  #=========================start irm  report_lists_controllers=====================#
+  label_icm_incident_report_all: 事故单模块报表汇总
+  #=========================end irm  report_lists_controllers=======================#

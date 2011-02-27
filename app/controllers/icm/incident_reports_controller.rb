@@ -1,4 +1,8 @@
 class Icm::IncidentReportsController < ApplicationController
+   def index
+
+   end
+
    def rpt_urgency_summary
      @company_id = params[:company_id]
      @service_code = params[:service_code]
