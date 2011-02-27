@@ -39,6 +39,8 @@ class Irm::Report < ActiveRecord::Base
 
   scope :query_by_report_code,lambda{|report_code| where(:report_code=>report_code)}
 
+  scope :query_by_category_code,lambda{|category_code| where(:category_code => category_code)}
+
   scope :query_by_group_and_category,lambda{|report_group_code,category_code| select("#{table_name}.*").
                                                      joins(",#{Irm::ReportGroupMember.table_name}").
                                                      where("#{Irm::ReportGroupMember.table_name}.group_code = ? AND " +

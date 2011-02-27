@@ -4,6 +4,10 @@ class Icm::IncidentReportsController < ApplicationController
    end
 
    def rpt_urgency_summary
+     auto_run = params[:auto_run]
+     if auto_run?(auto_run)
+       return
+     end
      @company_id = params[:company_id]
      @service_code = params[:service_code]
      @table_column = params[:table_column]||"#{Icm::IncidentRequest.table_name}.created_at"
@@ -29,6 +33,10 @@ class Icm::IncidentReportsController < ApplicationController
    end
 
    def rpt_report_source_summary
+     auto_run = params[:auto_run]
+     if auto_run?(auto_run)
+       return
+     end
      @company_id = params[:company_id]
      @service_code = params[:service_code]
      @table_column = params[:table_column]||"#{Icm::IncidentRequest.table_name}.created_at"
@@ -47,6 +55,10 @@ class Icm::IncidentReportsController < ApplicationController
    end
 
    def rpt_report_type_summary
+     auto_run = params[:auto_run]
+     if auto_run?(auto_run)
+       return
+     end
      @company_id = params[:company_id]
      @service_code = params[:service_code]
      @table_column = params[:table_column]||"#{Icm::IncidentRequest.table_name}.created_at"
@@ -72,6 +84,10 @@ class Icm::IncidentReportsController < ApplicationController
    end
 
    def rpt_impact_range_summary
+     auto_run = params[:auto_run]
+     if auto_run?(auto_run)
+       return
+     end
      @company_id = params[:company_id]
      @service_code = params[:service_code]
      @table_column = params[:table_column]||"#{Icm::IncidentRequest.table_name}.created_at"
@@ -90,6 +106,10 @@ class Icm::IncidentReportsController < ApplicationController
    end
 
    def rpt_priority_code_summary
+     auto_run = params[:auto_run]
+     if auto_run?(auto_run)
+       return
+     end
      @company_id = params[:company_id]
      @service_code = params[:service_code]
      @table_column = params[:table_column]||"#{Icm::IncidentRequest.table_name}.created_at"
@@ -108,6 +128,10 @@ class Icm::IncidentReportsController < ApplicationController
    end
 
    private
+    def auto_run?(auto_run)
+      auto_run != Irm::Constant::SYS_YES
+    end
+   
     def to_pie_chart_json(chart_data)
       json = %Q([)
       if chart_data.is_a?(Hash)

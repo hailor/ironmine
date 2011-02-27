@@ -88,7 +88,8 @@ zh:
   label_are_you_sure: 你确定要删除数据吗?
   display_sequence: 显示顺序
   default_flag: 默认
-
+  report: 报表
+  go_to_report: 转至报表
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=====================#
   label_lookup_types: 快速编码类型

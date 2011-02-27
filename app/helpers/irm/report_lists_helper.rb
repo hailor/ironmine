@@ -1,7 +1,8 @@
 module Irm::ReportListsHelper
   
   def show_category_report(role_code,category_code,options={})
-     report_group_name = options[:report_group_name]
+     report_group_name = Irm::LookupValue.multilingual.query_by_lookup_type("IRM_REPORT_CATEGORY").
+                            query_by_lookup_code("INCIDENT_REQUEST").first[:meaning]||options[:report_group_name]
      report_list_folder = (link_to content_tag(:img, "", :src => '/images/s.gif',:class=>"hideListButton"),"#")  +
          content_tag(:h3,report_group_name)
      report_list_folder = content_tag(:div,report_list_folder.html_safe,:class=>"folderName secondaryPalette")
