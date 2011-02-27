@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddUserRequestPermissionMenu < ActiveRecord::Migration
   def self.up
     icm_user_journals_create= Irm::Permission.new(:permission_code=>'ICM_USER_JOURNALS_CREATE',:page_controller=>'icm/user_journals',:page_action=>'create',:not_auto_mult=>true)
