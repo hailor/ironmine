@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddIcmIncidentRequestIndexViewColumns2 < ActiveRecord::Migration
   def self.up
     column_a = Irm::ViewColumn.new({:filter_type=>"ICM_INCIDENT_REQUEST_INDEX_A",
