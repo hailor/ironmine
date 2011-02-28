@@ -8,7 +8,7 @@ class Irm::Condition < ActiveRecord::Base
   has_many :conditions_tls,:dependent => :destroy
   acts_as_multilingual
 
-  validates_presence_of :condition_code,:entity_code
+  validates_presence_of :condition_code,:context_code
   validates_uniqueness_of :condition_code, :if => Proc.new { |i| !i.condition_code.blank? }
   validates_format_of :condition_code, :with => /^[A-Z0-9_]*$/ ,:if=>Proc.new{|i| !i.condition_code.blank?}
 
@@ -19,13 +19,14 @@ class Irm::Condition < ActiveRecord::Base
     where(:condition_code=>condition_code)
   }
 
-  scope :query_wrap_info,lambda{|language| select("irm_conditions.*,irm_conditions_tl.name,irm_conditions_tl.description,"+
-                                                          "v1.meaning entity_meaning,v2.meaning status_meaning").
-                                                   joins(",irm_lookup_values_vl v1").
-                                                   joins(",irm_lookup_values_vl v2").
-                                                   where("v1.lookup_type='ENTITY_CODE' AND v1.lookup_code = irm_conditions.entity_code AND "+
-                                                         "v2.lookup_type='SYSTEM_STATUS_CODE' AND v2.lookup_code = irm_conditions.status_code AND "+
-                                                         "v1.language=? AND v2.language=?",language,language)}
+  scope :with_context,lambda{|language|
+    joins("LEFT OUTER JOIN #{Irm::ScriptContext.view_name}  ON  #{Irm::ScriptContext.view_name}.context_code = #{table_name}.context_code AND  #{Irm::ScriptContext.view_name}.language = '#{language}'").
+    select("#{Irm::ScriptContext.view_name}.id context_id,#{Irm::ScriptContext.view_name}.name context_name,#{Irm::ScriptContext.view_name}.description context_description")
+  }
 
-  
+  scope :select_all,lambda{select("#{table_name}.*")}
+
+  def self.list_all
+    multilingual.select_all.with_context(I18n.locale).status_meaning
+  end
 end

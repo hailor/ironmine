@@ -2,18 +2,19 @@ class Irm::ConditionsController < ApplicationController
   # GET /conditions
   # GET /conditions.xml
   def index
-    @condition = Irm::Condition.new
+
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @condition }
+      format.xml  { @condition = Irm::Condition.all
+                    render :xml => @condition }
     end
   end
 
   # GET /conditions/1
   # GET /conditions/1.xml
   def show
-    @condition = Irm::Condition.multilingual.query_wrap_info(I18n::locale).find(params[:id])
+    @condition = Irm::Condition.list_all.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +35,7 @@ class Irm::ConditionsController < ApplicationController
 
   # GET /conditions/1/edit
   def edit
-    @condition = Irm::Condition.multilingual.query_wrap_info(I18n::locale).find(params[:id])
+    @condition = Irm::Condition.list_all.find(params[:id])
   end
 
   # POST /conditions
@@ -88,12 +89,13 @@ class Irm::ConditionsController < ApplicationController
   end
 
   def get_data
-    @conditions= Irm::Condition.multilingual.query_wrap_info(I18n::locale)
-    @conditions = @conditions.match_value("#{Irm::Condition.table_name}.condition_code",params[:condition_code])
-    @conditions = @conditions.match_value("#{Irm::ConditionsTl.table_name}.name",params[:name])
-    @conditions,count = paginate(@conditions)
+    conditions_scope = Irm::Condition.list_all
+    conditions_scope = conditions_scope.match_value("#{Irm::Condition.table_name}.condition_code",params[:condition_code])
+    conditions_scope = conditions_scope.match_value("#{Irm::ScriptContext.view_name}.name",params[:context_name])
+    conditions_scope = conditions_scope.match_value("#{Irm::ConditionsTl.table_name}.name",params[:name])
+    conditions,count = paginate(conditions_scope)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(@conditions.to_grid_json(['R',:entity_meaning,:condition_code,:name,:description, :status_meaning], count))}
+      format.json {render :json=>to_jsonp(conditions.to_grid_json([:context_name,:condition_code,:name,:description, :status_meaning], count))}
     end
   end
 end
