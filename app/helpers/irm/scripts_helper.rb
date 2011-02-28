@@ -8,6 +8,6 @@ module Irm::ScriptsHelper
   end
 
   def available_mail_templates
-    Irm::MailTemplate.multilingual.enabled.collect{|i|[i[:name],i.action_code]}
+    Irm::MailTemplate.multilingual.enabled.collect{|i|[i[:name],i.template_code]}
   end
 end

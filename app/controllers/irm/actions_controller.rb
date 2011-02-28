@@ -65,7 +65,6 @@ class Irm::ActionsController < ApplicationController
         format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
         format.xml  { head :ok }
       else
-        @error = @action
         format.html { render "edit" }
         format.xml  { render :xml => @action.errors, :status => :unprocessable_entity }
       end

@@ -94,7 +94,7 @@ class Irm::ScriptsController < ApplicationController
 
     scripts,count = paginate(scripts_scope)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(scripts.to_grid_json([:condition_name,:action_name,:template_name,:description,:status_meaning], count))}
+      format.json {render :json=>to_jsonp(scripts.to_grid_json([:context_name,:condition_name,:action_name,:template_name,:description,:status_meaning], count))}
     end
   end
 end
