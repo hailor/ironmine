@@ -98,7 +98,7 @@ en:
   label_icm_incident_request_title: Title
   label_icm_incident_request_summary: Summary
   label_icm_incident_requset_addition_info: Addition information
-  label_icm_incident_request_requested_by: Customer
+  label_icm_incident_request_requested_by: Requester
   label_icm_incident_request_contact: Contact(phone)
   label_icm_incident_request_urgence_code: Urgence
   label_icm_incident_request_impact_range_code: Impact range
@@ -115,6 +115,11 @@ en:
   label_icm_incident_request_incident_phase_code: Phase
   label_icm_incident_request_submitted_date: Submit date
   label_icm_incident_request_close_reason_code: Close reason
+  label_icm_wait_for_me_request_count: Requests Waiting for Me
+  label_icm_reply_today_count: Today Replied
+  label_icm_request_submitted_today_count: Today Submitted
+  label_icm_my_un_solved_request: My Unsolved Requests
+  label_icm_my_solved_request: My Solved Requests  
   #========================= end iicm incident_requests_controller=======================#
   #=========================    icm incident_journals_controller=======================#
   label_icm_incident_reply_support_group_id: Referred group

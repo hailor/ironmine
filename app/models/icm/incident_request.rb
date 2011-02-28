@@ -82,6 +82,9 @@ class Icm::IncidentRequest < ActiveRecord::Base
     select(" company.name company_name")
   }
 
+  scope :query_by_support_person, lambda{|person_id|
+    where("#{table_name}.support_person_id = ?", person_id)
+  }
   scope :select_all,lambda{
     select("#{table_name}.*")
   }
