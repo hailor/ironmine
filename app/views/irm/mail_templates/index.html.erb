@@ -25,7 +25,7 @@
         </div>
         <%= datatable("mail_template",url_for(:action=>"get_data",:format=>"json"),
                   [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"80px"},
-                   {:key=>"entity_meaning",:label=>t(:label_irm_mail_template_entity_code),:sortable=>true,:width=>"120px"},
+                   {:key=>"context_name",:label=>t(:label_irm_mail_template_entity_code),:sortable=>true,:width=>"120px"},
                    {:key=>"template_code",:label=>t(:label_irm_mail_template_template_code),:sortable=>true,:searchable=>true,:width=>"10%"},
                    {:key=>"name",:label=>t(:label_irm_mail_template_name),:sortable=>true,:searchable=>true,:width=>"20%"},
                    {:key=>"description",:label=>t(:label_irm_mail_template_description),:sortable=>true},

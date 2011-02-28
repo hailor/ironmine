@@ -29,23 +29,11 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=t(:label_irm_mail_template_entity_code)%></label></td>
-              <td class="data2Col"><%=@mail_template[:entity_meaning]%></td>
+              <td class="data2Col"><%=@mail_template[:context_name]%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=t(:label_irm_mail_template_template_code)%></label></td>
               <td class="data2Col"><%=@mail_template[:template_code]%></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=t(:label_irm_mail_template_name)%></label></td>
-              <td class="data2Col"><%=f.text_field :name ,:size=>45,:required=>true,:value=>@mail_template[:name]%></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=t(:label_irm_mail_template_description)%></label></td>
-              <td class="data2Col"><%=f.text_field :description ,:size=>80,:value=>@mail_template[:description]%></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=t(:label_irm_mail_template_subject)%></label></td>
-              <td class="data2Col"><%=f.text_field :subject ,:size=>45,:required=>true,:value=>@mail_template[:subject]%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=t(:label_irm_mail_template_from)%></label></td>
@@ -61,12 +49,45 @@
               <td class="dataCol"><%=f.select :status_code,options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@mail_template.status_code)%>
               </td>
             </tr>
-            <tr>
-              <td class="labelCol"><label><%=t(:label_irm_mail_template_mail_body)%></label></td>
-              <td class="data2Col" colspan="3"><%=f.text_area :mail_body ,:cols => 85, :rows => 15,:required=>true,:value=>@mail_template[:mail_body]%></td>
-            </tr>
         </tbody>
       </table>
+    </div>
+    <div class="pbSubsection" id="templateBody" style="display:none" current="<%=I18n.locale %>">
+      <ul style="width:10%">
+        <% available_languages.each do |language| %>
+          <li style="float:right;"><a id="<%= language[:language_code]%>" href="#template<%= language[:language_code]%>"><%= language[:description] %></a></li>
+          <li style="display:none"><a href="#xxx"></a></li>
+        <% end %>
+      </ul>
+      <div>
+      <%= f.fields_for :mail_templates_tls,:normal=>true do |tl_f|%>
+        <div id="template<%= tl_f.object.language%>">
+          <div class="bPageBlock">
+          <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <tr>
+                  <td class="labelCol"><label><%=t(:label_irm_mail_template_name)%></label></td>
+                  <td class="data2Col"><%=tl_f.text_field :name ,:size=>45,:required=>true%></td>
+                </tr>
+                <tr>
+                  <td class="labelCol"><label><%=t(:label_irm_mail_template_description)%></label></td>
+                  <td class="data2Col"><%=tl_f.text_field :description ,:size=>80%></td>
+                </tr>
+                <tr>
+                  <td class="labelCol"><label><%=t(:label_irm_mail_template_subject)%></label></td>
+                  <td class="data2Col"><%=tl_f.text_field :subject ,:size=>45,:required=>true%></td>
+                </tr>
+
+                <tr>
+                  <td class="labelCol"><label><%=t(:label_irm_mail_template_mail_body)%></label></td>
+                  <td class="data2Col" colspan="3"><%=tl_f.text_area :mail_body ,:cols => 85, :rows => 15,:required=>true%></td>
+                </tr>
+            </tbody>
+          </table>
+          </div>  
+        </div>
+      <%end%>
+      </div>
     </div>
   </div>
   <div class="pbBottomButtons">
@@ -84,3 +105,15 @@
   </div>
 </div>
 <% end %>
+<script type="text/javascript">
+  GY.use("tabview","node-event-simulate",function(Y){
+    Y.one("#templateBody").setStyle("display","block");
+    var tabview = new Y.TabView({srcNode:'#templateBody',tabIndex:"#en"});
+    tabview.render();
+    var currentLanguage = Y.one("#templateBody").getAttribute("current");
+    Y.log(currentLanguage);
+    Y.one("#templateBody").one("a#"+currentLanguage).simulate("click");
+  });
+
+</script>
+

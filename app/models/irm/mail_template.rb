@@ -7,32 +7,38 @@ class Irm::MailTemplate < ActiveRecord::Base
   #  errors.add :template, @syntax_error unless @syntax_error.nil?
   #end
 
-  validates_presence_of :entity_code,:template_code,:from
+  ### Attributes
+  attr_protected :parsed_template
+
+  #多语言关系
+  attr_accessor :name,:description,:subject,:mail_body
+  has_many :mail_templates_tls,:class_name=>"Irm::MailTemplatesTl",:foreign_key=>"template_id",:order => "language"
+  acts_as_multilingual({:columns =>[:name,:description,:subject,:mail_body],:required=>[:name,:subject,:mail_body]})
+
+  validates_presence_of :context_code,:template_code,:from
+  validates_uniqueness_of :template_code, :if => Proc.new { |i| !i.template_code.blank? }
+  validates_format_of :template_code, :with => /^[A-Z0-9_]*$/ ,:if=>Proc.new{|i| !i.template_code.blank?}
 
   scope :query_by_template_code,lambda{|template_code| where("template_code =?",template_code)}
 
-  scope :query_wrap_info,lambda{|language| select("irm_mail_templates.*,irm_mail_templates_tl.name,irm_mail_templates_tl.description,"+
-                                                          "v1.meaning entity_meaning,v2.meaning status_meaning").
-                                                   joins(",irm_lookup_values_vl v1").
-                                                   joins(",irm_lookup_values_vl v2").
-                                                   where("v1.lookup_type='ENTITY_CODE' AND v1.lookup_code = #{table_name}.entity_code AND "+
-                                                         "v2.lookup_type='SYSTEM_STATUS_CODE' AND v2.lookup_code = #{table_name}.status_code AND "+
-                                                         "v1.language=? AND v2.language=?",language,language)}
+  scope :with_context,lambda{|language|
+    joins("LEFT OUTER JOIN #{Irm::ScriptContext.view_name}  ON  #{Irm::ScriptContext.view_name}.context_code = #{table_name}.context_code AND  #{Irm::ScriptContext.view_name}.language = '#{language}'").
+    select("#{Irm::ScriptContext.view_name}.id context_id,#{Irm::ScriptContext.view_name}.name context_name,#{Irm::ScriptContext.view_name}.description context_description")
+  }
 
   #扩展查询方法
   query_extend
 
-  #多语言关系
-  attr_accessor :name,:description,:subject,:mail_body
-  has_many :mail_templates_tls,:class_name=>"Irm::MailTemplatesTl",:foreign_key=>"template_id"
+
   scope :current_language ,lambda{|language| select("#{Irm::MailTemplate.table_name}.*,#{Irm::MailTemplatesTl.table_name}.subject").
                                             joins(:mail_templates_tls).
                                             where("#{Irm::MailTemplatesTl.table_name}.language=?",language)}
-  #如果语言表里面字段不是name和description的话，需要特别指出
-  acts_as_multilingual({:columns =>[:name,:description,:subject,:mail_body],:required=>[:name,:subject,:mail_body]})
 
-  ### Attributes
-  attr_protected :parsed_template
+  scope :select_all,lambda{select("#{table_name}.*")}
+
+  def self.list_all
+    select_all.multilingual.with_context(I18n.locale).status_meaning
+  end
 
   #
   # body contains the raw template. When updating this attribute, the
