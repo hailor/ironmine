@@ -20,22 +20,34 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_action_entity_code)%></label></td>
-              <td class="dataCol"><%=@action[:entity_meaning]%></td>
               <td class="labelCol"><label><%=(t :label_irm_action_action_code)%></label></td>
               <td class="dataCol"><%=@action.action_code%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_action_name)%></label></td>
               <td class="dataCol"><%= @action[:name]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
               <td class="labelCol"><%=(t :label_irm_action_handler)%></td>
               <td class="dataCol"><%= @action.handler%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_action_description)%></label></td>
               <td class="dataCol"><%= @action[:description]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
               <td class="labelCol"><label><%=(t :label_irm_region_status_code)%></label></td>
               <td class="dataCol"><%=@action[:status_meaning]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>               
             </tr>
         </tbody>
       </table>

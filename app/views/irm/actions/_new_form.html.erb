@@ -33,17 +33,22 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_action_entity_code)%></label></td>
-              <td class="dataCol"><%=f.select :entity_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_entity,:lookup_code,:wrap_meaning,@action.entity_code),{},{:required=>true}%></td>
               <td class="labelCol"><label><%=(t :label_irm_action_action_code)%></label></td>
               <td class="dataCol"><%=f.text_field :action_code, :required=>true,:irm_uppercase=>true%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_action_name)%></label></td>
               <td class="dataCol"><%=f.text_field :name, :required=>true%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
               <td class="labelCol"><%=(t :label_irm_action_handler)%></td>
               <td class="dataCol"><%=f.text_field :handler, :required=>true%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_action_description)%></label></td>

@@ -8,7 +8,7 @@ class Irm::Action < ActiveRecord::Base
   has_many :actions_tls,:dependent => :destroy
   acts_as_multilingual
 
-  validates_presence_of :action_code,:handler,:entity_code
+  validates_presence_of :action_code,:handler
   validates_uniqueness_of :action_code, :if => Proc.new { |i| !i.action_code.blank? }
   validates_format_of :action_code, :with => /^[A-Z0-9_]*$/ ,:if=>Proc.new{|i| !i.action_code.blank?}
 
@@ -18,15 +18,11 @@ class Irm::Action < ActiveRecord::Base
   scope :query_by_action_code,lambda{|action_code|
     where(:action_code=>action_code)
   }
+  scope :select_all,lambda{select("#{table_name}.*")}
   
-  
-  scope :query_wrap_info,lambda{|language| select("irm_actions.*,irm_actions_tl.name,irm_actions_tl.description,"+
-                                                          "v1.meaning entity_meaning,v2.meaning status_meaning").
-                                                   joins(",irm_lookup_values_vl v1").
-                                                   joins(",irm_lookup_values_vl v2").
-                                                   where("v1.lookup_type='ENTITY_CODE' AND v1.lookup_code = irm_actions.entity_code AND "+
-                                                         "v2.lookup_type='SYSTEM_STATUS_CODE' AND v2.lookup_code = irm_actions.status_code AND "+
-                                                         "v1.language=? AND v2.language=?",language,language)}
+  def self.list_all
+    select_all.multilingual.status_meaning
+  end
 
 
 end
