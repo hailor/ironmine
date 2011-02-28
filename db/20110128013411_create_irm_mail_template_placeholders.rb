@@ -51,7 +51,7 @@ class CreateIrmMailTemplatePlaceholders < ActiveRecord::Migration
     create_table "irm_mt_entity_fields",:force=>true do |t|
       t.integer  :company_id, :null => false
       t.string   :entity_code,:limit=>30
-      t.string   :entity_field,:limit=>30
+      t.string   :field_key,:limit=>30
       t.string   :status_code, :limit => 30, :null => false, :default => "ENABLED"
       t.integer  :created_by
       t.integer  :updated_by
