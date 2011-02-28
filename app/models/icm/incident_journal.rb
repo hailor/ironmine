@@ -19,7 +19,7 @@ class Icm::IncidentJournal < ActiveRecord::Base
   }
 
   def self.list_all(request_id)
-    query_by_request(request_id).with_replied_by  
+    query_by_request(request_id).with_replied_by
   end
 
 end
