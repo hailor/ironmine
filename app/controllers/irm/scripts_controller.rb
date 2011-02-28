@@ -2,16 +2,16 @@ class Irm::ScriptsController < ApplicationController
   # GET /scripts
   # GET /scripts.xml
   def index
-    @script = Irm::Script.new
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @scripts }
+      format.xml  { @script = Irm::Script.new
+                    render :xml => @scripts }
     end
   end
 
   def show
-    @script = Irm::Script.multilingual.query_wrap_info(I18n::locale).find(params[:id])
+    @script = Irm::Script.list_all.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -32,7 +32,7 @@ class Irm::ScriptsController < ApplicationController
 
   # GET /scripts/1/edit
   def edit
-    @script = Irm::Script.multilingual.query_wrap_info(I18n::locale).find(params[:id])
+    @script = Irm::Script.multilingual.find(params[:id])
   end
 
   # POST /scripts
@@ -86,13 +86,15 @@ class Irm::ScriptsController < ApplicationController
   end
 
   def get_data
-    @scripts= Irm::Script.multilingual.query_wrap_info(I18n::locale)
-    @scripts = @scripts.match_value("v3.condition_name",params[:condition_name])
-    @scripts = @scripts.match_value("v4.action_name",params[:action_name])
-    @scripts = @scripts.match_value("v5.template_name",params[:template_name])
-    @scripts,count = paginate(@scripts)
+    scripts_scope = Irm::Script.list_all
+    scripts_scope = scripts_scope.match_value("#{Irm::ScriptContext.view_name}.name",params[:context_name])
+    scripts_scope = scripts_scope.match_value("#{Irm::Condition.view_name}.name",params[:condition_name])
+    scripts_scope = scripts_scope.match_value("#{Irm::Action.view_name}.name",params[:action_name])
+    scripts_scope = scripts_scope.match_value("#{Irm::MailTemplate.view_name}.name",params[:template_name])
+
+    scripts,count = paginate(scripts_scope)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(@scripts.to_grid_json(['R',:entity_meaning,:condition_name,:action_name,:template_name,:description,:status_meaning], count))}
+      format.json {render :json=>to_jsonp(scripts.to_grid_json([:condition_name,:action_name,:template_name,:description,:status_meaning], count))}
     end
   end
 end
