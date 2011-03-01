@@ -121,12 +121,10 @@ class Icm::IncidentRequest < ActiveRecord::Base
                           group("v1.name")}
 
    #已经关闭的事故单
-   scope :query_by_completed_incident, joins(",#{Icm::IncidentStatus.view_name} isv").
-                                    where("isv.incident_status_code='CLOSE_INCIDENT' ")
+   scope :query_by_completed_incident, where("#{table_name}.incident_status_code='CLOSE_INCIDENT'")
 
    #未解决的事故单
-   scope :query_by_unsolved_incident, joins(",#{Icm::IncidentStatus.view_name} isv").
-                                    where("isv.incident_status_code not in ('CLOSE_INCIDENT','SOLVE_RECOVER')")
+   scope :query_by_unsolved_incident, where("#{table_name}.incident_status_code not in ('CLOSE_INCIDENT','SOLVE_RECOVER')")
    #针对于支持组id和支持组人员为空，被认为未分配的
    scope :query_by_unallocated_incident, where("#{table_name}.support_person_id is null and " +
                                               "#{table_name}.support_group_id is null")

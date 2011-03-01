@@ -137,16 +137,16 @@ class Icm::IncidentReportsController < ApplicationController
      @table_column = params[:table_column]||"#{Icm::IncidentRequest.table_name}.created_at"
      @timeframes_start_date = params[:timeframes_start_date]||show_date(:months_advance=>-1)
      @timeframes_end_date = params[:timeframes_end_date]||show_date
-     @incident_requests = Icm::IncidentRequest.query_by_priority_code(I18n.locale).
+     @incident_requests = Icm::IncidentRequest.query_by_urgency(I18n.locale).
                           query_by_completed_incident.
                           equal_value("#{Icm::IncidentRequest.table_name}.company_id",@company_id).
                           equal_value("#{Icm::IncidentRequest.table_name}.service_code",@service_code).
                           date_between_value(@table_column,@timeframes_start_date,@timeframes_end_date)
       chart_hash = Hash.new
       @incident_requests.each do |elem|
-         chart_hash.merge!({elem[:priority_code_name]=>elem[:priority_code_count]})
+         chart_hash.merge!({elem[:urgency_name]=>elem[:urgency_count]})
       end
-      @report_result = @incident_requests.to_grid_json([:priority_code_name,:priority_code_count], 3)
+      @report_result = @incident_requests.to_grid_json([:urgency_name,:urgency_count], 3)
       @data_provider = to_pie_chart_json(chart_hash)
    end
 
@@ -252,16 +252,16 @@ class Icm::IncidentReportsController < ApplicationController
      @table_column = params[:table_column]||"#{Icm::IncidentRequest.table_name}.created_at"
      @timeframes_start_date = params[:timeframes_start_date]||show_date(:months_advance=>-1)
      @timeframes_end_date = params[:timeframes_end_date]||show_date
-     @incident_requests = Icm::IncidentRequest.query_by_priority_code(I18n.locale).
+     @incident_requests = Icm::IncidentRequest.query_by_urgency(I18n.locale).
                           query_by_unsolved_incident.
                           equal_value("#{Icm::IncidentRequest.table_name}.company_id",@company_id).
                           equal_value("#{Icm::IncidentRequest.table_name}.service_code",@service_code).
                           date_between_value(@table_column,@timeframes_start_date,@timeframes_end_date)
       chart_hash = Hash.new
       @incident_requests.each do |elem|
-         chart_hash.merge!({elem[:priority_code_name]=>elem[:priority_code_count]})
+         chart_hash.merge!({elem[:urgency_name]=>elem[:urgency_count]})
       end
-      @report_result = @incident_requests.to_grid_json([:priority_code_name,:priority_code_count], 3)
+      @report_result = @incident_requests.to_grid_json([:urgency_name,:urgency_count], 3)
       @data_provider = to_pie_chart_json(chart_hash)
    end
 
@@ -357,7 +357,7 @@ class Icm::IncidentReportsController < ApplicationController
       @data_provider = to_pie_chart_json(chart_hash)
    end
 
-   def rpt_unalloca_urgency_summary
+   def rpt_unalloca_urgency_summary     
      auto_run = params[:auto_run]
      if auto_run?(auto_run)
        return
@@ -367,16 +367,16 @@ class Icm::IncidentReportsController < ApplicationController
      @table_column = params[:table_column]||"#{Icm::IncidentRequest.table_name}.created_at"
      @timeframes_start_date = params[:timeframes_start_date]||show_date(:months_advance=>-1)
      @timeframes_end_date = params[:timeframes_end_date]||show_date
-     @incident_requests = Icm::IncidentRequest.query_by_priority_code(I18n.locale).
+     @incident_requests = Icm::IncidentRequest.query_by_urgency(I18n.locale).
                           query_by_unallocated_incident.
                           equal_value("#{Icm::IncidentRequest.table_name}.company_id",@company_id).
                           equal_value("#{Icm::IncidentRequest.table_name}.service_code",@service_code).
                           date_between_value(@table_column,@timeframes_start_date,@timeframes_end_date)
       chart_hash = Hash.new
       @incident_requests.each do |elem|
-         chart_hash.merge!({elem[:priority_code_name]=>elem[:priority_code_count]})
+         chart_hash.merge!({elem[:urgency_name]=>elem[:urgency_count]})
       end
-      @report_result = @incident_requests.to_grid_json([:priority_code_name,:priority_code_count], 3)
+      @report_result = @incident_requests.to_grid_json([:urgency_name,:urgency_count], 3)
       @data_provider = to_pie_chart_json(chart_hash)
    end
 
