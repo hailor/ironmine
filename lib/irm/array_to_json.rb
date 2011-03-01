@@ -23,7 +23,6 @@ module Irm::ArrayToJson
   end
 
   private
-
   def get_atr_value(elem, atr, couples)
     if atr.to_s.include?('.')
       value = get_nested_atr_value(elem, atr.to_s.split('.').reverse)
@@ -31,7 +30,7 @@ module Irm::ArrayToJson
       value = couples[atr]
       value = elem.send(atr.to_sym) if value.blank? && elem.respond_to?(atr) # Required for virtual attributes
       puts '1111111111111111'+value.inspect
-      if value.acts_like?(:BigDecimal)        
+      if value.acts_like?(:BigDecimal)
         value = value.to_i
       end
     end

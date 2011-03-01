@@ -36,7 +36,7 @@ module Irm::ReportListsHelper
        report_action = options[:action]
      end
      report_entry = content_tag(:span, report_description, :class => "entryDesc")
-     report_entry = content_tag(:span, ("&nbsp;"*3 + report_entry.html_safe).html_safe,
+     report_entry = content_tag(:span, ("&nbsp;"*2 +"-"+"&nbsp;"*2+ report_entry.html_safe).html_safe,
                                  :class => "entryDesc")
      report_entry = content_tag(:div,(link_to report_name,url_for(:controller=>report_controller,
                                                                    :action => report_action)).html_safe +
