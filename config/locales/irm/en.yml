@@ -64,6 +64,7 @@ en:
   display_sequence: Display Sequence
   default_flag: As Default
   report: Report
+  common_report: Common Report
   go_to_report: Go To Report
   tool: Tools
   my_task: My Tasks
