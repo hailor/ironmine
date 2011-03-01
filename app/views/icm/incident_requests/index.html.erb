@@ -33,10 +33,10 @@
                        { :key => "requested_name", :label => t(:label_icm_incident_request_requested_by,:searchable=>true) },
                        { :key => "priority_name", :label => t(:label_icm_incident_request_priority,:searchable=>true) },
                        { :key => "report_source_name", :label => t(:label_icm_incident_request_report_source_code,:searchable=>true) },
-                       ],{:row_perpage=>20,:search_box=>"incident_requestsSearchBox"})%>
+                       ],{:row_perpage=>10,:search_box=>"incident_requestsSearchBox"})%>
 
       </div>
     </div>
 </div>
 
-<%= render "/irm/report_lists/report_category",{:category_code=>"INCIDENT_REQUEST"} %>
+<%= render "/irm/report_lists/report_category",{:category_code=>"INCIDENT_REQUEST",:options=>{:report_limit=>5}} %>
