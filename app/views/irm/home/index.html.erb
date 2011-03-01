@@ -16,44 +16,84 @@
   </div>
 </div>
 
-<div id="tabView" class="bMiniTab"></div>
-<%= tabview("tabView", {t(:label_irm_permission) => 'permissions/data_grid.js', t(:label_irm_product_module) => 'product_modules/data_grid.js'}) %>
-  
 <table class="toolsContent">
     <tbody>
         <tr>
           <td>
             <div class="toolsContentLeft">
               <div class="bSubBlock">
-                <h3 class="lbHeader">报表</h3>
+                <h3 class="lbHeader"><%= t :my_all_count %></h3>
                 <div class="lbBody">
-                  <ul>
-                    <li><a href="javascript:void(0);">已启用客户</a></li>
-                    <li><a href="javascript:void(0);">已启用客户</a></li>
-                    <li><a href="javascript:void(0);">已启用客户</a></li>
-                    <li><a href="javascript:void(0);">已启用客户</a></li>
-                  </ul>
-                </div>
-                <div class="lbBody">
-                  <div class="mainLink">
-                    <a href="javascript:void(0);">转至报表</a>
-                  </div>
+                  <table class="toolsContentListTable">
+                    <tr>
+                      <td><%= t :label_icm_wait_for_me_request_count %></td>
+                      <td class="tdRight"><%= wait_for_me_request_count %></td>
+                    </tr>
+                    <tr>
+                      <td><%= t :label_icm_reply_today_count %></td>
+                      <td class="tdRight"><%= reply_today_count %></td>
+                    </tr>
+                    <tr>
+                      <td><%= t :label_icm_request_submitted_today_count %></td>
+                      <td class="tdRight"><%= request_submitted_today_count%></td>
+                    </tr>
+                    <tr>
+                      <td><%= t :label_icm_my_un_solved_request %></td>
+                      <td class="tdRight"><%= my_un_solved_request %></td>
+                    </tr>
+                    <tr>
+                      <td><%= t :label_icm_my_solved_request %></td>
+                      <td class="tdRight"><%= my_solved_request %></td>
+                    </tr>
+                  </table>
                 </div>
               </div>
             </div>
           </td>
           <td>
-            <div id="myDrag" class="toolsContentRight">
+            <div class="toolsContentRight">
               <div class="bSubBlock">
-                <h3 class="lbHeader">报表</h3>
+                <h3 class="lbHeader"><%= t :my_task %></h3>
                 <div class="lbBody">
                   <ul>
-                    <li><a href="javascript:void(0);">导入我的组织的客户 & 联系人</a></li>
-                    <li><a href="javascript:void(0);">导入我的客户 & 联系人</a></li>
-                    <li><a href="javascript:void(0);">批量删除客户</a></li>
-                    <li><a href="javascript:void(0);">转移客户</a></li>
-                    <li><a href="javascript:void(0);">合并客户</a></li>
+                    <li>没有任务</li>
                   </ul>
+                </div>
+                    <div class="quickCreateField">
+                      <div class="button"><input class="btn" type="button" value="创建任务"></div><br>
+                    </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="toolsContentRight">
+              <div class="bSubBlock">
+                <h3 class="lbHeader">公告</h3>
+                <div class="lbBody">
+                  <table class="toolsContentListTable">
+                    <tr>
+                      <td><a href="javascript:void(0);">2011年部门年度计划</a></td>
+                      <td class="tdRight">2011-2-13</td>
+                    </tr>
+                    <tr>
+                      <td><a href="javascript:void(0);">统一维护工作量考察细则</a></td>
+                      <td class="tdRight">2011-2-13</td>
+                    </tr>
+                    <tr>
+                      <td><a href="javascript:void(0);">关于1月份系统访问缓慢的详细报告</a></td>
+                      <td class="tdRight">2011-1-21</td>
+                    </tr>
+                    <tr>
+                      <td><a href="javascript:void(0);">近期服务器升级公告</a></td>
+                      <td class="tdRight">2011-1-15</td>
+                    </tr>
+                    <tr>
+                      <td><a href="javascript:void(0);">统一维护工作规范</a></td>
+                      <td class="tdRight">2011-1-4</td>
+                    </tr>
+                  </table>
                 </div>
               </div>
             </div>

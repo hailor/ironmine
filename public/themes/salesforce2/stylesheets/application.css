@@ -444,42 +444,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     text-align:right;
     vertical-align:middle;
 }
-/***************************tools content***********************************/
-.toolsContent {width:100%;}
-.toolsContentLeft {margin-right:10px;}
-.bSubBlock .lbHeader {padding-left:1px;padding-right:0;}
-body .bSubBlock .lbBody {
-    background-color:#FFFFFF;
-    border:1px solid #E8E8E8;
-    margin:5px 0 0;
-    padding:5px;
-}
-body .bPageBlock {
-    border-top-width:3px;
-    margin-bottom:10px;
-    padding:0;
-}
-body .bSubBlock {padding:5px;}
-.bSubBlock .lbBody {
-    background-color:#F3F3EC;
-    height:100%;
-    line-height:1.6em;
-    padding:10px 23px 10px 26px;
-}
-.bSubBlock .lbHeader {
-    display:block;
-    float:none;
-    font-family:'Arial','Helvetica',sans-serif;
-    font-weight:bold;
-    padding:2px 13px;
-}
-.bSubBlock .lbBody ul {
-    list-style-type:none;
-    margin:0;
-    padding:0;
-}
-.bSubBlock .lbBody li, .bSubBlock .lbBody .bSummary {line-height:25px;}
-.bSubBlock .lbBody .mainLink {font-weight:bold;}
+
 /****************************bFilter and it's button*******************************/
 .bFilter .btn {
     margin-right:10px;
@@ -801,11 +766,49 @@ body.homeTab .componentDate {margin-left:10px;}
     margin-top:20px;
     white-space:nowrap;
 }
-.bPageBlock .reportOutput {
-    padding-bottom: 15px;
-    width: 100%;
-}
+.bPageBlock .reportOutput {padding-bottom: 15px;width: 100%;}
 fieldset legend {color:black;font-weight:bold;}
 .reportParameters fieldset label, .reportParameters fieldset .label {margin-top:0;}
 .bFilterReport .reportActions {margin-bottom:15px;white-space:nowrap;}
 .bFilterReport .btn, .bFilterReport .btnDisabled, .bFilterReport .menuButton .menuButtonButton {font-size:12px;margin:0 6px 0 1px;}
+/***************************tools content***********************************/
+.toolsContent {width:100%;}
+.toolsContentLeft {margin-right:10px;}
+.bSubBlock .lbHeader {padding-left:1px;padding-right:0;}
+body .bSubBlock .lbBody {
+    background-color:#FFFFFF;
+    border:1px solid #E8E8E8;
+    margin:5px 0 0;
+    padding:5px;
+}
+body .bPageBlock {
+    border-top-width:3px;
+    margin-bottom:10px;
+    padding:0;
+}
+body .bSubBlock {padding:5px;}
+.bSubBlock .lbBody {
+    background-color:#F3F3EC;
+    height:100%;
+    line-height:1.6em;
+    padding:10px 23px 10px 26px;
+}
+.bSubBlock .lbHeader {
+    display:block;
+    float:none;
+    font-family:'Arial','Helvetica',sans-serif;
+    font-weight:bold;
+    padding:2px 13px;
+}
+.bSubBlock .lbBody ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+.bSubBlock .lbBody li, .bSubBlock .lbBody .bSummary {line-height:25px;}
+.bSubBlock .lbBody .mainLink {font-weight:bold;}
+
+.toolsContent > tbody > tr > td{padding-bottom: 10px; width: 50%;}
+.toolsContentRight .tdRight, .toolsContentLeft .tdRight {float:right;padding-right:30px;}
+.toolsContent .toolsContentListTable {width:100%;}
+.toolsContent .toolsContentListTable > tbody > tr {background-color:#FFFFFF;border-bottom:1px solid #CBCBCB;line-height:25px;}

@@ -66,6 +66,8 @@ en:
   report: Report
   go_to_report: Go To Report
   tool: Tools
+  my_task: My Tasks
+  my_all_count: My All Requests
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type
