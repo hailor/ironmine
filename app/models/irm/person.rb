@@ -70,8 +70,9 @@ class Irm::Person < ActiveRecord::Base
                                                          "CONCAT(#{table_name}.last_name,#{table_name}.first_name) LIKE '%#{person_name}%' AND " +
                                                          "v1.language=? AND NOT EXISTS (SELECT 1 FROM #{Irm::SupportGroupMember.table_name}  where " +
                                                          "support_group_code=? AND #{Irm::SupportGroupMember.table_name}.person_id = #{table_name}.id)",language,language,support_group_code)}
+  scope :query_by_ids,lambda{|ids| where("#{table_name}.id IN (?)",[""]+ids)}
 
-
+  scope :include_identity ,lambda{includes(:identity)}
   #取得系统当前登陆人员
   def self.current
     @current_person

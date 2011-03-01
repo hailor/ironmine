@@ -13,4 +13,7 @@ class Irm::ScriptContextField < ActiveRecord::Base
 
   #加入activerecord的通用方法和scope
   query_extend
+
+
+  scope :query_by_context_code,lambda{|context_code| where(:context_code=>context_code)}
 end
