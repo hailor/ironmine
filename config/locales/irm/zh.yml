@@ -564,6 +564,7 @@ zh:
   label_irm_support_group_person_name: 人员名称
   #=========================end irm support_groups_controller=======================#
   #=========================    irm people_controller=======================#
+  label_irm_person: 人员
   label_irm_person_login: 登录名
   label_irm_person_name: 姓名
   label_irm_person_language: 语言

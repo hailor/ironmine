@@ -530,6 +530,15 @@ Ironmine::Application.routes.draw do
     match '/incident_reports/rpt_priority_code_summary(.:format)' => "incident_reports#rpt_priority_code_summary"
     match '/incident_reports/get_report_summary(.:format)' => "incident_reports#get_report_summary"
     match '/incident_reports/index(.:format)' => "incident_reports#index"
+    #group_assignments
+    match '/group_assignments(/index)(.:format)' => "group_assignments#index", :via => :get
+    match '/group_assignments/:id/edit(.:format)' => "group_assignments#edit", :via => :get
+    match '/group_assignments/:id(.:format)' => "group_assignments#update", :via => :put
+    match '/group_assignments/new(.:format)' => "group_assignments#new", :via => :get
+    match '/group_assignments/create(.:format)' => "group_assignments#create", :via => :post
+    match '/group_assignments/get_data(.:format)' => "group_assignments#get_data"
+    match '/group_assignments/:id(.:format)' => "group_assignments#show", :via => :get
+    match '/group_assignments/:id/destroy(.:format)' => "group_assignment#destroy"
   end
 
   scope :module => "cms" do

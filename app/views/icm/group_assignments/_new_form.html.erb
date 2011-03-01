@@ -1,0 +1,78 @@
+<%= setting_title %>
+
+<%= form_for(@impact_range,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_icm_impact_range_new)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @impact_range%>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend">
+          <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+          </span><span class="requiredMark">*</span>
+          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+        </span>
+      </span>
+      <h3><%= t(:label_common_info) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label for="impact_range_company"><%=(t :label_icm_impact_range_company)%></label></td>
+              <td class="dataCol"><%=f.select :company_id,nullable_options_for_select(selectable_companies,@impact_range.company_id),
+                                                    {},{:id=>"impact_range_company"}%></td>
+              <td class="labelCol"><label for="impact_range_impact_code"><%=(t :label_icm_impact_range_impact_code)%></label></td>
+              <td class="dataCol"><%=f.text_field :impact_code, :required=>true,:irm_uppercase=>true,:id=>"impact_range_impact_code"%></td>
+
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="impact_range_name"><%=(t :label_icm_impact_range_name)%></label></td>
+              <td class="dataCol"><%=f.text_field :name, :required=>true,:id=>"impact_range_name"%></td>
+              <td class="labelCol"><div><label for="impact_range_weight_values"><%=(t :label_icm_impact_range_weight_values)%></label></div></td>
+              <td class="dataCol"><div><%=f.text_field :weight_values,:required=>true,:id=>"impact_range_weight_values"%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="impact_range_display_sequence"><%=(t :display_sequence)%></label></td>
+              <td class="dataCol"><%=f.text_field :display_sequence, :required=>true,:id=>"impact_range_display_sequence"%></td>
+              <td class="labelCol"><label for="impact_range_default_flag"><%=(t :default_flag)%></label></td>
+              <td class="dataCol"><%=f.check_box :default_flag,:id=>"impact_range_default_flag"%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="impact_range_description"><%=t(:label_icm_impact_range_description)%></label></td>
+              <td class="dataCol"><%= f.text_area :description, :rows => 4,:id=>"impact_range_description"%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>

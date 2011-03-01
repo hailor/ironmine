@@ -1,0 +1,49 @@
+<%= setting_show_title(:show_data => @impact_range.impact_code) %>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_icm_impact_range) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @impact_range}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_icm_impact_range_company)%></label></td>
+              <td class="dataCol"><%= @impact_range[:company_name]%></td>
+              <td class="labelCol"><label><%=(t :label_icm_impact_range_impact_code)%></label></td>
+              <td class="dataCol"><%= @impact_range.impact_code%></td>              
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_icm_impact_range_name)%></label></td>
+              <td class="dataCol"><%= @impact_range[:name]%></td>
+              <td class="labelCol"><label><%=(t :label_icm_impact_range_weight_values)%></label></td>
+              <td class="dataCol"><div><%= @impact_range.weight_values%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=(t :display_sequence)%></label></td>
+              <td class="dataCol"><%= @impact_range[:display_sequence]%></td>
+              <td class="labelCol"><label ><%=(t :default_flag)%></label></td>
+              <td class="dataCol"><%= @impact_range[:default_flag]%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><%=t(:label_icm_impact_range_description)%></td>
+              <td class="dataCol"><div><%= @impact_range[:description]%></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
