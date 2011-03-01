@@ -65,11 +65,14 @@ class Irm::MailTemplate < ActiveRecord::Base
   # options 邮件模板使用的参数
   # mail_options 发送邮件方法mail的参数，可以从外面传入
   #
-  def deliver_to(email_address,options = {},language_code = 'en',mail_options={})
+  def deliver_to(params,mail_options={})
     # 将所有symbol的key转化为string类型
-    options.stringify_keys!
-    email_template  = self.class.query_by_language(language_code).find(self.id)
-    ApplicationMailer.email_template(email_address, email_template, options,mail_options).deliver
+    params.stringify_keys!
+    to_people = Irm::Person.query_by_ids(params["to_person_ids"]).include_identity
+    to_people.each do |p|
+      email_template  = self.class.query_by_language(p.identity.language_code).find(self.id)
+      TemplateMailer.email_template(p.identity.email, email_template, params,mail_options).deliver
+    end
   end
 
 
