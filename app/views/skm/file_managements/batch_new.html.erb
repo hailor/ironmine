@@ -38,7 +38,7 @@
               <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(0);"} %></td>
               <td class="dataCol"><%=file_field_tag "file[0][file]", :required=>true%></td>
               <td class="dataCol"><%=select_tag "file[0][file_category]", category_options%></td>
-              <td class="dataCol"><%=text_field_tag "file[0][description]", {}, {:rows => 3, :cols => 35}%></td>
+              <td class="dataCol"><%=text_field_tag "file[0][description]", "", {:rows => 3, :cols => 35}%></td>
               <td class="dataCol"><%=check_box_tag "file[0][private_flag]"%></td>
             </tr>
             <tr id="file_1">
@@ -46,7 +46,7 @@
               <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(1);"} %></td>
               <td class="dataCol"><%=file_field_tag "file[1][file]", :required=>true%></td>
               <td class="dataCol"><%=select_tag "file[1][file_category]", category_options%></td>
-              <td class="dataCol"><%=text_field_tag "file[1][description]", {}, {:rows => 3, :cols => 35}%></td>
+              <td class="dataCol"><%=text_field_tag "file[1][description]", "", {:rows => 3, :cols => 35}%></td>
               <td class="dataCol"><%=check_box_tag "file[1][private_flag]"%></td>
             </tr>
             <tr id="file_2">
@@ -54,7 +54,7 @@
               <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(2);"} %></td>
               <td class="dataCol"><%=file_field_tag "file[2][file]", :required=>true%></td>
               <td class="dataCol"><%=select_tag "file[2][file_category]", category_options%></td>
-              <td class="dataCol"><%=text_field_tag "file[2][description]", {}, {:rows => 3, :cols => 35}%></td>
+              <td class="dataCol"><%=text_field_tag "file[2][description]", "", {:rows => 3, :cols => 35}%></td>
               <td class="dataCol"><%=check_box_tag "file[2][private_flag]"%></td>
             </tr>
             <tr id="file_3">
@@ -62,7 +62,7 @@
               <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(3);"} %></td>
               <td class="dataCol"><%=file_field_tag "file[3][file]", :required=>true%></td>
               <td class="dataCol"><%=select_tag "file[3][file_category]", category_options%></td>
-              <td class="dataCol"><%=text_field_tag "file[3][description]", {}, {:rows => 3, :cols => 35}%></td>
+              <td class="dataCol"><%=text_field_tag "file[3][description]", "", {:rows => 3, :cols => 35}%></td>
               <td class="dataCol"><%=check_box_tag "file[3][private_flag]"%></td>
             </tr>
             <tr id="file_4">
@@ -70,7 +70,7 @@
               <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(4);"} %></td>
               <td class="dataCol"><%=file_field_tag "file[4][file]", :required=>true%></td>
               <td class="dataCol"><%=select_tag "file[4][file_category]", category_options%></td>
-              <td class="dataCol"><%=text_field_tag "file[4][description]", {}, {:rows => 3, :cols => 35}%></td>
+              <td class="dataCol"><%=text_field_tag "file[4][description]", "", {:rows => 3, :cols => 35}%></td>
               <td class="dataCol"><%=check_box_tag "file[4][private_flag]"%></td>              
             </tr>                
         </tbody>

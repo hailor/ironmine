@@ -63,6 +63,12 @@ en:
   label_are_you_sure: Are you sure?
   display_sequence: Display Sequence
   default_flag: As Default
+  report: Report
+  common_report: Common Report
+  go_to_report: Go To Report
+  tool: Tools
+  my_task: My Tasks
+  my_all_count: My All Requests
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type

@@ -95,7 +95,7 @@ zh:
   label_icm_incident_request_title: 标题
   label_icm_incident_request_summary: 信息
   label_icm_incident_requset_addition_info: 附加信息
-  label_icm_incident_request_requested_by: 客户
+  label_icm_incident_request_requested_by: 请求人
   label_icm_incident_request_contact: 联系人(电话)
   label_icm_incident_request_urgence_code: 紧急度
   label_icm_incident_request_impact_range_code: 影响度
@@ -112,6 +112,11 @@ zh:
   label_icm_incident_request_incident_phase_code: 阶段
   label_icm_incident_request_submitted_date: 提交日期
   label_icm_incident_request_close_reason_code: 关闭原因
+  label_icm_wait_for_me_request_count: 待我回复的事故单
+  label_icm_reply_today_count: 今天已回复的事故单
+  label_icm_request_submitted_today_count: 今天提交的事故单
+  label_icm_my_un_solved_request: 我的未解决的事故单
+  label_icm_my_solved_request: 我的已解决的事故单
   #========================= end icm incident_requests_controller=======================#
   #=========================    icm incident_journals_controller=======================#
   label_icm_incident_reply_support_group_id: 转交组

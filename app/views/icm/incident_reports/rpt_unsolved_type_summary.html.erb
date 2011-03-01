@@ -1,4 +1,4 @@
-<%= app_title(:description=>"所有请求-紧急度") %>
+<%= app_title(:description=>"未解决的请求-请求类型") %>
 <div class="bFilterReport">
   <h2><%=t(:label_icm_report_param) %></h2>
   <div class="reportParameters">
@@ -73,17 +73,17 @@
                     <table style="width:100%">
                       <tr>
                         <td style="width:40%">
-                            <div id="urgency_summary" class="datatable">
+                            <div id="report_type_summary" class="datatable">
                             </div>
-                            <%= datatable("urgency_summary",url_for(:action=>"get_urgency_summary",:report_result=>@report_result),
-                                      [{:key=>"urgency_name",:label=>t(:label_icm_urgency_name),:width=>"200px"},
-                                       {:key=>"urgency_count",:label=>t(:label_icm_urgency_count),:width=>"200px"}],
+                            <%= datatable("report_type_summary",url_for(:action=>"get_report_summary",:report_result=>@report_result),
+                                      [{:key=>"report_type_name",:label=>t(:label_icm_report_type_name),:width=>"200px"},
+                                       {:key=>"report_type_count",:label=>t(:label_icm_report_type_count),:width=>"200px"}],
                                        {:row_perpage=>10})%>
                         </td>
                         <td style="width:10%">
                         </td>
                         <td style="width:50%">
-                           <%= pie_chart("report_source_summary_chart",@data_provider) %>
+                           <%= pie_chart("urgency_summary_chart",@data_provider) %>
                         </td>
                       </tr>
                     </table>
