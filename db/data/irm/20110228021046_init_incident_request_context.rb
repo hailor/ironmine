@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitIncidentRequestContext < ActiveRecord::Migration
   def self.up
     incident_request_context = Irm::ScriptContext.new(:context_code=>"INCIDENT_REQUEST",:not_auto_mult=>true)
