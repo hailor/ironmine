@@ -7,8 +7,8 @@ class InitConditonAction < ActiveRecord::Migration
     incident_request_new.save
 
     send_mail_action = Irm::Action.new(:action_code=>"SEND_MAIL",:handler=>"Irm::Actions::SendMail",:not_auto_mult=>true)
-    send_mail_action.conditions_tls.build(:language=>'zh',:source_lang=>'en',:name=>'发送邮件',:description=>'发送邮件')
-    send_mail_action.conditions_tls.build(:language=>'en',:source_lang=>'en',:name=>'Send email',:description=>'Send email')
+    send_mail_action.actions_tls.build(:language=>'zh',:source_lang=>'en',:name=>'发送邮件',:description=>'发送邮件')
+    send_mail_action.actions_tls.build(:language=>'en',:source_lang=>'en',:name=>'Send email',:description=>'Send email')
     send_mail_action.save
   end
 
