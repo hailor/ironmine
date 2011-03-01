@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddIncidentReportData < ActiveRecord::Migration
   def self.up
     #定义 报表:已完成请求-紧急度 的 permission_code
