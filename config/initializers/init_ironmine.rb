@@ -53,16 +53,18 @@ end
 
 #配置delayed_job
 #当job执行失败,是否从队列中删除
-#Delayed::Worker.destroy_failed_jobs = false
+Delayed::Worker.destroy_failed_jobs = false
 #worker在没有job需要执行时的sleep时间,设为1s
-#Delayed::Worker.sleep_delay = 1
+Delayed::Worker.sleep_delay = 1
 #最大重新执行次数
-#Delayed::Worker.max_attempts = 3
+Delayed::Worker.max_attempts = 3
 #一个job的最长执行时间
-#Delayed::Worker.max_run_time = 5.minutes
+Delayed::Worker.max_run_time = 5.minutes
+#Delayed::Backend::ActiveRecord::Job.class_eval do set_table_name(:irm_delayed_jobs) end
 #数据存储方式
-#Delayed::Worker.backend=:active_record
-#Delayed::Backend::ActiveRecord::Job.set_table_name(:irm_delayed_jobs)
+Delayed::Worker.backend=:active_record
+#puts  "======#{Delayed::Backend::ActiveRecord::Job.table_name}=========#{Delayed::Job.table_name}============"
+
 
 begin
   # 初始化模块数据 ，初始化脚本位于lib/模块/init.rb脚本中
