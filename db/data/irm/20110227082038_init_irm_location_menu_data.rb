@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitIrmLocationMenuData < ActiveRecord::Migration
   def self.up
     location_89= Irm::MenuEntry.new(:menu_code=>'IRM_ORGANIZATION_STRUCT_MENU',:sub_menu_code=>nil,
