@@ -147,3 +147,15 @@ zh:
   label_icm_report_time_frame_end_time: 结束时间
   label_icm_report_param: 报表选项
   #========================= end icm incident_reports_controller=======================#
+  #========================= icm group_assignments_controller =========================#
+  label_icm_group_assignment: 支持组指派
+  label_icm_group_assignment_rule: 支持组指派规则
+  label_icm_group_assignment_list: 支持组指派规则列表
+  label_icm_group_assignment_new: 创建指派规则
+  label_icm_group_assignment_edit: 编辑指派规则
+  label_icm_group_assignment_c_company: 公司
+  label_icm_group_assignment_c_department: 部门
+  label_icm_group_assignment_c_person: 人员
+  label_icm_group_assignment_c_site_group: 地点组
+  label_icm_group_assignment_c_site: 地点
+  #========================= end icm group_assignments_controller =========================#
