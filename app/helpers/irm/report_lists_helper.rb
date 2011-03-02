@@ -1,15 +1,18 @@
 module Irm::ReportListsHelper
   
   def show_category_report(role_code,category_code,options={})
+     report_list = ""
      report_group_name = Irm::LookupValue.multilingual.query_by_lookup_type("IRM_REPORT_CATEGORY").
-                            query_by_lookup_code("INCIDENT_REQUEST").first[:meaning]||options[:report_group_name]
-     report_list_folder = (link_to content_tag(:img, "", :src => '/images/s.gif',:class=>"hideListButton"),"#")  +
+                            query_by_lookup_code(category_code).first[:meaning]||options[:report_group_name]
+     report_list_folder = (link_to content_tag(:img, "", :src => '/images/s.gif',:class=>"reportClass showListButton",:child_id=>"#{category_code}".downcase),"javascript:void(0)")  +
          content_tag(:h3,report_group_name)
      report_list_folder = content_tag(:div,report_list_folder.html_safe,:class=>"folderName secondaryPalette")
      current_category_reports = Irm::Report.query_by_group_and_category("ADMIN_REPORT_GROUP","REPORT",category_code)
      current_category_reports.each do |report|
-       report_list_folder << show_report(report.report_code).html_safe
+       report_list << show_report(report.report_code).html_safe
      end
+     report_list = content_tag(:div,report_list.html_safe,:id=>"#{category_code}".downcase,:style=>"display:none")
+     report_list_folder << report_list
      report_list_folder = content_tag(:div,report_list_folder.html_safe,:class=>"reportListFolder")
      report_list_folder
   end

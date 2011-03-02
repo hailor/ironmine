@@ -517,4 +517,5 @@ en:
   #========================= end irm report_group_members ===================================
   #=========================start irm  report_lists_controllers=====================#
   label_icm_incident_report_all: Incident Report Summary
+  label_csi_survey_report_all: Survey Report
   #=========================end irm  report_lists_controllers=======================#
