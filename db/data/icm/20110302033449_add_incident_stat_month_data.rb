@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddIncidentStatMonthData < ActiveRecord::Migration
   def self.up
     #定义 报表:事故单统计报表-按月统计 的 permission_code
