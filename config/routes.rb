@@ -544,6 +544,7 @@ Ironmine::Application.routes.draw do
     match '/incident_reports/rpt_unalloca_type_summary(.:format)' => "incident_reports#rpt_unalloca_type_summary"
     match '/incident_reports/rpt_unalloca_impact_summary(.:format)' => "incident_reports#rpt_unalloca_impact_summary"
     match '/incident_reports/rpt_unalloca_priority_summary(.:format)' => "incident_reports#rpt_unalloca_priority_summary"
+    match '/incident_reports/rpt_incident_stat_month(.:format)' => "incident_reports#rpt_incident_stat_month"
     match '/incident_reports/index(.:format)' => "incident_reports#index"
   end
 
