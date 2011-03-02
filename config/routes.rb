@@ -157,9 +157,6 @@ Ironmine::Application.routes.draw do
     match '/mail_templates/:id/edit(.:format)'=>"mail_templates#edit",:via=>:get
     match '/mail_templates/:id(.:format)'=>"mail_templates#update",:via=>:put
     match '/mail_templates/:id(.:format)'=>"mail_templates#destroy",:via=>:delete
-    match '/mail_templates/:id/multilingual_edit(.:format)'=>"mail_templates#multilingual_edit",:via=>:get
-    match '/mail_templates/:id/multilingual_update(.:format)'=>"mail_templates#multilingual_update",:via=>:put
-    match '/mail_templates/get_current_language(.:format)'=>"mail_templates#get_current_language",:via=>:get
     match '/mail_templates/:id(.:format)'=>"mail_templates#show",:via=>:get
 
     #currencies
@@ -546,6 +543,15 @@ Ironmine::Application.routes.draw do
     match '/incident_reports/rpt_unalloca_priority_summary(.:format)' => "incident_reports#rpt_unalloca_priority_summary"
     match '/incident_reports/rpt_incident_stat_month(.:format)' => "incident_reports#rpt_incident_stat_month"
     match '/incident_reports/index(.:format)' => "incident_reports#index"
+    #group_assignments
+    match '/group_assignments(/index)(.:format)' => "group_assignments#index", :via => :get
+    match '/group_assignments/:id/edit(.:format)' => "group_assignments#edit", :via => :get
+    match '/group_assignments/:id(.:format)' => "group_assignments#update", :via => :put
+    match '/group_assignments/new(.:format)' => "group_assignments#new", :via => :get
+    match '/group_assignments/create(.:format)' => "group_assignments#create", :via => :post
+    match '/group_assignments/get_data(.:format)' => "group_assignments#get_data"
+    match '/group_assignments/:id(.:format)' => "group_assignments#show", :via => :get
+    match '/group_assignments/:id/destroy(.:format)' => "group_assignments#destroy"
   end
 
   scope :module => "cms" do

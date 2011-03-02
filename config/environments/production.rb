@@ -46,4 +46,17 @@ Ironmine::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+    # Don't care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+		:address => "smtp.gmail.com",
+		:port => 587,
+		:domain => 'mail.google.com',
+		:user_name => 'root.ironmine@gmail.com',
+		:password => 'handhand',
+		:authentication => 'plain',
+		:enable_starttls_auto => true
+  }
 end

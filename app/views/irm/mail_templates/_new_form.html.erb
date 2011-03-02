@@ -33,13 +33,17 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=t(:label_irm_mail_template_entity_code)%></label></td>
-              <td class="data2Col"><%=f.select :entity_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_entity,:lookup_code,:wrap_meaning)%></td>
+              <td class="data2Col"><%=f.select :context_code,nullable_options_for_select(available_script_contexts,@mail_template.context_code),
+                                                    {},{:required=>true}%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=t(:label_irm_mail_template_template_code)%></label></td>
               <td class="data2Col"><%=f.text_field :template_code,:size=>30,:required=>true,:irm_uppercase=>true %></td>
             </tr>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_irm_mail_template_from)%></label></td>
+              <td class="data2Col"><%=f.text_field :from ,:size=>45,:required=>true%></td>
+            </tr>            
             <tr>
               <td class="labelCol"><label><%=t(:label_irm_mail_template_name)%></label></td>
               <td class="data2Col"><%=f.text_field :name ,:size=>45,:required=>true%></td>
@@ -51,10 +55,6 @@
             <tr>
               <td class="labelCol"><label><%=t(:label_irm_mail_template_subject)%></label></td>
               <td class="data2Col"><%=f.text_field :subject ,:size=>45,:required=>true%></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=t(:label_irm_mail_template_from)%></label></td>
-              <td class="data2Col"><%=f.text_field :from ,:size=>45,:required=>true%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=t(:label_irm_mail_template_template_type)%></label></td>

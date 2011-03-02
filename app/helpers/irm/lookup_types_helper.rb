@@ -13,13 +13,7 @@ module Irm::LookupTypesHelper
     Irm::LookupValue.query_by_lookup_type("SYSTEM_STATUS_CODE").multilingual
   end
 
-  def available_condition
-    Irm::Condition.query_by_status_code("ENABLED").multilingual
-  end
 
-  def available_action
-    Irm::Action.query_by_status_code("ENABLED").multilingual
-  end
 
   def available_company_type
     Irm::LookupValue.query_by_lookup_type("COMPANY_TYPE").multilingual

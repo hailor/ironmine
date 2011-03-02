@@ -22,12 +22,12 @@ class Irm::MailTemplatesController < ApplicationController
   end
 
   def show
-    @mail_template = Irm::MailTemplate.multilingual.query_wrap_info(I18n::locale).find(params[:id])
+    @mail_template = Irm::MailTemplate.list_all.find(params[:id])
   end
 
   # GET /mail_templates/1/edit
   def edit
-    @mail_template = Irm::MailTemplate.multilingual.query_wrap_info(I18n::locale).find(params[:id])
+    @mail_template = Irm::MailTemplate.select_all.with_context(I18n.locale).find(params[:id])
   end
 
   # POST /mail_templates
@@ -40,8 +40,7 @@ class Irm::MailTemplatesController < ApplicationController
         format.html { redirect_to({:action=>"index"},:notice => (t :successfully_created))}
         format.xml  { render :xml => @mail_template, :status => :created, :location => @mail_template }
       else
-        @error = @mail_template
-        format.html { render "irm/common/error_message" }
+        format.html { render "new" }
         format.xml  { render :xml => @mail_template.errors, :status => :unprocessable_entity }
       end
     end
@@ -51,52 +50,27 @@ class Irm::MailTemplatesController < ApplicationController
   # PUT /mail_templates/1.xml
   def update
     @mail_template = Irm::MailTemplate.find(params[:id])
-
+    @mail_template.not_auto_mult=true
     respond_to do |format|
       if @mail_template.update_attributes(params[:irm_mail_template])
         format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
         format.xml  { head :ok }
       else
-        @error = @mail_template
-        format.html { render "irm/common/error_message" }
+        format.html { render "edit" }
         format.xml  { render :xml => @mail_template.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  def multilingual_edit
-    @local_language_code=::I18n.locale
-    @template_id = params[:id]
-    @mail_template = Irm::MailTemplate.multilingual.find(params[:id])
-  end
 
-  def multilingual_update
-    @mail_template = Irm::MailTemplate.find(params[:id])
-    @mail_templates_tl= Irm::MailTemplatesTl.query_by_language(params[:language_code]).query_by_template_id(params[:id]).first
-    @mail_template.not_auto_mult=true
-    params[:irm_mail_template].delete(:template_code)
-    params[:irm_mail_template].delete(:from)
-
-    respond_to do |format|
-      if @mail_templates_tl.update_attributes(params[:irm_mail_template])
-        flash[:successful_message] = (t :successfully_updated)
-        format.html { render "return" }
-        format.xml  { head :ok }
-      else
-        @error = @mail_templates_tl
-        format.html { render "irm/common/error_message" }
-        format.xml  { render :xml => @mail_template.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
 
   def get_data
-    @mail_templates= Irm::MailTemplate.multilingual.query_wrap_info(I18n::locale)
-    @mail_templates = @mail_templates.match_value("#{Irm::MailTemplate.table_name}.template_code",params[:template_code])
-    @mail_templates = @mail_templates.match_value("#{Irm::MailTemplatesTl.table_name}.name",params[:name])
-    @mail_templates,count = paginate(@mail_templates)
+    mail_templates_scope = Irm::MailTemplate.list_all
+    mail_templates_scope = mail_templates_scope.match_value("#{Irm::MailTemplate.table_name}.template_code",params[:template_code])
+    mail_templates_scope = mail_templates_scope.match_value("#{Irm::MailTemplatesTl.table_name}.name",params[:name])
+    mail_templates,count = paginate(mail_templates_scope)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(@mail_templates.to_grid_json(['R',:entity_meaning,:template_code,:name,:description,:status_meaning],count))}
+      format.json {render :json=>to_jsonp(mail_templates.to_grid_json([:context_name,:template_code,:name,:description,:status_meaning],count))}
     end
   end
 

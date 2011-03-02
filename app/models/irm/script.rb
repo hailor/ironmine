@@ -9,38 +9,36 @@ class Irm::Script < ActiveRecord::Base
   has_many :scripts_tls,:dependent => :destroy
   acts_as_multilingual({:columns=>[:description],:required=>[]})
 
-  validates_presence_of :entity_code,:action_code,:condition_code
-  validates_uniqueness_of :action_code,:scope=>[:condition_code],:if => Proc.new { |i| !i.action_code.blank? }  
+  validates_presence_of :action_code,:condition_code
+  validates_uniqueness_of :action_code,:scope=>[:condition_code,:template_code],:if => Proc.new { |i| !i.action_code.blank? }
 
   #加入activerecord的通用方法和scope
   query_extend
-  #查询出相关的action condition
-  scope :query_meaning,lambda{
-    joins(:condition,:action).
-    joins("JOIN #{Irm::ConditionsTl.table_name} ON #{Irm::ConditionsTl.table_name}.condition_id = #{Irm::Condition.table_name}.id and #{Irm::ConditionsTl.table_name}.language = '#{I18n.locale}' ").        
-    joins("JOIN #{Irm::ActionsTl.table_name} ON #{Irm::ActionsTl.table_name}.action_id = #{Irm::Action.table_name}.id and #{Irm::ActionsTl.table_name}.language = '#{I18n.locale}'").
-    select("#{Irm::Script.table_name}.*,#{Irm::ScriptsTl.table_name}.description").
-    select("#{Irm::ConditionsTl.table_name}.name condition_name,#{Irm::ActionsTl.table_name}.name action_name")
+
+  scope :with_condition,lambda{|language|
+    joins("LEFT OUTER JOIN #{Irm::Condition.view_name}  ON  #{Irm::Condition.view_name}.condition_code = #{table_name}.condition_code AND  #{Irm::Condition.view_name}.language = '#{language}'").    
+    joins("LEFT OUTER JOIN #{Irm::ScriptContext.view_name}  ON  #{Irm::ScriptContext.view_name}.context_code = #{Irm::Condition.view_name}.context_code AND  #{Irm::ScriptContext.view_name}.language = '#{language}'").
+    select("#{Irm::ScriptContext.view_name}.id context_id,#{Irm::ScriptContext.view_name}.name context_name,#{Irm::ScriptContext.view_name}.description context_description").
+    select("#{Irm::Condition.view_name}.id condition_id,#{Irm::Condition.view_name}.name condition_name,#{Irm::Condition.view_name}.description condition_description")        
+  }
+  scope :with_action,lambda{|language|
+    joins("LEFT OUTER JOIN #{Irm::Action.view_name}  ON  #{Irm::Action.view_name}.action_code = #{table_name}.action_code AND  #{Irm::Action.view_name}.language = '#{language}'").
+    select("#{Irm::Action.view_name}.id action_id,#{Irm::Action.view_name}.name action_name,#{Irm::Action.view_name}.description action_description")
+  }
+
+  scope :with_template,lambda{|language|
+    joins("LEFT OUTER JOIN #{Irm::MailTemplate.view_name}  ON  #{Irm::MailTemplate.view_name}.template_code = #{table_name}.template_code AND  #{Irm::MailTemplate.view_name}.language = '#{language}'").
+    select("#{Irm::MailTemplate.view_name}.id template_id,#{Irm::MailTemplate.view_name}.name template_name,#{Irm::MailTemplate.view_name}.description template_description")
   }
 
   scope :query_by_condition_code,lambda{|condition_code|
     where(:condition_code=>condition_code)
   }
 
-  scope :query_wrap_info,lambda{|language| select("v3.name condition_name,v4.name action_name,v5.name template_name,"+
-                                                  "#{Irm::Script.table_name}.*,#{Irm::ScriptsTl.table_name}.description,"+
-                                                  "v1.meaning entity_meaning,v2.meaning status_meaning").
-                                                   joins(",irm_lookup_values_vl v1").
-                                                   joins(",irm_lookup_values_vl v2").
-                                                   joins(",irm_conditions_vl v3").
-                                                   joins(",irm_actions_vl v4").
-                                                   joins(",irm_mail_templates_vl v5").
-                                                   where("v1.lookup_type='ENTITY_CODE' AND v1.lookup_code = #{table_name}.entity_code AND "+
-                                                         "v2.lookup_type='SYSTEM_STATUS_CODE' AND v2.lookup_code = #{table_name}.status_code AND "+
-                                                         "v1.language=? AND v2.language=? AND v3.language=? AND v4.language=? AND " +
-                                                         "v3.condition_code = #{table_name}.condition_code AND v4.action_code = #{table_name}.action_code AND "+
-                                                         "v5.template_code = #{table_name}.template_code AND " +
-                                                         "v5.language=? ",language,language,language,language,language)}
+  scope :select_all,lambda{select("#{table_name}.*")}
 
-
+  def self.list_all
+    select_all.multilingual.with_condition(I18n.locale).with_action(I18n.locale).with_template(I18n.locale).status_meaning
+  end
+  
 end

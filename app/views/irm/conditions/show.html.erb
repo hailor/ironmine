@@ -21,9 +21,15 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_condition_entity_code)%></label></td>
-              <td class="dataCol"><%=@condition[:entity_meaning]%></td>
+              <td class="dataCol"><%=@condition[:context_name]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
               <td class="labelCol"><label><%=(t :label_irm_condition_condition_code)%></label></td>
               <td class="dataCol"><%=@condition.condition_code%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_condition_name)%></label></td>
@@ -34,6 +40,12 @@
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_condition_description)%></label></td>
               <td class="dataCol"><%= @condition[:description]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_script_status_code)%></label></td>
+              <td class="dataCol"><%= @condition[:status_meaning]%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
