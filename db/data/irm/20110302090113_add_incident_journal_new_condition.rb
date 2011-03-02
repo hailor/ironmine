@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddIncidentJournalNewCondition < ActiveRecord::Migration
   def self.up
     incident_journal_new = Irm::Condition.new(:context_code=>"INCIDENT_JOURNAL",:condition_code=>"INCIDENT_JOURNAL_NEW",:not_auto_mult=>true)
