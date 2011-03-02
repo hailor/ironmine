@@ -130,7 +130,9 @@ class Icm::IncidentRequest < ActiveRecord::Base
                                               "#{table_name}.support_group_id is null")
 
    #分月统计
-   
+   scope :query_all_year_month,select("DATE_FORMAT(#{table_name}.created_at,'%Y-%m') created_year_month,sum(1) incident_count").
+                               group("DATE_FORMAT(#{table_name}.created_at,'%Y-%m')").
+                               order("DATE_FORMAT(#{table_name}.created_at,'%Y-%m') asc")
 
   def self.list_all
     select_all.

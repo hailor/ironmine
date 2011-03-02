@@ -431,6 +431,10 @@ Ironmine::Application.routes.draw do
     #match '/report_groups/:group_id/members/:id/edit(.:format)' => "report_group_members#create", :via => :post
     #match '/report_groups/:group_id/members/:id(.:format)' => "report_group_members#update", :via => :put
     match '/report_groups/:group_id/members/:id/delete(.:format)' => "report_group_members#destroy", :via => :delete
+
+    #common report
+    match '/common_reports/rpt_person_login_summary(.:format)' => "common_reports#rpt_person_login_summary"
+    match '/common_reports/get_report_summary(.:format)' => "common_reports#get_report_summary"
   end
 
   scope :module => "icm" do
@@ -543,7 +547,17 @@ Ironmine::Application.routes.draw do
     match '/incident_reports/rpt_unalloca_type_summary(.:format)' => "incident_reports#rpt_unalloca_type_summary"
     match '/incident_reports/rpt_unalloca_impact_summary(.:format)' => "incident_reports#rpt_unalloca_impact_summary"
     match '/incident_reports/rpt_unalloca_priority_summary(.:format)' => "incident_reports#rpt_unalloca_priority_summary"
+    match '/incident_reports/rpt_incident_stat_month(.:format)' => "incident_reports#rpt_incident_stat_month"
     match '/incident_reports/index(.:format)' => "incident_reports#index"
+    #group_assignments
+    match '/group_assignments(/index)(.:format)' => "group_assignments#index", :via => :get
+    match '/group_assignments/:id/edit(.:format)' => "group_assignments#edit", :via => :get
+    match '/group_assignments/:id(.:format)' => "group_assignments#update", :via => :put
+    match '/group_assignments/new(.:format)' => "group_assignments#new", :via => :get
+    match '/group_assignments/create(.:format)' => "group_assignments#create", :via => :post
+    match '/group_assignments/get_data(.:format)' => "group_assignments#get_data"
+    match '/group_assignments/:id(.:format)' => "group_assignments#show", :via => :get
+    match '/group_assignments/:id/destroy(.:format)' => "group_assignments#destroy"
   end
 
   scope :module => "cms" do

@@ -22,7 +22,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:urgency_name]=>elem[:urgency_count]})
       end
       @report_result = @incident_requests.to_grid_json([:urgency_name,:urgency_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
    
    def get_urgency_summary
@@ -51,7 +51,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:report_source_name]=>elem[:report_source_count]})
       end
       @report_result = @incident_requests.to_grid_json([:report_source_name,:report_source_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
    def rpt_report_type_summary
@@ -73,7 +73,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:report_type_name]=>elem[:report_type_count]})
       end
       @report_result = @incident_requests.to_grid_json([:report_type_name,:report_type_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
    def get_report_summary
@@ -102,7 +102,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:impact_range_name]=>elem[:impact_range_count]})
       end
       @report_result = @incident_requests.to_grid_json([:impact_range_name,:impact_range_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
    def rpt_priority_code_summary
@@ -124,7 +124,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:priority_code_name]=>elem[:priority_code_count]})
       end
       @report_result = @incident_requests.to_grid_json([:priority_code_name,:priority_code_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
    def rpt_completed_urgency_summary
@@ -147,7 +147,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:urgency_name]=>elem[:urgency_count]})
       end
       @report_result = @incident_requests.to_grid_json([:urgency_name,:urgency_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
    def rpt_completed_source_summary
@@ -170,7 +170,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:report_source_name]=>elem[:report_source_count]})
       end
       @report_result = @incident_requests.to_grid_json([:report_source_name,:report_source_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
    def rpt_completed_type_summary
@@ -193,7 +193,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:report_type_name]=>elem[:report_type_count]})
       end
       @report_result = @incident_requests.to_grid_json([:report_type_name,:report_type_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
    def rpt_completed_impact_summary
@@ -216,7 +216,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:impact_range_name]=>elem[:impact_range_count]})
       end
       @report_result = @incident_requests.to_grid_json([:impact_range_name,:impact_range_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
    def rpt_completed_priority_summary
@@ -239,7 +239,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:priority_code_name]=>elem[:priority_code_count]})
       end
       @report_result = @incident_requests.to_grid_json([:priority_code_name,:priority_code_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
    def rpt_unsolved_urgency_summary
@@ -262,7 +262,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:urgency_name]=>elem[:urgency_count]})
       end
       @report_result = @incident_requests.to_grid_json([:urgency_name,:urgency_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
    def rpt_unsolved_source_summary
@@ -285,7 +285,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:report_source_name]=>elem[:report_source_count]})
       end
       @report_result = @incident_requests.to_grid_json([:report_source_name,:report_source_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
    def rpt_unsolved_type_summary
@@ -308,7 +308,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:report_type_name]=>elem[:report_type_count]})
       end
       @report_result = @incident_requests.to_grid_json([:report_type_name,:report_type_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
    def rpt_unsolved_impact_summary
@@ -331,7 +331,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:impact_range_name]=>elem[:impact_range_count]})
       end
       @report_result = @incident_requests.to_grid_json([:impact_range_name,:impact_range_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
    def rpt_unsolved_priority_summary
@@ -354,7 +354,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:priority_code_name]=>elem[:priority_code_count]})
       end
       @report_result = @incident_requests.to_grid_json([:priority_code_name,:priority_code_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
    def rpt_unalloca_urgency_summary     
@@ -377,7 +377,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:urgency_name]=>elem[:urgency_count]})
       end
       @report_result = @incident_requests.to_grid_json([:urgency_name,:urgency_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
    def rpt_unalloca_source_summary
@@ -400,7 +400,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:report_source_name]=>elem[:report_source_count]})
       end
       @report_result = @incident_requests.to_grid_json([:report_source_name,:report_source_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
    def rpt_unalloca_type_summary
@@ -423,7 +423,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:report_type_name]=>elem[:report_type_count]})
       end
       @report_result = @incident_requests.to_grid_json([:report_type_name,:report_type_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
    def rpt_unalloca_impact_summary
@@ -446,7 +446,7 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:impact_range_name]=>elem[:impact_range_count]})
       end
       @report_result = @incident_requests.to_grid_json([:impact_range_name,:impact_range_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
    def rpt_unalloca_priority_summary
@@ -469,27 +469,32 @@ class Icm::IncidentReportsController < ApplicationController
          chart_hash.merge!({elem[:priority_code_name]=>elem[:priority_code_count]})
       end
       @report_result = @incident_requests.to_grid_json([:priority_code_name,:priority_code_count], 3)
-      @data_provider = to_pie_chart_json(chart_hash)
+      @data_provider = to_chart_json(chart_hash)
    end
 
-   private
-    def auto_run?(auto_run)
-      if auto_run.blank?
-         true
-      else
-         auto_run == Irm::Constant::SYS_YES
-      end
-    end
-   
-    def to_pie_chart_json(chart_data)
-      json = %Q([)
-      if chart_data.is_a?(Hash)
-        chart_data.each do |key,value|
-          json << %Q({category:"#{key}",value:#{value}},)
-        end
-        json.chomp!(",")
-      end
-      json << "]"
-      json
-    end
+   #事故单统计报表-按月统计
+   def rpt_incident_stat_month
+     auto_run = params[:auto_run]
+     if auto_run?(auto_run)
+       return
+     end
+     @company_id =  params[:company_id]
+     @service_code = params[:service_code]
+     @table_column = params[:table_column]||"#{Icm::IncidentRequest.table_name}.created_at"
+     @timeframes_start_date = params[:timeframes_start_date]||show_date(:months_advance=>-6)
+     @timeframes_end_date = params[:timeframes_end_date]||show_date
+     @incident_requests = Icm::IncidentRequest.query_all_year_month.
+                          equal_value("#{Icm::IncidentRequest.table_name}.company_id",@company_id).
+                          equal_value("#{Icm::IncidentRequest.table_name}.service_code",@service_code).
+                          date_between_value(@table_column,@timeframes_start_date,@timeframes_end_date)
+     incident_requests_array = Array.new
+     @incident_requests.each do |elem|
+         incident_requests_array << [elem[:created_year_month],elem[:incident_count]]
+     end
+     @report_result = @incident_requests.to_grid_json([:created_year_month,:incident_count], 3)
+     @data_provider = to_chart_json(incident_requests_array)
+   end
+
+
+
 end

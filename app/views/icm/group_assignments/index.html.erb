@@ -1,0 +1,41 @@
+<%= setting_title %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_icm_group_assignment_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+              </td>
+              <td class="pbHelp">
+                <div id="groupAssignmentSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="group_assignments_list" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;
+            <%= link_to(t(:delete),{:action=>"destroy",:id=>"{id}"}) %>
+          </div>
+          <div id="status_code" style="display:none">
+            <%= check_img("{status_code}") %>
+          </div>              
+        </div>
+        <%= datatable("group_assignments_list",url_for(:action=>"get_data",:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
+                       {:key=>"company_name",:label=>t(:label_irm_company_name),:sortable=>true,:searchable=>true},
+                       {:key=>"site_group_name",:label=>t(:label_irm_location_site_group),:sortable=>true,:searchable=>true},
+                       {:key=>"site_name",:label=>t(:label_irm_company_site_info),:sortable=>true,:searchable=>true},
+                       {:key=>"department_name",:label=>t(:label_irm_location_department),:sortable=>true, :searchable => true},
+                       {:key=>"person_name",:label=>t(:label_irm_person),:sortable=>true, :searchable => true},
+                       {:key=>"support_group_name",:label=>t(:label_irm_support_group_show),:sortable=>true,:searchable=>true},
+                       {:key=>"status_code",:label=>t(:active),:width=>"40px",:formatter=>"Y.irm.template"}
+                       ],{:row_perpage=>5})%>
+      </div>
+    </div>
+</div>

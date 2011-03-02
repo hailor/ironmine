@@ -12,6 +12,27 @@
   </div>
 </div>
 
+<script type="text/javascript">
+  GY.use("irm",function(Y){
+    //其中delegate 方法需要去找到针对于谁进行委托，这个时候，我们
+    //需要制定针对id为rptminitabsbody下面的class为reportClass
+    //进行dom元素进行处理
+    Y.one('#rptminitabsbody').delegate("click",function(e){
+          if(this.hasClass("showListButton")){
+            this.removeClass("showListButton");
+            this.addClass("hideListButton");
+            Y.one('#'+this.getAttribute("child_id")).setStyle("display","block");
+          }
+          else{
+            this.removeClass("hideListButton");
+            this.addClass("showListButton");
+            Y.one('#'+this.getAttribute("child_id")).setStyle("display","none");
+          }
+
+        }, '.reportClass')
+  });
+</script>
+
 <div id="rptminitabsbody">
   <div class="bPageBlock secondaryPalette">
     <div class="pbHeader">
@@ -20,7 +41,10 @@
     </div>
     <div class="pbBody">
       <div class="reportList">
-        <%= raw(show_category_report("","INCIDENT_REQUEST",{:report_group_name=>t(:label_icm_incident_report_all)})) %>
+        <%= raw(show_category_report("","SYSTEM_GLOBAL")) %>
+        <%= raw(show_category_report("","INCIDENT_REQUEST")) %>
+        <%= raw(show_category_report("","SURVEY")) %>
+        <%= raw(show_category_report("","SERVICE_KNOWLEDGE_MANAGE")) %>
       </div>
     </div>
   </div>

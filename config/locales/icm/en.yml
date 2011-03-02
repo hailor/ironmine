@@ -139,6 +139,7 @@ en:
   #========================= end icm incident_journals_controller=======================#
   #=========================    icm incident_reports_controller=======================#
   label_icm_urgency_name: Urgency Name
+  label_icm_incident_month: Month
   label_icm_urgency_count: Urgency Count
   label_icm_report_source_name: Source Type
   label_icm_report_source_count: Source Type Count
@@ -150,3 +151,15 @@ en:
   label_icm_report_time_frame_end_time: End Time
   label_icm_report_param: Report Param
   #========================= end icm incident_reports_controller=======================#
+  #========================= icm group_assignments_controller =========================#
+  label_icm_group_assignment: Support Group Assignment
+  label_icm_group_assignment_rule: Support Group Assignment Rule
+  label_icm_group_assignment_list: Support Group Assignment List
+  label_icm_group_assignment_new: Create Support Group Assignment
+  label_icm_group_assignment_edit: Edit Support Group Assignment
+  label_icm_group_assignment_c_company: Company
+  label_icm_group_assignment_c_department: Department
+  label_icm_group_assignment_c_person: Staff
+  label_icm_group_assignment_c_site_group: Site Group
+  label_icm_group_assignment_c_site: Site
+  #========================= end icm group_assignments_controller =========================#  

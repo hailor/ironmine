@@ -18,4 +18,40 @@ module Icm::IncidentReportsHelper
       end
      report_module
    end
+
+   #根据id和data_provider来构建折线图，其中折线图的
+   #数据格式：var myDataValues = [
+   #         {category:"5/1/2010", values:9000}];
+   def line_chart(id,data_provider,options={})
+      width = options[:width]||400
+      height = options[:height]||200
+      line_div = content_tag(:div, "",:id=>id,
+                          :style=>"width:#{width};height:#{height};margin:10px 10px 10px 10px;")
+      script = %Q(
+         (function() {
+              GY.use('charts', function (Y)
+              {
+                  var myChart = new Y.Chart({
+                                dataProvider:#{data_provider},
+                                render:"##{id}",
+                                horizontalGridlines: {
+                                      styles: {
+                                          line: {
+                                              color: "#dad8c9"
+                                          }
+                                      }
+                                },
+                                verticalGridlines: {
+                                      styles: {
+                                          line: {
+                                              color: "#dad8c9"
+                                          }
+                                      }
+                                }
+                  });
+              });
+          })();
+      )
+      line_div + javascript_tag(script)
+   end
 end

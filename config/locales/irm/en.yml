@@ -396,6 +396,7 @@ en:
   label_irm_support_group_person_name: Person Name
   #=========================end irm support_groups_controller=======================#
   #=========================    irm people_controller=======================#
+  label_irm_person: Person
   label_irm_person_login: Login
   label_irm_person_name: Name
   label_irm_person_list: Person List
@@ -519,4 +520,9 @@ en:
   #========================= end irm report_group_members ===================================
   #=========================start irm  report_lists_controllers=====================#
   label_icm_incident_report_all: Incident Report Summary
+  label_csi_survey_report_all: Survey Report
   #=========================end irm  report_lists_controllers=======================#
+  #=========================start irm  common_reports_controllers=====================#
+  label_irm_person_login_day: Date
+  label_irm_report_count: Count
+  #=========================end irm  common_reports_controllers=======================#

@@ -5,6 +5,11 @@ class Irm::LoginRecord < ActiveRecord::Base
 
   before_create :setup_os_browser
 
+
+  scope :query_by_day,select("DATE_FORMAT(#{table_name}.created_at,'%Y-%m-%d') created_day,sum(1) login_count").
+                            group("DATE_FORMAT(#{table_name}.created_at,'%Y-%m-%d')").
+                            order("DATE_FORMAT(#{table_name}.created_at,'%Y-%m-%d') asc")
+
   scope :query_with_info,lambda{
     joins(" LEFT OUTER JOIN #{Irm::Identity.table_name} ON #{Irm::Identity.table_name}.id = #{table_name}.identity_id").
     select("#{Irm::Identity.table_name}.full_name,#{Irm::Identity.table_name}.login_name").

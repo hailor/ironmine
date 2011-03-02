@@ -19,6 +19,7 @@ class Irm::Person < ActiveRecord::Base
 
   validates_presence_of :last_name,:first_name,:title,:email_address,:company_id
   validates_uniqueness_of :email_address, :if => Proc.new { |i| !i.email_address.blank? }
+  validates_format_of :email_address, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
   has_many :person_roles
   has_many :roles, :through => :person_roles
   query_extend
