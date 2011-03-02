@@ -20,10 +20,10 @@
         <div id="group_assignments_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;
-            <%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+            <%= link_to(t(:delete),{:action=>"destroy",:id=>"{id}"}) %>
           </div>
-          <div id="default_flag" style="display:none">
-            <%= check_img("{default_flag}") %>
+          <div id="status_code" style="display:none">
+            <%= check_img("{status_code}") %>
           </div>              
         </div>
         <%= datatable("group_assignments_list",url_for(:action=>"get_data",:format=>"json"),

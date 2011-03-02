@@ -538,7 +538,7 @@ Ironmine::Application.routes.draw do
     match '/group_assignments/create(.:format)' => "group_assignments#create", :via => :post
     match '/group_assignments/get_data(.:format)' => "group_assignments#get_data"
     match '/group_assignments/:id(.:format)' => "group_assignments#show", :via => :get
-    match '/group_assignments/:id/destroy(.:format)' => "group_assignment#destroy"
+    match '/group_assignments/:id/destroy(.:format)' => "group_assignments#destroy"
   end
 
   scope :module => "cms" do
