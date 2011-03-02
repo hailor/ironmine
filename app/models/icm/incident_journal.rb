@@ -18,6 +18,8 @@ class Icm::IncidentJournal < ActiveRecord::Base
     select("#{table_name}.*").where(:incident_request_id => request_id)
   }
 
+  scope :select_all,lambda{select("#{table_name}.*")}
+
   def self.list_all(request_id)
     query_by_request(request_id).with_replied_by
   end

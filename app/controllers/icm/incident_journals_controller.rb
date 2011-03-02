@@ -101,10 +101,10 @@ class Icm::IncidentJournalsController < ApplicationController
   end
   def publish_create_incident_journal(incident_journal)
     incident_journal.reload
-    incident_journal = Icm::IncidentJournal.with_replied_by.find(incident_journal.id)
+    incident_journal = Icm::IncidentJournal.select_all.with_replied_by.find(incident_journal.id)
     incident_request = Icm::IncidentRequest.list_all.find(incident_journal.incident_request_id)
     Irm::EventManager.publish(:event_code=>"INCIDENT_JOURNAL_NEW",
                               :params=>{:to_person_ids=>[incident_request.submitted_by,incident_request.requested_by,incident_journal.replied_by],
-                                        :journal=>incident_journal.attributes,:request=>incident_request.attributes})
+                                        :journal=>incident_journal.attributes.merge(:change_message=>"not change"),:request=>incident_request.attributes})
   end
 end
