@@ -36,6 +36,11 @@ class Irm::MailTemplate < ActiveRecord::Base
 
   scope :select_all,lambda{select("#{table_name}.*")}
 
+  scope :query_by_condition_code,lambda{|condition_code|
+    joins("JOIN #{Irm::Condition.table_name} ON #{Irm::Condition.table_name}.context_code = #{table_name}.context_code ").
+    where("#{Irm::Condition.table_name}.condition_code = ?",condition_code)
+  }
+
   def self.list_all
     select_all.multilingual.with_context(I18n.locale).status_meaning
   end
@@ -67,11 +72,12 @@ class Irm::MailTemplate < ActiveRecord::Base
   #
   def deliver_to(params,mail_options={})
     # 将所有symbol的key转化为string类型
-    params.stringify_keys!
-    to_people = Irm::Person.query_by_ids(params["to_person_ids"]).include_identity
+    recursive_stringify_keys(params)
+    params_dup = params.dup
+    to_people = Irm::Person.query_by_ids(params_dup["to_person_ids"]).include_identity
     to_people.each do |p|
       email_template  = self.class.query_by_language(p.identity.language_code).find(self.id)
-      TemplateMailer.email_template(p.identity.email, email_template, params,mail_options).deliver
+      TemplateMailer.email_template(p.identity.email, email_template, params_dup,mail_options).deliver
     end
   end
 
@@ -110,5 +116,14 @@ class Irm::MailTemplate < ActiveRecord::Base
     end
 
     @template
+  end
+
+  def recursive_stringify_keys(hash)
+    return unless hash.is_a?(Hash)
+    hash.values.each do |v|
+      next unless v.is_a?(Hash)
+      recursive_stringify_keys(v)
+    end
+    hash.stringify_keys!
   end
 end
