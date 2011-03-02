@@ -43,7 +43,7 @@ class Icm::IncidentRequestsController < ApplicationController
     prepared_for_create(@incident_request)
     respond_to do |format|
       if @incident_request.save
-        publish_incident_request(@incident_request)
+        publish_create_incident_request(@incident_request)
         format.html { redirect_to({:controller=>"icm/incident_journals",:action=>"new",:request_id=>@incident_request.id}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @incident_request, :status => :created, :location => @incident_request }
       else
@@ -65,7 +65,7 @@ class Icm::IncidentRequestsController < ApplicationController
     prepared_for_create(@incident_request)
     respond_to do |format|
       if @incident_request.save
-        publish_incident_request(@incident_request)
+        publish_create_incident_request(@incident_request)
         format.html { redirect_to({:controller=>"icm/incident_journals",:action=>"new",:request_id=>@incident_request.id}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @incident_request, :status => :created, :location => @incident_request }
       else
@@ -111,9 +111,11 @@ class Icm::IncidentRequestsController < ApplicationController
     incident_request.submitted_date = Time.now
   end
 
-  def publish_incident_request(incident_request)
+  def publish_create_incident_request(incident_request)
+    incident_request.reload
+    incident_request = Icm::IncidentRequest.list_all.find(incident_request.id)
     Irm::EventManager.publish(:event_code=>"INCIDENT_REQUEST_NEW",
                               :params=>{:to_person_ids=>[incident_request.submitted_by,incident_request.requested_by],
-                                        :title=>incident_request.title})
+                                        :request=>incident_request.attributes})
   end
 end

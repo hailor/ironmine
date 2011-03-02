@@ -39,6 +39,7 @@ class Icm::UserRequestsController < ApplicationController
     prepared_for_create(@incident_request)
     respond_to do |format|
       if @incident_request.save
+        publish_create_incident_request(@incident_request)
         format.html { redirect_to({:controller=>"icm/user_journals",:action=>"new",:request_id=>@incident_request.id}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @incident_request, :status => :created, :location => @incident_request }
       else
@@ -71,5 +72,12 @@ class Icm::UserRequestsController < ApplicationController
     incident_request.incident_status_code = Icm::IncidentStatus.query_by_close_flag(Irm::Constant::SYS_NO).order_display.first.incident_status_code
     incident_request.submitted_date = Time.now
     incident_request.report_source_code = "CUSTOMER_SUBMIT"
+  end
+  def publish_create_incident_request(incident_request)
+    incident_request.reload
+    incident_request = Icm::IncidentRequest.list_all.find(incident_request.id)
+    Irm::EventManager.publish(:event_code=>"INCIDENT_REQUEST_NEW",
+                              :params=>{:to_person_ids=>[incident_request.submitted_by,incident_request.requested_by],
+                                        :request=>incident_request.attributes})
   end
 end
