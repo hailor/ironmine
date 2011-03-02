@@ -297,4 +297,36 @@ class ApplicationController < ActionController::Base
      (Time.now.advance(:months => advance)).strftime("%Y-%m-%d").to_s
   end
 
+  def auto_run?(auto_run)
+      if auto_run.blank?
+         true
+      else
+         auto_run == Irm::Constant::SYS_YES
+      end
+    end
+
+   #简单讲hash和数组中的数据转换成图表所需要的数据
+    def to_chart_json(chart_data)
+      json = %Q([)
+      if chart_data.is_a?(Hash)
+        chart_data.each do |key,value|
+          json << %Q({category:"#{key}",value:#{value}},)
+        end
+        json.chomp!(",")
+      elsif chart_data.is_a?(Array)
+        chart_data.each do |elem|
+          json << %Q({category:"#{elem[0]}",value:#{elem[1]}},)
+        end
+        json.chomp!(",")
+      end
+      json << "]"
+      json
+    end
+
+    #通用的将图表的数据转换成功chart data
+    #TODO
+    def general_to_chart_json(chart_data)
+
+    end
+
 end

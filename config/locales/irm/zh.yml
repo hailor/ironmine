@@ -430,7 +430,7 @@ zh:
   label_irm_location_edit: 编辑地点
   label_irm_company_info: 公司详细信息
   label_irm_company_show: 公司
-  label_irm_location_info: 地点信息
+  label_irm_location_info: 位置信息
   #=========================end irm companies_controller=======================#
   #=========================    irm login_records_controller=======================#
   label_irm_login_record_list: 用户登录历史
@@ -723,4 +723,9 @@ zh:
   #========================= end irm report_group_members ===================================
   #=========================start irm  report_lists_controllers=====================#
   label_icm_incident_report_all: 事故单模块报表汇总
+  label_csi_survey_report_all: 问卷调查报表
   #=========================end irm  report_lists_controllers=======================#
+  #=========================start irm  common_reports_controllers=====================#
+  label_irm_person_login_day: 日期
+  label_irm_report_count: 计数
+  #=========================end irm  common_reports_controllers=======================#
