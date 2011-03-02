@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitJournalScriptContext < ActiveRecord::Migration
   def self.up
     incident_request_context_field1 = Irm::ScriptContextField.new(:context_code=>"INCIDENT_REQUEST",:field_key=>"request.request_number",:not_auto_mult=>true)
