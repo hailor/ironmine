@@ -14,7 +14,7 @@ class Irm::EventManager
       # 将参数的key全部转化为symbolize
       recursive_symbolize_keys(params)
       # 检查context中需要的参数是否缺失
-      missed_keys =  required_fields.collect{|f| f if recursive_include?(params,f)}.compact
+      missed_keys =  required_fields.collect{|f| f if !recursive_include?(params,f)}.compact
       raise(ArgumentError, "Missing context keys: #{missed_keys.to_json}") if missed_keys.length>0
       # 发布事件
       event = ::Irm::Event.new(event_options)
