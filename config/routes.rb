@@ -429,6 +429,10 @@ Ironmine::Application.routes.draw do
     #match '/report_groups/:group_id/members/:id/edit(.:format)' => "report_group_members#create", :via => :post
     #match '/report_groups/:group_id/members/:id(.:format)' => "report_group_members#update", :via => :put
     match '/report_groups/:group_id/members/:id/delete(.:format)' => "report_group_members#destroy", :via => :delete
+
+    #common report
+    match '/common_reports/rpt_person_login_summary(.:format)' => "common_reports#rpt_person_login_summary"
+    match '/common_reports/get_report_summary(.:format)' => "common_reports#get_report_summary"
   end
 
   scope :module => "icm" do

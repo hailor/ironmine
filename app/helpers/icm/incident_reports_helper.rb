@@ -26,7 +26,7 @@ module Icm::IncidentReportsHelper
       width = options[:width]||400
       height = options[:height]||200
       line_div = content_tag(:div, "",:id=>id,
-                          :style=>"width:#{width}px;height:#{height}px;margin:10px 10px 10px 10px;")
+                          :style=>"width:#{width};height:#{height};margin:10px 10px 10px 10px;")
       script = %Q(
          (function() {
               GY.use('charts', function (Y)

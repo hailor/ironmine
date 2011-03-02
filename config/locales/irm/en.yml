@@ -519,3 +519,7 @@ en:
   label_icm_incident_report_all: Incident Report Summary
   label_csi_survey_report_all: Survey Report
   #=========================end irm  report_lists_controllers=======================#
+  #=========================start irm  common_reports_controllers=====================#
+  label_irm_person_login_day: Date
+  label_irm_report_count: Count
+  #=========================end irm  common_reports_controllers=======================#

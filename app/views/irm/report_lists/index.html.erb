@@ -16,7 +16,7 @@
   GY.use("irm",function(Y){
     //其中delegate 方法需要去找到针对于谁进行委托，这个时候，我们
     //需要制定针对id为rptminitabsbody下面的class为reportClass
-    //进行处理
+    //进行dom元素进行处理
     Y.one('#rptminitabsbody').delegate("click",function(e){
           if(this.hasClass("showListButton")){
             this.removeClass("showListButton");
