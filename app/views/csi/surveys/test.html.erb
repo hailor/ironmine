@@ -40,6 +40,13 @@ body {
     max-width: 400px;
     height:200px;
 }
+#mychart3 {
+    margin:10px 10px 10px 10px;
+    width:90%;
+    max-width: 800px;
+    height:400px;
+}
+
 </style>
 
 <!--end custom header content for this example-->
@@ -75,13 +82,32 @@ body {
                     {day:"Thursday", taxes:200},
                     {day:"Friday", taxes:2000}
             ];
+            var myTooltip = {
+                styles: {
+                    backgroundColor: "#333",
+                    color: "#eee",
+                    borderColor: "#eee",
+                    textAlign: "center",
+                    padding: "2px 8px 2px 8px"
+                },
+                markerLabelFunction: function(categoryItem, valueItem, itemIndex, series, seriesIndex)
+                {
+                    var msg = "<span style=\"text-decoration:underline\">" + valueItem.displayName + " for " +
+                    categoryItem.axis.get("labelFunction").apply(this, [categoryItem.value, categoryItem.axis.get("labelFormat")]) +
+                    "</span><br/><div style=\"margin-top:5px;font-weight:bold\">" +
+                            valueItem.axis.get("labelFunction").apply(this,
+                                    [valueItem.value, valueItem.axis.get("labelFormat")]) + "</div>";
+                    return msg;
+                }
+            };
 
             var pieGraph = new Y.Chart({
                     render:"#mychart",
                     categoryKey:"day",
                     seriesKeys:["taxes"],
-                    dataProvider:[{day:"没有",taxes:4}],
+                    dataProvider:[{category:"没有",value:4}],
                     type:"pie",
+                    tooltip: myTooltip,
                     seriesCollection:[
                         {
                             categoryKey:"day",
@@ -168,6 +194,47 @@ var pieGraph = new Y.Chart({
  }
  )();
 </script>
+
+<div id="mychart3"></div>
+<script type="text/javascript">
+(function() {
+    YUI().use('charts', function (Y)
+    {
+        var myDataValues = [
+            {category:"5/1/2010", Miscellaneous:2000},
+            {category:"5/2/2010", Miscellaneous:50},
+            {category:"5/3/2010", Miscellaneous:400},
+            {category:"5/4/2010", Miscellaneous:200},
+            {category:"5/5/2010", Miscellaneous:5000}
+        ];
+
+        var myTooltip = {
+            styles: {
+                backgroundColor: "#333",
+                color: "#eee",
+                borderColor: "#eee",
+                textAlign: "center",
+                padding: "2px 8px 2px 8px"
+            },
+            markerLabelFunction: function(categoryItem, valueItem, itemIndex, series, seriesIndex)
+            {
+                var msg = "<span style=\"text-decoration:underline\">" + valueItem.displayName + " for " +
+                categoryItem.axis.get("labelFunction").apply(this, [categoryItem.value, categoryItem.axis.get("labelFormat")]) +
+                "</span><br/><div style=\"margin-top:5px;font-weight:bold\">" + valueItem.axis.get("labelFunction").apply(this, [valueItem.value, valueItem.axis.get("labelFormat")]) + "</div>";
+                return msg;
+            }
+        };
+
+        var mychart = new Y.Chart({
+                            dataProvider:myDataValues,
+                            type:"pie",
+                            render:"#mychart3", 
+                            tooltip: myTooltip
+                        });
+    });
+})();
+</script>
+
 </body>
 </html>
 
