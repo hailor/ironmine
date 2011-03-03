@@ -32,19 +32,14 @@ module Csi::SurveysHelper
     width = options[:width]||200
     height = options[:height]||200
     pei_div = content_tag(:div, "",:id=>id,
-                          :style=>"width:#{width}px;height:#{height}px;margin:10px 10px 10px 10px;")
+                          :style=>"width:#{width};height:#{height};margin:10px 10px 10px 10px;")
+    colors = options[:colors]||['#194E84','#60BB22','#F2BABB','#FFC200',
+                                            '#FF5B00','#B80028','#84002E','#4AC0F2']
     script = %Q(
         (function()
           {
             GY.use('charts', function (Y)
             {
-                var myDataValues = [
-                        {category:"Monday", value:2000},
-                        {category:"Tuesday", value:2000},
-                        {category:"Wednesday", value:1000},
-                        {category:"Thursday", value:200},
-                        {category:"Friday", value:2000}
-                ];
                 var pieGraph = new Y.Chart({
                           render:"##{id}",
                           categoryKey:"category",
@@ -57,8 +52,7 @@ module Csi::SurveysHelper
                                   valueKey:"value",
                                   styles:{
                                     fill:{
-                                        colors:['#194E84','#60BB22','#F2BABB','#FFC200',
-                                            '#FF5B00','#B80028','#84002E','#4AC0F2']
+                                        colors:#{colors.inspect}
                                     }
                                    }
                               }
@@ -69,5 +63,34 @@ module Csi::SurveysHelper
      )();
     )
     pei_div + javascript_tag(script)
+  end
+
+
+  def show_survey_chart(survey_id)
+    survey_subjects = Csi::SurveySubject.query_by_survey_id(survey_id).query_by_choice_input
+    survey_chart=""
+    i =0
+    survey_subjects.each do |subject|
+      i = i + 1
+      @normal_results = Csi::SurveyResult.query_by_option_type(subject.id,'normal')
+      @other_results =  Csi::SurveyResult.query_other_option_type(subject.id,'other')
+      result_hash = Hash.new
+      @normal_results.inspect
+      if @normal_results.present?
+         @normal_results.each do |normal_result|
+           result_hash.merge!(normal_result[:subject_result]=>normal_result[:result_count])
+         end
+      end
+      if @other_results.present?
+         @other_results.each do |other_result|
+           result_hash.merge!(other_result[:subject_result]=>other_result[:result_count])
+         end
+      end
+      data_provider = to_chart_json(result_hash)
+      subject_title = content_tag(:div,content_tag(:h3,(i.to_s + "." +subject.name).html_safe).html_safe,
+                                  :class=>"pbSubheader tertiaryPalette").html_safe
+      survey_chart << subject_title + pie_chart("subject"+"#{subject.id}",data_provider,{:width=>"90%"}).html_safe
+    end
+    survey_chart.html_safe
   end
 end
