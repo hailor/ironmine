@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Csi::SurveyResult < ActiveRecord::Base
   set_table_name :csi_survey_results
 
