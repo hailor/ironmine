@@ -40,6 +40,10 @@ var yuiConfig = {
             fullpath:"/javascripts/irm/dialog/dialog-base.js",
             requires: ["'widget', 'widget-stdmod', 'widget-position', 'widget-stack', 'widget-position-align', 'widget-position-constrain'"],
             "skinnable": true
+        },
+        cascadeselect:{
+            fullpath:"/javascripts/irm/cascadeselect.js",
+            requires: ["io-base","substitute","json-parse"]
         }
     },
     groups: {

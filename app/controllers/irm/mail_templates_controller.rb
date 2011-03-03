@@ -74,6 +74,22 @@ class Irm::MailTemplatesController < ApplicationController
     end
   end
 
+  def get_script_context_fields
+    context_fields_scope = Irm::ScriptContextField.multilingual.query_by_context_code(params[:context_code])
+    context_fields = context_fields_scope.collect{|i| {:label=>i[:name],:value=>"{{#{i.field_key}}}",:id=>i.id}}
+    respond_to do |format|
+      format.json {render :json=>context_fields.to_grid_json([:label,:value],context_fields.count)}
+    end
+  end
+
+  def get_mail_templates
+    mail_templates_scope = Irm::MailTemplate.multilingual.query_by_condition_code(params[:condition_code])
+    mail_templates = mail_templates_scope.collect{|i| {:label=>i[:name],:value=>i.template_code,:id=>i.id}}
+    respond_to do |format|
+      format.json {render :json=>mail_templates.to_grid_json([:label,:value],mail_templates.count)}
+    end
+  end
+
   def get_current_language
     language_code=params[:language_code]
     @mail_template = Irm::MailTemplate.query_by_language(language_code).find(params[:id])

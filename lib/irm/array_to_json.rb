@@ -6,8 +6,9 @@ module Irm::ArrayToJson
     if total > 0
       json << %Q(,"items":[)
       each do |elem|
-        elem.id = index(elem) unless elem.id
-        json << %Q({"id":"#{elem.id}",)
+        eid = elem.id if elem.respond_to?("id")
+        eid ||= elem[:id]
+        json << %Q({"id":"#{eid}",)
         couples = elem.attributes.symbolize_keys
         attributes.each do |atr|
           value = get_atr_value(elem, atr, couples)
