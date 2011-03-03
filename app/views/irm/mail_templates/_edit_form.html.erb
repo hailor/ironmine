@@ -1,3 +1,26 @@
+<style type="text/css">
+  .controls {
+    display: inline-block;
+  }
+  .controlTitle {
+    background-color: #EAEAEA;
+    border-color: #AAAAAA;
+    border-style: solid;
+    border-width: 1px 1px 0;
+    font-size: 0.85em;
+    font-weight: bold;
+    padding: 5px 8px;
+  }
+  .controlItems {
+      background-color: #FFFFFF;
+      border: 1px solid #AAAAAA;
+      padding: 5px 8px;
+      white-space: nowrap;
+  }
+  div.controlItems th {
+      font-weight: bold;
+  }
+</style>
 <%= setting_title %>
 
 <%= form_for(@mail_template,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
@@ -47,6 +70,27 @@
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_mail_template_status_code)%></label></td>
               <td class="dataCol"><%=f.select :status_code,options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@mail_template.status_code)%>
+              </td>
+            </tr>
+            <tr>
+              <td class="labelCol"></td>
+              <td class="data2Col">
+                <div class="controls">
+	              <div class="controlTitle">
+	              	<%= t(:label_irm_scirpt_context_query_field) %>
+	              </div>
+                  <div class="controlItems">
+                    <table>
+                      <tr>
+                        <th><%= t(:label_irm_scirpt_context_field_name) %></th><th><%= t(:label_irm_scirpt_context_field_key) %></th>
+                      </tr>
+                      <tr>
+                        <td><%= select_tag(:field_key,nullable_options_for_select(available_script_context_fields(@mail_template.context_code),nil),{:id=>"script_context_field"}) %></td>
+                        <td><%= text_field_tag(:field_key,{},{:id=>"script_context_field_key",:size=>40}) %></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
               </td>
             </tr>
         </tbody>
@@ -113,7 +157,9 @@
     var currentLanguage = Y.one("#templateBody").getAttribute("current");
     Y.log(currentLanguage);
     Y.one("#templateBody").one("a#"+currentLanguage).simulate("click");
+    Y.one("#script_context_field").on("change",function(e){
+         Y.one("#script_context_field_key").set("value",e.target.get("value"))
+     });
   });
-
 </script>
 

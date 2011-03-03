@@ -227,6 +227,9 @@ en:
   label_irm_mail_template_info: Mail Template Info
   label_irm_mail_template_show: Mail Template
   label_irm_mail_template_edit: Edit Template
+  label_irm_scirpt_context_query_field: Mail template parameters
+  label_irm_scirpt_context_field_name: Parameter name
+  label_irm_scirpt_context_field_key: Parameter value
   #==================end irm mail_templates_controller=======================#
   #=========================    irm currencies_controller=======================#
   label_irm_currency_currency_code: Code
