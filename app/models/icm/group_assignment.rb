@@ -30,6 +30,34 @@ class Icm::GroupAssignment < ActiveRecord::Base
         joins("LEFT OUTER JOIN #{Irm::SupportGroup.table_name} su ON su.group_code = #{table_name}.support_group_code").
         joins("LEFT OUTER JOIN #{Irm::SupportGroupsTl.table_name} sut ON sut.language = '#{I18n.locale}' AND su.id = sut.support_group_id")
   }
+
+  scope :query_by_company, lambda{|company_id|
+    where("#{table_name}.customer_company_id = ?", company_id)
+  }
+
+  scope :query_by_department, lambda{|department_id|
+    where("#{table_name}.customer_department_id = ?", department_id)
+  }
+
+  scope :query_by_sites, lambda{|sites|
+    where("#{table_name}.customer_site_code IN (?)", sites.collect(&:site_code) + [''])
+  }
+
+  scope :query_by_site_groups, lambda{|site_groups|
+    where("#{table_name}.customer_site_group_code IN (?)", site_groups.collect(&:group_code) + [''])
+  }
+
+  scope :query_by_person, lambda {|person_id|
+    where("#{table_name}.customer_person_id = ?", person_id)
+  }
+
+  scope :query_by_support_groups, lambda{|support_group_id|
+    where("#{table_name}.support_group_code = ?", support_group_id)
+  }
+
+  scope :query_by_organizations, lambda{|organization_id|
+    where("#{table_name}.customer_organization_id = ?", organization_id)
+  }
   
   scope :list_all, lambda {
     select("#{table_name}.*").

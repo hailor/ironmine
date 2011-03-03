@@ -44,6 +44,10 @@ class Icm::IncidentRequestsController < ApplicationController
     respond_to do |format|
       if @incident_request.save
         publish_incident_request(@incident_request)
+        #如果没有填写support_group, 插入Delay Job任务
+        if @incident_request.support_group_id.nil? || @incident_request.support_group_id.blank?
+          Delayed::Job.enqueue(Irm::Jobs::IcmGroupAssignmentJob.new(@incident_request.id))  
+        end
         format.html { redirect_to({:controller=>"icm/incident_journals",:action=>"new",:request_id=>@incident_request.id}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @incident_request, :status => :created, :location => @incident_request }
       else
