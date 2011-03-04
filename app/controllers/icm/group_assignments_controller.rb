@@ -64,4 +64,36 @@ class Icm::GroupAssignmentsController < ApplicationController
       format.json  {render :json => to_jsonp(group_assignments.to_grid_json([:company_name,:department_name,:site_name, :site_group_name, :person_name, :support_group_name, :status_code], count)) }
     end    
   end
+
+  def get_customer_departments
+    departments_scope = Irm::Department.multilingual.enabled.where("organization_id = ?", params[:customer_organization_id])
+    departments = departments_scope.collect{|i| {:label=>i[:name], :value=>i.id,:id=>i.id}}
+    respond_to do |format|
+      format.json {render :json=>departments.to_grid_json([:label, :value],departments.count)}
+    end
+  end
+
+  def get_customer_sites
+
+  end
+
+  def get_customer_site_groups
+
+  end
+
+  def get_customer_people
+    people_scope = Irm::Person.enabled.where("department_id = ?", params[:customer_department_id])
+    people = people_scope.collect{|i| {:label=>i[:last_name] + i[:first_name], :value=>i.id,:id=>i.id}}
+    respond_to do |format|
+      format.json {render :json=>people.to_grid_json([:label,:value],people.count)}
+    end    
+  end
+
+  def get_customer_organizations
+    organizations_scope = Irm::Organization.multilingual.enabled.where("company_id = ?", params[:customer_company_id])
+    organizations = organizations_scope.collect{|i| {:label=>i[:name], :value=>i.id,:id=>i.id}}
+    respond_to do |format|
+      format.json {render :json=>organizations.to_grid_json([:label,:value],organizations.count)}
+    end    
+  end
 end
