@@ -1,1 +1,82 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>2.1.7. 弹性域结构</title><link rel="stylesheet" type="text/css" href="test.css"><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"><link rel="home" href="index.html" title="汉得统一服务平台"><link rel="up" href="ar01s02s01.html" title="2.1. 常用设置"><link rel="prev" href="ar01s02s01s06.html" title="2.1.6. 弹性域"><link rel="next" href="ar01s02s02.html" title="2.2. 组织结构设置"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">2.1.7. 弹性域结构</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ar01s02s01s06.html"><img src="images/prev.gif" alt="上一页"></a> </td><th width="60%" align="center">2.1. 常用设置</th><td width="20%" align="right"> <a accesskey="n" href="ar01s02s02.html"><img src="images/next.gif" alt="下一页"></a></td></tr></table><hr></div><div class="section" title="2.1.7. 弹性域结构"><div class="titlepage"><div><div><h4 class="title"><a name="id386536"></a>2.1.7. 弹性域结构</h4></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>弹性域，弹性域结构，弹性域段关系介绍：</p><p>弹性域下可以包含多个弹性域结构，每个弹性域结构由多个弹性域段组成，当要使用弹性域时，首先需要指定弹性域名称，再指定一个附加属性用来确定一个弹性域结构，弹性域结构最终确定了该弹性域的段值。</p></li><li class="listitem"><p>弹性域段使</p><p>用实例，以“产品附加信息”弹性域为例：</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>弹性域信息：</p><div class="table"><a name="id386583"></a><p class="title"><b>表 1. </b></p><div class="table-contents"><table summary="" border="1"><colgroup><col class="c1"><col class="c2"></colgroup><tbody><tr><td>弹性域编码</td><td>弹性域名称</td></tr><tr><td>PRODUCT_ADDITION_INFO</td><td>产品附加信息</td></tr></tbody></table></div></div><p><br class="table-break"></p></li><li class="listitem"><p>弹性域结构：</p><div class="table"><a name="id386641"></a><p class="title"><b>表 2. </b></p><div class="table-contents"><table summary="" border="1"><colgroup><col class="c1"><col class="c2"><col class="c3"></colgroup><tbody><tr><td>弹性域结构编码</td><td>结构名称</td><td>结构描述</td></tr><tr><td>COLOR_INFO</td><td>颜色信息</td><td>描述产品的颜色信息</td></tr><tr><td>SHAPE_INFO</td><td>形状信息</td><td>描述产品的形状信息信息</td><td> </td></tr></tbody></table></div></div><p><br class="table-break"></p></li><li class="listitem"><p>弹性域段信息：</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>COLOR_INFO结构对应的段：</p><div class="table"><a name="id386736"></a><p class="title"><b>表 3. </b></p><div class="table-contents"><table summary="" border="1"><colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"></colgroup><tbody><tr><td>显示顺序</td><td>段编码</td><td>段名称</td><td>值集</td></tr><tr><td>10</td><td>segment1</td><td>正面颜色</td><td>25_VARCHAR</td></tr><tr><td>20</td><td>segment2</td><td>背面颜色</td><td>25_VARCHAR</td></tr><tr><td>30</td><td>segment3</td><td>顶部颜色</td><td>25_VARCHAR</td></tr></tbody></table></div></div><p><br class="table-break"></p></li><li class="listitem"><p>SHAPE_INFO结构对应的段：</p><div class="table"><a name="id386856"></a><p class="title"><b>表 4. </b></p><div class="table-contents"><table summary="" border="1"><colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"></colgroup><tbody><tr><td>显示顺序</td><td>段编码</td><td>段名称</td><td>值集</td></tr><tr><td>10</td><td>segment1</td><td>长度</td><td>10_NUMBER</td></tr><tr><td>20</td><td>segment4</td><td>宽度</td><td>10_NUMBER</td><td> </td></tr><tr><td>30</td><td>segment5</td><td>高度</td><td>10_NUMBER</td></tr></tbody></table></div></div><p><br class="table-break"></p></li></ul></div></li></ol></div></li><li class="listitem"><p>建立弹性域结构：</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>新建弹性域结构</p><p>由于弹性域结构属于弹性域，因此在进入弹性域结构的操作之前，首先要选择一个弹性域，弹性域结构的关键属性：</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>名称：弹性域结构的名称</p></li><li class="listitem"><p>结构编码：弹性域结构的编码</p></li><li class="listitem"><p>描述：弹性域结构的描述</p></li><li class="listitem"><p>分隔符：由于弹性域结构由许多段组成，在很多情况下需要使用弹性域结构下所有段连接后的字符串，该分割符就是区分该链接字符串中的每个段。例如：有三段分别为：</p><div class="table"><a name="id387026"></a><p class="title"><b>表 5. </b></p><div class="table-contents"><table summary="" border="1"><colgroup><col class="c1"><col class="c2"><col class="c3"></colgroup><tbody><tr><td>segment1</td><td>segment2</td><td>segment3</td></tr><tr><td>亚太区</td><td>中国</td><td>上海</td></tr></tbody></table></div></div><p><br class="table-break"></p><p>设置分割符为"<em class="firstterm">.</em>"，则链接后的字符串为：<em class="firstterm">亚太区.中国.上海</em></p></li><li class="listitem"><p>可用：标示该弹性域是否有效。</p></li></ul></div></li><li class="listitem"><p>为弹性域结构添加弹性域段</p><p>弹性域段是弹性域的最底层设计，多个弹性域段组成一个弹性域结构，当一条记录的弹性域结构定了，在该记录对应的记录中，对的segment段就存放了该弹性域结构下弹性域段的信息。</p><p>以表2和表3为例，如果选择结构为<em class="firstterm">COLOR_INFO</em>则表中的segment存储为产品 的颜色信息，存储形式如 下：</p><div class="table"><a name="id387128"></a><p class="title"><b>表 6. </b></p><div class="table-contents"><table summary="" border="1"><colgroup><col class="c1"><col class="c2"><col class="c3"></colgroup><tbody><tr><td>segment1</td><td>segment2</td><td>segment3</td></tr><tr><td>红色</td><td>黑色</td><td>蓝色</td></tr></tbody></table></div></div><p><br class="table-break"></p><p>如果选择结构为<em class="firstterm">SHAPE_INFO</em>则表中的segment存储的为产品的形状信息，存储 形式如下：</p><div class="table"><a name="id387196"></a><p class="title"><b>表 7. </b></p><div class="table-contents"><table summary="" border="1"><colgroup><col class="c1"><col class="c2"><col class="c3"></colgroup><tbody><tr><td>sement1</td><td>segment4</td><td>segment5</td></tr><tr><td>120cm</td><td>80cm</td><td>70cm</td></tr></tbody></table></div></div><p><br class="table-break"></p><p>弹性域段的关键属性：</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>段编码：弹性域段对应的数据库存储字段，在设计弹性域时，需要为弹性域对应的表设计弹性域字段，通常为segment1..segment15，15个段。段编码为为下拉列表，同一弹性域下的段编码不能重复；</p></li><li class="listitem"><p>段名称：当前段存储信息的名称，在使用弹性域的界面中，该字段值是显示在界面中来标示当前域所代表的意义；</p></li><li class="listitem"><p>描述：当前弹性域段的详细描述；</p></li><li class="listitem"><p>值集：该弹性域段对应的一个值列表，该值集必须在值集定义中设置；</p></li><li class="listitem"><p>显示顺序：弹性域段在界面上的显示顺序；</p></li><li class="listitem"><p>可用：该弹性域段是否有效。</p></li></ul></div></li></ol></div></li></ul></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ar01s02s01s06.html"><img src="images/prev.gif" alt="上一页"></a> </td><td width="20%" align="center"><a accesskey="u" href="ar01s02s01.html"><img src="images/up.gif" alt="上一级"></a></td><td width="40%" align="right"> <a accesskey="n" href="ar01s02s02.html"><img src="images/next.gif" alt="下一页"></a></td></tr><tr><td width="40%" align="left" valign="top">2.1.6. 弹性域 </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="起始页"></a></td><td width="40%" align="right" valign="top"> 2.2. 组织结构设置</td></tr></table></div></body></html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>2.1.7. 弹性域结构</title><link rel="stylesheet" type="text/css" href="test.css"><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"><link rel="home" href="index.html" title="汉得统一服务平台"><link rel="up" href="ar01s02s01.html" title="2.1. 常用设置"><link rel="prev" href="ar01s02s01s06.html" title="2.1.6. 弹性域"><link rel="next" href="ar01s02s02.html" title="2.2. 组织结构设置"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">2.1.7. 弹性域结构</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ar01s02s01s06.html"><img src="images/prev.gif" alt="Prev"></a> </td><th width="60%" align="center">2.1. 常用设置</th><td width="20%" align="right"> <a accesskey="n" href="ar01s02s02.html"><img src="images/next.gif" alt="Next"></a></td></tr></table><hr></div><div class="section" title="2.1.7. 弹性域结构"><div class="titlepage"><div><div><h4 class="title"><a name="id416594"></a>2.1.7. 弹性域结构</h4></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>弹性域，弹性域结构，弹性域段关系介绍：</p>
+            <p>弹性域下可以包含多个弹性域结构，每个弹性域结构由多个弹性域段组成，当要使用弹性域时，首先需要指定弹性域名称，再指定一个附加属性用来确定一个弹性域结构，弹性域结构最终确定了该弹性域的段值。</p>
+          </li><li class="listitem">
+            <p>弹性域段使</p>
+            <p>用实例，以“产品附加信息”弹性域为例：</p>
+            <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+                <p>弹性域信息：</p>
+                <div class="table"><a name="id416648"></a><p class="title"><b>Table 1. </b></p><div class="table-contents">
+                    
+                    <table summary="" border="1"><colgroup><col class="c1"><col class="c2"></colgroup><tbody><tr><td>弹性域编码</td><td>弹性域名称</td></tr><tr><td>PRODUCT_ADDITION_INFO</td><td>产品附加信息</td></tr></tbody></table>
+                  </div></div><p><br class="table-break"></p>
+              </li><li class="listitem">
+                <p>弹性域结构：</p>
+                <div class="table"><a name="id416717"></a><p class="title"><b>Table 2. </b></p><div class="table-contents">
+                    
+                    <table summary="" border="1"><colgroup><col class="c1"><col class="c2"><col class="c3"></colgroup><tbody><tr><td>弹性域结构编码</td><td>结构名称</td><td>结构描述</td></tr><tr><td>COLOR_INFO</td><td>颜色信息</td><td>描述产品的颜色信息</td></tr><tr><td>SHAPE_INFO</td><td>形状信息</td><td>描述产品的形状信息信息</td></tr></tbody></table>
+                  </div></div><p><br class="table-break"></p>
+              </li><li class="listitem">
+                <p>弹性域段信息：</p>
+                <div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem">
+                    <p>COLOR_INFO结构对应的段：</p><div class="table"><a name="id416824"></a><p class="title"><b>Table 3. </b></p><div class="table-contents">
+                        
+                        <table summary="" border="1"><colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"></colgroup><tbody><tr><td>显示顺序</td><td>段编码</td><td>段名称</td><td>值集</td></tr><tr><td>10</td><td>segment1</td><td>正面颜色</td><td>25_VARCHAR</td></tr><tr><td>20</td><td>segment2</td><td>背面颜色</td><td>25_VARCHAR</td></tr><tr><td>30</td><td>segment3</td><td>顶部颜色</td><td>25_VARCHAR</td></tr></tbody></table>
+                      </div></div><p><br class="table-break"></p>
+                  </li><li class="listitem">
+                    <p>SHAPE_INFO结构对应的段：</p><div class="table"><a name="id416967"></a><p class="title"><b>Table 4. </b></p><div class="table-contents">
+                        
+                        <table summary="" border="1"><colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"></colgroup><tbody><tr><td>显示顺序</td><td>段编码</td><td>段名称</td><td>值集</td></tr><tr><td>10</td><td>segment1</td><td>长度</td><td>10_NUMBER</td></tr><tr><td>20</td><td>segment4</td><td>宽度</td><td>10_NUMBER</td></tr><tr><td>30</td><td>segment5</td><td>高度</td><td>10_NUMBER</td></tr></tbody></table>
+                      </div></div><p><br class="table-break"></p>
+                  </li></ul></div>
+              </li></ol></div>
+          </li><li class="listitem">
+            <p>建立弹性域结构：</p>
+            <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+                <p>新建弹性域结构</p>
+                <p>由于弹性域结构属于弹性域，因此在进入弹性域结构的操作之前，首先要选择一个弹性域，弹性域结构的关键属性：</p>
+                <div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem">
+                    <p>名称：弹性域结构的名称</p>
+                  </li><li class="listitem">
+                    <p>结构编码：弹性域结构的编码</p>
+                  </li><li class="listitem">
+                    <p>描述：弹性域结构的描述</p>
+                  </li><li class="listitem">
+                    <p>分隔符：由于弹性域结构由许多段组成，在很多情况下需要使用弹性域结构下所有段连接后的字符串，该分割符就是区分该链接字符串中的每个段。例如：有三段分别为：</p><div class="table"><a name="id417167"></a><p class="title"><b>Table 5. </b></p><div class="table-contents">
+                        
+                        <table summary="" border="1"><colgroup><col class="c1"><col class="c2"><col class="c3"></colgroup><tbody><tr><td>segment1</td><td>segment2</td><td>segment3</td></tr><tr><td>亚太区</td><td>中国</td><td>上海</td></tr></tbody></table>
+                      </div></div><p><br class="table-break"></p>
+                    <p>设置分割符为"<em class="firstterm">.</em>"，则链接后的字符串为：<em class="firstterm">亚太区.中国.上海</em></p>
+                  </li><li class="listitem">
+                    <p>可用：标示该弹性域是否有效。</p>
+                  </li></ul></div>
+              </li><li class="listitem">
+                <p>为弹性域结构添加弹性域段</p>
+                <p>弹性域段是弹性域的最底层设计，多个弹性域段组成一个弹性域结构，当一条记录的弹性域结构定了，在该记录对应的记录中，对的segment段就存放了该弹性域结构下弹性域段的信息。</p>
+                <p>以表2和表3为例，如果选择结构为<em class="firstterm">COLOR_INFO</em>则表中的segment存储为产品 的颜色信息，存储形式如 下：</p><div class="table"><a name="id417288"></a><p class="title"><b>Table 6. </b></p><div class="table-contents">
+                    
+                    <table summary="" border="1"><colgroup><col class="c1"><col class="c2"><col class="c3"></colgroup><tbody><tr><td>segment1</td><td>segment2</td><td>segment3</td></tr><tr><td>红色</td><td>黑色</td><td>蓝色</td></tr></tbody></table>
+                  </div></div><p><br class="table-break"></p>
+                <p>如果选择结构为<em class="firstterm">SHAPE_INFO</em>则表中的segment存储的为产品的形状信息，存储 形式如下：</p><div class="table"><a name="id417367"></a><p class="title"><b>Table 7. </b></p><div class="table-contents">
+                    
+                    <table summary="" border="1"><colgroup><col class="c1"><col class="c2"><col class="c3"></colgroup><tbody><tr><td>sement1</td><td>segment4</td><td>segment5</td></tr><tr><td>120cm</td><td>80cm</td><td>70cm</td></tr></tbody></table>
+                  </div></div><p><br class="table-break"></p>
+                <p>弹性域段的关键属性：</p>
+                <div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem">
+                    <p>段编码：弹性域段对应的数据库存储字段，在设计弹性域时，需要为弹性域对应的表设计弹性域字段，通常为segment1..segment15，15个段。段编码为为下拉列表，同一弹性域下的段编码不能重复；</p>
+                  </li><li class="listitem">
+                    <p>段名称：当前段存储信息的名称，在使用弹性域的界面中，该字段值是显示在界面中来标示当前域所代表的意义；</p>
+                  </li><li class="listitem">
+                    <p>描述：当前弹性域段的详细描述；</p>
+                  </li><li class="listitem">
+                    <p>值集：该弹性域段对应的一个值列表，该值集必须在值集定义中设置；</p>
+                  </li><li class="listitem">
+                    <p>显示顺序：弹性域段在界面上的显示顺序；</p>
+                  </li><li class="listitem">
+                    <p>可用：该弹性域段是否有效。</p>
+                  </li></ul></div>
+              </li></ol></div>
+          </li></ul></div>
+      </div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ar01s02s01s06.html"><img src="images/prev.gif" alt="Prev"></a> </td><td width="20%" align="center"><a accesskey="u" href="ar01s02s01.html"><img src="images/up.gif" alt="Up"></a></td><td width="40%" align="right"> <a accesskey="n" href="ar01s02s02.html"><img src="images/next.gif" alt="Next"></a></td></tr><tr><td width="40%" align="left" valign="top">2.1.6. 弹性域 </td><td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.gif" alt="Home"></a></td><td width="40%" align="right" valign="top"> 2.2. 组织结构设置</td></tr></table></div></body></html>
