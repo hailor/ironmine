@@ -14,6 +14,7 @@ class Skm::EntryReportsController < ApplicationController
     @entry_submit = Skm::EntryHeader.query_by_day.
                          date_between_value(@table_column,@timeframes_start_date,@timeframes_end_date)
     entry_submit_array = Array.new
+     
     @entry_submit.each do |elem|
          entry_submit_array << [elem[:created_day],elem[:entry_count]]
     end
