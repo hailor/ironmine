@@ -20,6 +20,10 @@ class Skm::EntryHeader < ActiveRecord::Base
     where("#{table_name}.author_id = ?", person_id).
     where("#{table_name}.entry_status_code = ?", "DRAFT")
   }
+
+  scope :query_by_day,select("DATE_FORMAT(#{table_name}.created_at,'%Y-%m-%d') created_day,sum(1) entry_count").
+                      group("DATE_FORMAT(#{table_name}.created_at,'%Y-%m-%d')").
+                      order("DATE_FORMAT(#{table_name}.created_at,'%Y-%m-%d') asc")
   
   def self.generate_doc_number(prefix = "")
       num = Time.now.strftime("%y%m%d").to_i * 1000000 + rand(10)

@@ -3,6 +3,10 @@ class Irm::CommonReportsController < ApplicationController
   end
 
   def rpt_person_login_summary
+    auto_run = params[:auto_run]
+     if auto_run?(auto_run)
+       return
+     end
     @table_column = params[:table_column]||"#{Irm::LoginRecord.table_name}.created_at"
     @timeframes_start_date = params[:timeframes_start_date]||show_date(:months_advance=>-1)
     @timeframes_end_date = params[:timeframes_end_date]||show_date

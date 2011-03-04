@@ -30,6 +30,7 @@ en:
    label_csi_survey_please_input: Please Input Survey PassWord
    label_csi_survey_timestamps: TimeStamp
    label_csi_survey_result: Survey Result
+   label_csi_survey_result_chart: Survey Result Chart
    result: Result
    export: Export
    #========================= end   irm regions_controller=======================#

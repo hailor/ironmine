@@ -134,6 +134,10 @@ class Csi::SurveysController < ApplicationController
     @response_batch = Time.now.to_i.to_s+Irm::Person.current.id.to_s+rand(9).to_s
     @response_time = Time.now
     @thank_message = Csi::Survey.find(@survey_id).thanks_message
+    #得到当前调查的ip
+    @ip_address =request.remote_ip
+    #得到当前的person_id
+    @current_person_id = Irm::Person.current
     if @thank_message.blank?
       @thank_message = t(:label_csi_default_thanks_message)
     end
@@ -150,9 +154,10 @@ class Csi::SurveysController < ApplicationController
                       other_result=results.detect {|c| c.is_a?(Hash)}
                           @survey_result=Csi::SurveyResult.new({:subject_id=>@subject_id,
                                                  :subject_result=>other_result['other'],
-                                                 :person_id =>Irm::Person.current,
+                                                 :person_id =>@current_person_id,
                                                  :response_batch=>@response_batch,
                                                  :response_time=>@response_time,
+                                                 :ip_address=>@ip_address,
                                                  :option_type=>"other"})
                           @survey_result.save!
 
@@ -164,9 +169,10 @@ class Csi::SurveysController < ApplicationController
                         if !result.is_a?(Hash)
                          @survey_result=Csi::SurveyResult.new({:subject_id=>@subject_id,
                                                                :subject_result=>result,
-                                                               :person_id =>Irm::Person.current,
+                                                               :person_id =>@current_person_id,
                                                                :response_batch=>@response_batch,
                                                                :response_time=>@response_time,
+                                                               :ip_address=>@ip_address,
                                                                :option_type=>"normal"})
                          @survey_result.save!
                         end
@@ -174,9 +180,10 @@ class Csi::SurveysController < ApplicationController
                     end
                else
                   @survey_result = Csi::SurveyResult.new({:subject_id=>@subject_id,
-                                                          :person_id =>Irm::Person.current,
+                                                          :person_id =>@current_person_id,
                                                           :response_batch=>@response_batch,
                                                           :response_time=>@response_time,
+                                                          :ip_address=>@ip_address,
                                                           :subject_result=>results})
                   @survey_result.save!
                end
@@ -220,6 +227,9 @@ class Csi::SurveysController < ApplicationController
 
   def show_result
     @survey_id = params[:id]
+    survey = Csi::Survey.query(@survey_id).first
+    @survey_code = survey.survey_code
+    @survey_title = survey.title
     @subjects = Csi::SurveySubject.query_by_survey_id(@survey_id)
     @batch_results = Csi::SurveyResult.query_distinct_response_batch(@survey_id)
   end
@@ -269,6 +279,14 @@ class Csi::SurveysController < ApplicationController
     respond_to do |format|
       format.json {render :json=>to_jsonp(incident_requests.to_grid_json([:urgency_name,:urgency_count], 3))}
     end
+  end
+
+  def survey_report
+    @survey_id = params[:id]
+    survey = Csi::Survey.query(@survey_id).first
+    @survey_code = survey.survey_code
+    @survey_title = survey.title
+    @return_url=request.env['HTTP_REFERER']
   end
 
   private

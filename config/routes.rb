@@ -556,8 +556,12 @@ Ironmine::Application.routes.draw do
     match '/group_assignments/new(.:format)' => "group_assignments#new", :via => :get
     match '/group_assignments/create(.:format)' => "group_assignments#create", :via => :post
     match '/group_assignments/get_data(.:format)' => "group_assignments#get_data"
-    match '/group_assignments/:id(.:format)' => "group_assignments#show", :via => :get
     match '/group_assignments/:id/destroy(.:format)' => "group_assignments#destroy"
+    match '/group_assignments/get_customer_departments(.:format)' => "group_assignments#get_customer_departments", :via => :get
+    match '/group_assignments/get_customer_sites(.:format)' => "group_assignments#get_customer_sites", :via => :get
+    match '/group_assignments/get_customer_site_groups(.:format)' => "group_assignments#get_customer_site_groups", :via => :get
+    match '/group_assignments/get_customer_people(.:format)' => "group_assignments#get_customer_people", :via => :get
+    match '/group_assignments/get_customer_organizations(.:format)' => "group_assignments#get_customer_organizations", :via => :get
   end
 
   scope :module => "cms" do
@@ -583,7 +587,7 @@ Ironmine::Application.routes.draw do
     match '/surveys/:id/show_result(.:format)' => "surveys#show_result", :via => :get
     match '/surveys/:id/export_result(.:format)' => "surveys#export_result", :via => :get
     match '/surveys/test(.:format)' => "surveys#test", :via => :get
-    match '/surveys/survey_report(.:format)' => "surveys#survey_report", :via => :get
+    match '/surveys/:id/survey_report(.:format)' => "surveys#survey_report", :via => :get
     match '/surveys/get_survey_report(.:format)' => "surveys#get_survey_report", :via => :get
     match '/surveys/:id(.:format)' => "surveys#show", :via => :get
     #survey_subjects
@@ -652,6 +656,9 @@ Ironmine::Application.routes.draw do
     match '/entry_headers/remove_favorite(.:format)' => "entry_headers#remove_favorite", :via => :get
     match '/entry_headers/my_drafts(.:format)' => "entry_headers#my_drafts", :via => :get
     match '/entry_headers/:person_id/my_drafts_data' => "entry_headers#my_drafts_data"
+    #entry_reports
+    match '/entry_reports/rpt_entry_submit_summary(.:format)'=>"entry_reports#rpt_entry_submit_summary"
+    match '/entry_reports(/index)(.:format)'=>"entry_reports#index"
 
     #file_managements
     match '/file_managements(/index)(.:format)' => "file_managements#index", :via => :get

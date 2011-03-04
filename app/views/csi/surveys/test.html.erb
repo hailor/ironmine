@@ -34,12 +34,19 @@ body {
     max-width: 400px;
     height:200px;
 }
-#mychart2 {
+#mycharts2 {
     margin:10px 10px 10px 10px;
     width:90%;
     max-width: 400px;
     height:200px;
 }
+#mychart3 {
+    margin:10px 10px 10px 10px;
+    width:90%;
+    max-width: 800px;
+    height:400px;
+}
+
 </style>
 
 <!--end custom header content for this example-->
@@ -65,35 +72,39 @@ body {
 <script type="text/javascript">
 (function()
     {
-        GY.use('charts', function (Y)
+        YUI().use('charts', function (Y)
         {
             // Create data
             var myDataValues = [
-                    {day:"Monday", taxes:2000},
-                    {day:"Tuesday", taxes:2000},
-                    {day:"Wednesday", taxes:4000},
-                    {day:"Thursday", taxes:200},
-                    {day:"Friday", taxes:2000}
+            {category:"5/1/2010", Miscellaneous:2000},
+            {category:"5/2/2010", Miscellaneous:50},
+            {category:"5/3/2010", Miscellaneous:400},
+            {category:"5/4/2010", Miscellaneous:200},
+            {category:"5/5/2010", Miscellaneous:5000}
             ];
+            var myTooltip = {
+            styles: {
+                backgroundColor: "#333",
+                color: "#eee",
+                borderColor: "#eee",
+                textAlign: "center",
+                padding: "2px 8px 2px 8px"
+            },
+            markerLabelFunction: function(categoryItem, valueItem, itemIndex, series, seriesIndex)
+            {
+                var msg = "<span style=\"text-decoration:underline\">" + "日期" + " : " +
+                categoryItem.axis.get("labelFunction").apply(this, [categoryItem.value, categoryItem.axis.get("labelFormat")]) +
+                "</span><br/><div style=\"margin-top:5px;\">" + "红利" + " : " + valueItem.axis.get("labelFunction").apply(
+                        this, [valueItem.value, valueItem.axis.get("labelFormat")]) + "</div>";
+                return msg;
+            }
+            };
 
-            var pieGraph = new Y.Chart({
-                    render:"#mychart",
-                    categoryKey:"day",
-                    seriesKeys:["taxes"],
+            var pieGraph111 = new Y.Chart({
                     dataProvider:myDataValues,
                     type:"pie",
-                    seriesCollection:[
-                        {
-                            categoryKey:"day",
-                            valueKey:"taxes",
-                            styles:{
-                                    fill:{
-                                        colors:['#194E84','#60BB22','#F2BABB','#FFC200',
-                                            '#FF5B00','#B80028','#84002E','#4AC0F2']
-                                    }
-                                   }
-                        }
-                    ]
+                    render:"#mychart",
+                    tooltip: myTooltip
                 });
         });
     }
@@ -139,39 +150,76 @@ body {
 })();
 </script>
 
-<div id="mychart2"></div>
+<div id="mycharts2"></div>
+<script type="text/javascript">
+(function()
+{
+GY.use('charts', function (Y)
+{
+var pieGraph = new Y.Chart({
+ render:"#mycharts2",
+ categoryKey:"category",
+ seriesKeys:["value"],
+ dataProvider:[{category:"没有",value:4}],
+ type:"pie",
+ seriesCollection:[
+ {
+ categoryKey:"category",
+ valueKey:"value",
+ styles:{
+ fill:{
+ colors:['#194E84','#60BB22','#F2BABB','#FFC200',
+ '#FF5B00','#B80028','#84002E','#4AC0F2']
+ }
+ }
+ }
+ ]
+ });
+ })
+ }
+ )();
+</script>
+
+<div id="mychart3"></div>
 <script type="text/javascript">
 (function() {
-    GY.use('charts', function (Y)
+    YUI().use('charts', function (Y)
     {
         var myDataValues = [
-            {category:"5/1/2010", values:9000, expenses:3700, revenue:2200},
-            {category:"5/2/2010", values:50, expenses:9100, revenue:100},
-            {category:"5/3/2010", values:400, expenses:1100, revenue:1500},
-            {category:"5/4/2010", values:200, expenses:1900, revenue:2800},
-            {category:"5/5/2010", values:5000, expenses:5000, revenue:2650}
+            {category:"5/1/2010", Miscellaneous:2000},
+            {category:"5/2/2010", Miscellaneous:50},
+            {category:"5/3/2010", Miscellaneous:400},
+            {category:"5/4/2010", Miscellaneous:200},
+            {category:"5/5/2010", Miscellaneous:5000}
         ];
 
-        var myChart = new Y.Chart({
-                 dataProvider:myDataValues,
-                 render:"#mychart2",
-                 type:"column",
-                 seriesCollection:[
-                        {
-                            styles:{
-                                marker:{
-                                  fill:{
-                                        colors:['#194E84','#60BB22','#F2BABB','#FFC200',
-                                            '#FF5B00','#B80028','#84002E','#4AC0F2']
-                                    }
-                                   }
-                            }
-                        }
-                    ]
-                 });
+        var myTooltip = {
+            styles: {
+                backgroundColor: "#333",
+                color: "#eee",
+                borderColor: "#eee",
+                textAlign: "center",
+                padding: "2px 8px 2px 8px"
+            },
+            markerLabelFunction: function(categoryItem, valueItem, itemIndex, series, seriesIndex)
+            {
+                var msg = "<span style=\"text-decoration:underline\">" + valueItem.displayName + " for " +
+                categoryItem.axis.get("labelFunction").apply(this, [categoryItem.value, categoryItem.axis.get("labelFormat")]) +
+                "</span><br/><div style=\"margin-top:5px;font-weight:bold\">" + valueItem.axis.get("labelFunction").apply(this, [valueItem.value, valueItem.axis.get("labelFormat")]) + "</div>";
+                return msg;
+            }
+        };
+
+        var mychart = new Y.Chart({
+                            dataProvider:myDataValues,
+                            type:"pie",
+                            render:"#mychart3", 
+                            tooltip: myTooltip
+                        });
     });
 })();
 </script>
+
 </body>
 </html>
 

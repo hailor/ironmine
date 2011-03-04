@@ -3,6 +3,7 @@ class Irm::LoginRecordsController < ApplicationController
   def index
 
   end
+
   def get_data
     @login_records = Irm::LoginRecord.query_with_info
     respond_to do |format|

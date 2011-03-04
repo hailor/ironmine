@@ -8,6 +8,15 @@
     </div>
   </div>
 </div>
+
+<div class="lightBlue">
+    <div class="bPageTitle">
+        <div style="background-color: rgb(23, 151, 192);" class="secondaryPalette">
+          <h1 class="title"><%= t(:label_csi_survey_info) %><%= @survey_code %>：&nbsp;&nbsp;<%=@survey_title%></h1>
+        </div>
+    </div>
+</div>
+
 <div class="bPageBlock">
 <div class="pbHeader">
   <table border="0" cellpadding="0" cellspacing="0">
@@ -18,6 +27,7 @@
           <div class="button"><%= link_to t(:return), {:action=>"index"}%></div>
           <% if @batch_results.present? %>
              <div class="button"><%= link_to t(:export), {:action=>"export_result",:format => "xls"}%></div>
+             <div class="button"><%= link_to t(:report), {:action=>"survey_report",:id=>@survey_id}%></div>
           <% end %>
         </td>
       </tr>

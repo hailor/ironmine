@@ -30,6 +30,7 @@ zh:
    label_csi_message_blank: 该题为必答题，请填写
    label_csi_survey_timestamps: 时间
    label_csi_survey_result: 调查结果
+   label_csi_survey_result_chart: 调查结果图表
    result: 结果
    export: 导出
    #========================= end   irm regions_controller=======================#
