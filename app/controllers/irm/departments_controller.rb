@@ -100,7 +100,7 @@ class Irm::DepartmentsController < ApplicationController
     respond_to do |format|
       format.html
       format.xml  { head :ok }
-      format.js { render :json => departments.collect{|d| {:id=>d.id,:name=>d[:name]}} }
+      format.js   { render :json => departments.collect{|d| {:id=>d.id,:name=>d[:name]}} }
     end
   end
 end
