@@ -15,7 +15,7 @@ class Skm::EntryReportsController < ApplicationController
                          date_between_value(@table_column,@timeframes_start_date,@timeframes_end_date)
     entry_submit_array = Array.new
     @entry_submit.each do |elem|
-         entry_submit_array << [elem[:created_day],elem[:login_count]]
+         entry_submit_array << [elem[:created_day],elem[:entry_count]]
     end
     @data_provider = to_chart_json(entry_submit_array)
    end
