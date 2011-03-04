@@ -22,4 +22,8 @@ module Icm::GroupAssignmentsHelper
   def available_ass_support_groups
     Irm::SupportGroup.multilingual.enabled.collect{|p|[p[:name], p[:group_code]]}
   end
+
+  def available_ass_organizations
+    Irm::Organization.multilingual.enabled.collect{|p|[p[:name], p[:id]]}
+  end
 end

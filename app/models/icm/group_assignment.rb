@@ -30,6 +30,11 @@ class Icm::GroupAssignment < ActiveRecord::Base
         joins("LEFT OUTER JOIN #{Irm::SupportGroup.table_name} su ON su.group_code = #{table_name}.support_group_code").
         joins("LEFT OUTER JOIN #{Irm::SupportGroupsTl.table_name} sut ON sut.language = '#{I18n.locale}' AND su.id = sut.support_group_id")
   }
+  scope :with_organizations, lambda {
+    select("sut.name support_group_name").
+        joins("LEFT OUTER JOIN #{Irm::Organization.table_name} o ON o.id = #{table_name}.customer_organization_id").
+        joins("LEFT OUTER JOIN #{Irm::OrganizationsTl.table_name} ot ON sut.language = '#{I18n.locale}' AND su.id = sut.support_group_id")
+  }  
 
   scope :query_by_company, lambda{|company_id|
     where("#{table_name}.customer_company_id = ?", company_id)

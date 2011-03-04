@@ -33,28 +33,58 @@
         <tbody>
             <tr>
               <td class="labelCol"><label for="ass_support_group"><%=t(:label_icm_incident_request_support_group)%></label></td>
-              <td class="dataCol"><%=f.select :support_group_code, available_ass_support_groups,{}, {:id=>"support_group", :required => true}%></td>
+              <td class="dataCol"><%=f.select :support_group_code,
+                                              available_ass_support_groups,
+                                              {},
+                                              {:id=>"support_group", :required => true}%></td>
               <td class="labelCol"></td>
               <td class="dataCol"></td>
             </tr>
             <tr>
               <td class="labelCol"><label for="ass_company"><%=t(:label_irm_company_name)%></label></td>
-              <td class="dataCol"><%=f.select :customer_company_id, available_ass_companies,{},{:id=>"ass_company", :required => true}%></td>
+              <td class="dataCol"><%=f.select :customer_company_id,
+                                              available_ass_companies,
+                                              {},
+                                              {:id=>"ass_company", :required => true}%></td>
               <td class="labelCol"></td>
               <td class="dataCol"></td>
             </tr>
             <tr>
-              <td class="labelCol"><label for="ass_site_group"><%=t(:label_irm_location_site_group)%></label></td>
-              <td class="dataCol"><%=f.select :customer_site_group_code, nullable_options_for_select(available_ass_site_groups, @group_assignment.customer_site_group_code),{},{:id=>"ass_site_group"}%></td>
-              <td class="labelCol"><label for="ass_department"><%=t(:label_irm_location_department)%></label></td>
-              <td class="dataCol"><%=f.select :customer_department_id, nullable_options_for_select(available_ass_departments, @group_assignment.customer_department_id),{},{:id=>"ass_department"}%></td>
+              <td class="labelCol"><label for="ass_organization"><%=t(:label_irm_location_organization)%></label></td>
+              <td class="dataCol"><%=f.select :customer_organization_id,
+                                              nullable_options_for_select([],nil),
+                                              {},
+                                              {:id=>"ass_organization",
+                                               :depend=>"ass_company",
+                                               :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
+                                               :href=>url_for(:controller=>"icm/group_assignments",:action=>"get_customer_organizations",:format=>"json",:customer_company_id=>"{ass_company}")}%></td>
+              <td class="labelCol"></td>
+              <td class="dataCol"></td>
             </tr>
             <tr>
-              <td class="labelCol"><label for="ass_site"><%=t(:label_irm_company_site_info)%></label></td>
-              <td class="dataCol"><%=f.select :customer_site_code, nullable_options_for_select(available_ass_sites, @group_assignment.customer_site_code),{},{:id=>"ass_site"}%></td>
-              <td class="labelCol"><label for="ass_people"><%=t(:label_irm_person)%></label></td>
-              <td class="dataCol"><%=f.select :customer_person_id, nullable_options_for_select(available_ass_people, @group_assignment.customer_person_id),{},{:id=>"ass_people"}%></td>
+              <td class="labelCol"><label for="ass_department"><%=t(:label_irm_location_department)%></label></td>
+              <td class="dataCol"><%=f.select :customer_department_id,
+                                              nullable_options_for_select([],nil),
+                                              {},
+                                              {:id=>"ass_department",
+                                               :depend=>"ass_organization",
+                                               :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
+                                               :href=>url_for(:controller=>"icm/group_assignments",:action=>"get_customer_departments",:format=>"json",:customer_organization_id=>"{ass_organization}")}%></td>
+              <td class="labelCol"></td>
+              <td class="dataCol"></td>
             </tr>
+            <tr>
+              <td class="labelCol"><label for="ass_people"><%=t(:label_irm_person)%></label></td>
+              <td class="dataCol"><%=f.select :customer_person_id,
+                                              nullable_options_for_select([],nil),
+                                              {},
+                                              {:id=>"ass_people",
+                                              :depand=>"ass_department",
+                                              :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
+                                              :href=>url_for(:controller=>"icm/group_assignments",:action=>"get_customer_people",:format=>"json",:customer_department_id=>"{ass_department}")}%></td>
+              <td class="labelCol"></td>
+              <td class="dataCol"></td>
+            </tr>            
             <tr>
               <td class="labelCol"><label for="ass_status_code"><%=(t :active)%></label></td>
               <td class="dataCol"><%=f.select :status_code, available_active_status, {}, {:id => "ass_status_code"}%></td>
@@ -80,3 +110,11 @@
   </div>
 </div>
 <% end %>
+<script type="text/javascript">
+  GY.use("cascadeselect",function(Y){
+     new Y.CascadeSelect({source: "#ass_company",target:["#ass_organization"]});
+     new Y.CascadeSelect({source: "#ass_organization",target:["#ass_department"]});
+     new Y.CascadeSelect({source: "#ass_department",target:["#ass_people"]});
+  });
+</script>
+

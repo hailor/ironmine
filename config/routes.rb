@@ -556,8 +556,12 @@ Ironmine::Application.routes.draw do
     match '/group_assignments/new(.:format)' => "group_assignments#new", :via => :get
     match '/group_assignments/create(.:format)' => "group_assignments#create", :via => :post
     match '/group_assignments/get_data(.:format)' => "group_assignments#get_data"
-    match '/group_assignments/:id(.:format)' => "group_assignments#show", :via => :get
     match '/group_assignments/:id/destroy(.:format)' => "group_assignments#destroy"
+    match '/group_assignments/get_customer_departments(.:format)' => "group_assignments#get_customer_departments", :via => :get
+    match '/group_assignments/get_customer_sites(.:format)' => "group_assignments#get_customer_sites", :via => :get
+    match '/group_assignments/get_customer_site_groups(.:format)' => "group_assignments#get_customer_site_groups", :via => :get
+    match '/group_assignments/get_customer_people(.:format)' => "group_assignments#get_customer_people", :via => :get
+    match '/group_assignments/get_customer_organizations(.:format)' => "group_assignments#get_customer_organizations", :via => :get
   end
 
   scope :module => "cms" do

@@ -80,3 +80,13 @@
   </div>
 </div>
 <% end %>
+
+<script type="text/javascript">
+  GY.use("cascadeselect",function(Y){
+     new Y.CascadeSelect({source: "#ass_company",target:["#ass_site_group"]});
+     new Y.CascadeSelect({source: "#ass_company",target:["#ass_organization"]});
+     new Y.CascadeSelect({source: "#ass_site_group",target:["#ass_site"]});
+     new Y.CascadeSelect({source: "#ass_organization",target:["#ass_department"]});
+     new Y.CascadeSelect({source: "#ass_department",target:["#ass_people"]});
+  });
+</script>
