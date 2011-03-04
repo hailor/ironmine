@@ -68,6 +68,7 @@ zh:
   label_checked: 选取的
   label_unchecked: 未选取的
   more_info: 更多信息
+  help: 帮助
   #常用语句
   notice_account_invalid_creditentials: 用户名或密码错误
   successfully_updated: 已经成功更新数据
@@ -544,7 +545,7 @@ zh:
   label_irm_general_category_segment3: 第三段
   label_irm_general_category_concact_segment: 分类组合
   error_segment_combination_existed: 同一公司下不能有相同的分类组合
-  #=========================end operational_catalogs_controller=======================#
+  #=========================end general_category_controller=======================#
   #=========================    irm support_groups_controller=======================#
   label_irm_support_group_company_name: 公司名称
   label_irm_support_group_organization_name: 组织名称
