@@ -93,4 +93,5 @@ module Csi::SurveysHelper
     end
     survey_chart.html_safe
   end
+
 end

@@ -227,6 +227,9 @@ class Csi::SurveysController < ApplicationController
 
   def show_result
     @survey_id = params[:id]
+    survey = Csi::Survey.query(@survey_id).first
+    @survey_code = survey.survey_code
+    @survey_title = survey.title
     @subjects = Csi::SurveySubject.query_by_survey_id(@survey_id)
     @batch_results = Csi::SurveyResult.query_distinct_response_batch(@survey_id)
   end
@@ -280,6 +283,10 @@ class Csi::SurveysController < ApplicationController
 
   def survey_report
     @survey_id = params[:id]
+    survey = Csi::Survey.query(@survey_id).first
+    @survey_code = survey.survey_code
+    @survey_title = survey.title
+    @return_url=request.env['HTTP_REFERER']
   end
 
   private
