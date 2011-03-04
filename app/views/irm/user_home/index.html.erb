@@ -16,44 +16,84 @@
   </div>
 </div>
 
-<div id="tabView" class="bMiniTab"></div>
-<%= tabview("tabView", {t(:label_irm_permission) => 'permissions/data_grid.js', t(:label_irm_product_module) => 'product_modules/data_grid.js'}) %>
-  
 <table class="toolsContent">
     <tbody>
         <tr>
           <td>
             <div class="toolsContentLeft">
               <div class="bSubBlock">
-                <h3 class="lbHeader">报表</h3>
+                <h3 class="lbHeader"><%= t :my_all_count %></h3>
                 <div class="lbBody">
-                  <ul>
-                    <li><a href="javascript:void(0);">已启用客户</a></li>
-                    <li><a href="javascript:void(0);">已启用客户</a></li>
-                    <li><a href="javascript:void(0);">已启用客户</a></li>
-                    <li><a href="javascript:void(0);">已启用客户</a></li>
-                  </ul>
-                </div>
-                <div class="lbBody">
-                  <div class="mainLink">
-                    <a href="javascript:void(0);">转至报表</a>
-                  </div>
+                  <table class="toolsContentListTable">
+                    <tr>
+                      <td><a href="#">今天提交的事故单</a></td>
+                      <td class="tdRight">0</td>
+                    </tr>
+                    <tr>
+                      <td><a href="#">今天有回复的事故单</a></td>
+                      <td class="tdRight">5</td>
+                    </tr>
+                    <tr>
+                      <td><a href="#">今天解决的事故单</a></td>
+                      <td class="tdRight">0</td>
+                    </tr>
+                    <tr>
+                      <td><a href="#">我提交的事故单</a></td>
+                      <td class="tdRight">16</td>
+                    </tr>
+                    <tr>
+                      <td><a href="#">我今天回复的事故单</a></td>
+                      <td class="tdRight">1</td>
+                    </tr>
+                  </table>
                 </div>
               </div>
             </div>
           </td>
           <td>
-            <div id="myDrag" class="toolsContentRight">
+            <div class="toolsContentRight">
               <div class="bSubBlock">
-                <h3 class="lbHeader">报表</h3>
+                <h3 class="lbHeader"><%= t :my_task %></h3>
                 <div class="lbBody">
                   <ul>
-                    <li><a href="javascript:void(0);">导入我的组织的客户 & 联系人</a></li>
-                    <li><a href="javascript:void(0);">导入我的客户 & 联系人</a></li>
-                    <li><a href="javascript:void(0);">批量删除客户</a></li>
-                    <li><a href="javascript:void(0);">转移客户</a></li>
-                    <li><a href="javascript:void(0);">合并客户</a></li>
+                    <li>没有任务</li>
                   </ul>
+                </div>
+                    <div class="quickCreateField">
+                      <div class="button"><input class="btn" type="button" value="创建任务"></div><br>
+                    </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="toolsContentRight">
+              <div class="bSubBlock">
+                <h3 class="lbHeader">公告</h3>
+                <div class="lbBody">
+                  <table class="toolsContentListTable">
+                    <tr>
+                      <td><a href="javascript:void(0);">2011年部门年度计划</a></td>
+                      <td class="tdRight">2011-2-13</td>
+                    </tr>
+                    <tr>
+                      <td><a href="javascript:void(0);">统一维护工作量考察细则</a></td>
+                      <td class="tdRight">2011-2-13</td>
+                    </tr>
+                    <tr>
+                      <td><a href="javascript:void(0);">关于1月份系统访问缓慢的详细报告</a></td>
+                      <td class="tdRight">2011-1-21</td>
+                    </tr>
+                    <tr>
+                      <td><a href="javascript:void(0);">近期服务器升级公告</a></td>
+                      <td class="tdRight">2011-1-15</td>
+                    </tr>
+                    <tr>
+                      <td><a href="javascript:void(0);">统一维护工作规范</a></td>
+                      <td class="tdRight">2011-1-4</td>
+                    </tr>
+                  </table>
                 </div>
               </div>
             </div>
@@ -89,17 +129,6 @@
     width:33%;
   }
 </style>
-<div id="portalSource" class="portalSource">
-  <div class="portalSourceItem" >ccccccccccccccccccc1xxxxxxxxxxxx</div>
-  <div class="portalSourceItem" >ccccccccccccccccccc2xxxxxxxxxxxx</div>
-  <div class="portalSourceItem" >ccccccccccccccccccc3xxxxxxxxxxxx</div>
-</div>
-<div id="portalContent" class="portalContent">
-  <div class="portalModule threeColumn" id="portalModule13"></div>
-  <div class="portalModule twoColumn" id="portalModule12"></div>
-  <div class="portalModule oneColumn" id="portalModule11"></div>   
-</div>
-
 <script type="text/javascript">
   GY.use('dd', function(Y) {
       function Portal() {
@@ -172,7 +201,7 @@
               drag.set('target', true);
               drag._unprep();
               drag.set('node', mod);
-              drag._prep();              
+              drag._prep();
 
           },
           _stopper: function(e){
@@ -183,7 +212,7 @@
             Y.one("#"+this.get("domId")).all(".portalModule").addClass("moduleAsDrop");
           },
           _unsetupModule: function(){
-            Y.one("#"+this.get("domId")).all(".portalModule").removeClass("moduleAsDrop");    
+            Y.one("#"+this.get("domId")).all(".portalModule").removeClass("moduleAsDrop");
           },
           _movePortlet: function(drag,drop){
               Y.log("i am moving");
@@ -194,7 +223,7 @@
               }
               Y.Lang.later(50, Y, function() {
                   Y.DD.DDM.syncActiveShims(true);
-              });              
+              });
 
           },
           _dropEnter: function(e){
@@ -205,14 +234,14 @@
               }
           },
           _dragDrag: function(e){
-            //Y.log("DragDrag");    
+            //Y.log("DragDrag");
           },
           _dragDrophit: function(e){
               Y.log("DragDrophit");
           },
           _dragStart: function(e){
             Y.log("DragStart");
-            this._setupModule();  
+            this._setupModule();
           },
           _dragEnd: function(e){
               this._unsetupModule();
