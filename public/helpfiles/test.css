@@ -1,0 +1,107 @@
+﻿/* A style sheet to format the HTML output produced by DocBook */
+
+/* This style sheet was created by Scott Nesbitt (scott@scottnesbitt.net). Feel free to use and modify this file, but please do not delete these comments. */
+
+/*  ################################################################################ */
+
+body {background-color: #ffffff;
+      font-family: Helvetica, Arial, sans-serif;
+      /*width: 980px;
+      margin-left:auto;
+      margin-right:auto;*/}
+         
+      
+h1 {font-family: Helvetica, Verdana, Utopia, sans-serif;
+    font-size: x-large;
+    color: #00486A;
+    /*margin-left: -65px*/}
+    
+h2 {font-family: Helvetica, Verdana, Utopia, sans-serif;
+    font-size: large;
+    color: #00486A;
+    /* margin-left: -55px */}
+    
+h3, h4 {font-family: Helvetica, Verdana, Utopia, sans-serif;
+        font-weight: bold;
+        color: #00699B} 
+
+p {font-family: Helvetica, Arial, sans-serif;
+   font-size: small;
+   margin-bottom: 14pt;
+   line-height: 13pt}
+
+.corpauthor {text-align: right;
+             font-size: 10pt;
+             /*padding-top: 13pt;*/
+             padding-bottom: 13pt}
+
+h1.title {font-family: Helvetica, Verdana, Utopia, sans-serif;
+          font-size: x-large;
+          font-weight: bold;
+          border-bottom: medium black outset}
+          
+h3.title {font-family: Helvetica, Verdana, Utopia, sans-serif;
+          font-weight: bold;
+          } 
+                   
+.navheader {
+   /* background-color: #1797C0;*/
+    font-family: Tahoma,Ariel,Helvetica,sans-serif;
+    font-size: 12px;
+}
+
+.navfooter {
+	 /* background-color: #1797C0;*/
+    font-family: Tahoma,Ariel,Helvetica,sans-serif;
+    font-size: 12px;
+}
+
+.itemizedlist {margin-left: 10pt;
+               font-family: sans-serif;
+               font-size: small}
+
+.programlisting {font-family: monospace;
+                 font-size: small;
+                 background-color: #E6E6E6;
+                 border: thin black inset}
+                 
+code, tt {font-family: monospace;
+          font-size: small}                 
+                 
+.orderedlist {margin-left: 10pt;
+              font-family: sans-serif;
+              font-size: small}
+
+.emphasis {font-style: italics}  
+
+       
+
+/* The following two styles are only relevant if you clean up your HTML files with HTML Tidy */
+/* (http://tidy.sourceforge.net) and use Tidy's CSS option */
+
+.c2 {clear: both}
+
+.c1 {font-weight: bold}
+
+
+p.stanza {
+    padding: 0 0 0 5em;
+}
+span.line {
+    font-style: italic;
+    padding: 2em;
+}
+div.literallayout, pre.screen {
+    background-color: grey;
+    font-family: courier;
+    padding: 2em;
+}
+pre.programlisting {
+    background-color: #ECF1EF;
+    border: thin solid black;
+    padding: 2em;
+}
+
+img {
+    border-width: 0;
+}
