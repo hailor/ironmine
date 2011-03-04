@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Csi::SurveyResult < ActiveRecord::Base
   set_table_name :csi_survey_results
 
@@ -16,6 +17,15 @@ class Csi::SurveyResult < ActiveRecord::Base
                                                               where("css.survey_id = ? AND css.id = #{table_name}.subject_id",
                                                                      survey_id)}
 
+
+  scope :query_by_option_type,lambda{|subject_id,option_type| select("#{table_name}.subject_result,sum(1) result_count").
+                                                              where("#{table_name}.subject_id = ? AND #{table_name}.option_type = ? ",
+                                                                     subject_id,option_type).
+                                                              group("#{table_name}.subject_result")}
+
+  scope :query_other_option_type,lambda{|subject_id,option_type| select("'其它' subject_result,sum(1) result_count").
+                                                              where("#{table_name}.subject_id = ? AND #{table_name}.option_type = ? ",
+                                                                     subject_id,option_type)}
 
 
 

@@ -369,5 +369,23 @@ module ApplicationHelper
      (Time.now.advance(:months => advance)).strftime("%Y-%m-%d").to_s
   end
 
+  #简单讲hash和数组中的数据转换成图表所需要的数据
+   def to_chart_json(chart_data)
+      json = %Q([)
+      if chart_data.is_a?(Hash)
+        chart_data.each do |key,value|
+          json << %Q({category:"#{key}",value:#{value}},)
+        end
+        json.chomp!(",")
+      elsif chart_data.is_a?(Array)
+        chart_data.each do |elem|
+          json << %Q({category:"#{elem[0]}",value:#{elem[1]}},)
+        end
+        json.chomp!(",")
+      end
+      json << "]"
+      json
+    end
+
 
 end

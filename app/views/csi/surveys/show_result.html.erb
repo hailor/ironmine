@@ -18,6 +18,7 @@
           <div class="button"><%= link_to t(:return), {:action=>"index"}%></div>
           <% if @batch_results.present? %>
              <div class="button"><%= link_to t(:export), {:action=>"export_result",:format => "xls"}%></div>
+             <div class="button"><%= link_to t(:report), {:action=>"survey_report",:id=>@survey_id}%></div>
           <% end %>
         </td>
       </tr>
