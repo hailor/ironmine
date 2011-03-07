@@ -53,7 +53,7 @@
             </tr>
           </thead>
           <tbody>
-            <%= f.fields_for main_data.multilingual_options[:lang_relation].to_sym do |tl_f|%>
+            <%= f.fields_for main_data.multilingual_options[:lang_relation].to_sym,:builder => LabellingFormBuilder do |tl_f|%>
               <tr>
                 <td class="language">
                   <%=language_code_meaning(tl_f.object.language)%>
