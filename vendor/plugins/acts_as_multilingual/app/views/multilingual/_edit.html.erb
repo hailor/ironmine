@@ -61,9 +61,9 @@
                 <%main_data.multilingual_options[:columns].each do |attr|%>
                   <td >
                     <% if main_data.multilingual_options[:required].include?(attr.to_sym)%>
-                      <%= tl_f.text_field attr.to_sym,:normal=>true,:required=>true,:size=>20%>
+                      <%= tl_f.text_field attr.to_sym,:required=>true,:size=>20%>
                     <%else%>
-                      <%= tl_f.text_field attr.to_sym,:normal=>true,:size=>40%>
+                      <%= tl_f.text_field attr.to_sym,:size=>40%>
                     <%end%>
                   </td>
                 <%end%>
