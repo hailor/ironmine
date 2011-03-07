@@ -79,11 +79,11 @@ class Irm::ReportGroupsController < ApplicationController
     @report_group = Irm::ReportGroup.find(params[:id])
     @report_group.not_auto_mult=true
     respond_to do |format|
-      if @report_group.update_attributes(params[:report_group])
-        format.html { redirect_to(@report_group, :notice => 'Report group was successfully updated.') }
+      if @report_group.update_attributes(params[:irm_report_group])
+        format.html { redirect_to({:action=>"show"}, :notice => 'Report group was successfully updated.') }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { render :action => "multilingual_edit" }
         format.xml  { render :xml => @report_group.errors, :status => :unprocessable_entity }
       end
     end
