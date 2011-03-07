@@ -26,6 +26,11 @@ class Irm::Report < ActiveRecord::Base
     select(" category.meaning category_name")
   }
 
+  scope :query_by_report_purpose,lambda{|language|
+    joins("LEFT OUTER JOIN #{Irm::LookupValue.view_name} report_purpose ON report_purpose.lookup_type='IRM_REPORT_PURPOSE' AND report_purpose.lookup_code = #{table_name}.report_purpose AND report_purpose.language= '#{language}'").
+    select(" report_purpose.meaning report_purpose_meaning")
+  }
+
   scope :query_by_group_id,lambda{|group_id|
     joins("JOIN #{Irm::ReportGroupMember.table_name}  ON  #{Irm::ReportGroupMember.table_name}.report_code = #{table_name}.report_code").
     joins("JOIN #{Irm::ReportGroup.table_name} ON  #{Irm::ReportGroup.table_name}.group_code = #{Irm::ReportGroupMember.table_name}.group_code").
@@ -36,6 +41,8 @@ class Irm::Report < ActiveRecord::Base
   scope :not_in_group,lambda{|group_id|
     where("NOT EXISTS (SELECT 1 FROM #{Irm::ReportGroupMember.table_name} rgm,#{Irm::ReportGroup.table_name} rg WHERE rgm.group_code = rg.group_code AND rgm.report_code = #{table_name}.report_code AND rg.id = ?)",group_id)
   }
+
+  scope :query_by_favorite_flag,lambda{|favorite_flag| where(:favorite_flag=>favorite_flag)}
 
   scope :query_by_report_code,lambda{|report_code| where(:report_code=>report_code)}
 

@@ -650,6 +650,8 @@ en:
   label_irm_report_new: New report
   label_irm_report_description: Description
   label_irm_report_edit: Edit report
+  label_irm_report_favorite_flag: Favorite Flag
+  label_irm_report_report_purpose:  Report Purpose
   #========================= end irm reports ===================================  
   #========================= irm report_groups ===================================
   label_irm_report_group_list: Report group list

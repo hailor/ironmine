@@ -43,8 +43,11 @@
             <tr>
               <td class="labelCol"><label ><%=t(:label_irm_report_description)%></label></td>
               <td class="dataCol"><div><%= @report[:description] %></div></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_report_favorite_flag)%></label></td>
+              <td class="dataCol"><div><%= @report[:favorite_flag] %></div></td>
             </tr>
           
             <tr>
@@ -55,10 +58,13 @@
             </tr>
           
             <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_report_report_purpose)%></label></td>
+              <td class="dataCol"><div><%= @report[:report_purpose_meaning] %></div></td>
+            </tr>
+
+            <tr>
               <td class="labelCol"><label ><%=t(:label_irm_report_status_code)%></label></td>
               <td class="dataCol"><div><%= @report[:status_meaning] %></div></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
             </tr>
           
         </tbody>

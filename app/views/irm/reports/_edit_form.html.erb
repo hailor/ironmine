@@ -51,8 +51,19 @@
             <tr>
               <td class="labelCol"><label for="report_description"><%=t(:label_irm_report_description)%></label></td>
               <td class="dataCol"><%=f.text_area :description,:rows=>4, :id=>"report_description"%></td>
+              <td class="labelCol"><label>
+                    <%=t(:label_irm_report_favorite_flag)%></label></td>
+              <td class="dataCol"><%=f.check_box :favorite_flag%></td>
+            </tr>
+
+            <tr>
               <td class="labelCol"><label for="report_status_code"><%=(t :label_irm_report_status_code)%></label></td>
-              <td class="dataCol"><%=f.select :status_code,nullable_collection_options(available_status,:lookup_code,:wrap_meaning,@report.status_code),{},{:required=>true,:id=>"report_status_code"}%></td>
+              <td class="dataCol"><%=f.select :status_code,nullable_collection_options(available_status,:lookup_code,
+                                                                                       :wrap_meaning,@report.status_code),{},
+                                              {:required=>true,:id=>"report_status_code"}%></td>
+              <td class="labelCol"><label for="report_category_code"><%=t(:label_irm_report_report_purpose)%></label></td>
+              <td class="dataCol"><%=f.select :report_purpose,nullable_options_for_select(available_report_purpose,@report.report_purpose),
+                                                    {},{:required=>true,:id=>"report_category_code"}%></td>
             </tr>
 
         </tbody>
