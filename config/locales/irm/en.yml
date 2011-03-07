@@ -671,3 +671,6 @@ en:
   label_irm_person_login_day: Date
   label_irm_report_count: Count
   #=========================end irm  common_reports_controllers=======================#
+  #=========================start irm  multilingual=====================#
+  label_multilingual_fields: Multilingual fields
+  #=========================end irm  multilingual=====================#  
