@@ -128,6 +128,48 @@ en:
   label_irm_common_password: Password
   label_irm_common_logout: Logout
   #=========================    end common_controller=======================#
+  #=========================    irm menus_controller=======================#
+  label_irm_menu: Menu
+  label_irm_menu_new: Create Menu
+  label_irm_menu_edit: Edit Menu
+  label_irm_menu_list: Menus List
+  label_irm_menu_menu_code: Menu Code
+  label_irm_menu_icon: Icon
+  label_irm_menu_name: Name
+  label_irm_menu_name_full: Menu Name
+  label_irm_menu_description: Description
+
+  label_irm_menu_entry_name: Prompt
+  label_irm_menu_entry_list: Entries List
+  label_irm_menu_entry_new: Create Menu Entry
+  label_irm_menu_entry_edit: Edit Menu Entry
+  label_irm_menu_entry_sub_menu: Sub Menu
+  label_irm_menu_entry_page: Page
+  label_irm_menu_entry_display_sequence: Display Sequence
+  label_irm_menu_entry_display_flag: Display
+  label_irm_menu_entry_prompt: Prompt
+  label_irm_menu_entry_description: Description
+  label_irm_menu_entry_add: Add Menu Entries
+  error_irm_menu_entry_permission_sub_menu_at_least_one: Input Sub Menu or Page At Least
+  label_irm_menu_entry_icon: Icon
+  label_irm_menu_entry_css_name: Css
+  label_irm_menu_entry: Menu Entry
+  #=========================    end menus_controller=======================#
+  #=========================    irm permissions_controller=======================#
+  label_irm_permission: Permission
+  label_irm_permission_new: Ceeate Permission
+  label_irm_permission_edit: Edit Permission
+  label_irm_permission_permission_code: Permission Code
+  label_irm_permission_permission_type: Permission Type
+  label_irm_permission_name: Permission Name
+  label_irm_permission_description: Description
+  icm_rule_settinglabel_irm_permission_product_name: Product
+  label_irm_permission_page_controller: Controller
+  label_irm_permission_page_action: Action
+  label_irm_permission_status_code: Status
+  label_irm_permission_list: Permissions List
+  label_irm_permission_product_name: Product
+  #=========================    end permissions_controller=======================#
   #=========================    irm identities_controller=======================#
   label_irm_identity_new: Create Identity
   label_irm_identity_edit: Edit Identity
@@ -178,6 +220,14 @@ en:
   label_irm_action_actions_tls:
     name: Name
   #=========================end irm actions_controller=======================#
+  #=========================    irm global_settings_controller=======================#
+  label_irm_global_setting: Global Setting
+  label_irm_global_setting_edit: Edit Global Setting
+  label_irm_global_setting_theme_name: Theme
+  label_irm_global_setting_timezone: Timezone
+  label_irm_global_setting_upload_file_limit: Upload File Size Limit(KB)
+  label_irm_global_setting_logo: Logo
+  #=========================    end global_settings_controller=======================#  
   #=========================    irm scripts_controller=======================#
   label_irm_script_script_code: Code
   label_irm_script_name: Name
@@ -197,6 +247,31 @@ en:
   label_irm_script_scripts_tls:
     name: Name
   #=========================end irm scripts_controller=======================#
+  #=========================    irm functions_controller=======================#
+  label_irm_function: Function
+  label_irm_function_list: Functions List
+  label_irm_function_new: Create Function
+  label_irm_function_edit: Edit Function
+  label_irm_function_function_code: Function Code
+  label_irm_function_name: Name
+  label_irm_function_name_full: Function Name
+  label_irm_function_description: Description
+  label_irm_function_permission: Permission
+  label_irm_function_permission_add: Add/Remove Permission
+  label_irm_function_own_permission: Owned Permissions
+  #=========================    end functions_controller=======================#
+  #=========================    irm function_groups_controller=======================#
+  label_irm_function_group: Function Group
+  label_irm_function_group_list: Function Groups List
+  label_irm_function_group_new: Create Function Group
+  label_irm_function_group_edit: Edit Function Group
+  label_irm_function_group_group_code: Function Group Code
+  label_irm_function_group_name: Name
+  label_irm_function_group_description: Description
+  label_irm_function_group_function: Function
+  label_irm_function_group_function_add: Add/Remove Function
+  label_irm_function_group_own_function: Owned Functions
+  #=========================    end function_groups_controller=======================#  
   #==================    irm mail_templates_controller=======================#
   label_irm_mail_template_list: Mail Templates List
   label_irm_mail_template_entity_code: Entity Code
@@ -337,6 +412,42 @@ en:
   label_irm_department_departments_tls:
     name: Name
   #=========================end irm departments_controller=======================#
+  #=========================    irm value_sets_controller=======================#
+  label_irm_value_set: Value Set
+  label_irm_value_set_list: Value Sets List
+  label_irm_value_set_new: Create Value Set
+  label_irm_value_set_edit: Edit Value Set
+  label_irm_value_set_value_set_code: Value Set Code
+  label_irm_value_set_name: Value Set Name
+  label_irm_value_set_description: Description
+  label_irm_value_set_validation_type: Validation Type
+  #=========================end irm value_sets_controller=======================#
+  #=========================    irm flex_values_controller=======================#
+  label_irm_flex_value: Flex Value
+  label_irm_flex_value_list: Flex Values List
+  label_irm_flex_value_new: Create Flex Value
+  label_irm_flex_value_add: Add Flex Value
+  label_irm_flex_value_edit: Edit Flex Value
+  label_irm_flex_value_value_code: Flex Value Code
+  label_irm_flex_value_name: Flex Value Name
+  label_irm_flex_value_description: Description
+  label_irm_flex_value_position: Display Sequence
+  label_irm_flex_value_start_date_active: Start Date
+  label_irm_flex_value_end_date_active: End Date
+  #=========================end irm flex_values_controller=======================#
+  #=========================irm general_category_controller=======================#
+  label_irm_general_category: General Category
+  label_irm_general_category_list: General Categories List
+  label_irm_general_category_new: Create Category
+  label_irm_general_category_edit: Edit Category
+  label_irm_general_category_type: Category Type
+  label_irm_general_category_company: Company
+  label_irm_general_category_segment1: Segment1
+  label_irm_general_category_segment2: Segment2
+  label_irm_general_category_segment3: Segment3
+  label_irm_general_category_concact_segment: Segments Concact
+  error_segment_combination_existed: Same Combination Existed
+  #=========================end general_category_controller=======================#  
   #=========================    irm site_groups_controller=======================#
   label_irm_site_group_group_code: Code
   label_irm_site_group_region_name: Region Name
@@ -451,6 +562,39 @@ en:
   label_irm_person_owned_roles: Owned Roles
   label_irm_person_available_roles: Available Roles  
   #=========================end irm people_controller=======================#
+  #=========================irm id_flexes_controller=======================#
+  label_irm_id_flex: Flex
+  label_irm_id_flex_list: Flexes List
+  label_irm_id_flex_new: Create Flex
+  label_irm_id_flex_edit: Edit Flex
+  label_irm_id_flex_code: Flex Code
+  label_irm_id_flex_name: Name
+  label_irm_id_flex_name_full: Flex Name
+  label_irm_id_flex_description: Description
+  #=========================end id_flexes_controller=======================#
+  #=========================irm id_flex_structures_controller=======================#
+  label_irm_id_flex_structure: Flex Structure
+  label_irm_id_flex_structure_list: Flex Structures List
+  label_irm_id_flex_structure_new: Create Flex Structure
+  label_irm_id_flex_structure_edit: Edit Flex Structure
+  label_irm_id_flex_structure_name: Name
+  label_irm_id_flex_structure_name_full: Flex Structure Name
+  label_irm_id_flex_structure_code: Flex Structure Code
+  label_irm_id_flex_structure_description: Description
+  label_irm_id_flex_structure_concatenated_segment_delimiter: Delimiter
+  label_irm_id_flex_structure_id_flex_structure_name: name
+  label_flex_choice: Choose Flex
+
+  label_irm_add_id_flex_segments: Flex Segments
+  label_irm_id_flex_segment: Flex Segment
+  label_irm_id_flex_segment_edit: Edit Flex Segment
+  label_irm_id_flex_segment_new: Create Flex Segment
+  label_irm_id_flex_segment_list: Flex Segments List
+  label_irm_id_flex_segment_name: Flex Segment Code
+  label_irm_id_flex_segment_segment_num: Display Sequence
+  label_irm_id_flex_segment_description: Description
+  label_irm_id_flex_segment_form_left_prompt: Prompt
+  #=========================end id_flex_structures_controller=======================#  
   #=========================    irm company_access_controller=======================#
   label_irm_company_access_new: New Company Access
   label_irm_company_access_info: Company Access Info
