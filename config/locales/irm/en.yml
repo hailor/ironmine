@@ -70,6 +70,7 @@ en:
   my_task: My Tasks
   my_all_count: My All Requests
   help: Help
+  search: Search
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type
