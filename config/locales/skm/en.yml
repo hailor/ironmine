@@ -1,2 +1,72 @@
 en:
-  eva: "hello"
+  skm: "skm"
+  #========================entry statuses=====================================
+  label_skm_entry_status: SKM Entry Status
+  label_skm_entry_status_name: Name
+  label_skm_entry_status_description: Description
+  label_skm_entry_status_visiable: Visiable
+  label_skm_entry_status_new: Create SKM Status
+  label_skm_entry_status_edit: Edit SKM Status
+  label_skm_entry_status_code: Status Code
+  label_skm_entry_status_list: SKM Statuses List
+
+  #========================entry templates===============================
+  label_skm_entry_template: SKM Entry Template
+  label_skm_entry_template_name: Name
+  label_skm_entry_template_description: Description
+  label_skm_entry_template_list: Templates List
+  label_skm_entry_template_new: Create Template
+  label_skm_entry_template_edit: Edit Template
+  label_skm_entry_template_code: Template Code
+
+  #=========================entry template elements=====================
+  label_skm_entry_template_element: Template Element
+  label_skm_entry_template_element_name: Name
+  label_skm_entry_template_element_description: Description
+  label_skm_entry_template_element_list: Elements List
+  label_skm_entry_template_element_owned: Owned Elements
+  label_skm_entry_template_element_edit: Edit Element
+  label_skm_entry_template_element_new: Create Element
+  label_skm_entry_template_element_required: Required
+  label_skm_entry_template_element_rows: Display Rows
+  label_skm_entry_template_element_code: Code
+
+  #=========================entry headers================================
+  label_skm_entry_header: SKM Entry
+  label_skm_entry_header_list: SKM Entries List
+  label_skm_entry_header_new: Create Entry
+  label_skm_entry_header_edit: Edit Entry
+  label_skm_entry_header_title: Title
+  label_skm_entry_header_keyword_tags: Keyword
+  label_skm_entry_header_version: Version
+  label_skm_entry_header_doc_number: Doc Number
+  label_skm_entry_header_status_code: Status
+  label_skm_entry_header_published_date: Published Date
+  label_skm_entry_header_history_list: History List
+  notice_skm_entry_step_1_desc: Select a Entry Template, which will decide the entry structure that you create later.
+  notice_skm_entry_step_2_desc: Input entry content.
+  notice_skm_entry_step_3_desc: Add attachments and choose category.
+  notice_skm_entry_header_choice_template: Select SKM Template
+  notice_skm_entry_header_input_content: Input entry content
+  notice_skm_entry_header_subject_and_att: Attachments and category
+  notice_skm_entry_header_preview_entry: Preview
+  label_skm_entry_header_search_by_title: Search by entry title
+  label_skm_entry_header_my_favorites: Favorites
+  label_skm_entry_header_my_favorites_list: My favorites list
+  label_skm_my_drafts: Drafts
+  error_choice_template: Select a template first
+
+  #=========================skm FileManagement================================
+  label_skm_file_management: Files
+  label_skm_file_list: Files List
+  label_skm_file_new: New File
+  label_skm_file_edit: Edit File
+  label_skm_file_name: Name
+  label_skm_file_size: Size(KB)
+  label_skm_file_category: File type
+  label_skm_file_data_updated_at: Last updated
+  label_skm_upload_new_file: Upload new file
+  label_skm_upload_batch_file: Batch upload
+  label_skm_file: File
+  label_skm_file_private_tag: Private
+  label_skm_file_add_line: Add file
