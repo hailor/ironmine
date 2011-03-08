@@ -15,7 +15,6 @@ class Irm::Report < ActiveRecord::Base
   #加入activerecord的通用方法和scope
   query_extend
 
-
   scope :with_permission,lambda{|language|
     joins("LEFT OUTER JOIN #{Irm::Permission.view_name} permissions ON  permissions.permission_code = #{table_name}.permission_code AND  permissions.language = '#{language}'").
     select("permissions.page_controller permission_controller,permissions.page_action permission_action,permissions.name permission_name")
