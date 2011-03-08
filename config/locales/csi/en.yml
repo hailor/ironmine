@@ -33,6 +33,7 @@ en:
    label_csi_survey_result_chart: Survey Result Chart
    result: Result
    export: Export
+   range: Range
    #========================= end   irm regions_controller=======================#
    #========================= start irm regions_controller=======================#
    label_csi_survey_subject: Subject
@@ -69,3 +70,18 @@ en:
    label_csi_survey_subject_list: Subject List
    label_csi_survey_person: Investigator
    #========================= end   irm regions_controller=======================#
+   #========================= start csi survey_ranges_controller=======================#
+   label_csi_survey_range_range_code: Range Code
+   label_csi_survey_range_required_flag: Required
+   label_csi_survey_range_range_type: Range Type
+   label_csi_survey_range_range_company: Company
+   label_csi_survey_range_range_organization: Organization
+   label_csi_survey_range_range_department: Department
+   label_csi_survey_range_status_code: Status Code
+   label_csi_survey_range_role: Role
+   label_csi_survey_range_site: Site
+   label_csi_survey_range_list: Range List
+   label_csi_survey_range_new: New Survey Range
+   label_csi_survey_range_show: Survey Range
+   label_csi_survey_range_edit: Edit Survey Range 
+   #========================= end csi survey_ranges_controller=======================#

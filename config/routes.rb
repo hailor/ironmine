@@ -599,6 +599,15 @@ Ironmine::Application.routes.draw do
     match '/surveys/:survey_id/survey_subjects/:id(.:format)' => "survey_subjects#show", :via => :get
     match '/surveys/:survey_id/survey_subjects/create(.:format)' => "survey_subjects#create", :via => :post
     match '/surveys/:survey_id/survey_subjects/:id(.:format)' => "survey_subjects#destroy", :via => :delete
+    #survey_ranges
+    match '/survey_ranges/get_data(.:format)' => "survey_ranges#get_data"
+    match '/survey_ranges(/index)(.:format)' => "survey_ranges#index", :via => :get
+    match '/survey_ranges/:id/edit(.:format)' => "survey_ranges#edit", :via => :get
+    match '/survey_ranges/:id(.:format)' => "survey_ranges#update", :via => :put
+    match '/survey_ranges/new(.:format)' => "survey_ranges#new", :via => :get
+    match '/survey_ranges/create(.:format)' => "survey_ranges#create", :via => :post
+    match '/survey_ranges/:id(.:format)'=>"survey_ranges#destroy",:via=>:delete
+    match '/survey_ranges/:id(.:format)' => "survey_ranges#show", :via => :get
   end
 
   scope :module => "skm" do

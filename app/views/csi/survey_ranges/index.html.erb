@@ -1,0 +1,38 @@
+<%= page_title %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_csi_survey_range_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+              </td>
+              <td class="pbHelp">
+                <div id="survey_rangesSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="survey_ranges" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+            &nbsp;&nbsp;<%= link_to(t(:delete),{:controller=>"csi/survey_ranges",:action=>"destroy",:id=>"{id}"},:confirm => t(:label_are_you_sure) ,
+                                      :method => :delete) %>
+          </div>
+        </div>
+        <%= datatable("survey_ranges",url_for(:action=>"get_data",:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"120px"},
+                       { :key => "range_code", :label => t(:label_csi_survey_range_range_code),:searchable=>true },
+                       { :key => "required_flag", :label => t(:label_csi_survey_range_required_flag),:searchable=>true },
+                       { :key => "range_type_meaning", :label => t(:label_csi_survey_range_range_type),:searchable=>true },
+                       { :key => "status_meaning", :label => t(:label_csi_survey_range_status_code) }
+                       ],{:row_perpage=>20,:search_box=>"survey_rangesSearchBox"})%>
+      </div>
+    </div>
+</div>
+
+
