@@ -72,6 +72,7 @@ en:
   help: Help
   search: Search
   remove: Remove
+  save_page: Keep
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type
