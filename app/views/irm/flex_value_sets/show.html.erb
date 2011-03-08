@@ -54,7 +54,7 @@
       <div class="pbBody">
         <div id="values_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:remove),{:controller => "irm/flex_values", :action=>"destroy",:id=>"{id}", :return_url => @return_url}) %>
+            <%= icon_link_remove({:controller => "irm/flex_values", :action=>"destroy",:id=>"{id}", :return_url => @return_url}) %>
           </div>
         </div>
         <%= datatable("values_list",url_for(:controller => "irm/flex_values", :value_set_id => @value_set, :action=>"get_data",:format=>"json", :value_set_id => @value_set),

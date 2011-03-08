@@ -28,7 +28,7 @@ en:
   add: Add
   close: Close
   copy:  Copy
-  operation: Operation
+  operation: Options
   save_and_new: Save And New
   multilingual: Multilingual
   processing: Processing...
@@ -73,6 +73,7 @@ en:
   search: Search
   remove: Remove
   save_page: Keep
+  options: Options
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type
