@@ -756,3 +756,8 @@ div.button input[type="submit"]:hover{background-position: right -30px; cursor: 
 }
 .reportList .reportEntry {padding:1px 0 1px 24px;}
 
+.btn_add{background:#00FF00 url("/images/diagona.png") no-repeat scroll top; width:16px; height:16px;}
+.btn_edit{background:url("/images/diagona.png") no-repeat scroll -350px -35px; width:16px; height:16px;}
+.btn_delete{}
+.btn_show{}
+

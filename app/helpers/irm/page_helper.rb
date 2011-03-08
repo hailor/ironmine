@@ -16,5 +16,13 @@ module Irm::PageHelper
 
   def required_icon
     content_tag(:span, "*", {:style => "color:red;"})
-  end  
+  end
+
+  def btn_add_image
+    content_tag(:img, "", {:class => "btn_edit;"})
+  end
+
+  def btn_edit_image
+    content_tag(:img, "", {:class => "btn_edit", :src => "/images/s.gif"})
+  end
 end
