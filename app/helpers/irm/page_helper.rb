@@ -34,6 +34,10 @@ module Irm::PageHelper
     content_tag(:img, "", {:class => "btn_delete", :src => "/images/s.gif", :title => t(:delete)})
   end
 
+  def btn_remove_icon
+    content_tag(:img, "", {:class => "btn_remove", :src => "/images/s.gif", :title => t(:remove)})
+  end
+
   def icon_link_add(args = {}, block = {})
     link_to(btn_add_icon, args, {})
   end
@@ -48,5 +52,9 @@ module Irm::PageHelper
 
   def icon_link_delete(args = {}, block = {})
     link_to(btn_delete_icon, args, {})
+  end
+
+  def icon_link_remove(args = {}, block = {})
+    link_to(btn_remove_icon, args, {})
   end
 end

@@ -71,6 +71,7 @@ en:
   my_all_count: My All Requests
   help: Help
   search: Search
+  remove: Remove
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type
