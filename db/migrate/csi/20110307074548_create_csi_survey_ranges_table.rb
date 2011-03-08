@@ -1,9 +1,10 @@
-class CreateCsiSurveyAssignmentsTable < ActiveRecord::Migration
+class CreateCsiSurveyRangesTable < ActiveRecord::Migration
   def self.up
     #关于survey的调查范围规则
     create_table "csi_survey_ranges", :force => true do |t|
       t.integer  "company_id"
       t.string   "range_code",:limit=>30
+      t.integer  "survey_id"
       t.string   "required_flag",:limit=>1
       t.string   "range_type",:limit=>30
       t.integer  "range_company_id"
@@ -40,7 +41,7 @@ class CreateCsiSurveyAssignmentsTable < ActiveRecord::Migration
     add_index "csi_survey_members", ["company_id","survey_id"], :name => "CSI_SURVEY_MEMBERS_N1"
     add_index "csi_survey_members", ["company_id","person_id"], :name => "CSI_SURVEY_MEMBERS_N2"
     add_index "csi_survey_members", ["company_id","survey_id","person_id"], :name => "CSI_SURVEY_MEMBERS_N3"
-    add_index "csi_survey_members", ["company_id","person_id","respond_flag"], :name => "CSI_SURVEY_MEMBERS_N4"
+    add_index "csi_survey_members", ["company_id","person_id","response_flag"], :name => "CSI_SURVEY_MEMBERS_N4"
 
   end
   
