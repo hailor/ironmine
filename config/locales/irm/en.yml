@@ -673,5 +673,6 @@ en:
   label_irm_report_count: Count
   #=========================end irm  common_reports_controllers=======================#
   #=========================start irm  multilingual=====================#
-  label_multilingual_fields: Multilingual fields
+  label_multilingual_fields: Multilingual
+  label_multilingual_edit_files: Edit multilingual fields 
   #=========================end irm  multilingual=====================#  

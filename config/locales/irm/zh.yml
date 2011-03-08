@@ -734,5 +734,6 @@ zh:
   label_irm_report_count: 计数
   #=========================end irm  common_reports_controllers=======================#
   #=========================start irm  multilingual=====================#
-  label_multilingual_fields: 多语言字段
+  label_multilingual_fields: 多语言
+  label_multilingual_edit_files: 编辑多语言字段
   #=========================end irm  multilingual=====================#
