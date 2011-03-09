@@ -43,9 +43,9 @@ en:
   label_skm_entry_header_status_code: Status
   label_skm_entry_header_published_date: Published Date
   label_skm_entry_header_history_list: History List
-  notice_skm_entry_step_1_desc: Select a Entry Template, which will decide the entry structure that you create later.
-  notice_skm_entry_step_2_desc: Input entry content.
-  notice_skm_entry_step_3_desc: Add attachments and choose category.
+  notice_skm_entry_step_1_desc: Select a Entry Template, which will decide the entry structure that you create later
+  notice_skm_entry_step_2_desc: Input entry content
+  notice_skm_entry_step_3_desc: Add attachments and choose category
   notice_skm_entry_header_choice_template: Select SKM Template
   notice_skm_entry_header_input_content: Input entry content
   notice_skm_entry_header_subject_and_att: Attachments and category

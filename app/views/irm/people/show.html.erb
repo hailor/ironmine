@@ -271,7 +271,7 @@
       <div class="pbBody">
         <div id="roles_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:remove),{:action=>"remove_role",:role_id=>"{id}", :person_id => @person}) %>
+            <%= icon_link_remove({:action=>"remove_role",:role_id=>"{id}", :person_id => @person}) %>
           </div>
         </div>
         <%= datatable("roles_list",url_for(:controller => "irm/people", :action=>"get_owned_roles", :person_id => @person,:format=>"json"),

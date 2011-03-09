@@ -76,4 +76,22 @@ class Irm::RolesController < ApplicationController
   def data_grid
     render :layout => nil
   end
+
+  def multilingual_edit
+    @role = Irm::Role.find(params[:id])
+  end
+
+  def multilingual_update
+    @role = Irm::Role.find(params[:id])
+    @role.not_auto_mult = true
+    respond_to do |format|
+      if @role.update_attributes(params[:irm_role])
+        format.html { redirect_to({:action=>"show"}, :notice => 'Role was successfully updated.') }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "multilingual_edit" }
+        format.xml  { render :xml => @role.errors, :status => :unprocessable_entity }
+      end
+    end
+  end  
 end

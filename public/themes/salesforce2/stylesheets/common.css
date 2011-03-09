@@ -756,3 +756,9 @@ div.button input[type="submit"]:hover{background-position: right -30px; cursor: 
 }
 .reportList .reportEntry {padding:1px 0 1px 24px;}
 
+.btn_add{background:url("../images/16_16/Add.png") no-repeat scroll top; width:16px; height:16px;}
+.btn_edit{background:url("../images/16_16/Edit.png") no-repeat scroll; width:16px; height:16px;}
+.btn_delete{background:url("../images/16_16/Trash Full.png") no-repeat scroll; width:16px; height:16px;}
+.btn_show{background:url("../images/16_16/View.png") no-repeat scroll; width:16px; height:16px;}
+.btn_remove{background:url("../images/16_16/Trash Full.png") no-repeat scroll; width:16px; height:16px;}
+

@@ -59,7 +59,7 @@
       <div class="pbBody">
         <div id="function_groups_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:remove),{:action=>"remove_function",:function_id=>"{id}", :group_id => @function_group}) %>
+            <%= icon_link_remove({:action=>"remove_function",:function_id=>"{id}", :group_id => @function_group}) %>
           </div>
           <div id="status_code" style="display:none">
             <%= check_img("{status_code}") %>

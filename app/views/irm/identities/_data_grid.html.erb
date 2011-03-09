@@ -18,7 +18,8 @@
       <div class="pbBody">
         <div id="identities_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:controller => "irm/identities", :action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:controller => "irm/identities", :action=>"show",:id=>"{id}"}) %>
+            <%= icon_link_edit({:controller => "irm/identities", :action=>"edit",:id=>"{id}"}) %>&nbsp;
+            <%= icon_link_show({:controller => "irm/identities", :action=>"show",:id=>"{id}"}) %>
           </div>
           <div id="status_code" style="display:none">
             <%= check_img("{status_code}") %>

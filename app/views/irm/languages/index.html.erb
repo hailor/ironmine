@@ -16,7 +16,8 @@
       <div class="pbBody">
         <div id="language" class="datatable" style="width:100%;">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+            <%= icon_link_edit(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;
+            <%= icon_link_show(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
         <%= datatable("language",url_for(:action=>"get_data",:format=>"json"),
