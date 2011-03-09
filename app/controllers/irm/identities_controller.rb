@@ -1,16 +1,15 @@
 class Irm::IdentitiesController < ApplicationController
   def index
-    @identity = Irm::Identity.new
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @identity }
+      format.xml  {  identities=Irm::Identity.all
+                      render :xml => identities }
     end
   end
 
   def show
-    @identity = Irm::Identity.find(params[:id])
-
+    @identity = Irm::Identity.list_all.status_meaning.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @identity }
@@ -78,11 +77,6 @@ class Irm::IdentitiesController < ApplicationController
     respond_to do |format|
       format.json  {render :json => to_jsonp(identities.to_grid_json([:login_name,:full_name,:email,:language_description,:status_code,:status_meaning], count)) }
     end    
-  end
-
-
-  def show
-     @identity = Irm::Identity.find(params[:id])
   end
  
 end
