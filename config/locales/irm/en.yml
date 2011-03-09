@@ -28,7 +28,7 @@ en:
   add: Add
   close: Close
   copy:  Copy
-  operation: Operation
+  operation: Options
   save_and_new: Save And New
   multilingual: Multilingual
   processing: Processing...
@@ -70,6 +70,10 @@ en:
   my_task: My Tasks
   my_all_count: My All Requests
   help: Help
+  search: Search
+  remove: Remove
+  save_page: Keep
+  options: Options
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type
@@ -673,3 +677,7 @@ en:
   label_irm_person_login_day: Date
   label_irm_report_count: Count
   #=========================end irm  common_reports_controllers=======================#
+  #=========================start irm  multilingual=====================#
+  label_multilingual_fields: Multilingual
+  label_multilingual_edit_files: Edit multilingual fields 
+  #=========================end irm  multilingual=====================#  

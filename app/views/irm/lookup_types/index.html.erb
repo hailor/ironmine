@@ -19,7 +19,8 @@
       <div class="pbBody">
         <div id="lookup_type" class="datatable" style="width:100%;">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+            <%= icon_link_edit({:action=>"edit",:id=>"{id}"}) %>&nbsp;
+            <%= icon_link_show({:action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
         <%= datatable("lookup_type",url_for(:controller=>"irm/lookup_types",:action=>"get_lookup_types",:format=>"json"),

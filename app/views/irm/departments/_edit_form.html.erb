@@ -31,7 +31,7 @@
               <td class="labelCol"><label><%=(t :label_irm_department_company_name)%></label></td>
               <td class="dataCol"><%=@department[:company_name]%></td>
               <td class="labelCol"><label><%=(t :label_irm_department_organization_name)%></label></td>
-              <td class="dataCol"><%=f.select(:organization_id,options_from_collection_for_select(available_organization,:id,:wrap_name),{},:id=>"organization_select",:required=>true)%></td>
+              <td class="dataCol"><%=f.select(:organization_id,options_from_collection_for_select(available_organization(@department.company_id),:id,:wrap_name),{},:id=>"organization_select",:required=>true)%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_department_short_name)%></label></td>

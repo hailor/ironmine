@@ -39,7 +39,7 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_company_company_short_name)%></label></td>
-              <td class="dataCol"><%=f.text_field :short_name, :required=>true,:irm_uppercase=>true%></td>
+              <td class="dataCol"><%=f.text_field :short_name, :required=>true%></td>
               <td class="labelCol"><%=(t :label_irm_company_company_type)%></td>
               <td class="dataCol"><%=f.select :company_type,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
                                                 options_from_collection_for_select(available_company_type,:lookup_code,:wrap_meaning,@company.company_type),{},:required=>true%></td>

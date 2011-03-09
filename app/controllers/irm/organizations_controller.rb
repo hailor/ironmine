@@ -77,7 +77,7 @@ class Irm::OrganizationsController < ApplicationController
     @organization.not_auto_mult=true
     respond_to do |format|
       if @organization.update_attributes(params[:irm_organization])
-        format.html { render({:action=>"multilingual_edit",:format=>"js"}) }
+        format.html { render({:action=>"show"}) }
       else
         format.html { render({:action=>"multilingual_edit"}) }
       end
@@ -87,7 +87,7 @@ class Irm::OrganizationsController < ApplicationController
   def get_data
     @organizations= Irm::Organization.multilingual.query_wrap_info(I18n::locale)
     @organizations = @organizations.match_value("#{Irm::Organization.table_name}.organization_code",params[:organization_code])
-    @organizations = @organizations.match_value("v2.company_name",params[:company_name])
+    @organizations = @organizations.match_value("v2.name",params[:company_name])
     @organizations = @organizations.match_value("#{Irm::OrganizationsTl.table_name}.name",params[:name])
     @organizations,count = paginate(@organizations)
     respond_to do |format|
@@ -101,6 +101,14 @@ class Irm::OrganizationsController < ApplicationController
       format.html
       format.xml  { head :ok }
       format.js { render :json => organizations.collect{|d| {:id=>d.id,:name=>d[:name]}} }
+    end
+  end
+
+  def get_by_company
+    organizations_scope = Irm::Organization.multilingual.query_by_company_id(params[:belonged_company_id])
+    organizations = organizations_scope.collect{|i| {:label=>i[:name],:value=>i.id,:id=>i.id}}
+    respond_to do |format|
+      format.json {render :json=>organizations.to_grid_json([:label,:value],organizations.count)}
     end
   end
 end

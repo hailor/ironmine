@@ -21,7 +21,7 @@
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_company_company_type)%></label></td>
               <td class="dataCol"><%=@company[:company_type_meaning]%></td>
-              <td class="labelCol"><label><%=(t :label_irm_company_short_name)%></label></td>
+              <td class="labelCol"><label><%=(t :label_irm_company_company_short_name)%></label></td>
               <td class="dataCol"><%=@company.short_name%></td>
             </tr>
             <tr>
@@ -60,6 +60,7 @@
   </div>
 </div>
 
+<%=render :partial=>"multilingual/show",:locals=>{:main_data=>@company} %>
 
 <div id="id_company_location" class="bRelatedList">
     <a name="id_company_location_target">

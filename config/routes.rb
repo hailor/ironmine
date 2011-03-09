@@ -109,8 +109,8 @@ Ironmine::Application.routes.draw do
     match '/identities/:id/update(.:format)' => "identities#update", :via => :put
     match '/identities/new(.:format)' => "identities#new", :via => :get
     match '/identities/create(.:format)' => "identities#create", :via => :post
-    match '/identities/get_data(.:format)' => "identities#get_data"
-    match '/identities/:id/show(.:format)' => "identities#show"
+    match '/identities/get_data(.:format)' => "identities#get_data", :via => :get
+    match '/identities/:id/show(.:format)' => "identities#show", :via => :get
 
     #my_info
     match '/my_info(/index)(.:format)' => "my_info#index", :via => :get
@@ -211,11 +211,12 @@ Ironmine::Application.routes.draw do
     match '/organizations/:id/edit(.:format)' => "organizations#edit", :via => :get
     match '/organizations/:id(.:format)' => "organizations#update", :via => :put
     match '/organizations/new(.:format)' => "organizations#new", :via => :get
-    match '/organizations/:id(.:format)' => "organizations#show", :via => :get
+    match '/organizations/:id/show(.:format)' => "organizations#show", :via => :get
     match '/organizations/create(.:format)' => "organizations#create", :via => :post
     match '/organizations/:id/multilingual_edit(.:format)' => "organizations#multilingual_edit", :via => :get
     match '/organizations/:id/multilingual_update(.:format)' => "organizations#multilingual_update", :via => :put
     match '/organizations/belongs_to(.:format)' => "organizations#belongs_to"
+    match '/organizations/get_by_company(.:format)' => "organizations#get_by_company", :via => :get
     #departments
     match '/departments/get_data(.:format)' => "departments#get_data"
     match '/departments(/index)(.:format)' => "departments#index", :via => :get
@@ -393,6 +394,8 @@ Ironmine::Application.routes.draw do
     match '/roles/create(.:format)' => "roles#create", :via => :post
     match '/roles/get_data(.:format)' => "roles#get_data"
     match '/roles/:id/show(.:format)' => "roles#show", :via => :get
+    match '/roles/:id/multilingual_edit(.:format)' => "roles#multilingual_edit", :via => :get
+    match '/roles/:id/multilingual_update(.:format)' => "roles#multilingual_update", :via => :put    
     #dev_tools
     match '/dev_tools(/index)(.format)' => 'dev_tools#index', :via => :get
     match '/dev_tools/show_permissions(.format)' => 'dev_tools#show_permissions', :via => :get

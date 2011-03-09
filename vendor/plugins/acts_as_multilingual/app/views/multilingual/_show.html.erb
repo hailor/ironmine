@@ -1,0 +1,64 @@
+<%= stylesheet_link_tag "/javascripts/yui3.3/datatable/assets/skins/sam/datatable.css"%>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_multilingual_fields) %></h2></td>
+              <td class="pbButton">
+                <div class="button"><%= link_to t(:edit), {:action => "multilingual_edit", :id => main_data.id}%></div>
+              </td>
+              <td class="pbHelp">
+                <div></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div class="datatable">
+          <div class="yui3-widget yui3-datatable">
+            <div class="yui3-datatable-content">
+              <table id='rows' cellspacing="0" cellpadding="0" class='grid'>
+                <thead class="yui3-datatable-columns">
+                  <tr class="yui3-datatable-first yui3-datatable-last">
+                    <th class="yui3-column">
+                      <div class="yui3-datatable-liner"><%=t(:label_multilingual_language)%></div>
+                    </th>
+                    <%main_data.multilingual_options[:columns].each do |attr|%>
+                      <th class="yui3-column">
+                        <div class="yui3-datatable-liner">
+                         <%=t("label_#{ActiveModel::Naming.singular(main_data)}_#{attr}")%>
+                        </div>
+                      </th>
+                    <%end%>
+                    <th class="yui3-column">
+                      <div class="yui3-datatable-liner"><%=t(:label_multilingual_source_lang)%></div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="yui3-datatable-data">
+                  <% main_data.send(main_data.multilingual_options[:lang_relation].to_sym).each do |ml| %>
+                    <tr class="yui3-datatable-even">
+                      <td class="yui3-column">
+                        <div class='yui3-datatable-liner'><%=language_code_meaning(ml.language)%></div>
+                      </td>
+                      <%main_data.multilingual_options[:columns].each do |attr|%>
+                        <td class="yui3-column">
+                          <div class='yui3-datatable-liner'><%=ml.send(attr.to_sym) %></div>
+                        </td>
+                      <% end -%>
+                      <td class="yui3-column">
+                        <div class='yui3-datatable-liner'><%=language_code_meaning(ml.source_lang)%></div>
+                      </td>
+                    </tr>
+                  <% end -%>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

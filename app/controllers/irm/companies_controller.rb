@@ -86,7 +86,7 @@ class Irm::CompaniesController < ApplicationController
     @company.not_auto_mult=true
     respond_to do |format|
       if @company.update_attributes(params[:irm_company])
-        format.html { render({:action=>"multilingual_edit",:format=>"js"}) }
+        format.html { render({:action=>"show"}) }
       else
         format.html { render({:action=>"multilingual_edit"}) }
       end
