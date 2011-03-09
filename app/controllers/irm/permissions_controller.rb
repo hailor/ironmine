@@ -87,4 +87,22 @@ class Irm::PermissionsController < ApplicationController
   def data_grid
     render :layout => nil
   end
+
+  def multilingual_edit
+    @permission = Irm::Permission.find(params[:id])
+  end
+
+  def multilingual_update
+    @permission = Irm::Permission.find(params[:id])
+    @permission.not_auto_mult = true
+    respond_to do |format|
+      if @permission.update_attributes(params[:irm_permission])
+        format.html { redirect_to({:action=>"show"}, :notice => 'Permission was successfully updated.') }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "multilingual_edit" }
+        format.xml  { render :xml => @permission.errors, :status => :unprocessable_entity }
+      end
+    end
+  end    
 end
