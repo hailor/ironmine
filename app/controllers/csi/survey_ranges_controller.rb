@@ -37,7 +37,7 @@ class Csi::SurveyRangesController < ApplicationController
   # POST /survey_ranges
   # POST /survey_ranges.xml
   def create
-    attributes=delete_unnecessary_attribute(params[:csi_survey_range])
+    attributes=delete_unnecessary_attributes(params[:csi_survey_range])
     @survey_range = Csi::SurveyRange.new(attributes)    
 
     respond_to do |format|
@@ -55,7 +55,7 @@ class Csi::SurveyRangesController < ApplicationController
   # PUT /survey_ranges/1.xml
   def update
     @survey_range = Csi::SurveyRange.find(params[:id])
-    attributes=delete_unnecessary_attribute(params[:csi_survey_range])
+    attributes=delete_unnecessary_attributes(params[:csi_survey_range])
 
     respond_to do |format|
       if @survey_range.update_attributes(attributes)
@@ -107,7 +107,7 @@ class Csi::SurveyRangesController < ApplicationController
   end
 
   private
-    def delete_unnecessary_attribute(params)
+    def delete_unnecessary_attributes(params)
        if params.is_a?(Hash)
           if params[:range_type] == "ORGANIZATION"
             params.merge!({:role_id=>""})
