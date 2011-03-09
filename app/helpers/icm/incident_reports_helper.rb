@@ -8,7 +8,7 @@ module Icm::IncidentReportsHelper
       report_limit = options[:report_limit]
       report_purpose = options[:report_purpose]||'REPORT'
       all_reports = Irm::Report.multilingual.query_by_group_and_category("ADMIN_REPORT_GROUP",report_purpose,category_code).
-                                limit(report_limit)
+                                limit(report_limit).query_by_favorite_flag(Irm::Constant::SYS_YES)
       all_reports.each do |report|
          report_permission = Irm::Permission.query_by_permission_code(report[:permission_code]).first
          report_controller = report_permission[:page_controller]||options[:controller]

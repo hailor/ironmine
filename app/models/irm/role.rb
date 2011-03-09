@@ -50,6 +50,8 @@ class Irm::Role < ActiveRecord::Base
     role.setting?
   end
 
+
+
   def setting?
     self.role_type.eql?("SETTING")
   end

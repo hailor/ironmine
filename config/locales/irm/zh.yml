@@ -721,6 +721,8 @@ zh:
   label_irm_report_group_status_code: 状态
   label_irm_report_group_new: 新建报表组
   label_irm_report_group_edit: 编辑报表组
+  label_irm_report_favorite_flag: 是否常用
+  label_irm_report_report_purpose:  报表用途
   #========================= end irm report_groups ===================================
   #========================= irm report_group_members ===================================
   label_irm_report_group_member_list: 报表

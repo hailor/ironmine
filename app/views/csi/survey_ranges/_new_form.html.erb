@@ -1,0 +1,121 @@
+<%= form_for(@survey_range,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+<%= hidden_field_tag "csi_survey_range[survey_id]",@survey_id %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_csi_survey_range_new)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action=>"index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @survey_range %>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend">
+          <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+          </span><span class="requiredMark">*</span>
+          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+        </span>
+      </span>
+      <h3><%= t(:label_common_info) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+          
+            <tr>
+              <td class="labelCol"><label for="survey_range_range_code"><%=t(:label_csi_survey_range_range_code)%></label></td>
+              <td class="dataCol"><%=f.text_field :range_code, :required=>true ,:id=>"survey_range_range_code",:irm_uppercase=>true%></td>
+              <td class="labelCol"><label for="survey_range_required_flag"><%=t(:label_csi_survey_range_required_flag)%></label></td>
+              <td class="dataCol"><%=f.check_box :required_flag, :id=>"survey_range_required_flag"%></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="survey_range_range_type"><%=t(:label_csi_survey_range_range_type)%></label></td>
+              <td class="dataCol"><%=f.select :range_type,
+                                              available_lookup_type("CSI_SURVEY_RANGE_TYPE"),
+                                              {},
+                                              {:id=>"range_type", :required => true}%></td>
+              <td class="labelCol"><label for="survey_range_role_id"><%=t(:label_csi_survey_range_role)%></label></td>
+              <td class="dataCol"><%=f.select :role_id,
+                                              "<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                              options_from_collection_for_select(available_roles,:id,:wrap_name),
+                                              {},
+                                              {:id=>"range_type", :required => true}%></td>
+
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="survey_range_company"><%=t(:label_csi_survey_range_range_company)%></label></td>
+              <td class="dataCol"><%=f.select :range_company_id,
+                                              available_ass_companies,
+                                              {},
+                                              {:id=>"ass_company", :required => true}%></td>
+              <td class="labelCol"><label for="survey_range_site_id"><%=t(:label_csi_survey_range_site)%></label></td>
+              <td class="dataCol"><%=f.select :site_id,
+                                              "<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                              options_from_collection_for_select(available_sites,:id,:wrap_name),
+                                              {},
+                                              {:id=>"range_type", :required => true}%></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="ass_organization"><%=t(:label_irm_location_organization)%></label></td>
+              <td class="dataCol"><%=f.select :range_organization_id,
+                                              nullable_options_for_select([],nil),
+                                              {},
+                                              {:id=>"ass_organization",
+                                               :depend=>"ass_company",
+                                               :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
+                                               :href=>url_for(:controller=>"icm/group_assignments",:action=>"get_customer_organizations",:format=>"json",:customer_company_id=>"{ass_company}")}%></td>
+              <td class="labelCol"></td>
+              <td class="dataCol"></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="ass_department"><%=t(:label_irm_location_department)%></label></td>
+              <td class="dataCol"><%=f.select :range_department_id,
+                                              nullable_options_for_select([],nil),
+                                              {},
+                                              {:id=>"ass_department",
+                                               :depend=>"ass_organization",
+                                               :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
+                                               :href=>url_for(:controller=>"icm/group_assignments",:action=>"get_customer_departments",:format=>"json",:customer_organization_id=>"{ass_organization}")}%></td>
+              <td class="labelCol"></td>
+              <td class="dataCol"></td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
+
+<script type="text/javascript">
+  GY.use("cascadeselect",function(Y){
+     new Y.CascadeSelect({source: "#ass_company",target:["#ass_organization"]});
+     new Y.CascadeSelect({source: "#ass_organization",target:["#ass_department"]});
+     new Y.CascadeSelect({source: "#ass_department",target:["#ass_people"]});
+  });
+</script>

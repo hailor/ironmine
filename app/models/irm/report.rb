@@ -15,7 +15,6 @@ class Irm::Report < ActiveRecord::Base
   #加入activerecord的通用方法和scope
   query_extend
 
-
   scope :with_permission,lambda{|language|
     joins("LEFT OUTER JOIN #{Irm::Permission.view_name} permissions ON  permissions.permission_code = #{table_name}.permission_code AND  permissions.language = '#{language}'").
     select("permissions.page_controller permission_controller,permissions.page_action permission_action,permissions.name permission_name")
@@ -24,6 +23,11 @@ class Irm::Report < ActiveRecord::Base
   scope :with_category,lambda{|language|
     joins("LEFT OUTER JOIN #{Irm::LookupValue.view_name} category ON category.lookup_type='IRM_REPORT_CATEGORY' AND category.lookup_code = #{table_name}.category_code AND category.language= '#{language}'").
     select(" category.meaning category_name")
+  }
+
+  scope :query_by_report_purpose,lambda{|language|
+    joins("LEFT OUTER JOIN #{Irm::LookupValue.view_name} report_purpose ON report_purpose.lookup_type='IRM_REPORT_PURPOSE' AND report_purpose.lookup_code = #{table_name}.report_purpose AND report_purpose.language= '#{language}'").
+    select(" report_purpose.meaning report_purpose_meaning")
   }
 
   scope :query_by_group_id,lambda{|group_id|
@@ -36,6 +40,8 @@ class Irm::Report < ActiveRecord::Base
   scope :not_in_group,lambda{|group_id|
     where("NOT EXISTS (SELECT 1 FROM #{Irm::ReportGroupMember.table_name} rgm,#{Irm::ReportGroup.table_name} rg WHERE rgm.group_code = rg.group_code AND rgm.report_code = #{table_name}.report_code AND rg.id = ?)",group_id)
   }
+
+  scope :query_by_favorite_flag,lambda{|favorite_flag| where(:favorite_flag=>favorite_flag)}
 
   scope :query_by_report_code,lambda{|report_code| where(:report_code=>report_code)}
 

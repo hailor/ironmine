@@ -5,4 +5,8 @@ module Irm::RolesHelper
   def available_report_groups
     Irm::ReportGroup.multilingual.enabled.collect{|g| [g[:name], g.group_code]}
   end
+
+  def available_roles
+    Irm::Role.multilingual.enabled
+  end
 end

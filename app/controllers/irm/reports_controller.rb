@@ -15,7 +15,7 @@ class Irm::ReportsController < ApplicationController
   # GET /reports/1
   # GET /reports/1.xml
   def show
-    @report = Irm::Report.list_all.status_meaning.find(params[:id])
+    @report = Irm::Report.list_all.status_meaning.query_by_report_purpose(::I18n.locale).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

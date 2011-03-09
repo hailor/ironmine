@@ -1,0 +1,55 @@
+<%= page_title %>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_csi_survey_range_show) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @survey_range.id}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_csi_survey_range_range_code)%></label></td>
+              <td class="dataCol"><%= @survey_range.range_code %></td>
+              <td class="labelCol"><label ><%=t(:label_csi_survey_range_required_flag)%></label></td>
+              <td class="dataCol"><%= @survey_range.required_flag %></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_csi_survey_range_range_type)%></label></td>
+              <td class="dataCol"><%= @survey_range[:range_type_meaning] %></td>
+              <td class="labelCol"><label ><%=t(:label_csi_survey_range_role)%></label></td>
+              <td class="dataCol"><%= @survey_range[:role_name] %></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_csi_survey_range_range_company)%></label></td>
+              <td class="dataCol"><%= @survey_range[:company_name] %></td>
+              <td class="labelCol"><label ><%=t(:label_csi_survey_range_site)%></label></td>
+              <td class="dataCol"><%= @survey_range[:site_name] %></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_csi_survey_range_range_organization)%></label></td>
+              <td class="dataCol"><%= @survey_range[:organization_name] %></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_csi_survey_range_range_department)%></label></td>
+              <td class="dataCol"><%= @survey_range[:department_name] %></td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
