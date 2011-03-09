@@ -2,6 +2,7 @@ class Csi::SurveyRangesController < ApplicationController
   # GET /survey_ranges
   # GET /survey_ranges.xml
   def index
+    @return_url= request.env['HTTP_REFERER']
   end
 
   # GET /survey_ranges/1
@@ -20,6 +21,7 @@ class Csi::SurveyRangesController < ApplicationController
   # GET /survey_ranges/new.xml
   def new
     @survey_range = Csi::SurveyRange.new
+    @survey_id = params[:survey_id]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,9 +37,8 @@ class Csi::SurveyRangesController < ApplicationController
   # POST /survey_ranges
   # POST /survey_ranges.xml
   def create
-    @survey_range = Csi::SurveyRange.new(params[:csi_survey_range])
-    
-    delete_unnecessary_attribute(params[:csi_survey_range])
+    attributes=delete_unnecessary_attribute(params[:csi_survey_range])
+    @survey_range = Csi::SurveyRange.new(attributes)    
 
     respond_to do |format|
       if @survey_range.save
@@ -54,11 +55,10 @@ class Csi::SurveyRangesController < ApplicationController
   # PUT /survey_ranges/1.xml
   def update
     @survey_range = Csi::SurveyRange.find(params[:id])
-
-    delete_unnecessary_attribute(params[:csi_survey_range])
+    attributes=delete_unnecessary_attribute(params[:csi_survey_range])
 
     respond_to do |format|
-      if @survey_range.update_attributes(params[:csi_survey_range])
+      if @survey_range.update_attributes(attributes)
         format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
         format.xml  { head :ok }
       else
@@ -110,18 +110,19 @@ class Csi::SurveyRangesController < ApplicationController
     def delete_unnecessary_attribute(params)
        if params.is_a?(Hash)
           if params[:range_type] == "ORGANIZATION"
-            params.delete(:role_id) if params[:role_id]
-            params.delete(:site_id) if params[:site_id]
+            params.merge!({:role_id=>""})
+            params.merge!({:site_id=>""})
           elsif params[:range_type] == "ROLE"
-            params.delete(:range_company_id) if params[:range_company_id]
-            params.delete(:range_organization_id) if params[:range_organization_id]
-            params.delete(:range_department_id) if params[:range_department_id]
+            params.merge!({:range_company_id=>""})
+            params.merge!({:range_organization_id=>""})
+            params.merge!({:range_department_id=>""})
           elsif params[:range_type] == "SITE"
-            params.delete(:range_company_id) if params[:range_company_id]
-            params.delete(:range_organization_id) if params[:range_organization_id]
-            params.delete(:range_department_id) if params[:range_department_id]
-            params.delete(:role_id) if params[:role_id]
+            params.merge!({:range_company_id=>""})
+            params.merge!({:range_organization_id=>""})
+            params.merge!({:range_department_id=>""})
+            params.merge!({:role_id=>""})
           end
        end
+      params
     end
 end

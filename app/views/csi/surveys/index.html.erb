@@ -23,7 +23,7 @@
             <%= link_to(t(:reply),{:action=>"reply",:id=>"{id}"}) %>&nbsp;
             <%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>&nbsp;
             <%= link_to(t(:result),{:action=>"show_result",:id=>"{id}"}) %>&nbsp;
-            <%= link_to(t(:range),{:controller=>"csi/survey_ranges",:action=>"index"}) %>&nbsp;
+            <%= link_to(t(:range),{:controller=>"csi/survey_ranges",:action=>"index",:survey_id=>"{id}"}) %>&nbsp;
           </div>
         </div>
         <%= datatable("survey",url_for(:action=>"get_data"),
