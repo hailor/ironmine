@@ -15,6 +15,7 @@ module Csi
       if department_id.present?
         department_people = Irm::Person.query_department_id(department_id)
         department_people.each do |t|
+          #TODO performance tuning
           if check_survey_member(survey_id,t.id)
              Csi::SurveyMember.create({:survey_id=>survey_id,
                                        :person_id => t.id})
