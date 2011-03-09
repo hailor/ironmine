@@ -457,6 +457,8 @@ Ironmine::Application.routes.draw do
     match '/impact_ranges/create(.:format)' => "impact_ranges#create", :via => :post
     match '/impact_ranges/get_data(.:format)' => "impact_ranges#get_data"
     match '/impact_ranges/:id/show(.:format)' => "impact_ranges#show", :via => :get
+    match '/impact_ranges/:id/multilingual_edit(.:format)' => "impact_ranges#multilingual_edit", :via => :get
+    match '/impact_ranges/:id/multilingual_update(.:format)' => "impact_ranges#multilingual_update", :via => :put    
     #urgence_codes
     match '/urgence_codes(/index)(.:format)' => "urgence_codes#index", :via => :get
     match '/urgence_codes/:id/edit(.:format)' => "urgence_codes#edit", :via => :get
