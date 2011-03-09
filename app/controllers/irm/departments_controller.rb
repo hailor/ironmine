@@ -76,7 +76,7 @@ class Irm::DepartmentsController < ApplicationController
     @department.not_auto_mult=true
     respond_to do |format|
       if @department.update_attributes(params[:irm_department])
-        format.html { render({:action=>"multilingual_edit",:format=>"js"}) }
+        format.html { render({:action=>"show"}) }
       else
         format.html { render({:action=>"multilingual_edit"}) }
       end

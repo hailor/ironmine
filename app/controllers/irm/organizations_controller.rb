@@ -103,4 +103,12 @@ class Irm::OrganizationsController < ApplicationController
       format.js { render :json => organizations.collect{|d| {:id=>d.id,:name=>d[:name]}} }
     end
   end
+
+  def get_by_company
+    organizations_scope = Irm::Organization.multilingual.query_by_company_id(params[:belonged_company_id])
+    organizations = organizations_scope.collect{|i| {:label=>i[:name],:value=>i.id,:id=>i.id}}
+    respond_to do |format|
+      format.json {render :json=>organizations.to_grid_json([:label,:value],organizations.count)}
+    end
+  end
 end

@@ -211,11 +211,12 @@ Ironmine::Application.routes.draw do
     match '/organizations/:id/edit(.:format)' => "organizations#edit", :via => :get
     match '/organizations/:id(.:format)' => "organizations#update", :via => :put
     match '/organizations/new(.:format)' => "organizations#new", :via => :get
-    match '/organizations/:id(.:format)' => "organizations#show", :via => :get
+    match '/organizations/:id/show(.:format)' => "organizations#show", :via => :get
     match '/organizations/create(.:format)' => "organizations#create", :via => :post
     match '/organizations/:id/multilingual_edit(.:format)' => "organizations#multilingual_edit", :via => :get
     match '/organizations/:id/multilingual_update(.:format)' => "organizations#multilingual_update", :via => :put
     match '/organizations/belongs_to(.:format)' => "organizations#belongs_to"
+    match '/organizations/get_by_company(.:format)' => "organizations#get_by_company", :via => :get
     #departments
     match '/departments/get_data(.:format)' => "departments#get_data"
     match '/departments(/index)(.:format)' => "departments#index", :via => :get
