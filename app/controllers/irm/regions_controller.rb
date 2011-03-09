@@ -80,7 +80,7 @@ class Irm::RegionsController < ApplicationController
     @region.not_auto_mult=true
     respond_to do |format|
       if @region.update_attributes(params[:irm_region])
-        format.html { render({:action=>"multilingual_edit",:format=>"js"}) }
+        format.html { redirect_to({:action=>"show"},:notice => (t :successfully_updated)) }
       else
         format.html { render({:action=>"multilingual_edit"}) }
       end
