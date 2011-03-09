@@ -33,7 +33,7 @@
           
             <tr>
               <td class="labelCol"><label for="survey_range_range_code"><%=t(:label_csi_survey_range_range_code)%></label></td>
-              <td class="dataCol"><%=f.text_field :range_code, :required=>true ,:id=>"survey_range_range_code"%></td>
+              <td class="dataCol"><%=f.text_field :range_code, :required=>true ,:id=>"survey_range_range_code",:irm_uppercase=>true%></td>
               <td class="labelCol"><label for="survey_range_required_flag"><%=t(:label_csi_survey_range_required_flag)%></label></td>
               <td class="dataCol"><%=f.check_box :required_flag, :id=>"survey_range_required_flag"%></td>
             </tr>
