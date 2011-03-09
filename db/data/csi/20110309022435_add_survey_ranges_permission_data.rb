@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddSurveyRangesPermissionData < ActiveRecord::Migration
   def self.up
     csi_survey_ranges_create= Irm::Permission.new(:permission_code=>'CSI_SURVEY_RANGES_CREATE',:page_controller=>'csi/survey_ranges',:page_action=>'create',:not_auto_mult=>true)
