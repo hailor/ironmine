@@ -27,7 +27,7 @@
           </div>
         </div>
         <%= datatable("survey",url_for(:action=>"get_data"),
-                  [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"150px"},
+                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"150px"},
                    {:key=>"title",:label=>t(:label_csi_survey_title),:sortable=>true,:searchable=>true,:width=>"30%"},
                    {:key=>"description",:label=>t(:label_csi_survey_description),:sortable=>true},
                    {:key=>"status_meaning",:label=>t(:label_csi_survey_status_code),:sortable=>true,:width=>"40px"}],
