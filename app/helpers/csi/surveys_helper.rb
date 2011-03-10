@@ -94,4 +94,23 @@ module Csi::SurveysHelper
     survey_chart.html_safe
   end
 
+  #需要回应的调查问卷的task
+  def need_response_survey
+     survey_task = ""
+     current_person_id = Irm::Person.current
+     survey_members = Csi::SurveyMember.query_by_person_id(current_person_id).
+                                        query_by_response_flag(Irm::Constant::SYS_NO).
+                                        query_by_end_date_active
+     survey_members.each do |t|
+        survey = Csi::Survey.query(t.survey_id).first
+        survey_task << content_tag(:li,link_to(t(:label_csi_survey_info)+"："+survey.title,
+                                               {:controller=>"csi/surveys",:action=>"reply",
+                                                :id=>t.survey_id}))
+     end
+     if survey_task.blank?
+       survey_task << content_tag(:li,t(:label_irm_no_task))
+     end
+     survey_task
+  end
+
 end

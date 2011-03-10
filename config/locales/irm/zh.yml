@@ -95,6 +95,7 @@ zh:
   tool: 工具
   my_task: 我的任务
   my_all_count: 我的一览表
+  label_irm_no_task: 没有任务
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=====================#
   label_lookup_types: 快速编码类型

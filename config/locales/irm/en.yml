@@ -74,6 +74,7 @@ en:
   remove: Remove
   save_page: Keep
   options: Options
+  label_irm_no_task: No Task
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type

@@ -1,5 +1,3 @@
-<%= setting_title %>
-
 <%= form_for(@survey_range,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
@@ -40,10 +38,7 @@
 
             <tr>
               <td class="labelCol"><label for="survey_range_range_type"><%=t(:label_csi_survey_range_range_type)%></label></td>
-              <td class="dataCol"><%=f.select :range_type,
-                                              available_lookup_type("CSI_SURVEY_RANGE_TYPE"),
-                                              {},
-                                              {:id=>"range_type", :required => true}%></td>
+              <td class="dataCol"><%= @survey_range[:range_type_meaning] %></td>
               <td class="labelCol"><label for="survey_range_role_id"><%=t(:label_csi_survey_range_role)%></label></td>
               <td class="dataCol"><%=f.select :role_id,
                                               "<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
@@ -77,8 +72,8 @@
                                                :depend=>"ass_company",
                                                :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
                                                :href=>url_for(:controller=>"icm/group_assignments",:action=>"get_customer_organizations",:format=>"json",:customer_company_id=>"{ass_company}")}%></td>
-              <td class="labelCol"></td>
-              <td class="dataCol"></td>
+              <td class="labelCol"><label><%=(t :label_irm_action_status_code)%></label></td>
+              <td class="dataCol"><%=f.select :status_code,options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@survey_range.status_code)%>
             </tr>
             <tr>
               <td class="labelCol"><label for="ass_department"><%=t(:label_irm_location_department)%></label></td>
