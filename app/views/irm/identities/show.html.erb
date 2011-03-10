@@ -28,11 +28,11 @@
               <td class="labelCol"><label><%= t(:label_irm_identity_email)%></label></td>
               <td class="dataCol"><%= @identity.email %></td>
               <td class="labelCol"><%= t(:label_irm_identity_language_code) %></td>
-              <td class="dataCol"><%= @identity.language_code %></td>
+              <td class="dataCol"><%= @identity[:language_description] %></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :active)%></label></td>
-              <td class="dataCol"><%= check_img(@identity.status_code)%></td>
+              <td class="dataCol"><%= @identity[:status_meaning]%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>

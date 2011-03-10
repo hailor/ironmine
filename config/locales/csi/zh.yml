@@ -1,5 +1,5 @@
 zh:
-   #========================= start irm regions_controller=======================#
+   #========================= start csi surveys_controller=======================#
    label_csi_survey_new: 新建调查问卷
    label_csi_survey_info: 调查问卷
    label_csi_survey_company: 公司名称
@@ -33,8 +33,9 @@ zh:
    label_csi_survey_result_chart: 调查结果图表
    result: 结果
    export: 导出
-   #========================= end   irm regions_controller=======================#
-   #========================= start irm regions_controller=======================#
+   range: 范围
+   #========================= end   csi surveys_controller=======================#
+   #========================= start csi survey_subjects_controller=======================#
    label_csi_survey_subject: 题目
    label_csi_survey_subject_add_subject: 新问题
    label_csi_survey_subject_info: 调查问卷题目详细信息
@@ -68,4 +69,19 @@ zh:
    submit: 提交
    label_csi_survey_subject_list: 题目列表
    label_csi_survey_person: 参与调查人员
-   #========================= end   irm regions_controller=======================#
+   #========================= end   csi survey_subjects_controller=======================#
+   #========================= start csi survey_ranges_controller=======================#
+   label_csi_survey_range_range_code: 范围编码
+   label_csi_survey_range_required_flag: 是否必须
+   label_csi_survey_range_range_type: 范围类型
+   label_csi_survey_range_range_company: 公司选择
+   label_csi_survey_range_range_organization: 组织选择
+   label_csi_survey_range_range_department: 部门选择
+   label_csi_survey_range_status_code: 记录状态
+   label_csi_survey_range_role: 角色选择
+   label_csi_survey_range_site: 地点选择
+   label_csi_survey_range_list: 调查范围列表
+   label_csi_survey_range_new: 新建调查范围
+   label_csi_survey_range_show: 显示调查范围
+   label_csi_survey_range_edit: 编辑调查范围
+   #========================= end csi survey_ranges_controller=======================#

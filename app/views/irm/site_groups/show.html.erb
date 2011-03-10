@@ -1,4 +1,4 @@
-<%= setting_show_title(:show_data => @site_group.group_code) %>
+<%= setting_show_title(:show_data => @site_group[:name]) %>
 <div id="ep" class="bDetailBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -41,7 +41,7 @@
     </div>
   </div>
 </div>
-
+<%=render :partial=>"multilingual/show",:locals=>{:main_data=>@site_group} %>
 <div class="listRelatedObject setupBlock">
     <div class="bPageBlock">
       <div class="pbHeader">
@@ -79,4 +79,5 @@
       </div>
     </div>
 </div>
+
 

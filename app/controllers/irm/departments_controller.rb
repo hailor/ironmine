@@ -76,7 +76,7 @@ class Irm::DepartmentsController < ApplicationController
     @department.not_auto_mult=true
     respond_to do |format|
       if @department.update_attributes(params[:irm_department])
-        format.html { render({:action=>"multilingual_edit",:format=>"js"}) }
+        format.html { render({:action=>"show"}) }
       else
         format.html { render({:action=>"multilingual_edit"}) }
       end
@@ -100,7 +100,7 @@ class Irm::DepartmentsController < ApplicationController
     respond_to do |format|
       format.html
       format.xml  { head :ok }
-      format.js { render :json => departments.collect{|d| {:id=>d.id,:name=>d[:name]}} }
+      format.js   { render :json => departments.collect{|d| {:id=>d.id,:name=>d[:name]}} }
     end
   end
 end

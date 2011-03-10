@@ -71,6 +71,22 @@ class Irm::SupportGroupsController < ApplicationController
     end
   end
 
+  def multilingual_edit
+    @support_group = Irm::SupportGroup.find(params[:id])
+  end
+
+  def multilingual_update
+    @support_group = Irm::SupportGroup.find(params[:id])
+    @support_group.not_auto_mult=true
+    respond_to do |format|
+      if @support_group.update_attributes(params[:irm_support_group])
+        format.html { redirect_to({:action=>"show"}) }
+      else
+        format.html { render({:action=>"multilingual_edit"}) }
+      end
+    end
+  end
+
   def get_data
     @support_groups= Irm::SupportGroup.multilingual.query_wrap_info(I18n::locale)
     @support_groups = @support_groups.match_value("#{Irm::SupportGroup.table_name}.group_code",params[:group_code])

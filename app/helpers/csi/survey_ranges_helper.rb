@@ -1,0 +1,2 @@
+module Csi::SurveyRangesHelper
+end

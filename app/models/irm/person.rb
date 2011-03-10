@@ -74,6 +74,15 @@ class Irm::Person < ActiveRecord::Base
   scope :query_by_ids,lambda{|ids| where("#{table_name}.id IN (?)",[""]+ids)}
 
   scope :include_identity ,lambda{includes(:identity)}
+
+  scope :query_company_id,lambda{|company_id| where(:company_id=>company_id)}
+  scope :query_organization_id,lambda{|organization_id| where(:organization_id=>organization_id)}
+  scope :query_department_id,lambda{|department_id| where(:department_id=>department_id)}
+  scope :query_site_id,lambda{|site_id| where(:site_id=>site_id)}
+
+  scope :query_role_id,lambda{|role_id| select("#{table_name}.id").
+                                        joins(:person_roles).
+                                        where("#{Irm::PersonRole.table_name}.role_id = ?",role_id)}
   #取得系统当前登陆人员
   def self.current
     @current_person

@@ -54,7 +54,7 @@ module Irm::PageHelper
     link_to(btn_delete_icon, args, {})
   end
 
-  def icon_link_remove(args = {}, block = {})
-    link_to(btn_remove_icon, args, {})
+  def icon_link_remove(*args,&block)
+    link_to(btn_remove_icon, args.first,args.second,block)
   end
 end

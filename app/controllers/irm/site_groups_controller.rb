@@ -80,7 +80,7 @@ class Irm::SiteGroupsController < ApplicationController
     @site_group.not_auto_mult=true
     respond_to do |format|
       if @site_group.update_attributes(params[:irm_site_group])
-        format.html { render({:action=>"multilingual_edit",:format=>"js"}) }
+        format.html { redirect_to({:action=>"show"}) }
       else
         format.html { render({:action=>"multilingual_edit"}) }
       end

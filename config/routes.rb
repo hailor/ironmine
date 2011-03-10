@@ -111,8 +111,8 @@ Ironmine::Application.routes.draw do
     match '/identities/:id/update(.:format)' => "identities#update", :via => :put
     match '/identities/new(.:format)' => "identities#new", :via => :get
     match '/identities/create(.:format)' => "identities#create", :via => :post
-    match '/identities/get_data(.:format)' => "identities#get_data"
-    match '/identities/:id/show(.:format)' => "identities#show"
+    match '/identities/get_data(.:format)' => "identities#get_data", :via => :get
+    match '/identities/:id/show(.:format)' => "identities#show", :via => :get
 
     #my_info
     match '/my_info(/index)(.:format)' => "my_info#index", :via => :get
@@ -213,11 +213,12 @@ Ironmine::Application.routes.draw do
     match '/organizations/:id/edit(.:format)' => "organizations#edit", :via => :get
     match '/organizations/:id(.:format)' => "organizations#update", :via => :put
     match '/organizations/new(.:format)' => "organizations#new", :via => :get
-    match '/organizations/:id(.:format)' => "organizations#show", :via => :get
+    match '/organizations/:id/show(.:format)' => "organizations#show", :via => :get
     match '/organizations/create(.:format)' => "organizations#create", :via => :post
     match '/organizations/:id/multilingual_edit(.:format)' => "organizations#multilingual_edit", :via => :get
     match '/organizations/:id/multilingual_update(.:format)' => "organizations#multilingual_update", :via => :put
     match '/organizations/belongs_to(.:format)' => "organizations#belongs_to"
+    match '/organizations/get_by_company(.:format)' => "organizations#get_by_company", :via => :get
     #departments
     match '/departments/get_data(.:format)' => "departments#get_data"
     match '/departments(/index)(.:format)' => "departments#index", :via => :get
@@ -607,6 +608,15 @@ Ironmine::Application.routes.draw do
     match '/surveys/:survey_id/survey_subjects/:id(.:format)' => "survey_subjects#show", :via => :get
     match '/surveys/:survey_id/survey_subjects/create(.:format)' => "survey_subjects#create", :via => :post
     match '/surveys/:survey_id/survey_subjects/:id(.:format)' => "survey_subjects#destroy", :via => :delete
+    #survey_ranges
+    match '/surveys/:survey_id/survey_ranges/get_data(.:format)' => "survey_ranges#get_data"
+    match '/surveys/:survey_id/survey_ranges(/index)(.:format)' => "survey_ranges#index", :via => :get
+    match '/surveys/:survey_id/survey_ranges/:id/edit(.:format)' => "survey_ranges#edit", :via => :get
+    match '/surveys/:survey_id/survey_ranges/:id(.:format)' => "survey_ranges#update", :via => :put
+    match '/surveys/:survey_id/survey_ranges/new(.:format)' => "survey_ranges#new", :via => :get
+    match '/surveys/:survey_id/survey_ranges/create(.:format)' => "survey_ranges#create", :via => :post
+    match '/surveys/:survey_id/survey_ranges/:id(.:format)'=>"survey_ranges#destroy",:via=>:delete
+    match '/surveys/:survey_id/survey_ranges/:id(.:format)' => "survey_ranges#show", :via => :get
   end
 
   scope :module => "skm" do

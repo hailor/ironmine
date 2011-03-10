@@ -110,6 +110,22 @@ class Irm::SitesController < ApplicationController
     end
   end
 
+  def multilingual_edit
+    @site = Irm::Site.find(params[:id])
+  end
+
+  def multilingual_update
+    @site = Irm::Site.find(params[:id])
+    @site.not_auto_mult=true
+    respond_to do |format|
+      if @site.update_attributes(params[:irm_site])
+        format.html { redirect_to({:action=>"show"}) }
+      else
+        format.html { render({:action=>"multilingual_edit"}) }
+      end
+    end
+  end
+
   def get_data
     @sites= Irm::Site.query_by_site_group_code_and_language(I18n::locale,params[:site_group_code]).
         query_wrap_info(I18n::locale)

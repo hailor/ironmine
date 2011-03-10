@@ -27,6 +27,10 @@ class Csi::SurveyResult < ActiveRecord::Base
                                                               where("#{table_name}.subject_id = ? AND #{table_name}.option_type = ? ",
                                                                      subject_id,option_type)}
 
-
+  scope :query_survey_members,lambda{|survey_id,person_id|  select("#{table_name}.*")
+                                                     joins(",#{Csi::SurveySubject.table_name} css").
+                                                     where("css.survey_id = ? AND css.id = #{table_name}.subject_id AND "+
+                                                     "#{table_name}.person_id = ?",
+                                                     survey_id,person_id)}
 
 end
