@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module Csi::SurveysHelper
   def get_survey_result(survey_id,response_batch,subject_id)
     @survey_result = Csi::SurveyResult.query_by_survey_id(survey_id,response_batch,subject_id)
