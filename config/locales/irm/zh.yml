@@ -97,6 +97,8 @@ zh:
   my_all_count: 我的一览表
   label_irm_no_task: 没有任务
   find: 查找
+  my_view: 我的视图
+  calendar_task: 工作日历
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=====================#
   label_lookup_types: 快速编码类型

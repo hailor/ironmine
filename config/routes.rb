@@ -1,6 +1,7 @@
 Ironmine::Application.routes.draw do
 
   scope :module => "irm" do
+    match '/calendar_tasks(/:year(/:month))' => 'calendar_tasks#index', :as => :calendar_task, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
     root :to => "navigations#index"
     match 'login'=>'common#login',:as=>:login
     match 'combo'=>'navigations#combo'
