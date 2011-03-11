@@ -76,6 +76,8 @@ en:
   options: Options
   label_irm_no_task: No Task
   find: Find
+  my_view: My View
+  calendar_task: Calendar
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type
