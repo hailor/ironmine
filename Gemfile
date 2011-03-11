@@ -52,3 +52,7 @@ group :production do
 #gem 'jk-ferret'
   gem 'mysql2'
 end
+
+group :macdev do
+  gem 'mysql2'
+end
