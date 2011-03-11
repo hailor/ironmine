@@ -18,7 +18,7 @@
       <div class="pbBody">
         <div id="entry_elements_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:controller => "skm/entry_template_elements", :action=>"edit",:id=>"{id}"}) %>
+            <%= icon_link_edit({:controller => "skm/entry_template_elements", :action=>"edit",:id=>"{id}"}) %>
           </div>
           <div id="status_code" style="display:none">
             <%= check_img("{status_code}") %>

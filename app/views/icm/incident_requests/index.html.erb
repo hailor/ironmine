@@ -20,11 +20,12 @@
       <div class="pbBody">
         <div id="incident_requests" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:label_icm_reply),{:controller=>"icm/incident_journals",:action=>"new",:request_id=>"{id}"}) %>
+            <%= icon_link_edit({:action=>"edit",:id=>"{id}"}) %>&nbsp;
+            <%= icon_link("btn_reply", t(:label_icm_reply),{:controller=>"icm/incident_journals",:action=>"new",:request_id=>"{id}"}) %>
           </div>
         </div>
         <%= datatable("incident_requests",url_for(:action=>"get_data",:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"60px"},
                        { :key => "request_number", :label => t(:label_icm_incident_request_request_number),:searchable=>true,:width=>"120px"},
                        { :key => "title", :label => t(:label_icm_incident_request_title),:searchable=>true },                                            
                        { :key => "incident_status_name", :label => t(:label_icm_incident_request_incident_status_code,:searchable=>true) },
