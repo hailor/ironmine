@@ -19,8 +19,8 @@
       <div class="pbBody">
         <div id="skm_files_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:controller => "skm/file_managements", :action => "edit", :id => "{id}"}) %>&nbsp;
-            <%= link_to(t(:remove),{:controller => "skm/file_managements", :action=>"destroy",:id=>"{id}"}) %>
+            <%= icon_link_edit({:controller => "skm/file_managements", :action => "edit", :id => "{id}"}) %>&nbsp;
+            <%= icon_link_remove({:controller => "skm/file_managements", :action=>"destroy",:id=>"{id}"}) %>
           </div>
           <div id="data_file_name" style="display:none">
             <%= link_to("{data_file_name}",{}, {:href => "/upload/irm/attachment_versions/{version_id}/original/{data_file_name}"}) %>
