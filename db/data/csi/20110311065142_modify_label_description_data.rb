@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class ModifyLabelDescriptionData < ActiveRecord::Migration
   def self.up
      system_report_lookup_value =  Irm::LookupValue.query_by_lookup_type("IRM_REPORT_CATEGORY").
