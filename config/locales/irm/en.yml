@@ -74,6 +74,8 @@ en:
   remove: Remove
   save_page: Keep
   options: Options
+  my_view: My View
+  calendar_task: Calendar
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type

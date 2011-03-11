@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag "event_calendar" %>
 <div class="bPageTitle">
   <div class="ptBody secondaryPalette">
     <a href="javascript:void(0);">
@@ -15,92 +16,105 @@
     </div>
   </div>
 </div>
-
-<table class="toolsContent">
-    <tbody>
-        <tr>
-          <td>
-            <div class="toolsContentLeft">
-              <div class="bSubBlock">
-                <h3 class="lbHeader"><%= t :my_all_count %></h3>
-                <div class="lbBody">
-                  <table class="toolsContentListTable">
-                    <tr>
-                      <td><a href="#"><%= t :label_icm_wait_for_me_request_count %></a></td>
-                      <td class="tdRight"><%= wait_for_me_request_count %></td>
-                    </tr>
-                    <tr>
-                      <td><a href="#"><%= t :label_icm_reply_today_count %></a></td>
-                      <td class="tdRight"><%= reply_today_count %></td>
-                    </tr>
-                    <tr>
-                      <td><a href="#"><%= t :label_icm_request_submitted_today_count %></a></td>
-                      <td class="tdRight"><%= request_submitted_today_count%></td>
-                    </tr>
-                    <tr>
-                      <td><a href="#"><%= t :label_icm_my_un_solved_request %></a></td>
-                      <td class="tdRight"><%= my_un_solved_request %></td>
-                    </tr>
-                    <tr>
-                      <td><a href="#"><%= t :label_icm_my_solved_request %></a></td>
-                      <td class="tdRight"><%= my_solved_request %></td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div class="toolsContentRight">
-              <div class="bSubBlock">
-                <h3 class="lbHeader"><%= t :my_task %></h3>
-                <div class="lbBody">
-                  <ul>
-                    <li>没有任务</li>
-                  </ul>
-                </div>
-                    <div class="quickCreateField">
-                      <div class="button"><input class="btn" type="button" value="创建任务"></div><br>
+<div class="pbSubsection" id="templateBody" style="display:none" current="portal">
+  <ul>
+      <li><a id="portal" href="#tab_portal"><%= t :my_view %></a></li>
+      <li><a id="calendar_task" href="#tab_calendar_task"><%= t :calendar_task %></a></li>
+  </ul>
+  <div class="bPageBlock">
+    <div id="tab_portal">
+        <table class="toolsContent">
+            <tbody>
+                <tr>
+                  <td>
+                    <div class="toolsContentLeft">
+                      <div class="bSubBlock">
+                        <h3 class="lbHeader"><%= t :my_all_count %></h3>
+                        <div class="lbBody">
+                          <table class="toolsContentListTable">
+                            <tr>
+                              <td><a href="#"><%= t :label_icm_wait_for_me_request_count %></a></td>
+                              <td class="tdRight"><%= wait_for_me_request_count %></td>
+                            </tr>
+                            <tr>
+                              <td><a href="#"><%= t :label_icm_reply_today_count %></a></td>
+                              <td class="tdRight"><%= reply_today_count %></td>
+                            </tr>
+                            <tr>
+                              <td><a href="#"><%= t :label_icm_request_submitted_today_count %></a></td>
+                              <td class="tdRight"><%= request_submitted_today_count%></td>
+                            </tr>
+                            <tr>
+                              <td><a href="#"><%= t :label_icm_my_un_solved_request %></a></td>
+                              <td class="tdRight"><%= my_un_solved_request %></td>
+                            </tr>
+                            <tr>
+                              <td><a href="#"><%= t :label_icm_my_solved_request %></a></td>
+                              <td class="tdRight"><%= my_solved_request %></td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
                     </div>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <div class="toolsContentRight">
-              <div class="bSubBlock">
-                <h3 class="lbHeader">公告</h3>
-                <div class="lbBody">
-                  <table class="toolsContentListTable">
-                    <tr>
-                      <td><a href="javascript:void(0);">2011年部门年度计划</a></td>
-                      <td class="tdRight">2011-2-13</td>
-                    </tr>
-                    <tr>
-                      <td><a href="javascript:void(0);">统一维护工作量考察细则</a></td>
-                      <td class="tdRight">2011-2-13</td>
-                    </tr>
-                    <tr>
-                      <td><a href="javascript:void(0);">关于1月份系统访问缓慢的详细报告</a></td>
-                      <td class="tdRight">2011-1-21</td>
-                    </tr>
-                    <tr>
-                      <td><a href="javascript:void(0);">近期服务器升级公告</a></td>
-                      <td class="tdRight">2011-1-15</td>
-                    </tr>
-                    <tr>
-                      <td><a href="javascript:void(0);">统一维护工作规范</a></td>
-                      <td class="tdRight">2011-1-4</td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-</table>
+                  </td>
+                  <td>
+                    <div class="toolsContentRight">
+                      <div class="bSubBlock">
+                        <h3 class="lbHeader"><%= t :my_task %></h3>
+                        <div class="lbBody">
+                          <ul>
+                            <li>没有任务</li>
+                          </ul>
+                        </div>
+                            <div class="quickCreateField">
+                              <div class="button"><input class="btn" type="button" value="创建任务"></div><br>
+                            </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <div class="toolsContentRight">
+                      <div class="bSubBlock">
+                        <h3 class="lbHeader">公告</h3>
+                        <div class="lbBody">
+                          <table class="toolsContentListTable">
+                            <tr>
+                              <td><a href="javascript:void(0);">2011年部门年度计划</a></td>
+                              <td class="tdRight">2011-2-13</td>
+                            </tr>
+                            <tr>
+                              <td><a href="javascript:void(0);">统一维护工作量考察细则</a></td>
+                              <td class="tdRight">2011-2-13</td>
+                            </tr>
+                            <tr>
+                              <td><a href="javascript:void(0);">关于1月份系统访问缓慢的详细报告</a></td>
+                              <td class="tdRight">2011-1-21</td>
+                            </tr>
+                            <tr>
+                              <td><a href="javascript:void(0);">近期服务器升级公告</a></td>
+                              <td class="tdRight">2011-1-15</td>
+                            </tr>
+                            <tr>
+                              <td><a href="javascript:void(0);">统一维护工作规范</a></td>
+                              <td class="tdRight">2011-1-4</td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="tab_calendar_task">
+      <%= raw(event_calendar) %>
+    </div>
+  </div>
+</div>
+
 <style type="text/css">
   div.portalContent div.portalModule{
     width:100%;
@@ -256,4 +270,11 @@
       var portal = new Portal({domId:"portalContent",sourceDomId:"portalSource"});
   });
 
+  GY.use("tabview","node-event-simulate",function(Y){
+    Y.one("#templateBody").setStyle("display","block");
+    var tabview = new Y.TabView({srcNode:'#templateBody',tabIndex:"#portal"});
+    tabview.render();
+    var currentTab = Y.one("#templateBody").getAttribute("current");
+    Y.one("#templateBody").one("a#"+currentTab).simulate("click");
+  });        
 </script>
