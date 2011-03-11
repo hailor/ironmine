@@ -48,6 +48,8 @@ Ironmine::Application.routes.draw do
     match '/menus/:id(.:format)' => "menus#update", :via => :put
     match '/menus/:id/show(.:format)' => "menus#show", :via => :get
     match '/menus/:entry_id/:id/remove_entry(.:format)' => "menus#remove_entry", :via => :get
+    match '/menus/:id/multilingual_edit(.:format)' => "menus#multilingual_edit", :via => :get
+    match '/menus/:id/multilingual_update(.:format)' => "menus#multilingual_update", :via => :put     
     #menu_entries
     match '/menu_entries(/index)(.:format)' => "menu_entries#index", :via => :get
     match '/menu_entries/:menu_code/new(.:format)' => "menu_entries#new", :via => :get
@@ -456,6 +458,8 @@ Ironmine::Application.routes.draw do
     match '/impact_ranges/create(.:format)' => "impact_ranges#create", :via => :post
     match '/impact_ranges/get_data(.:format)' => "impact_ranges#get_data"
     match '/impact_ranges/:id/show(.:format)' => "impact_ranges#show", :via => :get
+    match '/impact_ranges/:id/multilingual_edit(.:format)' => "impact_ranges#multilingual_edit", :via => :get
+    match '/impact_ranges/:id/multilingual_update(.:format)' => "impact_ranges#multilingual_update", :via => :put    
     #urgence_codes
     match '/urgence_codes(/index)(.:format)' => "urgence_codes#index", :via => :get
     match '/urgence_codes/:id/edit(.:format)' => "urgence_codes#edit", :via => :get
@@ -492,6 +496,8 @@ Ironmine::Application.routes.draw do
     match '/incident_phases/create(.:format)' => "incident_phases#create", :via => :post
     match '/incident_phases/get_data(.:format)' => "incident_phases#get_data"
     match '/incident_phases/:id/show(.:format)' => "incident_phases#show", :via => :get
+    match '/incident_phases/:id/multilingual_edit(.:format)' => "incident_phases#multilingual_edit", :via => :get
+    match '/incident_phases/:id/multilingual_update(.:format)' => "incident_phases#multilingual_update", :via => :put    
     #incident_statuses
     match '/incident_statuses(/index)(.:format)' => "incident_statuses#index", :via => :get
     match '/incident_statuses/:id/edit(.:format)' => "incident_statuses#edit", :via => :get

@@ -70,12 +70,11 @@ class Irm::SitesController < ApplicationController
           if(params[:_from]=="site_group")
             redirect_to params[:return_url]
           else
-            format.html { redirect_to({:action=>"index"},:notice => (t :successfully_created))}
+            redirect_to({:action=>"index",:site_group_code=>params[:site_group_code]},:notice => (t :successfully_created))
           end
           }
         format.xml  { render :xml => @site, :status => :created, :location => @site }
       else
-        @error = @site
         format.html { render "new" }
         format.xml  { render :xml => @site.errors, :status => :unprocessable_entity }
       end

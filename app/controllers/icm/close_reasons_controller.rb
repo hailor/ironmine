@@ -73,5 +73,21 @@ class Icm::CloseReasonsController < ApplicationController
       format.json  {render :json => to_jsonp(close_reasons.to_grid_json([:company_name,:name,
                                                                      :close_code,:category_name], count)) }
     end
-  end  
+  end
+
+  def multilingual_edit
+    @close_reason = Icm::CloseReason.find(params[:id])
+  end
+
+  def multilingual_update
+    @close_reason = Icm::CloseReason.find(params[:id])
+    @close_reason.not_auto_mult=true
+    respond_to do |format|
+      if @close_reason.update_attributes(params[:icm_close_reason])
+        format.html { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
+      else
+        format.html { render({:action=>"multilingual_edit"}) }
+      end
+    end
+  end    
 end

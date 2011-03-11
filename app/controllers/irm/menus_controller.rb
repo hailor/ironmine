@@ -71,4 +71,22 @@ class Irm::MenusController < ApplicationController
       redirect_to(return_url)
     end
   end
+
+  def multilingual_edit
+    @menu = Irm::Menu.find(params[:id])
+  end
+
+  def multilingual_update
+    @menu = Irm::Menu.find(params[:id])
+    @menu.not_auto_mult = true
+    respond_to do |format|
+      if @menu.update_attributes(params[:irm_menu])
+        format.html { redirect_to({:action=>"show"}, :notice => 'Menu was successfully updated.') }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "multilingual_edit" }
+        format.xml  { render :xml => @menu.errors, :status => :unprocessable_entity }
+      end
+    end
+  end    
 end

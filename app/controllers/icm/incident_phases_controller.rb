@@ -75,5 +75,22 @@ class Icm::IncidentPhasesController < ApplicationController
     respond_to do |format|
       format.json  {render :json => to_jsonp(incident_phases.to_grid_json([:name,:phase_code,:display_sequence,:status_meaning], count)) }
     end
-  end     
+  end
+
+
+  def multilingual_edit
+    @incident_phase = Icm::IncidentPhase.find(params[:id])
+  end
+
+  def multilingual_update
+    @incident_phase = Icm::IncidentPhase.find(params[:id])
+    @incident_phase.not_auto_mult=true
+    respond_to do |format|
+      if @incident_phase.update_attributes(params[:icm_incident_phase])
+        format.html { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
+      else
+        format.html { render({:action=>"multilingual_edit"}) }
+      end
+    end
+  end  
 end

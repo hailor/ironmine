@@ -38,23 +38,31 @@ module Irm::PageHelper
     content_tag(:img, "", {:class => "btn_remove", :src => "/images/s.gif", :title => t(:remove)})
   end
 
-  def icon_link_add(args = {}, block = {})
-    link_to(btn_add_icon, args, {})
+  def btn_icon(icon_class, title)
+    content_tag(:img, "", {:class => icon_class, :src => "/images/s.gif", :title => title})  
+  end
+  
+  def icon_link_add(*args, &block)
+    link_to(btn_add_icon, args.first,args.second,block)
   end
 
-  def icon_link_show(args = {}, block = {})
-    link_to(btn_show_icon, args, {})
+  def icon_link_show(*args, &block)
+    link_to(btn_show_icon, args.first,args.second,block)
   end
 
-  def icon_link_edit(args = {}, block = {})
-    link_to(btn_edit_icon, args, {})
+  def icon_link_edit(*args, &block)
+    link_to(btn_edit_icon, args.first,args.second,block)
   end
 
-  def icon_link_delete(args = {}, block = {})
-    link_to(btn_delete_icon, args, {})
+  def icon_link_delete(*args, &block)
+    link_to(btn_delete_icon, args.first,args.second,block)
   end
 
   def icon_link_remove(*args,&block)
     link_to(btn_remove_icon, args.first,args.second,block)
+  end
+
+  def icon_link(icon_class = "", title = "", *args, &block)
+    link_to(btn_icon(icon_class, title), args.first, args.second, block)
   end
 end

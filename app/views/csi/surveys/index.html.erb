@@ -20,14 +20,14 @@
       <div class="pbBody">
         <div id="survey" class="datatable" style="width:100%;">
           <div id="id" style="display:none">
-            <%= link_to(t(:reply),{:action=>"reply",:id=>"{id}"}) %>&nbsp;
-            <%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>&nbsp;
-            <%= link_to(t(:result),{:action=>"show_result",:id=>"{id}"}) %>&nbsp;
-            <%= link_to(t(:range),{:controller=>"csi/survey_ranges",:action=>"index",:survey_id=>"{id}"}) %>&nbsp;
+            <%= icon_link("btn_reply", t(:reply),{:action=>"reply",:id=>"{id}"}) %>&nbsp;
+            <%= icon_link_show({:action=>"show",:id=>"{id}"}) %>&nbsp;
+            <%= icon_link("btn_result", t(:result),{:action=>"show_result",:id=>"{id}"}) %>&nbsp;
+            <%= icon_link("btn_range", t(:range),{:controller=>"csi/survey_ranges",:action=>"index",:survey_id=>"{id}"}) %>&nbsp;
           </div>
         </div>
         <%= datatable("survey",url_for(:action=>"get_data"),
-                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"150px"},
+                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"120px"},
                    {:key=>"title",:label=>t(:label_csi_survey_title),:sortable=>true,:searchable=>true,:width=>"30%"},
                    {:key=>"description",:label=>t(:label_csi_survey_description),:sortable=>true},
                    {:key=>"status_meaning",:label=>t(:label_csi_survey_status_code),:sortable=>true,:width=>"40px"}],
