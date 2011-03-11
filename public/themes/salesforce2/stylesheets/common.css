@@ -761,4 +761,5 @@ div.button input[type="submit"]:hover{background-position: right -30px; cursor: 
 .btn_delete{background:url("../images/16_16/Trash Full.png") no-repeat scroll; width:16px; height:16px;}
 .btn_show{background:url("../images/16_16/View.png") no-repeat scroll; width:16px; height:16px;}
 .btn_remove{background:url("../images/16_16/Trash Full.png") no-repeat scroll; width:16px; height:16px;}
+.btn_star{background:url("../images/16_16/Star.png") no-repeat scroll; width: 16px; height: 16px;}
 
