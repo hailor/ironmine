@@ -649,6 +649,7 @@ en:
   #=========================end irm roles ===================================
   #========================= irm reports ===================================
   label_irm_report_list: Report list
+  label_irm_report: Report
   label_irm_report_report_code: Report code
   label_irm_report_name: Report name
   label_irm_report_category_code: Category code
