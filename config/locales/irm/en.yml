@@ -78,6 +78,7 @@ en:
   find: Find
   my_view: My View
   calendar_task: Calendar
+  upload: Upload
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type
