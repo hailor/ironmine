@@ -20,7 +20,7 @@
           <div id="id" style="display:none">
             <%= icon_link_edit({:controller => "skm/entry_headers", :action=>"edit",:id=>"{id}"}) %>&nbsp;
             <%= icon_link_show({:controller => "skm/entry_headers", :action=>"show",:id=>"{id}"}) %>&nbsp;
-            <%= icon_link("btn_star",{:controller => "skm/entry_headers", :action => "add_favorites", :id => "{id}", :person_id => Irm::Person.current.id}) %>
+            <%= icon_link("btn_star", t(:save_page), {:controller => "skm/entry_headers", :action => "add_favorites", :id => "{id}", :person_id => Irm::Person.current.id}) %>
           </div>
           <div id="full_title" style="display:none">
             <%= link_to("{full_title}",{:controller => "skm/entry_headers", :action=>"show",:id=>"{id}"}) %>

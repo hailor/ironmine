@@ -20,8 +20,9 @@
       <div class="pbBody">
         <div id="survey_ranges" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
-            &nbsp;&nbsp;<%= link_to(t(:delete),{:controller=>"csi/survey_ranges",:action=>"destroy",:id=>"{id}"},:confirm => t(:label_are_you_sure) ,
+            <%= icon_link_edit({:action=>"edit",:id=>"{id}"}) %>&nbsp;
+            <%= icon_link_show({:action=>"show",:id=>"{id}"}) %>&nbsp;
+            <%= icon_link_delete({:controller=>"csi/survey_ranges",:action=>"destroy",:id=>"{id}"},:confirm => t(:label_are_you_sure) ,
                                       :method => :delete) %>
           </div>
         </div>
