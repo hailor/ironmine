@@ -254,13 +254,6 @@
     </div>
 </div>
 
-<style type="text/css">
-  .test_class{
-      height:16px;
-      font-size:18px;
-  }
-</style>
-
 <div id="id_owned_roles" class="listRelatedObject setupBlock">
     <div class="bPageBlock">
       <div class="pbHeader">
@@ -279,7 +272,7 @@
         <div id="roles_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
             <%= icon_link_remove({:action=>"remove_role",:role_id=>"{id}", :person_id => @person,
-                                  },{:class=>"test_class"}) %>
+                                  }) %>
           </div>
         </div>
         <%= datatable("roles_list",url_for(:controller => "irm/people", :action=>"get_owned_roles", :person_id => @person,:format=>"json"),
