@@ -371,7 +371,7 @@ RelatedListPanel.prototype.showRL = function(rlId, forceResize) {
         }
         panelShadowNode.style.width = (relatedListNode.offsetWidth+ 5) + "px";
     }
-    panelFrameNode.style.height = (relatedListNode.offsetHeight+3) + "px";
+    panelFrameNode.style.height = (relatedListNode.offsetHeight+5) + "px";
     panelFrameNode.style.width = (relatedListNode.offsetWidth) + "px";
     panelShadowNode.style.display = "block";
     linkletNode.className += " linkletOn";
