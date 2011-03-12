@@ -109,12 +109,15 @@
                 <div id="bd_bl"></div>
                 <div id="bd_br"></div>
             </div>
+
             <div id="sidebarDiv">
+                <%if has_content?(:sidebar) %>
                 <div class="sidebarInner">
                   <div class="sidebarModule">
-                    <%= render :partial =>"/icm/incident_requests/short_cut_new" %>
+                    <%= yield :sidebar %>
                   </div>
                 </div>
+                <%end%>
             </div>
 
             <table id="bodyTable" class="outer" width="100%" cellpadding="0" cellspacing="0">

@@ -15,3 +15,6 @@
             {t(:label_skm_entry_header) => 'entry_headers/data_grid.js',
              t(:label_skm_entry_header_my_favorites) => 'entry_headers/my_favorites.js'
             }) %>
+<% content_for :sidebar do%>
+    <%= render :partial =>"/icm/incident_requests/short_cut_new" %>
+<% end %>
