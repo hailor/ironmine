@@ -8,7 +8,6 @@ class Irm::Identity < ActiveRecord::Base
   validates_uniqueness_of :email, :if => Proc.new { |identity| !identity.email.blank? }, :case_sensitive => false
   validates_format_of :login_name, :with => /^[a-z0-9_\-@\.]*$/
   validates_length_of :login_name, :maximum => 30
-  validates_format_of :full_name, :with => /^[\w\s\'\-\.]*$/i
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :allow_nil => true
   validates_length_of :email, :maximum => 60, :allow_nil => true
   validates_presence_of :password,:if=> Proc.new{|identity| identity.hashed_password.blank?&&!identity.is_a?(Irm::AnonymousIdentity)}
@@ -31,6 +30,10 @@ class Irm::Identity < ActiveRecord::Base
 
   scope :select_all,lambda{
     select("#{table_name}.*")
+  }
+
+  scope :attachable,lambda{
+    where("NOT EXISTS(select 1 from #{Irm::Person.table_name} where #{Irm::Person.table_name}.identity_id = #{table_name}.id)")
   }
 
   def self.list_all
