@@ -16,8 +16,8 @@
       <div class="pbBody">
         <div id="favorites_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:show),{:controller => "skm/entry_headers", :action=>"show",:id=>"{id}"}) %>&nbsp;
-            <%= link_to(t(:remove),{:controller => "skm/entry_headers", :action=>"remove_favorite",:person_id=>Irm::Person.current.id, :entry_header_id => "{id}"}) %>
+            <%= icon_link_show({:controller => "skm/entry_headers", :action=>"show",:id=>"{id}"}) %>&nbsp;
+            <%= icon_link_remove({:controller => "skm/entry_headers", :action=>"remove_favorite",:person_id=>Irm::Person.current.id, :entry_header_id => "{id}"}) %>
           </div>
           <div id="full_title" style="display:none">
             <%= link_to("{full_title}",{:controller => "skm/entry_headers", :action=>"show",:id=>"{id}"}) %>

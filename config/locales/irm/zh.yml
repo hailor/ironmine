@@ -95,6 +95,10 @@ zh:
   tool: 工具
   my_task: 我的任务
   my_all_count: 我的一览表
+  label_irm_no_task: 没有任务
+  find: 查找
+  my_view: 我的视图
+  calendar_task: 工作日历
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=====================#
   label_lookup_types: 快速编码类型
@@ -702,6 +706,7 @@ zh:
   #=========================end irm roles ===================================
   #========================= irm reports ===================================
   label_irm_report_list: 报表列表
+  label_irm_report: 报表
   label_irm_report_report_code: 报表编码
   label_irm_report_name: 报表名称
   label_irm_report_category_code: 报表类别
@@ -730,6 +735,7 @@ zh:
   #=========================start irm  report_lists_controllers=====================#
   label_icm_incident_report_all: 事故单模块报表汇总
   label_csi_survey_report_all: 问卷调查报表
+  label_please_input_search: 输入用来查找匹配自定义报表的关键字
   #=========================end irm  report_lists_controllers=======================#
   #=========================start irm  common_reports_controllers=====================#
   label_irm_person_login_day: 日期

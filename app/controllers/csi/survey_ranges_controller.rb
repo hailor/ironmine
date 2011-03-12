@@ -31,7 +31,8 @@ class Csi::SurveyRangesController < ApplicationController
 
   # GET /survey_ranges/1/edit
   def edit
-    @survey_range = Csi::SurveyRange.find(params[:id])
+    @survey_range = Csi::SurveyRange.query_status_meaning(I18n::locale).query_range_meaning(I18n::locale).
+                  query_all_info.find(params[:id])
   end
 
   # POST /survey_ranges
@@ -42,6 +43,7 @@ class Csi::SurveyRangesController < ApplicationController
 
     respond_to do |format|
       if @survey_range.save
+        Delayed::Job.enqueue(Csi::Jobs::CsiSurveyMemberJob.new(@survey_range.id))
         format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @survey_range, :status => :created, :location => @survey_range }
       else
@@ -59,6 +61,7 @@ class Csi::SurveyRangesController < ApplicationController
 
     respond_to do |format|
       if @survey_range.update_attributes(attributes)
+        Delayed::Job.enqueue(Csi::Jobs::CsiSurveyMemberJob.new(@survey_range.id))
         format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
         format.xml  { head :ok }
       else

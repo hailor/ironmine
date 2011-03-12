@@ -74,6 +74,11 @@ en:
   remove: Remove
   save_page: Keep
   options: Options
+  label_irm_no_task: No Task
+  find: Find
+  my_view: My View
+  calendar_task: Calendar
+  upload: Upload
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type
@@ -645,6 +650,7 @@ en:
   #=========================end irm roles ===================================
   #========================= irm reports ===================================
   label_irm_report_list: Report list
+  label_irm_report: Report
   label_irm_report_report_code: Report code
   label_irm_report_name: Report name
   label_irm_report_category_code: Category code
@@ -673,6 +679,7 @@ en:
   #=========================start irm  report_lists_controllers=====================#
   label_icm_incident_report_all: Incident Report Summary
   label_csi_survey_report_all: Survey Report
+  label_please_input_search: Please Input and search report
   #=========================end irm  report_lists_controllers=======================#
   #=========================start irm  common_reports_controllers=====================#
   label_irm_person_login_day: Date

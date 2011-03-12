@@ -3,6 +3,9 @@ class Csi::SurveyRange < ActiveRecord::Base
 
   query_extend
 
+
+  scope :query_by_survey_id,lambda{|survey_id| where(:survey_id=>survey_id)}
+
   scope :query_wrap_info,lambda{|language| select("#{table_name}.*,v1.meaning status_meaning,v2.meaning range_type_meaning").
                                                    joins(",irm_lookup_values_vl v1").
                                                    joins(",irm_lookup_values_vl v2").
