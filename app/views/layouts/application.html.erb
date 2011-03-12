@@ -111,13 +111,11 @@
             </div>
 
             <div id="sidebarDiv">
-                <%if has_content?(:sidebar) %>
                 <div class="sidebarInner">
-                  <div class="sidebarModule">
-                    <%= yield :sidebar %>
-                  </div>
+                    <%if has_content?(:sidebar) %>
+                        <%= yield :sidebar %>
+                    <%end%>
                 </div>
-                <%end%>
             </div>
 
             <table id="bodyTable" class="outer" width="100%" cellpadding="0" cellspacing="0">

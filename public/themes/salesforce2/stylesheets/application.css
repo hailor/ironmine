@@ -634,7 +634,7 @@ body .tabNavigation .tab .currentTab a:hover {text-decoration:underline;}
     position:relative;
     z-index:7;
 }
-#sidebarDiv .sidebarModule, #sidebarDiv .nestedModule {margin:0 0 20px;}
+#sidebarDiv .sidebarModule, #sidebarDiv .nestedModule {margin:0 0 5px;}
 #sidebarDiv .sidebarModule {background:url("../images/sidebar_sprite.png") no-repeat scroll -9px bottom #CFEEF8;}
 body #sidebarDiv .sidebarInner {
     background-color:transparent;
@@ -816,3 +816,123 @@ body .bSubBlock {padding:5px;}
 .toolsContentRight .tdRight, .toolsContentLeft .tdRight {float:right;padding-right:30px;}
 .toolsContent .toolsContentListTable {width:100%;}
 .toolsContent .toolsContentListTable > tbody > tr {background-color:#FFFFFF;border-bottom:1px solid #CBCBCB;line-height:25px;}
+
+#sidebarDiv .createNewModule .sidebarModuleBody, #sidebarDiv .tagsMruModule .sidebarModuleBody, #sidebarDiv .linksModule ul {
+    padding: 0;
+}
+#createNew {
+    display: block;
+    height: 20px;
+    position: static;
+}
+#sidebarDiv .createNewModule, #sidebarDiv .tagsMruModule {
+    background: none repeat scroll 0 0 transparent;
+}
+body .menuButton {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.menuButton {
+    cursor: pointer;
+    display: inline;
+    text-align: left;
+    z-index: 99;
+}
+#sidebarDiv .menuButton:hover{
+    background: url("../images/sidebar_sprite.png") no-repeat scroll -615px top transparent;
+}
+#sidebarDiv .menuButton {
+    background: url("../images/sidebar_sprite.png") no-repeat scroll -409px top transparent;
+    height: 33px;
+    left: -8px;
+    position: relative;
+    width: 206px;
+    z-index: 70;
+}
+
+#sidebarDiv .menuButtonButton {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    color: #FFFFFF;
+    font-size: 1em;
+    margin: 0;
+    padding: 8px 0 12px 12px;
+    width: 186px;
+}
+
+body .menuButton .menuButtonButton {
+    background-image: url("../images/btn_mutton_sprite.png");
+    display: inline-block;
+    margin: 0;
+    padding: 3px 22px 3px 5px;
+}
+.menuButton .menuButtonMenu {
+    border-bottom: 1px solid #333333;
+    display: none;
+    left: 0;
+    margin-top: -2px;
+    position: absolute;
+    white-space: nowrap;
+    z-index: 50;
+}
+
+body .menuButton .menuButtonMenu, body .searchCustomization .menuButton .menuButtonMenu {
+    -moz-box-shadow: 0 1px 5px #727272;
+    background-color: #F8F8F8;
+    border: 1px solid #7D7D7D;
+    padding: 0;
+}
+
+#createNew .menuButtonMenu {
+    background-color: #F3F3EC;
+    border: 1px solid #6699CC;
+    left: auto;
+    margin-top: 0;
+}
+#sidebarDiv .menuButtonMenu {
+    -moz-box-shadow: 0 1px 5px #727272;
+    background-color: #FFFFFF;
+    border: 1px solid #1797C0;
+    line-height: 21px;
+    margin-left: 4px;
+    margin-top: -4px;
+}
+#createNew .menuButtonMenu a {
+    background-color: transparent;
+    border-color: #F3F3EC;
+    border-style: solid;
+    border-width: 1px 0;
+    color: #333333;
+    font-family: 'Arial','Helvetica',sans-serif;
+    font-size: 100%;
+    font-weight: normal;
+    padding: 0 2px 0 6px;
+    text-align: left;
+}
+#sidebarDiv .menuButtonMenu a {
+    border: medium none;
+    padding-top: 1px;
+}
+#sidebarDiv .menuButtonMenu a:hover{
+    background-color: #E3F3FF;
+    color: #015BA7;
+}
+.menuButton .menuButtonMenu a, .menuButton .menuButtonMenu input.theOption {
+    background-color: #CCCCCC;
+    border-color: #EEEEEE #666666 #BBBBBB #BBBBBB;
+    border-style: solid;
+    border-width: 1px;
+    color: #000000;
+    display: block;
+    font-family: 'Verdana','Geneva',sans-serif;
+    font-size: 80%;
+    font-weight: bold;
+    padding: 0 6px;
+    text-decoration: none;
+}
+#sidebarDiv .menuButtonMenu a .mruIcon {
+    margin-right: 5px;
+    vertical-align: -3px;
+}

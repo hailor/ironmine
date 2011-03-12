@@ -1,0 +1,53 @@
+
+    <div class="sidebarModule createNewModule">
+        <div class="sidebarModuleBody sidebarModuleBodyNoHeader">
+          <div id="createNew" class="menuButton">
+            <div id="createNewButton" class="menuButtonButton">
+                <span id="createNewLabel">新建...</span>
+
+            </div>
+            <div id="createNewMenu" class="menuButtonMenu" style="display:none; width: 196px;">
+                  <a class="eventMru firstMenuItem menuButtonMenuLink" href="/00U/e?retURL=%2Fhome%2Fhome.jsp">
+                    <img title="事件" class="mruIcon" alt="事件" src="/s.gif">事件
+                  </a>
+                  <a class="menuButtonMenuLink taskMru" href="/00T/e?retURL=%2Fhome%2Fhome.jsp">
+                    <img title="任务" class="mruIcon" alt="任务" src="/s.gif">任务
+                  </a>
+                  <a class="leadMru menuButtonMenuLink" href="/00Q/e?retURL=%2Fhome%2Fhome.jsp">
+                    <img title="潜在客户" class="mruIcon" alt="潜在客户" src="/s.gif">潜在客户
+                  </a>
+                  <a class="menuButtonMenuLink accountMru" href="/001/e?retURL=%2Fhome%2Fhome.jsp">
+                    <img title="客户" class="mruIcon" alt="客户" src="/s.gif">客户
+                  </a>
+                  <a class="contactMru menuButtonMenuLink" href="/003/e?retURL=%2Fhome%2Fhome.jsp">
+                    <img title="联系人" class="mruIcon" alt="联系人" src="/s.gif">联系人
+                  </a>
+                  <a class="menuButtonMenuLink opportunityMru" href="/006/e?retURL=%2Fhome%2Fhome.jsp">
+                    <img title="业务机会" class="mruIcon" alt="业务机会" src="/s.gif">业务机会
+                  </a>
+                  <a class="menuButtonMenuLink reportMru" href="/reportbuilder/reportType.apexp">
+                    <img title="报表" class="mruIcon" alt="报表" src="/s.gif">报表</a>
+                  <a class="menuButtonMenuLink documentMru" href="/p/doc/DocumentUploadUi?retURL=%2Fhome%2Fhome.jsp">
+                    <img title="文档" class="mruIcon" alt="文档" src="/s.gif">文档</a>
+                  <a class="productMru menuButtonMenuLink" href="/01t/e?retURL=%2Fhome%2Fhome.jsp">
+                    <img title="产品" class="mruIcon" alt="产品" src="/s.gif">产品
+                  </a>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script>
+      GY.use(function(Y){
+        Y.one("#createNewMenu").on("mouseout", function(){
+            Y.one("#createNewMenu").setStyle("display", "none");
+        });
+        Y.one("#createNewMenu").on("mouseover", function(){
+            Y.one("#createNewMenu").setStyle("display", "block");
+        });
+        Y.one("#createNewButton").on("click", function(){
+            Y.one("#createNewMenu").setStyle("display", "block");
+        });
+      })
+    </script>
+
