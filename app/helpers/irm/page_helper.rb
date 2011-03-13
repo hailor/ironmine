@@ -72,10 +72,10 @@ module Irm::PageHelper
   #
   def get_img_icon(name, html_options={}, size="General")
     html_options = html_options.merge({:src => "/images/s.gif"})
-    if html_options.has_key?("class")
-      html_options[:class] = html_options[:class] + " " + name + "_" + size
+    if html_options.has_key?(:class)
+      html_options[:class] = html_options[:class] + " " + name + size
     else
-      html_options = html_options.merge({:class => name + "_" + size})
+      html_options = html_options.merge({:class => name + size})
     end
     html_options = html_options.merge({})
     content_tag(:img, "", html_options)
