@@ -394,4 +394,16 @@ module ApplicationHelper
     ""
   end
 
+  def current_company_access_menu
+    accesses = Irm::CompanyAccess.query_by_person_id(Irm::Person.current.id).collect{|c| c.accessable_company_id}
+    accessable_companies = Irm::Company.multilingual.query_by_ids(accesses)
+    return nil unless accessable_companies&&accessable_companies.size>0
+    links = ""
+    accessable_companies.each do |ac|
+      links << content_tag(:div,link_to(ac[:name],{}),{:class=>"menuItem"})
+    end
+
+    links.html_safe
+  end
+
 end

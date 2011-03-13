@@ -215,7 +215,7 @@ a.headerSearchOptionsLink {text-decoration:none;}
     -webkit-border-radius: 11px;
     background:none repeat scroll 0 0 #35B4E9;
 }
-#pageMenu-arrow, #settingMenu-arrow {
+#pageMenu-arrow, #settingMenu-arrow #companyMenu-arrow {
     background:url("../images/header_mutton.png") no-repeat scroll 0 -129px transparent;
     height:5px;
     position:relative;

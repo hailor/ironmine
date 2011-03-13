@@ -699,4 +699,7 @@ en:
   #=========================start irm  multilingual=====================#
   label_multilingual_fields: Multilingual
   label_multilingual_edit_files: Edit multilingual fields 
-  #=========================end irm  multilingual=====================#  
+  #=========================end irm  multilingual=====================#
+  #=========================start irm  multilingual=====================#
+  label_company_access_menu_label: Accessabel Company
+  #=========================end irm  multilingual=====================#
