@@ -278,3 +278,7 @@
     Y.one("#templateBody").one("a#"+currentTab).simulate("click");
   });        
 </script>
+
+<% content_for :sidebar do%>
+    <%= render :partial =>"/icm/incident_requests/short_cut_new" %>
+<% end %>

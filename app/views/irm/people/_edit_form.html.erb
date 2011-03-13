@@ -59,7 +59,7 @@
                              :cascade=>"organization_select")%></td>
                  <td class="labelCol"><label><%=(t :label_irm_person_login)%></label></td>
                  <td class="dataCol"><%=f.select :identity_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                   options_from_collection_for_select(all_login_name,
+                                                   options_from_collection_for_select(attachable_identities(@person.identity_id),
                                                                                       :id,:login_name,@person.identity_id),{},{:required=>true}%></td>
              </tr>
              <tr>

@@ -10,7 +10,7 @@
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/application.css"></link>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/common.css"></link>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/tabbar.css"></link>
-
+  <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/icons.css"></link>
 
   <script type="text/javascript">
     GY.use("irm","node-base",function(Y){
@@ -109,11 +109,13 @@
                 <div id="bd_bl"></div>
                 <div id="bd_br"></div>
             </div>
+
             <div id="sidebarDiv">
                 <div class="sidebarInner">
-                  <div class="sidebarModule">
-                    <%= render :partial =>"/icm/incident_requests/short_cut_new" %>
-                  </div>
+                    <%= render :partial =>"/irm/common/quick_create"%>
+                    <%if has_content?(:sidebar) %>
+                        <%= yield :sidebar %>
+                    <%end%>
                 </div>
             </div>
 
@@ -126,6 +128,5 @@
             </table>
         </div>
     </div>
-
 </body>
 </html>

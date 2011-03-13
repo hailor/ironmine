@@ -65,4 +65,19 @@ module Irm::PageHelper
   def icon_link(icon_class = "", title = "", *args, &block)
     link_to(btn_icon(icon_class, title), args.first, args.second, block)
   end
+
+  #
+  # size: Small = 16*16, General = "24*24", Large = "32*32"
+  #
+  #
+  def get_img_icon(name, html_options={}, size="General")
+    html_options = html_options.merge({:src => "/images/s.gif"})
+    if html_options.has_key?(:class)
+      html_options[:class] = html_options[:class] + " " + name + size
+    else
+      html_options = html_options.merge({:class => name + size})
+    end
+    html_options = html_options.merge({})
+    content_tag(:img, "", html_options)
+  end
 end
