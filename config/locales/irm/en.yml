@@ -626,6 +626,7 @@ en:
   label_irm_support_group_member_info: Support Group Member
   #=========================end irm  support_group_controller=======================#
   #=========================    irm filters_controller=======================#
+  label_irm_view_filter: View filter
   label_irm_view_filter_new: New view filter
   label_irm_view_filter_edit: Edit view filter
   label_irm_view_filter_step_one: Step 1. View info
