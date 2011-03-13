@@ -119,6 +119,16 @@ en:
   label_lookup_value_edit: Lookup Value Edit
   label_lookup_value_show: Lookup Value
   #=========================end irm lookup_types_controller=======================#
+  #=========================    irm product_modules_controller=====================#
+  label_irm_product_module: Product Module
+  label_irm_product_module_new: Create Product Module
+  label_irm_product_module_edit: Edit Product Module
+  label_irm_product_module_list: Product Modules List
+  label_irm_product_module_product_short_name: Product Short Name
+  label_irm_product_module_name: Name
+  label_irm_product_module_description: Description
+  label_irm_product_module_installed_flag: Installed
+  #=========================end irm product_modules_controller================#
   #=========================    irm languages_controller=======================#
   label_irm_language: Language Module
   label_irm_language_new: Create Language
