@@ -86,10 +86,10 @@ class Irm::LanguagesController < ApplicationController
   end
 
   def get_data
-    @languages= Irm::Language.multilingual.query_wrap_info(I18n::locale)
+    @languages= Irm::Language.multilingual.query_wrap_info(I18n::locale).meaning
     @languages,count = paginate(@languages)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(@languages.to_grid_json(['R',:language_code,:description, :installed_flag, :status_code], count))}
+      format.json {render :json=>to_jsonp(@languages.to_grid_json(['R',:language_code,:description, :installed_flag, :status_code, :status_meaning], count))}
     end
   end
   
