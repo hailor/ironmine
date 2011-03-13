@@ -385,7 +385,13 @@ module ApplicationHelper
       end
       json << "]"
       json
-    end
+   end
 
+  def link_to_checker(body, url_options = {}, html_options = {})
+    if Irm::PermissionChecker.allow_to_url?(url_options)
+      return link_to(body, url_options, html_options)
+    end
+    ""
+  end
 
 end
