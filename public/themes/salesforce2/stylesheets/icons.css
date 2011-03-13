@@ -108,7 +108,7 @@ img.img6General{
 }
 img.img6Large{
     background-image:url("/images/master.png");
-    background-position:0 -1130px;
+    background-position:0 -1310px;
     height:32px;
     width:32px;
 }
@@ -127,7 +127,7 @@ img.img7General{
 }
 img.img7Large{
     background-image:url("/images/master.png");
-    background-position:0 -1166px;
+    background-position:0 -1056px;
     height:32px;
     width:32px;
 }
@@ -184,7 +184,7 @@ img.img10General{
 }
 img.img10Large{
     background-image:url("/images/master.png");
-    background-position:0 -1274px;
+    background-position:0 -1351px;
     height:32px;
     width:32px;
 }
@@ -285,4 +285,9 @@ img.img17General{
     height:32px;
     width:32px;
 }
-img.img17Big{}
+img.img17Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1385;
+    height:32px;
+    width:32px;
+}
