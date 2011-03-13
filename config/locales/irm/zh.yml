@@ -672,7 +672,7 @@ zh:
   label_irm_select_result: 搜索结果
   #=========================end irm  support_group_controller=======================#
   #=========================    irm filters_controller=======================#
-  label_irm_view_filter: 视图过滤
+  label_irm_new_view_filter: 创建新视图
   label_irm_view_filter_new: 新建视图
   label_irm_view_filter_edit: 编辑视图
   label_irm_view_filter_step_one: 步骤 1。输入视图名称
