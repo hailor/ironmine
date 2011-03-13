@@ -7,21 +7,18 @@
 
             </div>
             <div id="createNewMenu" class="menuButtonMenu" style="display:none; width: 196px;">
-                  <%= link_to_checker(t(:label_incident_request),
+                  <%= link_to_checker(raw(get_img_icon("img6", {:class => "mruIcon", :title => t(:label_incident_request)}, "Small") )+ t(:label_incident_request),
                                       {:controller => "icm/incident_requests", :action => "new"},
                                       {:class => "menuButtonMenuLink"}) %>
-                  <%= link_to_checker(t(:label_skm_entry_header),
+                  <%= link_to_checker(raw(get_img_icon("img10", {:class => "mruIcon", :title => t(:label_skm_entry_header)}, "Small") )+ t(:label_skm_entry_header),
                                       {:controller => "skm/entry_headers", :action => "new"},
                                       {:class => "menuButtonMenuLink"})%>
-                  <%= link_to_checker(t(:label_csi_survey_info),
+                  <%= link_to_checker(raw(get_img_icon("img17", {:class => "mruIcon", :title => t(:label_csi_survey_info)}, "Small") )+ t(:label_csi_survey_info),
                                       {:controller => "csi/surveys", :action => "new"},
                                       {:class => "menuButtonMenuLink"})%>
-                  <%= link_to_checker(t(:label_skm_file),
+                  <%= link_to_checker(raw(get_img_icon("img1", {:class => "mruIcon", :title => t(:label_skm_file)}, "Small") )+ t(:label_skm_file),
                                       {:controller => "skm/file_managements", :action => "new"},
                                       {:class => "menuButtonMenuLink"})%>
-                  <a class="eventMru firstMenuItem menuButtonMenuLink" href="/00U/e?retURL=%2Fhome%2Fhome.jsp">
-                    <img title="事件" class="mruIcon" alt="事件" src="/s.gif">事件
-                  </a>
             </div>
           </div>
         </div>
