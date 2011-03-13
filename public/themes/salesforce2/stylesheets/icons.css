@@ -11,7 +11,12 @@ img.img1General{
     height:32px;
     width:32px;
 }
-img.img1Big{}
+img.img1Large{
+    background-image:url("/images/master.png");
+    background-position:0 -950px;
+    height:32px;
+    width:32px;
+}
 
 img.img2Small{
     background-image:url("/images/master.png");
@@ -25,7 +30,12 @@ img.img2General{
     height:32px;
     width:32px;
 }
-img.img2Big{}
+img.img2Large{
+    background-image:url("/images/master.png");
+    background-position:0 -985px;
+    height:32px;
+    width:32px;
+}
 
 img.img3Small{
     background-image:url("/images/master.png");
@@ -39,7 +49,12 @@ img.img3General{
     height:32px;
     width:32px;
 }
-img.img3Big{}
+img.img3Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1025px;
+    height:32px;
+    width:32px;
+}
 
 img.img4Small{
     background-image:url("/images/master.png");
@@ -53,7 +68,12 @@ img.img4General{
     height:32px;
     width:32px;
 }
-img.img4Big{}
+img.img4Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1059px;
+    height:32px;
+    width:32px;
+}
 
 img.img5Small{
     background-image:url("/images/master.png");
@@ -67,7 +87,12 @@ img.img5General{
     height:32px;
     width:32px;
 }
-img.img5Big{}
+img.img5Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1095px;
+    height:32px;
+    width:32px;
+}
 
 img.img6Small{
     background-image:url("/images/master.png");
@@ -81,7 +106,12 @@ img.img6General{
     height:32px;
     width:32px;
 }
-img.img6Big{}
+img.img6Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1130px;
+    height:32px;
+    width:32px;
+}
 
 img.img7Small{
     background-image:url("/images/master.png");
@@ -95,7 +125,12 @@ img.img7General{
     height:32px;
     width:32px;
 }
-img.img7Big{}
+img.img7Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1166px;
+    height:32px;
+    width:32px;
+}
 
 img.img8Small{
     background-image:url("/images/master.png");
@@ -104,12 +139,17 @@ img.img8Small{
     width:16px;
 }
 img.img8General{
-background-image:url("/images/forecasts32.png");
-background-position:0 0;
-height:32px;
-width:32px;
+    background-image:url("/images/forecasts32.png");
+    background-position:0 0;
+    height:32px;
+    width:32px;
 }
-img.img8Big{}
+img.img8Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1205px;
+    height:32px;
+    width:32px;
+}
 
 img.img9Small{
     background-image:url("/images/master.png");
@@ -123,7 +163,12 @@ img.img9General{
     height:32px;
     width:32px;
 }
-img.img9Big{}
+img.img9Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1238px;
+    height:32px;
+    width:32px;
+}
 
 img.img10Small{
     background-image:url("/images/master.png");
@@ -137,7 +182,12 @@ img.img10General{
     height:32px;
     width:32px;
 }
-img.img10Big{}
+img.img10Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1274px;
+    height:32px;
+    width:32px;
+}
 
 img.img11Small{
     background-image:url("/images/master.png");
