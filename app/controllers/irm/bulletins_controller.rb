@@ -10,6 +10,8 @@ class Irm::BulletinsController < ApplicationController
 
   def create
     @bulletin = Irm::Bulletin.new(params[:irm_bulletin])
+    @bulletin.author_id = Irm::Person.current.id
+    @bulletin.page_views = 0
     respond_to do |format|
       if @bulletin.save
         format.html {
@@ -63,7 +65,7 @@ class Irm::BulletinsController < ApplicationController
     bulletins_scope = Irm::Bulletin.list_all
     bulletins,count = paginate(bulletins_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(bulletins.to_grid_json([:title,:created_at,:page_views,:author], count)) }
+      format.json  {render :json => to_jsonp(bulletins.to_grid_json([:id, :bulletin_title,:published_date,:page_views,:author], count)) }
     end
   end
 

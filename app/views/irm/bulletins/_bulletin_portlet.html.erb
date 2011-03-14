@@ -1,0 +1,16 @@
+<div class="bSubBlock">
+<h3 class="lbHeader"><%= t(:label_irm_bulletin) %></h3>
+<div class="lbBody">
+  <div id="bulletins_list" class="datatable" style="width:100%">
+      <div id="bulletin_title" style="display:none">
+        <%= link_to("{bulletin_title}", {:controller => "irm/bulletins", :action => "show", :id => "{id}"})%>
+      </div>
+  </div>
+  <%= datatable("bulletins_list",url_for(:controller => "irm/bulletins", :action=>"get_data",:format=>"json"),
+                [{:key=>"id",:label=>"", :hidden => true},
+                 {:key=>"bulletin_title",:label=>t(:label_irm_bulletin_title), :formatter=>"Y.irm.template", :sortable=>true, :width =>"500px"},
+                 {:key=>"page_views",:label=>t(:label_irm_bulletin_page_views),:sortable=>true, :width => "40px"},
+                 {:key=>"published_date",:label=>t(:label_irm_bulletin_published_date),:sortable=>true, :width => "120px"}])%>
+
+</div>
+</div>
