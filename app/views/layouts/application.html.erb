@@ -17,6 +17,7 @@
       Y.on("domready",function(){
         Y.irm.menuButton("settingMenu","TR","BR");
         Y.irm.menuButton("pageMenu","TR","BR");
+        Y.irm.menuButton("companyMenu","TR","BR");
       });
     });
   </script>
@@ -52,6 +53,7 @@
                     <div class="multiforce">
                       <div class="messages"></div>
                       <div>
+
                         <span id="pageMenu" class="menuParent" style="float:right">
                           <div  class="menuLabel">
                             <span tabindex="0" id="pageMenuTop" style=""><%= level_one_current_name %></span>
@@ -69,6 +71,15 @@
                           <div class="menuContent" >
                             <%= setting_menu%>
                             <div class="menuItem"><%= link_to(t(:label_irm_common_logout),logout_url) %></div>
+                          </div>
+                        </span>
+                        <span id="companyMenu" class="menuParent" style="float:right">
+                          <div  class="menuLabel">
+                            <span tabindex="0" id="companyMenuTop" style=""><%= t(:label_company_access_menu_label) %></span>
+                            <div id="companyMenu-arrow"></div>
+                          </div>
+                          <div class="menuContent" >
+                            <%= current_company_access_menu %>
                           </div>
                         </span>
                         <span class="navLinks" style="float:right">

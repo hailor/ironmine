@@ -22,6 +22,7 @@ class Irm::Person < ActiveRecord::Base
   validates_format_of :email_address, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
   has_many :person_roles
   has_many :roles, :through => :person_roles
+  has_many :company_accesses
   query_extend
   scope :query_by_identity,lambda{|identity|
     where(:identity_id=>identity)
