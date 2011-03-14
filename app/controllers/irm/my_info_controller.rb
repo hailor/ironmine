@@ -35,9 +35,10 @@ class Irm::MyInfoController < ApplicationController
   end
 
   def get_login_data
-    login_records = Irm::LoginRecord.query_with_info.query_by_identity(Irm::Identity.current.id)
+    login_records_scope = Irm::LoginRecord.query_with_info.query_by_identity(Irm::Identity.current.id)
+    login_records,count = paginate(login_records_scope)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(login_records.to_grid_json([:login_name,:user_ip,:operate_system,:browser,:login_at,:logout_at], login_records.count))}
+      format.json {render :json=>to_jsonp(login_records.to_grid_json([:login_name,:user_ip,:operate_system,:browser,:login_at,:logout_at], count))}
     end
   end
 
