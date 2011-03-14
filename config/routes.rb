@@ -447,6 +447,7 @@ Ironmine::Application.routes.draw do
     match '/bulletins/:id/edit(.:format)' => "bulletins#edit", :via => :get
     match '/bulletins/:id(.:format)' => "bulletins#update", :via => :put
     match '/bulletins/get_data(.:format)' => "bulletins#get_data"
+    match '/bulletins/index(.:format)' => "bulletins#index"
   end
 
   scope :module => "icm" do
