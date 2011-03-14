@@ -34,6 +34,13 @@ class Irm::MyInfoController < ApplicationController
     end
   end
 
+  def get_login_data
+    login_records = Irm::LoginRecord.query_with_info.query_by_identity(Irm::Identity.current.id)
+    respond_to do |format|
+      format.json {render :json=>to_jsonp(login_records.to_grid_json([:login_name,:user_ip,:operate_system,:browser,:login_at,:logout_at], login_records.count))}
+    end
+  end
+
   # 个人密码修改页面
   def edit_password
     @identity = Irm::Identity.current
