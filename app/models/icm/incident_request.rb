@@ -134,6 +134,7 @@ class Icm::IncidentRequest < ActiveRecord::Base
                                group("DATE_FORMAT(#{table_name}.created_at,'%Y-%m')").
                                order("DATE_FORMAT(#{table_name}.created_at,'%Y-%m') asc")
 
+
   def self.list_all
     select_all.
         with_request_type(I18n.locale).
