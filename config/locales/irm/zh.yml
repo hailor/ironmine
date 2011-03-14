@@ -756,5 +756,5 @@ zh:
   label_irm_bulletin_sticky_flag: 置顶
   label_irm_bulletin_highlight_flag: 高亮
   label_irm_bulletin_page_views: 浏览量
-  label_irm_bulletin_pulished_date: 发布时间
+  label_irm_bulletin_published_date: 发布时间
   #======================== end bulletin controller ======================

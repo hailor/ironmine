@@ -1,13 +1,12 @@
-<%= setting_show_title(:show_data => @permission.permission_code) %>
 <div id="ep" class="bDetailBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_permission) %></h2></td>
+          <td class="pbTitle"><h2 class="mainTitle"></h2></td>
           <td id="topButtonRow" class="pbButton">
-            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @permission}%></div>
-            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @bulletin}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index", :controller => "irm/home"}%></div>
           </td>
         </tr>
       </tbody>
@@ -15,46 +14,14 @@
   </div>
   <div class="pbBody">
     <div class="pbSubheader tertiaryPalette">
-      <img title="隐藏部分 - 其他信息" style="cursor: pointer;" name="其他信息" class="hideListButton" alt="隐藏部分 - 其他信息" src="/images/s.gif">
-      <h3>其他信息<span class="titleSeparatingColon">:</span></h3>
+      <div>
+        <h1 style="font_size:200%"><%= @bulletin.title%></h1>
+      </div>
     </div>
 
     <div class="pbSubsection">
-      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
-        <tbody>
-            <tr>
-              <td class="labelCol"><label><%=(t :label_irm_permission_permission_code)%></label></td>
-              <td class="dataCol"><%= @permission.permission_code%></td>
-              <td class="labelCol"><label><%=(t :label_irm_permission_page_controller)%></label></td>
-              <td class="dataCol"><%= @permission.page_controller%></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :label_irm_permission_name)%></label></td>
-              <td class="dataCol"><%= @permission[:name]%></td>
-              <td class="labelCol"><%=(t :label_irm_permission_page_action)%></td>
-              <td class="dataCol"><%= @permission.page_action%></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :label_irm_permission_description)%></label></td>
-              <td class="dataCol"><%= @permission[:description]%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :label_irm_permission_product_name)%></label></td>
-              <td class="dataCol"><%= @permission.product_module_name%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :active)%></label></td>
-              <td class="dataCol"><%= check_img(@permission.status_code)%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-        </tbody>
-      </table>
+
+        <%= @bulletin.content%>
     </div>
   </div>
 </div>
-<%=render :partial=>"multilingual/show",:locals=>{:main_data=>@permission} %>
