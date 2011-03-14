@@ -29,6 +29,9 @@
 
     <script>
       GY.use(function(Y){
+        Y.one("#createNewButton").on("mouseout", function(){
+            Y.one("#createNewMenu").setStyle("display", "none");
+        });
         Y.one("#createNewMenu").on("mouseout", function(){
             Y.one("#createNewMenu").setStyle("display", "none");
         });
