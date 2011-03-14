@@ -79,7 +79,10 @@
                             <div id="companyMenu-arrow"></div>
                           </div>
                           <div class="menuContent" >
-                            <%= current_company_access_menu %>
+                            <%= form_tag({:controller=>"irm/my_info",:action=>"update_company_access",:return_controller=>params[:controller]},{:method=>:put}) do %>
+                              <%= current_company_access_menu %>
+                              <%= submit_tag t(:apply)%>
+                            <% end %>
                           </div>
                         </span>
                         <span class="navLinks" style="float:right">

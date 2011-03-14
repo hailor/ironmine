@@ -21,6 +21,19 @@ class Irm::MyInfoController < ApplicationController
     end
 
   end
+
+
+  def update_company_access
+    if params[:accessable_companies]
+      session[:accessable_companies] = params[:accessable_companies].collect{|ac| ac.to_i}
+    else
+      session[:accessable_companies] = []
+    end
+    respond_to do |format|
+      format.html { redirect_to({:controller=>params[:return_controller],:action=>"index"}, :notice =>t(:successfully_updated)) }
+    end
+  end
+
   # 个人密码修改页面
   def edit_password
     @identity = Irm::Identity.current

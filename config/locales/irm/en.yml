@@ -701,7 +701,7 @@ en:
   label_multilingual_edit_files: Edit multilingual fields 
   #=========================end irm  multilingual=====================#
   #=========================start irm  multilingual=====================#
-  label_company_access_menu_label: Accessabel Company
+  label_company_access_menu_label: Company
   #=========================end irm  multilingual=====================#
   #======================== bulletin controller ======================
   label_irm_bulletin: Bulletin
