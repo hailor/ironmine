@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
   # 设置当前页面访问的人员
   def person_setup
     Irm::Person.current = Irm::Person.query_by_identity(Irm::Identity.current.id).first
-    session[:accessable_companies] ||= Irm::CompanyAccess.query_by_person_id(Irm::Person.current.id).collect{|c| c.accessable_company_id}
+    session[:accessable_companies] ||= Irm::CompanyAccess.query_by_person_id(Irm::Person.current.id).collect{|c| c.accessable_company_id} if Irm::Person.current
   end
 
   # 检查用户的权限
