@@ -441,6 +441,12 @@ Ironmine::Application.routes.draw do
     #common report
     match '/common_reports/rpt_person_login_summary(.:format)' => "common_reports#rpt_person_login_summary"
     match '/common_reports/get_report_summary(.:format)' => "common_reports#get_report_summary"
+
+    match '/bulletins/new(.:format)' => "bulletins#new", :via => :get
+    match '/bulletins/create(.:format)' => "bulletins#create", :via => :post
+    match '/bulletins/:id/edit(.:format)' => "bulletins#edit", :via => :get
+    match '/bulletins/:id(.:format)' => "bulletins#update", :via => :put
+    match '/bulletins/get_data(.:format)' => "bulletins#get_data"
   end
 
   scope :module => "icm" do

@@ -703,3 +703,15 @@ en:
   #=========================start irm  multilingual=====================#
   label_company_access_menu_label: Accessabel Company
   #=========================end irm  multilingual=====================#
+  #======================== bulletin controller ======================
+  label_irm_bulletin: Bulletin
+  label_irm_bulletin_new: Create Bulletin
+  label_irm_bulletin_edit: Edit Bulletin
+  label_irm_bulletin_list: Bulletins List
+  label_irm_bulletin_title: Title
+  label_irm_bulletin_content: Content
+  label_irm_bulletin_sticky_flag: Sticky
+  label_irm_bulletin_highlight_flag: Highlight
+  label_irm_bulletin_page_views: Page Views
+  label_irm_bulletin_pulished_date: Published Date
+  #======================== end bulletin controller ======================

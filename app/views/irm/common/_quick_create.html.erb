@@ -19,6 +19,9 @@
                   <%= link_to_checker(raw(get_img_icon("img1", {:class => "mruIcon", :title => t(:label_skm_file)}, "Small") )+ t(:label_skm_file),
                                       {:controller => "skm/file_managements", :action => "new"},
                                       {:class => "menuButtonMenuLink"})%>
+                  <%= link_to_checker(raw(get_img_icon("img7", {:class => "mruIcon", :title => t(:label_irm_bulletin)}, "Small") )+ t(:label_irm_bulletin),
+                                      {:controller => "irm/bulletins", :action => "new"},
+                                      {:class => "menuButtonMenuLink"})%>
             </div>
           </div>
         </div>

@@ -11,7 +11,12 @@ img.img1General{
     height:32px;
     width:32px;
 }
-img.img1Big{}
+img.img1Large{
+    background-image:url("/images/master.png");
+    background-position:0 -950px;
+    height:32px;
+    width:32px;
+}
 
 img.img2Small{
     background-image:url("/images/master.png");
@@ -25,7 +30,12 @@ img.img2General{
     height:32px;
     width:32px;
 }
-img.img2Big{}
+img.img2Large{
+    background-image:url("/images/master.png");
+    background-position:0 -985px;
+    height:32px;
+    width:32px;
+}
 
 img.img3Small{
     background-image:url("/images/master.png");
@@ -39,11 +49,16 @@ img.img3General{
     height:32px;
     width:32px;
 }
-img.img3Big{}
+img.img3Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1025px;
+    height:32px;
+    width:32px;
+}
 
 img.img4Small{
     background-image:url("/images/master.png");
-    background-position:0 -62;
+    background-position:0 -62px;
     height:16px;
     width:16px;
 }
@@ -53,11 +68,16 @@ img.img4General{
     height:32px;
     width:32px;
 }
-img.img4Big{}
+img.img4Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1059px;
+    height:32px;
+    width:32px;
+}
 
 img.img5Small{
     background-image:url("/images/master.png");
-    background-position:0 -81;
+    background-position:0 -81px;
     height:16px;
     width:16px;
 }
@@ -67,11 +87,16 @@ img.img5General{
     height:32px;
     width:32px;
 }
-img.img5Big{}
+img.img5Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1095px;
+    height:32px;
+    width:32px;
+}
 
 img.img6Small{
     background-image:url("/images/master.png");
-    background-position:0 -102;
+    background-position:0 -102px;
     height:16px;
     width:16px;
 }
@@ -81,11 +106,16 @@ img.img6General{
     height:32px;
     width:32px;
 }
-img.img6Big{}
+img.img6Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1310px;
+    height:32px;
+    width:32px;
+}
 
 img.img7Small{
     background-image:url("/images/master.png");
-    background-position:0 -122;
+    background-position:0 -122px;
     height:16px;
     width:16px;
 }
@@ -95,25 +125,35 @@ img.img7General{
     height:32px;
     width:32px;
 }
-img.img7Big{}
+img.img7Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1056px;
+    height:32px;
+    width:32px;
+}
 
 img.img8Small{
     background-image:url("/images/master.png");
-    background-position:0 -142;
+    background-position:0 -142px;
     height:16px;
     width:16px;
 }
 img.img8General{
-background-image:url("/images/forecasts32.png");
-background-position:0 0;
-height:32px;
-width:32px;
+    background-image:url("/images/forecasts32.png");
+    background-position:0 0;
+    height:32px;
+    width:32px;
 }
-img.img8Big{}
+img.img8Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1205px;
+    height:32px;
+    width:32px;
+}
 
 img.img9Small{
     background-image:url("/images/master.png");
-    background-position:0 -162;
+    background-position:0 -162px;
     height:16px;
     width:16px;
 }
@@ -123,11 +163,16 @@ img.img9General{
     height:32px;
     width:32px;
 }
-img.img9Big{}
+img.img9Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1238px;
+    height:32px;
+    width:32px;
+}
 
 img.img10Small{
     background-image:url("/images/master.png");
-    background-position:0 -182;
+    background-position:0 -182px;
     height:16px;
     width:16px;
 }
@@ -137,11 +182,16 @@ img.img10General{
     height:32px;
     width:32px;
 }
-img.img10Big{}
+img.img10Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1351px;
+    height:32px;
+    width:32px;
+}
 
 img.img11Small{
     background-image:url("/images/master.png");
-    background-position:0 -202;
+    background-position:0 -202px;
     height:16px;
     width:16px;
 }
@@ -155,7 +205,7 @@ img.img11Big{}
 
 img.img12Small{
     background-image:url("/images/master.png");
-    background-position:0 -222;
+    background-position:0 -222px;
     height:16px;
     width:16px;
 }
@@ -169,7 +219,7 @@ img.img12Big{}
 
 img.img13Small{
     background-image:url("/images/master.png");
-    background-position:0 -242;
+    background-position:0 -242px;
     height:16px;
     width:16px;
 }
@@ -183,7 +233,7 @@ img.img13Big{}
 
 img.img14Small{
     background-image:url("/images/master.png");
-    background-position:0 -281;
+    background-position:0 -281px;
     height:16px;
     width:16px;
 }
@@ -193,11 +243,16 @@ img.img14General{
     height:32px;
     width:32px;
 }
-img.img14Big{}
+img.img14Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1273px;
+    height:32px;
+    width:32px;
+}
 
 img.img15Small{
     background-image:url("/images/master.png");
-    background-position:0 -301;
+    background-position:0 -301px;
     height:16px;
     width:16px;
 }
@@ -211,7 +266,7 @@ img.img15Big{}
 
 img.img16Small{
     background-image:url("/images/master.png");
-    background-position:0 -322;
+    background-position:0 -322px;
     height:16px;
     width:16px;
 }
@@ -225,7 +280,7 @@ img.img16Big{}
 
 img.img17Small{
     background-image:url("/images/master.png");
-    background-position:0 -341;
+    background-position:0 -341px;
     height:16px;
     width:16px;
 }
@@ -235,4 +290,9 @@ img.img17General{
     height:32px;
     width:32px;
 }
-img.img17Big{}
+img.img17Large{
+    background-image:url("/images/master.png");
+    background-position:0 -1385px;
+    height:32px;
+    width:32px;
+}
