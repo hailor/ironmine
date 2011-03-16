@@ -1,19 +1,20 @@
 module Csi
   module Jobs
     class CsiSurveyMemberJob < Struct.new(:survey_range_id)
-      #调查范围设计的组织维度，角色维度以及地点维度来找到相应的人员
-      #从而进行相应的调查范围成员确定。
-      #确保每一个调查问卷针对于同一人都只调查一次，根据调查问卷的结果来进行判断
-      survey_range = Csi::SurveyRange.query(survey_range_id)
-      
-      if survey_range.status_code == "ENABLED"
-         process_survey_range(survey_range_id)
-      else
-      #如果当前的survey_range的状态变为不是enabled的话，将根据所有survey_range
-      #进行重算一遍。
-        Csi::SurveyMember.update_all("end_date_active= now()", "survey_range_id = #{survey_range_id}")
-      end
+      def perform
+        #调查范围设计的组织维度，角色维度以及地点维度来找到相应的人员
+        #从而进行相应的调查范围成员确定。
+        #确保每一个调查问卷针对于同一人都只调查一次，根据调查问卷的结果来进行判断
+        survey_range = Csi::SurveyRange.query(survey_range_id)
 
+        if survey_range.status_code == "ENABLED"
+           process_survey_range(survey_range_id)
+        else
+        #如果当前的survey_range的状态变为不是enabled的话，将根据所有survey_range
+        #进行重算一遍。
+          Csi::SurveyMember.update_all("end_date_active= now()", "survey_range_id = #{survey_range_id}")
+        end
+      end
     private
        def process_survey_range(survey_range_id)
           survey_range = Csi::SurveyRange.query(survey_range_id)

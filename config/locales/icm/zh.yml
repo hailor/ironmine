@@ -49,6 +49,7 @@ zh:
   label_icm_priority_code_name: 名称
   label_icm_priority_code_description: 描述
   label_icm_priority_code_edit: 编辑优先级范围
+  label_icm_priority_code_info: 优先级详细信息
   label_icm_priority_code_show: 优先级
   label_icm_priority_code_status_code: 记录状态
   #========================= end icm priority_codes_controller=======================#

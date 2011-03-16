@@ -28,7 +28,6 @@
         </div>
         <%= datatable("survey_ranges",url_for(:action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"120px"},
-                       { :key => "range_code", :label => t(:label_csi_survey_range_range_code),:searchable=>true },
                        { :key => "required_flag", :label => t(:label_csi_survey_range_required_flag),:searchable=>true },
                        { :key => "range_type_meaning", :label => t(:label_csi_survey_range_range_type),:searchable=>true },
                        { :key => "status_meaning", :label => t(:label_csi_survey_range_status_code) }

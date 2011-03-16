@@ -35,7 +35,11 @@ zh:
   processing: 处理中...
   button_add_file: 添加文件
   more: 更多
+  jump: 转至！
+  name: 名称
+  description: 描述
   actionview_instancetag_blank_option: 请选择
+  more_info: 更多信息
   enable: 启用
   disable: 失效
   cut_image: 裁剪当前图片
@@ -50,12 +54,9 @@ zh:
   error_invalid_data: 错误：无效数据。
   check_error_msg_and_fix: 请审查下列所有错误消息以纠正数据。
   operation: 操作
-  jump: 转至！
   remove: 移除
   search: 搜索
   options: 选项
-  name: 名称
-  description: 描述
   move_up: 上移
   move_down: 下移
   save_page: 收藏
@@ -67,7 +68,6 @@ zh:
   step_n_total_m: "第 %{n} 步，共 %{m} 步"
   label_checked: 选取的
   label_unchecked: 未选取的
-  more_info: 更多信息
   help: 帮助
   #常用语句
   notice_account_invalid_creditentials: 用户名或密码错误
@@ -93,6 +93,7 @@ zh:
   common_report: 常用报表
   go_to_report: 转至报表
   tool: 工具
+  new_task: 创建任务
   my_task: 我的任务
   my_all_count: 我的一览表
   label_irm_no_task: 没有任务
@@ -133,12 +134,12 @@ zh:
   label_irm_lookup_type_list: 快速编码类型列表
   label_irm_lookup_type_info: 快速编码类型信息
   label_irm_lookup_type_show: 快速编码类型
-  label_irm_lookup_value_index: 快速编码
-  label_irm_lookup_value_list: 快速编码
-  label_lookup_value_new: 新建快速编码
-  label_irm_lookup_value_info: 快速编码信息
-  label_lookup_value_edit: 编辑快速编码
-  label_lookup_value_show: 快速编码
+  label_irm_lookup_value_index: 快速编码值
+  label_irm_lookup_value_list: 快速编码值列表
+  label_lookup_value_new: 新建快速编码值
+  label_irm_lookup_value_info: 快速编码值信息
+  label_lookup_value_edit: 编辑快速编码值
+  label_lookup_value_show: 快速编码值
   #=========================end irm lookup_types_controller================#
   #=========================    irm product_modules_controller=====================#
   label_irm_product_module: 产品模块

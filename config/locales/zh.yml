@@ -4,6 +4,11 @@ zh:
   language_code_en: 英语
   language_code_jp: 日语
   language_code_zh: 中文
+
+  label_entry_headers_step: 步骤
+  label_entry_headers_totle_step: 步
+  label_entry_headers_totle: 共
+  label_entry_headers_first: 第
   
   date:
     formats:

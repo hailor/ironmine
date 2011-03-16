@@ -41,7 +41,9 @@
               <td class="labelCol"><label><%=(t :label_irm_person_email_address)%></label></td>
               <td class="dataCol"><%=f.text_field :email_address, :required=>true%></td>              
               <td class="labelCol"><%=(t :label_irm_person_title)%></td>
-              <td class="dataCol"><%=f.text_field :title, :required=>true %></td>
+              <td class="dataCol">
+                <%=f.select :title,options_for_select(person_title,@person.title),
+                                                    {},{:required=>true,:id=>"irm_person_title"}%></td>
             </tr>
         </tbody>
       </table>
@@ -56,13 +58,9 @@
         <tbody>
              <tr>
                  <td class="labelCol"><label><%=t(:label_irm_person_company)%></label></td>
-                 <td class="dataCol"><%=f.select(:company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                           options_from_collection_for_select(available_company,:id,:wrap_name,@person.company_id),
-                                           {},:action=>url_for(:controller=>"irm/organizations",
-                                                               :action=>"belongs_to",
-                                                               :company_id=>"cascade_id"),
-                                           :choice_title=>t(:actionview_instancetag_blank_option),:required=>true,
-                             :cascade=>"organization_select")%></td>
+                 <td class="dataCol"><%=f.select(:company_id,nullable_collection_options(available_company,:id,:wrap_name,@person.company_id),
+                                           {},:required=>true,
+                                           :id=>"company_id")%></td>
                  <td class="labelCol"><label><%=(t :label_irm_person_login)%></label></td>
                  <td class="dataCol"><%=f.select :identity_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
                                                    options_from_collection_for_select(attachable_identities,
@@ -70,9 +68,17 @@
              </tr>
              <tr>
              <td class="labelCol"><label><%=t(:label_irm_person_organization)%></label></td>
-             <td class="dataCol"><%=f.select(:organization_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                           options_from_collection_for_select(available_organization,:id,:wrap_name,@person.organization_id),{},
-                                 :id=>"organization_select")%></td>
+             <td class="dataCol"><%= f.select(:organization_id,nullable_options_for_select([],nil),{},
+                                  {:required=>true,
+                                   :id=>"organization_id",
+                                   :href=>url_for(:controller=>"irm/organizations",:action=>"get_by_company",:format=>"json",:belonged_company_id=>"{company_id}"),
+                                   :depend=>"company_id",
+                                   :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---"
+                                   }) %></td>
+
+
+
+
              <td class="labelCol"><label><%=(t :label_irm_person_function_group_code)%></label></td>
              <td class="dataCol"><%=select_tag :function_group_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
                                                    options_from_collection_for_select(available_function_group,
@@ -80,9 +86,14 @@
              </tr>
              <tr>
                  <td class="labelCol"><label><%=t(:label_irm_person_department)%></label></td>
-                 <td class="dataCol"><%=f.select(:department_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                           options_from_collection_for_select(available_department,:id,:wrap_name,@person.department_id)
-                                 )%></td>
+                 <td class="dataCol"><%= f.select(:department_id,nullable_options_for_select([],nil),{},
+                                  {:required=>true,
+                                   :id=>"department_id",
+                                   :href=>url_for(:controller=>"irm/departments",:action=>"get_by_organization",:format=>"json",:organization_id=>"{organization_id}"),
+                                   :depend=>"organization_id",
+                                   :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---"
+                                   }) %></td>
+
                  <td class="labelCol"><label>
                     <%=t(:label_irm_person_vip_flag)%></label></td>
                  <td class="dataCol"><%=f.check_box :vip_flag%></td>
@@ -160,5 +171,10 @@
   </div>
 </div>
 <% end %>
+<script type="text/javascript">
+  GY.use("cascadeselect",function(Y){
+     new Y.CascadeSelect({source: "#company_id",target:["#organization_id","#department_id"]});
+     new Y.CascadeSelect({source: "#organization_id",target:["#department_id"]});
+  });
 
-
+</script>
