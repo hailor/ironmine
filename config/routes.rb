@@ -228,11 +228,12 @@ Ironmine::Application.routes.draw do
     match '/departments/:id/edit(.:format)' => "departments#edit", :via => :get
     match '/departments/:id(.:format)' => "departments#update", :via => :put
     match '/departments/new(.:format)' => "departments#new", :via => :get
-    match '/departments/:id(.:format)' => "departments#show", :via => :get
+    match '/departments/:id/show(.:format)' => "departments#show", :via => :get
     match '/departments/create(.:format)' => "departments#create", :via => :post
     match '/departments/:id/multilingual_edit(.:format)' => "departments#multilingual_edit", :via => :get
     match '/departments/:id/multilingual_update(.:format)' => "departments#multilingual_update", :via => :put
     match '/departments/belongs_to(.:format)' => "departments#belongs_to"
+    match '/departments/get_by_organization(.:format)' => "departments#get_by_organization", :via => :get
     #flex_value_sets
     match '/flex_value_sets(/index)(.:format)' => "flex_value_sets#index", :via => :get
     match '/flex_value_sets/new(.:format)' => "flex_value_sets#new", :via => :get

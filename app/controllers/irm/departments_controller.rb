@@ -103,4 +103,12 @@ class Irm::DepartmentsController < ApplicationController
       format.js   { render :json => departments.collect{|d| {:id=>d.id,:name=>d[:name]}} }
     end
   end
+
+  def get_by_organization
+    departments_scope = Irm::Department.multilingual.multilingual.enabled.where("organization_id = ?", params[:organization_id])
+    department = departments_scope.collect{|i| {:label=>i[:name], :value=>i.id,:id=>i.id}}
+    respond_to do |format|
+      format.json {render :json=>department.to_grid_json([:label,:value], department.count)}
+    end
+  end
 end
