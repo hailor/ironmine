@@ -14,13 +14,16 @@
   </div>
   <div class="pbBody">
     <div class="pbSubheader tertiaryPalette">
-      <div>
-        <h1 style="font_size:200%"><%= @bulletin.title%></h1>
+      <div align="center">
+        <span style="font-size:20px !important;"><%= @bulletin.title%></span><br>
+        <span style="font-size:12px !important;font-weight:normal;">
+          <%= Irm::Person.find(@bulletin.author_id).name%>&nbsp;&nbsp;&nbsp;
+          <%= @bulletin.created_at.strftime("%Y-%m-%d %H:%M:%S")%></span>
       </div>
     </div>
 
-    <div class="pbSubsection">
-        <%= @bulletin.content%>
+    <div class="pbSubsection" style="margin-left:30px;margin-right:30px;">
+        <%= raw(@bulletin.content)%>
     </div>
   </div>
 </div>
