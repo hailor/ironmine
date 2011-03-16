@@ -715,14 +715,17 @@ en:
   label_irm_bulletin_page_views: Page Views
   label_irm_bulletin_published_date: Published Date
   label_irm_bulletin_access: Access Control
+  label_irm_bulletin_access_list: Accessiable List
   label_irm_bulletin_access_type: Access Type
   label_irm_bulletin_add_access_line: Add Rule
-  label_irm_bulletin_access_availabel_companies: Company and Department
+  label_irm_bulletin_access_availabel_companies: Company, Organization and Department
   label_irm_bulletin_access_availabel_departments: Departments
   label_irm_bulletin_access_availabel_roles: Role
   label_irm_bulletin_add_to_access_rule: Add to access list
   label_irm_bulletin_selected_companies: Company
   label_irm_bulletin_selected_departments: Department
   label_irm_bulletin_selected_roles: Role
+  label_irm_bulletin_selected_organizations: Organization
+  label_irm_bulletin_if_access_list_none: Everyone can visit this bulletin if access list did not set anything.
   #======================== end bulletin controller ======================
 

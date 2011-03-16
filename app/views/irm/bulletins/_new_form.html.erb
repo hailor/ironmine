@@ -53,19 +53,26 @@
   </div>
   <div class="pbBody">
     <div class="pbSubheader first tertiaryPalette">
-      <h3><%= t(:label_irm_bulletin_access) %></h3>
+      <h3><%= t(:label_irm_bulletin_access)%></h3>
     </div>
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
-        <tbody id="detailList">
+        <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_bulletin_access_availabel_companies)%></label></td>
-              <td class="data2Col"><%= select_tag("ava_companies", options_for_select(ava_access_companies), {:id => "ava_companies", :include_blank => "--- #{t(:actionview_instancetag_blank_option)} ---"})%>
-                <%= select_tag("ava_departments", nullable_options_for_select([],nil),
-                    {:id=>"ava_departments",
+              <td class="data2Col">
+                <%= select_tag("ava_companies", options_for_select(ava_access_companies),
+                               {:id => "ava_companies", :include_blank => "--- #{t(:actionview_instancetag_blank_option)} ---"})%>
+                <%= select_tag("ava_organizations", nullable_options_for_select([],nil),
+                    {:id=>"ava_organizations",
                        :depend=>"ava_companies",
                        :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
-                       :href=>url_for(:controller=>"irm/bulletins",:action=>"get_ava_departments",:format=>"json",:company_id=>"{ava_companies}")})%>
+                       :href=>url_for(:controller=>"irm/bulletins",:action=>"get_ava_organizations",:format=>"json",:company_id=>"{ava_companies}")})%>
+                <%= select_tag("ava_departments", nullable_options_for_select([],nil),
+                    {:id=>"ava_departments",
+                       :depend=>"ava_organizations",
+                       :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
+                       :href=>url_for(:controller=>"irm/bulletins",:action=>"get_ava_departments",:format=>"json",:organization_id=>"{ava_organizations}")})%>
                 <%= link_to t(:label_irm_bulletin_add_to_access_rule), {}, {:href => "javascript:void(0);", :onclick => "addCompanyRule();"}%></td>
             </tr>
             <tr>
@@ -77,7 +84,17 @@
       </table>
     </div>
   </div>
-
+  <div class="pbBody">
+    <div class="pbSubheader first tertiaryPalette">
+      <h3><%= t(:label_irm_bulletin_access_list) %><span style="font-weight:normal;font-size:12px;">&nbsp;-&nbsp;<%=  t(:label_irm_bulletin_if_access_list_none)  %></span></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody id="detailList">
+        </tbody>
+      </table>
+    </div>
+  </div>
   <div class="pbBottomButtons">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
@@ -101,7 +118,8 @@
 
 
   GY.use("cascadeselect",function(Y){
-     new Y.CascadeSelect({source: "#ava_companies",target:["#ava_departments"]});
+     new Y.CascadeSelect({source: "#ava_companies",target:["#ava_organizations"]});
+     new Y.CascadeSelect({source: "#ava_organizations",target:["#ava_departments"]});
   });
 
   var line_count = 0;
@@ -109,46 +127,68 @@
   function addCompanyRule(){
       GY.use(function(Y)
       {
-            var selected = "";
-            var value = "";
-            var text = "";
+            var c_selected = "";
+            var c_value = "";
+            var c_text = "";
 
             var d_selected = "";
             var d_value = "";
             var d_text = "";
-            Y.one("#ava_companies").get("options").each( function() {
-            if(this.get('selected'))
-            {
-                selected = this.get('selected');
-                value  = this.get('value');
-                text = this.get('text');
-            }
-            });
-            if(value != ""){
-                Y.one("#ava_departments").get("options").each( function() {
+
+            var o_selected = "";
+            var o_value = "";
+            var o_text = "";
+
+            Y.one("#ava_departments").get("options").each( function(){
                 if(this.get('selected'))
                 {
                     d_selected = this.get('selected');
                     d_value  = this.get('value');
                     d_text = this.get('text');
                 }
-                });
-            }
-            if(d_value == ""){
+            });
+            Y.one("#ava_organizations").get("options").each( function(){
+                if(this.get('selected'))
+                {
+                    o_selected = this.get('selected');
+                    o_value  = this.get('value');
+                    o_text = this.get('text');
+                }
+            });
+            Y.one("#ava_companies").get("options").each( function() {
+                if(this.get('selected'))
+                {
+                    c_selected = this.get('selected');
+                    c_value  = this.get('value');
+                    c_text = this.get('text');
+                }
+            });
+
+            if(d_value != ""){
                 var node = Y.Node.create(
-                    '<tr id="tr_' + line_count+ '"><td class="labelCol"><%= t :label_irm_bulletin_selected_companies%></td><td class="data2Col">' + text +
+                    '<tr id="tr_' + line_count+ '"><td class="labelCol"><%= t :label_irm_bulletin_selected_departments%></td><td class="data2Col">' + c_text + " " + o_text + " " + d_text +
                     '<a href="javascript:void(0);" onclick="remove_line(' + line_count+ ');" >&nbsp;&nbsp;<%= t :delete%></a></td>' +
-                    '<input type="hidden" name="accesses[' + line_count + '][type]" value="COMPANY">' +
-                    '<input type="hidden" name="accesses[' + line_count + '][access_id]" value="' + value + '">' +
+                    '<input type="hidden" name="accesses[' + line_count + '][type]" value="DEPARTMENT">' +
+                    '<input type="hidden" name="accesses[' + line_count + '][access_id]" value="' + d_value + '">' +
+                    '</tr>'
+                );
+
+            }
+            else if (o_value != ""){
+                var node = Y.Node.create(
+                    '<tr id="tr_' + line_count+ '"><td class="labelCol"><%= t :label_irm_bulletin_selected_organizations%></td><td class="data2Col">' + c_text + " " + o_text +
+                    '<a href="javascript:void(0);" onclick="remove_line(' + line_count+ ');" >&nbsp;&nbsp;<%= t :delete%></a></td>' +
+                    '<input type="hidden" name="accesses[' + line_count + '][type]" value="ORGANIZATION">' +
+                    '<input type="hidden" name="accesses[' + line_count + '][access_id]" value="' + o_value + '">' +
                     '</tr>'
                 );
             }
-            else{
+            else if (c_value != ""){
                 var node = Y.Node.create(
-                    '<tr id="tr_' + line_count+ '"><td class="labelCol"><%= t :label_irm_bulletin_selected_departments%></td><td class="data2Col">' + text + " " + d_text +
+                    '<tr id="tr_' + line_count+ '"><td class="labelCol"><%= t :label_irm_bulletin_selected_companies%></td><td class="data2Col">' + c_text +
                     '<a href="javascript:void(0);" onclick="remove_line(' + line_count+ ');" >&nbsp;&nbsp;<%= t :delete%></a></td>' +
-                    '<input type="hidden" name="accesses[' + line_count + '][type]" value="DEPARTMENT">' +
-                    '<input type="hidden" name="accesses[' + line_count + '][access_id]" value="' + value + '">' +
+                    '<input type="hidden" name="accesses[' + line_count + '][type]" value="COMPANY">' +
+                    '<input type="hidden" name="accesses[' + line_count + '][access_id]" value="' + c_value + '">' +
                     '</tr>'
                 );
             }

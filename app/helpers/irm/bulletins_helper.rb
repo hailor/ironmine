@@ -28,12 +28,36 @@ module Irm::BulletinsHelper
     tags = ""
     line_count = 0
     ba.each do |t|
-      tags = tags + content_tag(:tr,
+      if t.access_type == "DEPARTMENT"
+        tags = tags + content_tag(:tr,
+                                content_tag(:td, t(:label_irm_bulletin_selected_departments), {:class => "labelCol"}) +
+                                content_tag(:td, raw(t.name + content_tag(:a, raw("&nbsp;&nbsp;") + t(:delete), {:href => "javascript:void(0);", :onclick => "remove_line('" + line_count.to_s+ "');"})), {:class => "data2Col"}) +
+                                content_tag(:input, "", {:type => "hidden", :name => "accesses[" +line_count.to_s+ "][type]", :value => t.access_type}) +
+                                content_tag(:input, "", {:type => "hidden", :name => "accesses[" +line_count.to_s+ "][access_id]", :value => t.access_id}),
+                                {:id => "tr_" + line_count.to_s})
+      elsif t.access_type == "ORGANIZATION"
+        tags = tags + content_tag(:tr,
+                                content_tag(:td, t(:label_irm_bulletin_selected_organizations), {:class => "labelCol"}) +
+                                content_tag(:td, raw(t.name + content_tag(:a, raw("&nbsp;&nbsp;") + t(:delete), {:href => "javascript:void(0);", :onclick => "remove_line('" + line_count.to_s+ "');"})), {:class => "data2Col"}) +
+                                content_tag(:input, "", {:type => "hidden", :name => "accesses[" +line_count.to_s+ "][type]", :value => t.access_type}) +
+                                content_tag(:input, "", {:type => "hidden", :name => "accesses[" +line_count.to_s+ "][access_id]", :value => t.access_id}),
+                                {:id => "tr_" + line_count.to_s})
+      elsif t.access_type == "COMPANY"
+        tags = tags + content_tag(:tr,
                                 content_tag(:td, t(:label_irm_bulletin_selected_companies), {:class => "labelCol"}) +
                                 content_tag(:td, raw(t.name + content_tag(:a, raw("&nbsp;&nbsp;") + t(:delete), {:href => "javascript:void(0);", :onclick => "remove_line('" + line_count.to_s+ "');"})), {:class => "data2Col"}) +
                                 content_tag(:input, "", {:type => "hidden", :name => "accesses[" +line_count.to_s+ "][type]", :value => t.access_type}) +
                                 content_tag(:input, "", {:type => "hidden", :name => "accesses[" +line_count.to_s+ "][access_id]", :value => t.access_id}),
                                 {:id => "tr_" + line_count.to_s})
+      elsif t.access_type == "ROLE"
+        tags = tags + content_tag(:tr,
+                                content_tag(:td, t(:label_irm_bulletin_selected_roles), {:class => "labelCol"}) +
+                                content_tag(:td, raw(t.name + content_tag(:a, raw("&nbsp;&nbsp;") + t(:delete), {:href => "javascript:void(0);", :onclick => "remove_line('" + line_count.to_s+ "');"})), {:class => "data2Col"}) +
+                                content_tag(:input, "", {:type => "hidden", :name => "accesses[" +line_count.to_s+ "][type]", :value => t.access_type}) +
+                                content_tag(:input, "", {:type => "hidden", :name => "accesses[" +line_count.to_s+ "][access_id]", :value => t.access_id}),
+                                {:id => "tr_" + line_count.to_s})
+      end
+      line_count += 1;
     end
     raw(tags)
   end

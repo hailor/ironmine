@@ -452,6 +452,7 @@ Ironmine::Application.routes.draw do
     match '/bulletins/index(.:format)' => "bulletins#index"
     match '/bulletins/:id/show(.:format)' => "bulletins#show", :via => :get
     match '/bulletins/get_ava_departments' => "bulletins#get_ava_departments", :via => :get
+    match '/bulletins/get_ava_organizations' => "bulletins#get_ava_organizations", :via => :get
   end
 
   scope :module => "icm" do

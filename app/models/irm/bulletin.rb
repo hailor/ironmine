@@ -43,6 +43,16 @@ class Irm::Bulletin < ActiveRecord::Base
 #        joins("LEFT OUTER JOIN #{Irm::DepartmentsTl} dp ON bad.access_id = dp.department_id AND dp.department_id = #{department_id} AND dp.language = '#{I18n.locale}'")
   }
 
+  scope :query_accessible_with_organization, lambda{|organization_id|
+    select("ot.name name, 'ORGANIZATION' type").
+        joins(",#{Irm::BulletinAccess.table_name} bao").
+        joins(",#{Irm::OrganizationsTl.table_name} ot").
+        where("ot.language = ?", I18n.locale).
+        where("ot.organization_id = bao.access_id").
+        where("bao.access_type=?", "ORGANIZATION").
+        where("bao.bulletin_id = #{table_name}.id").
+        where("bao.access_id = ?", organization_id)
+  }
   scope :query_accessible_with_roles, lambda{|roles|
     select("rt.name name, 'ROLE' type").
     joins(",#{Irm::BulletinAccess.table_name} bar").
@@ -84,6 +94,7 @@ class Irm::Bulletin < ActiveRecord::Base
     rec = select_all.with_author.query_accessible_with_companies(accessable_companies).unsticky +
           select_all.with_author.query_accessible_with_roles(person.roles).unsticky +
           select_all.with_author.query_accessible_with_department(person.department_id).unsticky +
+          select_all.with_author.query_accessible_with_organization(person.organization_id).unsticky +
           #我创建的
           select_all.with_author.query_by_author(person_id).query_accessible_with_nothing.unsticky +
           #没有设置访问权限的
@@ -92,6 +103,7 @@ class Irm::Bulletin < ActiveRecord::Base
     rec_sticky =  select_all_top.with_author.query_accessible_with_companies(accessable_companies).sticky +
                   select_all_top.with_author.query_accessible_with_roles(person.roles).sticky +
                   select_all_top.with_author.query_accessible_with_department(person.department_id).sticky +
+                  select_all_top.with_author.query_accessible_with_organization(person.organization_id).sticky +
                   #我创建的
                   select_all_top.with_author.query_by_author(person_id).query_accessible_with_nothing.sticky +
                   #没有设置访问权限的

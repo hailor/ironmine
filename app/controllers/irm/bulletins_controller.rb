@@ -69,7 +69,7 @@ class Irm::BulletinsController < ApplicationController
                                                  :access_type => t[:type],
                                                  :access_id => t[:access_id]})
           end
-          bulletin_accesses.each do |t|
+          bulletin_accesses.uniq.each do |t|
             t.save
           end
         end
@@ -125,10 +125,18 @@ class Irm::BulletinsController < ApplicationController
   end
 
   def get_ava_departments
-    departments_scope = Irm::Department.multilingual.enabled.where("company_id = ?", params[:company_id])
-    department = departments_scope.collect{|i| {:label=>i[:name], :value=>i.id,:id=>i.id}}
+    departments_scope = Irm::Department.multilingual.enabled.where("organization_id = ?", params[:organization_id])
+    departments = departments_scope.collect{|i| {:label=>i[:name], :value=>i.id,:id=>i.id}}
     respond_to do |format|
-      format.json {render :json=>department.to_grid_json([:label,:value], department.count)}
+      format.json {render :json=>departments.to_grid_json([:label,:value], departments.count)}
+    end
+  end
+
+  def get_ava_organizations
+    organizations_scope = Irm::Organization.multilingual.enabled.where("company_id = ?", params[:company_id])
+    organizations = organizations_scope.collect{|i| {:label=>i[:name], :value=>i.id, :id=>i.id}}
+    respond_to do |format|
+      format.json {render :json=>organizations.to_grid_json([:label,:value], organizations.count)}
     end
   end
 end
