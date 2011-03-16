@@ -8,6 +8,11 @@ en:
   language_code_jp: Japanese
   language_code_zh: Chinese
 
+  label_entry_headers_step: Step
+  label_entry_headers_totle_step: Step
+  label_entry_headers_totle: totle
+  label_entry_headers_first: Step
+
   date:
     formats:
       default: "%m/%d/%Y"

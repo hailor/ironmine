@@ -40,6 +40,36 @@ en:
   description: Description
   actionview_instancetag_blank_option: Please Select
   more_info: More Info
+  enable: Enable
+  disable: Disable
+  cut_image: Crop picture
+  close: Close
+  default: Default
+  select: Options
+  select_ac: select
+  upload: upload
+  save_and_new: Save and new
+  edit_icon: Edit icon
+  error: Error
+  error_invalid_data: Error：invalid data。
+  check_error_msg_and_fix: Please review all of the following error message to correct the data。
+  operation: Operation
+  remove: Remove
+  search: Search
+  options: Options
+  move_up: Move up
+  move_down: Move down
+  save_page: Save page
+  none: None
+  save_as_draft: Save as draft
+  save_as_published: Publish
+  go_to_top: Go to top
+  step_n: "Step %{n}."
+  step_n_total_m: "Step %{n} , total %{m} "
+  label_checked: Checked
+  label_unchecked: Uncheck
+  help: Help
+
   #usual words
   notice_account_invalid_creditentials: User or Password Error
   successfully_updated: Successfully Updated
@@ -67,6 +97,7 @@ en:
   common_report: Common Report
   go_to_report: Go To Report
   tool: Tools
+  new_task: New task
   my_task: My Tasks
   my_all_count: My All Requests
   help: Help
@@ -113,7 +144,7 @@ en:
   label_irm_lookup_type_info: Lookup Type Info
   label_irm_lookup_type_show: Lookup Type
   label_irm_lookup_value_index: Lookup Value Index
-  label_irm_lookup_value_list: Lookup Value
+  label_irm_lookup_value_list: Lookup Value List
   label_lookup_value_new: New Lookup Value
   label_irm_lookup_value_info: Lookup Value Info
   label_lookup_value_edit: Lookup Value Edit
