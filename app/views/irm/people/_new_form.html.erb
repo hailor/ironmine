@@ -41,7 +41,9 @@
               <td class="labelCol"><label><%=(t :label_irm_person_email_address)%></label></td>
               <td class="dataCol"><%=f.text_field :email_address, :required=>true%></td>              
               <td class="labelCol"><%=(t :label_irm_person_title)%></td>
-              <td class="dataCol"><%=f.text_field :title, :required=>true %></td>
+              <td class="dataCol">
+                <%=f.select :title,options_for_select(person_title,@person.title),
+                                                    {},{:required=>true,:id=>"irm_person_title"}%></td>
             </tr>
         </tbody>
       </table>
