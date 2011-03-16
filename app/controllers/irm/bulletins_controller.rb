@@ -123,4 +123,12 @@ class Irm::BulletinsController < ApplicationController
     @return_url=params[:return_url]||request.env['HTTP_REFERER']
     @bulletin = Irm::Bulletin.find(params[:bulletin_id])
   end
+
+  def get_ava_departments
+    departments_scope = Irm::Department.multilingual.enabled.where("company_id = ?", params[:company_id])
+    department = departments_scope.collect{|i| {:label=>i[:name], :value=>i.id,:id=>i.id}}
+    respond_to do |format|
+      format.json {render :json=>department.to_grid_json([:label,:value], department.count)}
+    end
+  end
 end

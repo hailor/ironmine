@@ -49,6 +49,18 @@ class Irm::Bulletin < ActiveRecord::Base
         where("bar.access_id IN (?)", roles.collect(&:id) + [''] )
   }
 
+  scope :query_by_author, lambda{|author_id|
+    where("#{table_name}.author_id=?", author_id)
+  }
+
+  scope :query_accessible_with_nothing, lambda{
+    select("' ' name, ' ' type")
+  }
+
+  scope :without_access, lambda{
+    where("NOT EXISTS (SELECT * FROM #{Irm::BulletinAccess.table_name} ba WHERE ba.bulletin_id = #{table_name}.id )")
+  }
+
   def self.list_all
     select_all.with_author
   end
@@ -59,7 +71,11 @@ class Irm::Bulletin < ActiveRecord::Base
     accessable_companies = Irm::Company.multilingual.query_by_ids(accesses)
     rec = select_all.with_author.query_accessible_with_companies(accessable_companies) +
           select_all.with_author.query_accessible_with_roles(person.roles) +
-          select_all.with_author.query_accessible_with_department(person.department_id)
+          select_all.with_author.query_accessible_with_department(person.department_id) +
+          #我创建的
+          select_all.with_author.query_by_author(person_id).query_accessible_with_nothing +
+          #没有设置访问权限的
+          select_all.with_author.without_access.query_accessible_with_nothing
 
     rec.uniq
   end

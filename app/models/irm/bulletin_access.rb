@@ -10,9 +10,14 @@ class Irm::BulletinAccess < ActiveRecord::Base
   }
 
   scope :query_accessible_with_departments, lambda{
-    select("dt.name name, 'DEPARTMENT' type").
+    select("CONCAT(dct.name, ' ', dt.name) name, 'DEPARTMENT' type").
       joins(",#{Irm::DepartmentsTl.table_name} dt").
-      where("dt.department_id = #{table_name}.access_id AND #{table_name}.access_type = 'DEPARTMENT' AND dt.language = ?", I18n.locale)
+      joins(",#{Irm::Department.table_name} dep").
+      joins(",#{Irm::CompaniesTl.table_name} dct").
+      where("dep.id = #{table_name}.access_id").
+      where("dt.department_id = #{table_name}.access_id AND #{table_name}.access_type = 'DEPARTMENT' AND dt.language = ?", I18n.locale).
+      where("dct.id = dep.company_id").
+      where("dct.language = ?", I18n.locale)
   }
 
   scope :query_accessible_with_roles, lambda{

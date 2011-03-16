@@ -717,13 +717,12 @@ en:
   label_irm_bulletin_access: Access Control
   label_irm_bulletin_access_type: Access Type
   label_irm_bulletin_add_access_line: Add Rule
-  label_irm_bulletin_access_availabel_companies: Availabel Companies
-  label_irm_bulletin_access_availabel_departments: Availabel Departments
-  label_irm_bulletin_access_availabel_roles: Availabel Roles
-
+  label_irm_bulletin_access_availabel_companies: Company and Department
+  label_irm_bulletin_access_availabel_departments: Departments
+  label_irm_bulletin_access_availabel_roles: Role
   label_irm_bulletin_add_to_access_rule: Add to access list
-  label_irm_bulletin_selected_companies: Accessiable Company
-  label_irm_bulletin_selected_departments: Accessiable Department
-  label_irm_bulletin_selected_roles: Accessiable Role
+  label_irm_bulletin_selected_companies: Company
+  label_irm_bulletin_selected_departments: Department
+  label_irm_bulletin_selected_roles: Role
   #======================== end bulletin controller ======================
 

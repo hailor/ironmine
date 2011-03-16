@@ -34,24 +34,35 @@
     </div>
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
-        <tbody id="detailList">
+        <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_bulletin_title)%></label></td>
-              <td class="data2Col"><%=f.text_field :title, :required=>true,:size => 40%></td>
+              <td class="data2Col"><%=f.text_field :title, :required=>true,:style => "width:80%;min-with:200px;"%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_bulletin_content)%></label></td>
-              <td class="data2Col"><%=f.text_area :content, :cols => 80%></td>
+              <td class="data2Col"><%=f.text_area :content,:style => "width:80%;min-with:200px;", :rows => 10%></td>
             </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubheader first tertiaryPalette">
+      <h3><%= t(:label_irm_bulletin_access) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody id="detailList">
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_bulletin_access_availabel_companies)%></label></td>
-              <td class="data2Col"><%= select_tag("ava_companies", options_for_select(ava_access_companies), {:id => "ava_companies"})%>
+              <td class="data2Col"><%= select_tag("ava_companies", options_for_select(ava_access_companies), {:id => "ava_companies", :include_blank => "--- #{t(:actionview_instancetag_blank_option)} ---"})%>
+                <%= select_tag("ava_departments", nullable_options_for_select([],nil),
+                    {:id=>"ava_departments",
+                       :depend=>"ava_companies",
+                       :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
+                       :href=>url_for(:controller=>"irm/bulletins",:action=>"get_ava_departments",:format=>"json",:company_id=>"{ava_companies}")})%>
                 <%= link_to t(:label_irm_bulletin_add_to_access_rule), {}, {:href => "javascript:void(0);", :onclick => "addCompanyRule();"}%></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :label_irm_bulletin_access_availabel_departments)%></label></td>
-              <td class="data2Col"><%= select_tag("ava_departments", options_for_select(ava_access_departments), {:id => "ava_departments"})%>
-                <%= link_to t(:label_irm_bulletin_add_to_access_rule), {}, {:href => "javascript:void(0);", :onclick => "addDepartmentRule();"}%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_bulletin_access_availabel_roles)%></label></td>
@@ -62,6 +73,7 @@
       </table>
     </div>
   </div>
+
   <div class="pbBottomButtons">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
@@ -82,6 +94,12 @@
 </div>
 <% end %>
 <script type="text/javascript">
+
+
+  GY.use("cascadeselect",function(Y){
+     new Y.CascadeSelect({source: "#ava_companies",target:["#ava_departments"]});
+  });
+
   var line_count = 0;
 
   function addCompanyRule(){
@@ -90,6 +108,10 @@
             var selected = "";
             var value = "";
             var text = "";
+
+            var d_selected = "";
+            var d_value = "";
+            var d_text = "";
             Y.one("#ava_companies").get("options").each( function() {
             if(this.get('selected'))
             {
@@ -98,14 +120,35 @@
                 text = this.get('text');
             }
             });
+            if(value != ""){
+                Y.one("#ava_departments").get("options").each( function() {
+                if(this.get('selected'))
+                {
+                    d_selected = this.get('selected');
+                    d_value  = this.get('value');
+                    d_text = this.get('text');
+                }
+                });
+            }
+            if(d_value == ""){
+                var node = Y.Node.create(
+                    '<tr id="tr_' + line_count+ '"><td class="labelCol"><%= t :label_irm_bulletin_selected_companies%></td><td class="data2Col">' + text +
+                    '<a href="javascript:void(0);" onclick="remove_line(' + line_count+ ');" >&nbsp;&nbsp;<%= t :delete%></a></td>' +
+                    '<input type="hidden" name="accesses[' + line_count + '][type]" value="COMPANY">' +
+                    '<input type="hidden" name="accesses[' + line_count + '][access_id]" value="' + value + '">' +
+                    '</tr>'
+                );
+            }
+            else{
+                var node = Y.Node.create(
+                    '<tr id="tr_' + line_count+ '"><td class="labelCol"><%= t :label_irm_bulletin_selected_departments%></td><td class="data2Col">' + text + " " + d_text +
+                    '<a href="javascript:void(0);" onclick="remove_line(' + line_count+ ');" >&nbsp;&nbsp;<%= t :delete%></a></td>' +
+                    '<input type="hidden" name="accesses[' + line_count + '][type]" value="DEPARTMENT">' +
+                    '<input type="hidden" name="accesses[' + line_count + '][access_id]" value="' + value + '">' +
+                    '</tr>'
+                );
+            }
 
-            var node = Y.Node.create(
-                '<tr id="tr_' + line_count+ '"><td class="labelCol"><%= t :label_irm_bulletin_selected_companies%></td><td class="data2Col">' + text +
-                '<a href="javascript:void(0);" onclick="remove_line(' + line_count+ ');" >&nbsp;&nbsp;<%= t :delete%></a></td>' +
-                '<input type="hidden" name="accesses[' + line_count + '][type]" value="COMPANY">' +
-                '<input type="hidden" name="accesses[' + line_count + '][access_id]" value="' + value + '">' +
-                '</tr>'
-            );
             line_count ++;
             Y.one("#detailList").appendChild(node);
       })

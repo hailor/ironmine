@@ -764,10 +764,10 @@ zh:
   label_irm_bulletin_access_type: 控制类型
   label_irm_bulletin_add_access_line: 增加控制规则
   label_irm_bulletin_add_to_access_rule: 添加到可访问列表
-  label_irm_bulletin_access_availabel_companies: 可选择的公司
-  label_irm_bulletin_selected_companies: 可访问的公司
-  label_irm_bulletin_selected_departments: 可访问的部门
-  label_irm_bulletin_selected_roles: 可访问的角色
-  label_irm_bulletin_access_availabel_departments: 可选择的部门
-  label_irm_bulletin_access_availabel_roles: 可选择的角色
+  label_irm_bulletin_access_availabel_companies: 公司和部门
+  label_irm_bulletin_access_availabel_departments: 部门
+  label_irm_bulletin_access_availabel_roles: 角色
+  label_irm_bulletin_selected_companies: 公司
+  label_irm_bulletin_selected_departments: 部门
+  label_irm_bulletin_selected_roles: 角色
   #======================== end bulletin controller ======================
