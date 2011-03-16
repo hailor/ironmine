@@ -6,7 +6,7 @@ class ActiveRecord::Base
     def union(parts, options = {})
       if parts.size >= 2
         scope = scope(:find)
-        
+
         sql = '(' + parts.collect{|part| construct_finder_sql(optionate(part))}.join(') UNION (') + ') '
         add_order!(sql, options[:order], scope)
         add_limit!(sql, options, scope)
