@@ -17,6 +17,10 @@ class Irm::LoginRecord < ActiveRecord::Base
     order("#{table_name}.created_at desc")     
   }
 
+  scope :query_by_identity,lambda{|identity_id|
+    where(:identity_id => identity_id)
+  }
+
   def setup_os_browser
     parser = Irm::UserAgentParser.new(self.user_agent)
     self.operate_system = parser.os

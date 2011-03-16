@@ -398,9 +398,11 @@ module ApplicationHelper
     accesses = Irm::CompanyAccess.query_by_person_id(Irm::Person.current.id).collect{|c| c.accessable_company_id}
     accessable_companies = Irm::Company.multilingual.query_by_ids(accesses)
     return nil unless accessable_companies&&accessable_companies.size>0
+    session[:accessable_companies] ||=  accesses
     links = ""
-    accessable_companies.each do |ac|
-      links << content_tag(:div,link_to(ac[:name],{}),{:class=>"menuItem"})
+    accessable_companies.each_with_index do |ac,index|
+      content = check_box_tag("accessable_companies[]",ac.id,session[:accessable_companies].include?(ac.id),{:id=>"accessable_companies_#{ac.id}"}) + label_tag("accessable_companies_#{ac.id}",ac[:name])
+      links << content_tag(:div,content,{:class=>"menuItem"})
     end
 
     links.html_safe

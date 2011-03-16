@@ -17,7 +17,17 @@ module Irm::QueryExtend
             }
 
             scope :query_by_ids ,lambda{|ids|
+              if ids.length<1
+                ids = ids+[0]
+              end
               where("#{table_name}.id IN (?)",ids+[0])
+            }
+
+            scope :query_by_company_ids ,lambda{|ids|
+              if ids.length<1
+                ids = ids+[0]
+              end
+              where("#{table_name}.company_id IN (?)",ids)
             }
 
             scope :query_by_company,lambda{|company_id|

@@ -747,7 +747,7 @@ zh:
   label_multilingual_edit_files: 编辑多语言字段
   #=========================end irm  multilingual=====================#
   #=========================start irm  multilingual=====================#
-  label_company_access_menu_label: 可访问公司
+  label_company_access_menu_label: 公司
   #=========================end irm  multilingual=====================#
   #======================== bulletin controller ======================
   label_irm_bulletin: 公告

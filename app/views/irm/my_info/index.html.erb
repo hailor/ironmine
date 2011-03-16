@@ -40,3 +40,40 @@
     </div>
   </div>
 </div>
+
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_login_record_list) %></h2></td>
+              <td class="pbButton">
+              </td>
+              <td class="pbHelp">
+                <div id="reportGroupMemebersSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="reports" class="datatable" style="width:100%">
+
+        </div>
+        <%= datatable("reports",url_for( :action => "get_login_data",:format=>"json"),
+                      [{:key=>"user_ip",:label=>t(:label_irm_login_record_user_ip),:width=>"40px"},
+
+                       { :key => "operate_system", :label => t(:label_irm_login_record_operate_system) },
+
+                       { :key => "browser", :label => t(:label_irm_login_record_browser) },
+
+                       { :key => "login_at", :label => t(:label_irm_login_record_login_at)},
+
+                       { :key => "logout_at", :label => t(:label_irm_login_record_logout_at) },
+
+                       ],{:row_perpage=>20})%>
+      </div>
+    </div>
+</div>
+

@@ -7,7 +7,7 @@
                 <h3 class="lbHeader"><%= t(:common_report) %></h3>
                 <div class="lbBody">
                   <ul>
-                    <%= raw(show_module_report(category_code,options)) %>
+                    <%= raw(show_module_report(category_code,{:report_purpose=>"REPORT"})) %>
                   </ul>
                 </div>
                 <div class="lbBody">
@@ -20,17 +20,19 @@
             </div>
           </td>
           <td>
-            <div id="myDrag" class="toolsContentRight">
+            <div class="toolsContentLeft">
               <div class="bSubBlock">
                 <h3 class="lbHeader"><%= t(:tool) %></h3>
                 <div class="lbBody">
                   <ul>
-                    <li><a href="javascript:void(0);">导入我的组织的客户 & 联系人</a></li>
-                    <li><a href="javascript:void(0);">导入我的客户 & 联系人</a></li>
-                    <li><a href="javascript:void(0);">批量删除客户</a></li>
-                    <li><a href="javascript:void(0);">转移客户</a></li>
-                    <li><a href="javascript:void(0);">合并客户</a></li>
+                    <%= raw(show_module_report(category_code,{:report_purpose=>"IMPORT"})) %>
                   </ul>
+                </div>
+                <div class="lbBody">
+                  <div class="mainLink">
+                    <%= link_to t(:go_to_report),url_for(:controller=>"irm/report_lists",
+                                                             :action => "index") %>
+                  </div>
                 </div>
               </div>
             </div>

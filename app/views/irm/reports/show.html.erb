@@ -5,7 +5,7 @@
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%= @report[:report_code] %></h2></td>
+          <td class="pbTitle"><h2 class="mainTitle"><%= @report[:name] %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @report}%></div>
             <div class="button"><%= link_to t(:back), {:action => "index"}%></div>

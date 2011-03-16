@@ -96,7 +96,7 @@ class Icm::IncidentRequestsController < ApplicationController
   end
 
   def get_data
-    incident_requests_scope = Icm::IncidentRequest.list_all
+    incident_requests_scope = Icm::IncidentRequest.list_all.query_by_company_ids(session[:accessable_companies])
     #incident_requests_scope = incident_requests_scope.match_value("incident_request.name",params[:name])
     incident_requests,count = paginate(incident_requests_scope)
     respond_to do |format|
@@ -111,8 +111,9 @@ class Icm::IncidentRequestsController < ApplicationController
 
   private
   def prepared_for_create(incident_request)
-    incident_request.submitted_by = Irm::Person.first.id
+    incident_request.submitted_by = Irm::Person.current.id
     incident_request.submitted_date = Time.now
+    incident_request.company_id = Irm::Person.find(incident_request.requested_by).company_id
   end
 
   def publish_create_incident_request(incident_request)

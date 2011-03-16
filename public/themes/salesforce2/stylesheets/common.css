@@ -208,7 +208,7 @@ a.headerSearchOptionsLink {text-decoration:none;}
     color: #fff;
     cursor: pointer;
 }
-.menuItem {color: #fff;font-weight: normal;}
+.menuItem {font-weight: normal;}
 
 #pageMenu{
     -moz-border-radius:11px 11px 11px 11px;
