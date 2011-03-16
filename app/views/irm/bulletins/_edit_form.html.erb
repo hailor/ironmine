@@ -43,6 +43,10 @@
               <td class="labelCol"><label><%=(t :label_irm_bulletin_content)%></label></td>
               <td class="data2Col"><%=f.text_area :content,:style => "width:80%;min-with:200px;", :rows => 10%></td>
             </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_bulletin_sticky_flag)%></label></td>
+              <td class="data2Col"><%=f.check_box :sticky_flag%></td>
+            </tr>
         </tbody>
       </table>
     </div>

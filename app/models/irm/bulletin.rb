@@ -11,7 +11,12 @@ class Irm::Bulletin < ActiveRecord::Base
   }
   scope :select_all, lambda{
     select("#{table_name}.id id, #{table_name}.title bulletin_title, #{table_name}.content, DATE_FORMAT(#{table_name}.created_at, '%Y/%c/%e %H:%I:%S') published_date").
-        select("#{table_name}.page_views page_views")
+        select("#{table_name}.page_views page_views, #{table_name}.sticky_flag")
+  }
+
+  scope :select_all_top, lambda{
+    select("#{table_name}.id id, CONCAT('[#{I18n.t(:label_irm_bulletin_sticky_flag)}] ', #{table_name}.title) bulletin_title, #{table_name}.content, DATE_FORMAT(#{table_name}.created_at, '%Y/%c/%e %H:%I:%S') published_date").
+        select("#{table_name}.page_views page_views, #{table_name}.sticky_flag")
   }
 
   scope :query_accessible_with_companies, lambda{|companies|
@@ -61,6 +66,13 @@ class Irm::Bulletin < ActiveRecord::Base
     where("NOT EXISTS (SELECT * FROM #{Irm::BulletinAccess.table_name} ba WHERE ba.bulletin_id = #{table_name}.id )")
   }
 
+  scope :sticky, lambda{
+    where("#{table_name}.sticky_flag='Y'")
+  }
+
+  scope :unsticky, lambda{
+    where("#{table_name}.sticky_flag <> 'Y'")
+  }
   def self.list_all
     select_all.with_author
   end
@@ -69,14 +81,23 @@ class Irm::Bulletin < ActiveRecord::Base
     person = Irm::Person.find(person_id)
     accesses = Irm::CompanyAccess.query_by_person_id(person_id).collect{|c| c.accessable_company_id}
     accessable_companies = Irm::Company.multilingual.query_by_ids(accesses)
-    rec = select_all.with_author.query_accessible_with_companies(accessable_companies) +
-          select_all.with_author.query_accessible_with_roles(person.roles) +
-          select_all.with_author.query_accessible_with_department(person.department_id) +
+    rec = select_all.with_author.query_accessible_with_companies(accessable_companies).unsticky +
+          select_all.with_author.query_accessible_with_roles(person.roles).unsticky +
+          select_all.with_author.query_accessible_with_department(person.department_id).unsticky +
           #我创建的
-          select_all.with_author.query_by_author(person_id).query_accessible_with_nothing +
+          select_all.with_author.query_by_author(person_id).query_accessible_with_nothing.unsticky +
           #没有设置访问权限的
-          select_all.with_author.without_access.query_accessible_with_nothing
+          select_all.with_author.without_access.query_accessible_with_nothing.unsticky
 
-    rec.uniq
+    rec_sticky =  select_all_top.with_author.query_accessible_with_companies(accessable_companies).sticky +
+                  select_all_top.with_author.query_accessible_with_roles(person.roles).sticky +
+                  select_all_top.with_author.query_accessible_with_department(person.department_id).sticky +
+                  #我创建的
+                  select_all_top.with_author.query_by_author(person_id).query_accessible_with_nothing.sticky +
+                  #没有设置访问权限的
+                  select_all_top.with_author.without_access.query_accessible_with_nothing.sticky
+
+    rec_sticky.uniq.sort{|x, y| y[:published_date] <=> x[:published_date] } +
+        rec.uniq.sort{|x, y| y[:published_date] <=> x[:published_date] }
   end
 end
