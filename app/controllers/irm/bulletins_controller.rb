@@ -90,6 +90,11 @@ class Irm::BulletinsController < ApplicationController
 
   def show
     @bulletin = Irm::Bulletin.where(:id => params[:id]).first()
+    #浏览量统计
+    if !session[:bulletins_show] || session[:bulletins_show] != @bulletin.id
+      Irm::Bulletin.update(@bulletin.id, {:page_views => @bulletin.page_views + 1})
+      session[:bulletins_show] = @bulletin.id
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @bulletin }
