@@ -676,9 +676,9 @@ div.button input[type="submit"]:hover{background-position: right -30px; cursor: 
 
 .btn_add{background:url("../images/16_16/Add.png") no-repeat scroll top; width:16px; height:16px;}
 .btn_edit{background:url("../images/16_16/Edit.png") no-repeat scroll; width:16px; height:16px;}
-.btn_delete{background:url("../images/16_16/Trash Full.png") no-repeat scroll; width:16px; height:16px;}
+.btn_delete{background:url("../images/16_16/delete.png") no-repeat scroll; width:16px; height:16px;}
 .btn_show{background:url("../images/16_16/book_open_mark.png") no-repeat scroll; width:16px; height:16px;}
-.btn_remove{background:url("../images/16_16/Trash Full.png") no-repeat scroll; width:16px; height:16px;}
+.btn_remove{background:url("../images/16_16/delete.png") no-repeat scroll; width:16px; height:16px;}
 .btn_star{background:url("../images/16_16/Star.png") no-repeat scroll; width: 16px; height: 16px;}
 .btn_reply{background:url("../images/16_16/Chat Bubble.png") no-repeat scroll; width: 16px; height: 16px;}
 .btn_result{background:url("../images/16_16/Chart.png") no-repeat scroll; width: 16px; height: 16px;}

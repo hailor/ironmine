@@ -7,7 +7,6 @@ class Icm::IncidentRequest < ActiveRecord::Base
 
   #加入activerecord的通用方法和scope
   query_extend
-
   after_create :generate_request_number
 
   before_validation_on_create  :setup_priority
@@ -135,6 +134,7 @@ class Icm::IncidentRequest < ActiveRecord::Base
                                order("DATE_FORMAT(#{table_name}.created_at,'%Y-%m') asc")
 
 
+  acts_as_watchable
   def self.list_all
     select_all.
         with_request_type(I18n.locale).

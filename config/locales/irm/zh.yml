@@ -775,3 +775,8 @@ zh:
   label_irm_bulletin_selected_organizations: 组织
   label_irm_bulletin_if_access_list_none: 如果没有限制可访问对象，则该公告对所有用户可见
   #======================== end bulletin controller ======================
+  #======================== watcher ======================
+  label_irm_watcher: 跟踪者
+  label_irm_watcher_new: 添加跟踪者
+  label_irm_watcher_list: 跟踪者列表
+  #======================== end watcher ======================
