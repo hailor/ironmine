@@ -150,7 +150,7 @@
                                            options_from_collection_for_select(available_languages,:language_code,:wrap_description,@person.notification_lang)%></td>
                   <td class="labelCol"><label>
                      <%=t(:label_irm_person_notification_flag)%></label></td>
-                  <td class="dataCol"><%=f.check_box :notification_flag%></td>
+                  <td class="dataCol"><%=f.check_box :notification_flag,:checked => true%></td>
              </tr>
         </tbody>
       </table>
