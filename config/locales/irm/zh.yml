@@ -49,6 +49,7 @@ zh:
   select_ac: 选择
   upload: 上传
   save_and_new: 保存并新建
+  save_and_update_new: 保存并继续上传
   edit_icon: 修改图标
   error: 错误
   error_invalid_data: 错误：无效数据。
