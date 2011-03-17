@@ -145,4 +145,12 @@ class Irm::SitesController < ApplicationController
     end
     render :action => "index"
   end
+
+  def get_by_site_group_code
+    sites_scope = Irm::Site.multilingual.query_by_site_group_code(params[:site_group_code])
+    sites = sites_scope.collect{|i| {:label=>i[:name],:value=>i.site_code,:id=>i.id}}
+    respond_to do |format|
+      format.json {render :json=>sites.to_grid_json([:label,:value],sites.count)}
+    end
+  end
 end

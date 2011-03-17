@@ -162,4 +162,12 @@ class Irm::SiteGroupsController < ApplicationController
       format.js { render :json => sites.collect{|d| {:id=>d.site_code,:name=>d[:name]}} }
     end
   end
+
+  def get_by_region_code
+    site_groups_scope = Irm::SiteGroup.multilingual.query_by_region_code(params[:region_code])
+    site_groups = site_groups_scope.collect{|i| {:label=>i[:name],:value=>i.group_code,:id=>i.id}}
+    respond_to do |format|
+      format.json {render :json=>site_groups.to_grid_json([:label,:value],site_groups.count)}
+    end
+  end
 end
