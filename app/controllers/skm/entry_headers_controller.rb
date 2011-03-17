@@ -264,7 +264,7 @@ class Skm::EntryHeadersController < ApplicationController
         format.html { redirect_to(:action => "index") }
         format.xml  { head :ok }
       else
-
+        format.html { redirect_to(:action => "index") }
       end
     end
   end
