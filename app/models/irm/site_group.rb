@@ -17,6 +17,10 @@ class Irm::SiteGroup < ActiveRecord::Base
     where(:group_code=>group_code)
   }
 
+  scope :query_by_region_code,lambda{|region_code|
+    where(:region_code=>region_code)
+  }
+
   scope :query_wrap_info,lambda{|language| select("#{table_name}.*,#{Irm::SiteGroupsTl.table_name}.name,#{Irm::SiteGroupsTl.table_name}.description,"+
                                                           "v1.meaning status_meaning,v2.name region_name").
                                                    joins(",irm_lookup_values_vl v1").

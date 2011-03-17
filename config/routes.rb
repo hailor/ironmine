@@ -255,7 +255,7 @@ Ironmine::Application.routes.draw do
     #site_groups
     match '/site_groups(/index)(.:format)' => "site_groups#index", :via => :get
     match '/site_groups/:id/edit(.:format)' => "site_groups#edit", :via => :get
-    match '/site_groups/:id(.:format)' => "site_groups#update", :via => :put
+    match '/site_groups/:id/update(.:format)' => "site_groups#update", :via => :put
     match '/site_groups/new(.:format)' => "site_groups#new", :via => :get
     match '/site_groups/create(.:format)' => "site_groups#create", :via => :post
     match '/site_groups/:id/multilingual_edit(.:format)' => "site_groups#multilingual_edit", :via => :get
@@ -264,13 +264,14 @@ Ironmine::Application.routes.draw do
     match '/site_groups/get_current_group_site(.:format)' => "site_groups#get_current_group_site"
     match '/site_groups/create_site(.:format)' => "site_groups#create_site"
     match '/site_groups/belongs_to(.:format)' => "site_groups#belongs_to"
-    match '/site_groups/:id(.:format)' => "site_groups#show"
+    match '/site_groups/:id/show(.:format)' => "site_groups#show"
     match '/site_groups/:id/add_site(.:format)' => "site_groups#add_site"
     match '/site_groups/:id/edit_site(.:format)' => "site_groups#edit_site"
     match '/site_groups/:id/update_site(.:format)' => "site_groups#update_site"
     match '/site_groups/:id/current_site_group(.:format)' => "site_groups#current_site_group"
     match '/site_groups/:id/multilingual_site_edit(.:format)' => "site_groups#multilingual_site_edit", :via => :get
     match '/site_groups/:id/multilingual_site_update(.:format)' => "site_groups#multilingual_site_update", :via => :put
+    match '/site_groups/get_by_region_code(.:format)' => "site_groups#get_by_region_code", :via => :get
 
     #general_categories
     match '/general_categories(/index)(.:format)' => "general_categories#index", :via => :get
@@ -302,13 +303,14 @@ Ironmine::Application.routes.draw do
     match '/sites(/index)(.:format)' => "sites#index", :via => :get
     match '/sites/get_data(.:format)' => "sites#get_data"
     match '/sites/:id/edit(.:format)' => "sites#edit", :via => :get
-    match '/sites/:id(.:format)' => "sites#update", :via => :put
+    match '/sites/:id/update(.:format)' => "sites#update", :via => :put
     match '/sites/new(.:format)' => "sites#new", :via => :get
-    match '/sites/:id(.:format)' => "sites#show", :via => :get
+    match '/sites/:id/show(.:format)' => "sites#show", :via => :get
     match '/sites/create(.:format)' => "sites#create", :via => :post
     match '/sites/select_site(.:format)' => "sites#select_site", :via => :post
     match '/sites/:id/multilingual_edit(.:format)' => "sites#multilingual_edit", :via => :get
     match '/sites/:id/multilingual_update(.:format)' => "sites#multilingual_update", :via => :put
+    match '/sites/get_by_site_group_code(.:format)' => "sites#get_by_site_group_code", :via => :get
     #people
     match '/people/get_choose_people(.:format)' => "people#get_choose_people"
     match '/people/get_support_group(.:format)' => "people#get_support_group"

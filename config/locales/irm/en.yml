@@ -30,6 +30,7 @@ en:
   copy:  Copy
   operation: Options
   save_and_new: Save And New
+  save_and_update_new: Save And Upload
   multilingual: Multilingual
   processing: Processing...
   list: List
