@@ -29,7 +29,7 @@
         <%= datatable("entry_headers_list",url_for(:action=>"get_data",:format=>"json"),
                   [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"90px"},
                    {:key=>"full_title",:label=>t(:label_skm_entry_header_title),:sortable=>true, :searchable => true,:formatter=>"Y.irm.template"},
-                   {:key=>"published_date",:label=>t(:label_skm_entry_header_published_date),:sortable=>true, :width => "180px"}],
+                   {:key=>"published_date_f",:label=>t(:label_skm_entry_header_published_date),:sortable=>true, :width => "180px"}],
                    {:search_box => "entryHeadersSearchBox"})%>
       </div>
     </div>

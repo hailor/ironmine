@@ -70,3 +70,6 @@ en:
   label_skm_file: File
   label_skm_file_private_tag: Private
   label_skm_file_add_line: Add file
+
+  #======================== skm sidebar last ten ====================================
+  label_skm_last_ten: Last Entries
