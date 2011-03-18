@@ -66,7 +66,7 @@ class Icm::CloseReasonsController < ApplicationController
   end
   
   def get_data
-    close_reasons_scope = Icm::CloseReason.multilingual.list_all
+    close_reasons_scope = Icm::CloseReason.multilingual
     close_reasons,count = paginate(close_reasons_scope)
     
     respond_to do |format|

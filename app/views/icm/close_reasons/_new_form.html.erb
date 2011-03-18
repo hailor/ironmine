@@ -33,9 +33,9 @@
         <tbody>                            
             <tr>
               <td class="labelCol"><label><%=t(:label_icm_close_reason_company)%></label></td>
-              <td class="dataCol"><%=f.select :company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+              <td class="dataCol"><%=f.select :company_id,
                                                     options_for_select(selectable_companies,@close_reason.company_id),
-                                                    {},{}%></td>
+                                                    {},{:required=>true}%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
