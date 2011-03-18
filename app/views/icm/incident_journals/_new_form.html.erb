@@ -297,4 +297,6 @@ GY.use('node','substitute','yui2-editor', function(Y) {
 });
 </script>
 
-
+<% content_for :sidebar do%>
+    <%= render :partial =>"/irm/watchers/sidebar_watcher_list", :locals => {:watchable => @incident_request} %>
+<% end %>

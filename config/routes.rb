@@ -456,6 +456,9 @@ Ironmine::Application.routes.draw do
     match '/bulletins/:id/show(.:format)' => "bulletins#show", :via => :get
     match '/bulletins/get_ava_departments' => "bulletins#get_ava_departments", :via => :get
     match '/bulletins/get_ava_organizations' => "bulletins#get_ava_organizations", :via => :get
+
+    match '/watchers/:watchable_id/add_watcher(.:format)' => "watchers#add_watcher"
+    match '/watchers/delete_watcher(.:format)' => "watchers#delete_watcher"
   end
 
   scope :module => "icm" do

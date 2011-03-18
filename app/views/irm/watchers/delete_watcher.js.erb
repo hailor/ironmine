@@ -1,0 +1,4 @@
+GY.use(function(Y){
+    Y.one("#watcher_list").set('innerHTML', '<%= escape_javascript(watchers_list(@watchable))%>');
+    Y.one("#watcher_select").set('innerHTML', '<%= escape_javascript(select_tag "watcher", options_for_select(ava_watchers(@watchable.id, @watchable.class), {:id => "watcher"}))%>');
+});
