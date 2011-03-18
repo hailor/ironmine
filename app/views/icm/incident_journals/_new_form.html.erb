@@ -64,9 +64,11 @@
             <div class="button"><%= link_to t(:label_icm_incident_journal_back_to_request_list), {:controller=>"icm/incident_requests",:action => "index"}%></div>
           </td>
           <td class="pbHelp">
-             <div class="button"><a href="#reply"><%=t(:label_icm_incident_journal_new)%></a></div>
-             <div class="button"><%= link_to t(:close), {:action => "edit_close"}%></div>
-            <div class="button"><%= link_to t(:edit), {:controller=>"icm/incident_requests",:action => "edit", :id => @incident_request.id}%></div>              
+            <%if @incident_request[:close_reason_code].nil? %>
+              <div class="button"><a href="#reply"><%=t(:label_icm_incident_journal_new)%></a></div>
+              <div class="button"><%= link_to t(:close), {:action => "edit_close"}%></div>
+              <div class="button"><%= link_to t(:edit), {:controller=>"icm/incident_requests",:action => "edit", :id => @incident_request.id}%></div>
+            <%end%>
           </td>
         </tr>
       </tbody>
@@ -164,6 +166,7 @@
      <%= list_journals(@incident_request) %>
    </div>
 </div>
+<%if @incident_request[:close_reason_code].nil? %>
 <%= form_for(@incident_reply,:url=>{:action=>"create"},:builder => LabellingFormBuilder,:html => { :multipart => true }) do |f| %>
 <div id="reply" class="bEditBlock bPageBlock">
   <div class="pbHeader">
@@ -250,7 +253,7 @@
   </div>  
 </div>
 <% end %>
-
+<% end %>
 <script type="text/javascript">
 
 GY.use('node','substitute','yui2-editor', function(Y) {

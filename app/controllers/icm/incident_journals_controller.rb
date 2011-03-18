@@ -11,6 +11,7 @@ class Icm::IncidentJournalsController < ApplicationController
   # GET /incident_journals/new.xml
   def new
     @incident_journal = @incident_request.incident_journals.build()
+
     @incident_reply = Icm::IncidentReply.new()
     respond_to do |format|
       format.html # new.html.erb
