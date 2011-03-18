@@ -85,3 +85,4 @@ zh:
    label_csi_survey_range_show: 显示调查范围
    label_csi_survey_range_edit: 编辑调查范围
    #========================= end csi survey_ranges_controller=======================#
+   label_csi_last_surveys: 最近的调查问卷
