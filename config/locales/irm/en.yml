@@ -164,7 +164,8 @@ en:
   label_irm_menu_entry_new: Create Menu Entry
   label_irm_menu_entry_edit: Edit Menu Entry
   label_irm_menu_entry_sub_menu: Sub Menu
-  label_irm_menu_entry_page: Page
+  label_irm_menu_entry_page_controller: Page controller
+  label_irm_menu_entry_page_action: Page action
   label_irm_menu_entry_display_sequence: Display Sequence
   label_irm_menu_entry_display_flag: Display
   label_irm_menu_entry_prompt: Prompt
@@ -273,6 +274,7 @@ en:
   label_irm_function_new: Create Function
   label_irm_function_edit: Edit Function
   label_irm_function_function_code: Function Code
+  label_irm_function_group_code: Function group
   label_irm_function_name: Name
   label_irm_function_name_full: Function Name
   label_irm_function_description: Description

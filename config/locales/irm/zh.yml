@@ -186,7 +186,8 @@ zh:
   label_irm_menu_entry_new: 创建子菜单项
   label_irm_menu_entry_edit: 编辑子菜单项
   label_irm_menu_entry_sub_menu: 子菜单
-  label_irm_menu_entry_page: 页面
+  label_irm_menu_entry_page_controller: 页面Controller
+  label_irm_menu_entry_page_action: 页面Action
   label_irm_menu_entry_display_sequence: 显示顺序
   label_irm_menu_entry_display_flag: 显示
   label_irm_menu_entry_prompt: 提示
@@ -320,6 +321,7 @@ zh:
   label_irm_function_new: 创建功能
   label_irm_function_edit: 编辑功能
   label_irm_function_function_code: 功能编码
+  label_irm_function_group_code: 功能組
   label_irm_function_name: 名称
   label_irm_function_name_full: 功能名称
   label_irm_function_description: 描述
