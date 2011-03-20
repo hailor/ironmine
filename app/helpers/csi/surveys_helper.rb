@@ -114,4 +114,14 @@ module Csi::SurveysHelper
      survey_task
   end
 
+  def show_last_ten_survey
+
+
+    surveys = Csi::Survey.find_recently_ten
+    html_content = ""
+    surveys.each do |e|
+      html_content << content_tag(:tr, content_tag(:td, link_to(e.title, {:controller => "csi/surveys", :action => "show", :id => e.id})))
+    end
+    raw(html_content)
+  end
 end

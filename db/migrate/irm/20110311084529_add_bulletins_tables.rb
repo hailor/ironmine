@@ -6,9 +6,9 @@ class AddBulletinsTables < ActiveRecord::Migration
       t.string "summary", :limit => 240
       t.string "content", :limit => 3000
       t.string "important_code", :limit => 30
-      t.string "sticky_flag", :limit => 30
-      t.string "highlight_flag", :limit => 30
-      t.integer "page_views"
+      t.string "sticky_flag", :limit => 1, :default => "N"
+      t.string "highlight_flag", :limit => 1, :default => "N"
+      t.integer "page_views", :default => 0
       t.string "status_code", :limit => 30, :default => "ENABLED"
       t.integer  :created_by
       t.integer  :updated_by

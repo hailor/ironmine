@@ -85,3 +85,4 @@ en:
    label_csi_survey_range_show: Survey Range
    label_csi_survey_range_edit: Edit Survey Range 
    #========================= end csi survey_ranges_controller=======================#
+   label_csi_last_surveys: Lastest Surveys

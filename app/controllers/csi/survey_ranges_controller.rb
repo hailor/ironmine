@@ -43,6 +43,7 @@ class Csi::SurveyRangesController < ApplicationController
 
     respond_to do |format|
       if @survey_range.save
+        @survey_range.reload
         Delayed::Job.enqueue(Csi::Jobs::CsiSurveyMemberJob.new(@survey_range.id))
         format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @survey_range, :status => :created, :location => @survey_range }
@@ -105,7 +106,7 @@ class Csi::SurveyRangesController < ApplicationController
     survey_ranges_scope = Csi::SurveyRange.query_wrap_info(::I18n.locale).match_value("survey_range.name",params[:name])
     survey_ranges,count = paginate(survey_ranges_scope)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(survey_ranges.to_grid_json([:range_code,:required_flag,:range_type,:range_type_meaning,:status_meaning],count))}
+      format.json {render :json=>to_jsonp(survey_ranges.to_grid_json([:required_flag,:range_type,:range_type_meaning,:status_meaning],count))}
     end
   end
 

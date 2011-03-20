@@ -67,7 +67,12 @@
                    {:key=>"entry_title",:label=>t(:label_skm_entry_header_title),:sortable=>true, :searchable => true},
                    {:key=>"version_number",:label=>t(:label_skm_entry_header_version),:sortable=>true, :width => "80px"},
                    {:key=>"keyword_tags",:label=>t(:label_skm_entry_header_keyword_tags),:sortable=>true, :searchable => true, :width => "15%"},
-                   {:key=>"published_date",:label=>t(:label_skm_entry_header_published_date),:sortable=>true, :width => "210px"}])%>
+                   {:key=>"published_date_f",:label=>t(:label_skm_entry_header_published_date),:sortable=>true, :width => "210px"}])%>
       </div>
     </div>
 </div>
+
+
+<%= content_for :sidebar do %>
+    <%= render "skm/entry_headers/sidebar_last_ten"%>
+<% end %>

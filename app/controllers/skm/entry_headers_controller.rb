@@ -220,7 +220,7 @@ class Skm::EntryHeadersController < ApplicationController
     entry_headers_scope = entry_headers_scope.match_value("#{Skm::EntryHeader.table_name}.entry_title",params[:entry_title]) if params[:entry_title]
     entry_headers,count = paginate(entry_headers_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(entry_headers.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date], count)) }
+      format.json  {render :json => to_jsonp(entry_headers.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date_f], count)) }
     end
   end
 
@@ -228,7 +228,7 @@ class Skm::EntryHeadersController < ApplicationController
     entry_histories_scope = Skm::EntryHeader.list_all.published.history_entry.where(:doc_number => params[:doc_number])
     entry_histories,count = paginate(entry_histories_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(entry_histories.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date], count)) }
+      format.json  {render :json => to_jsonp(entry_histories.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date_f], count)) }
     end    
   end
 
@@ -249,7 +249,7 @@ class Skm::EntryHeadersController < ApplicationController
     entry_headers_scope = Skm::EntryHeader.list_all.my_favorites(params[:person_id]).published
     entry_headers,count = paginate(entry_headers_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(entry_headers.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date], count)) }
+      format.json  {render :json => to_jsonp(entry_headers.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date_f], count)) }
     end    
   end
 
@@ -264,7 +264,7 @@ class Skm::EntryHeadersController < ApplicationController
         format.html { redirect_to(:action => "index") }
         format.xml  { head :ok }
       else
-
+        format.html { redirect_to(:action => "index") }
       end
     end
   end

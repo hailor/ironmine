@@ -35,7 +35,7 @@ module Irm::PageHelper
   end
 
   def btn_remove_icon
-    content_tag(:img, "", {:class => "btn_remove", :src => "/images/s.gif", :title => t(:remove)})
+    content_tag(:img, "", {:class => "btn_delete", :src => "/images/s.gif", :title => t(:remove)})
   end
 
   def btn_icon(icon_class, title)

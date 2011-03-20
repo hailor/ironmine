@@ -1,0 +1,41 @@
+<%= form_tag({:controller => "irm/watchers", :action => "add_watcher", :watchable_id => watchable.id}, :remote => true) do %>
+<div class="sidebarModule">
+    <div class="sidebarModuleHeader"><h2><%= t :label_irm_watcher %><span style="float:right;"><a style="color:#fff;" href="javascript:void(0);" onclick="show_new_form();">新增</a></span></h2></div>
+    <div class="sidebarModuleBody">
+    <table>
+      <tbody id="new_form" style="display:none;">
+        <tr>
+          <td>
+            <div id="watcher_select">
+            <%= select_tag "watcher", options_for_select(ava_watchers(watchable.id, watchable.class), {:id => "watcher"})%>
+            </div>
+            <%= hidden_field_tag "watchable_type", watchable.class.to_s%>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="button"><%= submit_tag(t(:save))%>&nbsp;<%= link_to t(:cancel), {}, {:href => "javascript:void(0);", :style => "line-height:21px;", :onclick => "hide_new_form();"} %></div>
+          </td>
+        </tr>
+      </tbody>
+      <tbody id="watcher_list">
+        <%= watchers_list(watchable)%>
+      </tbody>
+    </table>
+    </div>
+</div>
+<% end %>
+
+<script type="text/javascript">
+function show_new_form() {
+    GY.use(function(Y){
+        Y.one("#new_form").setStyle("display", "");
+    })
+}
+
+function hide_new_form() {
+    GY.use(function(Y){
+        Y.one("#new_form").setStyle("display", "none");
+    })
+}
+</script>

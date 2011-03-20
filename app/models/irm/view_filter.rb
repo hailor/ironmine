@@ -18,7 +18,7 @@ class Irm::ViewFilter < ActiveRecord::Base
   scope :query_by_filter_type,lambda{|filter_type| where(:filter_type=>filter_type)}
 
   scope :hold,lambda{
-    where("#{table_name}.own_id = ? OR #{table_name}.restrict_visibility=?",Irm::Identity.current.id,Irm::Constant::SYS_YES)
+    where("#{table_name}.own_id = ? OR #{table_name}.restrict_visibility=?",Irm::Identity.current.id,Irm::Constant::SYS_NO)
   }
 
   def where_clause

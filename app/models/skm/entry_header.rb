@@ -8,7 +8,11 @@ class Skm::EntryHeader < ActiveRecord::Base
   scope :draft, where("#{table_name}.entry_status_code = ?", "DRAFT")
   scope :current_entry, where("#{table_name}.history_flag = ?", Irm::Constant::SYS_NO)
   scope :history_entry, where("#{table_name}.history_flag = ?", Irm::Constant::SYS_YES)
-  scope :list_all, select("#{table_name}.*, CONCAT('[', #{table_name}.doc_number, ']', #{table_name}.entry_title) full_title")
+  scope :list_all, select("#{table_name}.id, #{table_name}.company_id, #{table_name}.entry_template_id, #{table_name}.entry_title" +
+                              ", #{table_name}.keyword_tags, #{table_name}.doc_number, #{table_name}.history_flag, #{table_name}.entry_status_code" +
+                              ", #{table_name}.version_number, DATE_FORMAT(#{table_name}.published_date , '%Y/%c/%e %H:%I:%S') published_date_f, #{table_name}.published_date, #{table_name}.author_id, #{table_name}.status_code" +
+                              ", #{table_name}.created_by, #{table_name}.created_at, #{table_name}.updated_by, #{table_name}.updated_at,  CONCAT('[', #{table_name}.doc_number, ']', #{table_name}.entry_title) full_title").
+      order("#{table_name}.published_date DESC")
 
   scope :my_favorites, lambda{|person_id|
     joins(",#{Skm::EntryFavorite.table_name} ef").
