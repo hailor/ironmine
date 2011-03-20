@@ -9,20 +9,23 @@ module Irm::NavigationsHelper
     Irm::MenuManager.menus[menu_code]
   end
 
-  def level_one_current_name
-    Irm::MenuManager.roles[@page_menus[0]][I18n.locale.to_sym][:description] if @page_menus[0]
+  def current_role_name
+    if Irm::Person.current&&Irm::Role.current
+      Irm::Role.multilingual.find(Irm::Role.current.id)[:name]
+    end
   end
 
   # 生成一级菜单
-  def level_one_menu
-    roles = Irm::Person.current.allowed_roles.collect{|r| r if r[:role_type].eql?("BUSSINESS")}.compact
+  def list_roles
+    if Irm::Person.current.nil?
+      return "".html_safe
+    end
+    roles = Irm::Role.multilingual.query_by_person(Irm::Person.current.id)
     return nil unless roles&&roles.size>0
     links = ""
     roles.each do |r|
-      next if r[:role_code].eql?(@page_menus[0])
-      role = Irm::MenuManager.roles[r[:role_code]]
-      url = Irm::MenuManager.role_showable(r[:role_code])
-      links << content_tag(:span,link_to(role[I18n.locale][:description],{:controller=>url[:page_controller],:action=>url[:page_action],:mc=>role[:menu_code],:top_role=>role[:role_code]}),{:class=>"menuItem"}) if url
+      next if Irm::Role.current&&r.id.eql?(Irm::Role.current.id)
+      links << content_tag(:span,link_to(r[:name],{:controller=>"irm/navigations",:action=>"change_role",:role_id=>r.id}),{:class=>"menuItem"})
     end
 
     links.html_safe

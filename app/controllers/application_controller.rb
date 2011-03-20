@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   layout "application"   
   # filters
   # user_setup 从session中取得用户,如果session中没有[:user_id]则什么也不做
-  # permission_setup 从当前链接中取得当前权限
   # check_if_login_required 检查当前用户是否存在,如果不存在则需要跳转到登陆页面
   # person_setup 根据当前Identity取得当前人员
   # check_permission 检测当前用户的权限,如果无权访问则跳转到用户首页my#page
@@ -15,14 +14,12 @@ class ApplicationController < ActionController::Base
   # layout_setup 检查设置窗口的运行模式，wmode,设置页面布局
   # menu_setup 设置当前页面对应的菜单数据
   before_filter :user_setup
-  before_filter :permission_setup
   before_filter :check_if_login_required
   before_filter :person_setup
   before_filter :check_permission
   before_filter :localization_setup
   before_filter :layout_setup
-  before_filter :menu_setup
-  before_filter :menu_entry_setup
+  before_filter :menu_setup,:menu_entry_setup
 
   # 设置当前用户，为下步检查用户是否登录做准备
   def user_setup
@@ -30,34 +27,35 @@ class ApplicationController < ActionController::Base
     Irm::Identity.current = find_current_user
   end
 
-  # 取得当前链接对应的权限
-  def permission_setup
-    @current_permission = Irm::Permission.position(params[:controller],params[:action]).first
-    @product_code = params[:controller].gsub(/\/.*/, "")
-  end
-
   # 检查是否需要登录
   def check_if_login_required
     # 如果用户已经登录,则无需登录,否则转向登录页面
-     if Irm::Identity.current.logged?||params[:format].eql?("xml")||(@current_permission&&@current_permission.publiced?)
+     if Irm::Identity.current.logged?||(Irm::PermissionChecker.public?({:controller=>params[:controller],:action=>params[:action]}))
        return true
      else
-        require_login
+       require_login
      end
   end
 
   # 设置当前页面访问的人员
   def person_setup
     Irm::Person.current = Irm::Person.query_by_identity(Irm::Identity.current.id).first
-    session[:accessable_companies] ||= Irm::CompanyAccess.query_by_person_id(Irm::Person.current.id).collect{|c| c.accessable_company_id} if Irm::Person.current
+    if(Irm::Person.current)
+      # setting current role
+      if(session[:role_id])
+        Irm::Role.current= Irm::Role.enabled.find(session[:role_id])
+      else
+        role = Irm::Role.query_by_permission(params[:controller],params[:action]).query_by_person(Irm::Person.current.id).enabled.first
+        Irm::Role.current = role if role
+      end
+      session[:accessable_companies] ||= Irm::CompanyAccess.query_by_person_id(Irm::Person.current.id).collect{|c| c.accessable_company_id} if Irm::Person.current
+    end
   end
 
   # 检查用户的权限
   def check_permission
-    if request.xhr?||(params[:format]||"").downcase.eql?("js")
-      true 
-    elsif @current_permission&&Irm::Person.current&&@current_permission.enabled?&&!Irm::PermissionChecker.allow_to_permission?(@current_permission)
-        flash[:error]=t(:access_denied,:permission=>@current_permission.to_s)
+    if Irm::Person.current&&!Irm::PermissionChecker.allow_to_url?({:controller=>params[:controller],:action=>params[:action]})
+        flash[:error]=t(:access_denied,:permission=>"#{params[:controller]}/#{params[:action]}")
         redirect_to({:controller => 'irm/navigations', :action => 'access_deny'})
     end
   end
@@ -95,20 +93,20 @@ class ApplicationController < ActionController::Base
 
   # 设置当前页面对应的菜单数据
   def menu_setup
+    if params[:format].eql?("html")
+      return true
+    end
     process_menu
   end
 
   # 设置当前菜单项
   def menu_entry_setup
-    permission = Irm::Permission.position(params[:controller],params[:action]).first
-    if permission && permission.permission_code
-      @current_menu_entry = Irm::MenuEntry.multilingual.query_by_permission_code(permission.permission_code).first
-      if !@current_menu_entry
-        index_permission = Irm::Permission.position(params[:controller], "index").first
-
-        @current_menu_entry = Irm::MenuEntry.multilingual.query_by_permission_code(index_permission.permission_code).first if index_permission && index_permission.permission_code 
-      end
+    if params[:format].eql?("html")
+      return true
     end
+
+    @current_menu_entry = Irm::MenuEntry.multilingual.where(:page_controller=>params[:controller],:page_controller=>params[:action]).first
+    @current_menu_entry ||= Irm::MenuEntry.multilingual.where(:page_controller=>params[:controller],:page_controller=>params[:action]||"index").first
   end
   #===========all controller public method============ 
 
@@ -150,11 +148,10 @@ class ApplicationController < ActionController::Base
 
   # 跳转到系统入口页面
   def redirect_entrance
-      entrance = Irm::Person.current.allowed_roles.detect{|r| r[:role_type].eql?("BUSSINESS")&&Irm::MenuManager.role_showable(r[:role_code])}
-      entrance ||= Irm::Person.current.allowed_roles.detect{|r| r[:role_type].eql?("SETTING")&&Irm::MenuManager.role_showable(r[:role_code],false)}
+      entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>Irm::Constant::TOP_BUSSINESS_MENU})
+      entrance ||= Irm::MenuManager.menu_showable({:sub_menu_code=>Irm::Constant::TOP_SETTING_MENU})
       if(entrance)
-        url = Irm::MenuManager.role_showable(entrance[:role_code],false)
-        redirect_to({:controller => url[:page_controller], :action => url[:page_action]})
+        redirect_to({:controller => entrance[:page_controller], :action => entrance[:page_action]})
       else
         redirect_to({:controller => 'irm/navigations', :action => 'access_deny'})
       end
@@ -253,44 +250,45 @@ class ApplicationController < ActionController::Base
     permission ||= {:page_controller=>params[:controller],:page_action=>params[:action]}
     @menu_permission = permission.dup
     @setting_menus = default_setting_menus
-    session[:top_role] = params[:top_role] if params[:top_role]
-    @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>permission[:page_controller],:page_action=>permission[:page_action]},session[:top_role])
+    session[:top_menu] = params[:top_menu] if params[:top_menu]
+    @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>permission[:page_controller],:page_action=>permission[:page_action]},session[:top_menu])
     # 如果不是设置类或业务类角色，则只设置业务菜单，不更改layout
-    if @page_menus[0].nil?||!Irm::MenuManager.validate_role(@page_menus[0])
+    if @page_menus[0].nil?
       @page_menus = (session[:entrance_menu]||default_menus)[0..1]
       return
     end
-    if @page_menus[0]&&Irm::Role.setting_role?(@page_menus[0])
+    if @page_menus[0]&&Irm::Constant::TOP_SETTING_MENU.eql?(@page_menus[0])
       @setting_menus = @page_menus.dup
       self.class.layout "setting"
       @page_menus = (session[:entrance_menu]||default_menus)[0..1]
-      # 保存这一次的菜单路径
-      session[:top_role] = @setting_menus[0] if @setting_menus[0]
+      session[:top_menu] = @setting_menus[1] if @page_menus[1]
     else
       session[:entrance_menu] = @page_menus.dup if @page_menus.length>1
       # 保存这一次的菜单路径
-      session[:top_role] = @page_menus[0] if @page_menus[0]
+      session[:top_menu] = @page_menus[1] if @page_menus[1]
     end
   end
 
   # 默认菜单
   def default_menus
-    default_role = Irm::Person.current.allowed_roles.detect{|r| r[:role_type].eql?("BUSSINESS")}
-    if default_role
-      [default_role[:role_code],default_role[:menu_code]]
-    else
-      []
+    default_menu_path = [Irm::Constant::TOP_BUSSINESS_MENU]
+    Irm::MenuManager.sub_entries_by_menu(Irm::Constant::TOP_BUSSINESS_MENU).each do |entry|
+      if("MENU".eql?(entry[:entry_type]))
+        default_menu_path.push(entry[:menu_code])
+      end
     end
+    default_menu_path
   end
 
   # 默认设置菜单
   def default_setting_menus
-    default_setting_role = Irm::Person.current.allowed_roles.detect{|r| r[:role_type].eql?("SETTING")}
-    if default_setting_role
-      [default_setting_role[:role_code],default_setting_role[:menu_code]]
-    else
-      []
+    default_menu_path = [Irm::Constant::TOP_SETTING_MENU]
+    Irm::MenuManager.sub_entries_by_menu(Irm::Constant::TOP_SETTING_MENU).each do |entry|
+      if("MENU".eql?(entry[:entry_type]))
+        default_menu_path.push(entry[:menu_code])
+      end
     end
+    default_menu_path
   end
 
   def show_date(options={})
