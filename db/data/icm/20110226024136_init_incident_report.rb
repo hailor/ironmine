@@ -1,55 +1,55 @@
 # -*- coding: utf-8 -*-
 class InitIncidentReport < ActiveRecord::Migration
   def self.up
-    #定义 报表:所有请求-紧急度 的 permission_code
-    icm_incident_urgency_index= Irm::Permission.new(:permission_code=>'ICM_INCIDENT_REPORT_URGENCY',
-                                                :page_controller=>'icm/incident_reports',
-                                                :page_action=>'rpt_urgency_summary',:not_auto_mult=>true)
-    icm_incident_urgency_index.permissions_tls.build(:language=>'zh',:name=>'所有请求-紧急度',
-                                                 :description=>'所有请求-紧急度',:source_lang=>'en')
-    icm_incident_urgency_index.permissions_tls.build(:language=>'en',:name=>'ALL_URGENCY',
-                                                 :description=>'ALL_URGENCY',:source_lang=>'en')
-    icm_incident_urgency_index.save
-
-    #定义 报表:所有请求-来源类型 的 permission_code
-    icm_incident_source_index= Irm::Permission.new(:permission_code=>'ICM_INCIDENT_REPORT_SOURCE',
-                                                :page_controller=>'icm/incident_reports',
-                                                :page_action=>'rpt_report_source_summary',:not_auto_mult=>true)
-    icm_incident_source_index.permissions_tls.build(:language=>'zh',:name=>'所有请求-来源类型',
-                                                 :description=>'所有请求-来源类型',:source_lang=>'en')
-    icm_incident_source_index.permissions_tls.build(:language=>'en',:name=>'ALL_REPORT_SOURCE',
-                                                 :description=>'ALL_REPORT_SOURCE',:source_lang=>'en')
-    icm_incident_source_index.save
-
-    #定义 报表:所有请求-请求类型 的 permission_code
-    icm_incident_type_index= Irm::Permission.new(:permission_code=>'ICM_INCIDENT_REPORT_TYPE',
-                                                :page_controller=>'icm/incident_reports',
-                                                :page_action=>'rpt_report_type_summary',:not_auto_mult=>true)
-    icm_incident_type_index.permissions_tls.build(:language=>'zh',:name=>'所有请求-请求类型',
-                                                 :description=>'所有请求-请求类型',:source_lang=>'en')
-    icm_incident_type_index.permissions_tls.build(:language=>'en',:name=>'ALL_REPORT_TYPE',
-                                                 :description=>'ALL_REPORT_TYPE',:source_lang=>'en')
-    icm_incident_type_index.save
-
-    #定义 报表:所有请求-影响度 的 permission_code
-    icm_incident_impact_range_index= Irm::Permission.new(:permission_code=>'ICM_REPORT_IMPACT_RANGE',
-                                                :page_controller=>'icm/incident_reports',
-                                                :page_action=>'rpt_impact_range_summary',:not_auto_mult=>true)
-    icm_incident_impact_range_index.permissions_tls.build(:language=>'zh',:name=>'所有请求-影响度',
-                                                 :description=>'所有请求-影响度',:source_lang=>'en')
-    icm_incident_impact_range_index.permissions_tls.build(:language=>'en',:name=>'ALL_IMPACT_RANGE',
-                                                 :description=>'ALL_IMPACT_RANGE',:source_lang=>'en')
-    icm_incident_impact_range_index.save
-
-    #定义 报表:所有请求-优先级 的 permission_code
-    icm_incident_priority_index= Irm::Permission.new(:permission_code=>'ICM_REPORT_PRIORITY_CODE',
-                                                :page_controller=>'icm/incident_reports',
-                                                :page_action=>'rpt_priority_code_summary',:not_auto_mult=>true)
-    icm_incident_priority_index.permissions_tls.build(:language=>'zh',:name=>'所有请求-优先级',
-                                                 :description=>'所有请求-优先级',:source_lang=>'en')
-    icm_incident_priority_index.permissions_tls.build(:language=>'en',:name=>'ALL_PRIORITY_CODE',
-                                                 :description=>'ALL_PRIORITY_CODE',:source_lang=>'en')
-    icm_incident_priority_index.save
+    ##定义 报表:所有请求-紧急度 的 permission_code
+    #icm_incident_urgency_index= Irm::Permission.new(:permission_code=>'ICM_INCIDENT_REPORT_URGENCY',
+    #                                            :page_controller=>'icm/incident_reports',
+    #                                            :page_action=>'rpt_urgency_summary',:not_auto_mult=>true)
+    #icm_incident_urgency_index.permissions_tls.build(:language=>'zh',:name=>'所有请求-紧急度',
+    #                                             :description=>'所有请求-紧急度',:source_lang=>'en')
+    #icm_incident_urgency_index.permissions_tls.build(:language=>'en',:name=>'ALL_URGENCY',
+    #                                             :description=>'ALL_URGENCY',:source_lang=>'en')
+    #icm_incident_urgency_index.save
+    #
+    ##定义 报表:所有请求-来源类型 的 permission_code
+    #icm_incident_source_index= Irm::Permission.new(:permission_code=>'ICM_INCIDENT_REPORT_SOURCE',
+    #                                            :page_controller=>'icm/incident_reports',
+    #                                            :page_action=>'rpt_report_source_summary',:not_auto_mult=>true)
+    #icm_incident_source_index.permissions_tls.build(:language=>'zh',:name=>'所有请求-来源类型',
+    #                                             :description=>'所有请求-来源类型',:source_lang=>'en')
+    #icm_incident_source_index.permissions_tls.build(:language=>'en',:name=>'ALL_REPORT_SOURCE',
+    #                                             :description=>'ALL_REPORT_SOURCE',:source_lang=>'en')
+    #icm_incident_source_index.save
+    #
+    ##定义 报表:所有请求-请求类型 的 permission_code
+    #icm_incident_type_index= Irm::Permission.new(:permission_code=>'ICM_INCIDENT_REPORT_TYPE',
+    #                                            :page_controller=>'icm/incident_reports',
+    #                                            :page_action=>'rpt_report_type_summary',:not_auto_mult=>true)
+    #icm_incident_type_index.permissions_tls.build(:language=>'zh',:name=>'所有请求-请求类型',
+    #                                             :description=>'所有请求-请求类型',:source_lang=>'en')
+    #icm_incident_type_index.permissions_tls.build(:language=>'en',:name=>'ALL_REPORT_TYPE',
+    #                                             :description=>'ALL_REPORT_TYPE',:source_lang=>'en')
+    #icm_incident_type_index.save
+    #
+    ##定义 报表:所有请求-影响度 的 permission_code
+    #icm_incident_impact_range_index= Irm::Permission.new(:permission_code=>'ICM_REPORT_IMPACT_RANGE',
+    #                                            :page_controller=>'icm/incident_reports',
+    #                                            :page_action=>'rpt_impact_range_summary',:not_auto_mult=>true)
+    #icm_incident_impact_range_index.permissions_tls.build(:language=>'zh',:name=>'所有请求-影响度',
+    #                                             :description=>'所有请求-影响度',:source_lang=>'en')
+    #icm_incident_impact_range_index.permissions_tls.build(:language=>'en',:name=>'ALL_IMPACT_RANGE',
+    #                                             :description=>'ALL_IMPACT_RANGE',:source_lang=>'en')
+    #icm_incident_impact_range_index.save
+    #
+    ##定义 报表:所有请求-优先级 的 permission_code
+    #icm_incident_priority_index= Irm::Permission.new(:permission_code=>'ICM_REPORT_PRIORITY_CODE',
+    #                                            :page_controller=>'icm/incident_reports',
+    #                                            :page_action=>'rpt_priority_code_summary',:not_auto_mult=>true)
+    #icm_incident_priority_index.permissions_tls.build(:language=>'zh',:name=>'所有请求-优先级',
+    #                                             :description=>'所有请求-优先级',:source_lang=>'en')
+    #icm_incident_priority_index.permissions_tls.build(:language=>'en',:name=>'ALL_PRIORITY_CODE',
+    #                                             :description=>'ALL_PRIORITY_CODE',:source_lang=>'en')
+    #icm_incident_priority_index.save
 
 
 
