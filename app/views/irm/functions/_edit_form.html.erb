@@ -38,6 +38,13 @@
               <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
+              <td class="labelCol"><label><%=(t :label_irm_function_group_code)%></label></td>
+              <td class="dataCol"><%=f.select :group_code,nullable_options_for_select(available_function_group,nil),
+                                                    {},{:id=>"incident_request_support_person_id"}%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
               <td class="labelCol"><label><%=(t :label_irm_function_name)%></label></td>
               <td class="dataCol"><%=f.text_field :name, :required=>true%></td>
               <td class="labelCol empty">&nbsp;</td>

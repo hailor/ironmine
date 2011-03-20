@@ -8,6 +8,9 @@ class Irm::Role < ActiveRecord::Base
 
   has_many :person_roles
   has_many :people, :through => :person_roles
+
+  has_many :role_functions
+  has_many :functions,:through => :role_functions
   
   # 验证权限编码唯一性
   validates_presence_of :role_code
@@ -39,20 +42,31 @@ class Irm::Role < ActiveRecord::Base
 
   scope :query_by_role_code, lambda {|role_code| where(:role_code=>role_code)}
 
-  scope :setting,lambda{where(:role_type=>"SETTING")}
 
   scope :assignable,lambda{
     where("#{table_name}.role_type = ? OR #{table_name}.role_type = ?","SETTING","BUSSINESS")
   }
 
-  def self.setting_role?(role_code)
-    role = self.where(:role_code=>role_code).first
-    role.setting?
+  scope :query_by_permission,lambda{|controller,action|
+    joins(:functions).
+    joins("JOIN #{Irm::Permission.table_name}").
+    where("#{Irm::Function.table_name}.function_code = #{Irm::Permission.table_name}.function_code AND #{Irm::Permission.table_name}.page_controller = ? AND #{Irm::Permission.table_name}.page_action = ?",controller,action)
+  }
+
+  scope :query_by_person,lambda{|person_id|
+    joins(:people).
+    where("#{Irm::Person.table_name}.id = ?",person_id)
+  }
+
+  def self.current
+    @current_role
   end
 
+  def self.current=(role)
+    @current_role = role
+  end
 
-
-  def setting?
-    self.role_type.eql?("SETTING")
+  def allowed_to?(function_codes)
+    return true
   end
 end

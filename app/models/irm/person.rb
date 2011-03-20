@@ -24,6 +24,8 @@ class Irm::Person < ActiveRecord::Base
   has_many :roles, :through => :person_roles
   has_many :company_accesses
   query_extend
+
+
   scope :query_by_identity,lambda{|identity|
     where(:identity_id=>identity)
   }
@@ -93,29 +95,10 @@ class Irm::Person < ActiveRecord::Base
     @current_person = current_person
   end
 
-
-
-  def allowed_roles
-    if @role_accesses
-      return @role_accesses.dup
-    else
-      @role_accesses = []
-    end
-
-    if(self.class.order("id").first.id.eql?(self.id))
-      @role_accesses = Irm::Role.all.collect{|r|{:role_code=>r.role_code,:role_type=>r.role_type,:menu_code=>r.menu_code,:access=>"EDIT_VIEW"} if ["SETTING","BUSSINESS"].include?(r[:role_type]) }.compact
-      return @role_accesses
-    end
-
-    @role_accesses = roles.collect{|r| {:role_code=>r.role_code,:role_type=>r.role_type,:menu_code=>r.menu_code,:access=>"EDIT_VIEW"} if ["SETTING","BUSSINESS"].include?(r[:role_type]) }.compact
-    @role_accesses.dup
-    #[{:menu_code=>"IRM_ENTRANCE_MENU",:access=>"EDIT_VIEW"},{:menu_code=>"IRM_SETTING_ENTRANCE_MENU",:access=>"EDIT_VIEW"}]
+  def allowed_to?(function_codes)
+    return true if Irm::Role.current&&Irm::Role.curren.allowed_to?(function_codes)
+    false
   end
-
-  def allowed_menus=(allowed)
-    @role_accesses = allowed  
-  end
-
 
 
   # 返回人员的全名

@@ -109,18 +109,18 @@ class Irm::PeopleController < ApplicationController
   end
 
   def get_owned_roles
-    roles_scope = Irm::Role.list_all.enabled.belongs_to_person(params[:person_id])
+    roles_scope = Irm::Role.multilingual.belongs_to_person(params[:person_id])
     roles,count = paginate(roles_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(roles.to_grid_json([:name,:role_code,:status_code, :menu_name, :description], count)) }
+      format.json  {render :json => to_jsonp(roles.to_grid_json([:name,:role_code,:status_code,  :description], count)) }
     end    
   end
 
   def get_available_roles
-    roles_scope = Irm::Role.list_all.enabled.assignable.query_by_role_name(params[:role_name]).without_person(params[:person_id])
+    roles_scope = Irm::Role.multilingual.enabled.query_by_role_name(params[:role_name]).without_person(params[:person_id])
     roles,count = paginate(roles_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(roles.to_grid_json([:name,:role_code,:status_code, :menu_name, :description], count)) }
+      format.json  {render :json => to_jsonp(roles.to_grid_json([:name,:role_code,:status_code, :description], count)) }
     end   
   end
 

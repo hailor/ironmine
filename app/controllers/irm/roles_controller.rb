@@ -6,7 +6,7 @@ class Irm::RolesController < ApplicationController
   end
 
   def show
-    @role = Irm::Role.list_all.where(:id => params[:id]).first()
+    @role = Irm::Role.multilingual.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @role }
@@ -15,7 +15,10 @@ class Irm::RolesController < ApplicationController
 
   def new
     @role = Irm::Role.new
-
+    @role_function_ids = []
+    @fgs = Irm::FunctionGroup.multilingual.enabled
+    fs = Irm::Function.multilingual.enabled
+    @fs = fs.group_by{|i| i.group_code}
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @role }
@@ -24,15 +27,27 @@ class Irm::RolesController < ApplicationController
 
   def edit
     @role = Irm::Role.multilingual.find(params[:id])
+    @role_function_ids = @role.role_functions.collect{|i| i.id}
+    @fgs = Irm::FunctionGroup.multilingual.enabled
+    fs = Irm::Function.multilingual.enabled
+    @fs = fs.group_by{|i| i.group_code}
   end
 
   def create
     @role = Irm::Role.new(params[:irm_role])
+    @role_function_ids = params[:role][:functions] if params[:role]
+    @role_function_ids||= []
+    @role_function_ids.each do |fid|
+      @role.role_functions.build(:function_id=>fid)
+    end
     respond_to do |format|
       if @role.save
         format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
         format.xml  { render :xml => @role, :status => :created, :location => @role }
       else
+        @fgs = Irm::FunctionGroup.multilingual.enabled
+        fs = Irm::Function.multilingual.enabled
+        @fs = fs.group_by{|i| i.group_code}
         format.html { render :action => "new" }
         format.xml  { render :xml => @role.errors, :status => :unprocessable_entity }
       end
@@ -41,12 +56,20 @@ class Irm::RolesController < ApplicationController
 
   def update
     @role = Irm::Role.find(params[:id])
-
+    @role_function_ids = params[:role][:functions] if params[:role]
+    @role_function_ids||= []
+    @role.role_functions.delete_all
+    @role_function_ids.each do |fid|
+      @role.role_functions.build(:function_id=>fid)
+    end
     respond_to do |format|
       if @role.update_attributes(params[:irm_role])
         format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
         format.xml  { head :ok }
       else
+        @fgs = Irm::FunctionGroup.multilingual.enabled
+        fs = Irm::Function.multilingual.enabled
+        @fs = fs.group_by{|i| i.group_code}
         format.html { render :action => "edit" }
         format.xml  { render :xml => @role.errors, :status => :unprocessable_entity }
       end
@@ -64,12 +87,12 @@ class Irm::RolesController < ApplicationController
   end
   
   def get_data
-    roles_scope = Irm::Role.list_all
+    roles_scope = Irm::Role.multilingual
     roles_scope = roles_scope.match_value("#{Irm::Role.table_name}.role_code",params[:role_code])
     roles_scope = roles_scope.match_value("#{Irm::RolesTl.table_name}.name",params[:name])    
     roles,count = paginate(roles_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(roles.to_grid_json([:name,:role_code,:status_code, :menu_name, :description], count)) }
+      format.json  {render :json => to_jsonp(roles.to_grid_json([:name,:role_code,:status_code, :description], count)) }
     end
   end
   
