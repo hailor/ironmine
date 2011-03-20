@@ -1,5 +1,5 @@
 <%= setting_title %>
-<%= form_for(@view_filter,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+<%= form_for(@view_filter,:url=>{:action=>"update",:pca=>params[:pca]},:builder => LabellingFormBuilder) do |f| %>
     <%= back_url_hidden_field_tag %>
     <%= f.hidden_field(:filter_type) %>
 <div id="ep" class="bEditBlock bPageBlock">
