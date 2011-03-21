@@ -60,7 +60,7 @@
         <table cellpadding="0" cellspacing="0" border="0">
           <tbody>
             <tr>
-              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_menu_entry_list) %></h2></td>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_function_list) %></h2></td>
               <td class="pbButton">
               </td>
               <td class="pbHelp">
@@ -77,7 +77,7 @@
               <%= check_box_tag 'role[functions][]', func.id, @role_function_ids.include?(func.id)||(@role_function_ids.size==0&&func.default_flag.eql?(Irm::Constant::SYS_YES)) %>
               <%= func[:name] %>
               </label>
-          <% end %>
+          <% end if @fs[group[:group_code]] %>
           </fieldset>
         <%end%>
       </div>

@@ -709,6 +709,7 @@ zh:
   label_irm_role_menu: 菜单
   label_irm_role_type: 角色类型
   label_irm_role_report_group_code: 报表组
+  label_irm_function_list: 功能列表
   #=========================end irm roles ===================================
   #========================= irm reports ===================================
   label_irm_report_list: 报表列表

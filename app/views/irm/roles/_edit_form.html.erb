@@ -82,7 +82,7 @@
               <%= check_box_tag 'role[functions][]', func.id, @role_function_ids.include?(func.id) %>
               <%= func[:name] %>
               </label>
-          <% end %>
+          <% end if @fs[group[:group_code]] %>
           </fieldset>
         <%end%>
       </div>
