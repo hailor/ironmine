@@ -11,7 +11,6 @@
               </td>
               <td class="pbHelp">
                 <div id="menusSearchBox"></div>
-                <div id="menusPaginatorBox"></div>
               </td>
             </tr>
           </tbody>
@@ -34,6 +33,7 @@
                        {:key=>"description",:label=>t(:label_irm_menu_description),:sortable=>true},
                        {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}],
                        {:search_box=>"menusSearchBox",:paginator_box=>"menusPaginatorBox"}) %>
+        <div id="menusPaginatorBox"></div>
       </div>
     </div>
 </div>
