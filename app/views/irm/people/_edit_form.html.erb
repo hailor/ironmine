@@ -28,13 +28,13 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_person_last_name)%></label></td>
-              <td class="dataCol"><%=@person.last_name%></td>
+              <td class="dataCol"><%= f.text_field :last_name, :required => true%></td>
               <td class="labelCol"><label><%=(t :label_irm_person_first_name)%></label></td>
-              <td class="dataCol"><%=@person.first_name%></td>
+              <td class="dataCol"><%= f.text_field :first_name, :required => true%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_person_email_address)%></label></td>
-              <td class="dataCol"><%=@person.email_address%></td>
+              <td class="dataCol"><%= f.text_field :email_address, :required => true%></td>
               <td class="labelCol"><%=(t :label_irm_person_title)%></td>
               <td class="dataCol"><%=@person.title%></td>
             </tr>
