@@ -24,6 +24,10 @@ var yuiConfig = {
             fullpath:"/javascripts/irm/datatable/dtselector.js",
             requires: []
         },
+        dtpaginator:{
+            fullpath:"/javascripts/irm/datatable/dtpaginator.js",
+            requires: []
+        },
         dtselector:{
             fullpath:"/javascripts/irm/datatable/dtsearchbox.js",
             requires: []

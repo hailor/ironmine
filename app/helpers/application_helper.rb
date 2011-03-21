@@ -190,8 +190,9 @@ module ApplicationHelper
 
   # 生成YUI表格
   def datatable(id,source_url,columns,options={})
-    row_perpage = options[:row_perpage]||20
+    row_perpage = options[:row_perpage]||10
     search_box = options[:search_box]
+    paginator_box = options[:paginator_box]
     select = options[:select]
     columns.insert(0,{:key=>"dt_selector",:width=>"36px"}) if select&&(select.eql?("multiple")||select.eql?("single"))
     columns_conf = ""
@@ -220,23 +221,27 @@ module ApplicationHelper
     search_str = ""
     search_str = ".plug(Y.Plugin.IrmDTSearchBox,{searchDom:'#{search_box}'})" if search_box
 
+    paginator_str = ""
+    paginator_str = ".plug(Y.Plugin.IrmDTPaginator,{paginatorDom:'#{paginator_box}'})" if paginator_box
+
     select_str = ""
     select_str = ".plug(Y.Plugin.IrmDTSelector,{mode:'multiple'})" if select&&select.eql?("multiple")
     select_str = ".plug(Y.Plugin.IrmDTSelector,{mode:'single'})" if select&&select.eql?("single")
 
-    script = %Q(GY.use("irm","datasource-get", "datasource-jsonschema","dtdatasource","dtsort","dtsearchbox","dtselector","dtcolwidth",function(Y) {
+    script = %Q(GY.use("irm","datasource-get", "datasource-jsonschema","dtdatasource","dtsort","dtsearchbox","dtselector","dtcolwidth","dtpaginator",function(Y) {
        Y.on("domready",function(){
          var #{id}Cols = [#{columns_conf}],
          #{id}Datasource = new Y.DataSource.Get({source:'#{source_url}'})
                    .plug(Y.Plugin.DataSourceJSONSchema, {
                       schema: {
+                        metaFields: {numRows:"numRows"},
                         resultListLocator: "items",
                         resultFields: [#{data_fields}]
              }
          }),
          #{id}Datatable = new Y.DataTable.Base({columnset:#{id}Cols})
-             .plug(Y.Plugin.IrmDTDataSource, {datasource:#{id}Datasource})#{select_str}.plug(Y.Plugin.IrmDTSort)#{search_str}.plug(Y.Plugin.IrmDTColWidth).render("##{id}");
-         #{id}Datatable.datasource.paginate({start:0,count:#{row_perpage}});
+             .plug(Y.Plugin.IrmDTDataSource, {datasource:#{id}Datasource})#{select_str}.plug(Y.Plugin.IrmDTSort)#{search_str}#{paginator_str}.plug(Y.Plugin.IrmDTColWidth).render("##{id}");
+         #{id}Datatable.datasource.paginate({start:0,count:#{row_perpage}},false);
          #{load_str}
          Y.irm.setAttribute('#{id}Datatable',#{id}Datatable,'Datatable');
         });

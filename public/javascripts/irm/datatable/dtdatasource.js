@@ -65,10 +65,13 @@ Y.mix(IrmDTDataSource, {
         _filterOptions: {},
         _queryOptions: {},
         initializer: function(config) {
+          var dt = this.get("host")
+          dt.publish("metaDataChange", {defaultFn: this._defMetaDataChange, emitFacade:true, queuable:true});
           if(!Y.Lang.isUndefined(config.initialRequest)) {
             this.load({request:config.initialRequest});
           }
           this.doBefore("_uiSetCaption", this._beforeuiSetCaption);
+
         },
         load: function(config) {
             config = config || {};
@@ -114,11 +117,10 @@ Y.mix(IrmDTDataSource, {
           Y.mix(this._paginateOptions,{start:0},true);
           this.reload();
         },
-        paginate: function(options){
+        paginate: function(options,reload){
           Y.mix(this._paginateOptions,options,true);
-        },
-        onDataReturnInitializeTable : function(e) {
-          this.get("host").set("recordset", new Y.Recordset({records: e.response.results,sort:{sort:function(){alert("sort")}}}));
+          if(reload)
+            this.reload();
         },
         _beforeuiSetCaption: function(val) {
           if(Y.Lang.isValue(val)){
@@ -132,6 +134,18 @@ Y.mix(IrmDTDataSource, {
           var recordset = new Y.Recordset({records: e.response.results});
           Y.mix(recordset,{sort:{sort:function(){}}});  
           this.get("host").set("recordset", recordset);
+          var options = {}
+          Y.mix(options,this._paginateOptions,true);
+          //mix in filterOptions
+          Y.mix(options,this._filterOptions,true);
+          //mix in queryOptions
+          Y.mix(options,this._queryOptions,true);
+          Y.mix(options,e.response.meta,true);
+          var dt = this.get("host");
+          dt.fire("metaDataChange",{meta:options});
+        },
+        _defMetaDataChange:function(e){
+            Y.log(e);
         }
 
     });
