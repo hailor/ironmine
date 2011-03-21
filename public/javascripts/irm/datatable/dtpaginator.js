@@ -1,5 +1,5 @@
 YUI.add("dtpaginator",function(Y){
-    var TB = "<table class='paginator' width='100%'><tbody><tr><td align='left'>{record}</td><td align='left'>{perPage}</td><td align='center'>{prenext}</td><td align='right'>{goToPage}</td></tr></tbody></table>";
+    var TB = "<table class='paginator'><tbody><tr><td class='col1'>{goToPage}</td><td class='col2'>{prenext}</td><td class='col3'>{record}</td><td class='col4'>{perPage}</td></tr></tbody></table>";
     var SELECT = "<label>{rowPerPage}</label>:<select class='rowPerPage'>{options}</select>";
     var OPTION = "<option value='{key}'>{label}</option>";
     var RECORD = "<label>{record}</label>:<label class='record'></label>";
