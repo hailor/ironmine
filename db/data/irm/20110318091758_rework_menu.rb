@@ -369,7 +369,7 @@ class ReworkMenu < ActiveRecord::Migration
     icm_menu_entiry_56.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'优先级',:description=>'优先级')
     icm_menu_entiry_56.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Priority',:description=>'Priority')
     icm_menu_entiry_56.save
-    icm_menu_entiry_57= Irm::MenuEntry.new(:menu_code=>'ICM_ADMIN_INCIDENT_MENU',:sub_menu_code=>nil,:page_controller=>'ICM_GROUP_ASSIGNMENTS_INDEX',:display_sequence=>35,:display_flag=>'Y',:not_auto_mult=>true)
+    icm_menu_entiry_57= Irm::MenuEntry.new(:menu_code=>'ICM_ADMIN_INCIDENT_MENU',:sub_menu_code=>nil,:page_controller=>'icm/group_assignments',:display_sequence=>35,:display_flag=>'Y',:not_auto_mult=>true)
     icm_menu_entiry_57.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'',:description=>'组指派规则')
     icm_menu_entiry_57.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Support Group Assignment',:description=>'Support Group Assignment')
     icm_menu_entiry_57.save
