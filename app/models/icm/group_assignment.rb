@@ -31,9 +31,9 @@ class Icm::GroupAssignment < ActiveRecord::Base
         joins("LEFT OUTER JOIN #{Irm::SupportGroupsTl.table_name} sut ON sut.language = '#{I18n.locale}' AND su.id = sut.support_group_id")
   }
   scope :with_organizations, lambda {
-    select("sut.name support_group_name").
+    select("ot.name organization_name").
         joins("LEFT OUTER JOIN #{Irm::Organization.table_name} o ON o.id = #{table_name}.customer_organization_id").
-        joins("LEFT OUTER JOIN #{Irm::OrganizationsTl.table_name} ot ON sut.language = '#{I18n.locale}' AND su.id = sut.support_group_id")
+        joins("LEFT OUTER JOIN #{Irm::OrganizationsTl.table_name} ot ON ot.language = '#{I18n.locale}' AND o.id = ot.organization_id")
   }  
 
   scope :query_by_company, lambda{|company_id|
@@ -60,16 +60,15 @@ class Icm::GroupAssignment < ActiveRecord::Base
     where("#{table_name}.support_group_code = ?", support_group_id)
   }
 
-  scope :query_by_organizations, lambda{|organization_id|
+  scope :query_by_organization, lambda{|organization_id|
     where("#{table_name}.customer_organization_id = ?", organization_id)
   }
   
   scope :list_all, lambda {
     select("#{table_name}.*").
         with_person.
-        with_site.
-        with_site_group.
         with_department.
+        with_organizations.
         with_company.
         with_support_group
   }

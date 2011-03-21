@@ -15,7 +15,7 @@ module Irm
 
         #按组织查找
         unless r1.any?
-          r1 = Icm::GroupAssignment.query_by_organizations(person.organization_id)
+          r1 = Icm::GroupAssignment.query_by_organization(person.organization_id)
         end
 
         #按公司查找

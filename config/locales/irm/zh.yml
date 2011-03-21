@@ -463,6 +463,7 @@ zh:
   label_irm_organization_list: 组织列表
   label_irm_organization_show: 组织显示
   label_irm_organization_function_description: 在公司中的定义组织。
+  label_irm_organization: 组织
   label_irm_organization_organizations_tls:
     name: 名称
   #=========================end irm organizations_controller=======================#
