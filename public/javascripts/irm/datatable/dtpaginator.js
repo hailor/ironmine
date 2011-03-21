@@ -54,7 +54,7 @@ Y.extend(IrmDTPaginator, Y.Plugin.Base, {
           var prenext = Y.Lang.substitute(PAGEPRENEXT,this.get("paginatorLabels"));
           var goToPage = Y.Lang.substitute(GOTOPAGE,this.get("paginatorLabels"));
           var uis = {record:record,perPage:perPage,prenext:prenext,goToPage:goToPage};
-          Y.one("#"+this.get("paginatorDom")).setContent(Y.Lang.substitute(TB,uis));
+          Y.one("#"+this.get("paginatorDom")).setContent(Y.Lang.substitute(TB,uis) );
           this._setupOptions();
         },
         _nextPage:function(e){
