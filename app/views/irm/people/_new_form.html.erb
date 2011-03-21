@@ -75,14 +75,8 @@
                                    :depend=>"company_id",
                                    :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---"
                                    }) %></td>
-
-
-
-
-             <td class="labelCol"><label><%=(t :label_irm_person_function_group_code)%></label></td>
-             <td class="dataCol"><%=select_tag :function_group_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                   options_from_collection_for_select(available_function_group,
-                                                                                      :group_code,:wrap_name,@person.function_group_code) %></td>
+             <td class="labelCol"></td>
+             <td class="dataCol"></td>
              </tr>
              <tr>
                  <td class="labelCol"><label><%=t(:label_irm_person_department)%></label></td>
