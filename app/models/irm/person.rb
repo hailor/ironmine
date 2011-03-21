@@ -45,12 +45,11 @@ class Irm::Person < ActiveRecord::Base
 
   scope :query_show_wrap_info,lambda{|language| select("#{table_name}.*,irm_identities.login_name,#{table_name}.mobile_phone,CONCAT(#{table_name}.last_name,#{table_name}.first_name) person_name,"+
                                                       "#{table_name}.email_address,v1.meaning status_meaning, v2.name company_name," +
-                                                      "iov.name organization_name,idv.name department_name,ifgv.name function_group_name," +
+                                                      "iov.name organization_name,idv.name department_name," +
                                                       "irv.name region_name,isgv.name site_group_name,isv.name site_name,ilv.description notification_lang_name").
                                                    joins("left outer join irm_identities on #{table_name}.identity_id=irm_identities.id").
                                                    joins("left outer join irm_organizations_vl iov on #{table_name}.organization_id=iov.id AND iov.language = v2.language").
                                                    joins("left outer join irm_departments_vl idv on #{table_name}.department_id=idv.id AND idv.language = v2.language").
-                                                   joins("left outer join irm_function_groups_vl ifgv on #{table_name}.function_group_code=ifgv.group_code AND ifgv.language = v2.language").
                                                    joins("left outer join irm_regions_vl irv on #{table_name}.region_code=irv.region_code AND irv.language = v2.language").
                                                    joins("left outer join irm_site_groups_vl isgv on #{table_name}.site_group_code=isgv.group_code AND isgv.language = v2.language").
                                                    joins("left outer join irm_sites_vl isv on #{table_name}.site_code=isv.site_code AND isv.language = v2.language").

@@ -55,7 +55,6 @@ class Irm::PeopleController < ApplicationController
     @person = Irm::Person.find(params[:id])
     @attributes = params[:irm_person]
     @attributes.merge!({:identity_id=>params[:identity_id]}) if params[:identity_id]
-    @attributes.merge!({:function_group_code=>params[:function_group_code]}) if params[:function_group_code]
     @attributes.merge!({:unrestricted_access_flag=>params[:unrestricted_access_flag]}) if params[:unrestricted_access_flag]
 
     respond_to do |format|
