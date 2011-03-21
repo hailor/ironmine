@@ -48,13 +48,15 @@ class Irm::Role < ActiveRecord::Base
   }
 
   scope :query_by_permission,lambda{|controller,action|
-    joins(:functions).
+    joins("JOIN #{Irm::RoleFunction.table_name} ON #{Irm::RoleFunction.table_name}.role_id = #{table_name}.id").
+    joins("JOIN #{Irm::Function.table_name} ON #{Irm::Function.table_name}.id = #{Irm::RoleFunction.table_name}.function_id").
     joins("JOIN #{Irm::Permission.table_name}").
     where("#{Irm::Function.table_name}.function_code = #{Irm::Permission.table_name}.function_code AND #{Irm::Permission.table_name}.page_controller = ? AND #{Irm::Permission.table_name}.page_action = ?",controller,action)
   }
 
   scope :query_by_person,lambda{|person_id|
-    joins(:people).
+    joins("JOIN #{Irm::PersonRole.table_name} ON #{Irm::PersonRole.table_name}.role_id = #{table_name}.id").
+    joins("JOIN #{Irm::Person.table_name}").
     where("#{Irm::Person.table_name}.id = ?",person_id)
   }
 

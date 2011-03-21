@@ -6,7 +6,7 @@ module Irm
         person = Irm::Person.find(request.requested_by)
 
         #按人员查找
-        r1 = Icm::GroupAssignment.query_by_person(person.id)
+        r1 = Icm::GroupAssignment.where("1=1").query_by_person(person.id)
 
         #按部门查找
         unless r1.any?
@@ -15,7 +15,7 @@ module Irm
 
         #按组织查找
         unless r1.any?
-          r1 = Icm::GroupAssignment.query_by_organizations(person.organization_id)
+          r1 = Icm::GroupAssignment.query_by_organization(person.organization_id)
         end
 
         #按公司查找

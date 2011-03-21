@@ -447,6 +447,7 @@ en:
   label_irm_organization_list: List Organization
   label_irm_organization_show: Show Organization
   label_irm_organization_function_description: Define organization in company。
+  label_irm_organization: Organization
   label_irm_organization_organizations_tls:
     name: Name
   #=========================end irm organizations_controller=======================#
