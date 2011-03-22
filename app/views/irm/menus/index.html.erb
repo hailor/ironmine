@@ -32,7 +32,7 @@
                        {:key=>"name",:label=>t(:label_irm_menu_name),:sortable=>true, :width => "25%",:searchable=>true},
                        {:key=>"description",:label=>t(:label_irm_menu_description),:sortable=>true},
                        {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}],
-                       {:search_box=>"menusSearchBox",:paginator_box=>"menusPaginatorBox"}) %>
+                       {:search_box=>"menusSearchBox",:paginator_perpage=>false,:paginator_box=>"menusPaginatorBox"}) %>
         <div id="menusPaginatorBox"></div>
       </div>
     </div>
