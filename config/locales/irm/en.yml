@@ -608,14 +608,16 @@ en:
   label_irm_person_maintenance_company_access: Maintenance Company Access
   label_irm_person_add_company_access: Add Company
   label_irm_person_person_name: Full Name
-  label_irm_person_edit: Edit Person
+  label_irm_person_all_support_groups: All Support Groups
   label_irm_person_choose_company: Choose Company
   label_irm_person_info: Person Info
   label_irm_person_other_info: Other Info
   label_irm_person_company_access_flag: Company Access
   label_irm_person_support_stuff_flag: Support Stuff
   label_irm_person_owned_roles: Owned Roles
-  label_irm_person_available_roles: Available Roles  
+  label_irm_person_available_roles: Available Roles
+  label_irm_person_avatar: Avatar
+  label_irm_person_avatar_new: Upload New Avatar
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: Flex
