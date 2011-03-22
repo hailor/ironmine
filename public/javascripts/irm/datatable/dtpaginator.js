@@ -1,5 +1,5 @@
 YUI.add("dtpaginator",function(Y){
-    var TB = "<table class='paginator' width='100%'><tbody><tr><td align='left'>{record}</td><td align='left'>{perPage}</td><td align='center'>{prenext}</td><td align='right'>{goToPage}</td></tr></tbody></table>";
+    var TB = "<table class='paginator' width='100%'><tbody><tr><td align='left'>{record}</td><td class='rowPerPageTD' align='left'>{perPage}</td><td align='center'>{prenext}</td><td align='right'>{goToPage}</td></tr></tbody></table>";
     var SELECT = "<label>{rowPerPage}</label>:<select class='rowPerPage'>{options}</select>";
     var OPTION = "<option value='{key}'>{label}</option>";
     var RECORD = "<label>{record}</label>:<label class='record'></label>";
@@ -28,6 +28,9 @@ Y.mix(IrmDTPaginator, {
       },
       paginatorLabels:{
           value: {record:"Record",rowPerPage:"Row per Page",prepage:'Pre',nextpage: 'Next',page:"Page"}
+      },
+      rowPerPage:{
+          value:true
       }
     }
 });
