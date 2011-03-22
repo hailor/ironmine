@@ -7,6 +7,7 @@ class Irm::MyInfoController < ApplicationController
   #个人信息编辑页面
   def edit
     @identity =  Irm::Identity.list_all.query(Irm::Identity.current.id).first
+    @person = Irm::Person.current
   end
   # 更新个人信息
   def update
@@ -42,4 +43,16 @@ class Irm::MyInfoController < ApplicationController
     end
   end
 
+  def avatar_crop
+    @person = Irm::Person.find(params[:id])
+  end
+
+  def avatar_update
+    @person = Irm::Person.find(params[:id])
+    if @person.update_attributes(params[:irm_person])
+      render :action => "avatar_crop"
+    else
+      render :action => "edit"
+    end
+  end
 end

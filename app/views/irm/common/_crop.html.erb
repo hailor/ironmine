@@ -1,0 +1,15 @@
+<%= image_tag source.avatar.url(:large), :id => "crop_box" %>
+<script type="text/javascript">
+  GY.use(function(Y){
+    var Dom = YAHOO.util.Dom,
+    Event = YAHOO.util.Event;
+
+    var crop = new YAHOO.widget.ImageCropper('crop_box', {
+        initialXY: [0, 0],
+        keyTick: 1,
+        shiftKeyTick: 50,
+        minHeight: 45,
+        minWidth: 45
+    });
+  });
+</script>

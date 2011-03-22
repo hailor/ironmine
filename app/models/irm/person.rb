@@ -25,6 +25,15 @@ class Irm::Person < ActiveRecord::Base
   has_many :company_accesses
   query_extend
 
+  has_attached_file :avatar, :styles => {
+      :thumb => "16*16>",
+      :small => "45*45>",
+      :medium => "60*60>",
+      :large => "100*100>"},
+      :url => "/assets/people/avatars/:id/:style/:basename.:extension",
+      :path => ":rails_root/public/assets/people/avatars/:id/:style/:basename.:extension"
+
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   scope :query_by_identity,lambda{|identity|
     where(:identity_id=>identity)
