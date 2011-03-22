@@ -56,7 +56,7 @@ YUI.add('cascadeselect', function(Y) {
                {
                  var options = "";
                  if(target.getAttribute("blank")!="")
-                   options =  Y.Lang.substitute(OPTIONS_TEMPLATE,{label:target.getAttribute("blank"),value:""})+options ;
+                   options =  options+Y.Lang.substitute(OPTIONS_TEMPLATE,{label:target.getAttribute("blank"),value:""}) ;
                  target.setContent(options);
                }
            }
