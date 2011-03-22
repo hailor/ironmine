@@ -3,8 +3,7 @@ module ApplicationHelper
     page_title = ""
     page_description = ""
     b_description = ""
-    if @current_menu_entry && @current_menu_entry.permission_code
-      permission = Irm::Permission.list_all.where(:id => @current_permission.id).first
+    if @current_menu_entry && @current_menu_entry.page_controller
       if @current_menu_entry.icon
         page_description << content_tag(:img, "", :src => '/images/s.gif', :class => @current_menu_entry.icon + " pageTitleIcon")
       end
@@ -16,10 +15,10 @@ module ApplicationHelper
       if !description.blank?
         page_description << content_tag(:h2, description, :class => "pageDescription")
       else
-        page_description << content_tag(:h2, permission[:name], :class => "pageDescription")
+        page_description << content_tag(:h2, t("label_action_#{params[:action]}".to_s), :class => "pageDescription")
       end
-      if !permission[:description].blank?
-        b_description << content_tag(:div, permission[:description], :class => "bDescription")  
+      if !@current_menu_entry[:description].blank?
+        b_description << content_tag(:div, @current_menu_entry[:description], :class => "bDescription")
       end
     else
       page_title << content_tag(:h1, title, :class => "pageType")
@@ -31,30 +30,29 @@ module ApplicationHelper
     raw(b_page_title)
   end
 
-  def setting_title(params = {:title => "", :description => ""})
+  def setting_title(options = {:title => "", :description => ""})
     page_title = ""
     page_description = ""
     b_description = ""
-    if @current_menu_entry && @current_menu_entry.permission_code
-      permission = Irm::Permission.list_all.where(:id => @current_permission.id).first
+    if @current_menu_entry&&@current_menu_entry.page_controller
       t_title = ""
-      if params[:title] && !params[:title].blank?
-        t_title << params[:title] + ": "
+      if options[:title] && !options[:title].blank?
+        t_title << options[:title] + ": "
       else
         t_title << @current_menu_entry[:name] + ": "
       end
-      if params[:description] && !params[:description].blank?
-        t_title << params[:description]
+      if options[:description] && !options[:description].blank?
+        t_title << options[:description]
       else
-        t_title << permission[:name]
+        t_title << t("label_action_#{params[:action]}".to_s)
       end
       page_description << content_tag(:h2, t_title, :class => "pageDescription")
-      if !permission[:description].blank?
-        b_description << content_tag(:div, permission[:description], :class => "bDescription")
+      if !@current_menu_entry[:description].blank?
+        b_description << content_tag(:div, @current_menu_entry[:description], :class => "bDescription")
       end
     else
-      page_title << content_tag(:h1, params[:title], :class => "pageType")
-      page_description << content_tag(:h2, params[:description], :class => "pageDescription")
+      page_title << content_tag(:h1, options[:title], :class => "pageType")
+      page_description << content_tag(:h2, options[:description], :class => "pageDescription")
     end
     content = raw(content_tag(:div, raw(page_title + page_description), :class => "content"))
     pt_body = raw(content_tag(:div, content, :class => "ptBody"))
@@ -62,29 +60,28 @@ module ApplicationHelper
     raw(b_page_title)
   end
 
-  def app_title(params = {:title => "", :description => ""})
+  def app_title(options = {:title => "", :description => ""})
     page_title = ""
     page_description = ""
     b_description = ""
-    if @current_menu_entry && @current_menu_entry.permission_code
-      permission = Irm::Permission.list_all.where(:id => @current_permission.id).first
+    if @current_menu_entry && @current_menu_entry.page_controller
       if @current_menu_entry.icon
         page_description << content_tag(:img, "", :src => '/images/s.gif', :class => @current_menu_entry.icon + " pageTitleIcon")
       end
       t_title = ""
       if params[:title] && !params[:title].blank?
-        t_title << params[:title] + ": "
+        t_title << options[:title] + ": "
       else
         t_title << @current_menu_entry[:name] + ": "
       end
-      if params[:description] && !params[:description].blank?
-        t_title << params[:description]
+      if options[:description] && !options[:description].blank?
+        t_title << options[:description]
       else
-        t_title << permission[:name]
+        t_title << t("label_action_#{params[:action]}".to_s)
       end
       page_description << content_tag(:h2, t_title, :class => "pageDescription")
-      if !permission[:description].blank?
-        b_description << content_tag(:div, permission[:description], :class => "bDescription")
+      if !@current_menu_entry[:description].blank?
+        b_description << content_tag(:div, @current_menu_entry[:description], :class => "bDescription")
       end
     else
       page_title << content_tag(:h1, params[:title], :class => "pageType")
@@ -193,6 +190,7 @@ module ApplicationHelper
     row_perpage = options[:row_perpage]||10
     search_box = options[:search_box]
     paginator_box = options[:paginator_box]
+    paginator_perpage = options[:paginator_perpage]||true
     select = options[:select]
     columns.insert(0,{:key=>"dt_selector",:width=>"36px"}) if select&&(select.eql?("multiple")||select.eql?("single"))
     columns_conf = ""
@@ -222,7 +220,14 @@ module ApplicationHelper
     search_str = ".plug(Y.Plugin.IrmDTSearchBox,{searchDom:'#{search_box}'})" if search_box
 
     paginator_str = ""
-    paginator_str = ".plug(Y.Plugin.IrmDTPaginator,{paginatorDom:'#{paginator_box}'})" if paginator_box
+    paginator_str = ".plug(Y.Plugin.IrmDTPaginator,{paginatorDom:'#{paginator_box}',rowPerPage:false})" if paginator_box&&!paginator_perpage
+    paginator_str = ".plug(Y.Plugin.IrmDTPaginator,{paginatorDom:'#{paginator_box}',
+                                                    paginatorLabels:{record:'#{t(:paginator_record)}',
+                                                                     rowPerPage:'#{t(:paginator_rowperpage)}',
+                                                                     prepage:'#{t(:paginator_prepage)}',
+                                                                     nextpage:'#{t(:paginator_nextpage)}',
+                                                                     page:'#{t(:paginator_page)}'}})" if paginator_box&&paginator_perpage
+
 
     select_str = ""
     select_str = ".plug(Y.Plugin.IrmDTSelector,{mode:'multiple'})" if select&&select.eql?("multiple")

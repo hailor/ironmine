@@ -685,14 +685,14 @@ div.button input[type="submit"]:hover{background-position: right -30px; cursor: 
 .btn_range{background:url("../images/16_16/chart_org_inverted.png") no-repeat scroll; width: 16px; height: 16px;}
 
 
-div #menusPaginatorBox .paginator{
+div  table.paginator{
     width: 100%;padding: 0 10px 0 10px;
 }
 
-div #menusPaginatorBox .paginator td{
+div table.paginator td{
     line-height: 22px;
 }
-div #menusPaginatorBox .paginator .col1{text-align: left; width: 150px;}
-div #menusPaginatorBox .paginator .col2{text-align: left; width: 80px;}
-div #menusPaginatorBox .paginator .col3{text-align: center; width: 300px;}
-div #menusPaginatorBox .paginator .col4{text-align: right;}
+div  table.paginator .col1{text-align: left; width: 150px;}
+div  table.paginator .col2{text-align: left; width: 300px;}
+div  table.paginator .col3{text-align: center; width: 100px;}
+div  table.paginator .col4{text-align: right;}

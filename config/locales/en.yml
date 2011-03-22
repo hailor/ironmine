@@ -143,3 +143,18 @@ en:
         not_same_project: "doesn't belong to the same project"
         circular_dependency: "This relation would create a circular dependency"
         invaliddate: " invalid date formate,correct such as 2008-10-10"
+  label_action_index: Index
+  label_action_new: New
+  label_action_create: New
+  label_action_edit: Edit
+  label_action_update: Edit
+  label_action_show: Show
+  label_action_multilingual_edit: Multilingual edit
+  label_action_multilingual_update: Multilingual edit
+  #=========paginator==============
+  paginator_record: Record
+  paginator_rowperpage: Row per Page
+  paginator_prepage: Pre Page
+  paginator_nextpage: Next Page
+  paginator_page: Page
+  #=========end paginator==========

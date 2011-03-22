@@ -93,7 +93,7 @@ class ApplicationController < ActionController::Base
 
   # 设置当前页面对应的菜单数据
   def menu_setup
-    if params[:format].eql?("html")
+    if ["json","js","xls","xml"].include?(params[:format])
       return true
     end
     process_menu
@@ -101,12 +101,12 @@ class ApplicationController < ActionController::Base
 
   # 设置当前菜单项
   def menu_entry_setup
-    if params[:format].eql?("html")
+    if ["json","js","xls","xml"].include?(params[:format])
       return true
     end
 
-    @current_menu_entry = Irm::MenuEntry.multilingual.where(:page_controller=>params[:controller],:page_controller=>params[:action]).first
-    @current_menu_entry ||= Irm::MenuEntry.multilingual.where(:page_controller=>params[:controller],:page_controller=>params[:action]||"index").first
+    @current_menu_entry = Irm::MenuEntry.multilingual.where(:page_controller=>params[:controller],:page_action=>params[:action]).first
+    @current_menu_entry ||= Irm::MenuEntry.multilingual.where(:page_controller=>params[:controller],:page_action=>"index").first if !"index".eql?(params[:action])
   end
   #===========all controller public method============ 
 
