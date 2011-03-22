@@ -148,3 +148,10 @@ zh:
   label_action_show: 查看
   label_action_multilingual_edit: 多语言编辑
   label_action_multilingual_update: 多语言编辑
+  #=========paginator==============
+  paginator_record: 记录数
+  paginator_rowperpage: 每页显示
+  paginator_prepage: 上一页
+  paginator_nextpage: 下一页
+  paginator_page: 页
+  #=========end paginator==========

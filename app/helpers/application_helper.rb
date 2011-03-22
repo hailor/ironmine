@@ -221,7 +221,12 @@ module ApplicationHelper
 
     paginator_str = ""
     paginator_str = ".plug(Y.Plugin.IrmDTPaginator,{paginatorDom:'#{paginator_box}',rowPerPage:false})" if paginator_box&&!paginator_perpage
-    paginator_str = ".plug(Y.Plugin.IrmDTPaginator,{paginatorDom:'#{paginator_box}'})" if paginator_box&&paginator_perpage
+    paginator_str = ".plug(Y.Plugin.IrmDTPaginator,{paginatorDom:'#{paginator_box}',
+                                                    paginatorLabels:{record:'#{t(:paginator_record)}',
+                                                                     rowPerPage:'#{t(:paginator_rowperpage)}',
+                                                                     prepage:'#{t(:paginator_prepage)}',
+                                                                     nextpage:'#{t(:paginator_nextpage)}',
+                                                                     page:'#{t(:paginator_page)}'}})" if paginator_box&&paginator_perpage
 
 
     select_str = ""
