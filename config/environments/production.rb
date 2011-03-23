@@ -47,6 +47,8 @@ Ironmine::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+    # Log error messages when you accidentally call methods on nil.
+  config.whiny_nils = true
 
     # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
