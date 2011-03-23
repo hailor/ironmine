@@ -30,7 +30,7 @@ Ironmine::Application.configure do
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
-  config.serve_static_assets = false
+#  config.serve_static_assets = false
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -47,31 +47,6 @@ Ironmine::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-
-  ##
-  config.cache_classes = false
-
-  # Log error messages when you accidentally call methods on nil.
-  config.whiny_nils = true
-
-  # Show full error reports and disable caching
-  config.consider_all_requests_local       = true
-  config.action_view.debug_rjs             = true
-  config.action_controller.perform_caching = false
-
-  # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
-
-  # Print deprecation notices to the Rails logger
-  config.active_support.deprecation = :log
-
-  # Only use best-standards-support built into browsers
-  config.action_dispatch.best_standards_support = :builtin
-
-  #config.time_zone = 'Beijing'
-  config.active_record.default_timezone = :local
-  ##
-
 
     # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
