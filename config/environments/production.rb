@@ -46,10 +46,8 @@ Ironmine::Application.configure do
   config.i18n.fallbacks = true
 
   # Send deprecation notices to registered listeners
-  config.active_support.deprecation = :notify
+#  config.active_support.deprecation = :notify
 
-  # Only use best-standards-support built into browsers
-  config.action_dispatch.best_standards_support = :builtin
 
     # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
