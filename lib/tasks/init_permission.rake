@@ -31,7 +31,6 @@ namespace :irm do
      end
     end
     functions = Irm::AccessControl.functions
-    puts functions
     function_codes = Irm::Function.all.collect{|f| f.function_code.downcase.to_sym}
     missing_function_codes = functions.keys.collect{|fc| fc if !function_codes.include?(fc)}.compact
     puts "#{BOLD}#{RED}Missing function codes:#{missing_function_codes.to_json}#{CLEAR}"
@@ -55,6 +54,8 @@ namespace :irm do
       end
 
     end
-    Irm::Permission.delete_all("status_code = 'UNKNOW'")
+    deleted_row = Irm::Permission.delete_all("status_code = 'UNKNOW'")
+    puts "#{BOLD}#{RED}Delete #{deleted_row} row#{CLEAR}"
+
   end
 end
