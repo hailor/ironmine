@@ -23,9 +23,7 @@ Ironmine::Application.configure do
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
-  config.consider_all_requests_local       = true
-  config.action_view.debug_rjs             = true
-  config.action_controller.perform_caching = false
+
   config.active_support.deprecation = :log
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
