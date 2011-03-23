@@ -60,6 +60,8 @@ class Irm::Role < ActiveRecord::Base
     where("#{Irm::Person.table_name}.id = ?",person_id)
   }
 
+  scope :hidden,lambda { where(:hidden_flag=>Irm::Constant::SYS_YES)}
+
   def self.current
     @current_role
   end
@@ -69,6 +71,9 @@ class Irm::Role < ActiveRecord::Base
   end
 
   def allowed_to?(function_codes)
-    return true
+    @functions ||=functions.collect{|f| f.function_code}
+    return true if function_codes.detect{|fc| @functions.include?(fc)}
+    false
   end
+
 end

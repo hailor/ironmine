@@ -114,8 +114,15 @@ class Irm::Person < ActiveRecord::Base
   end
 
   def allowed_to?(function_codes)
-    return true if Irm::Role.current&&Irm::Role.curren.allowed_to?(function_codes)
+    return true if function_codes.detect{|fc| functions.include?(fc)}
+    return true if Irm::Role.current&&Irm::Role.current.allowed_to?(function_codes)
+    return true if self.id.eql?(self.class.first.id)
     false
+  end
+
+  def functions
+    return @functions if @functions
+    @functions = Irm::Function.query_hidden_functions(self.id).collect{|f| f.group_code}
   end
 
 
