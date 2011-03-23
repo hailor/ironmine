@@ -28,8 +28,7 @@ class Irm::Person < ActiveRecord::Base
   has_many :company_accesses
   query_extend
 
-  has_attached_file :avatar, :styles => {:thumb => "16x16>",:small => "45x45>",:medium => "60x60>",:large => "100x100>"},
-      :processors => [:cropper]
+  has_attached_file :avatar, :default_url => "/images/T.png", :styles => {:thumb => "16x16>",:medium => "45x45>",:large => "100x100>"}, :processors => [:cropper]
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
