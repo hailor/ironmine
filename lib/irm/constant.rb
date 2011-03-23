@@ -31,9 +31,5 @@ module Irm
     #attachment url,path
     ATTACHMENT_URL = "/upload/:class/:id/:style/:basename.:extension"
     ATTACHMENT_PATH = ":rails_root/public/upload/:class/:id/:style/:basename.:extension"
-
-    #person avatar url,path
-    AVATAR_URL = "/upload/avatars/:class/:id/:style/:basename.:extension"
-    AVATAR_PATH = ":rails_root/public/upload/avatars/:class/:id/:style/:basename.:extension"
   end
 end
