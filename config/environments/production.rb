@@ -59,6 +59,4 @@ Ironmine::Application.configure do
 		:authentication => 'plain',
 		:enable_starttls_auto => true
   }
-
-  Paperclip.options[:command_path] = 'echo $PATH'
 end
