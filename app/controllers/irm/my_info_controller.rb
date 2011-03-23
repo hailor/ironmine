@@ -2,6 +2,7 @@ class Irm::MyInfoController < ApplicationController
   #个人信息显示页面
   def index
     @identity = Irm::Identity.list_all.query(Irm::Identity.current.id).first
+    @person = Irm::Person.current
   end
 
   #个人信息编辑页面
@@ -49,10 +50,28 @@ class Irm::MyInfoController < ApplicationController
 
   def avatar_update
     @person = Irm::Person.find(params[:id])
-    if @person.update_attributes(params[:irm_person])
-      render :action => "avatar_crop"
-    else
-      render :action => "edit"
+    respond_to do |format|
+      if params[:irm_person][:avatar]
+        if @person.update_attribute(:avatar, params[:irm_person][:avatar])
+          if params[:return_url]
+            format.html {redirect_to(params[:return_url])}
+            format.xml { head :ok}
+          else
+            format.html {render "avatar_crop"}
+          end
+        else
+          format.html {render "edit"}
+        end
+      elsif @person.update_attributes(params[:irm_person])
+        if params[:return_url]
+          format.html {redirect_to(params[:return_url])}
+          format.xml { head :ok}
+        else
+          format.html {render "index"}
+        end
+      else
+        format.html {render "edit"}
+      end
     end
   end
 end

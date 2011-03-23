@@ -1,1 +1,10 @@
-<%= render :partial => "irm/common/crop", :locals => {:source => @person}%>
+
+   <%= render :partial => "irm/common/crop", :locals => {:source => @person}%>
+
+<% form_for(@person, :url => {:controller => "irm/my_info", :action => "avatar_update", :id => @person.id,
+                              :return_url => {:controller => "irm/my_info", :action => "index"}}) do |f| %>
+   <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
+     <%= f.hidden_field attribute, :id => attribute %>
+    <% end %>
+    <p><%= f.submit t(:save) %></p>
+ <% end %>

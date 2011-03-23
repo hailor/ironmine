@@ -17,6 +17,18 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
+              <td class="labelCol">&nbsp;</td>
+              <td class="dataCol" style="text-align:right"><%= image_tag @person.avatar.url(:original)%></td>
+              <td class="labelCol">&nbsp;</td>
+              <td class="dataCol">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
               <td class="labelCol"><label><%=(t :label_irm_identity_login_name)%></label></td>
               <td class="dataCol"><%=@identity.login_name%></td>
               <td class="labelCol"><label><%=(t :label_irm_identity_full_name)%></label></td>

@@ -59,8 +59,13 @@ class Irm::PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.update_attributes(@attributes)
-        format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
-        format.xml  { head :ok }
+        if params[:return_url]
+          format.html {redirect_to(params[:return_url])}
+          format.xml { head :ok}
+        else
+          format.html { redirect_to({:action=>"index"},:notice => (t :successfully_updated)) }
+          format.xml  { head :ok }
+        end
       else
         @error = @person
         format.html { render "edit" }

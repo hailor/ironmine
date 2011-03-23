@@ -1,15 +1,23 @@
-<%= image_tag source.avatar.url(:large), :id => "crop_box" %>
+<%= image_tag source.avatar.url(:original), :id => "crop_box" %>
 <script type="text/javascript">
-  GY.use(function(Y){
-    var Dom = YAHOO.util.Dom,
-    Event = YAHOO.util.Event;
+  GY.use("yui2-imagecropper", function(Y){
 
-    var crop = new YAHOO.widget.ImageCropper('crop_box', {
+    var crop = new Y.YUI2.widget.ImageCropper('crop_box', {
         initialXY: [0, 0],
         keyTick: 1,
         shiftKeyTick: 50,
-        minHeight: 45,
-        minWidth: 45
+        minHeight: 16,
+        minWidth: 16,
+        initHeight: 45,
+        initWidth: 45,
+        ratio: true
+    });
+
+    crop.on("moveEvent",  function() {
+        Y.one("#crop_x").set("value", crop.getCropCoords().left);
+        Y.one("#crop_y").set("value", crop.getCropCoords().top);
+        Y.one("#crop_w").set("value", crop.getCropCoords().width);
+        Y.one("#crop_h").set("value", crop.getCropCoords().height);
     });
   });
 </script>

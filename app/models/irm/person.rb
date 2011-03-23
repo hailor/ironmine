@@ -1,4 +1,7 @@
+require 'paperclip_processors/cropper'
+include Paperclip
 class Irm::Person < ActiveRecord::Base
+
   set_table_name :irm_people
 
   PERSON_NAME_FORMATS = {
@@ -25,15 +28,16 @@ class Irm::Person < ActiveRecord::Base
   has_many :company_accesses
   query_extend
 
-  has_attached_file :avatar, :styles => {
-      :thumb => "16*16>",
-      :small => "45*45>",
-      :medium => "60*60>",
-      :large => "100*100>"},
-      :url => "/assets/people/avatars/:id/:style/:basename.:extension",
-      :path => ":rails_root/public/assets/people/avatars/:id/:style/:basename.:extension"
+  has_attached_file :avatar, :styles => {:thumb => "16x16>",:small => "45x45>",:medium => "60x60>",:large => "100x100>"},
+      :processors => [:cropper]
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+
+  after_update :reprocess_avatar, :if => :cropping?
+
+  def cropping?
+    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+  end
 
   scope :query_by_identity,lambda{|identity|
     where(:identity_id=>identity)
@@ -43,7 +47,7 @@ class Irm::Person < ActiveRecord::Base
                            where(:id=>person_id)}
 
 
-  scope :query_wrap_info,lambda{|language| select("#{table_name}.id,irm_identities.login_name,#{table_name}.mobile_phone,CONCAT(#{table_name}.last_name,#{table_name}.first_name) person_name,"+
+    scope :query_wrap_info,lambda{|language| select("#{table_name}.id,irm_identities.login_name,#{table_name}.mobile_phone,CONCAT(#{table_name}.last_name,#{table_name}.first_name) person_name,"+
                                                       "#{table_name}.email_address,v1.meaning status_meaning, v2.name company_name").
                                                    joins("left outer join irm_identities on #{table_name}.identity_id=irm_identities.id").
                                                    joins(",irm_lookup_values_vl v1").
@@ -119,4 +123,8 @@ class Irm::Person < ActiveRecord::Base
   end
 
 
+  private
+  def reprocess_avatar
+      avatar.reprocess!
+  end
 end
