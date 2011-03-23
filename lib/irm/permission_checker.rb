@@ -4,7 +4,7 @@ class Irm::PermissionChecker
   def self.allow_to_url?(url_options={})
     url_options.symbolize_keys!
     assigned_to_functions = Irm::MenuManager.permissions[Irm::Permission.url_key(url_options[:page_controller]||url_options[:controller],url_options[:page_action]||url_options[:action])]
-    return true if assigned_to_functions.nil?||assigned_to_functions.length>0
+    return true if assigned_to_functions.nil?||assigned_to_functions.length<1
     public_functions = Irm::MenuManager.public_functions
     return true if assigned_to_functions.detect{|f| public_functions.include?(f)}
     if(Irm::Person.current.nil?)

@@ -69,6 +69,9 @@ class Irm::Role < ActiveRecord::Base
   end
 
   def allowed_to?(function_codes)
-    return true
+    @functions ||=functions.collect{|f| f.function_code}
+    return true if function_codes.detect{|fc| @functions.include?(fc)}
+    false
   end
+
 end

@@ -107,8 +107,13 @@ class Irm::Person < ActiveRecord::Base
   end
 
   def allowed_to?(function_codes)
-    return true if Irm::Role.current&&Irm::Role.curren.allowed_to?(function_codes)
+    return true if Irm::Role.current&&Irm::Role.current.allowed_to?(function_codes)
     false
+  end
+
+  def functions
+    return @functions if @functions
+
   end
 
 
