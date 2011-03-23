@@ -29,11 +29,12 @@ class Irm::Function < ActiveRecord::Base
     where("#{Irm::FunctionsTl.table_name}.function_id = #{table_name}.id").
     where("#{Irm::FunctionsTl.table_name}.language = ?", I18n.locale)
   }
-  
-  # 菜单子项
-  has_many :function_members
-  has_many :permissions, :through => :function_members
 
-  has_many :function_group_members,:foreign_key=>"function_code"
-  has_many :function_groups, :through => :function_group_members
+  scope :query_hidden_functions,lambda{|person_id|
+    joins("JOIN #{Irm::RoleFunction.table_name} ON #{Irm::RoleFunction.table_name}.function_id = #{table_name}.id").
+    joins("JOIN #{Irm::Role.table_name} ON #{Irm::Role.table_name}.id = #{Irm::RoleFunction.table_name}.role_id").
+    joins("JOIN #{Irm::PersonRole.table_name} ON #{Irm::PersonRole.table_name}.role_id = #{Irm::Role.table_name}.id").
+    where("#{Irm::Role.table_name}.hidden_flag = ? AND #{Irm::PersonRole.table_name}.person_id = ?",Irm::Constant::SYS_YES,person_id)
+  }
+  
 end

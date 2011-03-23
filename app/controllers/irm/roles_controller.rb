@@ -27,7 +27,7 @@ class Irm::RolesController < ApplicationController
 
   def edit
     @role = Irm::Role.multilingual.find(params[:id])
-    @role_function_ids = @role.role_functions.collect{|i| i.id}
+    @role_function_ids = @role.role_functions.collect{|i| i.function_id}
     @fgs = Irm::FunctionGroup.multilingual.enabled
     fs = Irm::Function.multilingual.enabled
     @fs = fs.group_by{|i| i.group_code}
@@ -58,7 +58,7 @@ class Irm::RolesController < ApplicationController
     @role = Irm::Role.find(params[:id])
     @role_function_ids = params[:role][:functions] if params[:role]
     @role_function_ids||= []
-    @role.role_functions.delete_all
+    Irm::RoleFunction.where(:role_id=>@role.id).delete_all
     @role_function_ids.each do |fid|
       @role.role_functions.build(:function_id=>fid)
     end

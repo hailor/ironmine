@@ -47,6 +47,10 @@
               <td class="labelCol"><label><%=(t :label_irm_role_report_group_code)%></label></td>
               <td class="data2Col"><%=f.select :report_group_code, available_report_groups%></td>
             </tr>
+           <tr>
+              <td class="labelCol"><label><%=(t :label_irm_role_hidden_flag)%></label></td>
+              <td class="data2Col"><%=f.check_box(:hidden_flag)%></td>
+            </tr>
             <tr>
               <td class="labelCol"><label><%=(t :description)%></label></td>
               <td class="data2Col"><%=f.text_area :description, :rows => 4%></td>

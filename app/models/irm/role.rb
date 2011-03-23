@@ -60,6 +60,8 @@ class Irm::Role < ActiveRecord::Base
     where("#{Irm::Person.table_name}.id = ?",person_id)
   }
 
+  scope :hidden,lambda { where(:hidden_flag=>Irm::Constant::SYS_YES)}
+
   def self.current
     @current_role
   end

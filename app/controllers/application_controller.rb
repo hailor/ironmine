@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
       if(session[:role_id])
         Irm::Role.current= Irm::Role.enabled.find(session[:role_id])
       else
-        role = Irm::Role.query_by_permission(params[:controller],params[:action]).query_by_person(Irm::Person.current.id).enabled.first
+        role = Irm::Role.query_by_person(Irm::Person.current.id).enabled.first
         Irm::Role.current = role if role
       end
       session[:accessable_companies] ||= Irm::CompanyAccess.query_by_person_id(Irm::Person.current.id).collect{|c| c.accessable_company_id} if Irm::Person.current
