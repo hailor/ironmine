@@ -116,7 +116,7 @@ class Skm::EntryTemplatesController < ApplicationController
     entry_elements_scope = Skm::EntryTemplateElement.with_template(params[:template_id_t] || params[:template_id])
     entry_elements,count = paginate(entry_elements_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(entry_elements.to_grid_json(['0',:required_flag, :entry_template_element_code, :name,:description, :default_rows], count)) }
+      format.json  {render :json => to_jsonp(entry_elements.to_grid_json(['0',:detail_rows, :detail_required_flag, :detail_id, :required_flag, :entry_template_element_code, :name,:description, :default_rows], count)) }
     end    
   end
 
@@ -153,5 +153,26 @@ class Skm::EntryTemplatesController < ApplicationController
     else
       redirect_to(return_url)
     end        
+  end
+
+  def edit_detail
+    @detail = Skm::EntryTemplateDetail.find(params[:id])
+    @element = Skm::EntryTemplateElement.find(@detail.entry_template_element_id)
+    @return_url = params[:return_url]
+  end
+
+  def update_detail
+    @detail = Skm::EntryTemplateDetail.find(params[:detail_id])
+
+    respond_to do |format|
+      if @detail.update_attributes(params[:skm_entry_template_detail])
+        format.html{redirect_to({:action => "show", :id => @detail.entry_template_id})}
+      else
+        @element = Skm::EntryTemplateElement.find(@detail.entry_template_element_id)
+        @return_url = params[:return_url]
+        format.html { render :action => "edit_detail" }
+        format.xml  { render :xml => @detail.errors, :status => :unprocessable_entity }
+      end
+    end
   end
 end

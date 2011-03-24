@@ -18,6 +18,8 @@ zh:
   label_skm_entry_template_new: 创建模板
   label_skm_entry_template_edit: 编辑模板
   label_skm_entry_template_code: 模板编码
+  label_skm_entry_template_detail: 模板明细
+  label_skm_entry_template_detail_edit: 编辑模板明细
 
   #=========================entry template elements=====================
   label_skm_entry_template_element: 模板元素

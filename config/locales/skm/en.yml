@@ -18,6 +18,8 @@ en:
   label_skm_entry_template_new: Create Template
   label_skm_entry_template_edit: Edit Template
   label_skm_entry_template_code: Template Code
+  label_skm_entry_template_detail: Template Detail
+  label_skm_entry_template_detail_edit: Edit Template Detail
 
   #=========================entry template elements=====================
   label_skm_entry_template_element: Template Element
