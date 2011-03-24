@@ -32,21 +32,33 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
+              <td class="labelCol"><label><%=(t :label_irm_function_group_code)%></label></td>
+              <td class="dataCol"><%=f.select :group_code,nullable_options_for_select(available_function_group,@function.group_code),
+                                                    {},{:id=>"incident_request_support_person_id"}%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
               <td class="labelCol"><label><%=(t :label_irm_function_function_code)%></label></td>
               <td class="dataCol"><div><%= @function.function_code%></div></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_function_group_code)%></label></td>
-              <td class="dataCol"><%=f.select :group_code,nullable_options_for_select(available_function_group,nil),
-                                                    {},{:id=>"incident_request_support_person_id"}%></td>
+              <td class="labelCol"><label><%=(t :label_irm_function_name)%></label></td>
+              <td class="dataCol"><%=f.text_field :name, :required=>true%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_function_name)%></label></td>
-              <td class="dataCol"><%=f.text_field :name, :required=>true%></td>
+              <td class="labelCol"><label><%=(t :label_irm_function_default_flag)%></label></td>
+              <td class="dataCol"><%=f.check_box(:default_flag)%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_function_public_flag)%></label></td>
+              <td class="dataCol"><%=f.check_box(:public_flag)%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
