@@ -28,7 +28,14 @@ class Irm::Person < ActiveRecord::Base
   has_many :company_accesses
   query_extend
 
-  has_attached_file :avatar, :default_url => "/images/T.png", :styles => {:thumb => "16x16>",:medium => "45x45>",:large => "100x100>"}, :processors => [:cropper]
+  has_attached_file :avatar,
+                    :whiny => false,
+                    :url => Irm::Constant::ATTACHMENT_URL,
+                    :path => Irm::Constant::ATTACHMENT_PATH,
+                    :styles => {:thumb => "16x16>",:medium => "45x45>",:large => "100x100>"},
+                    :processors => [:cropper]
+
+  validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/gif", "image/png", "image/pjpeg", "image/x-png"], :message => "Accepted files include: jpg, gif, png"
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 

@@ -1,0 +1,34 @@
+<%= setting_title %>
+<%= form_for(@person,:url=>{:action=>"update", :controller => "irm/my_avatar", :id => @person.id}, :html => {:multipart => true}, :builder => LabellingFormBuilder) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_person_avatar_edit)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:controller => "irm/my_avatar", :action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><%= t(:label_irm_person_avatar_new)%></td>
+              <td class="data2Col"><%= f.file_field :avatar%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><%= t(:label_irm_person_avatar_current)%></td>
+              <td class="data2Col"><%= image_tag @person.avatar.url(:large)%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<% end %>
