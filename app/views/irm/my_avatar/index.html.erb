@@ -1,0 +1,27 @@
+<%= setting_title %>
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_person_avatar)%></h2></td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td style="text-align:center"><div class="button" style="float:none; padding-bottom:10px;"><%= link_to t(:edit) + t(:label_irm_person_avatar), {:action => "edit"}%></div></td>
+            </tr>
+            <tr>
+              <td style="text-align:center"><%= image_tag Irm::Person.current.avatar.url(:large)%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

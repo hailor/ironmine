@@ -32,7 +32,7 @@ class Irm::Person < ActiveRecord::Base
                     :whiny => false,
                     :url => Irm::Constant::ATTACHMENT_URL,
                     :path => Irm::Constant::ATTACHMENT_PATH,
-                    :styles => {:thumb => "16x16>",:medium => "45x45>",:large => "100x100>", :original => "500x500>"},
+                    :styles => {:thumb => "16x16>",:medium => "45x45>",:large => "100x100>"},
                     :processors => [:cropper]
 
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/gif", "image/png", "image/pjpeg", "image/x-png"], :message => "Accepted files include: jpg, gif, png"
