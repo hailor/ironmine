@@ -7,4 +7,8 @@ module Skm::EntryHeadersHelper
     end
     raw(html_content)
   end
+
+  def show_skm_sidebar_navigate
+
+  end
 end
