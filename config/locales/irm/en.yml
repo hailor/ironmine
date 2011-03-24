@@ -313,6 +313,8 @@ en:
   label_irm_function_permission: Permission
   label_irm_function_permission_add: Add/Remove Permission
   label_irm_function_own_permission: Owned Permissions
+  label_irm_function_default_flag: Default
+  label_irm_function_public_flag: Public
   #=========================    end functions_controller=======================#
   #=========================    irm function_groups_controller=======================#
   label_irm_function_group: Function Group
