@@ -144,7 +144,6 @@ Ironmine::Application.routes.draw do
     match '/my_info/edit(.:format)' => "my_info#edit", :via => :get
     match '/my_info/update(.:format)' => "my_info#update", :via => :put
     match '/my_info/update_company_access(.:format)' => "my_info#update_company_access", :via => :put
-    match '/my_info/get_login_data(.:format)' => "my_info#get_login_data", :via => :get
 
     #my_password
     match '/my_password(.:format)' => "my_password#index", :via => :get
@@ -156,6 +155,10 @@ Ironmine::Application.routes.draw do
     match '/my_avatar/edit(.:format)' => "my_avatar#edit", :via => :get
     match '/my_avatar/update(.:format)' => "my_avatar#update", :via => :put
     match '/my_avatar/:id/avatar_crop(.:format)' => "my_avatar#avatar_crop", :via => :get
+
+    #my_login_history
+    match '/my_login_history(/index)(.:format)' => "my_login_history#index", :via => :get
+    match '/my_login_history/get_login_data(.:format)' => "my_login_history#get_login_data", :via => :get
 
     #global_settings
     match '/global_settings(/index)(.:format)' => "global_settings#index", :via => :get
