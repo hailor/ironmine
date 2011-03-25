@@ -193,10 +193,6 @@ class ReworkMenu < ActiveRecord::Migration
     irm_menu_entiry_8.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'登录历史',:description=>'登录历史')
     irm_menu_entiry_8.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Login history',:description=>'Login history')
     irm_menu_entiry_8.save
-    irm_menu_entiry_9= Irm::MenuEntry.new(:menu_code=>'IRM_PERSONAL_INFO_MENU',:sub_menu_code=>nil,:page_controller=>'irm/my_profile',:display_sequence=>50,:display_flag=>'Y',:not_auto_mult=>true)
-    irm_menu_entiry_9.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'预置文件',:description=>'预置文件')
-    irm_menu_entiry_9.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Profile',:description=>'Profile')
-    irm_menu_entiry_9.save
     irm_menu_entiry_10= Irm::MenuEntry.new(:menu_code=>'IRM_SETTING_ENTRANCE_MENU',:sub_menu_code=>'IRM_SYSTEM_SETTING_MENU',:page_controller=>nil,:display_sequence=>20,:display_flag=>'Y',:not_auto_mult=>true)
     irm_menu_entiry_10.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'系统设置',:description=>'系统设置')
     irm_menu_entiry_10.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'System setting',:description=>'System setting')
