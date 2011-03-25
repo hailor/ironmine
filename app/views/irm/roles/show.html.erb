@@ -75,10 +75,10 @@
           <% next if !@fs[group[:group_code]]%>
           <fieldset><legend><%= group[:name] %></legend>
           <% @fs[group[:group_code]].each do |func| %>
-              <label>
+              <div  style="float:left;width:33%;"><label>
               <%= check_box_tag 'role[functions][]', func.id, true,{:disabled=>"true"} %>
               <%= func[:name] %>
-              </label>
+              </label></div>
           <% end if @fs[group[:group_code]] %>
           </fieldset>
         <%end%>
