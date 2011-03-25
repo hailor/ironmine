@@ -18,5 +18,6 @@
 
 <%= render "/irm/report_lists/report_category",{:category_code=>"SERVICE_KNOWLEDGE_MANAGE",:options=>{}} %>
 <%= content_for :sidebar do%>
+    <%= render "skm/entry_headers/sidebar_navigate_menu"%>
     <%= render "skm/entry_headers/sidebar_last_ten"%>
 <% end -%>
