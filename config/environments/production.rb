@@ -23,7 +23,7 @@ Ironmine::Application.configure do
 #  config.log_level = :debug
 
   # Use a different logger for distributed setups
-  config.logger = SyslogLogger.new
+#  config.logger = SyslogLogger.new
 
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
@@ -52,6 +52,23 @@ Ironmine::Application.configure do
 
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
+
+  # Show full error reports and disable caching
+  config.consider_all_requests_local       = true
+  config.action_view.debug_rjs             = true
+  config.action_controller.perform_caching = false
+
+  # Don't care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = false
+
+  # Print deprecation notices to the Rails logger
+  config.active_support.deprecation = :log
+
+  # Only use best-standards-support built into browsers
+  config.action_dispatch.best_standards_support = :builtin
+
+  #config.time_zone = 'Beijing'
+  config.active_record.default_timezone = :local
 
 
 
