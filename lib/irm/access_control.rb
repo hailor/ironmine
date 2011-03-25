@@ -4,7 +4,7 @@ module Irm::AccessControl
         mapper = Mapper.new
         yield mapper
         @functions ||= {}
-        added_functions = mapper.mapped_functions
+        added_functions = mapper.mapped_functions||[]
         added_functions.each do |function_code,function|
           if @functions.keys.include?(function_code.to_sym)
             exists_permissions  = @functions[function_code.to_sym][:permissions]
