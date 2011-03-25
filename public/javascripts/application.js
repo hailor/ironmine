@@ -2,6 +2,16 @@ GY.use('node',function(Y){
    Y.all('input[irm_uppercase]').on('keyup', function(){
       this.set('value',this.get('value').toString().toUpperCase());
    });
+
+   Y.all('input[irm_number_only]').on('keyup', function(){
+        if(!this.get("value")==""){
+          var reg = /^[A-Z0-9_]*$/;
+          var pattern = /[^\d]/g;
+          if(!reg.test(this.get('value').toString())){
+            this.set("value", this.get('value').toString().replace(pattern,''));
+          }
+        }
+   })
 });
 function show_irm_calendar(YAHOO,Event,Dom,id_button,id_date_field,id_cal){
         var dialog, calendar;
