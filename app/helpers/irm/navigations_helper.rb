@@ -20,7 +20,7 @@ module Irm::NavigationsHelper
     if Irm::Person.current.nil?
       return "".html_safe
     end
-    roles = Irm::Role.multilingual.query_by_person(Irm::Person.current.id)
+    roles = Irm::Role.multilingual.not_hidden.query_by_person(Irm::Person.current.id)
     return nil unless roles&&roles.size>0
     links = ""
     roles.each do |r|

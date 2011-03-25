@@ -61,6 +61,7 @@ class Irm::Role < ActiveRecord::Base
   }
 
   scope :hidden,lambda { where(:hidden_flag=>Irm::Constant::SYS_YES)}
+  scope :not_hidden,lambda { where(:hidden_flag=>Irm::Constant::SYS_NO)}
 
   def self.current
     @current_role
