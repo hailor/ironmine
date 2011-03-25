@@ -50,7 +50,6 @@ Ironmine::Application.configure do
 
 
 
-  ##
   config.cache_classes = false
 
   # Log error messages when you accidentally call methods on nil.
@@ -72,7 +71,7 @@ Ironmine::Application.configure do
 
   #config.time_zone = 'Beijing'
   config.active_record.default_timezone = :local
-  ##
+
 
 
     # Don't care if the mailer can't send
@@ -88,5 +87,5 @@ Ironmine::Application.configure do
 		:enable_starttls_auto => true
   }
 
-  Paperclip.options[:command_path] = '/usr/local/bin'
+#  Paperclip.options[:command_path] = '/usr/local/bin'
 end
