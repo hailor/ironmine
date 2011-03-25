@@ -1,4 +1,10 @@
 <%= setting_show_title(:show_data => @role.role_code) %>
+<style>
+  fieldset{
+      border:1px solid;
+      margin: 5px;
+  }
+</style>
 
 <div id="ep" class="bDetailBlock bPageBlock">
   <div class="pbHeader">
@@ -49,3 +55,33 @@
   </div>
 </div>
   <%=render :partial=>"multilingual/show",:locals=>{:main_data=>@role} %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_function_list) %></h2></td>
+              <td class="pbButton">
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <% @fgs.each do |group|%>
+          <% next if !@fs[group[:group_code]]%>
+          <fieldset><legend><%= group[:name] %></legend>
+          <% @fs[group[:group_code]].each do |func| %>
+              <label>
+              <%= check_box_tag 'role[functions][]', func.id, true,{:disabled=>"true"} %>
+              <%= func[:name] %>
+              </label>
+          <% end if @fs[group[:group_code]] %>
+          </fieldset>
+        <%end%>
+      </div>
+    </div>
+</div>

@@ -31,7 +31,8 @@
                        {:key=>"name",:label=>t(:name),:sortable=>true, :width => "20%",:searchable=>true},
                        {:key=>"description",:label=>t(:description),:sortable=>true},
                        {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}],
-                       {:search_box=>"rolesSearchBox"})%>
+                       {:search_box=>"rolesSearchBox",:paginator_box=>"rolesPaginatorBox"})%>
+        <div id="rolesPaginatorBox"></div>
       </div>
     </div>
 </div>
