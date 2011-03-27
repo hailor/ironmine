@@ -62,23 +62,25 @@ module ApplicationHelper
     raw(b_page_title)
   end
 
-  def app_title(params = {:title => "", :description => ""})
+  def app_title(options = {:title => "", :description => ""})
     page_title = ""
     page_description = ""
     b_description = ""
+    p_help = ""
+    p_href = ""
     if @current_menu_entry && @current_menu_entry.permission_code
       permission = Irm::Permission.list_all.where(:id => @current_permission.id).first
       if @current_menu_entry.icon
         page_description << content_tag(:img, "", :src => '/images/s.gif', :class => @current_menu_entry.icon + " pageTitleIcon")
       end
       t_title = ""
-      if params[:title] && !params[:title].blank?
-        t_title << params[:title] + ": "
+      if options[:title] && !options[:title].blank?
+        t_title << options[:title] + ": "
       else
         t_title << @current_menu_entry[:name] + ": "
       end
-      if params[:description] && !params[:description].blank?
-        t_title << params[:description]
+      if options[:description] && !options[:description].blank?
+        t_title << options[:description]
       else
         t_title << permission[:name]
       end
@@ -87,14 +89,17 @@ module ApplicationHelper
         b_description << content_tag(:div, permission[:description], :class => "bDescription")
       end
     else
-      page_title << content_tag(:h1, params[:title], :class => "pageType")
-      page_description << content_tag(:h2, params[:description], :class => "pageDescription")
+      page_title << content_tag(:h1, options[:title], :class => "pageType")
+      page_description << content_tag(:h2, options[:description], :class => "pageDescription")
     end
+
+    p_href << content_tag(:a, t(:current_page_help),:href => "#",:onclick=>"window.open ('/pagehelpfiles/#{Irm::Permission.page_help_url(params[:controller],params[:action])}.html', 'Ironmine Help', 'height=800px, width=870px, top=0, left=0, toolbar=no, menubar=no,scrollbars=yes, location=no, status=no');" )
+    p_help =raw(content_tag(:div,raw(p_href),:class=>"links"))
     content = raw(content_tag(:div, raw(page_title + page_description), :class => "content"))
-    pt_body = raw(content_tag(:div, content, :class => "ptBody"))
+    pt_body = raw(content_tag(:div, raw(content+p_help), :class => "ptBody"))
     b_page_title = raw(content_tag(:div, pt_body, :class => "bPageTitle"))
     raw(b_page_title)
-  end  
+  end
 
   def setting_show_title(params = {})
     page_title = ""

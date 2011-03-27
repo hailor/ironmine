@@ -5,6 +5,7 @@ en:
     already_exists_in_service_center: Email is token by someone in current ServiceCenter
   access_denied: Access {{permission}} Deny!
   invalid_invitation_key: Invalid invitation key!
+  current_page_help: Current page help
   #usual button
   cancel: Cancel
   next: Next Step

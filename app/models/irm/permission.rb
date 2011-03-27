@@ -86,6 +86,10 @@ class Irm::Permission < ActiveRecord::Base
     "#{controller.gsub(/\//, "_")}_#{action}"
   end
 
+  def self.page_help_url(controller,action)
+    "#{controller.gsub(/.*\//, "")}_#{action}"
+  end
+
   def self.to_permission(options={})
     crop(options)
     Irm::Permission.new(options)
