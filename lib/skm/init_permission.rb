@@ -1,0 +1,21 @@
+Irm::AccessControl.map do |map|
+  #===================skm/entry_statuses============================
+  #["index", "edit", "update", "new", "create", "get_data", "show"]
+  map.function :view_entry_statuses,{"skm/entry_statuses"=>["index", "show"]}
+  map.function :create_entry_statuses,{"skm/entry_statuses"=>["new", "create"]}
+  map.function :edit_entry_statuses,{"skm/entry_statuses"=>["edit", "update"]}
+
+  #===================skm/entry_templates============================
+  #["index", "edit", "update", "new", "create", "get_data", "show", "remove_element", "add_elements", "select_elements", "get_owned_elements_data", "get_available_elements", "up_element", "down_element", "edit_detail", "update_detail"]
+  map.function :view_entry_templates,{"skm/entry_templates"=>["index", "show"]}
+  map.function :create_entry_templates,{"skm/entry_templates"=>["new", "create", "add_elements"]}
+  map.function :edit_entry_templates,{"skm/entry_templates"=>["edit", "update", "edit_detail", "update_detail"]}
+
+  #===================skm/entry_template_elements============================
+  #["index", "edit", "update", "new", "create", "get_data", "show"]
+  map.function :view_entry_template_elements,{"skm/entry_template_elements"=>["index", "show"]}
+  map.function :create_entry_template_elements,{"skm/entry_template_elements"=>["new", "create"]}
+  map.function :edit_entry_template_elements,{"skm/entry_template_elements"=>["edit", "update"]}
+
+
+end

@@ -104,4 +104,68 @@ Irm::AccessControl.map do |map|
   map.function :create_report_groups,{"irm/report_groups"=>["new", "create"]}
   map.function :edit_report_groups,{"irm/report_groups"=>["edit", "update", "multilingual_edit", "multilingual_update"]}
   map.function :add_report_to_group,{"irm/report_group_members"=>["new", "create"]}
+
+  #===================irm/scripts============================
+  #["index", "get_data", "edit", "update", "update", "new", "show", "create", "multilingual_edit", "multilingual_update"]
+  map.function :view_scripts,{"irm/scripts"=>["index", "show"]}
+  map.function :create_scripts,{"irm/scripts"=>["new", "create"]}
+  map.function :edit_scripts,{"irm/scripts"=>["edit", "update", "update", "multilingual_edit", "multilingual_update"]}
+
+  #===================irm/mail_templates============================
+  #["new", "get_data", "create", "copy", "copy_template", "test_mail_template", "index", "edit", "update", "destroy", "show", "get_script_context_fields", "get_mail_templates"]
+  map.function :view_mail_templates,{"irm/mail_templates"=>["index", "show"]}
+  map.function :create_mail_templates,{"irm/mail_templates"=>["new", "create"]}
+  map.function :edit_mail_templates,{"irm/mail_templates"=>["edit", "update"]}
+
+  #===================irm/menus============================
+  #["index", "new", "create", "get_data", "edit", "update", "show", "remove_entry", "multilingual_edit", "multilingual_update"]
+  #===================irm/menu_entries============================
+  #["index", "new", "create", "get_data", "edit", "update", "destroy", "select_parent", "show"]
+  map.function :view_menus,{"irm/menus"=>["index", "show"],"irm/menu_entries"=>["index", "show"]}
+  map.function :create_menus,{"irm/menus"=>["new", "create"],"irm/menu_entries"=>["new", "create"]}
+  map.function :edit_menus,{"irm/menus"=>["edit", "update", "multilingual_edit", "multilingual_update"],"irm/menu_entries"=>["edit", "update"]}
+
+  #===================irm/function_groups============================
+  #["index", "edit", "update", "new", "create", "show", "get_data"]
+  map.function :view_function_groups,{"irm/function_groups"=>["index", "show"]}
+  map.function :create_function_groups,{"irm/function_groups"=>["new", "create"]}
+  map.function :edit_function_groups,{"irm/function_groups"=>["edit", "update"]}
+
+  #===================irm/functions============================
+  #["index", "edit", "update", "new", "create", "show", "get_data", "add_permissions", "get_available_permissions", "select_permissions", "add_permissions", "remove_permission"]
+  map.function :view_functions,{"irm/functions"=>["index", "show"]}
+  map.function :create_functions,{"irm/functions"=>["new", "create", "add_permissions", "add_permissions"]}
+  map.function :edit_functions,{"irm/functions"=>["edit", "update"]}
+
+  #===================irm/reports============================
+  #["index", "edit", "update", "new", "create", "get_data", "show", "multilingual_edit", "multilingual_update"]
+  map.function :view_reports,{"irm/reports"=>["index", "show"]}
+  map.function :create_reports,{"irm/reports"=>["new", "create"]}
+  map.function :edit_reports,{"irm/reports"=>["edit", "update", "multilingual_edit", "multilingual_update"]}
+  #===================irm/conditions============================
+  #["index", "get_data", "edit", "update", "new", "show", "create", "multilingual_edit", "multilingual_update"]
+  map.function :view_conditions,{"irm/conditions"=>["index", "show"]}
+  map.function :create_conditions,{"irm/conditions"=>["new", "create"]}
+  map.function :edit_conditions,{"irm/conditions"=>["edit", "update", "multilingual_edit", "multilingual_update"]}
+  #===================irm/currencies============================
+  #["index", "get_data", "edit", "update", "new", "show", "create", "multilingual_edit", "multilingual_update"]
+  map.function :view_currencies,{"irm/currencies"=>["index", "show"]}
+  map.function :create_currencies,{"irm/currencies"=>["new", "create"]}
+  map.function :edit_currencies,{"irm/currencies"=>["edit", "update", "multilingual_edit", "multilingual_update"]}
+  #===================irm/languages============================
+  #["index", "get_data", "edit", "update", "new", "show", "create", "multilingual_edit", "multilingual_update"]
+  map.function :view_languages,{"irm/languages"=>["index", "show"]}
+  map.function :create_languages,{"irm/languages"=>["new", "create"]}
+  map.function :edit_languages,{"irm/languages"=>["edit", "update", "multilingual_edit", "multilingual_update"]}
+  #===================irm/product_modules============================
+  #["index", "edit", "update", "new", "create", "get_data", "data_grid"]
+  map.function :view_product_modules,{"irm/product_modules"=>["index"]}
+  map.function :create_product_modules,{"irm/product_modules"=>["new", "create"]}
+  map.function :edit_product_modules,{"irm/product_modules"=>["edit", "update"]}
+
+  #===================irm/dev_tools============================
+  #["index", "show_permissions", "show_permissions_data", "show_missed_permissions", "missed_permissions_data"]
+  map.function :view_dev_tools,{"irm/dev_tools"=>["index", "show_permissions", "show_permissions_data", "show_missed_permissions"]}
+
+
 end
