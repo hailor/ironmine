@@ -4,7 +4,7 @@
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_permission) %></h2></td>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_skm_entry_status) %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @entry_status}%></div>
             <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
@@ -19,33 +19,19 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_skm_entry_status_code)%></label></td>
-              <td class="dataCol"><%= @entry_status.entry_status_code%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="data2Col"><%= @setting.entry_status_code%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :name)%></label></td>
-              <td class="dataCol"><%= @entry_status[:name]%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="data2Col"><%= @setting[:name]%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=t(:description)%></label></td>
-              <td class="dataCol"><%= @entry_status[:description]%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="data2Col"><%= @setting[:description]%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_skm_entry_status_visiable)%></label></td>
-              <td class="dataCol"><%= @entry_status.visiable_flag%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :active)%></label></td>
-              <td class="dataCol"><%= @entry_status.status_code%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="data2Col"><%= @entry_status.visiable_flag%></td>
             </tr>
         </tbody>
       </table>

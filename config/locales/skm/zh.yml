@@ -76,3 +76,9 @@ zh:
   #=========================side bar==========================================
   label_skm_last_ten: 最近的文章
   label_skm_navigate_menu: 功能导航
+
+  #======================== skm setting =======================================
+  label_skm_setting: 知识库设置
+  label_skm_setting_sidebar_navigate: 显示边栏导航
+  label_skm_setting_sidebar_file_menu: 显示文件管理
+  label_skm_setting_edit: 修改知识库设置

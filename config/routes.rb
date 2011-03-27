@@ -748,6 +748,11 @@ Ironmine::Application.routes.draw do
     match '/file_managements/:id/show(.:format)' => "file_managements#show", :via => :get
     match '/file_managements/destroy(.:format)' => "file_managements#destroy"
     match '/file_managements/:id/get_version_files(.:format)' => "file_managements#get_version_files"
+
+    #skm_setting
+    match '/skm_settings(/index)(.:format)' => "settings#index", :via => :get
+    match '/skm_settings/edit(.:format)' => "settings#edit", :via => :get
+    match '/skm_settings/update(.:format)' => "settings#update"
   end
   
   match '/demo(/index)' => 'demo#index'
