@@ -5,6 +5,7 @@ zh:
     already_exists_in_service_center: 邮箱地址在当前服务中心中已经被某个人员使用过
   access_denied: 访问 {{permission}} 被拒绝!
   invalid_invitation_key: 无效的邀请验证码！
+  current_page_help: 此页面帮助
   #公用按钮
   cancel: 取消
   next: 下一步
