@@ -80,4 +80,5 @@ en:
   #======================== skm setting =======================================
   label_skm_setting: Service Knowledge Management Settings
   label_skm_setting_sidebar_navigate: Sidebar Navigater
-  label_skm_setting_sidebar_file_menu: Files Menu in Sidebar Navigater
+  label_skm_setting_sidebar_file_menu: Files Menu in Sidebar Navigator
+  label_skm_setting_edit: Edit Service Knowledge Management Settings

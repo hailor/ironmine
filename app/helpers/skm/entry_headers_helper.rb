@@ -9,12 +9,11 @@ module Skm::EntryHeadersHelper
   end
 
   def show_skm_sidebar_navigate
-    setting = Skm::Setting.where("1=1").first
     html_content = ""
     base_content = ""
-    if Skm::Setting.where("1=1").first.sidebar_flag == Irm::Constant::SYS_YES
+    if Irm::SystemParameter.query_by_code("SKM_SIDEBAR_NAVI_DISPLAY").first.value == Irm::Constant::SYS_YES
 
-      if setting.sidebar_file_menu_flag == Irm::Constant::SYS_YES
+      if Irm::SystemParameter.query_by_code("SKM_SIDEBAR_FILE_LINK_DISPLAY").first.value == Irm::Constant::SYS_YES
         html_content << content_tag(:tr, content_tag(:td, link_to(t(:label_skm_file_management), {:controller => "skm/file_managements", :action => "index"})))
       end
 
