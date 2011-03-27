@@ -11,8 +11,6 @@ namespace :irm do
           require "#{p.product_short_name.downcase}/init_permission"
         end
       end
-    rescue =>text
-            puts("Init permission error :#{text}")
 
     end
 

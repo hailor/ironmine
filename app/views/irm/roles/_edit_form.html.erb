@@ -69,7 +69,7 @@
         <table cellpadding="0" cellspacing="0" border="0">
           <tbody>
             <tr>
-              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_menu_entry_list) %></h2></td>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_function_list) %></h2></td>
               <td class="pbButton">
               </td>
               <td class="pbHelp">
@@ -82,10 +82,10 @@
         <% @fgs.each do |group|%>
           <fieldset><legend><%= group[:name] %></legend>
           <% @fs[group[:group_code]].each do |func| %>
-              <label>
+              <div  style="float:left;width:33%;"><label>
               <%= check_box_tag 'role[functions][]', func.id, @role_function_ids.include?(func.id) %>
               <%= func[:name] %>
-              </label>
+              </label></div>
           <% end if @fs[group[:group_code]] %>
           </fieldset>
         <%end%>

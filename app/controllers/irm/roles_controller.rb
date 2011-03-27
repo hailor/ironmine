@@ -7,6 +7,8 @@ class Irm::RolesController < ApplicationController
 
   def show
     @role = Irm::Role.multilingual.find(params[:id])
+    @fgs = Irm::FunctionGroup.multilingual.enabled
+    @fs = @role.functions.multilingual.group_by{|i| i.group_code}
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @role }

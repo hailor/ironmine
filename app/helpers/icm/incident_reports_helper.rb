@@ -5,6 +5,7 @@ module Icm::IncidentReportsHelper
   #当前报表的用户，可以为报表和工具，默认为报表
    def show_module_report(category_code,options={})
       report_module = ""
+      return report_module
       report_limit = options[:report_limit]
       report_purpose = options[:report_purpose]||'REPORT'
       all_reports = Irm::Report.multilingual.query_by_group_and_category("ADMIN_REPORT_GROUP",report_purpose,category_code).
