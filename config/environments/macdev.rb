@@ -38,5 +38,7 @@ Ironmine::Application.configure do
 		:authentication => 'plain',
 		:enable_starttls_auto => true
   }
+
+#  Paperclip.options[:command_path] = '/Users/stanleyliu/work/ImageMagick-6.6.7/bin'
 end
 

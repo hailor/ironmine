@@ -61,6 +61,30 @@ Ironmine::Application.routes.draw do
     match '/menu_entries/destroy(.:format)' => "menu_entries#destroy"
     match '/menu_entries/select_parent(.:format)' => "menu_entries#select_parent"
     match '/menu_entries/:id/show(.:format)' => "menu_entries#show", :via => :get
+
+    #functions
+    match '/functions(/index)(.:format)' => "functions#index", :via => :get
+    match '/functions/:id/edit(.:format)' => "functions#edit", :via => :get
+    match '/functions/:id(.:format)' => "functions#update", :via => :put
+    match '/functions/new(.:format)' => "functions#new", :via => :get
+    match '/functions/create(.:format)' => "functions#create", :via => :post
+    match '/functions/:id/show(.:format)' => "functions#show", :via => :get
+    match '/functions/get_data(.:format)' => "functions#get_data"
+    match '/functions/:function_id/add_permissions(.:format)' => "functions#add_permissions", :via => :get
+    match '/functions/:function_code/get_available_permissions(.:format)' => "functions#get_available_permissions", :via => :get
+    match '/functions/:function_id/select_permissions(.:format)' => "functions#select_permissions"
+    match '/functions/:function_id/add_permissions(.:format)' => "functions#add_permissions", :via => :post
+    match '/functions/:function_id/:permission_id/remove_permission(.:format)' => "functions#remove_permission", :via => :get
+
+    #function_groups
+    match '/function_groups(/index)(.:format)' => "function_groups#index", :via => :get
+    match '/function_groups/:id/edit(.:format)' => "function_groups#edit", :via => :get
+    match '/function_groups/:id(.:format)' => "function_groups#update", :via => :put
+    match '/function_groups/new(.:format)' => "function_groups#new", :via => :get
+    match '/function_groups/create(.:format)' => "function_groups#create", :via => :post
+    match '/function_groups/:id/show(.:format)' => "function_groups#show", :via => :get
+    match '/function_groups/get_data(.:format)' => "function_groups#get_data"
+
     #permissions
     match '/permissions(/index)(.:format)' => "permissions#index", :via => :get
     match '/permissions/:id/edit(.:format)' => "permissions#edit", :via => :get
@@ -119,10 +143,22 @@ Ironmine::Application.routes.draw do
     match '/my_info(/index)(.:format)' => "my_info#index", :via => :get
     match '/my_info/edit(.:format)' => "my_info#edit", :via => :get
     match '/my_info/update(.:format)' => "my_info#update", :via => :put
-    match '/my_info/edit_password(.:format)' => "my_info#edit_password", :via => :get
-    match '/my_info/update_password(.:format)' => "my_info#update_password", :via => :put
     match '/my_info/update_company_access(.:format)' => "my_info#update_company_access", :via => :put
-    match '/my_info/get_login_data(.:format)' => "my_info#get_login_data", :via => :get
+
+    #my_password
+    match '/my_password(.:format)' => "my_password#index", :via => :get
+    match '/my_password/edit_password(.:format)' => "my_password#edit_password", :via => :get
+    match '/my_password/update_password(.:format)' => "my_password#update_password", :via => :put
+
+    #my_avatar
+    match '/my_avatar(/index)(.:format)' => "my_avatar#index", :via => :get
+    match '/my_avatar/edit(.:format)' => "my_avatar#edit", :via => :get
+    match '/my_avatar/update(.:format)' => "my_avatar#update", :via => :put
+    match '/my_avatar/:id/avatar_crop(.:format)' => "my_avatar#avatar_crop", :via => :get
+
+    #my_login_history
+    match '/my_login_history(/index)(.:format)' => "my_login_history#index", :via => :get
+    match '/my_login_history/get_login_data(.:format)' => "my_login_history#get_login_data", :via => :get
 
     #global_settings
     match '/global_settings(/index)(.:format)' => "global_settings#index", :via => :get
@@ -151,6 +187,7 @@ Ironmine::Application.routes.draw do
     match '/scripts/:id/multilingual_edit(.:format)' => "scripts#multilingual_edit", :via => :get
     match '/scripts/:id/multilingual_update(.:format)' => "scripts#multilingual_update", :via => :put
     # navigations
+    match '/navigations/change_role(.:format)'=>"navigations#change_role",:via=>:get
     #mail_templates
     match '/mail_templates/new(.:format)'=>"mail_templates#new",:via=>:get
     match '/mail_templates/get_data(.:format)' => "mail_templates#get_data"
@@ -389,11 +426,11 @@ Ironmine::Application.routes.draw do
     #user_home
     match '/user_home(/index)(.:format)' => "user_home#index", :via => :get
     #view_filter
-    match '/filters/:pid/index/:ft(.:format)' => "filters#index", :via => :get
-    match '/filters/:pid/new/:ft(.:format)' => "filters#new", :via => :get
-    match '/filters/:pid/create(.:format)' => "filters#create", :via => :post
-    match '/filters/:pid/:id/edit(.:format)' => "filters#edit", :via => :get
-    match '/filters/:pid/:id(.:format)' => "filters#update", :via => :put
+    match '/filters/index/:ft(.:format)' => "filters#index", :via => :get
+    match '/filters/new/:ft(.:format)' => "filters#new", :via => :get
+    match '/filters/create(.:format)' => "filters#create", :via => :post
+    match '/filters/:id/edit(.:format)' => "filters#edit", :via => :get
+    match '/filters/:id(.:format)' => "filters#update", :via => :put
     #role
     match '/roles(/index)(.:format)' => "roles#index", :via => :get
     match '/roles/:id/edit(.:format)' => "roles#edit", :via => :get
@@ -670,6 +707,8 @@ Ironmine::Application.routes.draw do
     match '/entry_templates/:template_id/get_available_elements(.:format)' => "entry_templates#get_available_elements", :via => :get
     match '/entry_templates/:template_id:element_id/up_element(.:format)' => "entry_templates#up_element", :via => :get
     match '/entry_templates/:template_id:element_id/down_element_elements(.:format)' => "entry_templates#down_element", :via => :get
+    match '/entry_templates/:id/edit_detail(.:format)' => "entry_templates#edit_detail", :via => :get
+    match '/entry_templates/:detail_id/update_detail(.:format)' => "entry_templates#update_detail"
     #entry_headers
     match '/entry_headers(/index)(.:format)' => "entry_headers#index", :via => :get
     match '/entry_headers/:id/edit(.:format)' => "entry_headers#edit", :via => :get

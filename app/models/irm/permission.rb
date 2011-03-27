@@ -1,18 +1,18 @@
 class Irm::Permission < ActiveRecord::Base
   set_table_name :irm_permissions
 
-  #多语言关系
-  attr_accessor :name,:description
-  has_many :permissions_tls,:dependent => :destroy
-  acts_as_multilingual
+  ##多语言关系
+  #attr_accessor :name,:description
+  #has_many :permissions_tls,:dependent => :destroy
+  #acts_as_multilingual
   
   has_many :function_members
   has_many :functions, :through => :function_members
 
   # 验证权限编码唯一性
   validates_presence_of :permission_code,:page_controller,:page_action
-  validates_uniqueness_of :permission_code, :if => Proc.new { |i| !i.permission_code.blank? }
-  validates_format_of :permission_code, :with => /^[A-Z0-9_]*$/ ,:if=>Proc.new{|i| !i.permission_code.blank?}
+  #validates_uniqueness_of :permission_code, :if => Proc.new { |i| !i.permission_code.blank? }
+  #validates_format_of :permission_code, :with => /^[A-Z0-9_]*$/ ,:if=>Proc.new{|i| !i.permission_code.blank?}
 
   #加入activerecord的通用方法和scope
   query_extend
@@ -84,10 +84,6 @@ class Irm::Permission < ActiveRecord::Base
 
   def self.url_key(controller,action)
     "#{controller.gsub(/\//, "_")}_#{action}"
-  end
-
-  def self.page_help_url(controller,action)
-    "#{controller.gsub(/.*\//, "")}_#{action}"
   end
 
   def self.to_permission(options={})

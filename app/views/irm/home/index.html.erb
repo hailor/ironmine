@@ -2,16 +2,16 @@
 <div class="bPageTitle">
   <div class="ptBody secondaryPalette">
     <a href="javascript:void(0);">
-      <img src="/images/T.png" class="thumbnail_visible" width="45" height="45">
+      <%= image_tag Irm::Person.current.avatar.url(:original), :id => "crop_box", :style => "width: 45px; height: 45px;", :class => "thumbnail_visible" %>
     </a>
     <div class="greeting">
       <div class="content">
           <span class="pageType">
             <h1 class="currentStatusUserName">
-              <a href="javascript:void(0);">liu</a>
+              <%= link_to Irm::Person.current.name, {:controller => "irm/my_info", :action => "index"} %>
             </h1>
           </span>
-          <span class="pageDescription"><a href="javascript:void(0);">星期六 2011年1月8日</a></span>
+          <span class="pageDescription"><a href="javascript:void(0);"><%= Time.now.strftime(t("date.formats.long")) + t("date.day_names")[Time.now.strftime("%w").to_f]%></a></span>
       </div>
     </div>
   </div>

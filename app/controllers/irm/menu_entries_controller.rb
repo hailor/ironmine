@@ -58,7 +58,7 @@ class Irm::MenuEntriesController < ApplicationController
     menu_entries_scope = Irm::MenuEntry.multilingual.where(:menu_code => params[:menu_code])
     menu_entries,count = paginate(menu_entries_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(menu_entries.to_grid_json([:display_sequence,:name,:description,:sub_menu_code,:permission_code, :icon, :css_name, :display_flag,:status_code], count)) }
+      format.json  {render :json => to_jsonp(menu_entries.to_grid_json([:display_sequence,:name,:description,:sub_menu_code,:page_controller, :icon, :css_name, :display_flag,:status_code], count)) }
     end            
   end
 

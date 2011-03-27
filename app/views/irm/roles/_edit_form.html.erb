@@ -1,4 +1,10 @@
 <%= setting_title %>
+<style>
+  fieldset{
+      border:1px solid;
+      margin: 5px;
+  }
+</style>
 <%= form_for(@role,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
@@ -38,16 +44,12 @@
               <td class="data2Col"><%=f.text_field :name, :required=>true%></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_role_type)%></label></td>
-              <td class="data2Col"><%=f.select :role_type, available_role_types%></td>
-            </tr>
-            <tr>
               <td class="labelCol"><label><%=(t :label_irm_role_report_group_code)%></label></td>
               <td class="data2Col"><%=f.select :report_group_code, available_report_groups%></td>
             </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :label_irm_role_menu)%></label></td>
-              <td class="data2Col"><%=f.select :menu_code, available_menus.collect{|m| [m[:name], m.menu_code]}, {:include_blank => t(:select)}%></td>
+           <tr>
+              <td class="labelCol"><label><%=(t :label_irm_role_hidden_flag)%></label></td>
+              <td class="data2Col"><%=f.check_box(:hidden_flag)%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :description)%></label></td>
@@ -61,6 +63,35 @@
         </tbody>
       </table>
     </div>
+    <div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_function_list) %></h2></td>
+              <td class="pbButton">
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <% @fgs.each do |group|%>
+          <fieldset><legend><%= group[:name] %></legend>
+          <% @fs[group[:group_code]].each do |func| %>
+              <div  style="float:left;width:33%;"><label>
+              <%= check_box_tag 'role[functions][]', func.id, @role_function_ids.include?(func.id) %>
+              <%= func[:name] %>
+              </label></div>
+          <% end if @fs[group[:group_code]] %>
+          </fieldset>
+        <%end%>
+      </div>
+    </div>
+</div>
   </div>
   <div class="pbBottomButtons">
     <table cellpadding="0" cellspacing="0" border="0">

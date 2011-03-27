@@ -8,8 +8,8 @@
         </select>
       </span>
       <span class="fFooter">
-       <%= link_to(t(:edit),{:controller => "irm/filters", :action=>"edit",:id=>"{id}",:pid=>@current_permission.id,:back_url=>back_url},{:id=>"#{datatable_id}ViewFilterEditLink"}) %> |
-       <%= link_to(t(:label_irm_new_view_filter),{:controller => "irm/filters", :action=>"new",:ft=>filter_type,:pid=>@current_permission.id,:back_url=>back_url}) %>
+       <%= link_to(t(:edit),{:controller => "irm/filters", :action=>"edit",:id=>"{id}",:pca=>"#{params[:controller]}##{params[:action]}##{back_url}",:back_url=>back_url},{:id=>"#{datatable_id}ViewFilterEditLink"}) %> |
+       <%= link_to(t(:label_irm_new_view_filter),{:controller => "irm/filters", :action=>"new",:ft=>filter_type,:pca=>"#{params[:controller]}##{params[:action]}##{back_url}",:back_url=>back_url}) %>
       </span>
     </span>
   </div>

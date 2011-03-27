@@ -28,13 +28,13 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_person_last_name)%></label></td>
-              <td class="dataCol"><%=@person.last_name%></td>
+              <td class="dataCol"><%= f.text_field :last_name, :required => true%></td>
               <td class="labelCol"><label><%=(t :label_irm_person_first_name)%></label></td>
-              <td class="dataCol"><%=@person.first_name%></td>
+              <td class="dataCol"><%= f.text_field :first_name, :required => true%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_person_email_address)%></label></td>
-              <td class="dataCol"><%=@person.email_address%></td>
+              <td class="dataCol"><%= f.text_field :email_address, :required => true%></td>
               <td class="labelCol"><%=(t :label_irm_person_title)%></td>
               <td class="dataCol"><%=@person.title%></td>
             </tr>
@@ -67,10 +67,8 @@
              <td class="dataCol"><%=f.select(:organization_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
                                            options_from_collection_for_select(available_organization,:id,:wrap_name,@person.organization_id),{},
                                  :id=>"organization_select")%></td>
-             <td class="labelCol"><label><%=(t :label_irm_person_function_group_code)%></label></td>
-             <td class="dataCol"><%=select_tag :function_group_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                   options_from_collection_for_select(available_function_group,
-                                                                                      :group_code,:wrap_name,@person.function_group_code) %></td>
+             <td class="labelCol"></td>
+             <td class="dataCol"></td>
              </tr>
              <tr>
                  <td class="labelCol"><label><%=t(:label_irm_person_department)%></label></td>

@@ -5,7 +5,6 @@ zh:
     already_exists_in_service_center: 邮箱地址在当前服务中心中已经被某个人员使用过
   access_denied: 访问 {{permission}} 被拒绝!
   invalid_invitation_key: 无效的邀请验证码！
-  current_page_help: 此页面帮助
   #公用按钮
   cancel: 取消
   next: 下一步
@@ -189,7 +188,8 @@ zh:
   label_irm_menu_entry_new: 创建子菜单项
   label_irm_menu_entry_edit: 编辑子菜单项
   label_irm_menu_entry_sub_menu: 子菜单
-  label_irm_menu_entry_page: 页面
+  label_irm_menu_entry_page_controller: 页面Controller
+  label_irm_menu_entry_page_action: 页面Action
   label_irm_menu_entry_display_sequence: 显示顺序
   label_irm_menu_entry_display_flag: 显示
   label_irm_menu_entry_prompt: 提示
@@ -323,12 +323,15 @@ zh:
   label_irm_function_new: 创建功能
   label_irm_function_edit: 编辑功能
   label_irm_function_function_code: 功能编码
+  label_irm_function_group_code: 功能組
   label_irm_function_name: 名称
   label_irm_function_name_full: 功能名称
   label_irm_function_description: 描述
   label_irm_function_permission: 管理权限
   label_irm_function_permission_add: 添加/移除权限
   label_irm_function_own_permission: 功能拥有的权限
+  label_irm_function_default_flag: 默认
+  label_irm_function_public_flag: 公开
   #=========================    end functions_controller=======================#
   #=========================    irm function_groups_controller=======================#
   label_irm_function_group: 功能组
@@ -462,6 +465,7 @@ zh:
   label_irm_organization_list: 组织列表
   label_irm_organization_show: 组织显示
   label_irm_organization_function_description: 在公司中的定义组织。
+  label_irm_organization: 组织
   label_irm_organization_organizations_tls:
     name: 名称
   #=========================end irm organizations_controller=======================#
@@ -630,6 +634,12 @@ zh:
   label_irm_person_support_stuff_flag: 是否支持组
   label_irm_person_owned_roles: 已经拥有的角色
   label_irm_person_available_roles: 可用角色
+  label_irm_person_avatar: 头像
+  label_irm_person_avatar_new: 上传新头像
+  label_irm_person_avatar_crop: 裁剪头像
+  label_irm_person_avatar_edit: 编辑头像
+  label_irm_person_avatar_current: 当前头像
+  label_irm_person_avatar_best_size: 最佳大小为100px * 100px
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: 弹性域
@@ -707,6 +717,8 @@ zh:
   label_irm_role_menu: 菜单
   label_irm_role_type: 角色类型
   label_irm_role_report_group_code: 报表组
+  label_irm_function_list: 功能列表
+  label_irm_role_hidden_flag: 隐藏
   #=========================end irm roles ===================================
   #========================= irm reports ===================================
   label_irm_report_list: 报表列表

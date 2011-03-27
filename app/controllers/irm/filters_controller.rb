@@ -58,7 +58,8 @@ class Irm::FiltersController < ApplicationController
   private
 
   def filters_menu
-    permission = Irm::Permission.find(params[:pid])
+    controller_action = params[:pca].split("#")
+    permission = {:page_controller=>controller_action[0],:page_action=>controller_action[1]}
     process_menu(permission)
   end
 

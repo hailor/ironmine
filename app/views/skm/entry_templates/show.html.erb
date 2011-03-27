@@ -37,7 +37,7 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :active)%></label></td>
-              <td class="dataCol"><%= @entry_template.status_code%></td>
+              <td class="dataCol"><%= check_img(@entry_template.status_code)%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
@@ -67,21 +67,23 @@
       <div class="pbBody">
         <div id="entry_elements_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:move_up), {:controller => "skm/entry_templates", :action => "up_element", :element_id => "{id}", :template_id => @entry_template})%>&nbsp;
-            <%= link_to(t(:move_down), {:controller => "skm/entry_templates", :action => "down_element", :element_id => "{id}", :template_id => @entry_template})%>&nbsp;
-            <%= link_to(t(:remove),{:controller => "skm/entry_templates", :action => "remove_element", :element_id => "{id}", :template_id => @entry_template}) %>
+            <%= icon_link("btn_up", t(:move_up), {:controller => "skm/entry_templates", :action => "up_element", :element_id => "{id}", :template_id => @entry_template})%>&nbsp;
+            <%= icon_link("btn_down", t(:move_down), {:controller => "skm/entry_templates", :action => "down_element", :element_id => "{id}", :template_id => @entry_template})%>&nbsp;
+            <%= icon_link("btn_remove",t(:remove),{:controller => "skm/entry_templates", :action => "remove_element", :element_id => "{id}", :template_id => @entry_template}) %>&nbsp;
+            <%= icon_link_edit({:controller => "skm/entry_templates", :action => "edit_detail", :id => "{detail_id}"}) %>
           </div>
-          <div id="required_flag" style="display:none">
-            <%= check_img("{required_flag}") %>
+          <div id="detail_required_flag" style="display:none">
+            <%= check_img("{detail_required_flag}") %>
           </div>               
         </div>
         <%= datatable("entry_elements_list",url_for(:controller => "skm/entry_templates", :action=>"get_owned_elements_data", :template_id => @entry_template,:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template", :width => "120px"},
-                       {:key=>"required_flag",:label=>t(:label_skm_entry_template_element_required),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"},
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template", :width => "100px"},
+                       {:key=>"detail_id",:formatter=>"Y.irm.template", :hidden => true},
+                       {:key=>"detail_required_flag",:label=>t(:label_skm_entry_template_element_required),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"},
                        {:key=>"entry_template_element_code",:label=>t(:label_skm_entry_template_element_code),:sortable=>true, :width => "15%"},
                        {:key=>"name",:label=>t(:name),:sortable=>true, :width => "20%"},
                        {:key=>"description",:label=>t(:description),:sortable=>true},
-                       {:key=>"default_rows",:label=>t(:label_skm_entry_template_element_rows),:sortable=>true, :width => "80px"}
+                       {:key=>"detail_rows",:label=>t(:label_skm_entry_template_element_rows),:sortable=>true, :width => "80px"}
                        ]) %>
       </div>
     </div>

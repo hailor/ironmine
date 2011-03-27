@@ -14,6 +14,20 @@ class Csi::Survey < ActiveRecord::Base
                                                    where("v1.lookup_type='SYSTEM_STATUS_CODE' AND v1.lookup_code = #{table_name}.status_code AND "+
                                                          "v1.language=?",language)}
 
+  scope :query_recently_ten_reply,lambda{
+    select("#{table_name}.id, #{table_name}.title title, sr.updated_at updated_at").
+      joins(",#{Csi::SurveySubject.table_name} ss, #{Csi::SurveyResult.table_name} sr").
+      where("ss.survey_id = #{table_name}.id").
+      where("sr.subject_id = ss.id").
+      where("sr.updated_at = (SELECT MAX(srr.updated_at) FROM #{Csi::SurveyResult.table_name} srr WHERE srr.subject_id = ss.id)").
+      order("sr.updated_at DESC")
+  }
+
+  scope :query_recently_ten_update,lambda{
+    select("#{table_name}.id, #{table_name}.title title, #{table_name}.updated_at updated_at").order("#{table_name}.updated_at DESC")
+
+  }
+
   after_create :generate_survey_code
 
 
@@ -34,6 +48,19 @@ class Csi::Survey < ActiveRecord::Base
     else
       subjects
     end
+  end
+
+  def self.find_recently_ten
+    recently_reply = query_recently_ten_reply
+    recently_updated = query_recently_ten_update
+
+    recently = recently_reply.uniq + recently_updated.uniq
+    recently = recently.sort{|x, y| y[:updated_at] <=> x[:updated_at] }
+
+    recently.each do |r|
+      r.attributes.except(:updated_at)
+    end
+    recently.uniq
   end
 
   private

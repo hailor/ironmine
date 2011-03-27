@@ -7,6 +7,11 @@ class Irm::NavigationsController < ApplicationController
     redirect_entrance
   end
 
+  def change_role
+    session[:role_id] = params[:role_id] if params[:role_id]
+    redirect_entrance
+  end
+
   def access_deny
     
   end

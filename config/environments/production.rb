@@ -1,4 +1,5 @@
 Ironmine::Application.configure do
+
   # Settings specified here will take precedence over those in config/environment.rb
 
   # The production environment is meant for finished, "live" apps.
@@ -19,17 +20,17 @@ Ironmine::Application.configure do
   # just comment this out and Rails will serve the files
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+#  config.log_level = :debug
 
   # Use a different logger for distributed setups
-  # config.logger = SyslogLogger.new
+#  config.logger = SyslogLogger.new
 
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
-  config.serve_static_assets = false
+#  config.serve_static_assets = false
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -59,4 +60,6 @@ Ironmine::Application.configure do
 		:authentication => 'plain',
 		:enable_starttls_auto => true
   }
+
+  Paperclip.options[:command_path] = '/usr/local/bin'
 end

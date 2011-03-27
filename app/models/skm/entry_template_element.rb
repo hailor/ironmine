@@ -7,7 +7,7 @@ class Skm::EntryTemplateElement < ActiveRecord::Base
   query_extend
 
   scope :with_template, lambda{|template_id|
-    select("#{table_name}.*, et.required_flag required_flag").
+    select("#{table_name}.*, et.required_flag required_flag, et.id detail_id, et.default_rows detail_rows, et.required_flag detail_required_flag").
     joins(",#{Skm::EntryTemplateDetail.table_name} et").
     where("et.entry_template_id = ?", template_id).
     where("et.entry_template_element_id = #{table_name}.id").

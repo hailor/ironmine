@@ -1,0 +1,71 @@
+<%= app_title %>
+<%= form_for(@detail,:url=>{:action=>"update_detail", :detail_id => @detail.id},:builder => LabellingFormBuilder) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_skm_entry_template_detail_edit)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <% if @return_url.blank?%>
+                <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+            <% else %>
+                <div class="button"><%= link_to t(:cancel), @return_url%></div>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @detail%>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend">
+          <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+          </span><span class="requiredMark">*</span>
+          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+        </span>
+      </span>
+      <h3><%= t(:label_common_info) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_skm_entry_template_element_name)%></label></td>
+              <td class="data2Col"><%= @element.name%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_skm_entry_template_element_rows)%></label></td>
+              <td class="data2Col"><%=f.text_field :default_rows,:irm_number_only => true, :required=>true%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t(:label_skm_entry_template_element_required)%></label></td>
+              <td class="data2Col"><%= f.check_box :required_flag%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <% if @return_url.blank?%>
+                <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+            <% else %>
+                <div class="button"><%= link_to t(:cancel), @return_url%></div>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>

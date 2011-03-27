@@ -5,7 +5,6 @@ en:
     already_exists_in_service_center: Email is token by someone in current ServiceCenter
   access_denied: Access {{permission}} Deny!
   invalid_invitation_key: Invalid invitation key!
-  current_page_help: Current page help
   #usual button
   cancel: Cancel
   next: Next Step
@@ -197,7 +196,8 @@ en:
   label_irm_menu_entry_new: Create Menu Entry
   label_irm_menu_entry_edit: Edit Menu Entry
   label_irm_menu_entry_sub_menu: Sub Menu
-  label_irm_menu_entry_page: Page
+  label_irm_menu_entry_page_controller: Page controller
+  label_irm_menu_entry_page_action: Page action
   label_irm_menu_entry_display_sequence: Display Sequence
   label_irm_menu_entry_display_flag: Display
   label_irm_menu_entry_prompt: Prompt
@@ -306,12 +306,15 @@ en:
   label_irm_function_new: Create Function
   label_irm_function_edit: Edit Function
   label_irm_function_function_code: Function Code
+  label_irm_function_group_code: Function group
   label_irm_function_name: Name
   label_irm_function_name_full: Function Name
   label_irm_function_description: Description
   label_irm_function_permission: Permission
   label_irm_function_permission_add: Add/Remove Permission
   label_irm_function_own_permission: Owned Permissions
+  label_irm_function_default_flag: Default
+  label_irm_function_public_flag: Public
   #=========================    end functions_controller=======================#
   #=========================    irm function_groups_controller=======================#
   label_irm_function_group: Function Group
@@ -446,6 +449,7 @@ en:
   label_irm_organization_list: List Organization
   label_irm_organization_show: Show Organization
   label_irm_organization_function_description: Define organization in company。
+  label_irm_organization: Organization
   label_irm_organization_organizations_tls:
     name: Name
   #=========================end irm organizations_controller=======================#
@@ -606,14 +610,20 @@ en:
   label_irm_person_maintenance_company_access: Maintenance Company Access
   label_irm_person_add_company_access: Add Company
   label_irm_person_person_name: Full Name
-  label_irm_person_edit: Edit Person
+  label_irm_person_all_support_groups: All Support Groups
   label_irm_person_choose_company: Choose Company
   label_irm_person_info: Person Info
   label_irm_person_other_info: Other Info
   label_irm_person_company_access_flag: Company Access
   label_irm_person_support_stuff_flag: Support Stuff
   label_irm_person_owned_roles: Owned Roles
-  label_irm_person_available_roles: Available Roles  
+  label_irm_person_available_roles: Available Roles
+  label_irm_person_avatar: Avatar
+  label_irm_person_avatar_new: Upload New Avatar
+  label_irm_person_avatar_crop: Crop Avatar
+  label_irm_person_avatar_edit: Edit Avatar
+  label_irm_person_avatar_current: Current Avatar
+  label_irm_person_avatar_best_size: Best size 100px * 100px
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: Flex
@@ -691,6 +701,8 @@ en:
   label_irm_role_menu: Menu
   label_irm_role_type: Role Type
   label_irm_role_report_group_code: Report group
+  label_irm_function_list: Function list
+  label_irm_role_hidden_flag: Hidden
   #=========================end irm roles ===================================
   #========================= irm reports ===================================
   label_irm_report_list: Report list

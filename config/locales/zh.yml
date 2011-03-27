@@ -14,7 +14,7 @@ zh:
     formats:
       default: "%Y-%m-%d"
       short: "%b%d日"
-      long: "%Y年%b%d日"
+      long: "%Y年%m月%d日"
 
     day_names: [星期日, 星期一, 星期二, 星期三, 星期四, 星期五, 星期六]
     abbr_day_names: [日, 一, 二, 三, 四, 五, 六]
@@ -140,3 +140,18 @@ zh:
         not_same_project: "不属于同一个项目"
         circular_dependency: "此关联将导致循环依赖"
         invaliddate: " 错误的日期类型，正确的格式如 2008-10-10"
+  label_action_index: 首页
+  label_action_new: 新建
+  label_action_create: 新建
+  label_action_edit: 编辑
+  label_action_update: 编辑
+  label_action_show: 查看
+  label_action_multilingual_edit: 多语言编辑
+  label_action_multilingual_update: 多语言编辑
+  #=========paginator==============
+  paginator_record: 记录数
+  paginator_rowperpage: 每页显示
+  paginator_prepage: 上一页
+  paginator_nextpage: 下一页
+  paginator_page: 页
+  #=========end paginator==========

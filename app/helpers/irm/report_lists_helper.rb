@@ -33,11 +33,11 @@ module Irm::ReportListsHelper
      report_description = report[:description]
      if (options[:controller].blank? || options[:action].blank?)
        report_permission = Irm::Permission.query_by_permission_code(report[:permission_code]).first
-       report_controller = report_permission[:page_controller]
-       report_action = report_permission[:page_action]
+       report_controller = params[:controller]
+       report_action = params[:action]
      else
-       report_controller = options[:controller]
-       report_action = options[:action]
+       report_controller = params[:controller]
+       report_action = params[:action]
      end
      report_entry = content_tag(:span, report_description, :class => "entryDesc")
      report_entry = content_tag(:span, ("&nbsp;"*2 +"-"+"&nbsp;"*2+ report_entry.html_safe).html_safe,

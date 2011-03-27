@@ -1,6 +1,6 @@
 class Skm::EntryTemplateDetail < ActiveRecord::Base
   set_table_name :skm_entry_template_details
-  
+  validates_presence_of :default_rows
   scope :owned_elements, lambda{|template_id|
     select("#{table_name}.*, te.name element_name, te.description element_description, '' entry_content").
     joins(",#{Skm::EntryTemplateElement.table_name} te").

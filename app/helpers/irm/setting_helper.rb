@@ -13,13 +13,14 @@ module Irm::SettingHelper
 
   # 生成设置一级菜单
   def setting_menu
-    roles = Irm::Person.current.allowed_roles.collect{|r| r if r[:role_type].eql?("SETTING")}.compact
-    return nil unless roles&&roles.size>0
+    if Irm::Person.current.nil?||@setting_menus.nil?||@setting_menus.length<1
+      return
+    end
+    menus = Irm::MenuManager.sub_entries_by_menu(@setting_menus[0],true)
+    return nil unless menus&&menus.size>0
     links = ""
-    roles.each do |r|
-      role = Irm::MenuManager.roles[r[:role_code]]
-      url = Irm::MenuManager.role_showable(r[:role_code])
-      links << content_tag(:div,link_to(role[I18n.locale][:description],{:controller=>url[:page_controller],:action=>url[:page_action],:mc=>role[:menu_code],:level=>1,:top_role=>role[:role_code]}),{:class=>"menuItem"}) if url
+    menus.each do |m|
+      links << content_tag(:div,link_to(m[:name],{:controller=>m[:page_controller],:action=>m[:page_action],:mc=>m[:menu_code],:level=>1,:top_menu=>m[:menu_code]}),{:class=>"menuItem"})
     end
 
     links.html_safe
@@ -30,8 +31,11 @@ module Irm::SettingHelper
     # 当前页面选中的权限
     # 将controller的index也加入选中列表
     permssions = []
-    permssions << Irm::MenuManager.permission_by_url(@menu_permission[:page_controller],@menu_permission[:page_action])[:permission_code].downcase if  Irm::MenuManager.permission_by_url(@menu_permission[:page_controller],@menu_permission[:page_action]||"index")
-    permssions << Irm::MenuManager.permission_by_url(@menu_permission[:page_controller],"index")[:permission_code].downcase if  Irm::MenuManager.permission_by_url(@menu_permission[:page_controller],"index")
+    if  Irm::MenuManager.permission_menus[Irm::Permission.url_key(@menu_permission[:page_action],@menu_permission[:page_action])]
+      permssions << Irm::Permission.url_key(@menu_permission[:page_controller],@menu_permission[:page_action])
+    else
+      permssions << Irm::Permission.url_key(@menu_permission[:page_controller],"index")
+    end
     # 当前页面对应的菜单
     menus = @setting_menus.dup
     #如果菜单菜单中只有一个菜单则返回
@@ -67,13 +71,14 @@ module Irm::SettingHelper
           if(e[:leaf_flag].eql?(Irm::Constant::SYS_YES))
             functions << content_tag(:div,link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action]}),{:mi=>"#{e[:menu_code].downcase}",:class=>"setupLeaf"})
           else
-          icon_link = link_to("",{},{:href=>"javascript:void(0)",:real=>"#{e[:menu_code].downcase}",:class=>"NavIconLink NavTreeCol",:id=>"#{e[:menu_code].downcase}_icon"})
-          font_link = link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]},{:title=>e[:description],:class=>"setupFolder",:id=>"#{e[:menu_code].downcase}_font"})
-          child_div = content_tag(:div,generate_sidebar_menu(e[:menu_code],next_level),{:style=>"display:none;",:class=>"childContainer",:id=>"#{e[:menu_code].downcase}_child"})
-          functions << content_tag(:div,icon_link+font_link+child_div,{:mi=>"#{e[:menu_code].downcase}",:class=>"parent",:id=>"#{e[:menu_code].downcase}"})
+            icon_link = link_to("",{},{:href=>"javascript:void(0)",:real=>"#{e[:menu_code].downcase}",:class=>"NavIconLink NavTreeCol",:id=>"#{e[:menu_code].downcase}_icon"})
+            font_link = link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]},{:title=>e[:description],:class=>"setupFolder",:id=>"#{e[:menu_code].downcase}_font"})
+            child_div = content_tag(:div,generate_sidebar_menu(e[:menu_code],next_level),{:style=>"display:none;",:class=>"childContainer",:id=>"#{e[:menu_code].downcase}_child"})
+            functions << content_tag(:div,icon_link+font_link+child_div,{:mi=>"#{e[:menu_code].downcase}",:class=>"parent",:id=>"#{e[:menu_code].downcase}"})
           end
         else
-          functions << content_tag(:div,link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action]}),{:mi=>"#{e[:permission_code].downcase}",:class=>"setupLeaf"})
+          key = Irm::Permission.url_key(e[:page_action],e[:page_action])
+          functions << content_tag(:div,link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action]}),{:class=>"setupLeaf",:mi=>Irm::Permission.url_key(e[:page_controller],"index")})
         end
       end
     end

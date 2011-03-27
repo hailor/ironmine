@@ -26,4 +26,16 @@ module Icm::GroupAssignmentsHelper
   def available_ass_organizations
     Irm::Organization.multilingual.enabled.collect{|p|[p[:name], p[:id]]}
   end
+
+  def temp_ava_organizations_edit(company_id)
+    Irm::Organization.multilingual.enabled.where("#{Irm::Organization.table_name}.company_id = ?", company_id).collect{|p|[p[:name], p[:id]]}
+  end
+
+  def temp_ava_departments_edit(organization_id)
+    Irm::Department.multilingual.enabled.where("#{Irm::Department.table_name}.organization_id = ?", organization_id).collect{|p|[p[:name], p[:id]]}
+  end
+
+  def temp_ava_people_edit(department_id)
+    Irm::Person.where("#{Irm::Person.table_name}.department_id = ?", department_id).collect{|p|[p.name, p.id]}
+  end
 end

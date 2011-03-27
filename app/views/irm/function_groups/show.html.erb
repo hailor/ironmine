@@ -47,8 +47,7 @@
           <tbody>
             <tr>
               <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_function_list) %></h2></td>
-              <td class="pbButton">
-                <div class="button"><%= link_to t(:add), {:action => "select_functions", :group_id => @function_group}%></div>
+              <td  class="pbButton">
               </td>
               <td class="pbHelp">
               </td>
@@ -57,16 +56,16 @@
         </table>
       </div>
       <div class="pbBody">
-        <div id="function_groups_list" class="datatable" style="width:100%">
+        <div id="functions_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= icon_link_remove({:action=>"remove_function",:function_id=>"{id}", :group_id => @function_group}) %>
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
           <div id="status_code" style="display:none">
             <%= check_img("{status_code}") %>
-          </div>              
+          </div>
         </div>
-        <%= datatable("function_groups_list",url_for(:action=>"get_own_functions", :group_code => @function_group.group_code,:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template", :width => "40px"},
+        <%= datatable("functions_list",url_for(:controller=>"irm/functions",:action=>"get_data",:group_code=>@function_group.group_code,:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template", :width => "80px"},
                        {:key=>"function_code",:label=>t(:label_irm_function_function_code),:sortable=>true},
                        {:key=>"name",:label=>t(:label_irm_function_name),:sortable=>true},
                        {:key=>"description",:label=>t(:label_irm_function_description),:sortable=>true},
@@ -74,3 +73,4 @@
       </div>
     </div>
 </div>
+
