@@ -102,6 +102,8 @@ zh:
   find: 查找
   my_view: 我的视图
   calendar_task: 工作日历
+  remember_user_name: 记住用户名
+  no_account: 没有账户
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=====================#
   label_lookup_types: 快速编码类型

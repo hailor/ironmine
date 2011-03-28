@@ -112,6 +112,8 @@ en:
   my_view: My View
   calendar_task: Calendar
   upload: Upload
+  remember_user_name: Remember User Name
+  no_account: No Account
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type

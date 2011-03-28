@@ -181,6 +181,7 @@ a.headerSearchOptionsLink {text-decoration:none;}
     display:none;
     padding: 3px 15px 3px 15px;
     -moz-box-shadow: 0 2px 4px rgba(127, 127, 127, 0.3);
+    -webkit-box-shadow:rgba(127, 127, 127, 0.292969) 0 2px 4px;
  }
 .menuParent div.menuContentVisual{
     display:block;
