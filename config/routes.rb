@@ -410,6 +410,8 @@ Ironmine::Application.routes.draw do
     match '/support_group_members/get_data(.:format)' => "support_group_members#get_data"
     match '/support_group_members/select_person(.:format)' => "support_group_members#select_person"
     match '/support_group_members/get_person(.:format)' => "support_group_members#get_person"
+    match '/support_group_members/get_options(.:format)' => "support_group_members#get_options",:via=>:get
+
     #locations
     match '/locations(/index)(.:format)' => "locations#index", :via => :get
     match '/locations/get_data(.:format)' => "locations#get_data"

@@ -40,6 +40,15 @@ class Irm::SupportGroupMembersController < ApplicationController
     end
   end
 
+
+  def get_options
+    support_group_members_scope= Irm::SupportGroupMember.with_person.with_support_group(I18n.locale).query_by_support_group(params[:group_id])
+    support_group_members = support_group_members_scope.collect{|p| {:label=>p[:person_name],:value=>p[:person_id]}}
+    respond_to do |format|
+      format.json {render :json=>support_group_members.to_grid_json([:label,:value],support_group_members.count)}
+    end
+  end
+
   def delete
     @combo = Irm::SupportGroupMember.find(params[:id])
     @combo.destroy

@@ -97,7 +97,7 @@ zh:
   label_icm_incident_request_summary: 信息
   label_icm_incident_requset_addition_info: 附加信息
   label_icm_incident_request_requested_by: 请求人
-  label_icm_incident_request_contact: 联系人(电话)
+  label_icm_incident_request_contact: 联系人
   label_icm_incident_request_urgence_code: 紧急度
   label_icm_incident_request_impact_range_code: 影响度
   label_icm_incident_request_support_group: 支持组

@@ -99,7 +99,7 @@ en:
   label_icm_incident_request_summary: Summary
   label_icm_incident_requset_addition_info: Addition information
   label_icm_incident_request_requested_by: Requester
-  label_icm_incident_request_contact: Contact(phone)
+  label_icm_incident_request_contact: Contact
   label_icm_incident_request_urgence_code: Urgence
   label_icm_incident_request_impact_range_code: Impact range
   label_icm_incident_request_support_group: Support group
