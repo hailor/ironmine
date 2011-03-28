@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitSkmSettingMenu < ActiveRecord::Migration
   def self.up
     skm_menu_entiry_101= Irm::MenuEntry.new(:menu_code=>'SKM_ADMIN_GENERAL_MENU',:sub_menu_code=>nil,:page_controller=>'skm/settings',:display_sequence=>40,:display_flag=>'Y',:not_auto_mult=>true)
