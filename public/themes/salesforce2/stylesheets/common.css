@@ -620,6 +620,13 @@ form .pbBottomButtons > table {border-top:1px solid #FFFFFF;padding:0 !important
     text-align:center;
 }
 
+div.button, div.grayButton {
+	float: left;
+	margin-left: 6px;
+	margin-top: 1px;
+    line-height: 20px;
+}
+
 div.button a {
     -moz-border-radius: 3px 3px 3px 3px;
     background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
@@ -653,7 +660,30 @@ div.button input[type="submit"] {
 }
 div.button input[type="submit"]:hover{background-position: right -30px; cursor: pointer;}
 
-.bPageBlock .buttons {padding:3px 20px;text-align:center;}
+div.grayButton a {
+    -moz-border-radius: 3px 3px 3px 3px;
+    border-color: #f8f8f8;
+	border-width: 1px;
+    border-style: solid;
+	text-decoration: none;
+	color:#333333;
+	display: inline-block;
+	padding: 0 8px;
+	height: 20px;
+    font-size: 11px;
+    font-weight: bold;
+	line-height: 20px;
+}
+div.grayButton a:hover{
+    background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
+    /*background-position: right -30px;*/
+    border-color: #cdcdcd;
+	border-width: 1px;
+    border-style: solid;
+}
+
+
+.bPageBlock .buttons, .bPageBlock .grayButtons {padding:3px 20px;text-align:center;}
 .reportList .reportListFolder {padding:5px 0;}
 .reportList .secondaryPalette{
     background-color:#A55647;

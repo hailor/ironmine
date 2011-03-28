@@ -65,9 +65,9 @@
           </td>
           <td class="pbHelp">
             <%if @incident_request[:close_reason_code].nil? %>
-              <div class="button"><a href="#reply"><%=t(:label_icm_incident_journal_new)%></a></div>
-              <div class="button"><%= link_to t(:close), {:action => "edit_close"}%></div>
-              <div class="button"><%= link_to t(:edit), {:controller=>"icm/incident_requests",:action => "edit", :id => @incident_request.id}%></div>
+              <div class="grayButton"><a href="#reply"><%=t(:label_icm_incident_journal_new)%></a></div>
+              <div class="grayButton"><%= link_to t(:close), {:action => "edit_close"}%></div>
+              <div class="grayButton"><%= link_to t(:edit), {:controller=>"icm/incident_requests",:action => "edit", :id => @incident_request.id}%></div>
             <%end%>
           </td>
         </tr>
