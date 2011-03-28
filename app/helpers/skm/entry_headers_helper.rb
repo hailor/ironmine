@@ -16,13 +16,18 @@ module Skm::EntryHeadersHelper
       if Irm::SystemParameter.query_by_code("SKM_SIDEBAR_FILE_LINK_DISPLAY").first.value == Irm::Constant::SYS_YES
         html_content << content_tag(:tr, content_tag(:td, link_to(t(:label_skm_file_management), {:controller => "skm/file_managements", :action => "index"})))
       end
-
+      #显示 我的收藏
+      html_content << content_tag(:tr, content_tag(:td, link_to(t(:label_skm_entry_header_my_favorites), {:controller => "skm/entry_headers", :action => "my_favorites"})))
+      #显示 我的草稿
+      html_content << content_tag(:tr, content_tag(:td, link_to(t(:label_skm_my_drafts), {:controller => "skm/entry_headers", :action => "my_drafts"})))
       base_content = content_tag(:div,
                                  content_tag(:div,
                                              content_tag(:h2,  t(:label_skm_navigate_menu)),
                                              :class => "sidebarModuleHeader") +
                                      content_tag(:div, content_tag(:table, content_tag(:tbody, raw(html_content))), :class => "sidebarModuleBody"),
                                  :class => "sidebarModule")
+
+
     end
     raw(base_content)
   end

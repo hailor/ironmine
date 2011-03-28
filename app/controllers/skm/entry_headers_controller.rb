@@ -254,14 +254,14 @@ class Skm::EntryHeadersController < ApplicationController
   end
 
   def my_favorites
-    render :layout => nil
+
   end
 
   def add_favorites
     favorite = Skm::EntryFavorite.new({:person_id => params[:person_id], :entry_header_id => params[:id]})
     respond_to do |format|
       if favorite.save
-        format.html { redirect_to(:action => "index") }
+        format.html { redirect_to(:action => "my_favorites") }
         format.xml  { head :ok }
       else
         format.html { redirect_to(:action => "index") }
@@ -277,17 +277,17 @@ class Skm::EntryHeadersController < ApplicationController
     favorite = Skm::EntryFavorite.where(:person_id => params[:person_id], :entry_header_id => params[:entry_header_id]).first
     favorite.destroy
     respond_to do |format|
-      format.html { redirect_to(:action => "index") }
+      format.html { redirect_to(:action => "my_favorites") }
       format.xml  { head :ok }
     end
   end
 
   def my_drafts
-    render :layout => nil
+
   end
 
   def my_drafts_data
-    entry_headers_scope = Skm::EntryHeader.list_all.my_drafts(params[:person_id]).published
+    entry_headers_scope = Skm::EntryHeader.list_all.my_drafts(params[:person_id])
     entry_headers,count = paginate(entry_headers_scope)
     respond_to do |format|
       format.json  {render :json => to_jsonp(entry_headers.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date], count)) }
