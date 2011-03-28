@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitSkmSettingsFunction < ActiveRecord::Migration
   def self.up
     skm_view_skm_settings= Irm::Function.new(:group_code=>'SKM_SETTING',:function_code=>'VIEW_SKM_SETTINGS',:default_flag=>'N',:public_flag=>'N',:not_auto_mult=>true)
