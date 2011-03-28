@@ -4,11 +4,37 @@ module Icm::IncidentRequestsHelper
   end
 
   def available_person
-    Irm::Person.query_by_support_staff_flag(Irm::Constant::SYS_NO).order_id.all.collect{|p|[p.name,p[:id]]}
+    people = Irm::Person.query_by_support_staff_flag(Irm::Constant::SYS_NO).order_id.all.collect{|p|[p.name,p[:id]]}
+    needed_to_replace = people.detect{|person| Irm::Person.current.id.eql?(person[1])}
+    if needed_to_replace
+      people.delete_if{|person| Irm::Person.current.id.eql?(person[1])}
+      people.unshift([Irm::Person.current.name,Irm::Person.current.id])
+    end
+    people
+  end
+
+  def available_contact
+    people = Irm::Person.query_by_support_staff_flag(Irm::Constant::SYS_NO).order_id.all.collect{|p|[p.name,p[:id],{:phone=>p.mobile_phone}]}
+    needed_to_replace = people.detect{|person| Irm::Person.current.id.eql?(person[1])}
+    if needed_to_replace
+      people.delete_if{|person| Irm::Person.current.id.eql?(person[1])}
+      people.unshift([Irm::Person.current.name,Irm::Person.current.id,{:phone=>Irm::Person.current.mobile_phone}])
+    end
+    people
   end
 
   def available_supporter
-    Irm::Person.query_by_support_staff_flag(Irm::Constant::SYS_YES).order_id.all.collect{|p|[p.name,p[:id]]}
+    people = Irm::Person.query_by_support_staff_flag(Irm::Constant::SYS_YES).order_id.all.collect{|p|[p.name,p[:id]]}
+    needed_to_replace = people.detect{|person| Irm::Person.current.id.eql?(person[1])}
+    if needed_to_replace
+      people.delete_if{|person| Irm::Person.current.id.eql?(person[1])}
+      people.unshift([Irm::Person.current.name,Irm::Person.current.id])
+    end
+    people
+  end
+
+  def available_support_group
+    Irm::SupportGroup.multilingual.collect{|s| [s[:name],s.id]}
   end
 
   def available_urgence_code

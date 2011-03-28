@@ -1,14 +1,18 @@
-
+<% if allow_to_function?(:create_incident_request) %>
     <div class="sidebarModule">
         <div class="sidebarModuleHeader"><h2><%= t :label_icm_incident_request_short_new %></h2></div>
         <div class="sidebarModuleBody">
         <%  @incident_request = Icm::IncidentRequest.new%>
         <%= form_for(@incident_request,:url=>{:controller => "icm/incident_requests", :action=>"short_create"},:builder => LabellingFormBuilder) do |f| %>
-            <div class="quickCreateField">
-              <label for="incident_request_requested_by"><%=t(:label_icm_incident_request_requested_by)%><%= required_icon %></label><br>
-              <%=f.select :requested_by,nullable_options_for_select(available_person,@incident_request.requested_by),
-                                                            {},{:id=>"incident_request_requested_by"}%>
-            </div>
+            <% if allow_to_function?(:create_icdt_rqst_for_other) %>
+              <div class="quickCreateField">
+                <label for="incident_request_requested_by"><%=t(:label_icm_incident_request_requested_by)%><%= required_icon %></label><br>
+                <%=f.select :requested_by,nullable_options_for_select(available_person,@incident_request.requested_by),
+                                                              {},{:id=>"incident_request_requested_by"}%>
+              </div>
+            <% else %>
+                <%= f.hidden_field(:requested_by,:value=>Irm::Person.current.id) %>
+            <% end %>
             <div class="quickCreateField">
               <label for="incident_request_service_code"><%=t(:label_icm_incident_request_service_code)%><%= required_icon %></label><br>
               <%=f.select :service_code,nullable_options_for_select(available_service,@incident_request.service_code),
@@ -28,3 +32,4 @@
         <% end %>
         </div>
     </div>
+<% end %>
