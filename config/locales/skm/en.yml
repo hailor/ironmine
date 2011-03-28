@@ -58,6 +58,7 @@ en:
   label_skm_my_drafts: Drafts
   error_choice_template: Select a template first
   label_action_my_favorites: My Favorites
+  label_action_my_drafts: My Drafts
   #=========================skm FileManagement================================
   label_skm_file_management: Files
   label_skm_file_list: Files List
