@@ -32,7 +32,7 @@
                   <td id="bottomButtonRow" class="pbButtonb">
                     <div class="button"><%= link_to t(:last), {}, {:href => "javascript:void(0);", :onclick => "submit_last()"}%></div>
                     <div class="button"><%= link_to t(:next), {}, {:href => "javascript:void(0);", :onclick => "submit_next()"}%></div>
-                    <div class="button"><%= link_to t(:cancel), {:action => "index"} %></div>
+                    <div class="button"><%= link_to t(:cancel), {:action => "index"}, :confirm => t(:label_cancel_confirm) %></div>
                   </td>
                 </tr>
               </tbody>
