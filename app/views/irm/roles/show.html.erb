@@ -76,7 +76,7 @@
           <fieldset><legend><%= group[:name] %></legend>
           <% @fs[group[:group_code]].each do |func| %>
               <div  style="float:left;width:33%;"><label>
-              <%= check_box_tag 'role[functions][]', func.id, true,{:disabled=>"true"} %>
+              <%= check_img("Y") %>
               <%= func[:name] %>
               </label></div>
           <% end if @fs[group[:group_code]] %>
