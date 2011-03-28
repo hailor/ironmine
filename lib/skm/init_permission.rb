@@ -19,6 +19,6 @@ Irm::AccessControl.map do |map|
 
   #===================skm/settings ====================================
   map.function :view_skm_settings, {"skm/settings" => ["index"]}
-  map.function :update_skm_settings, {"skm/settings" => ["edit", "update"]}
+  map.function :edit_skm_settings, {"skm/settings" => ["edit", "update"]}
 
 end
