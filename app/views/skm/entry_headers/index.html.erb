@@ -10,11 +10,7 @@
   </div>
 </div>
 <%= view_filter("SKM_ENTRY_HEADERS_INDEX_A","entry_headers_list") %>
-<div id="tabView" class="bMiniTab"></div>
-<%= tabview("tabView",
-            {t(:label_skm_entry_header) => 'entry_headers/data_grid.js',
-             t(:label_skm_entry_header_my_favorites) => 'entry_headers/my_favorites.js'
-            }) %>
+<%= render "data_grid" %>
 
 <%= render "/irm/report_lists/report_category",{:category_code=>"SERVICE_KNOWLEDGE_MANAGE",:options=>{}} %>
 <%= content_for :sidebar do%>
