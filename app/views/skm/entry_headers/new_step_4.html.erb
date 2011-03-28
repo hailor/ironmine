@@ -41,7 +41,7 @@
                     <div class="button"><%= link_to t(:last), {}, {:href => "javascript:void(0);", :onclick => "submit_last()"}%></div>
                     <div class="button"><%= link_to t(:save_as_draft), {}, :href => "javascript:void(0);", :onclick => "submit_draft();"%></div>
                     <div class="button"><%= link_to t(:save_as_published), {}, :href => "javascript:void(0);", :onclick => "submit_published();"%></div>
-                    <div class="button"><%= link_to t(:cancel), {:controller => "skm/entry_headers", :action => "index"}  %></div>
+                    <div class="button"><%= link_to t(:cancel), {:controller => "skm/entry_headers", :action => "index"}, :confirm => "test"  %></div>
                   </td>
                 </tr>
               </tbody>
