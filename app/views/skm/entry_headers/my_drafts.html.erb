@@ -30,3 +30,8 @@
       </div>
     </div>
 </div>
+
+<%= content_for :sidebar do%>
+    <%= render "skm/entry_headers/sidebar_navigate_menu"%>
+    <%= render "skm/entry_headers/sidebar_last_ten"%>
+<% end -%>
