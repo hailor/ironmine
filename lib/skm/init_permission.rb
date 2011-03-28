@@ -17,5 +17,8 @@ Irm::AccessControl.map do |map|
   map.function :create_entry_template_elements,{"skm/entry_template_elements"=>["new", "create"]}
   map.function :edit_entry_template_elements,{"skm/entry_template_elements"=>["edit", "update"]}
 
+  #===================skm/settings ====================================
+  map.function :view_skm_settings, {"skm/settings" => ["index"]}
+  map.function :update_skm_settings, {"skm/settings" => ["edit", "update"]}
 
 end
