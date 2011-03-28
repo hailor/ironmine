@@ -56,8 +56,7 @@ class Irm::Role < ActiveRecord::Base
 
   scope :query_by_person,lambda{|person_id|
     joins("JOIN #{Irm::PersonRole.table_name} ON #{Irm::PersonRole.table_name}.role_id = #{table_name}.id").
-    joins("JOIN #{Irm::Person.table_name}").
-    where("#{Irm::Person.table_name}.id = ?",person_id)
+    where("#{Irm::PersonRole.table_name}.person_id = ?",person_id)
   }
 
   scope :hidden,lambda { where(:hidden_flag=>Irm::Constant::SYS_YES)}

@@ -20,7 +20,6 @@
   </div>
   <div class="pbBody">
     <%= error_for @incident_request %>
-    <%= @incident_request.errors%>
     <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
       <span class="pbSubExtra">
         <span class="requiredLegend">
@@ -118,7 +117,7 @@
               </td>
               <td class="labelCol"><label for="incident_request_support_person_id"><%=t(:label_icm_incident_request_support_person)%></label></td>
               <td class="dataCol"><%= f.select(:support_person_id,nullable_options_for_select([],nil),{},
-                                  {:required=>true,
+                                  {
                                    :id=>"incident_request_support_person_id",
                                    :href=>url_for(:controller=>"irm/support_group_members",:action=>"get_options",:format=>"json",:group_id=>"{incident_request_support_group_id}"),
                                    :depend=>"incident_request_support_group_id",
