@@ -119,6 +119,8 @@ class ApplicationController < ActionController::Base
     else
       Irm::Identity.current = Irm::Identity.anonymous
       session[:user_id]=nil
+      Irm::Role.current = nil
+      session[:role_id]=nil
     end
   end
 

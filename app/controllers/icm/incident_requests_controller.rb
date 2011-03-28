@@ -124,6 +124,10 @@ class Icm::IncidentRequestsController < ApplicationController
     if incident_request.report_source_code.nil?||incident_request.report_source_code.blank?
       incident_request.report_source_code = "CUSTOMER_SUBMIT"
     end
+    if incident_request.contact_id.nil?||incident_request.contact_id.blank?
+      incident_request.contact_id = incident_request.requested_by
+      incident_request.contact_number = Irm::Person.find(incident_request.requested_by).mobile_phone
+    end
   end
 
   def publish_create_incident_request(incident_request)
