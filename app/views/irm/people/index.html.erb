@@ -30,7 +30,8 @@
                    {:key=>"email_address",:label=>t(:label_irm_person_email_address),:sortable=>true,:searchable=>true},
                    {:key=>"mobile_phone",:label=>t(:label_irm_person_mobile_phone),:sortable=>true,:width=>"20%"},
                    {:key=>"company_name",:label=>t(:label_irm_person_company),:sortable=>true,:width=>"10%",:searchable=>true}],
-                   {:search_box=>"permissionsSearchBox"})%>
+                   {:search_box=>"permissionsSearchBox",:paginator_box=>"peoplePaginatorBox"})%>
+        <div id="peoplePaginatorBox"></div>
       </div>
     </div>
 </div>
