@@ -11,9 +11,15 @@
   .show {
       display:block;
   }
+  div#histories{
+      background-color: #FFFFFF;
+      border-bottom: 0px;
+      border-left: 0px;
+      border-right: 0px;
+  }
   div.reply{
       margin-bottom: 2px;
-      border-bottom: 1px solid #CCCCCC;
+
       padding: 0 0 1em 2em;
       height: auto;
       background: url("/images/arrow_out_longer.png") no-repeat scroll 0 0 transparent;
@@ -24,6 +30,7 @@
   div.reply div.replyHeaderSection{
     padding: 5px 5px 5px 0px;
     min-height: 40px;
+    border-bottom: 1px solid #CCCCCC;
   }
   div.reply h3{
       font-weight:bold;
@@ -180,7 +187,7 @@
      </div>
      <div class="replyHeaderSection">
        <div class="avatar">
-         <img width="30" height="30" alt="" src="https://secure.gravatar.com/avatar/ed0ce2998995c2b649c31ca06a72dae4?s=140&d=https://d3nwyuy0nl342s.cloudfront.net%2Fimages%2Fgravatars%2Fgravatar-140.png">
+         <img width="30" height="30" alt="" src="<%= person_avatar(@incident_request.submitted_by) %>">
        </div>
        <div class="message">
          <%= raw @incident_request[:summary]  %>

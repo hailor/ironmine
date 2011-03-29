@@ -37,5 +37,15 @@ module Icm::IncidentJournalsHelper
     end
   end
 
+  def person_avatar(person_id)
+    person = Irm::Person.find(person_id)
+    if person&&person.avatar_file_name
+      person.avatar.url(:medium)
+    else
+      "/images/default_medium_avatar.jpg"
+    end
+
+  end
+
 
 end
