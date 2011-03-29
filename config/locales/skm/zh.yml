@@ -60,6 +60,10 @@ zh:
   label_action_my_favorites: 我的收藏
   label_action_my_drafts: 我的草稿
   label_action_index_search: 搜索结果
+  label_action_new_step_1: 新建, 步骤1
+  label_action_new_step_2: 新建, 步骤2
+  label_action_new_step_3: 新建, 步骤3
+  label_action_new_step_4: 新建, 步骤3
   #=========================skm FileManagement================================
   label_skm_file_management: 文件管理
   label_skm_file_list: 文件列表
