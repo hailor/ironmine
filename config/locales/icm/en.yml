@@ -136,6 +136,7 @@ en:
   label_icm_incident_journal_add_attachment: Add a attachment
   label_icm_incident_journal_close: Close incident request
   label_icm_incident_joural_back_to_request: Back to incident
+  label_icm_reply_title: reply at %{message} ago
   #========================= end icm incident_journals_controller=======================#
   #=========================    icm incident_reports_controller=======================#
   label_icm_urgency_name: Urgency Name
