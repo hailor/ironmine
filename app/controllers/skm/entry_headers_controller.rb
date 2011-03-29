@@ -149,7 +149,12 @@ class Skm::EntryHeadersController < ApplicationController
       if @entry_header.save
         session[:skm_entry_header] = nil
         session[:skm_entry_details] = nil
-        format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+        if params[:status] == "DRAFT"
+          format.html { redirect_to({:action=>"my_drafts"}, :notice =>t(:successfully_created)) }
+        else
+          format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+        end
+
         format.xml  { render :xml => @entry_header, :status => :created, :location => @entry_header }
       else
         format.html { render :action => "new" }
