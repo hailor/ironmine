@@ -1,7 +1,8 @@
 module Irm::ArrayToJson
   include ActionView::Helpers::JavaScriptHelper
+  include ActionView::Helpers::DateHelper
 
-  def to_grid_json(attributes,total)
+  def to_grid_json(attributes,total,options={})
     json = %Q({"numRows":"#{total}")
     if total > 0
       json << %Q(,"items":[)
@@ -13,6 +14,13 @@ module Irm::ArrayToJson
         attributes.each do |atr|
           value = get_atr_value(elem, atr, couples)
           value = escape_javascript(value) if value and value.is_a? String
+          if(value.is_a? Time)
+            if options[:date_to_distance]&&(options[:date_to_distance].is_a? Array)&&options[:date_to_distance].include?(atr)
+              value = I18n.t(:ago,:message=>distance_of_time_in_words(Time.now, value))
+            else
+              value = value.strftime('%Y-%m-%d %H:%M:%S')
+            end
+          end
           json << %Q("#{atr}":"#{value}",)
         end
         json.chop! << "},"

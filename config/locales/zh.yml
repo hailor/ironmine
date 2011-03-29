@@ -9,6 +9,7 @@ zh:
   label_entry_headers_totle_step: 步
   label_entry_headers_totle: 共
   label_entry_headers_first: 第
+  ago: %{message}前
   
   date:
     formats:

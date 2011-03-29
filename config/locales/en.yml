@@ -12,6 +12,7 @@ en:
   label_entry_headers_totle_step: Step
   label_entry_headers_totle: totle
   label_entry_headers_first: Step
+  ago: %{message} ago
 
   date:
     formats:
