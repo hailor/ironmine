@@ -29,5 +29,13 @@ module Icm::IncidentJournalsHelper
     Icm::CloseReason.multilingual.collect{|i|[i[:name],i[:close_code]]}
   end
 
+  def replied_avatar(journal)
+    if(journal[:avatar_file_name])
+      Irm::Person.avatar_url({:id=>journal[:replied_by],:updated_at=>journal[:avatar_updated_at],:filename=>journal[:avatar_file_name]},:medium)
+    else
+      "/images/default_medium_avatar.jpg"
+    end
+  end
+
 
 end

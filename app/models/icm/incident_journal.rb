@@ -11,7 +11,7 @@ class Icm::IncidentJournal < ActiveRecord::Base
   # 查询出提交人
   scope :with_replied_by,lambda{
     joins("LEFT OUTER JOIN #{Irm::Person.table_name} replied ON  replied.id = #{table_name}.replied_by").
-    select("#{Irm::Person.name_to_sql(nil,'replied','replied_name')}")
+    select("#{Irm::Person.name_to_sql(nil,'replied','replied_name')},replied.avatar_file_name ,replied.avatar_updated_at")
   }
 
   scope :query_by_request,lambda{|request_id|
