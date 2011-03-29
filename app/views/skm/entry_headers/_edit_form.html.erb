@@ -82,11 +82,11 @@
   function submit_draft(){
     if (confirm("文章内容已被修改，是否保存为新的版本？"))
     {
-        document.edit_form.action = "update?status='DRAFT'&new=1";
+        document.edit_form.action = "update?status=DRAFT&new=1";
     }
     else
     {
-        document.edit_form.action = "update?status='DRAFT'";
+        document.edit_form.action = "update?status=DRAFT";
     }
     edit_form.submit();
   }
@@ -94,11 +94,11 @@
   function submit_published(){
     if (confirm("文章内容已被修改，是否保存为新的版本？"))
     {
-        document.edit_form.action = "update?status='PUBLISHED'&new=1";
+        document.edit_form.action = "update?status=PUBLISHED&new=1";
     }
     else
     {
-        document.edit_form.action = "update?status='PUBLISHED'";
+        document.edit_form.action = "update?status=PUBLISHED";
     }
     edit_form.submit();
   }
