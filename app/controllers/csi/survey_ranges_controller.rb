@@ -45,7 +45,7 @@ class Csi::SurveyRangesController < ApplicationController
       if @survey_range.save
         @survey_range.reload
         Delayed::Job.enqueue(Csi::Jobs::CsiSurveyMemberJob.new(@survey_range.id))
-        format.html { redirect_to({:controller => "csi/surveys", :action=>"index", :id => params[:survey_id]}, :notice => t(:successfully_created)) }
+        format.html { redirect_to({:controller => "csi/surveys", :action=>"show", :id => params[:survey_id]}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @survey_range, :status => :created, :location => @survey_range }
       else
         format.html { render :action => "new" }
