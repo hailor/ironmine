@@ -169,7 +169,7 @@
             </tr>
             <tr>
               <td class="labelCol"></td>
-              <td class="dataCol"><div class="button" style="float:right"><%= link_to "测试", {}, {:href => "javascript:void(0);", :id => "add_range"}%></div></td>
+              <td class="dataCol"><div class="button" style="float:right"><%= link_to t(:add), {}, {:href => "javascript:void(0);", :id => "add_range"}%></div></td>
               <td class="labelCol"></td>
               <td class="dataCol"></td>
             </tr>
@@ -292,7 +292,7 @@
 
         if (range_type_value == "")
         {
-            alert("请先选择范围类型");
+            alert("<%= t(:label_csi_survey_range_select_range_type)%>");
             return;
         }
 

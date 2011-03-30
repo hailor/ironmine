@@ -85,5 +85,6 @@ en:
    label_csi_survey_range_show: Survey Range
    label_csi_survey_range_edit: Edit Survey Range
    label_csi_survey_range: Survey Range
+   label_csi_survey_range_select_range_type: Range Type Must Be Selected
    #========================= end csi survey_ranges_controller=======================#
    label_csi_last_surveys: Lastest Surveys
