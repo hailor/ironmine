@@ -32,7 +32,8 @@
                        {:key=>"email",:label=>t(:label_irm_identity_email),:sortable=>true,:searchable=>true},
                        {:key=>"language_description",:label=>t(:label_irm_identity_language_code),:sortable=>true},
                        {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template",:width=>"80px"}
-                       ],{:row_perpage=>20,:search_box=>"identitiesSearchBox"})%>
+                       ],{:row_perpage=>20,:search_box=>"identitiesSearchBox",:paginator_box=>"identitiesPaginatorBox"})%>
+        <div id="identitiesPaginatorBox"></div>
       </div>
     </div>
 </div>    

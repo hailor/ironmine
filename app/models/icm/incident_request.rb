@@ -152,8 +152,8 @@ class Icm::IncidentRequest < ActiveRecord::Base
 
   private
   def generate_request_number
-    count = self.class.created_at_today(self.id).count
-    self.request_number = "ICR"+self.created_at.strftime("%Y%m%d")+count.to_s.rjust(4,"0")
+    count = self.class.where(:company_id=>self.company_id).count
+    self.request_number = count
     self.save
   end
 

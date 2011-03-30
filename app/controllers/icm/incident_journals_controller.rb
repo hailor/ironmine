@@ -77,7 +77,7 @@ class Icm::IncidentJournalsController < ApplicationController
   end
 
   def perform_create
-    @incident_journal.replied_by=1
+    @incident_journal.replied_by=Irm::Person.current.id
   end
 
   def process_change_attributes(attributes,new_value,old_value,ref_journal)

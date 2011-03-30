@@ -135,6 +135,8 @@ zh:
   label_icm_incident_journal_close: 关闭事故单
   label_icm_incident_joural_back_to_request: 返回事故单
   label_icm_reply_title: 于 %{message} 前回复
+  label_icm_submit_title: 于 %{message} 前提交
+  label_icm_incident_more_info: 更多信息
   #========================= end icm incident_journals_controller=======================#
   #=========================    icm incident_reports_controller=======================#
   label_icm_urgency_name: 紧急度

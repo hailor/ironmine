@@ -116,13 +116,13 @@ class Irm::Person < ActiveRecord::Base
   def allowed_to?(function_codes)
     return true if function_codes.detect{|fc| functions.include?(fc)}
     return true if Irm::Role.current&&Irm::Role.current.allowed_to?(function_codes)
-    return true if self.id.eql?(self.class.first.id)
+    return true if Irm::Identity.current.login_name.eql?("admin")
     false
   end
 
   def functions
     return @functions if @functions
-    @functions = Irm::Function.query_hidden_functions(self.id).collect{|f| f.group_code}
+    @functions = Irm::Function.query_hidden_functions(self.id).collect{|f| f.function_code}
   end
 
 
@@ -133,6 +133,18 @@ class Irm::Person < ActiveRecord::Base
   # 取得人员全名的SQL
   def self.name_to_sql(formatter = nil,alias_table_name="#{table_name}",alias_column_name="name")
     eval('"' +PERSON_NAME_SQL_FORMATS[:firstname_lastname] + '"')
+  end
+
+  # get avatar
+  # required :id,:filename,:updated_at
+  def self.avatar_url(attributes,style_name="original")
+    attributes.merge!({:class_name=>self.name,:name=>"data"})
+    Irm::PaperclipHelper.gurl(attributes,style_name)
+  end
+
+  def self.avatar_path(attributes,style_name="original")
+    attributes.merge!({:class_name=>self.name,:name=>"data"})
+    Irm::PaperclipHelper.gpath(attributes,style_name)
   end
 
 

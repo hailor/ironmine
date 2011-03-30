@@ -5,7 +5,7 @@
    </div>
    <div class="replyHeaderSection">
      <div class="avatar">
-       <img width="30" height="30" alt="" src="https://secure.gravatar.com/avatar/ed0ce2998995c2b649c31ca06a72dae4?s=140&d=https://d3nwyuy0nl342s.cloudfront.net%2Fimages%2Fgravatars%2Fgravatar-140.png">
+       <img width="30" height="30" alt="" src="<%=replied_avatar(journal)%>">
      </div>
      <div class="message">
        <%= raw journal[:message_body]  %>

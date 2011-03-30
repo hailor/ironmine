@@ -100,11 +100,10 @@ class Icm::IncidentRequestsController < ApplicationController
     #incident_requests_scope = incident_requests_scope.match_value("incident_request.name",params[:name])
     incident_requests,count = paginate(incident_requests_scope)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(incident_requests.to_grid_json([:request_number,:title,
-                                                                          :request_type_name,:service_name,:requested_name,
+      format.json {render :json=>to_jsonp(incident_requests.to_grid_json([:request_number,:title,:requested_name,
                                                                           :urgence_name,:impact_range_name,
                                                                           :contact_name,:contact_number,
-                                                                          :report_source_name,:priority_name,:incident_status_name],count))}
+                                                                          :priority_name,:incident_status_name,:submitted_date],count,{:date_to_distance=>[:submitted_date]}))}
       format.xml { render :xml => incident_requests }
     end
   end
