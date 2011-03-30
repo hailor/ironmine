@@ -79,7 +79,7 @@ class Csi::SurveyRangesController < ApplicationController
     @survey_range.destroy
 
     respond_to do |format|
-      format.html { redirect_to({:action=>"index"}) }
+      format.html { redirect_to({:controller => "csi/surveys", :action=>"show", :id => params[:survey_id]}) }
       format.xml  { head :ok }
     end
   end
