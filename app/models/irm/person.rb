@@ -116,7 +116,7 @@ class Irm::Person < ActiveRecord::Base
   def allowed_to?(function_codes)
     return true if function_codes.detect{|fc| functions.include?(fc)}
     return true if Irm::Role.current&&Irm::Role.current.allowed_to?(function_codes)
-    return true if self.id.eql?(self.class.first.id)
+    return true if Irm::Identity.current.login_name.eql?("admin")
     false
   end
 
