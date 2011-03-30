@@ -33,14 +33,14 @@ module Irm::NavigationsHelper
   # 生成二级菜单
   def level_two_menu
     menus = @page_menus.dup
-    return nil unless menus&&menus.size>1
-    entries = Irm::MenuManager.sub_entries_by_menu(menus[1])
+    return nil unless menus&&menus.size>0
+    entries = Irm::MenuManager.sub_entries_by_menu(menus[0])
 
     tds = ""
 
     entries.each do |e|
       style = ""
-      style = "currentTab" if e[:menu_code].eql?(menus[2]||"NO_MENU")
+      style = "currentTab" if e[:menu_code].eql?(menus[1]||"NO_MENU")
       tds << content_tag(:td,content_tag(:div,link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]},{:title=>e[:description]})),{:class=>style,:nowrap=>"nowrap"})
     end
     tds.html_safe

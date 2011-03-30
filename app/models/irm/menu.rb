@@ -19,4 +19,8 @@ class Irm::Menu < ActiveRecord::Base
   #加入activerecord的通用方法和scope
   query_extend
 
+  scope :top_menu,lambda{
+    where("NOT EXISTS(SELECT 1 FROM #{Irm::MenuEntry.table_name} WHERE #{Irm::MenuEntry.table_name}.sub_menu_code = #{table_name}.menu_code)")
+  }
+
 end

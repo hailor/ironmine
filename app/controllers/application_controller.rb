@@ -252,17 +252,18 @@ class ApplicationController < ActionController::Base
     permission ||= {:page_controller=>params[:controller],:page_action=>params[:action]}
     @menu_permission = permission.dup
     @setting_menus = default_setting_menus
+    session[:top_menu] = Irm::Role.current.menu_code if Irm::Role.current&&Irm::Role.current.menu_code
     session[:top_menu] = params[:top_menu] if params[:top_menu]
     @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>permission[:page_controller],:page_action=>permission[:page_action]},session[:top_menu])
     # 如果不是设置类或业务类角色，则只设置业务菜单，不更改layout
     if @page_menus[0].nil?
-      @page_menus = (session[:entrance_menu]||default_menus)[0..1]
+      @page_menus = (session[:entrance_menu]||default_menus)[0..0]
       return
     end
     if @page_menus[0]&&Irm::Constant::TOP_SETTING_MENU.eql?(@page_menus[0])
       @setting_menus = @page_menus.dup
       self.class.layout "setting"
-      @page_menus = (session[:entrance_menu]||default_menus)[0..1]
+      @page_menus = (session[:entrance_menu]||default_menus)[0..0]
       session[:top_menu] = @setting_menus[1] if @page_menus[1]
     else
       session[:entrance_menu] = @page_menus.dup if @page_menus.length>1
@@ -274,7 +275,8 @@ class ApplicationController < ActionController::Base
   # 默认菜单
   def default_menus
     default_menu_path = [Irm::Constant::TOP_BUSSINESS_MENU]
-    Irm::MenuManager.sub_entries_by_menu(Irm::Constant::TOP_BUSSINESS_MENU).each do |entry|
+    default_menu_path = [Irm::Role.current.menu_code||Irm::Constant::TOP_BUSSINESS_MENU] if Irm::Role.current
+    Irm::MenuManager.sub_entries_by_menu(default_menu_path.first).each do |entry|
       if("MENU".eql?(entry[:entry_type]))
         default_menu_path.push(entry[:menu_code])
       end

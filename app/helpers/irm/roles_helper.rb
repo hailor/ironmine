@@ -9,4 +9,8 @@ module Irm::RolesHelper
   def available_roles
     Irm::Role.multilingual.enabled
   end
+
+  def available_top_menu
+    Irm::Menu.multilingual.top_menu.collect{|m| [m[:name],m[:menu_code]]}
+  end
 end
