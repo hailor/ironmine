@@ -7,7 +7,7 @@ class Csi::Survey < ActiveRecord::Base
   validates_uniqueness_of :title
 
   has_many :survey_subjects
-
+  has_many :survey_ranges
   scope :query_by_person_id,lambda{|person_id| where(:person_id=>person_id)}
   scope :query_wrap_info,lambda{|language| select("#{table_name}.*,v1.meaning status_meaning").
                                                    joins(",irm_lookup_values_vl v1").

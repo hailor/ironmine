@@ -2,7 +2,7 @@ class Csi::SurveyRange < ActiveRecord::Base
   set_table_name :csi_survey_ranges
 
   query_extend
-
+  belongs_to :survey
 
   scope :query_by_survey_id,lambda{|survey_id| where(:survey_id=>survey_id)}
 
