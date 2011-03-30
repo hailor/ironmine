@@ -707,6 +707,8 @@ en:
   label_irm_role_report_group_code: Report group
   label_irm_function_list: Function list
   label_irm_role_hidden_flag: Hidden
+  label_irm_role_menu_code: Menu
+  label_irm_role_service_role_type: Role type
   #=========================end irm roles ===================================
   #========================= irm reports ===================================
   label_irm_report_list: Report list

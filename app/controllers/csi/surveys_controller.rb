@@ -42,9 +42,26 @@ class Csi::SurveysController < ApplicationController
   # POST /surveys.xml
   def create
     @survey = Csi::Survey.new(params[:csi_survey])
+    ranges = params[:ranges]
+    ranges_array = []
+    ranges.each do |r|
+      ranges_array << r[1]
+    end
+    ranges_array = ranges_array.uniq
 
     respond_to do |format|
       if @survey.save
+        ranges_array.each do |r|
+          t = Csi::SurveyRange.new({:survey_id => @survey.id,
+                                    :required_flag => r[:required_flag],
+                                    :range_type => r[:range_type],
+                                    :range_company_id => r[:ass_company],
+                                    :range_organization_id => r[:ass_organization],
+                                    :range_department_id => r[:ass_department],
+                                    :role_id => r[:role_id],
+                                    :site_id => r[:site_id]})
+          t.save
+        end
         format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @survey, :status => :created, :location => @survey }
       else

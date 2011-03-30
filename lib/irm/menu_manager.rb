@@ -113,7 +113,8 @@ module Irm::MenuManager
         map do |m|
           m.merge!({:permission_menus=>permission_menus_cache,:menu_menus=>menu_menus_cache})
         end
-        [Irm::Constant::TOP_BUSSINESS_MENU,Irm::Constant::TOP_SETTING_MENU].each do |m|
+        top_menu= Irm::Menu.top_menu.collect{|m| m[:menu_code]}
+        top_menu.each do |m|
           expand_permission([m])
         end
       end

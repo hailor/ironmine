@@ -8,7 +8,7 @@
           <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_csi_survey_range_show) %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @survey_range.id}%></div>
-            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+            <div class="button"><%= link_to t(:back), {:controller => "csi/surveys", :action => "show", :id => @survey_range.survey_id}%></div>
           </td>
         </tr>
       </tbody>

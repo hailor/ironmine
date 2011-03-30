@@ -25,7 +25,7 @@ module Irm::NavigationsHelper
     links = ""
     roles.each do |r|
       next if Irm::Role.current&&r.id.eql?(Irm::Role.current.id)
-      links << content_tag(:span,link_to(r[:name],{:controller=>"irm/navigations",:action=>"change_role",:role_id=>r.id}),{:class=>"menuItem"})
+      links << content_tag(:span,link_to(r[:name],{:controller=>"irm/navigations",:action=>"change_role",:role_id=>r.id,:top_menu=>r.menu_code}),{:class=>"menuItem"})
     end
 
     links.html_safe
@@ -33,15 +33,15 @@ module Irm::NavigationsHelper
   # 生成二级菜单
   def level_two_menu
     menus = @page_menus.dup
-    return nil unless menus&&menus.size>1
-    entries = Irm::MenuManager.sub_entries_by_menu(menus[1])
+    return nil unless menus&&menus.size>0
+    entries = Irm::MenuManager.sub_entries_by_menu(menus[0])
 
     tds = ""
 
     entries.each do |e|
       style = ""
-      style = "currentTab" if e[:menu_code].eql?(menus[2]||"NO_MENU")
-      tds << content_tag(:td,content_tag(:div,link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]},{:title=>e[:description]})),{:class=>style,:nowrap=>"nowrap"})
+      style = "currentTab" if e[:menu_code].eql?(menus[1]||"NO_MENU")
+      tds << content_tag(:td,content_tag(:div,link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action],:top_menu=>e[:menu_code],:mi=>e[:menu_entry_id]},{:title=>e[:description]})),{:class=>style,:nowrap=>"nowrap"})
     end
     tds.html_safe
 

@@ -17,14 +17,14 @@
       <div class="pbBody">
         <div id="drafts_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:show),{:controller => "skm/entry_headers", :action=>"show",:id=>"{id}"}) %>&nbsp;
+            <%= icon_link_show({:controller => "skm/entry_headers", :action=>"show",:id=>"{id}"}) %>&nbsp;
           </div>
           <div id="full_title" style="display:none">
             <%= link_to("{full_title}",{:controller => "skm/entry_headers", :action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
         <%= datatable("drafts_list",url_for(:action=>"my_drafts_data",:format=>"json", :person_id => Irm::Person.current.id),
-                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
+                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"40px"},
                    {:key=>"full_title",:label=>t(:label_skm_entry_header_title),:sortable=>true,:formatter=>"Y.irm.template"},
                    {:key=>"published_date",:label=>t(:label_skm_entry_header_published_date),:sortable=>true, :width => "180px"}
                    ])%>

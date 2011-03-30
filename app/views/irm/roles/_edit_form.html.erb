@@ -1,10 +1,5 @@
 <%= setting_title %>
-<style>
-  fieldset{
-      border:1px solid;
-      margin: 5px;
-  }
-</style>
+
 <%= form_for(@role,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
@@ -37,28 +32,31 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_role_code)%></label></td>
-              <td class="data2Col"><%= @role.role_code%></td>
-            </tr>
-            <tr>
+              <td class="dataCol"><%= @role.role_code%></td>
               <td class="labelCol"><label><%=(t :name)%></label></td>
-              <td class="data2Col"><%=f.text_field :name, :required=>true%></td>
+              <td class="dataCol"><%=f.text_field :name, :required=>true%></td>
             </tr>
+
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_role_report_group_code)%></label></td>
-              <td class="data2Col"><%=f.select :report_group_code, available_report_groups%></td>
+              <td class="dataCol"><%=f.select :report_group_code, available_report_groups, {:include_blank => false},:required=>true,%></td>
+              <td class="labelCol"><label><%=(t :label_irm_role_menu_code)%></label></td>
+              <td class="dataCol"><%=f.select :menu_code, available_top_menu, {:include_blank => false},:required=>true%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_role_service_role_type)%></label></td>
+              <td class="dataCol"><%=f.select :service_role_type, available_role_types, {:include_blank => false},:required=>true%></td>
+              <td class="labelCol"><label><%=(t :label_irm_role_hidden_flag)%></label></td>
+              <td class="dataCol"><%=f.check_box(:hidden_flag)%></td>
             </tr>
            <tr>
-              <td class="labelCol"><label><%=(t :label_irm_role_hidden_flag)%></label></td>
-              <td class="data2Col"><%=f.check_box(:hidden_flag)%></td>
+
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :description)%></label></td>
-              <td class="data2Col"><%=f.text_area :description, :rows => 4%></td>
-            </tr>                        
-
-            <tr>
+              <td class="dataCol"><%=f.text_area :description, :rows => 4%></td>
               <td class="labelCol"><label><%=(t :active)%></label></td>
-              <td class="data2Col"><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
+              <td class="dataCol"><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
             </tr>
         </tbody>
       </table>

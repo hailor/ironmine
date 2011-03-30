@@ -56,11 +56,12 @@ Irm::AccessControl.map do |map|
   map.function :create_incident_phases,{"icm/incident_phases"=>["new", "create"]}
   map.function :edit_incident_phases,{"icm/incident_phases"=>["edit", "update", "multilingual_edit", "multilingual_update"]}
 
-  #===================skm/entry_statuses============================
-  #["index", "edit", "update", "new", "create", "get_data", "show"]
-  map.function :view_entry_statuses,{"skm/entry_statuses"=>["index", "show"]}
-  map.function :create_entry_statuses,{"skm/entry_statuses"=>["new", "create"]}
-  map.function :edit_entry_statuses,{"skm/entry_statuses"=>["edit", "update"]}
+  #===================icm/incident_statuses============================
+  #["index", "edit", "update", "new", "create", "multilingual_edit", "multilingual_update", "get_data", "show"]
+  map.function :view_incident_statuses,{"icm/incident_statuses"=>["index", "show"]}
+  map.function :create_incident_statuses,{"icm/incident_statuses"=>["new", "create"]}
+  map.function :edit_incident_statuses,{"icm/incident_statuses"=>["edit", "update", "multilingual_edit", "multilingual_update"]}
+
 
   #===================icm/close_reasons============================
   #["index", "edit", "update", "new", "create", "show", "get_data"]

@@ -149,7 +149,12 @@ class Skm::EntryHeadersController < ApplicationController
       if @entry_header.save
         session[:skm_entry_header] = nil
         session[:skm_entry_details] = nil
-        format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+        if params[:status] == "DRAFT"
+          format.html { redirect_to({:action=>"my"}, :notice =>t(:successfully_created)) }
+        else
+          format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
+        end
+
         format.xml  { render :xml => @entry_header, :status => :created, :location => @entry_header }
       else
         format.html { render :action => "new" }
@@ -164,6 +169,7 @@ class Skm::EntryHeadersController < ApplicationController
       old_header = Skm::EntryHeader.find(params[:id])
       @entry_header = Skm::EntryHeader.new(old_header.attributes)
       old_header.history_flag = "Y"
+      @entry_header.history_flag = "N"
       @entry_header.entry_status_code = "PUBLISHED" if params[:status] && params[:status] == "PUBLISHED"
       @entry_header.entry_status_code = "DRAFT" if params[:status] && params[:status] == "DRAFT"
       @entry_header.version_number = old_header.next_version_number.to_s
@@ -190,10 +196,11 @@ class Skm::EntryHeadersController < ApplicationController
       end
     else
       @entry_header = Skm::EntryHeader.find(params[:id])
-      @entry_header.entry_status_code = "PUBLISHED" if params[:status] && params[:status] == "PUBLISHED"
-      @entry_header.entry_status_code = "DRAFT" if params[:status] && params[:status] == "DRAFT"
+#      @entry_header.entry_status_code = "PUBLISHED" if params[:status] && params[:status] == "PUBLISHED"
+#      @entry_header.entry_status_code = "DRAFT" if params[:status] && params[:status] == "DRAFT"
       respond_to do |format|
-        if @entry_header.update_attributes(params[:skm_entry_header])
+        if @entry_header.update_attributes(params[:skm_entry_header]) &&
+            @entry_header.update_attribute( :entry_status_code, params[:status])
           params[:skm_entry_details].each do |k, v|
             detail = Skm::EntryDetail.find(k)
             detail.update_attributes(v)
@@ -225,7 +232,7 @@ class Skm::EntryHeadersController < ApplicationController
   end
 
   def get_history_entries_data
-    entry_histories_scope = Skm::EntryHeader.list_all.published.history_entry.where(:doc_number => params[:doc_number])
+    entry_histories_scope = Skm::EntryHeader.list_all.history_entry.where(:doc_number => params[:doc_number])
     entry_histories,count = paginate(entry_histories_scope)
     respond_to do |format|
       format.json  {render :json => to_jsonp(entry_histories.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date_f], count)) }

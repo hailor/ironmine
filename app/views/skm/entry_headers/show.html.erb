@@ -6,6 +6,7 @@
         <tr>
           <td class="pbTitle" style="width:60%"><h2 style="float:left;">[<%= @entry_header.doc_number%>]&nbsp;&nbsp;&nbsp;</h2><h2><%= @entry_header.entry_title %></h2></td>
           <td id="topButtonRow" class="pbButton" style="float:right;">
+            <div class="button"><%= link_to t(:save_page), {:controller => "skm/entry_headers", :action => "add_favorites", :id => @entry_header.id, :person_id => Irm::Person.current.id}%></div>
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @entry_header}%></div>
             <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
           </td>

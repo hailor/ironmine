@@ -3,6 +3,10 @@ Irm::AccessControl.map do |map|
   # 主页
   map.function :home_page,{"irm/home"=>[:index]}
   #=====common setting===================
+  #===================irm/global_settings============================
+  #["index", "edit", "update", "crop"]
+  map.function :view_global_settings,{"irm/global_settings"=>["index"]}
+  map.function :edit_global_settings,{"irm/global_settings"=>["edit", "update"]}
   #===================irm/auth_sources============================
   map.function :view_auth_sources,{"irm/auth_sources"=>["index", "show"]}
   map.function :create_auth_sources,{"irm/auth_sources"=>["new", "create"]}
@@ -142,6 +146,11 @@ Irm::AccessControl.map do |map|
   map.function :view_reports,{"irm/reports"=>["index", "show"]}
   map.function :create_reports,{"irm/reports"=>["new", "create"]}
   map.function :edit_reports,{"irm/reports"=>["edit", "update", "multilingual_edit", "multilingual_update"]}
+  #===================irm/actions============================
+  #["index", "get_data", "edit", "update", "new", "show", "create", "multilingual_edit", "multilingual_update"]
+  map.function :view_actions,{"irm/actions"=>["index", "show"]}
+  map.function :create_actions,{"irm/actions"=>["new", "create"]}
+  map.function :edit_actions,{"irm/actions"=>["edit", "update", "multilingual_edit", "multilingual_update"]}
   #===================irm/conditions============================
   #["index", "get_data", "edit", "update", "new", "show", "create", "multilingual_edit", "multilingual_update"]
   map.function :view_conditions,{"irm/conditions"=>["index", "show"]}
