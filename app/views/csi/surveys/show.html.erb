@@ -87,7 +87,7 @@
       </table>
     </div>
 
-     <div class="pbHeader">
+     <div class="pbHeader pbSubheader" style="margin-top: 15px;">
         <table cellpadding="0" cellspacing="0" border="0">
           <tbody>
             <tr>
@@ -97,7 +97,7 @@
                   <div class="button"><%= link_to t(:add), {:controller=>"csi/survey_subjects",
                                                           :action=>"new",:survey_id=>@survey.id}%></div>
                 <% else %>
-                  <%= t(:add) %>
+                  <div class="button"><%= link_to t(:add), {}, {:href => "javascript:void(0);"}%></div>
                 <% end %>                
               </td>
             </tr>
@@ -122,6 +122,37 @@
                    {:key=>"name",:label=>t(:label_csi_survey_subject_title),:sortable=>true},
                    {:key=>"prompt",:label=>t(:label_csi_survey_subject_prompt),:sortable=>true},
                    {:key=>"required_flag",:label=>t(:required),:sortable=>true}],
+                   {:row_perpage=>20})
+        %>
+
+    <div class="pbHeader pbSubheader" style="margin-top: 15px;">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_csi_survey_range_list) %></h2></td>
+              <td class="pbButton">
+                <div class="button"><%= link_to t(:new), {:controller => "csi/survey_ranges", :action => "new", :survey_id => @survey.id}%></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+     </div>
+    <div id="survey_range" class="datatable" style="width:100%;">
+          <div id="id" style="display:none">
+            <%= icon_link_edit({:controller=>"csi/survey_ranges",:action=>"edit",:survey_id => @survey.id,:id=>"{id}"}) %>&nbsp;
+            <%= icon_link_show({:controller=>"csi/survey_ranges",:action=>"show",:survey_id => @survey.id,:id=>"{id}"}) %>&nbsp;
+            <%= icon_link_delete({:controller=>"csi/survey_ranges",:action=>"destroy",:survey_id => @survey.id,:id=>"{id}"},:confirm => t(:label_are_you_sure) ,
+                                      :method => :delete) %>
+          </div>
+          <div id="required_flag" style="display:none">
+            <%= check_img("{required_flag}") %>
+          </div>
+    </div>
+        <%= datatable("survey_range",url_for(:controller=>"csi/survey_ranges",:action=>"get_data",:survey_id=>@survey.id),
+                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
+                   { :key => "required_flag", :label => t(:label_csi_survey_range_required_flag), :formatter => "Y.irm.template", :width => "30px" },
+                   { :key => "range_type_meaning", :label => t(:label_csi_survey_range_range_type)},
+                   { :key => "status_meaning", :label => t(:label_csi_survey_range_status_code), :width => "30px" }],
                    {:row_perpage=>20})
         %>
 
