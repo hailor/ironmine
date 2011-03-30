@@ -33,7 +33,7 @@
                     <div class="multiforce">
                       <div class="messages"></div>
                       <div>
-                        <% if @page_menus[0] %>
+                        <% if Irm::Role.current %>
                         <span id="pageMenu" class="menuParent" style="float:right">
                           <div  class="menuLabel">
                             <span tabindex="0" id="pageMenuTop" style=""><%= current_role_name %></span>

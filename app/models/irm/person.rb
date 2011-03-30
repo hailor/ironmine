@@ -122,7 +122,7 @@ class Irm::Person < ActiveRecord::Base
 
   def functions
     return @functions if @functions
-    @functions = Irm::Function.query_hidden_functions(self.id).collect{|f| f.group_code}
+    @functions = Irm::Function.query_hidden_functions(self.id).collect{|f| f.function_code}
   end
 
 
