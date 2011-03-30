@@ -25,7 +25,7 @@ module Irm::NavigationsHelper
     links = ""
     roles.each do |r|
       next if Irm::Role.current&&r.id.eql?(Irm::Role.current.id)
-      links << content_tag(:span,link_to(r[:name],{:controller=>"irm/navigations",:action=>"change_role",:role_id=>r.id}),{:class=>"menuItem"})
+      links << content_tag(:span,link_to(r[:name],{:controller=>"irm/navigations",:action=>"change_role",:role_id=>r.id,:top_menu=>r.menu_code}),{:class=>"menuItem"})
     end
 
     links.html_safe
