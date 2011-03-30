@@ -1,0 +1,57 @@
+<%= page_title %>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_uid_external_system) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @external_system}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+          
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_uid_external_system_external_system_code)%></label></td>
+              <td class="dataCol"><%= @external_system.external_system_code %></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="external_system_external_system_code"><%=t(:label_uid_external_system_external_system_code)%></label></td>
+              <td class="dataCol"><%=@external_system.external_system_code%></td>
+              <td class="labelCol"><label for="external_system_external_hostname"><%=t(:label_uid_external_system_external_hostname)%></label></td>
+              <td class="dataCol"><%=@external_system.external_hostname%></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="external_system_system_name"><%=t(:label_uid_external_system_system_name)%></label></td>
+              <td class="dataCol"><%=@external_system[:system_name]%></td>
+              <td class="labelCol"><label for="external_system_external_ip_address"><%=t(:label_uid_external_system_external_ip_address)%></label></td>
+              <td class="dataCol"><%=@external_system.external_ip_address%></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="external_system_system_description"><%=t(:label_uid_external_system_system_description)%></label></td>
+              <td class="dataCol"><%= @external_system[:system_description]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<% content_for :sidebar do %>
+    <%= render "uid/uid_home/uid_nav_function" %>
+<% end %>

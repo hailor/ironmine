@@ -1,0 +1,34 @@
+<div class="sidebarModule">
+    <div class="sidebarModuleHeader"><h2><%= t(:label_uid_nav_function) %></h2></div>
+    <div class="sidebarModuleBody">
+    <table>
+      <tbody>
+       <tr>
+         <td>
+            <%=link_to t(:label_uid_external_system_info),{:controller=>"uid/external_systems"} %>
+         </td>
+       </tr>
+       <tr>
+         <td>
+           <%=link_to t(:label_uid_external_login_info),{:controller=>"uid/external_logins"} %>
+         </td>
+       </tr>
+       <tr>
+         <td>
+           <%=link_to t(:label_uid_login_mapping_info),{:controller=>"uid/login_mappings"} %>
+         </td>
+       </tr>
+       <tr>
+         <td>
+           <%=link_to t(:label_uid_auto_mapping_info),{:controller=>"uid/auto_mappings"} %>
+         </td>
+       </tr>
+      <tr>
+         <td>
+           <%=link_to t(:label_uid_import_file_info),{:controller=>"uid/import_files",:action=>"new"} %>
+         </td>
+       </tr>
+      </tbody>
+    </table>
+    </div>
+</div>

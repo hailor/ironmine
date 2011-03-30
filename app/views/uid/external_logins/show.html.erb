@@ -1,0 +1,58 @@
+<%= page_title %>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_uid_external_login_info) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @external_login}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+          
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_uid_external_login_external_system_code)%></label></td>
+              <td class="dataCol"><%= @external_login[:system_name] %></td>
+              <td class="labelCol"><label ><%=t(:label_uid_external_login_active_start_date)%></label></td>
+              <td class="dataCol"><%= @external_login.active_start_date %></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_uid_external_login_external_login_name)%></label></td>
+              <td class="dataCol"><%= @external_login.external_login_name %></td>
+              <td class="labelCol"><label ><%=t(:label_uid_external_login_active_end_date)%></label></td>
+              <td class="dataCol"><%= @external_login.active_end_date %></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_uid_external_login_description)%></label></td>
+              <td class="dataCol"><%= @external_login.description %></td>
+              <td class="labelCol"><label ><%=t(:label_uid_external_login_source_type)%></label></td>
+              <td class="dataCol"><%= @external_login[:source_type_name] %></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_uid_external_login_status_meaning)%></label></td>
+              <td class="dataCol"><%= @external_login[:status_meaning] %></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+    <%= render "uid/uid_home/uid_nav_function" %>
+<% end %>

@@ -35,6 +35,11 @@ module Irm::LookupTypesHelper
     Irm::LookupValue.query_by_lookup_type("CITY").multilingual
   end
 
+def available_external_login_source_type
+    Irm::LookupValue.query_by_lookup_type("EXTERNAL_LOGIN_SOURCE_TYPE").multilingual
+  end
+
+
   def available_system_yes_no
     Irm::LookupValue.query_by_lookup_type("SYSTEM_YES_NO").multilingual
   end

@@ -1,0 +1,52 @@
+zh:
+  label_multilingual_language: 语言
+  label_multilingual_source_lang: 来源语言
+  language_code_en: 英语
+  language_code_jp: 日语
+  language_code_zh: 中文
+
+  #=========================    uid external_systems_controller=======================#
+  label_uid_external_system_list: 外部系统列表
+  label_uid_external_system_new:  新建外部系统
+  label_uid_external_system_edit: 编辑外部系统
+  label_uid_external_system_external_system_code: 系统编码
+  label_uid_external_system_system_name: 系统名称
+  label_uid_external_system_system_description: 描述
+  label_uid_external_system_external_hostname: 主机名
+  label_uid_external_system_external_ip_address: IP地址
+  label_uid_external_system_status_meaning: 记录状态
+  label_uid_external_system:  外部系统
+  label_uid_external_system_info: 外部系统信息
+  #=========================    end external_systems_controller=======================#
+  #=========================    uid external_systems_controller=======================#
+  label_uid_external_login_new: 新建外部登录
+  label_uid_external_login_edit: 编辑外部登录
+  label_uid_external_login_list: 外部登录列表
+  label_uid_external_login_external_system_code: 系统名称
+  label_uid_external_login_external_login_name: 登录名称
+  label_uid_external_login_external_login_id: 统一用户
+  label_uid_external_login_active_start_date: 有效起始日期
+  label_uid_external_login_active_end_date: 有效终止日期
+  label_uid_external_login_source_type: 来源
+  label_uid_external_login_description: 描述
+  label_uid_external_login_info: 外部登录信息
+  label_uid_external_login_status_meaning: 记录状态
+  label_new_uid_person: 新建人员
+  label_new_uid_login: 新建登录
+  #=========================    end external_systems_controller=======================#
+  #=========================    uid external_systems_controller=======================#
+  label_uid_user_login_mapping_person_name: 统一用户名
+  label_uid_user_login_mapping_system_name: 外部系统
+  label_uid_user_login_mapping_external_login_name: 外部用户名
+  label_uid_login_mapping_info: 登录匹配信息
+  label_uid_login_mapping_edit: 编辑匹配信息
+  label_uid_login_mapping_person_name: 人员名称
+  label_uid_login_mapping_external_system_name: 系统名称
+  label_uid_login_mapping_external_login_name: 登录名称
+  label_uid_auto_mapping_list: 自动匹配列表
+  label_mapping_confirm: 确认匹配
+  label_uid_auto_mapping_info: 自动匹配
+  label_uid_import_file_info: 导入文件
+  label_uid_nav_function: 功能导航
+  label_uid_home_welcome: 欢迎进入统一用户管理平台
+  #=========================    end external_systems_controller=======================#

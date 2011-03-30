@@ -1,0 +1,2 @@
+module Uid::ExternalLoginsHelper
+end

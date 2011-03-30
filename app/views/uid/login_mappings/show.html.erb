@@ -1,0 +1,44 @@
+<%= page_title %>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_uid_login_mapping_info) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @login_mapping}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+          
+            <tr>
+              <td class="labelCol"><label for="login_mapping_login_mapping_code"><%=t(:label_uid_login_mapping_person_name)%></label></td>
+              <td class="dataCol"><%=@login_mapping[:person_name]%></td>
+              <td class="labelCol"><label for="login_mapping_external_system_name"><%=t(:label_uid_login_mapping_external_system_name)%></label></td>
+              <td class="dataCol"><%=@login_mapping[:system_name]%></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label><%=(t :label_uid_external_system_status_meaning)%></label></td>
+              <td class="dataCol"><%=@login_mapping[:status_meaning]%></td>
+              <td class="labelCol"><label for="login_mapping_external_login_name"><%=t(:label_uid_login_mapping_external_login_name)%></label></td>
+              <td class="dataCol"><%=@login_mapping[:external_login_name]%></td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+    <%= render "uid/uid_home/uid_nav_function" %>
+<% end %>

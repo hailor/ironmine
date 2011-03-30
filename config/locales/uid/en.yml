@@ -1,0 +1,54 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  label_multilingual_language: Language
+  label_multilingual_source_lang: Source language
+  language_code_en: English
+  language_code_jp: Japanese
+  language_code_zh: Chinese
+
+  #=========================    uid external_systems_controller=======================#
+  label_uid_external_system_list: External System List
+  label_uid_external_system_external_system_code: Code
+  label_uid_external_system_system_name: System Name
+  label_uid_external_system_system_description: System Description
+  label_uid_external_system_external_hostname: Host Name
+  label_uid_external_system_external_ip_address: IP Address
+  label_uid_external_system:  External System
+  label_uid_external_system_status_meaning: Status Meaning
+  label_uid_external_system_info: External System Info
+  #=========================    end external_systems_controller=======================#
+  #=========================    uid external_systems_controller=======================#
+  label_uid_external_login_new: New External Login
+  label_uid_external_login_edit: Edit External Login
+  label_uid_external_login_list: External Login List
+  label_uid_external_login_external_system_code: External System Code
+  label_uid_external_login_external_login_name: Login Name
+  label_uid_external_login_external_login_id: Login
+  label_uid_external_login_active_start_date: Active Start Date
+  label_uid_external_login_active_end_date: Active End Date
+  label_uid_external_login_source_type: Source Type
+  label_uid_external_login_description: Description
+  label_uid_external_login_info: External Login Info
+  label_uid_external_login_status_meaning: Status Meaning
+  label_new_uid_person: New Uid Person
+  label_new_uid_login: New Uid Login
+  #=========================    end external_systems_controller=======================#
+  #=========================    uid external_systems_controller=======================#
+  label_uid_user_login_mapping_person_name: Person Name
+  label_uid_user_login_mapping_system_name: System Name
+  label_uid_user_login_mapping_external_login_name: External Login Name
+  label_uid_login_mapping_info: Login Mapping Info
+  label_uid_login_mapping_edit: Edit Login Mapping
+  label_uid_login_mapping_person_name: Person Name
+  label_uid_login_mapping_external_system_name: System Name
+  label_uid_login_mapping_external_login_name: Login Name
+  label_uid_auto_mapping_list: Auto Mapping List
+  label_mapping_confirm: Mapping confirm
+  label_uid_auto_mapping_info: Auto Mapping
+  label_uid_import_file_info: Import File
+  label_uid_nav_function: Function Navigation
+  label_uid_home_welcome: Welcome To User Mangage Platform
+  #=========================    end external_systems_controller=======================#
+

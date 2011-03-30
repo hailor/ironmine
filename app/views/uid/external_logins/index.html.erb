@@ -1,0 +1,44 @@
+<%= page_title %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_uid_external_login_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+              </td>
+              <td class="pbHelp">
+                <div id="external_loginsSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="external_logins" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+          </div>
+        </div>
+        <%= datatable("external_logins",url_for(:action=>"get_data",:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
+                       
+                       { :key => "system_name", :label => t(:label_uid_external_login_external_system_code),:searchable=>true },
+                       { :key => "external_login_name", :label => t(:label_uid_external_login_external_login_name),:searchable=>true },
+                       { :key => "active_start_date", :label => t(:label_uid_external_login_active_start_date)},
+                       { :key => "active_end_date", :label => t(:label_uid_external_login_active_end_date)},
+                       { :key => "status_meaning", :label => t(:label_uid_external_login_status_meaning)}
+
+                       ],{:row_perpage=>20,:search_box=>"external_loginsSearchBox",:paginator_box=>"external_loginsPaginatorBox"})%>
+        <div id="external_loginsPaginatorBox"></div>
+      </div>
+    </div>
+</div>
+
+<% content_for :sidebar do %>
+    <%= render "uid/uid_home/uid_nav_function" %>
+<% end %>
+
+

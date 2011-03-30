@@ -115,8 +115,6 @@ module Csi::SurveysHelper
   end
 
   def show_last_ten_survey
-
-
     surveys = Csi::Survey.find_recently_ten
     html_content = ""
     surveys.each do |e|

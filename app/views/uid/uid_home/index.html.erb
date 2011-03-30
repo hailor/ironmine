@@ -1,0 +1,25 @@
+<%= page_title %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"></td>
+              <td id="topButtonRow" class="pbButton">
+              </td>
+              <td class="pbHelp">
+                <div id="external_systemsSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+         <h2 class="mainTitle"><%= t(:label_uid_home_welcome) %></h2>
+      </div>
+    </div>
+</div>
+<% content_for :sidebar do %>
+    <%= render "uid/uid_home/uid_nav_function" %>
+<% end %>
