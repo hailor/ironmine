@@ -153,8 +153,10 @@ class ApplicationController < ActionController::Base
       entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>Irm::Role.current.menu_code}) if Irm::Role.current&&Irm::Role.current.menu_code
       top_menus = Irm::Menu.top_menu.collect{|m| m.menu_code}
       top_menus.each do |menu_code|
+        next if menu_code.eql?(Irm::Constant::TOP_SETTING_MENU)
         entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>menu_code}) if !entrance
       end
+      entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>Irm::Constant::TOP_SETTING_MENU}) if !entrance
       if(entrance)
         redirect_to({:controller => entrance[:page_controller], :action => entrance[:page_action]})
       else
