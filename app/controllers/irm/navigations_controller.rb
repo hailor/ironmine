@@ -9,6 +9,7 @@ class Irm::NavigationsController < ApplicationController
 
   def change_role
     session[:role_id] = params[:role_id] if params[:role_id]
+    Irm::Role.current= Irm::Role.enabled.find(session[:role_id])
     redirect_entrance
   end
 
