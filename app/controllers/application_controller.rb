@@ -150,8 +150,11 @@ class ApplicationController < ActionController::Base
 
   # 跳转到系统入口页面
   def redirect_entrance
-      entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>Irm::Constant::TOP_BUSSINESS_MENU})
-      entrance ||= Irm::MenuManager.menu_showable({:sub_menu_code=>Irm::Constant::TOP_SETTING_MENU})
+      entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>Irm::Role.current.menu_code}) if Irm::Role.current&&Irm::Role.current.menu_code
+      top_menus = Irm::Menu.top_menu.collect{|m| m.menu_code}
+      top_menus.each do |menu_code|
+        entrance = Irm::MenuManager.menu_showable({:sub_menu_code=>menu_code}) if !entrance
+      end
       if(entrance)
         redirect_to({:controller => entrance[:page_controller], :action => entrance[:page_action]})
       else
@@ -252,7 +255,7 @@ class ApplicationController < ActionController::Base
     permission ||= {:page_controller=>params[:controller],:page_action=>params[:action]}
     @menu_permission = permission.dup
     @setting_menus = default_setting_menus
-    session[:top_menu] = Irm::Role.current.menu_code if Irm::Role.current&&Irm::Role.current.menu_code
+    session[:top_menu] = Irm::Role.current.menu_code if Irm::Role.current&&Irm::Role.current.menu_code&&session[:top_menu].nil?
     session[:top_menu] = params[:top_menu] if params[:top_menu]
     @page_menus = Irm::MenuManager.parent_menus_by_permission({:page_controller=>permission[:page_controller],:page_action=>permission[:page_action]},session[:top_menu])
     # 如果不是设置类或业务类角色，则只设置业务菜单，不更改layout
@@ -268,7 +271,7 @@ class ApplicationController < ActionController::Base
     else
       session[:entrance_menu] = @page_menus.dup if @page_menus.length>1
       # 保存这一次的菜单路径
-      session[:top_menu] = @page_menus[1] if @page_menus[1]
+      session[:top_menu] = @page_menus[0] if @page_menus[0]
     end
   end
 
