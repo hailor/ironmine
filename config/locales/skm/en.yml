@@ -32,7 +32,8 @@ en:
   label_skm_entry_template_element_required: Required
   label_skm_entry_template_element_rows: Display Rows
   label_skm_entry_template_element_code: Code
-
+  label_action_select_elements: Select Template Element
+  label_action_edit_detail: Edit Element Details
   #=========================entry headers================================
   label_skm_entry_header: SKM Entry
   label_skm_entry_header_list: SKM Entries List

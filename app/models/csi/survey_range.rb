@@ -32,4 +32,28 @@ class Csi::SurveyRange < ActiveRecord::Base
                         joins("left outer join irm_roles_vl v6 ON v6.id = #{table_name}.role_id AND v6.language = v1.language").
                         joins("left outer join irm_sites_vl v7 ON v7.id = #{table_name}.site_id AND v7.language = v1.language")
 
+  def self.query_range_person_count(survey_id)
+    ranges = Csi::SurveyRange.query_by_survey_id(survey_id)
+    people = []
+    ranges.each do |r|
+      if r.range_type == "ORGANIZATION"
+        if !r.range_department_id.blank?
+          people << Irm::Person.where("department_id = ?", r.range_department_id)
+        elsif !r.range_organization_id.blank?
+          people << Irm::Person.where("organization_id = ?", r.range_organization_id)
+        elsif !r.range_company_id.blank?
+          people << Irm::Person.where("company_id = ?", r.range_company_id)
+        end
+      elsif r.range_type == "ROLE"
+        t = Irm::Role.where("id = ?", r.role_id).first
+        people << t.people if t
+      elsif r.range_type == "SITE"
+        Irm::Location.where("department_id IS NULL").where("organization_id IS NULL").each do |loc|
+          people << Irm::Person.where("company_id = ?", loc.company_id)
+        end
+      end
+    end
+    people = people.uniq
+    people.size
+  end
 end

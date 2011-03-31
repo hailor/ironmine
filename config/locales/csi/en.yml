@@ -34,6 +34,9 @@ en:
    result: Result
    export: Export
    range: Range
+   label_csi_survey_joined_count: Joined
+   label_csi_survey_person_count: Total People
+   label_csi_survey_created_at: Created At
    #========================= end   irm regions_controller=======================#
    #========================= start irm regions_controller=======================#
    label_csi_survey_subject: Subject

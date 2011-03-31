@@ -8,8 +8,8 @@ en:
   current_page_help: Current page help
   #usual button
   cancel: Cancel
-  next: Next Step
-  last: Back To Last Step
+  next: Next
+  last: Previous
   or: or
   show: Show
   edit: Edit

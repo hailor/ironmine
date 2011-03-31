@@ -34,6 +34,9 @@ zh:
    result: 结果
    export: 导出
    range: 范围
+   label_csi_survey_joined_count: 参与人数
+   label_csi_survey_person_count: 应参加人数
+   label_csi_survey_created_at: 发起时间
    #========================= end   csi surveys_controller=======================#
    #========================= start csi survey_subjects_controller=======================#
    label_csi_survey_subject: 题目

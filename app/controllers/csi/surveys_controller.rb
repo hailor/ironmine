@@ -100,11 +100,16 @@ class Csi::SurveysController < ApplicationController
   end
 
   def get_data
-    @surveys= Csi::Survey.query_wrap_info(I18n::locale)
+    @surveys= Csi::Survey.query_wrap_info(I18n::locale).with_joined_count.with_person_count
     @surveys = @surveys.match_value("#{Csi::Survey.table_name}.title",params[:title])
     @surveys,count = paginate(@surveys)
+    @surveys_new = []
+    @surveys.each do |s|
+      s.person_count = Csi::SurveyRange.query_range_person_count(s.id)
+      @surveys_new << s
+    end
     respond_to do |format|
-      format.json {render :json=>to_jsonp(@surveys.to_grid_json(['R',:title,:description,:status_meaning], count))}
+      format.json {render :json=>to_jsonp(@surveys_new.to_grid_json(['R',:title,:description,:status_meaning, :joined_count, :person_count, :created_at, :published_at], count))}
     end
   end 
 
