@@ -1,4 +1,5 @@
 class Irm::OrganizationsController < ApplicationController
+  layout "uid"
   # GET /organizations
   # GET /organizations.xml
   def index

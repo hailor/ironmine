@@ -1,4 +1,5 @@
 class Irm::DepartmentsController < ApplicationController
+  layout "uid"
   # GET /departments
   # GET /departments.xml
   def index

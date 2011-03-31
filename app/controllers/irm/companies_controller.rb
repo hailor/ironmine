@@ -1,4 +1,5 @@
 class Irm::CompaniesController < ApplicationController
+  layout "uid"
   # GET /Companies
   # GET /Companies.xml
   def index
