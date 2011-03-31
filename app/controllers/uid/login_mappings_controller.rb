@@ -7,7 +7,7 @@ class Uid::LoginMappingsController < ApplicationController
   # GET /login_mappings/1
   # GET /login_mappings/1.xml
   def show
-    @login_mapping = Uid::LoginMapping.query_by_system(::I18n.locale).query_by_person.status_meaning.find(params[:id])
+    @login_mapping = Uid::LoginMapping.list_all.status_meaning.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
