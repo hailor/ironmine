@@ -804,8 +804,10 @@ Ironmine::Application.routes.draw do
     match '/import_files/new(.:format)' => "import_files#new", :via => :get
     match '/import_files/:id(.:format)' => "import_files#show", :via => :get
     match '/import_files/create(.:format)' => "import_files#create", :via => :post
-    #uid_home
-    match '/uid_home(/index)(.:format)' => "uid_home#index", :via => :get
+    #system_user_home
+    match '/system_user_home(/index)(.:format)' => "system_user_home#index", :via => :get
+    #external_user_home
+    match '/external_user_home(/index)(.:format)' => "external_user_home#index", :via => :get
   end
   
   match '/demo(/index)' => 'demo#index'

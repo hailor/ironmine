@@ -47,5 +47,9 @@ module Irm::NavigationsHelper
 
   end
 
+  def function_nav(menu_code)
+    render :partial=>"irm/navigations/function_nav",:locals=>{:menu_code=>menu_code}
+  end
+
 
 end
