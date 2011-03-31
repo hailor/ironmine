@@ -32,7 +32,7 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_uid_user_login_mapping_person_name)%></label></td>
-              <td class="dataCol"><%=f.select :person_id,available_person,{},{:id=>"condition_code",:required=>true}%></td>
+              <td class="dataCol"><%=f.select :person_id,available_uid_person,{},{:id=>"condition_code",:required=>true}%></td>
               <td class="labelCol"><label><%=(t :label_uid_user_login_mapping_system_name)%></label></td>
               <td class="dataCol"><%=f.select :external_system_code,options_from_collection_for_select(available_external_systems,:external_system_code,:wrap_system_name),
                                                     {:include_blank=>"--- #{t(:actionview_instancetag_blank_option)} ---"},{:id=>"external_system_code",:required=>true}%></td>

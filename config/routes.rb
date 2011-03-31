@@ -779,6 +779,8 @@ Ironmine::Application.routes.draw do
     match '/external_logins/create(.:format)' => "external_logins#create", :via => :post
     match '/external_logins/:id/multilingual_edit(.:format)' => "external_logins#multilingual_edit", :via => :get
     match '/external_logins/:id/multilingual_update(.:format)' => "external_logins#multilingual_update", :via => :put
+    match '/external_logins/:id/delete(.:format)' => "external_logins#destroy", :via => :delete
+
     #login_mappings
     match '/login_mappings(/index)(.:format)' => "login_mappings#index", :via => :get
     match '/login_mappings/get_data(.:format)' => "login_mappings#get_data"
