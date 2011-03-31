@@ -13,6 +13,14 @@ class Csi::Survey < ActiveRecord::Base
                                                    joins(",irm_lookup_values_vl v1").
                                                    where("v1.lookup_type='SYSTEM_STATUS_CODE' AND v1.lookup_code = #{table_name}.status_code AND "+
                                                          "v1.language=?",language)}
+  scope :with_joined_count, lambda{
+    select("(SELECT COUNT(1) FROM (SELECT csr.person_id person_id, css.survey_id survey_id FROM #{Csi::SurveySubject.table_name} css, #{Csi::SurveyResult.table_name} csr
+            WHERE csr.subject_id = css.id GROUP BY css.survey_id, csr.person_id) counter WHERE counter.survey_id = #{table_name}.id) joined_count")
+  }
+
+  scope :with_person_count, lambda{
+    select(" 0 person_count")
+  }
 
   scope :query_recently_ten_reply,lambda{
     select("#{table_name}.id, #{table_name}.title title, sr.updated_at updated_at").
@@ -29,7 +37,6 @@ class Csi::Survey < ActiveRecord::Base
   }
 
   after_create :generate_survey_code
-
 
   def total_page
     @total_page ||= (self.survey_subjects.select{|f| f.input_type == 'page'}.length + 1)
