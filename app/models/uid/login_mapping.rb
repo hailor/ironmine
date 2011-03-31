@@ -10,4 +10,6 @@ class Uid::LoginMapping < ActiveRecord::Base
   scope :query_by_person,select("CONCAT(#{Irm::Person.table_name}.last_name,#{Irm::Person.table_name}.first_name) person_name").
                          joins(",#{Irm::Person.table_name}").
                          where("#{Irm::Person.table_name}.id = #{table_name}.person_id")
+
+
 end
