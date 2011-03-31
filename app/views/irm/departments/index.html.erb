@@ -31,7 +31,8 @@
                    {:key=>"name",:label=>t(:label_irm_department_name),:sortable=>true,:searchable=>true,:width=>"15%"},
                    {:key=>"description",:label=>t(:label_irm_department_description),:sortable=>true},
                    {:key=>"status_meaning",:label=>t(:label_irm_department_status_code),:sortable=>true,:width=>"40px"}],
-                   {:search_box=>"permissionsSearchBox"})%>
+                   {:search_box=>"permissionsSearchBox",:paginator_box=>"departmentsPaginatorBox"})%>
+        <div id="departmentsPaginatorBox"></div>
       </div>
     </div>
 </div>

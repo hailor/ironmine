@@ -30,7 +30,7 @@ class ReworkUidMenus < ActiveRecord::Migration
     uid_menu_entiry_100.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'统一用户',:description=>'统一用户')
     uid_menu_entiry_100.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Global User',:description=>'Global User')
     uid_menu_entiry_100.save
-    uid_menu_entiry_101= Irm::MenuEntry.new(:menu_code=>'UID_ORG_STRUCTURE_MENU',:sub_menu_code=>nil,:page_controller=>'uid/system_user_home',:display_sequence=>10,:display_flag=>'Y',:not_auto_mult=>true)
+    uid_menu_entiry_101= Irm::MenuEntry.new(:menu_code=>'UID_ORG_STRUCTURE_MENU',:sub_menu_code=>nil,:page_controller=>'uid/login_mappings',:display_sequence=>10,:display_flag=>'Y',:not_auto_mult=>true)
     uid_menu_entiry_101.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'统一用户',:description=>'统一用户')
     uid_menu_entiry_101.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Global User',:description=>'Global User')
     uid_menu_entiry_101.save
@@ -50,10 +50,6 @@ class ReworkUidMenus < ActiveRecord::Migration
     uid_menu_entiry_105.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'部门',:description=>'部门')
     uid_menu_entiry_105.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Department',:description=>'Department')
     uid_menu_entiry_105.save
-    uid_menu_entiry_106= Irm::MenuEntry.new(:menu_code=>'UID_ORG_STRUCTURE_MENU',:sub_menu_code=>nil,:page_controller=>'uid/login_mappings',:display_sequence=>45,:display_flag=>'Y',:not_auto_mult=>true)
-    uid_menu_entiry_106.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'匹配用户',:description=>'匹配用户')
-    uid_menu_entiry_106.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Mapping User',:description=>'Mapping User')
-    uid_menu_entiry_106.save
     uid_menu_entiry_107= Irm::MenuEntry.new(:menu_code=>'UID_ORG_STRUCTURE_MENU',:sub_menu_code=>nil,:page_controller=>'irm/company_accesses',:display_sequence=>50,:display_flag=>'N',:not_auto_mult=>true)
     uid_menu_entiry_107.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'人员访问公司限制',:description=>'人员访问公司限制')
     uid_menu_entiry_107.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Company Access',:description=>'Company Access')
