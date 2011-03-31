@@ -12,7 +12,7 @@ class InitUidMenu < ActiveRecord::Migration
     uid_menu_entry_79.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'统一用户管理',:description=>'统一用户管理')
     uid_menu_entry_79.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Unify User Management',:description=>'Unify User Management')
     uid_menu_entry_79.save
-    uid_menu_entry_80= Irm::MenuEntry.new(:menu_code=>'IRM_USER_MANAGE_MENU',:sub_menu_code=>nil,:page_controller=>'uid/uid_home',
+    uid_menu_entry_80= Irm::MenuEntry.new(:menu_code=>'IRM_USER_MANAGE_MENU',:sub_menu_code=>nil,:page_controller=>'uid/system_user_home',
                                           :display_sequence=>10,:display_flag=>'Y',:not_auto_mult=>true)
     uid_menu_entry_80.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'统一用户管理',:description=>'统一用户管理')
     uid_menu_entry_80.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Unify User Management',:description=>'Unify User Management')

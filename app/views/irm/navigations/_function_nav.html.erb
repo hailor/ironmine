@@ -1,0 +1,17 @@
+<div class="sidebarModule">
+    <div class="sidebarModuleHeader"><h2><%= t(:label_uid_nav_function) %></h2></div>
+    <div class="sidebarModuleBody">
+    <table>
+      <tbody>
+       <% entries = Irm::MenuManager.sub_entries_by_menu(menu_code) %>
+       <% entries.each do |me|%>
+         <tr>
+           <td>
+              <%=link_to me[:name],{:controller=>me[:page_controller],:action=>me[:page_action]} %>
+           </td>
+         </tr>
+       <%end %>
+      </tbody>
+    </table>
+    </div>
+</div>

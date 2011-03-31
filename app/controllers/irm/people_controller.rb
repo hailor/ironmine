@@ -1,4 +1,5 @@
 class Irm::PeopleController < ApplicationController
+  layout "uid"
   # GET /people
   # GET /people.xml
   def index

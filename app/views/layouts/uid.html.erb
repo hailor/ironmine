@@ -5,22 +5,25 @@
   <script type="text/javascript" src="/javascripts/yui3.3/yui/yui-min.js"></script>
   <%= javascript_include_tag :defaults %>
   <%= javascript_include_tag "tabbar_ext" %>
+  <%= javascript_include_tag "survey" %>
   <%= csrf_meta_tag %>
-  <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/setting.css"></link>
+  <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/application.css"></link>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/common.css"></link>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/tabbar.css"></link>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/icons.css"></link>
+
   <script type="text/javascript">
     GY.use("irm","node-base",function(Y){
       Y.on("domready",function(){
         Y.irm.menuButton("settingMenu","TR","BR");
         Y.irm.menuButton("pageMenu","TR","BR");
+        Y.irm.menuButton("companyMenu","TR","BR");
       });
     });
   </script>
   <link rel="shortcut icon" href="/images/mini-logo.png" type="image/x-icon"/>
 </head>
-<body class="setupTab setup sfdcBody yui3-skin-sam yui-skin-sam">
+<body id ="homePage" class="homeTab homepage sfdcBody yui3-skin-sam yui-skin-sam">
     <div id="contentWrapper">
         <div id="AppBodyHeader" class="bPageHeader">
             <table id="phHeader" class="phHeader" cellpadding="0" cellspacing="0" border="0">
@@ -29,12 +32,29 @@
                   <td class="left">
                     <img width="175" height="65" title="salesforce.com" id="phHeaderLogoImage" src="/themes/salesforce2/images/logo2.png">
                   </td>
+                  <td class="searchCell">
+                    <form id="phSearchForm">
+                      <div id="phSearchContainer" class="headerSearchContainer">
+                        <div class="headerSearchLeftRoundedCorner">
+                          <div class="searchBoxClearContainer">
+                            <input id="phSearchInput" class="headerSearchBoxGhostText" type="text" size="20" maxlength="100">
+                          </div>
+                          <div id="searchButtonContainer" class="headerSearchRightRoundedCorner">
+                            <input id="phSearchButton" type="button" value="<%= t(:search) %>">
+                          </div>
+                        </div>
+                        <div id="searchOptionsContainer" class="headerSearchOptions">
+                          <a href="javascript:void(0);" class="headerSearchOptionsLink"><%= t(:options) %></a>
+                        </div>
+                      </div>
+                    </form>
+                  </td>
                   <td class="right vtop">
                     <div class="multiforce">
                       <div class="messages"></div>
                       <div>
                         <% if Irm::Role.current %>
-                        <span id="pageMenu" class="menuParent" style="float:right">
+                        <span id="pageMenu" class="menuParent" style="float:right;">
                           <div  class="menuLabel">
                             <span tabindex="0" id="pageMenuTop" style=""><%= current_role_name %></span>
                             <div id="pageMenu-arrow"></div>
@@ -43,7 +63,12 @@
                             <%= list_roles %>
                           </div>
                         </span>
-                        <% end %>    
+                        <% end %>
+                        <span class="navLinks" style="float:right">
+                          <span class="linkElements">
+                            <a style="margin-right:29px;" href="#" onclick="window.open ('/helpfiles/index.html', 'Ironmine Help', 'height=800px, width=870px, top=0, left=0, toolbar=no, menubar=no,scrollbars=yes, location=no, status=no');"><%= t :help %></a>
+                          </span>
+                        </span>
                         <span id="settingMenu" class="menuParent" style="float:right">
                           <div  class="menuLabel">
                             <span tabindex="0" style="" id="userNavTop" ><%= Irm::Person.current.name %></span>
@@ -54,8 +79,19 @@
                             <div class="menuItem"><%= link_to(t(:label_irm_common_logout),logout_url) %></div>
                           </div>
                         </span>
+                        <span id="companyMenu" class="menuParent" style="float:right">
+                          <div  class="menuLabel">
+                            <span tabindex="0" id="companyMenuTop" style=""><%= t(:label_company_access_menu_label) %></span>
+                            <div id="companyMenu-arrow"></div>
+                          </div>
+                          <div class="menuContent" >
+                            <%= form_tag({:controller=>"irm/my_info",:action=>"update_company_access",:return_controller=>params[:controller]},{:method=>:put}) do %>
+                              <%= current_company_access_menu %>
+                              <%= submit_tag t(:apply)%>
+                            <% end %>
+                          </div>
+                        </span>
                       </div>
-                      <div id="toolbar"></div>
                     </div>
                   </td>
                 </tr>
@@ -77,9 +113,9 @@
                 </tbody>
             </table>
         </div>
-        <div id="bodyDiv_setup" class="bodyDiv">
-            <div id=""></div>
-            <div id=""></div>
+        <div id="bodyDiv" class="bodyDiv">
+            <div id="bd_l"></div>
+            <div id="bd_r"></div>
             <div id="motifCurve">
                 <div id="mc_l"></div>
                 <div id="mc_r"></div>
@@ -88,13 +124,18 @@
                 <div id="bd_bl"></div>
                 <div id="bd_br"></div>
             </div>
+
+            <div id="sidebarDiv">
+                <div class="sidebarInner">
+                    <%if has_content?(:sidebar) %>
+                        <%= yield :sidebar %>
+                    <%end%>
+                    <%= function_nav(@page_menus[1]) if@page_menus[1]  %>
+                </div>
+            </div>
+
             <table id="bodyTable" class="outer" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td class="oLeft">
-
-                      <%= sidebar_menu %>
-
-                  </td>
                   <td id="bodyCell" class="oRight">
                     <%= yield %>
                   </td>
@@ -102,6 +143,5 @@
             </table>
         </div>
     </div>
-
 </body>
 </html>

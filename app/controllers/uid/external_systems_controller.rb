@@ -1,4 +1,5 @@
 class Uid::ExternalSystemsController < ApplicationController
+  layout "uid"
   # GET /external_systems
   # GET /external_systems.xml
   def index
