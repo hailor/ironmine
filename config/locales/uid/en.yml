@@ -40,6 +40,7 @@ en:
   label_new_login_mapping: New Login Mapping
   label_uid_login_mapping_person: Person
   label_uid_user_login_mapping_person_name: Person Name
+  label_uid_user_login_mapping_login_name: Global Login Name
   label_uid_user_login_mapping_system_name: System Name
   label_uid_user_login_mapping_external_login_name: External Login Name
   label_uid_login_mapping_info: Login Mapping Info

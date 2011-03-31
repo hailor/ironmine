@@ -71,14 +71,15 @@ class Uid::LoginMappingsController < ApplicationController
   end
 
   def get_data
-    login_mappings_scope = Uid::LoginMapping.query_by_system(::I18n.locale).query_by_person.status_meaning.order(:person_id)
-    login_mappings_scope = login_mappings_scope.match_value("v1.system_name",params[:system_name])
-    login_mappings_scope = login_mappings_scope.match_value("#{Uid::ExternalLogin.table_name}.external_login_name",
-                                                              params[:external_login_name])
+    login_mappings_scope = Uid::LoginMapping.list_all.order(:person_id)
+    login_mappings_scope = login_mappings_scope.match_value("#{Irm::Identity.table_name}.login_name",params[:login_name])
+    login_mappings_scope = login_mappings_scope.match_value("#{Uid::LoginMapping.table_name}.external_login_name",params[:external_login_name])
+    login_mappings_scope = login_mappings_scope.match_value("#{Uid::ExternalSystem.view_name}.system_name",params[:system_name])
+    login_mappings_scope = login_mappings_scope.match_value("#{Irm::Person.name_to_sql(nil,Irm::Person.table_name,'')}",
+                                                              params[:person_name])
     login_mappings,count = paginate(login_mappings_scope)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(login_mappings.to_grid_json([:person_name,:system_name,:external_login_name,:active_start_date,
-                                                                        :active_end_date,:status_meaning],count))}
+      format.json {render :json=>to_jsonp(login_mappings.to_grid_json([:id,:login_name,:external_login_name,:system_name,:person_name],count))}
     end
   end
 
