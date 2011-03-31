@@ -1,5 +1,5 @@
 class Irm::CompanyAccessesController < ApplicationController
-
+  layout "uid"
   def index
     redirect_to({:action=>"new"})
   end

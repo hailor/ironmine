@@ -1,4 +1,5 @@
 class Uid::AutoMappingsController < ApplicationController
+  layout "uid"
   def index
     
   end

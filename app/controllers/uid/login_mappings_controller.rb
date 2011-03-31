@@ -1,4 +1,5 @@
 class Uid::LoginMappingsController < ApplicationController
+  layout "uid"
   def index
     
   end

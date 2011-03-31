@@ -1,4 +1,5 @@
 class Uid::ExternalLoginsController < ApplicationController
+  layout "uid"
   # GET /external_logins
   # GET /external_logins.xml
   def index

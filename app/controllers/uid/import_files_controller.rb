@@ -1,4 +1,5 @@
 class Uid::ImportFilesController < ApplicationController
+  layout "uid"
   def index
 
   end
