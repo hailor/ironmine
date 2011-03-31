@@ -5,12 +5,9 @@
         <table cellpadding="0" cellspacing="0" border="0">
           <tbody>
             <tr>
-              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_uid_external_system_list) %></h2></td>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_uid_login_mapping_list) %></h2></td>
               <td id="topButtonRow" class="pbButton">
-                <div class="button"><%= link_to t(:label_new_uid_person), {:controller=>"irm/people",
-                                                                     :action => "new"}%></div>
-                <div class="button"><%= link_to t(:label_new_uid_login), {:controller=>"uid/external_logins",
-                                                                     :action => "new"}%></div>
+                <div class="button"><%= link_to t(:label_new_login_mapping), {:action => "new"}%></div>
               </td>
               <td class="pbHelp">
                 <div id="external_systemsSearchBox"></div>

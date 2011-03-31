@@ -96,4 +96,15 @@ class Uid::ExternalLoginsController < ApplicationController
                                                                         :active_end_date,:status_meaning],count))}
     end
   end
+
+
+  def options
+    external_logins_scope = Uid::ExternalLogin.where("1=1")
+    external_logins_scope = external_logins_scope.query_by_system_code(params[:external_system_code]) if params[:external_system_code]
+    external_logins_scope = external_logins_scope.collect{|el| {:label=>el[:external_login_name],:value=>el[:external_login_name]}}
+    respond_to do |format|
+      format.json {render :json=>external_logins_scope.to_grid_json([:label,:value],external_logins_scope.count)}
+    end
+  end
+
 end

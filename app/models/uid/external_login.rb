@@ -11,4 +11,9 @@ class Uid::ExternalLogin < ActiveRecord::Base
                          joins(",irm_lookup_values_vl v2").
                          where("v2.lookup_code = #{table_name}.source_type "+
                                "AND v2.language = ?",language)}
+
+
+  scope :query_by_system_code,lambda{|external_system_code|
+    where(:external_system_code=>external_system_code)
+  }
 end

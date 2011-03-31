@@ -1,0 +1,78 @@
+<%= form_for(@login_mapping,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_new_login_mapping)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @script%>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+          <span class="requiredLegend">
+            <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+            </span>
+          <span class="requiredMark">*</span>
+          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+          </span>
+      </span>
+      <h3><%=t(:label_irm_script_info)%></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_uid_user_login_mapping_person_name)%></label></td>
+              <td class="dataCol"><%=f.select :person_id,available_person,{},{:id=>"condition_code",:required=>true}%></td>
+              <td class="labelCol"><label><%=(t :label_uid_user_login_mapping_system_name)%></label></td>
+              <td class="dataCol"><%=f.select :external_system_code,options_from_collection_for_select(available_external_systems,:external_system_code,:wrap_system_name),
+                                                    {:include_blank=>t(:actionview_instancetag_blank_option)},{:id=>"external_system_code",:required=>true}%></td>
+
+            </tr>
+            <tr>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><label><%=(t :label_uid_user_login_mapping_external_login_name)%></label></td>
+              <td class="dataCol"><%= f.select(:external_login_name,nullable_options_for_select([],nil),{},
+                                  {:required=>true,
+                                   :id=>"external_login_name",
+                                   :href=>url_for(:controller=>"uid/external_logins",:action=>"options",:format=>"json",:external_system_code=>"{external_system_code}"),
+                                   :depend=>"external_system_code",
+                                   :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---"
+                                   }) %></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
+<script type="text/javascript">
+  GY.use("cascadeselect",function(Y){
+     new Y.CascadeSelect({source: "#external_system_code",target:["#external_login_name"]});
+  });
+</script>
+
+

@@ -15,6 +15,31 @@ class Uid::LoginMappingsController < ApplicationController
     end
   end
 
+
+  def new
+    @login_mapping = Uid::LoginMapping.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @external_system }
+    end
+  end
+
+
+  def create
+    @login_mapping = Uid::LoginMapping.new(params[:uid_login_mapping])
+
+    respond_to do |format|
+      if @login_mapping.save
+        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_created)) }
+        format.xml  { render :xml => @login_mapping, :status => :created, :location => @external_system }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @login_mapping.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
   # GET /login_mappings/1/edit
   def edit
     @login_mapping = Uid::LoginMapping.find(params[:id])
