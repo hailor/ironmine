@@ -1,5 +1,9 @@
 class Uid::LoginMapping < ActiveRecord::Base
   set_table_name :uid_user_login_mappings
+
+  validates_uniqueness_of :external_login_name,:scope=>[:external_system_code], :if => Proc.new { |i| !i.external_login_name.blank? }
+
+
   query_extend
 
   scope :query_by_system,lambda{|language| select("v1.system_name,#{table_name}.*").
