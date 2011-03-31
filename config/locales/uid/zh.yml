@@ -35,7 +35,11 @@ zh:
   label_new_uid_login: 新建登录
   #=========================    end external_systems_controller=======================#
   #=========================    uid external_systems_controller=======================#
-  label_uid_user_login_mapping_person_name: 统一用户名
+  label_uid_login_mapping_list: 用户关联列表
+  label_new_login_mapping: 新建用户关联
+  label_uid_login_mapping_person: 人员
+  label_uid_user_login_mapping_person_name: 人员名称
+  label_uid_user_login_mapping_login_name: 统一用户名
   label_uid_user_login_mapping_system_name: 外部系统
   label_uid_user_login_mapping_external_login_name: 外部用户名
   label_uid_login_mapping_info: 登录匹配信息

@@ -19,11 +19,11 @@
       <div class="pbBody">
         <div id="external_logins" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>|<%= link_to(t(:delete),{:action=>"destroy",:id=>"{id}"},{:method => :delete}) %>
           </div>
         </div>
         <%= datatable("external_logins",url_for(:action=>"get_data",:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"100px"},
                        
                        { :key => "system_name", :label => t(:label_uid_external_login_external_system_code),:searchable=>true },
                        { :key => "external_login_name", :label => t(:label_uid_external_login_external_login_name),:searchable=>true },
@@ -31,7 +31,7 @@
                        { :key => "active_end_date", :label => t(:label_uid_external_login_active_end_date)},
                        { :key => "status_meaning", :label => t(:label_uid_external_login_status_meaning)}
 
-                       ],{:row_perpage=>20,:search_box=>"external_loginsSearchBox",:paginator_box=>"external_loginsPaginatorBox"})%>
+                       ],{:row_perpage=>10,:search_box=>"external_loginsSearchBox",:paginator_box=>"external_loginsPaginatorBox"})%>
         <div id="external_loginsPaginatorBox"></div>
       </div>
     </div>

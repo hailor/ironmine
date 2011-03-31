@@ -96,4 +96,5 @@ class Uid::ExternalLoginsController < ApplicationController
                                                                         :active_end_date,:status_meaning],count))}
     end
   end
+
 end

@@ -52,7 +52,8 @@ class Irm::Person < ActiveRecord::Base
   scope :query_person_name,lambda{|person_id|select("CONCAT(#{table_name}.last_name,#{table_name}.first_name) person_name").
                            where(:id=>person_id)}
 
-  scope :query_all_person,select("CONCAT(#{table_name}.last_name,#{table_name}.first_name) person_name,#{table_name}.id")
+  scope :query_all_person,joins("JOIN #{Irm::Identity.table_name} ON #{table_name}.identity_id = #{Irm::Identity.table_name}.id").
+      select("CONCAT(#{table_name}.last_name,#{table_name}.first_name) person_name,#{Irm::Identity.table_name}.login_name,#{table_name}.id")
 
 
     scope :query_wrap_info,lambda{|language| select("#{table_name}.id,irm_identities.login_name,#{table_name}.mobile_phone,CONCAT(#{table_name}.last_name,#{table_name}.first_name) person_name,"+
