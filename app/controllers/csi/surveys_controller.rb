@@ -109,7 +109,7 @@ class Csi::SurveysController < ApplicationController
       @surveys_new << s
     end
     respond_to do |format|
-      format.json {render :json=>to_jsonp(@surveys_new.to_grid_json(['R',:title,:description,:status_meaning, :joined_count, :person_count, :created_at], count))}
+      format.json {render :json=>to_jsonp(@surveys_new.to_grid_json(['R',:title,:description,:status_meaning, :joined_count, :person_count, :created_at, :published_at], count))}
     end
   end 
 
