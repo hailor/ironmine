@@ -32,7 +32,8 @@ zh:
   label_skm_entry_template_element_required: 必须
   label_skm_entry_template_element_rows: 显示行数
   label_skm_entry_template_element_code: 元素编码
-
+  label_action_select_elements: 选择模板元素
+  label_action_edit_detail: 编辑模板元素
   #=========================entry headers================================
   label_skm_entry_header: 知识库文章
   label_skm_entry_header_list: 知识库文章列表
