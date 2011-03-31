@@ -45,7 +45,7 @@
               <td class="dataCol"><%= f.select(:external_login_name,nullable_options_for_select([],nil),{},
                                   {:required=>true,
                                    :id=>"external_login_name",
-                                   :href=>url_for(:controller=>"uid/external_logins",:action=>"options",:format=>"json",:external_system_code=>"{external_system_code}"),
+                                   :href=>url_for(:action=>"not_mpping_external_logins",:format=>"json",:external_system_code=>"{external_system_code}"),
                                    :depend=>"external_system_code",
                                    :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---"
                                    }) %></td>

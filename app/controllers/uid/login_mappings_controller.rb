@@ -61,6 +61,15 @@ class Uid::LoginMappingsController < ApplicationController
     end
   end
 
+  def destroy
+    @login_mapping = Uid::LoginMapping.find(params[:id])
+    @login_mapping.destroy
+    respond_to do |format|
+      format.html { redirect_to({:action=>"index"}) }
+      format.xml  { head :ok }
+    end
+  end
+
   def get_data
     login_mappings_scope = Uid::LoginMapping.query_by_system(::I18n.locale).query_by_person.status_meaning
     login_mappings_scope = login_mappings_scope.match_value("v1.system_name",params[:system_name])
@@ -70,6 +79,16 @@ class Uid::LoginMappingsController < ApplicationController
     respond_to do |format|
       format.json {render :json=>to_jsonp(login_mappings_.to_grid_json([:person_name,:system_name,:external_login_name,:active_start_date,
                                                                         :active_end_date,:status_meaning],count))}
+    end
+  end
+
+
+  def not_mpping_external_logins
+    external_logins_scope = Uid::ExternalLogin.not_mapping
+    external_logins_scope = external_logins_scope.query_by_system_code(params[:external_system_code]) if params[:external_system_code]
+    external_logins_scope = external_logins_scope.collect{|el| {:label=>el[:external_login_name],:value=>el[:external_login_name]}}
+    respond_to do |format|
+      format.json {render :json=>external_logins_scope.to_grid_json([:label,:value],external_logins_scope.count)}
     end
   end
 
