@@ -4,9 +4,7 @@ module Skm::EntryHeadersHelper
     html_content = ""
     entry_headers.each do |e|
       html_content << content_tag(:tr,
-                                  content_tag(:td,
-                                              raw(get_img_icon("img10", {:class => "mruIcon", :title => t(:label_incident_request)}, "Small")) +
-                                                  link_to(e.entry_title, {:controller => "skm/entry_headers", :action => "show", :id => e.id}, {:title => e.entry_title})))
+                                  content_tag(:td, link_to(get_list_icon + e.entry_title, {:controller => "skm/entry_headers", :action => "show", :id => e.id}, {:title => e.entry_title})))
     end
     raw(html_content)
   end

@@ -323,3 +323,6 @@ img.img18Large{
 .btn_range{background:url("../images/16_16/chart_org_inverted.png") no-repeat scroll; width: 16px; height: 16px;}
 .btn_up{background:url("../images/16_16/Up.png") no-repeat scroll top; width:16px; height:16px;}
 .btn_down{background:url("../images/16_16/Down.png") no-repeat scroll top; width:16px; height:16px;}
+
+.sidebarModule .sidebarModuleBody>table a[href*="surveys"] > img{background-image:url("/images/master.png");background-position:0 -341px;height:16px;width:16px;}/*img17*/
+.sidebarModule .sidebarModuleBody>table a[href*="entry_headers"] > img{background-image:url("/images/master.png");background-position:0 -182px;height:16px;width:16px;}/*img10*/

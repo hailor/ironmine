@@ -80,4 +80,8 @@ module Irm::PageHelper
     html_options = html_options.merge({})
     content_tag(:img, "", html_options)
   end
+
+  def get_list_icon
+    raw(content_tag(:img, "", {:src => "/images/s.gif", :class => "mruIcon"}))
+  end
 end
