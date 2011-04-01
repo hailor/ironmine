@@ -34,7 +34,8 @@
                        {:key=>"person_name",:label=>t(:label_irm_person),:sortable=>true, :searchable => true},
                        {:key=>"support_group_name",:label=>t(:label_irm_support_group_show),:sortable=>true,:searchable=>true},
                        {:key=>"status_code",:label=>t(:active),:width=>"40px",:formatter=>"Y.irm.template"}
-                       ],{:row_perpage=>5})%>
+                       ],{:paginator_box=>"groupAssignPaginator"})%>
+        <div id="groupAssignPaginator"></div>
       </div>
     </div>
 </div>

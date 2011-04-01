@@ -39,6 +39,7 @@ Y.extend(IrmDTPaginator, Y.Plugin.Base, {
         _paginateOptions: {totalPage:1,currentPage:1,count:20,numRows:0},
         initializer: function(config) {
            this.doAfter("_setColumnset", this._beforeRenderUI);
+           Y.one("#"+this.get("paginatorDom")).setStyle("display","none")
            Y.one("#"+this.get("paginatorDom")).delegate('click',this._prePage,'.prePage',this);
            Y.one("#"+this.get("paginatorDom")).delegate('click',this._nextPage,'.nextPage',this);
            Y.one("#"+this.get("paginatorDom")).delegate('change',this._changeRowPerPage,'.rowPerPage',this);
@@ -101,6 +102,7 @@ Y.extend(IrmDTPaginator, Y.Plugin.Base, {
           Y.mix(this._paginateOptions,{start:meta.start},true);
           Y.mix(this._paginateOptions,{total:meta.numRows},true);
           this._setupOptions();
+          Y.one("#"+this.get("paginatorDom")).setStyle("display","block")
         },
         _setupOptions:function(){
           var recordend = this._paginateOptions.currentPage*this._paginateOptions.count;
