@@ -645,6 +645,7 @@ zh:
   label_irm_person_avatar_edit: 编辑头像
   label_irm_person_avatar_current: 当前头像
   label_irm_person_avatar_best_size: 最佳大小为100px * 100px
+  label_action_select_roles: 选择角色
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: 弹性域
