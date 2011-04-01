@@ -80,7 +80,8 @@
                        {:key=>"name",:label=>t(:label_irm_site_name),:searchable=>true,:width=>"20%"},
                        {:key=>"description",:label=>t(:label_irm_site_description)},
                        {:key=>"status_meaning",:label=>t(:label_irm_site_status_code),:width=>"40px"}],
-                       {:search_box=>"permissionsSearchBox"})%>
+                       {:search_box=>"permissionsSearchBox",:paginator_box=>"sitePaginator"})%>
+        <div id="sitePaginator"></div>
       </div>
     </div>
 </div>

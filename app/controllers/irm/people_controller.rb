@@ -76,15 +76,17 @@ class Irm::PeopleController < ApplicationController
   end
 
   def get_data
-    @people= Irm::Person.query_wrap_info(I18n::locale)
-    @people = @people.match_value("#{Irm::Identity.table_name}.login_name",params[:login_name])
-    @people = @people.match_value("CONCAT(#{Irm::Person.table_name}.last_name,#{Irm::Person.table_name}.first_name)",params[:person_name])
+    @people= Irm::Person.list_all.order(:id)
+    @people = @people.match_value("#{Irm::Person.table_name}.login_name",params[:login_name])
+    @people = @people.match_value("#{Irm::Person.name_to_sql(nil,Irm::Person.table_name,"")}",params[:person_name])
     @people = @people.match_value("#{Irm::Person.table_name}.email_address",params[:email_address])
-    @people = @people.match_value("v2.company_name",params[:company_name])
+    @people = @people.match_value("#{Irm::Person.table_name}.mobile_phone",params[:mobile_phone])
+    @people = @people.match_value("#{Irm::Company.view_name}.name",params[:company_name])
+    @people = @people.match_value("#{Irm::Region.view_name}.name",params[:region_name])
 
     @people,count = paginate(@people)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(@people.to_grid_json(['R',:login_name,:person_name,:email_address,:mobile_phone,:company_name], count))}
+      format.json {render :json=>to_jsonp(@people.to_grid_json([:login_name,:person_name,:region_name,:email_address,:mobile_phone,:company_name], count))}
     end
   end
 

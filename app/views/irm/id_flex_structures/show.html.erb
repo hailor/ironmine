@@ -82,7 +82,9 @@
                        {:key=>"form_left_prompt",:label=>t(:label_irm_id_flex_segment_form_left_prompt),:sortable=>true, :width => "15%"},
                        {:key=>"description",:label=>t(:label_irm_id_flex_segment_description),:sortable=>true},
                        {:key=>"value_set_name",:label=>t(:label_irm_value_set),:sortable=>true, :width => "15%"},
-                       {:key=>"status_code",:label=>t(:active),:formatter=>"Y.irm.template",:sortable=>true, :width => "40px"}]) %>
+                       {:key=>"status_code",:label=>t(:active),:formatter=>"Y.irm.template",:sortable=>true, :width => "40px"}],
+                      {:row_perpage=>5,:paginator_box=>"segementPaginator"}) %>
+          <div id="segementPaginator"></div>
       </div>
     </div>
 </div>

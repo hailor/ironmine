@@ -30,7 +30,8 @@
                    {:key=>"action_name",:label=>t(:label_irm_script_action),:sortable=>true,:searchable=>true},
                    {:key=>"template_name",:label=>t(:label_irm_script_template),:sortable=>true,:searchable=>true},
                    {:key=>"status_meaning",:label=>t(:label_irm_script_status_code),:sortable=>true,:width=>"40px"}],
-                   {:search_box=>"scriptsSearchBox"})%>
+                   {:paginator_box=>"scriptPaginator",:search_box=>"scriptsSearchBox"})%>
+        <div id="scriptPaginator"></div>
       </div>
     </div>
 </div>

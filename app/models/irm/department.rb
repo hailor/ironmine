@@ -17,6 +17,10 @@ class Irm::Department < ActiveRecord::Base
     where(:short_name=>short_name)
   }
 
+  scope :query_by_organization,lambda{|organization_id|
+    where(:organization_id=>organization_id)
+  }
+
   scope :query_all_department,lambda{|company_id,organization_id|
     where("#{table_name}.company_id=? and #{table_name}.organization_id=?",company_id,organization_id)
   }

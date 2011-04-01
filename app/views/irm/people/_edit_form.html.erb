@@ -27,16 +27,30 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_person_last_name)%></label></td>
-              <td class="dataCol"><%= f.text_field :last_name, :required => true%></td>
-              <td class="labelCol"><label><%=(t :label_irm_person_first_name)%></label></td>
-              <td class="dataCol"><%= f.text_field :first_name, :required => true%></td>
+              <td class="labelCol"><label><%=t(:label_irm_identity_login_name)%></label></td>
+              <td class="dataCol"><%= f.text_field(:login_name,:required=>true) %></td>
+              <td class="labelCol"><label><%=(t :label_irm_person_email_address)%></label></td>
+              <td class="dataCol"><%=f.text_field :email_address, :required=>true%></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_person_email_address)%></label></td>
-              <td class="dataCol"><%= f.text_field :email_address, :required => true%></td>
+              <td class="labelCol"><label><%=(t :label_irm_person_last_name)%></label></td>
+              <td class="dataCol"><%=f.text_field :last_name%></td>
+              <td class="labelCol"><label><%=(t :label_irm_person_first_name)%></label></td>
+              <td class="dataCol"><%=f.text_field :first_name, :required=>true%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%= t(:label_irm_identity_password)%></label></td>
+              <td class="dataCol"><%=f.password_field(:password, :size=>40)%></td>
+              <td class="labelCol"><label><%= t(:label_irm_identity_password_confirmation)%></label></td>
+              <td class="dataCol"><%=f.password_field(:password_confirmation, :size=>40)%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><%= t(:label_irm_identity_language_code) %></td>
+              <td class="dataCol"><%= f.select(:language_code, options_for_select(selectable_languages,@person.language_code)) %></td>
               <td class="labelCol"><%=(t :label_irm_person_title)%></td>
-              <td class="dataCol"><%=@person.title%></td>
+              <td class="dataCol">
+                <%=f.select :title,options_for_select(person_title,@person.title),
+                                                    {},{:required=>true,:id=>"irm_person_title"}%></td>
             </tr>
         </tbody>
       </table>
@@ -51,96 +65,130 @@
         <tbody>
              <tr>
                  <td class="labelCol"><label><%=t(:label_irm_person_company)%></label></td>
-                 <td class="dataCol"><%=f.select(:company_id,options_from_collection_for_select(available_company,:id,:wrap_name,@person.company_id),
-                                           {},:action=>url_for(:controller=>"irm/organizations",
-                                                               :action=>"belongs_to",
-                                                               :company_id=>"cascade_id"),
-                                           :choice_title=>t(:actionview_instancetag_blank_option),:required=>true,
-                             :cascade=>"organization_select")%></td>
-                 <td class="labelCol"><label><%=(t :label_irm_person_login)%></label></td>
-                 <td class="dataCol"><%=f.select :identity_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                   options_from_collection_for_select(attachable_identities(@person.identity_id),
-                                                                                      :id,:login_name,@person.identity_id),{},{:required=>true}%></td>
+                 <td class="dataCol"><%=f.select(:company_id,available_company,{},:required=>true,:id=>"company_id")%></td>
+                  <td class="labelCol"><label><%=(t :label_irm_person_region_code)%></label></td>
+                  <td class="dataCol"><%=f.blank_select :region_code,available_region,{},{:required=>true,:id=>"region_code"}%></td>
              </tr>
              <tr>
              <td class="labelCol"><label><%=t(:label_irm_person_organization)%></label></td>
-             <td class="dataCol"><%=f.select(:organization_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                           options_from_collection_for_select(available_organization,:id,:wrap_name,@person.organization_id),{},
-                                 :id=>"organization_select")%></td>
-             <td class="labelCol"></td>
-             <td class="dataCol"></td>
+             <td class="dataCol"><%= f.blank_select(:organization_id,available_organization(@person.company_id),{},
+                                  {:required=>true,
+                                   :id=>"organization_id",
+                                   :href=>url_for(:controller=>"irm/organizations",:action=>"get_by_company",:format=>"json",:belonged_company_id=>"{company_id}"),
+                                   :depend=>"company_id"
+                                   }) %></td>
+             <td class="labelCol"><label><%=(t :label_irm_person_site_group_code)%></label></td>
+
+             <td class="dataCol"><%= f.blank_select(:site_group_code,available_site_group(@person.region_code),{},
+                                  {:required=>false,
+                                   :id=>"site_group_code",
+                                   :href=>url_for(:controller=>"irm/site_groups",:action=>"get_by_region_code",:format=>"json",:region_code=>"{region_code}"),
+                                   :depend=>"region_code"
+                                   }) %></td>
              </tr>
              <tr>
                  <td class="labelCol"><label><%=t(:label_irm_person_department)%></label></td>
-                 <td class="dataCol"><%=f.select(:department_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                           options_from_collection_for_select(available_department,:id,:wrap_name,@person.department_id)
-                                 )%></td>
-                 <td class="labelCol"><label>
-                    <%=t(:label_irm_person_vip_flag)%></label></td>
-                 <td class="dataCol"><%=f.check_box :vip_flag%></td>
-             </tr>
-             <tr>
-                 <td class="labelCol"><label><%=t(:label_irm_person_home_phone)%></label></td>
-                 <td class="dataCol">
-                   <%=f.text_field :home_phone%>
-                 </td>
-                 <td class="labelCol"><label>
-                     <%=t(:label_irm_person_assignment_availability_flag)%></label></td>
-                  <td class="dataCol"><%=f.check_box :assignment_availability_flag%></td>
-             </tr>
-             <tr>
-                 <td class="labelCol"><label><%=t(:label_irm_person_home_address)%></label></td>
-                 <td class="dataCol">
-                   <%=f.text_field :home_address%>
-                 </td>
-                 <td class="labelCol"><label><%=(t :label_irm_person_region_code)%></label></td>
-                  <td class="dataCol"><%=f.select :region_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_region,:region_code,:wrap_name,@person.region_code),{},{:required=>true}%></td>
+                 <td class="dataCol"><%= f.blank_select(:department_id,available_department(@person.organization_id),{},
+                                  {:required=>true,
+                                   :id=>"department_id",
+                                   :href=>url_for(:controller=>"irm/departments",:action=>"get_by_organization",:format=>"json",:organization_id=>"{organization_id}"),
+                                   :depend=>"organization_id"
+                                   }) %></td>
+
+               <td class="labelCol"><label><%=(t :label_irm_person_site_code)%></label></td>
+                 <td class="dataCol"><%= f.blank_select(:site_code,available_site(@person.site_group_code),{},
+                                  {:required=>false,
+                                   :id=>"site_code",
+                                   :href=>url_for(:controller=>"irm/sites",:action=>"get_by_site_group_code",:format=>"json",:site_group_code=>"{site_group_code}"),
+                                   :depend=>"site_group_code"
+                                   }) %></td>
+
+
              </tr>
              <tr>
                  <td class="labelCol"><label><%=t(:label_irm_person_mobile_phone)%></label></td>
                  <td class="dataCol">
                    <%=f.text_field :mobile_phone%>
                  </td>
-                 <td class="labelCol"><label><%=(t :label_irm_person_site_group_code)%></label></td>
-                 <td class="dataCol"><%=f.select :site_group_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                       options_from_collection_for_select(available_site_group,:group_code,:wrap_name,@person.site_group_code)%></td>
+                 <td class="labelCol"><label><%=t(:label_irm_person_home_address)%></label></td>
+                 <td class="dataCol">
+                   <%=f.text_field :home_address%>
+                 </td>
              </tr>
              <tr>
+                 <td class="labelCol"><label><%=t(:label_irm_person_vip_flag)%></label></td>
+                 <td class="dataCol"><%=f.check_box :vip_flag%></td>
+                 <td class="labelCol"><label><%=t(:label_irm_person_home_phone)%></label></td>
+                 <td class="dataCol">
+                   <%=f.text_field :home_phone%>
+                 </td>
+             </tr>
+             <tr>
+                 <td class="labelCol"><label>
+                     <%=t(:label_irm_person_assignment_availability_flag)%></label></td>
+                 <td class="dataCol"><%=f.check_box :assignment_availability_flag%></td>
                  <td class="labelCol"><label><%=t(:label_irm_person_fax_number)%></label></td>
                  <td class="dataCol">
                    <%=f.text_field :fax_number%>
                  </td>
-                 <td class="labelCol"><label><%=(t :label_irm_person_site_code)%></label></td>
-                 <td class="dataCol"><%=f.select :site_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                       options_from_collection_for_select(available_site,:site_code,:wrap_name,@person.site_code)%></td>
+
              </tr>
              <tr>
-                 <td class="labelCol"><label><%=t(:label_irm_person_bussiness_phone)%></label></td>
+               <td class="labelCol"><label>
+                     <%=t(:label_irm_person_unrestricted_access_flag)%></label></td>
+                <td class="dataCol"><%=f.check_box :unrestricted_access_flag%></td>
+                <td class="labelCol"><label><%=t(:label_irm_person_bussiness_phone)%></label></td>
                  <td class="dataCol">
                    <%=f.text_field :bussiness_phone%>
                  </td>
-                 <td class="labelCol"><label>
-                     <%=t(:label_irm_person_unrestricted_access_flag)%></label></td>
-                <td class="dataCol"><%=f.check_box :unrestricted_access_flag%></td>
+
              </tr>
              <tr>
+               <td class="labelCol"></td>
+               <td class="dataCol"></td>
+               <td class="labelCol">
+                 <label><%=t(:label_irm_person_notification_flag)%></label>
+               </td>
+               <td class="dataCol"><%=f.check_box :notification_flag,:checked => true%></td>
+
+
+
+             </tr>
+             <tr>
+               <td class="labelCol"></td>
+               <td class="dataCol"></td>
                   <td class="labelCol"><label><%=t(:label_irm_person_notification_lang)%></label>
                  </td>
                  <td class="dataCol"><%=f.select :notification_lang,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
                                            options_from_collection_for_select(available_languages,:language_code,:wrap_description,@person.notification_lang)%></td>
-                  <td class="labelCol"><label>
-                     <%=t(:label_irm_person_notification_flag)%></label></td>
-                  <td class="dataCol"><%=f.check_box :notification_flag%></td>
-             </tr>
-             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_person_status_code)%></label></td>
-              <td class="dataCol"><%=f.select :status_code,options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@person.status_code)%>
-              </td>
+
              </tr>
         </tbody>
       </table>
     </div>
+    <div id="head_3_ep" class="pbSubheader first tertiaryPalette">
+      <h3><%=t(:label_irm_person_approve_info)%></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+             <tr>
+               <td class="labelCol"><label><%=t(:label_irm_person_delegate_approver)%></label></td>
+               <td class="dataCol"><%=f.blank_select(:delegate_approver,available_person)%></td>
+               <td class="labelCol">
+                 <label><%=t(:label_irm_person_approve_request_mail)%></label>
+               </td>
+               <td class="dataCol"><%=f.check_box :approve_request_mail,:checked => true%></td>
+             </tr>
+
+             <tr>
+               <td class="labelCol"><label><%=t(:label_irm_person_delegate_manager)%></label></td>
+               <td class="dataCol"><%=f.blank_select(:manager,available_person)%></td>
+             </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
   <div class="pbBottomButtons">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -157,3 +205,13 @@
   </div>
 </div>
 <% end %>
+
+<script type="text/javascript">
+  GY.use("cascadeselect",function(Y){
+     new Y.CascadeSelect({source: "#company_id",target:["#organization_id","#department_id"]});
+     new Y.CascadeSelect({source: "#organization_id",target:["#department_id"]});
+
+     new Y.CascadeSelect({source: "#region_code",target:["#site_group_code","#site_code"]});
+     new Y.CascadeSelect({source: "#site_group_code",target:["#site_code"]});
+  });
+</script>

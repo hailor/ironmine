@@ -72,7 +72,7 @@ class Uid::LoginMappingsController < ApplicationController
 
   def get_data
     login_mappings_scope = Uid::LoginMapping.list_all.order(:person_id)
-    login_mappings_scope = login_mappings_scope.match_value("#{Irm::Identity.table_name}.login_name",params[:login_name])
+    login_mappings_scope = login_mappings_scope.match_value("#{Irm::Person.table_name}.login_name",params[:login_name])
     login_mappings_scope = login_mappings_scope.match_value("#{Uid::LoginMapping.table_name}.external_login_name",params[:external_login_name])
     login_mappings_scope = login_mappings_scope.match_value("#{Uid::ExternalSystem.view_name}.system_name",params[:system_name])
     login_mappings_scope = login_mappings_scope.match_value("#{Irm::Person.name_to_sql(nil,Irm::Person.table_name,'')}",

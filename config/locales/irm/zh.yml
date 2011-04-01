@@ -272,6 +272,7 @@ zh:
   label_irm_identity_edit_info: 编辑个人信息
   label_irm_identity_edit_password: 修改个人密码
   label_irm_identity: 账号
+  label_irm_identity_last_login_at: 最后登录时间
   #=========================    end irm identities_controller=======================#
 
   #=========================    irm global_settings_controller=======================#
@@ -644,6 +645,10 @@ zh:
   label_irm_person_avatar_edit: 编辑头像
   label_irm_person_avatar_current: 当前头像
   label_irm_person_avatar_best_size: 最佳大小为100px * 100px
+  label_irm_person_approve_info: 审批信息
+  label_irm_person_delegate_approver: 代理审批人
+  label_irm_person_approve_request_mail: 审批邮件通知
+  label_irm_person_delegate_manager: 主管
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: 弹性域

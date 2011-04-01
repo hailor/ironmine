@@ -75,7 +75,8 @@
                        {:key=>"name",:label=>t(:label_irm_site_name),:sortable=>true},
                        {:key=>"description",:label=>t(:label_irm_site_description),:sortable=>true},
                        {:key=>"status_meaning",:label=>t(:label_irm_site_group_status_code),:sortable=>true}],
-                       {:row_perpage=>5}) %>
+                       {:paginator_box=>"sitePaginator"}) %>
+        <div id="sitePaginator"></div>
       </div>
     </div>
 </div>

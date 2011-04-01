@@ -33,8 +33,7 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_site_group_region_name)%></label></td>
-              <td class="dataCol"><%=f.select :region_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_region,:region_code,:wrap_name),{},{:required=>true}%></td>
+              <td class="dataCol"><%=f.blank_select :region_code,available_region,{},{:required=>true}%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>

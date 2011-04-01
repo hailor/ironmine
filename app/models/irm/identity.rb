@@ -44,7 +44,7 @@ class Irm::Identity < ActiveRecord::Base
   def before_save
      #如果password变量值不为空,则修改密码
      self.hashed_password = Irm::Identity.hash_password(self.password) if self.password&&!self.password.blank?
-   end
+  end
 
    # 返回人员的全名
    def name

@@ -31,7 +31,8 @@
                        {:key=>"flex_value_set_name",:label=>t(:label_irm_value_set_name),:sortable=>true, :width => "30%", :searchable=>true},
                        {:key=>"description",:label=>t(:label_irm_value_set_description)},
                        {:key=>"status_code",:label=>t(:active),:formatter=>"Y.irm.template", :width => "40px"}],
-                       {:search_box=>"flexValueSetsSearchBox"}) %>
+                       {:search_box=>"flexValueSetsSearchBox",:paginator_box=>"flexValuePagiantor"}) %>
+        <div id="flexValuePagiantor"></div>
       </div>
     </div>
 </div>

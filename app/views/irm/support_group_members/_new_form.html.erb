@@ -53,7 +53,8 @@
                    {:key=>"person_name",:label=>t(:label_irm_support_group_person_name),:sortable=>true},
                    {:key=>"company_name",:label=>t(:label_irm_support_group_company_name),:sortable=>true},
                    {:key=>"email_address",:label=>t(:label_irm_person_email_address),:sortable=>true},],
-                   {:row_perpage=>5})%>
+                   {:paginator_box=>"personPaginator"})%>
+    <div id="personPaginator"></div>
   </div>
 </div>
 <% end %>

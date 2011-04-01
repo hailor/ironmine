@@ -33,7 +33,8 @@
                    {:key=>"vendor_group_flag",:label=>t(:label_irm_support_group_vendor_group),:sortable=>true},
                    {:key=>"oncall_group_flag",:label=>t(:label_irm_support_group_oncall_group),:sortable=>true},
                    {:key=>"status_meaning",:label=>t(:label_irm_support_group_status_code),:sortable=>true,:width=>"40px"}],
-                   {:search_box=>"permissionsSearchBox"})%>
+                   {:paginator_box=>"supportgroupPaginator",:search_box=>"permissionsSearchBox"})%>
+        <div id="supportgroupPaginator"></div>
       </div>
     </div>
 </div>

@@ -32,6 +32,13 @@ class LabellingFormBuilder  < ActionView::Helpers::FormBuilder
       end
     end
   end
+
+
+ def blank_select(field, choices, options = {}, html_options = {})
+    options=(options||{}).merge({:include_blank=>"--- #{I18n.t(:actionview_instancetag_blank_option)} ---"})
+    html_options =(html_options||{}).merge(:blank=> "--- #{I18n.t(:actionview_instancetag_blank_option)} ---")
+    select(field, choices, options, html_options)
+  end
   
   def check_box(method, options = {}, checked_value = "Y", unchecked_value = "N")
     if !options.delete(:normal)

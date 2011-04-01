@@ -52,7 +52,7 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_organization_status_code)%></label></td>
-              <td class="dataCol"><%=f.select :status_code,options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@organization.status_code)%>
+              <td class="dataCol"><%=f.select :status_code, available_active_status%></td>
               </td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>

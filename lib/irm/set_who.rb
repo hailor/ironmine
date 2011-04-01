@@ -27,7 +27,7 @@ module Irm::SetWho
     end
 
     def current_user_id
-      ::Irm::Identity.current.id
+      ::Irm::Person.current.id
     end
 
     def current_company_id

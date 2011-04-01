@@ -1,16 +1,10 @@
 module Irm::SiteGroupsHelper
-  def available_site_group
-    Irm::SiteGroup.query_by_status_code("ENABLED").multilingual
-  end  
-  def available_site
-    Irm::Site.query_by_status_code("ENABLED").multilingual
-  end
-
-  def current_site(site_group_code)
-    Irm::Site.query_by_site_group_code(site_group_code).query_by_status_code("ENABLED").multilingual
-  end
-
-  def available_site_group_collect
-    Irm::SiteGroup.query_by_status_code("ENABLED").multilingual.collect{|p| [p.name, p.site_group_code]}
+  def available_site_group(region_code=nil)
+    if(region_code)
+      site_groups = Irm::SiteGroup.query_by_region_code(region_code).multilingual.enabled
+    else
+      site_groups = Irm::SiteGroup.multilingual.enabled
+    end
+    site_groups.collect{|i| [i[:name],i.id]}
   end
 end

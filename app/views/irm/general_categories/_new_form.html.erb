@@ -40,7 +40,7 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%= t :label_irm_general_category_company%></label></td>
-              <td class="dataCol"><%=f.select :company_id, available_company.collect{|p| [p[:name], p.id]}, {:include_blank => t(:select)}, :required=>true%></td>
+              <td class="dataCol"><%=f.select :company_id, available_company, {:include_blank => t(:select)}, :required=>true%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>

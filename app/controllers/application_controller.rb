@@ -24,13 +24,13 @@ class ApplicationController < ActionController::Base
   # 设置当前用户，为下步检查用户是否登录做准备
   def user_setup
     #从session中取得当前user
-    Irm::Identity.current = find_current_user
+    Irm::Person.current = find_current_user
   end
 
   # 检查是否需要登录
   def check_if_login_required
     # 如果用户已经登录,则无需登录,否则转向登录页面
-     if Irm::Identity.current.logged?||(Irm::PermissionChecker.public?({:controller=>params[:controller],:action=>params[:action]}))
+     if Irm::Person.current.logged?||(Irm::PermissionChecker.public?({:controller=>params[:controller],:action=>params[:action]}))
        return true
      else
        require_login
@@ -39,7 +39,6 @@ class ApplicationController < ActionController::Base
 
   # 设置当前页面访问的人员
   def person_setup
-    Irm::Person.current = Irm::Person.query_by_identity(Irm::Identity.current.id).first
     if(Irm::Person.current)
       # setting current role
       if(session[:role_id])
@@ -63,8 +62,8 @@ class ApplicationController < ActionController::Base
   #设置当前用户使用的语言
   def localization_setup
     lang = nil
-    if Irm::Identity.current.logged?
-      lang = find_language(Irm::Identity.current.language_code)
+    if Irm::Person.current.logged?
+      lang = find_language(Irm::Person.current.language_code)
     end
     lang = params[:_lang]||lang
     if lang.nil? && request.env['HTTP_ACCEPT_LANGUAGE']
@@ -113,11 +112,11 @@ class ApplicationController < ActionController::Base
   # 设置当前用户
   def logged_user=(user)
 
-    if user && user.is_a?(Irm::Identity)
-      Irm::Identity.current = user
+    if user && user.is_a?(Irm::Person)
+      Irm::Person.current = user
       session[:user_id] = user.id
     else
-      Irm::Identity.current = Irm::Identity.anonymous
+      Irm::Person.current = Irm::Person.anonymous
       session[:user_id]=nil
       Irm::Role.current = nil
       session[:role_id]=nil
@@ -191,13 +190,13 @@ class ApplicationController < ActionController::Base
   def find_current_user
     if session[:user_id]
       # existing session
-      (Irm::Identity.find(session[:user_id]) rescue nil)
+      (Irm::Person.find(session[:user_id]) rescue nil)
     end
   end
 
   # 处理登录，跳转到登录页面
   def require_login
-    if !Irm::Identity.current.logged?
+    if !Irm::Person.current.logged?
       # 如果是get将url存起来就可以,如果是其他方法则需要存一些参数
       if request.get?
         url = url_for(params)
@@ -207,7 +206,7 @@ class ApplicationController < ActionController::Base
       #转向登录页面
       respond_to do |format|
         format.html { redirect_to :controller => "irm/common", :action => "login", :back_url => url }
-        format.xml { render :xml=>Irm::Identity.current,:status=> :unprocessable_entity }
+        format.xml { render :xml=>Irm::Person.current,:status=> :unprocessable_entity }
       end
       return false
     end
