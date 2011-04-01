@@ -30,7 +30,8 @@
                    {:key=>"description",:label=>t(:label_irm_action_description),:sortable=>true},
                    {:key=>"handler",:label=>t(:label_irm_action_handler),:sortable=>true},
                    {:key=>"status_meaning",:label=>t(:label_irm_action_status_code),:sortable=>true,:width=>"40px"}],
-                   {:search_box=>"permissionsSearchBox"})%>
+                   {:search_box=>"permissionsSearchBox",:paginator_box=>"actionPaginator"})%>
+        <div id="actionPaginator"></div>
       </div>
     </div>
 </div>

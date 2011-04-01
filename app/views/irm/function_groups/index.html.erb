@@ -38,7 +38,8 @@
                        {:key=>"name",:label=>t(:label_irm_function_group_name),:sortable=>true},
                        {:key=>"description",:label=>t(:label_irm_function_group_description)},
                        {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}],
-                       {:search_box=>"funcGroupSearchBox"}) %>
+                       {:search_box=>"funcGroupSearchBox",:paginator_box=>"functionGroupPaginator"}) %>
+        <div id="functionGroupPaginator"></div>
       </div>
     </div>
 </div>

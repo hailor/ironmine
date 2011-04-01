@@ -29,7 +29,8 @@
                    {:key=>"name",:label=>t(:label_irm_currency_name),:sortable=>true,:searchable=>true,:width=>"20%"},
                    {:key=>"description",:label=>t(:label_irm_currency_description),:sortable=>true},
                    {:key=>"status_meaning",:label=>t(:label_irm_currency_status_code),:sortable=>true,:width=>"40px"}],
-                   {:search_box=>"permissionsSearchBox"})%>
+                   {:search_box=>"permissionsSearchBox",:paginator_box=>"currencyPaginator"})%>
+        <div id="currencyPaginator"></div>
       </div>
     </div>
 </div>
