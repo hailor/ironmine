@@ -114,13 +114,13 @@ Y.extend(IrmDTPaginator, Y.Plugin.Base, {
           Y.one("#"+this.get("paginatorDom")).one(".totalPage").setContent("/"+this._paginateOptions.totalPage);
           if(this._paginateOptions.currentPage==this._paginateOptions.totalPage)
           {
-            Y.one("#"+this.get("paginatorDom")).one(".nextPage").setStyle("display","inline");
-            Y.one("#"+this.get("paginatorDom")).one(".nextPageHolder").setStyle("display","none");
+            Y.one("#"+this.get("paginatorDom")).one(".nextPage").setStyle("display","none");
+            Y.one("#"+this.get("paginatorDom")).one(".nextPageHolder").setStyle("display","inline");
           }
           else
           {
-              Y.one("#"+this.get("paginatorDom")).one(".nextPage").setStyle("display","none");
-              Y.one("#"+this.get("paginatorDom")).one(".nextPageHolder").setStyle("display","inline");
+              Y.one("#"+this.get("paginatorDom")).one(".nextPage").setStyle("display","inline");
+              Y.one("#"+this.get("paginatorDom")).one(".nextPageHolder").setStyle("display","none");
           }
 
           if(this._paginateOptions.currentPage==1)
