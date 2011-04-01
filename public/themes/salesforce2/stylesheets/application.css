@@ -630,7 +630,8 @@ body #sidebarDiv .sidebarInner {
 
 .sidebarModule .sidebarModuleBody tr{padding: 5px 0 5px 0 !important;}
 .sidebarModule .sidebarModuleBody tr td{display:inline;}
-.sidebarModule .sidebarModuleBody tr td a{white-space:nowrap; overflow: hidden; width: 155px; display: block;}
+.sidebarModule .sidebarModuleBody tr td> a{white-space:nowrap; overflow: hidden; width: 155px; display: block;}
+.sidebarModule .sidebarModuleBody tr td> div+a{white-space:nowrap; overflow: hidden; width: 155px; display: inline;}
 .mruIcon {
     background-image:url("../images/master.png");
     background-position:0 -2px;
