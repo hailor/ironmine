@@ -41,6 +41,7 @@ zh:
    #========================= start csi survey_subjects_controller=======================#
    label_csi_survey_subject: 题目
    label_csi_survey_subject_add_subject: 新问题
+   label_csi_survey_subject_new: 新建题目
    label_csi_survey_subject_info: 调查问卷题目详细信息
    duplicate: 复制
    are_you_sure: 你确定嘛
@@ -60,7 +61,7 @@ zh:
    checkboxes: 多选题
    choose_from_a_list: 下拉列表
    page_break: 分页符
-   label_csi_survey_subject_seq_num: 问题顺序
+   label_csi_survey_subject_seq_num: 题目顺序
    label_csi_survey_subject_users_long_answer: 用户较长的回答
    label_csi_survey_subjects_add_other: 允许用户填写其它选择
    label_csi_survey_subjects_other: 其他

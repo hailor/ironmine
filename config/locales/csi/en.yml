@@ -41,6 +41,7 @@ en:
    #========================= start irm regions_controller=======================#
    label_csi_survey_subject: Subject
    label_csi_survey_subject_add_subject: New Subject
+   label_csi_survey_subject_new:New Survey Subject
    label_csi_survey_subject_info: Survey Subject Info
    duplicate: Duplicate
    are_you_sure: Are you Sure
