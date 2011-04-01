@@ -31,7 +31,7 @@ module Irm::CommonHelper
     html_content = ""
     counter = 0
     result_list.each do |e|
-      html_content << content_tag(:tr, content_tag(:td, raw(content_tag(:img, {:class => "mruIcon", :title => t(:label_incident_request)})) + link_to(e[:title], {:controller => e[:controller], :action => e[:action], :id => e[:id]}, {:title => e[:title]})))
+      html_content << content_tag(:tr, content_tag(:td, link_to(get_list_icon + e[:title], {:controller => e[:controller], :action => e[:action], :id => e[:id]}, {:title => e[:title]})))
       break if (counter += 1) == 10
     end
 

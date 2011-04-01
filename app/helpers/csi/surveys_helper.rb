@@ -118,7 +118,7 @@ module Csi::SurveysHelper
     surveys = Csi::Survey.find_recently_ten
     html_content = ""
     surveys.each do |e|
-      html_content << content_tag(:tr, content_tag(:td, raw(get_img_icon("img17", {:class => "mruIcon", :title => t(:label_incident_request)}, "Small"))+ link_to(e.title, {:controller => "csi/surveys", :action => "show", :id => e.id}, {:title => e.title})))
+      html_content << content_tag(:tr, content_tag(:td, link_to(get_list_icon + e.title, {:controller => "csi/surveys", :action => "show", :id => e.id}, {:title => e.title})))
     end
     raw(html_content)
   end

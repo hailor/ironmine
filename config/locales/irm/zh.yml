@@ -174,7 +174,7 @@ zh:
   label_irm_common_password: 密码
   label_irm_common_logout: 退出系统
   label_irm_common_forgot_password: 忘记密码？
-  label_irm_recently_objects: 最近更新
+  label_irm_recently_objects: 最近的项目
   #=========================    end common_controller=======================#
   #=========================    irm menus_controller=======================#  
   label_irm_menu: 菜单
