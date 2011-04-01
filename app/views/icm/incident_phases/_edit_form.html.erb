@@ -45,7 +45,7 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_script_status_code)%></label></td>
-              <td class="dataCol"><%=f.select :status_code,nullable_collection_options(available_status,:lookup_code,:wrap_meaning,@incident_phase.status_code)%></td>
+              <td class="dataCol"><%=f.select :status_code, available_active_status%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>

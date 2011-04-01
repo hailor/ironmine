@@ -25,7 +25,7 @@ module Csi
           site_id = survey_range.site_id
           survey_id = survey_range.survey_id
           if department_id.present?
-            department_people = Irm::Person.query_department_id(department_id)
+            department_people = Irm::Person.query_by_department(department_id)
             department_people.each do |t|
               #TODO performance tuning
               if check_survey_member(survey_id,t.id)
@@ -37,7 +37,7 @@ module Csi
               end
             end
           elsif department_id.blank? and organization_id.present?
-            organization_people = Irm::Person.query_organization_id(organization_id)
+            organization_people = Irm::Person.query_by_organization(organization_id)
             organization_people.each do |t|
               if check_survey_member(survey_id,t.id)
                  Csi::SurveyMember.create({:survey_id=>survey_id,
@@ -48,7 +48,7 @@ module Csi
               end
             end
           elsif department_id.blank? and organization_id.blank? and company_id.present?
-            company_people = Irm::Person.query_company_id(company_id)
+            company_people = Irm::Person.query_by_company(company_id)
             company_people.each do |t|
               if check_survey_member(survey_id,t.id)
                  Csi::SurveyMember.create({:survey_id=>survey_id,

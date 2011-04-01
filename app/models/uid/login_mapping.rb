@@ -14,8 +14,7 @@ class Uid::LoginMapping < ActiveRecord::Base
 
   scope :with_person,lambda{
     joins("JOIN #{Irm::Person.table_name} ON #{table_name}.person_id = #{Irm::Person.table_name}.id").
-    joins("JOIN #{Irm::Identity.table_name} ON #{Irm::Identity.table_name}.id = #{Irm::Person.table_name}.identity_id").
-    select("#{Irm::Identity.table_name}.login_name,#{Irm::Person.name_to_sql(nil,Irm::Person.table_name,'person_name')}")
+    select("#{Irm::Person.table_name}.login_name,#{Irm::Person.name_to_sql(nil,Irm::Person.table_name,'person_name')}")
   }
 
   def self.list_all

@@ -6,23 +6,23 @@ class Irm::MyPasswordController < ApplicationController
 
   # 个人密码修改页面
   def edit_password
-    @identity = Irm::Identity.current
+    @person = Irm::Person.current
   end
 
   # 更新个人密码
   def update_password
-    @identity = Irm::Identity.current
-    params[:irm_identity][:password]="*" if params[:irm_identity][:password].blank?
+    @person = Irm::Person.current
+    params[:irm_person][:password]="*" if params[:irm_person][:password].blank?
     respond_to do |format|
-      if(params[:irm_identity][:old_password]&&check_password(params[:irm_identity][:old_password]))
-        if @identity.update_attributes(params[:irm_identity])
-          format.html {redirect_to({:action=>"index"},:notice=>t(:successfully_updated))}
+      if(params[:irm_person][:old_password]&&check_password(params[:irm_person][:old_password]))
+        if @person.update_attributes(params[:irm_person])
+          format.html {redirect_to({:action=>"edit_password"},:notice=>t(:successfully_updated))}
         else
-          @identity.password = "" if @identity.password.eql?("*")
+          @person.password = "" if @person.password.eql?("*")
           format.html {render("edit_password")}
         end
       else
-        @identity.errors.add(:old_password,t('activerecord.errors.messages.invalid'))
+        @person.errors.add(:old_password,t('activerecord.errors.messages.invalid'))
         format.html { render("edit_password")}
       end
     end
@@ -31,6 +31,6 @@ class Irm::MyPasswordController < ApplicationController
   private
 
   def check_password(password)
-    Irm::Identity.current.hashed_password.eql?(Irm::Identity.hash_password(password))
+    Irm::Person.current.hashed_password.eql?(Irm::Person.hash_password(password))
   end
 end

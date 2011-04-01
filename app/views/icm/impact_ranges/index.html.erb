@@ -35,7 +35,8 @@
                        {:key=>"display_sequence",:label=>t(:display_sequence),:sortable=>true},
                        {:key=>"default_flag",:label=>t(:default_flag),:sortable=>true,:searchable=>true,:formatter=>"Y.irm.template", :width => "80px"},
                        {:key=>"status_meaning",:label=>t(:label_irm_script_status_code),:width=>"70px"}
-                       ],{:row_perpage=>5,:search_box=>"impactRangesSearchBox"})%>
+                       ],{:paginator_box=>"impactPaginator",:search_box=>"impactRangesSearchBox"})%>
+        <div id="impactPaginator"></div>
       </div>
     </div>
 </div>

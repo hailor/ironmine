@@ -717,6 +717,10 @@ div  table.paginator .col1{text-align: left; width: 150px;}
 div  table.paginator .col2{text-align: left; width: 300px;}
 div  table.paginator .col3{text-align: center; width: 100px;}
 div  table.paginator .col4{text-align: right;}
+div  table.paginator label.prePageHolder{color: gray;}
+div  table.paginator label.nextPageHolder{color: gray;}
+
+
 
 fieldset{
   border-width:1px;

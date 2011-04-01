@@ -31,7 +31,8 @@
                        { :key => "required_flag", :label => t(:label_csi_survey_range_required_flag),:searchable=>true },
                        { :key => "range_type_meaning", :label => t(:label_csi_survey_range_range_type),:searchable=>true },
                        { :key => "status_meaning", :label => t(:label_csi_survey_range_status_code) }
-                       ],{:row_perpage=>20,:search_box=>"survey_rangesSearchBox"})%>
+                       ],{:paginator_box=>"surveryPaginator",:search_box=>"survey_rangesSearchBox"})%>
+        <div id="surveryPaginator"></div>
       </div>
     </div>
 </div>

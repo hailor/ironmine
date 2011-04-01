@@ -29,7 +29,8 @@
                        {:key=>"phase_code",:label=>t(:label_icm_incident_phase_phase_code),:sortable=>true,:searchable=>true},
                        {:key=>"display_sequence",:label=>t(:display_sequence),:sortable=>true},
                        {:key=>"status_meaning",:label=>t(:label_irm_script_status_code),:width=>"70px"}
-                       ],:search_box=>"incidentPhasesSearchBox")%>
+                       ],:paginator_box=>"phasePaginator",:search_box=>"incidentPhasesSearchBox")%>
+        <div id="phasePaginator"></div>
       </div>
     </div>
 </div>

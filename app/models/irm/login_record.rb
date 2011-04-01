@@ -10,16 +10,20 @@ class Irm::LoginRecord < ActiveRecord::Base
                             group("DATE_FORMAT(#{table_name}.created_at,'%Y-%m-%d')").
                             order("DATE_FORMAT(#{table_name}.created_at,'%Y-%m-%d') asc")
 
-  scope :query_with_info,lambda{
-    joins(" LEFT OUTER JOIN #{Irm::Identity.table_name} ON #{Irm::Identity.table_name}.id = #{table_name}.identity_id").
-    select("#{Irm::Identity.table_name}.full_name,#{Irm::Identity.table_name}.login_name").
-    select("#{table_name}.user_ip,#{table_name}.operate_system,#{table_name}.browser,#{table_name}.login_at,#{table_name}.logout_at").
-    order("#{table_name}.created_at desc")     
+
+  scope :with_person,lambda{
+    joins("JOIN #{Irm::Person.table_name} ON #{table_name}.identity_id = #{Irm::Person.table_name}.id").
+    select("#{Irm::Person.table_name}.login_name,#{Irm::Person.name_to_sql(nil,Irm::Person.table_name,'full_name')}")
   }
 
-  scope :query_by_identity,lambda{|identity_id|
-    where(:identity_id => identity_id)
+  scope :query_by_person,lambda{|person_id|
+    where(:identity_id => person_id)
   }
+
+
+  def self.list_all
+    select("#{table_name}.*").with_person.order("#{table_name}.created_at desc")
+  end
 
   def setup_os_browser
     parser = Irm::UserAgentParser.new(self.user_agent)

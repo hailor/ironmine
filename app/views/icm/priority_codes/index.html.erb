@@ -31,7 +31,8 @@
                    {:key=>"low_weight_value",:label=>t(:label_icm_priority_code_low_weight_value),:sortable=>true},
                    {:key=>"high_weight_value",:label=>t(:label_icm_priority_code_high_weight_value),:sortable=>true},
                    {:key=>"status_meaning",:label=>t(:label_irm_script_status_code),:sortable=>true,:width=>"70px"}],
-                   {:row_perpage=>5,:search_box=>"priorityCodesSearchBox"})%>
+                   {:paginator_box=>"priorityPaginator",:search_box=>"priorityCodesSearchBox"})%>
+        <div id="priorityPaginator"></div>
       </div>
     </div>
 </div>

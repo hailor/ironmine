@@ -16,23 +16,23 @@ module Irm::LookupTypesHelper
 
 
   def available_company_type
-    Irm::LookupValue.query_by_lookup_type("COMPANY_TYPE").multilingual
+    Irm::LookupValue.query_by_lookup_type("COMPANY_TYPE").multilingual.collect{|i| [i[:meaning],i[:lookup_code]]}
   end
 
   def available_time_zone
-    Irm::LookupValue.query_by_lookup_type("TIMEZONE").multilingual
+    Irm::LookupValue.query_by_lookup_type("TIMEZONE").multilingual.collect{|i| [i[:meaning],i[:lookup_code]]}
   end
 
   def available_country
-    Irm::LookupValue.query_by_lookup_type("COUNTRY").multilingual
+    Irm::LookupValue.query_by_lookup_type("COUNTRY").multilingual.collect{|i| [i[:meaning],i[:lookup_code]]}
   end
 
   def available_province
-    Irm::LookupValue.query_by_lookup_type("PROVINCE").multilingual
+    Irm::LookupValue.query_by_lookup_type("PROVINCE").multilingual.collect{|i| [i[:meaning],i[:lookup_code]]}
   end
 
   def available_city
-    Irm::LookupValue.query_by_lookup_type("CITY").multilingual
+    Irm::LookupValue.query_by_lookup_type("CITY").multilingual.collect{|i| [i[:meaning],i[:lookup_code]]}
   end
 
 def available_external_login_source_type

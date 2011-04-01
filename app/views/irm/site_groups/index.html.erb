@@ -30,7 +30,8 @@
                    {:key=>"name",:label=>t(:label_irm_site_group_name),:sortable=>true,:searchable=>true,:width=>"20%"},
                    {:key=>"description",:label=>t(:label_irm_site_group_description),:sortable=>true},
                    {:key=>"status_meaning",:label=>t(:label_irm_site_group_status_code),:sortable=>true,:width=>"40px"}],
-                   {:search_box=>"permissionsSearchBox"})%>
+                   {:paginator_box=>"sitegroupPaginator",:search_box=>"permissionsSearchBox"})%>
+        <div id="sitegroupPaginator"></div>
       </div>
     </div>
 </div>

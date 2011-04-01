@@ -34,7 +34,8 @@
                        {:key=>"base_dn",:label=>t(:label_irm_auth_source_base_dn),:sortable=>true},
                        {:key=>"attr_login",:label=>t(:label_irm_auth_source_attr_login),:sortable=>true,:searchable=>true},
                        {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}],
-                       {:search_box=>"sourcesSearchBox"})%>
+                       {:search_box=>"sourcesSearchBox",:paginator_box=>"authSourcePaginator"})%>
+        <div id="authSourcePaginator"></div>
       </div>
     </div>
 </div>    

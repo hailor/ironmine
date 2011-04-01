@@ -4,7 +4,7 @@ YUI.add("dtpaginator",function(Y){
     var OPTION = "<option value='{key}'>{label}</option>";
     var RECORD = "<label>{record}</label>:<label class='record'></label>";
     var GOTOPAGE = "<label>{page}</label><input type='text' size='3' class='goToPage'/><label class='totalPage'>/{totalPage}</labe><label class='totalPage'>/{totalPage}</labe>";
-    var PAGEPRENEXT = "<a href='javascript:void(0)' class='prePage'>{prepage}</a>|<a href='javascript:void(0)' class='nextPage'>{nextpage}</a>";
+    var PAGEPRENEXT = "<label class='prePageHolder'>{prepage}</label><a href='javascript:void(0)' class='prePage'>{prepage}</a>|<label class='nextPageHolder'>{nextpage}</label><a href='javascript:void(0)' class='nextPage'>{nextpage}</a>";
 
     function IrmDTPaginator() {
         IrmDTPaginator.superclass.constructor.apply(this, arguments);
@@ -39,6 +39,7 @@ Y.extend(IrmDTPaginator, Y.Plugin.Base, {
         _paginateOptions: {totalPage:1,currentPage:1,count:20,numRows:0},
         initializer: function(config) {
            this.doAfter("_setColumnset", this._beforeRenderUI);
+           Y.one("#"+this.get("paginatorDom")).setStyle("display","none")
            Y.one("#"+this.get("paginatorDom")).delegate('click',this._prePage,'.prePage',this);
            Y.one("#"+this.get("paginatorDom")).delegate('click',this._nextPage,'.nextPage',this);
            Y.one("#"+this.get("paginatorDom")).delegate('change',this._changeRowPerPage,'.rowPerPage',this);
@@ -101,6 +102,7 @@ Y.extend(IrmDTPaginator, Y.Plugin.Base, {
           Y.mix(this._paginateOptions,{start:meta.start},true);
           Y.mix(this._paginateOptions,{total:meta.numRows},true);
           this._setupOptions();
+          Y.one("#"+this.get("paginatorDom")).setStyle("display","block")
         },
         _setupOptions:function(){
           var recordend = this._paginateOptions.currentPage*this._paginateOptions.count;
@@ -111,14 +113,26 @@ Y.extend(IrmDTPaginator, Y.Plugin.Base, {
           Y.one("#"+this.get("paginatorDom")).one(".goToPage").set("value",this._paginateOptions.currentPage);
           Y.one("#"+this.get("paginatorDom")).one(".totalPage").setContent("/"+this._paginateOptions.totalPage);
           if(this._paginateOptions.currentPage==this._paginateOptions.totalPage)
-            Y.one("#"+this.get("paginatorDom")).one(".nextPage").setAttribute("disabled","true");
+          {
+            Y.one("#"+this.get("paginatorDom")).one(".nextPage").setStyle("display","none");
+            Y.one("#"+this.get("paginatorDom")).one(".nextPageHolder").setStyle("display","inline");
+          }
           else
-            Y.one("#"+this.get("paginatorDom")).one(".nextPage").setAttribute("disabled","false");
+          {
+              Y.one("#"+this.get("paginatorDom")).one(".nextPage").setStyle("display","inline");
+              Y.one("#"+this.get("paginatorDom")).one(".nextPageHolder").setStyle("display","none");
+          }
 
           if(this._paginateOptions.currentPage==1)
-            Y.one("#"+this.get("paginatorDom")).one(".prePage").setAttribute("disabled","true");
+          {
+              Y.one("#"+this.get("paginatorDom")).one(".prePage").setStyle("display","none");
+              Y.one("#"+this.get("paginatorDom")).one(".prePageHolder").setStyle("display","inline");
+          }
           else
-            Y.one("#"+this.get("paginatorDom")).one(".prePage").setAttribute("disabled","false");
+          {
+              Y.one("#"+this.get("paginatorDom")).one(".prePage").setStyle("display","inline");
+              Y.one("#"+this.get("paginatorDom")).one(".prePageHolder").setStyle("display","none");
+          }
 
         }
     });

@@ -23,7 +23,7 @@ class Irm::FiltersController < ApplicationController
         fc[:view_code] = @view_filter[:view_code]
         fc.view_filter = @view_filter
     end
-    @view_filter.own_id = Irm::Identity.current.id
+    @view_filter.own_id = Irm::Person.current.id
 
     respond_to do |format|
       if @view_filter.save

@@ -29,7 +29,7 @@ module Irm::FiltersHelper
     filters = view_filters(filter_type)
     current = filters.detect{|f| f.id.to_s.eql?(session[:_view_filter_id].to_s)}
     # 取得我的默认选项
-    current = filters.detect{|f| f.default_flag.eql?(Irm::Constant::SYS_YES)&&f.own_id.eql?(Irm::Identity.current.id)} unless current
+    current = filters.detect{|f| f.default_flag.eql?(Irm::Constant::SYS_YES)&&f.own_id.eql?(Irm::Person.current.id)} unless current
     # 如果我的默认选项不存在，则使用全局默认选项
     current = filters.detect{|f| f.default_flag.eql?(Irm::Constant::SYS_YES)} unless current
     current ||= {:id=>nil}

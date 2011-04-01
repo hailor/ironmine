@@ -35,7 +35,8 @@
                    {:key=>"display_sequence",:label=>t(:display_sequence),:sortable=>true},
                    {:key=>"default_flag",:label=>t(:default_flag),:sortable=>true,:searchable=>true, :width => "80px"},
                    {:key=>"status_meaning",:label=>t(:label_irm_script_status_code),:sortable=>true,:width=>"70px"}],
-                   {:row_perpage=>5,:search_box=>"urgenceCodesSearchBox"})%>
+                   {:paginator_box=>"urgencePaginator",:search_box=>"urgenceCodesSearchBox"})%>
+        <div id="urgencePaginator"></div>
       </div>
     </div>
 </div>

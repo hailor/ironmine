@@ -1,21 +1,19 @@
 class Irm::MyInfoController < ApplicationController
   #个人信息显示页面
   def index
-    @identity = Irm::Identity.list_all.query(Irm::Identity.current.id).first
-    @person = Irm::Person.current
+    @person = Irm::Person.list_all.with_delegate_approver.with_manager.find(Irm::Person.current.id)
   end
 
   #个人信息编辑页面
   def edit
-    @identity =  Irm::Identity.list_all.query(Irm::Identity.current.id).first
-    @person = Irm::Person.current
+    @person = Irm::Person.find(Irm::Person.current.id)
   end
   # 更新个人信息
   def update
-    @identity =  Irm::Identity.find(Irm::Identity.current.id)
+    @person = Irm::Person.find(Irm::Person.current.id)
 
     respond_to do |format|
-      if @identity.update_attributes(params[:irm_identity])
+      if @person.update_attributes(params[:irm_person])
         format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_updated)) }
       else
         format.html { render "edit" }
@@ -37,7 +35,7 @@ class Irm::MyInfoController < ApplicationController
   end
 
   def get_login_data
-    login_records_scope = Irm::LoginRecord.query_with_info.query_by_identity(Irm::Identity.current.id)
+    login_records_scope = Irm::LoginRecord.list_all.query_by_person(Irm::Person.current.id)
     login_records,count = paginate(login_records_scope)
     respond_to do |format|
       format.json {render :json=>to_jsonp(login_records.to_grid_json([:login_name,:user_ip,:operate_system,:browser,:login_at,:logout_at], count))}

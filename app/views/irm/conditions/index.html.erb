@@ -29,7 +29,8 @@
                    {:key=>"name",:label=>t(:label_irm_condition_name),:sortable=>true,:searchable=>true,:width=>"25%"},
                    {:key=>"description",:label=>t(:label_irm_condition_description),:sortable=>true},
                    {:key=>"status_meaning",:label=>t(:label_irm_condition_status_code),:sortable=>true,:width=>"40px"}],
-                   {:search_box=>"conditionsSearchBox"})%>
+                   {:search_box=>"conditionsSearchBox",:paginator_box=>"conditionPaginator"})%>
+        <div id="conditionPaginator"></div>
       </div>
     </div>
 </div>

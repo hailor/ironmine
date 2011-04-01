@@ -245,6 +245,7 @@ en:
   label_irm_identity_new_password_confirmation: Confirm Password
   label_irm_identity_edit_info: Edit personal info
   label_irm_identity_edit_password: Edit personal password
+  label_irm_identity_last_login_at: Last Login Date
   #=========================    end identities_controller=======================#
   #=========================    irm conditions_controller=======================#
   label_irm_condition_condition_code: Code
@@ -629,6 +630,11 @@ en:
   label_irm_person_avatar_edit: Edit Avatar
   label_irm_person_avatar_current: Current Avatar
   label_irm_person_avatar_best_size: Best size 100px * 100px
+  label_irm_person_approve_info: Approve Info
+  label_irm_person_delegate_approver: Delegate Approver
+  label_irm_person_approve_request_mail: Approve Request Mail
+  label_irm_person_delegate_manager: Manager
+  label_action_select_roles: Select Roles
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: Flex

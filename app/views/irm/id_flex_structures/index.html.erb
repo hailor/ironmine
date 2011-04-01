@@ -49,7 +49,8 @@
                        {:key=>"description",:label=>t(:label_irm_id_flex_structure_description),:sortable=>true},
                        {:key=>"concatenated_segment_delimiter",:label=>t(:label_irm_id_flex_structure_concatenated_segment_delimiter),:sortable=>true, :width => "60px"},
                        {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}],
-                       {:search_box=>"structuresSearchBox"}) %>
+                       {:search_box=>"structuresSearchBox",:paginator_box=>"flexstructurePaginator"}) %>
+        <div id="flexstructurePaginator"></div>
       </div>
     </div>
 </div>
