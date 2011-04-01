@@ -30,7 +30,7 @@ class Irm::GlobalSettingsController < ApplicationController
 #    end
     respond_to do |format|
       if @global_setting.update_attributes(params[:irm_global_setting])
-        format.html { redirect_to({:action=>"edit"}, :notice => t(:successfully_updated)) }
+        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
