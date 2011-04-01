@@ -53,6 +53,46 @@
         </tbody>
       </table>
     </div>
+    <div id="head_2_ep" class="pbSubheader first tertiaryPalette">
+      <h3><%=t(:label_irm_person_other_info)%></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+             <tr>
+                 <td class="labelCol"><label><%=t(:label_irm_person_mobile_phone)%></label></td>
+                 <td class="dataCol">
+                   <%=f.text_field :mobile_phone%>
+                 </td>
+                 <td class="labelCol"><label><%=t(:label_irm_person_home_address)%></label></td>
+                 <td class="dataCol">
+                   <%=f.text_field :home_address%>
+                 </td>
+             </tr>
+             <tr>
+                 <td class="labelCol"><label><%=t(:label_irm_person_home_phone)%></label></td>
+                 <td class="dataCol">
+                   <%=f.text_field :home_phone%>
+                 </td>
+                 <td class="labelCol"><label><%=t(:label_irm_person_fax_number)%></label></td>
+                 <td class="dataCol">
+                   <%=f.text_field :fax_number%>
+                 </td>
+             </tr>
+
+             <tr>
+                <td class="labelCol"><label><%=t(:label_irm_person_bussiness_phone)%></label></td>
+                 <td class="dataCol">
+                   <%=f.text_field :bussiness_phone%>
+                 </td>
+                 <td class="labelCol">
+                 <label><%=t(:label_irm_person_notification_flag)%></label>
+               </td>
+               <td class="dataCol"><%=f.check_box :notification_flag,:checked => true%></td>
+             </tr>
+        </tbody>
+      </table>
+    </div>
     <div id="head_3_ep" class="pbSubheader first tertiaryPalette">
       <h3><%=t(:label_irm_person_approve_info)%></h3>
     </div>
