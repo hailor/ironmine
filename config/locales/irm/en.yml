@@ -183,6 +183,7 @@ en:
   label_irm_common_password: Password
   label_irm_common_logout: Logout
   label_irm_common_forgot_password: Forget password？
+  label_irm_recently_objects: Recently Updated
   #=========================    end common_controller=======================#
   #=========================    irm menus_controller=======================#
   label_irm_menu: Menu
@@ -633,6 +634,7 @@ en:
   label_irm_person_delegate_approver: Delegate Approver
   label_irm_person_approve_request_mail: Approve Request Mail
   label_irm_person_delegate_manager: Manager
+  label_action_select_roles: Select Roles
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: Flex

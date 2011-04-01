@@ -85,8 +85,10 @@ class Csi::SurveySubjectsController < ApplicationController
       if @survey_subject.update_attributes(params[:csi_survey_subject])
         #删除原来的数据，替换现在的数据
         Csi::SubjectOption.delete_by_subject(@survey_subject.id)
-        @subject_options.each do |option|
-           @survey_subject.subject_options.create({:value=>option})
+        if @subject_options
+          @subject_options.each do |option|
+             @survey_subject.subject_options.create({:value=>option})
+          end
         end
         format.html { redirect_to(@return_url, :notice => t(:successfully_updated)) }
         format.xml  { head :ok }

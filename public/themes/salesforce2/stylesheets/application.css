@@ -627,12 +627,19 @@ body #sidebarDiv .sidebarInner {
     background:url("../images/sidebar_sprite.png") no-repeat scroll -209px top transparent;
     padding:12px 9px 10px;
 }
-/*#sidebarDiv  .mruItem a img {left:0;margin-left:3px;}*/
+
+.sidebarModule .sidebarModuleBody tr{padding: 5px 0 5px 0 !important;}
+.sidebarModule .sidebarModuleBody tr td{display:inline;}
+.sidebarModule .sidebarModuleBody tr td> a{white-space:nowrap; overflow: hidden; width: 155px; display: block;}
+.sidebarModule .sidebarModuleBody tr td> div+a{white-space:nowrap; overflow: hidden; width: 155px; display: inline;}
 .mruIcon {
     background-image:url("../images/master.png");
     background-position:0 -2px;
     height:16px;
     width:16px;
+    vertical-align: middle;
+    padding-right: 5px;
+    float: left;
 }
 #sidebarDiv .mruItem {padding:4px 5px 3px 25px;}
 #sidebarDiv .sidebarModuleBody {padding:6px 5px 10px 4px  !important;}
