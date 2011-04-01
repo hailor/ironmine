@@ -44,7 +44,7 @@ function subject_add_option(e, type)
       }
       option += '<input type="text" id="id_'+ type + '_' + count + '" name="options[]" ' +
               'value="' + new_option_name + count + '" style="color:#666;margin-left:4px;" onfocus="clear_option_initial(this);" onblur="set_option_initial(this)" />';
-      option += '<a href="#" onclick="subject_remove_option(this);">' + delele_link_text + '</a>';
+      option += '<a href="#" onclick="subject_remove_option(this);"> ' + delele_link_text + '</a>';
       option += '</p>';
       options.append(option);
       var lastOptions = Y.one('#id_'+type + '_' + count);
