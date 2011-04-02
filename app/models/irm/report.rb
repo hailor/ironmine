@@ -50,6 +50,18 @@ class Irm::Report < ActiveRecord::Base
                                                      order("#{Irm::ReportGroupMember.table_name}.display_sequence asc")
   }
 
+  scope :query_by_group_codes,lambda{|group_codes|
+    if group_codes.is_a?(Array)
+      group_codes=["#"] if group_codes.length<1
+    else
+      group_codes = [group_codes]
+    end
+    joins("JOIN #{Irm::ReportGroupMember.table_name} ON #{Irm::ReportGroupMember.table_name}.report_code = #{table_name}.report_code").
+    where("#{Irm::ReportGroupMember.table_name}.group_code IN (?)",group_codes)
+  }
+  scope :query_by_report_purpose,lambda{|report_purpose| where(:report_purpose => report_purpose)}
+
+
   def self.list_all
     multilingual.with_category(I18n.locale)
   end

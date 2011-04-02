@@ -254,6 +254,10 @@ class Irm::Person < ActiveRecord::Base
     @functions = Irm::Function.query_hidden_functions(self.id).collect{|f| f.function_code}
   end
 
+  def hidden_roles
+    roles.where(:hidden_flag=>Irm::Constant::SYS_YES)
+  end
+
 
   # 返回人员的全名
   def name(formatter = nil)

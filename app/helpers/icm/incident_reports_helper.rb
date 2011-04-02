@@ -4,16 +4,17 @@ module Icm::IncidentReportsHelper
   #report_limit来表示实现几个报表和report_purpose来表明
   #当前报表的用户，可以为报表和工具，默认为报表
    def show_module_report(category_code,options={})
-      report_module = ""
-      return report_module
-      report_limit = options[:report_limit]
+      report_limit = options[:report_limit]||5
       report_purpose = options[:report_purpose]||'REPORT'
-      all_reports = Irm::Report.multilingual.query_by_group_and_category("ADMIN_REPORT_GROUP",report_purpose,category_code).
+      report_group_codes = Irm::Person.current.hidden_roles.collect{|r| r.report_group_code}
+      report_group_codes << Irm::Role.current.report_group_code if Irm::Role.current
+      all_reports = Irm::Report.multilingual.query_by_group_codes(report_group_codes).
+          query_by_report_purpose(report_purpose).query_by_category_code(category_code).
                                 limit(report_limit).query_by_favorite_flag(Irm::Constant::SYS_YES)
+      report_module=""
       all_reports.each do |report|
-         report_permission = Irm::Permission.query_by_permission_code(report[:permission_code]).first
-         report_controller = report_permission[:page_controller]||options[:controller]
-         report_action = report_permission[:page_action]||options[:controller]
+         report_controller = report[:page_controller]||options[:controller]
+         report_action = report[:page_action]||options[:controller]
          report_module << content_tag(:li,(link_to report[:name],url_for(:controller=>report_controller,
                                                                          :action=>report_action)))
       end
