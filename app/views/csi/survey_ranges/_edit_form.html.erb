@@ -50,7 +50,7 @@
               <td class="labelCol"><label for="survey_range_company"><%=t(:label_csi_survey_range_range_company)%></label></td>
               <td class="dataCol"><%=f.select :range_company_id,
                                               "<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                              options_from_collection_for_select(available_company,:id,:wrap_name,@survey_range.range_company_id),
+                                              options_for_select(available_company,@survey_range.range_company_id),
                                               {},
                                               {:id=>"ass_company"}%></td>
               <td class="labelCol"><label for="survey_range_site_id"><%=t(:label_csi_survey_range_site)%></label></td>
