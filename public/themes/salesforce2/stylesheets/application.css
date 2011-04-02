@@ -134,10 +134,11 @@ div#bodyDiv_setup table.outer td.oLeft {background:url("../images/setup_sidebar_
 div#bodyDiv_setup table.outer td.oRight {background-color:#FFFFFF;}
 body .bodyDiv .outer .oRight, body .bodyDiv .outerNoSidebar {background-color:transparent;}
 .setupTab .outer .oRight, .sysAdminTab .outer .oRight {padding-left:10px;}
-.outer td.oRight {padding:0 10px 20px 210px;}
-.outer td.oRight {background-color:#FFFFFF;padding:0 10px 10px 210px;}
+.outer td.oRight {background-color:#FFFFFF;padding:0 10px 20px 210px;}
 .outer td {vertical-align:top;}
 
+.setupTab .outer .oLeft, .sysAdminTab .outer .oLeft {padding-left:10px;}
+.outer td.oLeft {background-color:#FFFFFF;padding:0 210px 20px 10px;}
 /************************************/
 
 body .tabNavigation .tab td div {
@@ -594,9 +595,10 @@ body .tabNavigation .tab .currentTab a:hover {text-decoration:underline;}
     position:relative;
     z-index:7;
 }
-#sidebarDiv .sidebarModule, #sidebarDiv .nestedModule {margin:0 0 5px;}
-#sidebarDiv .sidebarModule {background:url("../images/sidebar_sprite.png") no-repeat scroll -9px bottom #CFEEF8;}
-body #sidebarDiv .sidebarInner {
+#sidebarDiv .sidebarModule, #sidebarDiv .nestedModule,
+#sidebarDivRight .sidebarModule, #sidebarDivRight .nestedModule {margin:0 0 5px;}
+#sidebarDiv .sidebarModule, #sidebarDivRight .sidebarModule {background:url("../images/sidebar_sprite.png") no-repeat scroll -9px bottom #CFEEF8;}
+body #sidebarDiv .sidebarInner, body #sidebarDivRight .sidebarInner {
     background-color:transparent;
     padding:0 3px 5px 0;
     width:200px;
@@ -608,22 +610,29 @@ body #sidebarDiv .sidebarInner {
     top:0;
     z-index:10;
 }
-#sidebarDiv {
+#sidebarDivRight {
+    /*background-color:#E8E8E8;*/
+    right:0;
+    position:absolute;
+    top:0;
+    z-index:10;
+}
+#sidebarDiv, #sidebarDivRight {
     background-color:#FFFFFF;
     margin-top:13px;
 }
-#sidebarDiv .sidebarModuleHeader {
+#sidebarDiv .sidebarModuleHeader, #sidebarDivRight .sidebarModuleHeader {
     background:url("../images/sidebar_sprite.png") no-repeat scroll -209px -2px #1797C0;
     color:#FFFFFF;
     padding:0;
 }
 .sidebarModuleHeader {font-weight:bold;padding:15px 8px 2px 15px;}
-#sidebarDiv .sidebarModuleHeader h2 {
+#sidebarDiv .sidebarModuleHeader h2, #sidebarDivRight .sidebarModuleHeader h2 {
     background:url("../images/sidebar_sprite.png") no-repeat scroll -9px bottom transparent;
     display:block;
     padding:5px 9px;
 }
-#sidebarDiv .sidebarModule .sidebarModuleBody {
+#sidebarDiv .sidebarModule .sidebarModuleBody, #sidebarDivRight .sidebarModule .sidebarModuleBody {
     background:url("../images/sidebar_sprite.png") no-repeat scroll -209px top transparent;
     padding:12px 9px 10px;
 }
@@ -643,6 +652,8 @@ body #sidebarDiv .sidebarInner {
 }
 #sidebarDiv .mruItem {padding:4px 5px 3px 25px;}
 #sidebarDiv .sidebarModuleBody {padding:6px 5px 10px 4px  !important;}
+#sidebarDivRight .mruItem {padding:4px 5px 3px 25px;}
+#sidebarDivRight .sidebarModuleBody {padding:6px 5px 10px 4px  !important;}
 .mruItem a img {left:5px;position:absolute;}
 .mruItem a .mruText{color: #333435;}
 
@@ -784,7 +795,8 @@ body .bSubBlock {padding:5px;}
 .toolsContent .toolsContentListTable {width:100%;}
 .toolsContent .toolsContentListTable > tbody > tr {background-color:#FFFFFF;border-bottom:1px solid #CBCBCB;line-height:25px;}
 
-#sidebarDiv .createNewModule .sidebarModuleBody, #sidebarDiv .tagsMruModule .sidebarModuleBody, #sidebarDiv .linksModule ul {
+#sidebarDiv .createNewModule .sidebarModuleBody, #sidebarDiv .tagsMruModule .sidebarModuleBody, #sidebarDiv .linksModule ul,
+#sidebarDivRight .createNewModule .sidebarModuleBody, #sidebarDivRight .tagsMruModule .sidebarModuleBody, #sidebarDivRight .linksModule ul{
     padding: 0;
 }
 #createNew {
@@ -792,7 +804,8 @@ body .bSubBlock {padding:5px;}
     height: 20px;
     position: static;
 }
-#sidebarDiv .createNewModule, #sidebarDiv .tagsMruModule {
+#sidebarDiv .createNewModule, #sidebarDiv .tagsMruModule,
+#sidebarDivRight .createNewModule, #sidebarDivRight .tagsMruModule{
     background: none repeat scroll 0 0 transparent;
 }
 body .menuButton {
@@ -807,10 +820,10 @@ body .menuButton {
     text-align: left;
     z-index: 99;
 }
-#sidebarDiv .menuButton:hover{
+#sidebarDiv .menuButton:hover, #sidebarDivRight .menuButton:hover{
     background: url("../images/sidebar_sprite.png") no-repeat scroll -615px top transparent;
 }
-#sidebarDiv .menuButton {
+#sidebarDiv .menuButton, #sidebarDivRight .menuButton {
     background: url("../images/sidebar_sprite.png") no-repeat scroll -409px top transparent;
     height: 33px;
     left: -8px;
@@ -819,7 +832,7 @@ body .menuButton {
     z-index: 70;
 }
 
-#sidebarDiv .menuButtonButton {
+#sidebarDiv .menuButtonButton, #sidebarDivRight .menuButtonButton {
     background: none repeat scroll 0 0 transparent;
     border: 0 none;
     color: #FFFFFF;
@@ -858,7 +871,7 @@ body .menuButton .menuButtonMenu, body .searchCustomization .menuButton .menuBut
     left: auto;
     margin-top: 0;
 }
-#sidebarDiv .menuButtonMenu {
+#sidebarDiv .menuButtonMenu, #sidebarDivRight .menuButtonMenu {
     -moz-box-shadow: 0 1px 5px #727272;
     background-color: #FFFFFF;
     border: 1px solid #1797C0;
@@ -878,11 +891,11 @@ body .menuButton .menuButtonMenu, body .searchCustomization .menuButton .menuBut
     padding: 0 2px 0 6px;
     text-align: left;
 }
-#sidebarDiv .menuButtonMenu a {
+#sidebarDiv .menuButtonMenu a, #sidebarDivRight .menuButtonMenu a {
     border: medium none;
     padding-top: 1px;
 }
-#sidebarDiv .menuButtonMenu a:hover{
+#sidebarDiv .menuButtonMenu a:hover, #sidebarDivRight .menuButtonMenu a:hover{
     background-color: #E3F3FF;
     color: #015BA7;
 }
@@ -899,7 +912,7 @@ body .menuButton .menuButtonMenu, body .searchCustomization .menuButton .menuBut
     padding: 0 6px;
     text-decoration: none;
 }
-#sidebarDiv .menuButtonMenu a .mruIcon {
+#sidebarDiv .menuButtonMenu a .mruIcon, #sidebarDivRight .menuButtonMenu a .mruIcon {
     margin-right: 5px;
     vertical-align: -3px;
 }
