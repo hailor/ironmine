@@ -197,7 +197,7 @@
      <%= list_journals(@incident_request) %>
    </div>
 </div>
-<%if @incident_request[:close_reason_code].nil? %>
+<%if allow_to_function?(:reply_incident_request)&&@incident_request[:close_reason_code].nil? %>
 <%= form_for(@incident_reply,:url=>{:action=>"create"},:builder => LabellingFormBuilder,:html => { :multipart => true }) do |f| %>
 <div id="reply" class="bEditBlock bPageBlock">
   <div class="pbHeader">
@@ -219,7 +219,7 @@
             <tr>
               <td class="labelCol"><label for="incident_request_incident_status_code"><%=t(:label_icm_incident_reply_incident_status_code)%></label></td>
               <td class="dataCol">
-                <%=f.select :incident_status_code,nullable_options_for_select(available_request_status_code,@incident_reply.incident_status_code),
+                <%=f.blank_select :incident_status_code,nullable_available_request_status_code,
                                                     {},{:id=>"incident_request_incident_status_code"}%>
               </td>
               <td class="labelCol empty">&nbsp;</td>
@@ -277,12 +277,14 @@
 </div>
 <% end %>
 <% end %>
+
+<%if allow_to_function?(:reply_incident_request)%>
 <script type="text/javascript">
 
 GY.use('node','substitute','yui2-editor', function(Y) {
   var YAHOO = Y.YUI2;
   var editor = new YAHOO.widget.Editor('msgEditor', {
-        height:'200px',
+        height:'100px',
         width:'99%',
         toolbar: {
             buttons: [
@@ -317,6 +319,12 @@ GY.use('node','substitute','yui2-editor', function(Y) {
         Y.log(this.getAttribute("delete_ref"));
         Y.one("#"+this.getAttribute("delete_ref")).remove();
     },'.deleteAttach')
+
+});
+</script>
+<%end%>
+<script>
+  GY.use('node', function(Y) {
     Y.one("#showMore").on("click",function(e){
         if(Y.one("#incidentDetail").hasClass("hidden")){
           Y.one("#incidentDetail").removeClass("hidden")
@@ -324,7 +332,7 @@ GY.use('node','substitute','yui2-editor', function(Y) {
           Y.one("#incidentDetail").addClass("hidden")
         }
     });
-});
+  });
 </script>
 
 <% content_for :sidebar do%>

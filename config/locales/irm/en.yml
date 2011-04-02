@@ -246,6 +246,7 @@ en:
   label_irm_identity_edit_info: Edit personal info
   label_irm_identity_edit_password: Edit personal password
   label_irm_identity_last_login_at: Last Login Date
+  label_identity_anonymous: Anonymous
   #=========================    end identities_controller=======================#
   #=========================    irm conditions_controller=======================#
   label_irm_condition_condition_code: Code
