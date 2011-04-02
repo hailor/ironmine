@@ -19,8 +19,8 @@
       <div class="pbBody">
         <div id="incident_status" class="datatable" style="width:100%;">
           <div id="id" style="display:none">
-            <%= icon_link_edit({:action=>"edit",:id=>"{id}"}) %>&nbsp;
-            <%= icon_link_show({:action=>"show",:id=>"{id}"}) %>
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;
+            <%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
         <%= datatable("incident_status",url_for(:action=>"get_data",:format=>"json"),

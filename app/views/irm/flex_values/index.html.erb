@@ -68,8 +68,8 @@
       <div class="pbBody">
         <div id="flex_values_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= icon_link_edit({:action=>"edit",:id=>"{id}"}) %>&nbsp;
-            <%= icon_link_show({:action=>"show",:id=>"{id}"}) %>
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;
+            <%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
         <%= datatable("flex_values_list",url_for(:action=>"get_data",:format=>"json", :value_set_id => @value_set),

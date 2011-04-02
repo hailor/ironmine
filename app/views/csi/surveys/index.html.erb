@@ -20,9 +20,9 @@
       <div class="pbBody">
         <div id="survey" class="datatable" style="width:100%;">
           <div id="id" style="display:none">
-            <%= icon_link("btn_reply", t(:reply),{:action=>"reply",:id=>"{id}"}) %>&nbsp;
-            <%= icon_link_show({:action=>"show",:id=>"{id}"}) %>&nbsp;
-            <%= icon_link("btn_result", t(:result),{:action=>"show_result",:id=>"{id}"}) %>&nbsp;
+            <%= link_to(t(:reply),{:action=>"reply",:id=>"{id}"}) %>&nbsp;
+            <%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>&nbsp;
+            <%= link_to(t(:result),{:action=>"show_result",:id=>"{id}"}) %>&nbsp;
           </div>
           <div id="joined_count" style="display:none">
             <div style="text-align:center;"><%= "{joined_count}"%></div>
