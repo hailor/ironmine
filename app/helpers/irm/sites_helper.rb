@@ -8,7 +8,7 @@ module Irm::SitesHelper
     sites.collect{|i| [i[:name],i.site_code]}
   end
   def available_sites
-    sites = Irm::Site.query_by_site_group_code(site_group_code).multilingual.enabled
+    sites = Irm::Site.multilingual.enabled
     sites.collect{|i| [i[:name],i.id]}
   end
 end
