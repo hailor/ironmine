@@ -5,7 +5,7 @@
       <span class="bFilter">
         <label style="text-align: left; font-weight: bold; padding-right: 0.69em;"><%= t(:label_irm_site_group_list) %>：</label>
         <span class="fBody">
-            <%= select_tag(:site_group_code,nullable_options_for_select(available_site_group,@site_group.group_code)) %>
+            <%= select_tag(:site_group_code,nullable_options_for_select(available_site_group,"@site_group.group_code")) %>
             <%= submit_tag t(:jump), :title => t(:jump), :class => "btn" %>
         </span>
         <span class="fFooter">
