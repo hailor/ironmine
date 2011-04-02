@@ -67,7 +67,7 @@
       <div class="pbBody">
         <div id="flex_structures_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= icon_link_edit({:controller => "irm/id_flex_structures", :action => "edit", :id => "{id}"}) %>
+            <%= link_to(t(:edit),{:controller => "irm/id_flex_structures", :action => "edit", :id => "{id}"}) %>
           </div>
         </div>
         <%= datatable("flex_structures_list",url_for(:controller => "irm/id_flex_structures", :action=>"get_data", :id_flex_code => @id_flex.id_flex_code,:format=>"json"),

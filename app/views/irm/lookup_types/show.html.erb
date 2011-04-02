@@ -65,8 +65,8 @@
       <div class="pbBody">
         <div id="lookup_type" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= icon_link_edit({:controller=>"irm/lookup_values",:action=>"edit",:id=>"{id}",:_from=>"lookup_type"}) %>&nbsp;
-            <%= icon_link_show({:controller=>"irm/lookup_values",:action=>"show",:id=>"{id}",:_from=>"lookup_type"}) %>
+            <%= link_to(t(:edit),{:controller=>"irm/lookup_values",:action=>"edit",:id=>"{id}",:_from=>"lookup_type"}) %>&nbsp;
+            <%= link_to(t(:show),{:controller=>"irm/lookup_values",:action=>"show",:id=>"{id}",:_from=>"lookup_type"}) %>
           </div>
         </div>
         <%= datatable("lookup_type",url_for(:controller=>"irm/lookup_values",:action=>"get_lookup_values", :lookup_type=>@lookup_type.lookup_type),

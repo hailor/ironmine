@@ -68,8 +68,8 @@
       <div class="pbBody">
         <div id="id_flex_segments_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= icon_link_edit({:controller => "irm/id_flex_segments", :action => "edit", :id => "{id}"}) %>&nbsp;
-            <%= icon_link_show({:controller => "irm/id_flex_segments", :action => "show", :id => "{id}"}) %>
+            <%= link_to(t(:edit),{:controller => "irm/id_flex_segments", :action => "edit", :id => "{id}"}) %>&nbsp;
+            <%= link_to(t(:show),{:controller => "irm/id_flex_segments", :action => "show", :id => "{id}"}) %>
           </div>
           <div id="status_code" style="display:none">
             <%= check_img("{status_code}") %>
