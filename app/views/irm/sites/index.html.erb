@@ -5,8 +5,7 @@
       <span class="bFilter">
         <label style="text-align: left; font-weight: bold; padding-right: 0.69em;"><%= t(:label_irm_site_group_list) %>：</label>
         <span class="fBody">
-            <%= select_tag(:site_group_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                           options_from_collection_for_select(available_site_group,:group_code,:wrap_name,@site_group.group_code)) %>
+            <%= select_tag(:site_group_code,nullable_options_for_select(available_site_group,"@site_group.group_code")) %>
             <%= submit_tag t(:jump), :title => t(:jump), :class => "btn" %>
         </span>
         <span class="fFooter">
@@ -71,8 +70,8 @@
       <div class="pbBody">
         <div id="site" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;
-            <%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>          </div>
+            <%= icon_link_edit({:action=>"edit",:id=>"{id}"}) %>
+            <%= icon_link_show({:action=>"show",:id=>"{id}"}) %>          </div>
         </div>
         <%= datatable("site",url_for(:action=>"get_data",:site_group_code => @site_group.group_code),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
@@ -80,8 +79,7 @@
                        {:key=>"name",:label=>t(:label_irm_site_name),:searchable=>true,:width=>"20%"},
                        {:key=>"description",:label=>t(:label_irm_site_description)},
                        {:key=>"status_meaning",:label=>t(:label_irm_site_status_code),:width=>"40px"}],
-                       {:search_box=>"permissionsSearchBox",:paginator_box=>"sitePaginator"})%>
-        <div id="sitePaginator"></div>
+                       {:search_box=>"permissionsSearchBox"})%>
       </div>
     </div>
 </div>

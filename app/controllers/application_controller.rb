@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper :all
   #ajax请求不使用layout
 #  layout "application"
-  layout "application"   
+  layout "application"
   # filters
   # user_setup 从session中取得用户,如果session中没有[:user_id]则什么也不做
   # check_if_login_required 检查当前用户是否存在,如果不存在则需要跳转到登陆页面
