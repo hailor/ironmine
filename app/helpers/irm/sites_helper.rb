@@ -5,6 +5,6 @@ module Irm::SitesHelper
     else
       sites = Irm::Site.multilingual.enabled
     end
-    sites.collect{|i| [i[:name],i.id]}
+    sites.collect{|i| [i[:name],i.site_code]}
   end
 end
