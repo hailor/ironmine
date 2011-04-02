@@ -548,6 +548,7 @@ zh:
   label_delete_last_site: 删除最后一行的地点
   label_irm_site_status_code: 记录状态
   label_irm_site_show: 地点
+  label_action_select_site: 选择地点
   #=========================end irm site_groups_controller=======================#
   #=========================end irm flex_values_controller=======================#
   #=========================irm general_category_controller=======================#
