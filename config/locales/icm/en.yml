@@ -124,6 +124,7 @@ en:
   #=========================    icm incident_journals_controller=======================#
   label_icm_incident_reply_support_group_id: Referred group
   label_icm_incident_reply_support_person_id: Referred person
+  apply_skm: Apply Service Knowledge
   label_icm_incident_reply_incident_status_code: New Incident Status
   label_icm_incident_journal_list: Request histories
   label_icm_incident_journal_new: Reply
