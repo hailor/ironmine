@@ -746,6 +746,8 @@ zh:
   label_irm_report_new: 新建报表
   label_irm_report_description: 描述
   label_irm_report_edit: 编辑报表
+  label_irm_report_page_controller: 页面Controller
+  label_irm_report_page_action: 页面Action
   #========================= end irm reports ===================================
   #========================= irm report_groups ===================================
   label_irm_report_group_list: 报表组列表

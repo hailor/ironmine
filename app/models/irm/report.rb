@@ -8,17 +8,12 @@ class Irm::Report < ActiveRecord::Base
   has_many :reports_tls,:dependent => :destroy
   acts_as_multilingual
 
-  validates_presence_of :report_code,:permission_code,:category_code
+  validates_presence_of :report_code,:page_controller,:page_action,:category_code
   validates_uniqueness_of :report_code, :if => Proc.new { |i| !i.report_code.blank? }
   validates_format_of :report_code, :with => /^[A-Z0-9_]*$/ ,:if=>Proc.new{|i| !i.report_code.blank?}
 
   #加入activerecord的通用方法和scope
   query_extend
-
-  scope :with_permission,lambda{|language|
-    joins("LEFT OUTER JOIN #{Irm::Permission.view_name} permissions ON  permissions.permission_code = #{table_name}.permission_code AND  permissions.language = '#{language}'").
-    select("permissions.page_controller permission_controller,permissions.page_action permission_action,permissions.name permission_name")
-  }
 
   scope :with_category,lambda{|language|
     joins("LEFT OUTER JOIN #{Irm::LookupValue.view_name} category ON category.lookup_type='IRM_REPORT_CATEGORY' AND category.lookup_code = #{table_name}.category_code AND category.language= '#{language}'").
@@ -56,7 +51,7 @@ class Irm::Report < ActiveRecord::Base
   }
 
   def self.list_all
-    multilingual.with_permission(I18n.locale).with_category(I18n.locale)
+    multilingual.with_category(I18n.locale)
   end
 
   
