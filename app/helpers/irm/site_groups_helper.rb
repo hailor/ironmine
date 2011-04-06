@@ -5,6 +5,6 @@ module Irm::SiteGroupsHelper
     else
       site_groups = Irm::SiteGroup.multilingual.enabled
     end
-    site_groups.collect{|i| [i[:name],i.id]}
+    site_groups.collect{|i| [i[:name],i.group_code]}
   end
 end

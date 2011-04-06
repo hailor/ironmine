@@ -92,6 +92,7 @@ en:
   label_icm_reply: Reply
   label_icm_incident_request_list: Incident request list
   label_icm_incident_request_new: New incident request
+  label_icm_incident_request_edit: Edit incident request
   label_icm_incident_request_short_new: New incident request
   label_icm_incident_request_service_code: Service
   label_icm_incident_requset_base_info: Base information
@@ -125,6 +126,7 @@ en:
   #=========================    icm incident_journals_controller=======================#
   label_icm_incident_reply_support_group_id: Referred group
   label_icm_incident_reply_support_person_id: Referred person
+  apply_skm: Apply Service Knowledge
   label_icm_incident_reply_incident_status_code: New Incident Status
   label_icm_incident_journal_list: Request histories
   label_icm_incident_journal_new: Reply
@@ -140,6 +142,11 @@ en:
   label_icm_reply_title: reply at %{message} ago
   label_icm_submit_title: submit at %{message} ago
   label_icm_incident_more_info: More information
+  label_action_edit_pass: Pass Incident Request
+  label_action_update_pass: Pass Incident Request
+  label_action_edit_close: Close Incident Request
+  label_action_update_close: Close Incident Request
+  label_icm_incident_journal_pass: Pass Incident Request
   #========================= end icm incident_journals_controller=======================#
   #=========================    icm incident_reports_controller=======================#
   label_icm_urgency_name: Urgency Name

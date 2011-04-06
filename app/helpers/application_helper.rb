@@ -427,4 +427,8 @@ module ApplicationHelper
     Irm::PermissionChecker.allow_to_function?(function)
   end
 
+  def current_person?(person_id)
+    person_id&&Irm::Person.current.id.eql?(person_id)
+  end
+
 end

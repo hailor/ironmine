@@ -8,7 +8,10 @@ module Irm::ReportListsHelper
                                                :child_id=>"#{category_code}".downcase),"javascript:void(0)")  +
          content_tag(:h3,report_group_name)
      report_list_folder = content_tag(:div,report_list_folder.html_safe,:class=>"folderName secondaryPalette")
-     current_category_reports = Irm::Report.query_by_group_and_category("ADMIN_REPORT_GROUP","REPORT",category_code)
+     report_group_codes = Irm::Person.current.hidden_roles.collect{|r| r.report_group_code}
+      report_group_codes << Irm::Role.current.report_group_code if Irm::Role.current
+      current_category_reports = Irm::Report.multilingual.query_by_group_codes(report_group_codes).
+          query_by_report_purpose("REPORT").query_by_category_code(category_code)
      current_category_reports.each do |report|
        report_list << show_report(report.report_code).html_safe
      end
@@ -32,9 +35,8 @@ module Irm::ReportListsHelper
      report_name = report[:name]
      report_description = report[:description]
      if (options[:controller].blank? || options[:action].blank?)
-       report_permission = Irm::Permission.query_by_permission_code(report[:permission_code]).first
-       report_controller = params[:controller]
-       report_action = params[:action]
+       report_controller = report[:page_controller]
+       report_action = report[:page_action]
      else
        report_controller = params[:controller]
        report_action = params[:action]

@@ -71,6 +71,7 @@ en:
   label_checked: Checked
   label_unchecked: Uncheck
   help: Help
+  pass: Pass
 
   #usual words
   notice_account_invalid_creditentials: User or Password Error
@@ -246,6 +247,7 @@ en:
   label_irm_identity_edit_info: Edit personal info
   label_irm_identity_edit_password: Edit personal password
   label_irm_identity_last_login_at: Last Login Date
+  label_identity_anonymous: Anonymous
   #=========================    end identities_controller=======================#
   #=========================    irm conditions_controller=======================#
   label_irm_condition_condition_code: Code
@@ -546,6 +548,7 @@ en:
   label_delete_last_site: Delete Last Site
   label_irm_site_status_code: Status Code
   label_irm_site_show: Site
+  label_action_select_site: Select Site
   #=========================end irm site_groups_controller=======================#
   #=========================    irm support_groups_controller=======================#
   label_irm_support_group_company_name: Company Name
@@ -732,6 +735,8 @@ en:
   label_irm_report_edit: Edit report
   label_irm_report_favorite_flag: Favorite Flag
   label_irm_report_report_purpose:  Report Purpose
+  label_irm_report_page_controller: Page Controller
+  label_irm_report_page_action: Page Action
   #========================= end irm reports ===================================  
   #========================= irm report_groups ===================================
   label_irm_report_group_list: Report group list

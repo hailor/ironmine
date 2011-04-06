@@ -90,6 +90,7 @@ zh:
   label_icm_reply: 回复
   label_icm_incident_request_list: 事故单列表
   label_icm_incident_request_new: 新建事故单
+  label_icm_incident_request_edit: 编辑事故单
   label_icm_incident_request_short_new: 快速创建事故单
   label_icm_incident_request_service_code: 服务
   label_icm_incident_requset_base_info: 基本信息
@@ -124,6 +125,7 @@ zh:
   label_icm_incident_reply_support_group_id: 转交组
   label_icm_incident_reply_support_person_id: 转交人
   label_icm_incident_reply_incident_status_code: 新状态
+  apply_skm: 应用知识库
   label_icm_incident_journal_list: 事故单历史
   label_icm_incident_journal_new: 回复
   label_icm_incident_journal_back_to_request_list: 返回事故单列表
@@ -138,6 +140,11 @@ zh:
   label_icm_reply_title: 于 %{message} 前回复
   label_icm_submit_title: 于 %{message} 前提交
   label_icm_incident_more_info: 更多信息
+  label_action_edit_pass: 转交事故单
+  label_action_update_pass: 转交事故单
+  label_action_edit_close: 关闭事故单
+  label_action_update_close: 关闭事故单
+  label_icm_incident_journal_pass: 转交事故单
   #========================= end icm incident_journals_controller=======================#
   #=========================    icm incident_reports_controller=======================#
   label_icm_urgency_name: 紧急度

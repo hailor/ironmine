@@ -14,7 +14,7 @@ class Icm::IncidentJournalsController < ApplicationController
 
     @incident_reply = Icm::IncidentReply.new()
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render :layout=>"application_right"}
       format.xml  { render :xml => @incident_journal }
     end
   end
@@ -64,6 +64,49 @@ class Icm::IncidentJournalsController < ApplicationController
         format.html { render :action => "edit_close" }
         format.xml  { render :xml => @incident_journal.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+
+  # 转交
+  def edit_pass
+    @incident_journal = @incident_request.incident_journals.build()
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @incident_journal }
+    end
+  end
+
+  def update_pass
+    @incident_journal = @incident_request.incident_journals.build(params[:icm_incident_journal])
+    perform_create
+    respond_to do |format|
+      if @incident_journal.valid?&&@incident_request.update_attributes(params[:icm_incident_request])
+        process_change_attributes([:incident_status_code,:close_reason_code],@incident_request,@incident_request_bak,@incident_journal)
+        process_files(@incident_journal)
+        publish_create_incident_journal(@incident_journal)
+        format.html { redirect_to({:action => "new"}) }
+        format.xml  { render :xml => @incident_journal, :status => :created, :location => @incident_journal }
+      else
+        format.html { render :action => "edit_close" }
+        format.xml  { render :xml => @incident_journal.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+
+  def get_entry_header_data
+    entry_headers_scope = Skm::EntryHeader.list_all.published.current_entry
+    entry_headers_scope = entry_headers_scope.match_value("#{Skm::EntryHeader.table_name}.entry_title",params[:entry_title]) if params[:entry_title]
+    entry_headers,count = paginate(entry_headers_scope)
+    respond_to do |format|
+      format.json  {render :json => to_jsonp(entry_headers.to_grid_json([:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date_f], count)) }
+    end
+  end
+
+  def apply_entry_header
+    @entry_header = Skm::EntryHeader.find(params[:id]);
+    respond_to do |format|
+      format.js
     end
   end
 

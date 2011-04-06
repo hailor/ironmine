@@ -141,7 +141,7 @@
                                               {:id=>"ass_company"}%></td>
               <td class="labelCol"><label for="survey_range_site_id"><%=t(:label_csi_survey_range_site)%></label></td>
               <td class="dataCol"><%=select_tag "site_id",
-                                              nullable_options_for_select(available_sites.collect{|p| [p.wrap_name, p.id]}, ""),
+                                              nullable_options_for_select(available_sites, ""),
                                               {:id=>"site_id"}%></td>
             </tr>
 

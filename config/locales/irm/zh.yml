@@ -71,6 +71,7 @@ zh:
   label_checked: 选取的
   label_unchecked: 未选取的
   help: 帮助
+  pass: 转交
   #常用语句
   notice_account_invalid_creditentials: 用户名或密码错误
   successfully_updated: 已经成功更新数据
@@ -274,6 +275,7 @@ zh:
   label_irm_identity_edit_password: 修改个人密码
   label_irm_identity: 账号
   label_irm_identity_last_login_at: 最后登录时间
+  label_identity_anonymous: Anonymous
   #=========================    end irm identities_controller=======================#
 
   #=========================    irm global_settings_controller=======================#
@@ -548,6 +550,7 @@ zh:
   label_delete_last_site: 删除最后一行的地点
   label_irm_site_status_code: 记录状态
   label_irm_site_show: 地点
+  label_action_select_site: 选择地点
   #=========================end irm site_groups_controller=======================#
   #=========================end irm flex_values_controller=======================#
   #=========================irm general_category_controller=======================#
@@ -746,6 +749,8 @@ zh:
   label_irm_report_new: 新建报表
   label_irm_report_description: 描述
   label_irm_report_edit: 编辑报表
+  label_irm_report_page_controller: 页面Controller
+  label_irm_report_page_action: 页面Action
   #========================= end irm reports ===================================
   #========================= irm report_groups ===================================
   label_irm_report_group_list: 报表组列表

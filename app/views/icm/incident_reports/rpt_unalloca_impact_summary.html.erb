@@ -10,8 +10,7 @@
             <tr>
               <td>
                 <label for="subtotalBy0"><%=t(:label_irm_company_name)%>：</label>
-                <%=select_tag :company_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_company,:id,:wrap_name,@company_id),:required=>true %>
+                <%=select_tag :company_id,nullable_options_for_select(available_company,@company_id),:required=>true %>
               </td>
               <td>
                 <label for="subtotalBy1"><%=t(:label_icm_incident_request_service_code)%>：</label>

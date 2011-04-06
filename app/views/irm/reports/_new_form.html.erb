@@ -40,11 +40,18 @@
 
             <tr>
               <td class="labelCol"><label for="report_category_code"><%=t(:label_irm_report_category_code)%></label></td>
-              <td class="dataCol"><%=f.select :category_code,nullable_options_for_select(available_report_categories,@report.category_code),
+              <td class="dataCol"><%=f.blank_select :category_code,available_report_categories,
                                                     {},{:required=>true,:id=>"report_category_code"}%></td>
-              <td class="labelCol"><label for="report_permission_code"><%=t(:label_irm_report_permission_code)%></label></td>
-              <td class="dataCol"><%=f.select :permission_code,nullable_options_for_select(available_permissions,@report.permission_code),
-                                                    {},{:required=>true,:id=>"report_permission_code"}%></td>
+              <td class="labelCol"><label for="report_category_code"><%=t(:label_irm_report_report_purpose)%></label></td>
+              <td class="dataCol"><%=f.blank_select :report_purpose,available_report_purpose,
+                                                    {},{:required=>true,:id=>"report_category_code"}%></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="page_controller"><%=t(:label_irm_report_page_controller)%></label></td>
+              <td class="dataCol"><%=f.text_field :page_controller, :required=>true ,:id=>"page_controller"%></td>
+              <td class="labelCol"><label for="page_action"><%=t(:label_irm_report_page_action)%></label></td>
+              <td class="dataCol"><%=f.text_field :page_action, :required=>true ,:id=>"page_action"%></td>
             </tr>
 
 
@@ -55,13 +62,6 @@
                     <%=t(:label_irm_report_favorite_flag)%></label></td>
               <td class="dataCol"><%=f.check_box :favorite_flag%></td>
             </tr>
-
-            <tr>
-              <td class="labelCol"><label for="report_category_code"><%=t(:label_irm_report_report_purpose)%></label></td>
-              <td class="dataCol"><%=f.select :report_purpose,options_for_select(available_report_purpose,"REPORT"),
-                                                    {},{:required=>true,:id=>"report_purpose"}%></td>
-            </tr>
-
         </tbody>
       </table>
     </div>

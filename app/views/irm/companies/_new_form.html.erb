@@ -41,8 +41,7 @@
               <td class="labelCol"><label><%=(t :label_irm_company_company_short_name)%></label></td>
               <td class="dataCol"><%=f.text_field :short_name, :required=>true%></td>
               <td class="labelCol"><%=(t :label_irm_company_company_type)%></td>
-              <td class="dataCol"><%=f.select :company_type,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_company_type,:lookup_code,:wrap_meaning,@company.company_type),{},:required=>true%></td>
+              <td class="dataCol"><%=f.select :company_type,available_company_type,{},:required=>true%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_company_name)%></label></td>
@@ -58,8 +57,7 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_company_time_zone)%></label></td>
-              <td class="dataCol"><%=f.select :time_zone,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_time_zone,:lookup_code,:wrap_meaning,@company.time_zone)%></td>
+              <td class="dataCol"><%=f.blank_select :time_zone,available_time_zone%></td>
               <td class="labelCol"><%=(t :label_irm_company_hotline)%></td>
               <td class="dataCol"><%=f.text_field :hotline,:value=>@company.hotline%></td>
             </tr>

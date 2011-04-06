@@ -4,6 +4,6 @@ module Icm::RuleSettingsHelper
   end
 
   def selectable_companies
-    available_company.collect{|c| [c[:name],c[:id]]}
+    available_company
   end
 end

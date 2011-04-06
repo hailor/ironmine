@@ -106,10 +106,10 @@ class Irm::ReportsController < ApplicationController
     reports_scope = reports_scope.match_value("#{Irm::ReportsTl.table_name}.name",params[:name])
     reports_scope = reports_scope.match_value("#{Irm::Report.table_name}.report_code",params[:report_code])
     reports_scope = reports_scope.match_value("category.meaning",params[:category_name])
-    reports_scope = reports_scope.match_value("permissions.page_controller",params[:permission_controller])
+    reports_scope = reports_scope.match_value("#{Irm::Report.table_name}.page_controller",params[:page_controller])
     reports,count = paginate(reports_scope)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(reports.to_grid_json([:name,:description,:report_code,:category_name,:permission_controller,:permission_action,:status_meaning,:status_meaning],count))}
+      format.json {render :json=>to_jsonp(reports.to_grid_json([:name,:description,:report_code,:category_name,:page_controller,:page_action,:status_meaning,:status_meaning],count))}
     end
   end
 
