@@ -94,7 +94,7 @@ zh:
   label_icm_incident_request_short_new: 快速创建事故单
   label_icm_incident_request_service_code: 服务
   label_icm_incident_requset_base_info: 基本信息
-  label_icm_incident_request_title: 标题
+  label_icm_incident_request_title: 主题
   label_icm_incident_request_summary: 信息
   label_icm_incident_requset_addition_info: 附加信息
   label_icm_incident_request_requested_by: 请求人
@@ -109,6 +109,8 @@ zh:
   label_icm_incident_request_request_number: 事故单号
   label_icm_incident_request_contact_number: 联系电话
   label_icm_incident_request_priority: 优先级
+  label_icm_incident_request_company: 公司
+  label_icm_incident_request_last_date: 最后回应日期
   label_incident_request: 事故单
   label_icm_incident_request_submitted_by: 提交人
   label_icm_incident_request_incident_phase_code: 阶段

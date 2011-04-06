@@ -96,18 +96,29 @@ class Icm::IncidentRequestsController < ApplicationController
   end
 
   def get_data
-    incident_requests_scope = Icm::IncidentRequest.list_all.query_by_company_ids(session[:accessable_companies])
+    incident_requests_scope = Icm::IncidentRequest.list_all.query_by_company_ids(session[:accessable_companies]).order("last_request_date desc,last_response_date desc,weight_value,company_id")
     #incident_requests_scope = incident_requests_scope.match_value("incident_request.name",params[:name])
     incident_requests,count = paginate(incident_requests_scope)
     respond_to do |format|
       format.json {render :json=>to_jsonp(incident_requests.to_grid_json([:request_number,:title,:requested_name,
-                                                                          :urgence_name,:impact_range_name,
-                                                                          :contact_name,:contact_number,
+                                                                          :company_name,:impact_range_name,
+                                                                          :contact_name,:last_response_date,
                                                                           :priority_name,:incident_status_name,:submitted_date],count,{:date_to_distance=>[:submitted_date]}))}
       format.xml { render :xml => incident_requests }
     end
   end
 
+  def get_help_desk_data
+    incident_requests_scope = Icm::IncidentRequest.list_all.query_by_company_ids(session[:accessable_companies]).order("last_response_date desc,last_request_date desc,weight_value,company_id,id")
+    incident_requests,count = paginate(incident_requests_scope)
+    respond_to do |format|
+      format.json {render :json=>to_jsonp(incident_requests.to_grid_json([:request_number,:company_name,:title,:requested_name,
+                                                                          :urgence_name,:impact_range_name,
+                                                                          :contact_name,:last_request_date,
+                                                                          :priority_name,:incident_status_name,:submitted_date],count,{:date_to_distance=>[:last_request_date]}))}
+      format.xml { render :xml => incident_requests }
+    end
+  end
   def save_as_skm
 
   end

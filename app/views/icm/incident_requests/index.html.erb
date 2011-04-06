@@ -1,5 +1,10 @@
 <%= app_title %>
-<%= view_filter("ICM_INCIDENT_REQUEST_INDEX_A","incident_requests") %>
+<% if Irm::Role.current&&Irm::Role.current.service_role_type.eql?("CUSTOMER") %>
+  <%= view_filter("ICM_INCIDENT_REQUEST_INDEX_B","incident_requests") %>
+<% else %>
+  <%= view_filter("ICM_INCIDENT_REQUEST_INDEX_A","incident_requests") %>
+<% end %>
+
 <div class="listRelatedObject setupBlock">
     <div class="bPageBlock">
       <div class="pbHeader">
@@ -23,17 +28,15 @@
             <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;
             <%= link_to(t(:label_icm_reply),{:controller=>"icm/incident_journals",:action=>"new",:request_id=>"{id}"}) %>
           </div>
+          <div id="title" style="display:none">
+            ({incident_status_name}){title}
+          </div>
         </div>
-        <%= datatable("incident_requests",url_for(:action=>"get_data",:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
-                       { :key => "request_number", :label => t(:label_icm_incident_request_request_number),:searchable=>true,:width=>"120px"},
-                       { :key => "title", :label => t(:label_icm_incident_request_title),:searchable=>true },                                            
-                       { :key => "incident_status_name", :label => t(:label_icm_incident_request_incident_status_code,:searchable=>true) },
-                       { :key => "requested_name", :label => t(:label_icm_incident_request_requested_by,:searchable=>true) },
-                       { :key => "priority_name", :label => t(:label_icm_incident_request_priority,:searchable=>true) },
-                       { :key => "submitted_date", :label => t(:label_icm_incident_request_submitted_date),:width=>"180px" },
-                       ],{:row_perpage=>10,:search_box=>"incident_requestsSearchBox",:paginator_box=>'incidentRequestsPaginatorBox'})%>
-        <div id="incidentRequestsPaginatorBox"></div>
+        <% if Irm::Role.current&&Irm::Role.current.service_role_type.eql?("CUSTOMER") %>
+          <%=render(:partial =>"customer_list") %>
+        <% else %>
+          <%=render(:partial =>"help_desk_list") %>
+        <% end %>
       </div>
     </div>
 </div>

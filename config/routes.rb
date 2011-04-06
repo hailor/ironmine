@@ -573,7 +573,8 @@ Ironmine::Application.routes.draw do
     match '/incident_requests/:id(.:format)' => "incident_requests#update", :via => :put
     match '/incident_requests/new(.:format)' => "incident_requests#new", :via => :get
     match '/incident_requests/create(.:format)' => "incident_requests#create", :via => :post
-    match '/incident_requests/get_data(.:format)' => "incident_requests#get_data"
+    match '/incident_requests/get_data(.:format)' => "incident_requests#get_data",:via=>:get
+    match '/incident_requests/get_help_desk_data(.:format)' => "incident_requests#get_help_desk_data",:via=>:get
     match '/incident_requests/:id(.:format)' => "incident_requests#show", :via => :get
     match '/incident_requests/short_create(.:format)' => "incident_requests#short_create", :via => :post
     #incident_journals

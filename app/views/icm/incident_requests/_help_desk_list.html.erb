@@ -1,0 +1,11 @@
+<%= datatable("incident_requests",url_for(:action=>"get_help_desk_data",:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
+                       { :key => "company_name", :label => t(:label_icm_incident_request_company),:width=>"120px"},
+                       { :key => "priority_name", :label => t(:label_icm_incident_request_priority,:searchable=>true),:width=>"60px" },
+                       { :key => "request_number", :label => "#",:searchable=>true,:width=>"20px"},
+                       { :key => "incident_status_name",:hidden=>true },
+                       { :key => "title",:formatter=>"Y.irm.template",:label => t(:label_icm_incident_request_title),:searchable=>true },
+                       { :key => "requested_name", :label => t(:label_icm_incident_request_requested_by,:searchable=>true) },
+                       { :key => "last_request_date", :label => t(:label_icm_incident_request_last_date),:width=>"180px" }
+                       ],{:row_perpage=>10,:search_box=>"incident_requestsSearchBox",:paginator_box=>'incidentRequestsPaginatorBox'})%>
+<div id="incidentRequestsPaginatorBox"></div>

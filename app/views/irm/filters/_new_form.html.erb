@@ -35,7 +35,7 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_view_filter_view_code)%></label></td>
-              <td class="dataCol"><%=f.text_field :view_code, :required=>true,:size=>20%></td>
+              <td class="dataCol"><%=f.text_field :view_code, :required=>true,:size=>20,:irm_uppercase=>true%></td>
               <td class="labelCol"></td>
               <td class="dataCol"></td>
             </tr>
@@ -82,7 +82,7 @@
           <td colspan="4" class="dataCol"><%=(t :label_irm_view_filter_view_condition_clause)%></td>
         </tr>
         <tr>
-          <td class="dataCol" colspan="4"><%=f.text_field :raw_condition_clause,:required=>true, :size=>60,:id=>"rawConditionClause"%></td>
+          <td class="dataCol" colspan="4"><%=f.text_field :raw_condition_clause, :size=>60,:id=>"rawConditionClause"%></td>
         </tr>
         </tbody>
       </table>
