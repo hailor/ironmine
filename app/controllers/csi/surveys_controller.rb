@@ -44,11 +44,12 @@ class Csi::SurveysController < ApplicationController
     @survey = Csi::Survey.new(params[:csi_survey])
     ranges = params[:ranges]
     ranges_array = []
-    ranges.each do |r|
-      ranges_array << r[1]
+    if ranges
+      ranges.each do |r|
+        ranges_array << r[1]
+      end
+      ranges_array = ranges_array.uniq
     end
-    ranges_array = ranges_array.uniq
-
     respond_to do |format|
       if @survey.save
         ranges_array.each do |r|
