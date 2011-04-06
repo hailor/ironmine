@@ -25,9 +25,9 @@ module Icm::IncidentRequestsHelper
 
   def available_supporter(group_id=nil)
     if(group_id)
-      people =  Irm::SupportGroupMember.with_person.with_support_group(I18n.locale).query_by_support_group(group_id).order_id.collect{|p|[p[:person_name],p[:id]]}
+      people =  Irm::SupportGroupMember.with_person.with_support_group(I18n.locale).query_by_support_group(group_id).order_id.collect{|p|[p[:person_name],p[:person_id]]}
     else
-      people =  Irm::SupportGroupMember.with_person.with_support_group(I18n.locale).order_id.collect{|p|[p[:person_name],p[:id]]}
+      people =  Irm::SupportGroupMember.with_person.with_support_group(I18n.locale).order_id.collect{|p|[p[:person_name],p[:person_id]]}
     end
     needed_to_replace = people.detect{|person| Irm::Person.current.id.eql?(person[1])}
     if needed_to_replace

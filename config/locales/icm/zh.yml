@@ -139,6 +139,11 @@ zh:
   label_icm_reply_title: 于 %{message} 前回复
   label_icm_submit_title: 于 %{message} 前提交
   label_icm_incident_more_info: 更多信息
+  label_action_edit_pass: 转交事故单
+  label_action_update_pass: 转交事故单
+  label_action_edit_close: 关闭事故单
+  label_action_update_close: 关闭事故单
+  label_icm_incident_journal_pass: 转交事故单
   #========================= end icm incident_journals_controller=======================#
   #=========================    icm incident_reports_controller=======================#
   label_icm_urgency_name: 紧急度

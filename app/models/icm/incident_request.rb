@@ -5,6 +5,10 @@ class Icm::IncidentRequest < ActiveRecord::Base
 
   validates_presence_of :title,:summary,:service_code,:requested_by,:submitted_by,:impact_range_code,:urgence_code,:priority_code,:request_type_code,:incident_status_code,:report_source_code
 
+  attr_accessor :pass_flag
+
+  validates_presence_of :support_group_id,:support_person_id,:if=>Proc.new{|i| !i.pass_flag.nil?&&!i.pass_flag.blank?}
+
   #加入activerecord的通用方法和scope
   query_extend
   after_create :generate_request_number
@@ -43,6 +47,18 @@ class Icm::IncidentRequest < ActiveRecord::Base
   scope :with_submitted_by,lambda{
     joins("LEFT OUTER JOIN #{Irm::Person.table_name} submitted ON  submitted.id = #{table_name}.submitted_by").
     select("#{Irm::Person.name_to_sql(nil,'submitted','submitted_name')}")
+  }
+
+  # 查询出supporter
+  scope :with_supporter,lambda{
+    joins("LEFT OUTER JOIN #{Irm::Person.table_name} supporter ON  supporter.id = #{table_name}.support_person_id").
+    select("#{Irm::Person.name_to_sql(nil,'supporter','support_person_name')}")
+  }
+
+  # 查询出优先级
+  scope :with_support_group,lambda{|language|
+    joins("LEFT OUTER JOIN #{Irm::SupportGroup.view_name} support_group ON  #{table_name}.support_group_id = support_group.id AND support_group.language= '#{language}'").
+    select(" support_group.name support_group_name")
   }
 
   scope :query_by_submitted,lambda{|submitted_by|
@@ -147,7 +163,9 @@ class Icm::IncidentRequest < ActiveRecord::Base
         with_incident_status(I18n.locale).
         with_priority(I18n.locale).
         with_submitted_by.
-        with_company((I18n.locale))
+        with_support_group(I18n.locale).
+        with_supporter.
+        with_company(I18n.locale)
   end
 
   private

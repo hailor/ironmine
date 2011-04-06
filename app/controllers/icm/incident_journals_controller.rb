@@ -67,6 +67,32 @@ class Icm::IncidentJournalsController < ApplicationController
     end
   end
 
+  # 转交
+  def edit_pass
+    @incident_journal = @incident_request.incident_journals.build()
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @incident_journal }
+    end
+  end
+
+  def update_pass
+    @incident_journal = @incident_request.incident_journals.build(params[:icm_incident_journal])
+    perform_create
+    respond_to do |format|
+      if @incident_journal.valid?&&@incident_request.update_attributes(params[:icm_incident_request])
+        process_change_attributes([:incident_status_code,:close_reason_code],@incident_request,@incident_request_bak,@incident_journal)
+        process_files(@incident_journal)
+        publish_create_incident_journal(@incident_journal)
+        format.html { redirect_to({:action => "new"}) }
+        format.xml  { render :xml => @incident_journal, :status => :created, :location => @incident_journal }
+      else
+        format.html { render :action => "edit_close" }
+        format.xml  { render :xml => @incident_journal.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
 
   def get_entry_header_data
     entry_headers_scope = Skm::EntryHeader.list_all.published.current_entry
