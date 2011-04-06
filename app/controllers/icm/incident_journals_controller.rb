@@ -67,6 +67,16 @@ class Icm::IncidentJournalsController < ApplicationController
     end
   end
 
+
+  def get_entry_header_data
+    entry_headers_scope = Skm::EntryHeader.list_all.published.current_entry
+    entry_headers_scope = entry_headers_scope.match_value("#{Skm::EntryHeader.table_name}.entry_title",params[:entry_title]) if params[:entry_title]
+    entry_headers,count = paginate(entry_headers_scope)
+    respond_to do |format|
+      format.json  {render :json => to_jsonp(entry_headers.to_grid_json([:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date_f], count)) }
+    end
+  end
+
   private
   def setup_up_incident_request
     @incident_request = Icm::IncidentRequest.list_all.find(params[:request_id])    

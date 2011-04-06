@@ -217,20 +217,20 @@
   <div class="pbBody">
     <div id="linktoSKM" class="hidden">
       <div class="pbSubheader tertiaryPalette first">
-        <input type="text" size="35"/><a href="javascript:void(0)"><%= t(:search) %></a>
+        <input id="searchSKMText" type="text" size="35"/><a id="searchSKM" href="javascript:void(0)"><%= t(:search) %></a>
         <div id="entry_headers_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:show),{:controller => "skm/entry_headers", :action=>"show",:id=>"{id}"}) %>
+            <%= link_to(t(:apply),{:controller => "skm/entry_headers", :action=>"show",:id=>"{id}"}) %>
           </div>
           <div id="full_title" style="display:none">
             <%= link_to("{full_title}",{:controller => "skm/entry_headers", :action=>"show",:id=>"{id}"},{:target => "_blank"}) %>
           </div>
         </div>
-        <%= datatable("entry_headers_list",url_for(:controller=>"skm/entry_headers",:action=>"get_data",:format=>"json"),
+        <%= datatable("entry_headers_list",url_for(:action=>"get_entry_header_data",:format=>"json"),
                   [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"30px"},
                    {:key=>"full_title",:label=>t(:label_skm_entry_header_title),:sortable=>true, :searchable => true,:formatter=>"Y.irm.template"},
                    {:key=>"published_date_f",:label=>t(:label_skm_entry_header_published_date),:sortable=>true, :width => "180px"}],
-                   {:paginator_box=>"entryPaginator"})%>
+                   {:row_perpage=>5,:paginator_box=>"entryPaginator"})%>
         <div id="entryPaginator"></div>
       </div>
     </div>
@@ -302,7 +302,7 @@
 <%if allow_to_function?(:reply_incident_request)%>
 <script type="text/javascript">
 
-GY.use('node','substitute','yui2-editor', function(Y) {
+GY.use('irm','node','substitute','yui2-editor', function(Y) {
   var YAHOO = Y.YUI2;
   var editor = new YAHOO.widget.Editor('msgEditor', {
         height:'100px',
@@ -346,6 +346,11 @@ GY.use('node','substitute','yui2-editor', function(Y) {
         }else{
           Y.one("#linktoSKM").addClass("hidden")
         }
+    });
+
+    Y.one("#searchSKM").on("click",function(e){
+        var datasource = Y.irm.entry_headers_listDatatable.datasource;
+        datasource.query({entry_title:Y.one("#searchSKMText").get("value")});
     });
 
 });
