@@ -220,7 +220,7 @@
         <input id="searchSKMText" type="text" size="35"/><a id="searchSKM" href="javascript:void(0)"><%= t(:search) %></a>
         <div id="entry_headers_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:apply),{:controller => "skm/entry_headers", :action=>"show",:id=>"{id}"}) %>
+            <%= link_to(t(:apply),{ :action=>"apply_entry_header",:id=>"{id}"},:remote=>true) %>
           </div>
           <div id="full_title" style="display:none">
             <%= link_to("{full_title}",{:controller => "skm/entry_headers", :action=>"show",:id=>"{id}"},{:target => "_blank"}) %>
@@ -324,6 +324,7 @@ GY.use('irm','node','substitute','yui2-editor', function(Y) {
         }
     });
     editor.render();
+    Y.irm.setAttribute("journalMsgEditor",editor,"Editor");
     Y.one("#new_icm_incident_reply").on("submit",function(){
       editor.saveHTML();    
     });

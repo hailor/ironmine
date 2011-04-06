@@ -77,6 +77,13 @@ class Icm::IncidentJournalsController < ApplicationController
     end
   end
 
+  def apply_entry_header
+    @entry_header = Skm::EntryHeader.find(params[:id]);
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
   def setup_up_incident_request
     @incident_request = Icm::IncidentRequest.list_all.find(params[:request_id])    

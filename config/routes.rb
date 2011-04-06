@@ -583,6 +583,7 @@ Ironmine::Application.routes.draw do
     match '/incident_requests/:request_id/journals/new(.:format)' => "incident_journals#new", :via => :get
     match '/incident_requests/:request_id/journals/create(.:format)' => "incident_journals#create", :via => :post
     match '/incident_requests/:request_id/journals/get_entry_header_data(.:format)' => "incident_journals#get_entry_header_data", :via => :get
+    match '/incident_requests/:request_id/journals/apply_entry_header(.:format)' => "incident_journals#apply_entry_header", :via => :get
     #user_requests
     match '/user_requests(/index)(.:format)' => "user_requests#index", :via => :get
     match '/user_requests/new(.:format)' => "user_requests#new", :via => :get

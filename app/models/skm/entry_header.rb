@@ -39,4 +39,9 @@ class Skm::EntryHeader < ActiveRecord::Base
   end
 
   query_extend
+
+
+  def to_html
+    self.entry_title
+  end
 end
