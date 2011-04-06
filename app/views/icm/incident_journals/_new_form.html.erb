@@ -106,7 +106,7 @@
               <div class="grayButton"><%= link_to t(:close), {:action => "edit_close"}%></div>
               <div class="grayButton"><%= link_to t(:edit), {:controller=>"icm/incident_requests",:action => "edit", :id => @incident_request.id}%></div>
             <%else%>
-              <div class="grayButton"><%= link_to t(:label_icm_save_as_skm), {:controller=>"icm/incident_requests",:action => "edit", :id => @incident_request.id}%></div>
+              <div class="grayButton"><%= link_to t(:label_icm_save_as_skm), {:controller=>"skm/entry_headers",:action => "new_from_icm_request", :request_id => @incident_request.id}%></div>
             <%end%>
           </td>
         </tr>

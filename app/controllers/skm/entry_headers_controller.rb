@@ -127,7 +127,7 @@ class Skm::EntryHeadersController < ApplicationController
 
   def edit
     @entry_header = Skm::EntryHeader.find(params[:id])
-    @return_url=request.env['HTTP_REFERER']
+    @return_url=request.env['HTTP_REFERER'] if @return_url
   end
 
   def create
@@ -303,12 +303,12 @@ class Skm::EntryHeadersController < ApplicationController
 
 
   def new_from_icm_request
-    incident_request = Icm::IncidentRequest.find(params[:request_id])
-    template = Skm::EntryTemplate.where(:entry_template_code => "ENTRY_FROM_ICM_REQUEST_" + I18n.locale).first()
+    incident_request = Icm::IncidentRequest.list_all.where("#{Icm::IncidentRequest.table_name}.id = ?", params[:request_id]).first()
+    template = Skm::EntryTemplate.where(:entry_template_code => "ENTRY_FROM_ICM_REQUEST_" + I18n.locale.to_s.upcase).first()
     elements = Skm::EntryTemplateDetail.owned_elements(template.id)
-
     entry_header = Skm::EntryHeader.new(:entry_title => incident_request.title,
                                         :doc_number => Skm::EntryHeader.generate_doc_number,
+                                        :entry_template_id => template.id,
                                         :history_flag => "N",
                                         :entry_status_code => "DRAFT",
                                         :published_date => Time.now,
@@ -316,9 +316,40 @@ class Skm::EntryHeadersController < ApplicationController
                                         :version_number => 1,
                                         :source_type=>"INCIDENT_REQUEST",
                                         :source_id => incident_request.id)
-    if entry_header.save
-      elements.each do |e|
-
+    elements.each do |e|
+      if e.entry_template_element_code.include?("INCIDENT_REQUEST_INFO_")
+        t = Skm::EntryDetail.new(:entry_content => incident_request.summary,
+                                 :default_rows => e.default_rows,
+                                 :entry_template_element_id => e.id,
+                                 :element_name => e.element_name,
+                                 :required_flag=> e.required_flag,
+                                 :line_num=>e.line_num,
+                                 :status_code=>"ENABLED")
+        entry_header.entry_details << t
+      elsif e.entry_template_element_code.include?("INCIDENT_REQUEST_INSTANCE_")
+        t = Skm::EntryDetail.new(:entry_content => I18n::t(:label_incident_request) + ": " + incident_request.request_number + " ; " + I18n::t(:label_icm_incident_request_title) + ": " + incident_request.title,
+                                 :default_rows => e.default_rows,
+                                 :entry_template_element_id => e.id,
+                                 :element_name => e.element_name,
+                                 :required_flag=> e.required_flag,
+                                 :line_num=>e.line_num,
+                                 :status_code=>"ENABLED")
+        entry_header.entry_details << t
+      elsif e.entry_template_element_code.include?("INCIDENT_REQUEST_SOLUTION_")
+        t = Skm::EntryDetail.new(:entry_content => incident_request.concat_journals,
+                                 :default_rows => e.default_rows,
+                                 :entry_template_element_id => e.id,
+                                 :element_name => e.element_name,
+                                 :required_flag=> e.required_flag,
+                                 :line_num=>e.line_num,
+                                 :status_code=>"ENABLED")
+        entry_header.entry_details << t
+      end
+    end
+    respond_to do |format|
+      if entry_header.save
+        format.html { redirect_to(:controller => "skm/entry_headers", :action => "edit", :id => entry_header.id)}
+        format.xml  { head :ok }
       end
     end
   end

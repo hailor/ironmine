@@ -168,6 +168,15 @@ class Icm::IncidentRequest < ActiveRecord::Base
         with_company(I18n.locale)
   end
 
+  def concat_journals
+    return_val = ""
+    self.incident_journals.each do |i|
+      return_val << i.message_body.to_s
+      return_val << "  "
+    end
+    Irm::Sanitize.sanitize(return_val.to_s)
+  end
+
   private
   def generate_request_number
     count = self.class.where(:company_id=>self.company_id).count

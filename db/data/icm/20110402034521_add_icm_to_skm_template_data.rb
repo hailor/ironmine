@@ -2,7 +2,7 @@
 class AddIcmToSkmTemplateData < ActiveRecord::Migration
   def self.up
     template_en = Skm::EntryTemplate.new(:entry_template_code => "ENTRY_FROM_ICM_REQUEST_EN",:name=>"Entry From Incident Request",:description=>"Entry From Incident Request")
-    template_cn = Skm::EntryTemplate.new(:entry_template_code => "ENTRY_FROM_ICM_REQUEST_CN",:name=>"从事故单创建的知识库",:description=>"从事故单创建的知识库")
+    template_cn = Skm::EntryTemplate.new(:entry_template_code => "ENTRY_FROM_ICM_REQUEST_ZH",:name=>"从事故单创建的知识库",:description=>"从事故单创建的知识库")
     template_en.save
     template_cn.save
 
@@ -10,9 +10,9 @@ class AddIcmToSkmTemplateData < ActiveRecord::Migration
     element_en_2 = Skm::EntryTemplateElement.new(:entry_template_element_code=>"INCIDENT_REQUEST_INSTANCE_EN",:name=>"Instance",:description=>"Instance",:default_rows=>"3")
     element_en_3 = Skm::EntryTemplateElement.new(:entry_template_element_code=>"INCIDENT_REQUEST_SOLUTION_EN",:name=>"Solution",:description=>"Solution",:default_rows=>"6")
 
-    element_cn_1 = Skm::EntryTemplateElement.new(:entry_template_element_code=>"INCIDENT_REQUEST_INFO_CN", :name=>"事故内容",:description=>"事故内容",:default_rows=>"3")
-    element_cn_2 = Skm::EntryTemplateElement.new(:entry_template_element_code=>"INCIDENT_REQUEST_INSTANCE_CN",:name=>"案例",:description=>"案例",:default_rows=>"3")
-    element_cn_3 = Skm::EntryTemplateElement.new(:entry_template_element_code=>"INCIDENT_REQUEST_SOLUTION_CN",:name=>"解决方案",:description=>"解决方案",:default_rows=>"6")
+    element_cn_1 = Skm::EntryTemplateElement.new(:entry_template_element_code=>"INCIDENT_REQUEST_INFO_ZH", :name=>"事故内容",:description=>"事故内容",:default_rows=>"3")
+    element_cn_2 = Skm::EntryTemplateElement.new(:entry_template_element_code=>"INCIDENT_REQUEST_INSTANCE_ZH",:name=>"案例",:description=>"案例",:default_rows=>"3")
+    element_cn_3 = Skm::EntryTemplateElement.new(:entry_template_element_code=>"INCIDENT_REQUEST_SOLUTION_ZH",:name=>"解决方案",:description=>"解决方案",:default_rows=>"6")
 
     element_en_1.save
     element_en_2.save
