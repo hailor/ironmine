@@ -111,6 +111,8 @@ en:
   label_icm_incident_request_request_number: Serial number
   label_icm_incident_request_contact_number: Contact number
   label_icm_incident_request_priority: Priority
+  label_icm_incident_request_company: Company
+  label_icm_incident_request_last_date: Last Update
   label_incident_request: Incident request
   label_icm_incident_request_submitted_by: Submit by
   label_icm_incident_request_incident_phase_code: Phase
