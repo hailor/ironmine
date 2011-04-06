@@ -2,7 +2,7 @@
 <% if Irm::Role.current&&Irm::Role.current.role_type.eql?("CUSTOMER") %>
   <%= view_filter("ICM_INCIDENT_REQUEST_INDEX_B","incident_requests") %>
 <% else %>
-  <%= view_filter("ICM_INCIDENT_REQUEST_INDEX_B","incident_requests") %>
+  <%= view_filter("ICM_INCIDENT_REQUEST_INDEX_A","incident_requests") %>
 <% end %>
 
 <div class="listRelatedObject setupBlock">
