@@ -121,6 +121,11 @@ class Icm::IncidentJournalsController < ApplicationController
 
   def perform_create
     @incident_journal.replied_by=Irm::Person.current.id
+    if Irm::Person.current.id.eql?(@incident_request.requested_by)
+      @incident_request.last_request_date = Time.now
+    else
+      @incident_request.last_response_date = Time.now
+    end
   end
 
   def process_change_attributes(attributes,new_value,old_value,ref_journal)
