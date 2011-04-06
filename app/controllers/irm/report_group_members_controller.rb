@@ -40,7 +40,7 @@ class Irm::ReportGroupMembersController < ApplicationController
   # DELETE /report_group_memebers/1
   # DELETE /report_group_memebers/1.xml
   def destroy
-    @report_group_memeber = ReportGroupMember.find(params[:id])
+    @report_group_memeber = Irm::ReportGroupMember.find(params[:id])
     @report_group_memeber.destroy
 
     respond_to do |format|
