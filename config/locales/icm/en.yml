@@ -122,7 +122,8 @@ en:
   label_icm_reply_today_count: Today Replied
   label_icm_request_submitted_today_count: Today Submitted
   label_icm_my_un_solved_request: My Unsolved Requests
-  label_icm_my_solved_request: My Solved Requests  
+  label_icm_my_solved_request: My Solved Requests
+  label_icm_save_as_skm: Save As SKM Entry
   #========================= end iicm incident_requests_controller=======================#
   #=========================    icm incident_journals_controller=======================#
   label_icm_incident_reply_support_group_id: Referred group

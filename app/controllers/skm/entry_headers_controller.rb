@@ -150,7 +150,7 @@ class Skm::EntryHeadersController < ApplicationController
         session[:skm_entry_header] = nil
         session[:skm_entry_details] = nil
         if params[:status] == "DRAFT"
-          format.html { redirect_to({:action=>"my"}, :notice =>t(:successfully_created)) }
+          format.html { redirect_to({:action=>"my_drafts"}, :notice =>t(:successfully_created)) }
         else
           format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
         end
@@ -300,5 +300,26 @@ class Skm::EntryHeadersController < ApplicationController
       format.json  {render :json => to_jsonp(entry_headers.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date], count)) }
     end        
   end
-  
+
+
+  def new_from_icm_request
+    incident_request = Icm::IncidentRequest.find(params[:request_id])
+    template = Skm::EntryTemplate.where(:entry_template_code => "ENTRY_FROM_ICM_REQUEST_" + I18n.locale).first()
+    elements = Skm::EntryTemplateDetail.owned_elements(template.id)
+
+    entry_header = Skm::EntryHeader.new(:entry_title => incident_request.title,
+                                        :doc_number => Skm::EntryHeader.generate_doc_number,
+                                        :history_flag => "N",
+                                        :entry_status_code => "DRAFT",
+                                        :published_date => Time.now,
+                                        :author_id => Irm::Person.current.id,
+                                        :version_number => 1,
+                                        :source_type=>"INCIDENT_REQUEST",
+                                        :source_id => incident_request.id)
+    if entry_header.save
+      elements.each do |e|
+
+      end
+    end
+  end
 end

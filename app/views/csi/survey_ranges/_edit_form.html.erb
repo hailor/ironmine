@@ -48,17 +48,13 @@
 
             <tr>
               <td class="labelCol"><label for="survey_range_company"><%=t(:label_csi_survey_range_range_company)%></label></td>
-              <td class="dataCol"><%=f.select :range_company_id,
-                                              "<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                              options_for_select(available_company,@survey_range.range_company_id),
+              <td class="dataCol"><%=f.blank_select :range_company_id,
+                                              available_company,
                                               {},
                                               {:id=>"ass_company"}%></td>
               <td class="labelCol"><label for="survey_range_site_id"><%=t(:label_csi_survey_range_site)%></label></td>
-              <td class="dataCol"><%=f.select :site_id,
-                                              "<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                              options_from_collection_for_select(available_sites,:id,:wrap_name,@survey_range.site_id),
-                                              {},
-                                              {:id=>"range_type"}%></td>
+              <td class="dataCol">
+                                  <%= f.blank_select :site_id, available_sites,{},{:id=>"site_id"}%></td>
             </tr>
 
             <tr>

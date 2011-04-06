@@ -118,6 +118,8 @@ class Icm::IncidentRequestsController < ApplicationController
                                                                           :priority_name,:incident_status_name,:submitted_date],count,{:date_to_distance=>[:last_request_date]}))}
       format.xml { render :xml => incident_requests }
     end
+  def save_as_skm
+
   end
 
   private

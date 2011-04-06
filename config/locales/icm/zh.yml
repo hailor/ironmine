@@ -121,6 +121,7 @@ zh:
   label_icm_request_submitted_today_count: 今天提交的事故单
   label_icm_my_un_solved_request: 我的未解决的事故单
   label_icm_my_solved_request: 我的已解决的事故单
+  label_icm_save_as_skm: 创建知识库
   #========================= end icm incident_requests_controller=======================#
   #=========================    icm incident_journals_controller=======================#
   label_icm_incident_reply_support_group_id: 转交组
