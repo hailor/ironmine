@@ -52,8 +52,7 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_company_time_zone)%></label></td>
-              <td class="dataCol"><%=f.select :time_zone,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_time_zone,:lookup_code,:wrap_meaning,@company.time_zone)%></td>
+              <td class="dataCol"><%=f.select :time_zone,available_time_zone%></td>
               <td class="labelCol"><%=(t :label_irm_company_hotline)%></td>
               <td class="dataCol"><%=f.text_field :hotline,:value=>@company.hotline%></td>
             </tr>
