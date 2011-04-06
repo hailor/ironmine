@@ -9,7 +9,7 @@
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_icm_incident_request_new)%></h2></td>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_icm_incident_request_edit)%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
             <div class="button"><%= link_back t(:cancel)%></div>
@@ -36,7 +36,7 @@
         <tbody>
             <tr>
               <td class="labelCol"><label for="incident_request_service_code"><%=t(:label_icm_incident_request_service_code)%></label></td>
-              <td class="dataCol"><%=f.select :service_code,nullable_options_for_select(available_service,@incident_request.service_code),
+              <td class="dataCol"><%=f.blank_select :service_code,available_service,
                                                     {},{:required=>true,:id=>"incident_request_service_code"}%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
@@ -69,52 +69,66 @@
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
+
+              <% if allow_to_function?(:create_icdt_rqst_for_other) %>
+              <tr>
+                <td class="labelCol"><label for="incident_request_requested_by"><%=t(:label_icm_incident_request_requested_by)%></label></td>
+                <td class="dataCol"><%=f.blank_select :requested_by,available_person,
+                                                      {},{:required=>true,:id=>"incident_request_requested_by"}%></td>
+                <td class="labelCol empty">&nbsp;</td>
+                <td class="dataCol empty">&nbsp;</td>
+              </tr>
+              <% else %>
+                <%= f.hidden_field(:requested_by,:value=>Irm::Person.current.id) %>
+              <% end %>
+
             <tr>
-              <td class="labelCol"><label for="incident_request_requested_by"><%=t(:label_icm_incident_request_requested_by)%></label></td>
-              <td class="dataCol"><%=f.select :requested_by,nullable_options_for_select(available_person,@incident_request.requested_by),
-                                                    {},{:required=>true,:id=>"incident_request_requested_by"}%></td>
-              <td class="labelCol"><label for="incident_request_contact_id"><%=t(:label_icm_incident_request_contact)%></label></td>
-              <td class="dataCol">
-                <div style="display:inline">
-                <%=f.text_field :contact_id, :size=>10,:id=>"incident_request_contact_id"%>
-                <%=f.text_field :contact_number,:size=>17,:id=>"incident_request_contact_number"%></div>
-              </td>
+                <td class="labelCol"><label for="incident_request_contact_id"><%=t(:label_icm_incident_request_contact)%></label></td>
+                <td class="dataCol">
+                  <div style="display:inline">
+                    <%=f.blank_select :contact_id,available_contact,
+                                                        {},{:required=>true,:id=>"incident_request_contact_id"}%>
+                  </div>
+                </td>
+                <td class="labelCol"><label for="incident_request_contact_number"><%=t(:label_icm_incident_request_contact_number)%></label></td>
+                <td class="dataCol">
+                  <%=f.text_field :contact_number,:size=>17,:id=>"incident_request_contact_number",:required=>true%>
+                </td>
+
             </tr>
             <tr>
               <td class="labelCol"><label for="incident_request_urgence_code"><%=t(:label_icm_incident_request_urgence_code)%></label></td>
               <td class="dataCol">
-                <%=f.select :urgence_code,options_for_select(available_urgence_code,@incident_request.urgence_code),
-                                                    {},{:required=>true,:id=>"incident_request_urgence_code"}%>
+                <%=f.select :urgence_code,available_urgence_code,{},{:required=>true,:id=>"incident_request_urgence_code"}%>
               </td>
               <td class="labelCol"><label for="incident_request_impact_range_code"><%=t(:label_icm_incident_request_impact_range_code)%></label></td>
               <td class="dataCol">
-                <%=f.select :impact_range_code,options_for_select(available_impact_range,@incident_request.impact_range_code),
+                <%=f.select :impact_range_code,available_impact_range,
                                                     {},{:required=>true,:id=>"incident_request_impact_range_code"}%>
               </td>
             </tr>
-
-            <tr>
-              <td class="labelCol"><label for="incident_request_priority_code"><%=t(:label_icm_incident_request_priority)%></label></td>
-              <td class="dataCol">
-                <%=f.select :urgence_code,options_for_select(available_priority_code,@incident_request.priority_code),
-                                                    {},{:required=>true,:id=>"incident_request_priority_code"}%>
-              </td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-
+          <% if allow_to_function?(:assign_incident_request) %>
             <tr>
               <td class="labelCol"><label for="incident_request_support_group_id"><%=t(:label_icm_incident_request_support_group)%></label></td>
-              <td class="dataCol"><%=f.text_field :support_group_id,:id=>"incident_request_support_group_id"%></td>
+              <td class="dataCol">
+                <%=f.blank_select :support_group_id,available_support_group,
+                                                    {},{:id=>"incident_request_support_group_id"}%>
+              </td>
               <td class="labelCol"><label for="incident_request_support_person_id"><%=t(:label_icm_incident_request_support_person)%></label></td>
-              <td class="dataCol"><%=f.select :support_person_id,nullable_options_for_select(available_supporter,@incident_request.support_person_id),
-                                                    {},{:id=>"incident_request_support_person_id"}%></td>
-            </tr>
+              <td class="dataCol"><%= f.blank_select(:support_person_id,available_supporter(@incident_request.support_group_id),{},
+                                  {
+                                   :id=>"incident_request_support_person_id",
+                                   :href=>url_for(:controller=>"irm/support_group_members",:action=>"get_options",:format=>"json",:group_id=>"{incident_request_support_group_id}"),
+                                   :depend=>"incident_request_support_group_id"
+                                   }) %></td>
 
+            </tr>
+          <%end%>
+          <% if allow_to_function?(:create_icdt_rqst_for_other) %>
             <tr>
               <td class="labelCol"><label for="incident_request_request_type_code"><%=t(:label_icm_incident_request_request_type_code)%></label></td>
               <td class="dataCol">
-                <%=f.select :request_type_code,nullable_options_for_select(available_request_type,@incident_request.request_type_code),
+                <%=f.blank_select :request_type_code,available_request_type,
                                                     {},{:required=>true,:id=>"incident_request_request_type_code"}%>
               </td>
               <td class="labelCol"><label for="incident_request_incident_status_code"><%=t(:label_icm_incident_request_incident_status_code)%></label></td>
@@ -133,7 +147,7 @@
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
-
+         <%end%>
         </tbody>
       </table>
     </div>
@@ -153,7 +167,26 @@
   </div>
 </div>
 <% end %>
+<script type="text/javascript">
+  GY.use("cascadeselect",function(Y){
+     var requester = Y.one("#incident_request_requested_by");
+     if(requester){
+         requester.on("change",function(e){
+             Y.one("#incident_request_contact_id").set("value",e.target.get("value"));
+             Y.one("#incident_request_contact_id").simulate('change');
+         })
+     }
+     if(Y.one("#incident_request_contact_id")){
+         Y.one("#incident_request_contact_id").on("change",function(e){
+           if(e.target.get("value")&&e.target.get("value")!=""){
+             var phone = e.target.one("option[value="+e.target.get("value")+"]").getAttribute("phone")
+             Y.one("#incident_request_contact_number").set("value",phone)
+           }
+         })
+     }
+     if(Y.one("#incident_request_support_group_id")){
+       new Y.CascadeSelect({source: "#incident_request_support_group_id",target:["#incident_request_support_person_id"]});
+     }
 
-<% content_for :sidebar do%>
-    <%= render :partial =>"/irm/watchers/sidebar_watcher_list", :locals => {:watchable => @incident_request} %>
-<% end %>
+  });
+</script>

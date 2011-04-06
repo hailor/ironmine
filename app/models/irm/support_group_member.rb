@@ -1,6 +1,8 @@
 class Irm::SupportGroupMember < ActiveRecord::Base
   set_table_name :irm_support_group_members
 
+  query_extend
+
   scope :query_wrap_info,lambda{|language,support_group_code| select("#{table_name}.id id,v2.name company_name,CONCAT(t3.last_name,t3.first_name) person_name,"+
                                                                          "v1.meaning status_meaning,t3.email_address,t3.mobile_phone").
                                                    joins(",irm_lookup_values_vl v1").
