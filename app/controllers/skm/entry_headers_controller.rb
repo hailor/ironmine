@@ -300,5 +300,15 @@ class Skm::EntryHeadersController < ApplicationController
       format.json  {render :json => to_jsonp(entry_headers.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date], count)) }
     end        
   end
-  
+
+
+  def new_from_icm_request
+    incident_request = Icm::IncidentRequest.find(params[:request_id])
+    template = Skm::EntryTemplate.where(:entry_template_code => "ENTRY_FROM_ICM_REQUEST_" + I18n.locale).first()
+    elements = Skm::EntryTemplateDetail.owned_elements(template.id)
+
+    entry_header = Skm::EntryHeader.new(:entry_title => incident_request.title)
+    elements.each do |e|
+    end
+  end
 end
