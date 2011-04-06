@@ -1,5 +1,5 @@
 <%= app_title %>
-<% if Irm::Role.current&&Irm::Role.current.role_type.eql?("CUSTOMER") %>
+<% if Irm::Role.current&&Irm::Role.current.service_role_type.eql?("CUSTOMER") %>
   <%= view_filter("ICM_INCIDENT_REQUEST_INDEX_B","incident_requests") %>
 <% else %>
   <%= view_filter("ICM_INCIDENT_REQUEST_INDEX_A","incident_requests") %>
@@ -32,7 +32,7 @@
             ({incident_status_name}){title}
           </div>
         </div>
-        <% if Irm::Role.current&&Irm::Role.current.role_type.eql?("CUSTOMER") %>
+        <% if Irm::Role.current&&Irm::Role.current.service_role_type.eql?("CUSTOMER") %>
           <%=render(:partial =>"customer_list") %>
         <% else %>
           <%=render(:partial =>"help_desk_list") %>
