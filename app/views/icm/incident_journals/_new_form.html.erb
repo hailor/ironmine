@@ -197,10 +197,9 @@
          <img width="30" height="30" alt="" src="<%= person_avatar(@incident_request.submitted_by) %>">
        </div>
        <div class="message">
-         <pre>
          <%= raw @incident_request[:summary]  %>
-         </pre>
        </div>
+       <%= list_request_files(@incident_request) %>
     </div>
  </div>
      <%= list_journals(@incident_request) %>
@@ -265,10 +264,9 @@
               <% end%>
             </tr>
             <tr>
-              <td class="labelCol"><%= t(:label_icm_incident_journal_attachment) %></td>
-              <td class="dataCol" colspan="3" width="82%">
+              <td class="dataCol" colspan="4" width="100%">
 
-              <table>
+              <table width="70%">
                 <tbody id="fileTemplate" style="display:none" seq="0">
                 <tr id="file_{seq}" class="fileArea">
                     <td><input type="file" name="{ref}[{seq}][file]"/></td>

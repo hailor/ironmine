@@ -43,6 +43,7 @@ class Icm::IncidentRequestsController < ApplicationController
     prepared_for_create(@incident_request)
     respond_to do |format|
       if @incident_request.save
+        process_files(@incident_request)
         publish_create_incident_request(@incident_request)
         #如果没有填写support_group, 插入Delay Job任务
         if @incident_request.support_group_id.nil? || @incident_request.support_group_id.blank?
@@ -142,6 +143,21 @@ class Icm::IncidentRequestsController < ApplicationController
     if incident_request.contact_id.nil?||incident_request.contact_id.blank?
       incident_request.contact_id = incident_request.requested_by
       incident_request.contact_number = Irm::Person.find(incident_request.requested_by).mobile_phone
+    end
+  end
+
+
+  def process_files(ref_request)
+    @files = []
+    params[:files].each do |key,value|
+      @files << Irm::AttachmentVersion.create({:source_id=>ref_request.id,
+                                               :source_type=>ref_request.class.name,
+                                               :data=>value[:file],
+                                               :description=>value[:description]}) if(value[:file]&&!value[:file].blank?)
+    end if params[:files]
+
+    @files.each do|f|
+      puts f.errors
     end
   end
 
