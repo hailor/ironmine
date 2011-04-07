@@ -50,7 +50,7 @@ module Icm::IncidentJournalsHelper
       @request_files.each do |key,files|
         file = files.detect{|f| f.data.original_filename.eql?(file_name)}
         if(file&&file.image?)
-          msg = msg.gsub(/!file_name!/,"<img  class='msg' src='#{file.data.rul}'/>")
+          msg = msg.gsub(/!#{file_name}!/,"<img  class='msg' src='#{file.data.rul}'/>")
           break
         end
       end
