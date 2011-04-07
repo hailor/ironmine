@@ -22,22 +22,12 @@
           </tbody>
         </table>
       </div>
-      <div class="pbBody">
-        <div id="incident_requests" class="datatable" style="width:100%">
-          <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;
-            <%= link_to(t(:label_icm_reply),{:controller=>"icm/incident_journals",:action=>"new",:request_id=>"{id}"}) %>
-          </div>
-          <div id="title" style="display:none">
-            ({incident_status_name}){title}
-          </div>
-        </div>
+
         <% if Irm::Role.current&&Irm::Role.current.service_role_type.eql?("CUSTOMER") %>
           <%=render(:partial =>"customer_list") %>
         <% else %>
           <%=render(:partial =>"help_desk_list") %>
         <% end %>
-      </div>
     </div>
 </div>
 

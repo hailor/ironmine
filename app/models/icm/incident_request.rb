@@ -177,6 +177,14 @@ class Icm::IncidentRequest < ActiveRecord::Base
     Irm::Sanitize.sanitize(return_val.to_s)
   end
 
+  def need_customer_reply
+   if self.last_request_date||self.created_at>(self.last_response_date||Time.now)
+     Irm::Constant::SYS_NO
+   else
+     Irm::Constant::SYS_YES
+   end
+  end
+
   private
   def generate_request_number
     count = self.class.where(:company_id=>self.company_id).count

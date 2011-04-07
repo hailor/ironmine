@@ -28,6 +28,21 @@ YUI.add('irm', function(Y) {
            return o.value;
        }
     };
+    Y.irm.stemplate = function(o){
+       var templateNode = this._parentNode.one("#"+o.column.get("key"));
+       if(templateNode){
+         scriptString =  Y.Lang.substitute(unescape(templateNode.get('innerHTML')),o.data);
+         return eval(scriptString)
+       }
+       else{
+          return o.value;
+       }
+    };
+    Y.irm.htmlDecode = function(input){
+      var e = document.createElement('div');
+      e.innerHTML = input;
+      return e.childNodes[0].nodeValue;
+    }
     //表格显示行号列
     Y.irm.rownum = function(o){
       return o.rowindex;
