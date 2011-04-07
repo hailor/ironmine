@@ -30,7 +30,7 @@ module Icm::IncidentJournalsHelper
   end
 
   # show file
-  def show_file(file)
+  def show_file(f)
     image_path = nil
     image_path = f.data.url(:thumb) if f.image?
     image_path = theme_image_path(Irm::AttachmentVersion.file_type_icon(f.data.original_filename)) unless image_path
