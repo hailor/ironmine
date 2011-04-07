@@ -22,6 +22,10 @@ class Csi::Survey < ActiveRecord::Base
     select(" 0 person_count")
   }
 
+  scope :with_allow_author, lambda{
+    select(" ' ' allow_author_only")
+  }
+
   scope :query_recently_ten_reply,lambda{
     select("#{table_name}.id, #{table_name}.title title, sr.updated_at updated_at").
       joins(",#{Csi::SurveySubject.table_name} ss, #{Csi::SurveyResult.table_name} sr").
@@ -70,10 +74,17 @@ class Csi::Survey < ActiveRecord::Base
     recently.uniq
   end
 
+  def current_author?
+    if (self.author_id&&Irm::Person.current.id.eql?(self.author_id)) || (Irm::Person.current.login_name=="admin")
+      Irm::Constant::SYS_YES
+    else
+      Irm::Constant::SYS_NO
+    end
+  end
+
   private
   def generate_survey_code
     self.survey_code = "CSI"+ 1000000.to_s + (id % 1000000).to_s
     self.update_attribute(:survey_code,self.survey_code)
   end
-
 end

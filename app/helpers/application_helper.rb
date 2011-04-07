@@ -428,7 +428,7 @@ module ApplicationHelper
   end
 
   def current_person?(person_id)
-    person_id&&Irm::Person.current.id.eql?(person_id)
+    (person_id&&Irm::Person.current.id.eql?(person_id)) || (Irm::Person.current.login_name=="admin")
   end
 
 end

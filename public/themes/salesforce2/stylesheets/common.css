@@ -7,6 +7,8 @@ img {border:0 none !important;}
 body a:hover{color: #015BA7;}
 a {color:#333435;}
 textarea {font-size: 14px;}
+.display-Y{display:inline}
+.display-N{display:none}
 /***************** top search area ***********************/
 .bPageTitle {margin-bottom:15px;}
 body.detailPage .bPageTitle {margin-bottom:0;}
