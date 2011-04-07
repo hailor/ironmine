@@ -10,7 +10,8 @@
      <div class="message">
        <%= raw process_message(journal[:message_body])  %>
      </div>
+     <%= list_journal_files(grouped_files,journal) %>
    </div>
-   <%= list_journal_files(grouped_files,journal) %>
+
  </div>
 <%end %>
