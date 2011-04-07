@@ -45,7 +45,7 @@ module Icm::IncidentJournalsHelper
 
   def process_message(msg)
     file_names = msg.scan(/!([a-zA-Z\d\-_]+\.[a-z]+)!/)
-
+    puts "============#{file_names}================"
     file_names.each do |file_name|
       @request_files.each do |key,files|
         file = files.detect{|f| f.data.original_filename.eql?(file_name)}
