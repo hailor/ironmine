@@ -1,5 +1,5 @@
 module Icm::IncidentJournalsHelper
-  def list_request_files(incident_request)
+  def prepare_request_files(incident_request)
     # file belongs to journal
     @request_files = Irm::AttachmentVersion.query_all.query_by_incident_request(incident_request.id).group_by{|a| a.source_id}
     # file belongs to request
@@ -7,9 +7,13 @@ module Icm::IncidentJournalsHelper
 
     @request_files.merge!({0=>files_belong_to_request})
 
-    return if files_belong_to_request.nil?||files_belong_to_request.size<1
+  end
+
+  def list_request_file
+
+    return if @request_files[0].nil?||@request_files[0].size<1
     file_lists = ""
-    files_belong_to_request.each do |f|
+    @request_files[0].each do |f|
       file_lists << show_file(f)
     end
     content_tag(:div,file_lists.html_safe,{:class=>"fileList"})
@@ -37,6 +41,21 @@ module Icm::IncidentJournalsHelper
     link = "<a target='_blank' href='#{f.data.url}' stats=""><img  class='fileIcon' src='#{image_path}'></a>"
     description = "<span title='#{f.data.original_filename||f.description}' class='fileDesc'>#{f.description||f.data.original_filename}</span>"
     content_tag(:div, (link.html_safe + description.html_safe).html_safe,{:class=>"fileItem"}).html_safe
+  end
+
+  def process_message(msg)
+    file_names = msg.scan(/!([a-zA-Z\d\-_]+\.[a-z]+)!/)
+
+    file_names.each do |file_name|
+      @request_files.each do |key,files|
+        file = files.detect{|f| f.data.original_filename.eql?(file_name)}
+        if(file&&file.image?)
+          msg = msg.gsub(/!file_name!/,"<img  class='msg' src='#{file.data.rul}'/>")
+          break
+        end
+      end
+    end
+    msg
   end
 
   def incident_close_code

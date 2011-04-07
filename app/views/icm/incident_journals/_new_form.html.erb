@@ -197,9 +197,10 @@
          <img width="30" height="30" alt="" src="<%= person_avatar(@incident_request.submitted_by) %>">
        </div>
        <div class="message">
-         <%= raw @incident_request[:summary]  %>
+         <% prepare_request_files(@incident_request)%>
+         <%= raw process_message(@incident_request[:summary])  %>
        </div>
-       <%= list_request_files(@incident_request) %>
+       <%= list_request_file %>
     </div>
  </div>
      <%= list_journals(@incident_request) %>

@@ -8,7 +8,7 @@
        <img width="30" height="30" alt="" src="<%=replied_avatar(journal)%>">
      </div>
      <div class="message">
-       <%= raw journal[:message_body]  %>
+       <%= raw process_message(journal[:message_body])  %>
      </div>
    </div>
    <%= list_journal_files(grouped_files,journal) %>
