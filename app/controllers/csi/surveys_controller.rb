@@ -101,16 +101,18 @@ class Csi::SurveysController < ApplicationController
   end
 
   def get_data
-    @surveys= Csi::Survey.query_wrap_info(I18n::locale).with_joined_count.with_person_count
+    @surveys= Csi::Survey.query_wrap_info(I18n::locale).with_joined_count.with_person_count.with_allow_author
     @surveys = @surveys.match_value("#{Csi::Survey.table_name}.title",params[:title])
     @surveys,count = paginate(@surveys)
     @surveys_new = []
     @surveys.each do |s|
       s.person_count = Csi::SurveyRange.query_range_person_count(s.id)
+      s.allow_author_only = s.current_author? if s.result_only_author == Irm::Constant::SYS_YES
+      s.allow_author_only = "Y" if s.result_only_author == Irm::Constant::SYS_NO
       @surveys_new << s
     end
     respond_to do |format|
-      format.json {render :json=>to_jsonp(@surveys_new.to_grid_json(['R',:title,:description,:status_meaning, :joined_count, :person_count, :created_at, :published_at], count))}
+      format.json {render :json=>to_jsonp(@surveys_new.to_grid_json(['R',:title,:description,:status_meaning, :joined_count, :person_count, :created_at, :published_at, :allow_author_only], count))}
     end
   end 
 

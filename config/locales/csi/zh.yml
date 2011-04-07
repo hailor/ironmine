@@ -37,6 +37,7 @@ zh:
    label_csi_survey_joined_count: 参与人数
    label_csi_survey_person_count: 应参加人数
    label_csi_survey_created_at: 发起时间
+   label_csi_survey_result_only_author: 只允许作者查看调查结果
    #========================= end   csi surveys_controller=======================#
    #========================= start csi survey_subjects_controller=======================#
    label_csi_survey_subject: 题目

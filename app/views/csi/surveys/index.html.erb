@@ -22,7 +22,9 @@
           <div id="id" style="display:none">
             <%= link_to(t(:reply),{:action=>"reply",:id=>"{id}"}) %>&nbsp;
             <%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>&nbsp;
-            <%= link_to(t(:result),{:action=>"show_result",:id=>"{id}"}) %>&nbsp;
+            <div class="display-<%= "{allow_author_only}"%>">
+                <%= link_to(t(:result),{:action=>"show_result",:id=>"{id}"}) %>&nbsp;
+            </div>
           </div>
           <div id="joined_count" style="display:none">
             <div style="text-align:center;"><%= "{joined_count}"%></div>
@@ -36,7 +38,8 @@
                    {:key=>"title",:label=>t(:label_csi_survey_title),:sortable=>true,:searchable=>true},
                    {:key=>"joined_count",:label=>t(:label_csi_survey_joined_count),:sortable=>true,:formatter=>"Y.irm.template", :width=>"35px"},
                    {:key=>"person_count",:label=>t(:label_csi_survey_person_count),:sortable=>true,:formatter=>"Y.irm.template", :width=>"35px"},
-                   {:key=>"published_at",:label=>t(:label_csi_survey_created_at),:sortable=>true, :width=>"40px"}],
+                   {:key=>"published_at",:label=>t(:label_csi_survey_created_at),:sortable=>true, :width=>"40px"},
+                   {:key=>"allow_author_only", :hidden => true}],
                    {:paginator_box=>"surveryPaginator",:search_box=>"permissionsSearchBox"})%>
         <div id="surveryPaginator"></div>
       </div>

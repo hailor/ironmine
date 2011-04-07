@@ -40,19 +40,25 @@
         <tbody>
            <tr>
               <td class="labelCol"><label><%=(t :label_csi_survey_email_notify)%></label></td>
-              <td class="dataCol"><%=@survey.email_notify%></td>
+              <td class="dataCol"><%= check_img(@survey.email_notify)%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_csi_survey_publish_response)%></label></td>
-              <td class="dataCol"><%=@survey.publish_response%></td>
+              <td class="dataCol"><%= check_img(@survey.publish_response)%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_csi_survey_comment_flag)%></label></td>
-              <td class="dataCol"><%=@survey.comment_flag%></td>
+              <td class="dataCol"><%= check_img(@survey.comment_flag)%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_csi_survey_result_only_author)%></label></td>
+              <td class="dataCol"><%= check_img(@survey.result_only_author)%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
@@ -79,7 +85,7 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_csi_survey_same_ip_allow_flag)%></label></td>
-              <td class="dataCol"><%=@survey.same_ip_allow_flag%></td>
+              <td class="dataCol"><%= check_img(@survey.same_ip_allow_flag)%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
