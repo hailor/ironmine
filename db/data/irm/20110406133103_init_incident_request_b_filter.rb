@@ -154,7 +154,7 @@ class InitIncidentRequestBFilter < ActiveRecord::Migration
     column_f = Irm::ViewColumn.new({:filter_type=>"ICM_INCIDENT_REQUEST_INDEX_B",
                                     :table_name=>"icm_incident_requests",
                                     :column_name=>"submitted_by",
-                                    :column_data_type=>"string",
+                                    :column_data_type=>"int",
                                     :not_auto_mult=>true})
     column_f.view_columns_tls.build({:name=>"Submitted By",
                                     :description=>"Submitted By",
