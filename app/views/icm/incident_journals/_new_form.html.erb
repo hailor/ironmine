@@ -54,10 +54,10 @@
     padding-left: 1px;
   }
   div.fileList {
+    margin-left: 46px;
     color: #333333;
     line-height: 1.6em;
     margin-top: 5px;  
-    margin-left: 5px;
     margin-right: 5px;
     overflow: hidden;
     position: relative;
@@ -66,24 +66,33 @@
   div.fileList div.fileItem{
     color: #888888;
     display: inline;
-    float: left;
     padding-bottom: 5px;
-    width: 60px;
+    float: left;
   }
 
-  div.fileList div.fileItem span.fileDesc{
-    color: #888888;
-    display: block;
+  div.fileList div.fileItem div.fileIcon{
+    background-color: white;
+    border: 1px solid #D0D0D0;
+    float: left;
+    line-height: 0;
+    margin-right: 0.7em;
+    padding: 2px;
   }
 
-  div.fileList div.fileItem img.fileIcon{
+  div.fileList div.fileItem div.fileIcon img{
     border: 1px solid #BBC9E2;
     float: left;
-    margin-bottom: 5px;
-    margin-right: 10px;
-    padding: 3px;
     vertical-align: top;
   }
+
+  div.fileList div.fileItem .fileInfo{
+      width: 100px;
+      overflow-x: hidden;
+      float:left;
+      white-space: nowrap;
+  }
+
+
 </style>
 <form>
 <div id="ep" class="bPageBlock">
