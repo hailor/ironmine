@@ -39,7 +39,7 @@ module Icm::IncidentJournalsHelper
     image_path = f.data.url(:thumb) if f.image?
     image_path = theme_image_path(Irm::AttachmentVersion.file_type_icon(f.data.original_filename)) unless image_path
     link = "<div class='fileIcon'><a target='_blank' href='#{f.data.url}' stats=""><img src='#{image_path}'></a></div>"
-    description = "<div class='fileInfo'><div title='#{f.data.original_filename}' class='fileName'>#{f.data.original_filename}</div>
+    description = "<div class='fileInfo'><div title='#{f.data.original_filename}' class='fileName'><b>#{f.data.original_filename}</b></div>
                    <div title='#{f.description}' class='fileDesc'>#{f.description}</div></div>"
     content_tag(:div, (link.html_safe + description.html_safe).html_safe,{:class=>"fileItem"}).html_safe
   end
@@ -51,7 +51,7 @@ module Icm::IncidentJournalsHelper
       @request_files.each do |key,files|
         file = files.detect{|f| f.data.original_filename.eql?(file_name)}
         if(file&&file.image?)
-          msg = msg.gsub(/!#{file_name}!/,"<img  class='msg' src='#{file.data.url}'/>")
+          msg = msg.gsub(/!#{file_name}!/,"<img  class='msgImage' title='#{f.data.original_filename}\n#{file.description}' src='#{file.data.url}'/>")
           break
         end
       end

@@ -2,6 +2,11 @@
   select{
       min-width:128px;
   }
+  .yui-skin-sam .yui-toolbar-container div.yui-toolbar-subcont{
+    border-bottom-width: 1px;
+    padding-bottom: 0;
+    padding-left: 1px;
+  }
 </style>
 <%= form_for(@incident_request,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
 <div id="ep" class="bEditBlock bPageBlock">
@@ -58,7 +63,7 @@
 
             <tr>
               <td class="labelCol"><label for="incident_request_summary"><%=t(:label_icm_incident_request_summary)%></label></td>
-              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_area :summary,:rows=>5,:cols=>100, :required=>true ,:id=>"incident_request_summary"%></td>
+              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_area :summary,:rows=>5,:cols=>100, :required=>true ,:style=>"display:none;",:id=>"incident_request_summary"%></td>
             </tr>
         </tbody>
       </table>
@@ -189,4 +194,33 @@
      }
 
   });
+</script>
+<script type="text/javascript">
+
+GY.use('irm','node','substitute','yui2-editor', function(Y) {
+  var YAHOO = Y.YUI2;
+  var editor = new YAHOO.widget.Editor('incident_request_summary', {
+        height:'100px',
+        width:'80%',
+        toolbar: {
+            buttons: [
+                { group: 'textstyle',
+                    buttons: [
+                        { type: 'push', label: 'Bold', value: 'bold' },
+                        { type: 'push', label: 'Italic', value: 'italic' },
+                        { type: 'push', label: 'Underline', value: 'underline' },
+                        { type: 'push', label: 'Create an Unordered List', value: 'insertunorderedlist' },
+	                    { type: 'push', label: 'Create an Ordered List', value: 'insertorderedlist' },
+                        { type: 'color', label: 'Font Color', value: 'forecolor', disabled: true },
+                        { type: 'color', label: 'Background Color', value: 'backcolor', disabled: true }
+                    ]
+                }
+            ]
+        }
+    });
+    editor.render();
+    Y.one("#edit_icm_incident_request").on("submit",function(){
+      editor.saveHTML();
+    });
+});
 </script>
