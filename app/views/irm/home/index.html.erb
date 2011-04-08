@@ -14,6 +14,8 @@
           <span class="pageDescription"><a href="javascript:void(0);"><%= Time.now.strftime(t("date.formats.long")) + t("date.day_names")[Time.now.strftime("%w").to_f]%></a></span>
       </div>
     </div>
+    <div class="links">
+      <a onclick="window.open ('/pagehelpfiles/home.html', 'Ironmine Help', 'height=800px, width=870px, top=0, left=0, toolbar=no, menubar=no,scrollbars=yes, location=no, status=no');" href="#"><%=t(:current_page_help)%></a></div>
   </div>
 </div>
 <div class="pbSubsection" id="templateBody" style="display:none" current="portal">
