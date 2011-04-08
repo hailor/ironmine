@@ -138,7 +138,7 @@
               </td>
               <td class="labelCol"><label for="incident_request_incident_status_code"><%=t(:label_icm_incident_request_incident_status_code)%></label></td>
               <td class="dataCol">
-                <%=f.select :incident_status_code,options_for_select(available_request_status_code,@incident_request.incident_status_code),
+                <%=f.select :incident_status_code,options_for_select(available_all_request_status_code,@incident_request.incident_status_code),
                                                     {},{:required=>true,:id=>"incident_request_incident_status_code"}%>
               </td>
             </tr>
