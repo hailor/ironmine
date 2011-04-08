@@ -97,7 +97,7 @@ class Icm::IncidentRequestsController < ApplicationController
   end
 
   def get_data
-    incident_requests_scope = Icm::IncidentRequest.list_all.query_by_company_ids(session[:accessable_companies]).order("last_request_date desc,last_response_date desc,weight_value,company_id")
+    incident_requests_scope = Icm::IncidentRequest.list_all.query_by_company_ids(session[:accessable_companies]).order("last_response_date desc,last_request_date desc,weight_value,company_id")
     #incident_requests_scope = incident_requests_scope.match_value("incident_request.name",params[:name])
     incident_requests,count = paginate(incident_requests_scope)
     respond_to do |format|
@@ -110,7 +110,7 @@ class Icm::IncidentRequestsController < ApplicationController
   end
 
   def get_help_desk_data
-    incident_requests_scope = Icm::IncidentRequest.list_all.query_by_company_ids(session[:accessable_companies]).order("last_response_date desc,last_request_date desc,weight_value,company_id,id")
+    incident_requests_scope = Icm::IncidentRequest.list_all.query_by_company_ids(session[:accessable_companies]).order("last_request_date desc,last_response_date desc,weight_value,company_id,id")
     incident_requests,count = paginate(incident_requests_scope)
     respond_to do |format|
       format.json {render :json=>to_jsonp(incident_requests.to_grid_json([:request_number,:company_name,:title,:requested_name,:need_customer_reply,
