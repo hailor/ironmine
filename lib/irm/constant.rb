@@ -31,5 +31,7 @@ module Irm
     #attachment url,path
     ATTACHMENT_URL = "/upload/:class/:id/:style/:basename.:extension"
     ATTACHMENT_PATH = ":rails_root/public/upload/:class/:id/:style/:basename.:extension"
+
+    DEFAULT_HOST = "172.20.0.12"
   end
 end

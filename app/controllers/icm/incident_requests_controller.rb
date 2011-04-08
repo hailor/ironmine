@@ -164,8 +164,12 @@ class Icm::IncidentRequestsController < ApplicationController
   def publish_create_incident_request(incident_request)
     incident_request.reload
     incident_request = Icm::IncidentRequest.list_all.find(incident_request.id)
+    request_url = url_for({:host=>Irm::Constant::DEFAULT_HOST,
+             :controller=>"icm/incident_journals",
+             :action =>"new",
+             :request_id=>incident_request.id})
     Irm::EventManager.publish(:event_code=>"INCIDENT_REQUEST_NEW",
                               :params=>{:to_person_ids=>[incident_request.submitted_by,incident_request.requested_by],
-                                        :request=>incident_request.attributes})
+                                        :request=>incident_request.attributes.merge({:url=>request_url})})
   end
 end

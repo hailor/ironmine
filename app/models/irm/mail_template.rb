@@ -76,8 +76,9 @@ class Irm::MailTemplate < ActiveRecord::Base
     params_dup = params.dup
     to_people = Irm::Person.query_by_ids(params_dup["to_person_ids"]).include_identity
     to_people.each do |p|
-      email_template  = self.class.query_by_language(p.identity.language_code).find(self.id)
-      TemplateMailer.email_template(p.identity.email, email_template, params_dup,mail_options).deliver
+      next unless Irm::Constant::SYS_YES.eql?(p.notification_flag)
+      email_template  = self.class.query_by_language(p.language_code).find(self.id)
+      TemplateMailer.email_template(p.email_address, email_template, params_dup,mail_options).deliver
     end
   end
 
