@@ -131,6 +131,7 @@ zh:
   label_irm_lookup_value_lookup_code: 编码
   label_lookup_code: 快速编码
   label_irm_lookup_value_meaning: 含义
+  label_irm_lookup_value_description: 描述
   label_irm_lookup_type_description: 描述
   label_edit_lookup_type: 编辑快速编码类型
   label_new_lookup_type: 创建快速编码类型

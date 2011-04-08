@@ -38,23 +38,25 @@
                                             :required=>true,
                                   :cascade=>"department_select")%></td>
               <td class="labelCol"><label><%=(t :label_irm_location_site_group)%></label></td>
-              <td class="dataCol"><%=f.select(:site_group_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_site_group,:group_code,:wrap_name,@location.site_group_code),{},
-                                            :action=>url_for(:controller=>"irm/site_groups",:action=>"belongs_to",
-                                                             :site_group_code=>"cascade_id"),
-                                            :choice_title=>t(:actionview_instancetag_blank_option),
-                                            :required=>true,
-                                  :cascade=>"site_select")%></td>
+
+               <td class="dataCol"><%=f.select(:site_group_code,available_site_group,{},:required=>true,:id=>"site_group_code")%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_location_department)%></label></td>
-              <td class="dataCol"><%=f.select(:department_id,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_department,:id,:wrap_name,@location.department_id),
-                                            {},:id=>"department_select")%></td>
+              <td class="dataCol"><%= f.blank_select(:department_id,available_department(@location.organization_id),{},
+                                  {:required=>false,
+                                   :id=>"department_id",
+                                   :href=>url_for(:controller=>"irm/departments",:action=>"get_by_organization",:format=>"json",:organization_id=>"{organization_id}"),
+                                   :depend=>"organization_id"
+                                   }) %></td>
+
               <td class="labelCol"><%=(t :label_irm_location_site)%></td>
-              <td class="dataCol"><%=f.select(:site_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_site,:site_code,:wrap_name,@location.site_code),
-                                            {},:id=>"site_select",:required=>true)%></td>
+              <td class="dataCol"><%= f.blank_select(:site_code,available_site(@location.site_group_code),{},
+                                  {:required=>true,
+                                   :id=>"site_code",
+                                   :href=>url_for(:controller=>"irm/sites",:action=>"get_by_site_group_code",:format=>"json",:site_group_code=>"{site_group_code}"),
+                                   :depend=>"site_group_code"
+                                   }) %></td>
             </tr>
         </tbody>
       </table>
@@ -75,3 +77,8 @@
   </div>
 </div>
 <% end %>
+<script type="text/javascript">
+  GY.use("cascadeselect",function(Y){
+     new Y.CascadeSelect({source: "#site_group_code",target:["#site_code"]});
+  });
+</script>

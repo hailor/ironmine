@@ -61,6 +61,10 @@ module Icm::IncidentRequestsHelper
     Icm::IncidentStatus.multilingual.query_by_close_flag(Irm::Constant::SYS_NO).order_display.collect{|i|[i[:name],i[:incident_status_code]]}
   end
 
+  def available_all_request_status_code
+    Icm::IncidentStatus.multilingual.order_display.collect{|i|[i[:name],i[:incident_status_code]]}
+  end
+
   def available_request_report_source
     Irm::LookupValue.query_by_lookup_type("ICM_REQUEST_REPORT_SOURCE").multilingual.collect{|p|[p[:meaning],p[:lookup_code]]}
   end

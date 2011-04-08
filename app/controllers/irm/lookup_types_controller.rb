@@ -49,6 +49,23 @@ class Irm::LookupTypesController < ApplicationController
     end
   end
 
+  # multi language
+  def multilingual_edit
+    @lookup_type = Irm::LookupType.find(params[:id])
+  end
+
+  def multilingual_update
+    @lookup_type = Irm::LookupType.find(params[:id])
+    @lookup_type.not_auto_mult=true
+    respond_to do |format|
+      if @lookup_type.update_attributes(params[:irm_lookup_type])
+        format.html { render({:action=>"show"}) }
+      else
+        format.html { render({:action=>"multilingual_edit"}) }
+      end
+    end
+  end
+
   # PUT /lookup_types/1
   # PUT /lookup_types/1.xml
   def update

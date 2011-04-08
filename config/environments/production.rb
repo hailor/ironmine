@@ -47,6 +47,7 @@ Ironmine::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  config.active_record.default_timezone = :local
 
     # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false

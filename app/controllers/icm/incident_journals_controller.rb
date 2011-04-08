@@ -57,10 +57,10 @@ class Icm::IncidentJournalsController < ApplicationController
       if @incident_journal.valid?&&@incident_request.update_attributes(params[:icm_incident_request])
         process_change_attributes([:incident_status_code,:close_reason_code],@incident_request,@incident_request_bak,@incident_journal)
         process_files(@incident_journal)
+
         publish_create_incident_journal(@incident_journal)
         #关闭事故单时，产生一个与之关联的投票任务
         Delayed::Job.enqueue(Irm::Jobs::IcmIncidentRequestSurveyTaskJob.new(@incident_request.id))
-
         format.html { redirect_to({:action => "new"}) }
         format.xml  { render :xml => @incident_journal, :status => :created, :location => @incident_journal }
       else
@@ -84,9 +84,9 @@ class Icm::IncidentJournalsController < ApplicationController
     perform_create
     respond_to do |format|
       if @incident_journal.valid?&&@incident_request.update_attributes(params[:icm_incident_request])
-        process_change_attributes([:incident_status_code,:close_reason_code],@incident_request,@incident_request_bak,@incident_journal)
+        process_change_attributes([:support_group_id,:support_person_id],@incident_request,@incident_request_bak,@incident_journal)
         process_files(@incident_journal)
-        publish_create_incident_journal(@incident_journal)
+        publish_pass_incident_request(@incident_journal)
         format.html { redirect_to({:action => "new"}) }
         format.xml  { render :xml => @incident_journal, :status => :created, :location => @incident_journal }
       else
@@ -155,8 +155,48 @@ class Icm::IncidentJournalsController < ApplicationController
     incident_journal.reload
     incident_journal = Icm::IncidentJournal.select_all.with_replied_by.find(incident_journal.id)
     incident_request = Icm::IncidentRequest.list_all.find(incident_journal.incident_request_id)
+    person_ids = [incident_request.submitted_by,incident_request.requested_by,incident_journal.replied_by]+incident_request.person_watchers.collect{|i| i.id}
+    journal_url = url_for({:host=>Irm::Constant::DEFAULT_HOST,
+             :controller=>"icm/incident_journals",
+             :action =>"new",
+             :request_id=>incident_request.id,
+             :anchor=>"journal_#{incident_journal.id}"})
     Irm::EventManager.publish(:event_code=>"INCIDENT_JOURNAL_NEW",
-                              :params=>{:to_person_ids=>[incident_request.submitted_by,incident_request.requested_by,incident_journal.replied_by],
-                                        :journal=>incident_journal.attributes.merge(:change_message=>"not change"),:request=>incident_request.attributes})
+                              :params=>{:to_person_ids=>person_ids,
+                                        :journal=>incident_journal.attributes.merge(:url=>journal_url,:change_message=>"not change"),
+                                        :request=>incident_request.attributes})
+  end
+  def publish_pass_incident_request(incident_journal)
+    incident_journal.reload
+    incident_journal = Icm::IncidentJournal.select_all.with_replied_by.find(incident_journal.id)
+    incident_request = Icm::IncidentRequest.list_all.find(incident_journal.incident_request_id)
+    person_ids = [incident_request.submitted_by,incident_request.requested_by,incident_journal.replied_by,incident_request.support_person_id]+incident_request.person_watchers.collect{|i| i.id}
+    person_ids.uniq!
+    journal_url = url_for({:host=>Irm::Constant::DEFAULT_HOST,
+             :controller=>"icm/incident_journals",
+             :action =>"new",
+             :request_id=>incident_request.id,
+             :anchor=>"journal_#{incident_journal.id}"})
+    Irm::EventManager.publish(:event_code=>"INCIDENT_REQUEST_PASS",
+                              :params=>{:to_person_ids=>person_ids,
+                                        :journal=>incident_journal.attributes.merge(:url=>journal_url,:change_message=>"not change"),
+                                        :request=>incident_request.attributes})
+  end
+
+  def publish_close_incident_request(incident_journal)
+    incident_journal.reload
+    incident_journal = Icm::IncidentJournal.select_all.with_replied_by.find(incident_journal.id)
+    incident_request = Icm::IncidentRequest.list_all.find(incident_journal.incident_request_id)
+    person_ids = [incident_request.submitted_by,incident_request.requested_by,incident_journal.replied_by]+incident_request.person_watchers.collect{|i| i.id}
+    person_ids.uniq!
+    journal_url = url_for({:host=>Irm::Constant::DEFAULT_HOST,
+             :controller=>"icm/incident_journals",
+             :action =>"new",
+             :request_id=>incident_request.id,
+             :anchor=>"journal_#{incident_journal.id}"})
+    Irm::EventManager.publish(:event_code=>"INCIDENT_REQUEST_CLOSE",
+                              :params=>{:to_person_ids=>person_ids,
+                                        :journal=>incident_journal.attributes.merge(:url=>journal_url,:change_message=>"not change"),
+                                        :request=>incident_request.attributes})
   end
 end

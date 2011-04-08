@@ -34,7 +34,8 @@
                    {:key=>"display_sequence",:label=>t(:display_sequence),:sortable=>true},
                    {:key=>"default_flag",:label=>t(:default_flag),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"},
                    {:key=>"status_meaning",:label=>t(:label_irm_script_status_code),:sortable=>true,:width=>"70px"}],
-                   {:row_perpage=>5,:search_box=>"incidentStatusesSearchBox"})%>
+                   {:paginator_box=>"statusPaginator",:search_box=>"incidentStatusesSearchBox"})%>
+        <div id="statusPaginator"></div>
       </div>
     </div>
 </div>
