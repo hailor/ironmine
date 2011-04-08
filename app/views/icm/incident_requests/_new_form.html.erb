@@ -2,8 +2,13 @@
   select{
       min-width:128px;
   }
+  .yui-skin-sam .yui-toolbar-container div.yui-toolbar-subcont{
+    border-bottom-width: 1px;
+    padding-bottom: 0;
+    padding-left: 1px;
+  }
 </style>
-<%= form_for(@incident_request,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+<%= form_for(@incident_request,:url=>{:action=>"create"},:builder => LabellingFormBuilder,:html => { :multipart => true }) do |f| %>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -58,7 +63,30 @@
 
             <tr>
               <td class="labelCol"><label for="incident_request_summary"><%=t(:label_icm_incident_request_summary)%></label></td>
-              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_area :summary,:rows=>5,:cols=>100, :required=>true ,:id=>"incident_request_summary"%></td>
+              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_area :summary,:rows=>5,:cols=>100,:value=>"Default", :required=>true ,:style=>"display:none;",:id=>"incident_request_summary"%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"></td>
+              <td class="dataCol" colspan="3" style="width:82%">
+                <table width="80%">
+                  <tbody id="fileTemplate" style="display:none" seq="0">
+                  <tr id="file_{seq}" class="fileArea">
+                      <td><input type="file" name="{ref}[{seq}][file]"/></td>
+                      <td class="labelCol"><%= t(:label_icm_incident_journal_attachment_desc) %></td>
+                      <td><input type="text" name="{ref}[{seq}][description]" size="30"/></td>
+                      <td><div><a class="deleteAttach" delete_ref="file_{seq}" href="javascript:void(0)"><%= t(:delete) %></a></div></td>
+                  </tr>
+                  </tbody>
+                  <tbody id="fileContent">
+
+                  </tbody>
+                  <tbody id="fileButtons">
+                    <tr>
+                      <td><a id="addButton" href="javascript:void(0)"><%= t(:label_icm_incident_journal_add_attachment) %></a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
             </tr>
         </tbody>
       </table>
@@ -191,4 +219,46 @@
      }
 
   });
+</script>
+
+<script type="text/javascript">
+
+GY.use('irm','node','substitute','yui2-editor', function(Y) {
+  var YAHOO = Y.YUI2;
+  var editor = new YAHOO.widget.Editor('incident_request_summary', {
+        height:'100px',
+        width:'80%',
+        toolbar: {
+            buttons: [
+                { group: 'textstyle',
+                    buttons: [
+                        { type: 'push', label: 'Bold', value: 'bold' },
+                        { type: 'push', label: 'Italic', value: 'italic' },
+                        { type: 'push', label: 'Underline', value: 'underline' },
+                        { type: 'push', label: 'Create an Unordered List', value: 'insertunorderedlist' },
+	                    { type: 'push', label: 'Create an Ordered List', value: 'insertorderedlist' },
+                        { type: 'color', label: 'Font Color', value: 'forecolor', disabled: true },
+                        { type: 'color', label: 'Background Color', value: 'backcolor', disabled: true }
+                    ]
+                }
+            ]
+        }
+    });
+    editor.render();
+    Y.one("#new_icm_incident_request").on("submit",function(){
+      editor.saveHTML();
+    });
+    Y.one("#fileButtons #addButton").on('click',function(){
+      var templateContainer = Y.one("#fileTemplate");
+      var seq = templateContainer.getAttribute("seq");
+      templateContainer.setAttribute("seq",parseInt(seq)+1);
+      var template = templateContainer.getContent();
+      var row =  Y.Lang.substitute(template,{seq:seq,ref:"files"});
+      Y.one("#fileContent").appendChild(row);
+    });
+    Y.one("#fileContent").delegate("click",function(e){
+        Y.log(this.getAttribute("delete_ref"));
+        Y.one("#"+this.getAttribute("delete_ref")).remove();
+    },'.deleteAttach') ;
+});
 </script>

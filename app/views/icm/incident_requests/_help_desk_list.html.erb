@@ -2,7 +2,7 @@
         <div id="incident_requests" class="datatable" style="width:100%">
           <div id="id" style="display:none">
             <%= link_to(t(:label_icm_reply),{:controller=>"icm/incident_journals",:action=>"new",:request_id=>"{id}"}) %>
-            <%= link_to(t(:edit),{:controller=>"icm/incident_journals",:action=>"new",:request_id=>"{id}"}) %>
+            <%= link_to(t(:edit),{:controller=>"icm/incident_requests",:action=>"edit",:id=>"{id}"}) %>
           </div>
           <div id="title" style="display:none">
             if('{need_customer_reply}' == 'N'){

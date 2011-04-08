@@ -23,6 +23,10 @@ class Irm::AttachmentVersion < ActiveRecord::Base
     where("#{Icm::IncidentJournal.table_name}.incident_request_id = ?", request_id)
   }
 
+  scope :query_incident_request_file,lambda{|request_id|
+    where("#{table_name}.source_type = ? AND #{table_name}.source_id = ?",Icm::IncidentRequest.name, request_id)
+  }
+
   def image?
     self.image_flag.eql?(Irm::Constant::SYS_YES)
   end
