@@ -35,6 +35,24 @@ class Irm::LookupValuesController < ApplicationController
     end
   end
 
+  # multi language
+  def multilingual_edit
+    @lookup_value = Irm::LookupValue.find(params[:id])
+  end
+
+  def multilingual_update
+    @lookup_value = Irm::LookupValue.find(params[:id])
+    @lookup_value.not_auto_mult=true
+    respond_to do |format|
+      if @lookup_value.update_attributes(params[:irm_lookup_type])
+        format.html { render({:action=>"show"}) }
+      else
+        format.html { render({:action=>"multilingual_edit"}) }
+      end
+    end
+  end
+
+
   def edit
     @lookup_value = Irm::LookupValue.multilingual.find(params[:id])
     @return_url=request.env['HTTP_REFERER']

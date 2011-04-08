@@ -140,6 +140,7 @@ en:
   label_irm_lookup_value_lookup_code: Code
   label_lookup_code: Lookup Code
   label_irm_lookup_value_meaning: Meaning
+  label_irm_lookup_value_description: Description
   label_irm_lookup_type_description: Description
   label_edit_lookup_type: Edit Lookup Type
   label_new_lookup_type: New Lookup Type
