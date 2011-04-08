@@ -60,20 +60,20 @@
             <tr>
               <td class="labelCol"><%=f.check_box :email_notify, :id=>"email_notify"%></td>
               <td class="dataCol"><label for="email_notify"><%=(t :label_csi_survey_email_notify)%></label></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><%=f.check_box :with_incident_request, :id=>"with_incident_request"%></td>
+              <td class="dataCol"><label for="with_incident_request"><%=(t :label_csi_survey_with_incident_request)%></label></td>
             </tr>
             <tr>
               <td class="labelCol"><%=f.check_box :publish_response, :id=>"publish_response"%></td>
               <td class="dataCol"><label for="publish_response"><%=(t :label_csi_survey_publish_response)%></label></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><label><%=(t :label_csi_survey_incident_request_from)%></label></td>
+              <td class="dataCol"><%=f.text_field :with_incident_request_from,:id=>"date1",:size=>18%></td>
             </tr>
             <tr>
               <td class="labelCol"><%=f.check_box :comment_flag, :id=>"comment_flag"%></td>
               <td class="dataCol"><label for="comment_flag"><%=(t :label_csi_survey_comment_flag)%></label></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><label><%=(t :label_csi_survey_incident_request_to)%></label></td>
+              <td class="dataCol"><%=f.text_field :with_incident_request_to,:id=>"date2",:size=>18%></td>
             </tr>
             <tr>
               <td class="labelCol"><%=f.check_box :result_only_author, :id=>"author_only"%></td>
@@ -132,3 +132,14 @@
 <% end %>
 
 <%= calendar_view("id_closed_datatime","id_closed_datatime","cal") %>
+
+<script type="text/javascript">
+  GY.use( 'yui2-calendar','yui2-container',function(Y) {
+      var YAHOO = Y.YUI2;
+      var Event = YAHOO.util.Event,Dom = YAHOO.util.Dom;
+       YAHOO.util.Event.onDOMReady(function () {
+          show_irm_calendar(YAHOO,Event,Dom,"date1","date1","cal1");
+          show_irm_calendar(YAHOO,Event,Dom,"date2","date2","cal2");
+       });
+  });
+</script>
