@@ -41,6 +41,7 @@ en:
    label_csi_survey_with_incident_request: Show in All Incident Request
    label_csi_survey_incident_request_from: Incident Requests Form
    label_csi_survey_incident_request_to: To
+   label_csi_survey: Survey
    #========================= end   irm regions_controller=======================#
    #========================= start irm regions_controller=======================#
    label_csi_survey_subject: Subject
