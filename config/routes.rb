@@ -18,10 +18,13 @@ Ironmine::Application.routes.draw do
     match '/lookup_types/get_lookup_values(.:format)'=>"lookup_types#get_lookup_values",:via=>:get
     match '/lookup_types(/index)(.:format)'=>"lookup_types#index",:via=>:get
     match '/lookup_types/:id/edit(.:format)'=>"lookup_types#edit",:via=>:get
+    match '/lookup_types/:id/multilingual_edit(.:format)' => "lookup_types#multilingual_edit", :via => :get
+    match '/lookup_types/:id/multilingual_update(.:format)' => "lookup_types#multilingual_update", :via => :put
     match '/lookup_types/:id'=>"lookup_types#update",:via=>:put
     match '/lookup_types/check_lookup_code'=>"lookup_types#check_lookup_code"
     match '/lookup_types/:id/add_code'=>"lookup_types#add_code"
     match '/lookup_types/:id(.:format)'=>"lookup_types#show"
+
     #product modules
     match '/product_modules(/index)(.:format)' => "product_modules#index", :via => :get
     match '/product_modules/:id/edit(.:format)' => "product_modules#edit", :via => :get
