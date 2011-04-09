@@ -33,7 +33,9 @@ module Irm
         else
           assign_result.merge!(setup_default_person(request))
         end
-        generate_journal(request,assign_result)
+        ActiveRecord::Base.transaction do
+          generate_journal(request,assign_result)
+        end
       end
 
       def setup_support_person(support_group,request)
@@ -70,7 +72,7 @@ module Irm
         language_code = person.language_code
         incident_journal = request.incident_journals.build({:replied_by=>assign_result[:support_person_id],:message_body=>I18n.t(:label_icm_incident_auto_assign,{:locale=>language_code})})
         request.update_attributes(assign_result)
-        person.update_attribute(:last_assign_date,Time.now)
+        person.update_attribute(:last_assignned_date,Time.now)
         publish_pass_incident_request(incident_journal)
       end
 
