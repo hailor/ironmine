@@ -33,7 +33,7 @@ ActionView::Base.send(:include,Irm::FormHelper)
 EventCalendar::ClassMethods.send(:include, EventCalendar::EventCalendarEx)
 
 #扩展calendar helper
-EventCalendar::CalendarHelper.send(:include, EventCalendar::CalendarHelperEx)
+#EventCalendar::CalendarHelper.send(:include, EventCalendar::CalendarHelperEx)
 
 #Paperclip.options[:command_path] = "E:/Program Files/ImageMagick-6.6.3-Q16"
 
