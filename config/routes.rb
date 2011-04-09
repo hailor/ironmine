@@ -2,7 +2,6 @@ Ironmine::Application.routes.draw do
   
 
   scope :module => "irm" do
-    match '/calendar_tasks(/:year(/:month))' => 'calendar_tasks#index', :as => :calendar_task, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
     root :to => "navigations#index"
     match 'login'=>'common#login',:as=>:login
     match 'combo'=>'navigations#combo'
@@ -503,6 +502,15 @@ Ironmine::Application.routes.draw do
 
     match '/watchers/:watchable_id/add_watcher(.:format)' => "watchers#add_watcher"
     match '/watchers/delete_watcher(.:format)' => "watchers#delete_watcher"
+
+#    match '/calendar_tasks(/:year(/:month))' => 'calendar_tasks#index', :as => :calendar_task, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
+    match '/calendar_tasks(/index)(.:format)' => "calendar_tasks#index", :via => :get
+    match '/calendar_tasks/new(.:format)' => "calendar_tasks#new", :via => :get
+    match '/calendar_tasks/create(.:format)' => "calendar_tasks#create", :via => :post
+    match '/calendar_tasks/:id/edit(.:format)' => "calendar_tasks#edit", :via => :get
+    match '/calendar_tasks/:id(.:format)' => "calendar_tasks#update", :via => :put
+    match '/calendar_tasks/get_data(.:format)' => "calendar_tasks#get_data"
+    match '/calendar_tasks/:id/show(.:format)' => "calendar_tasks#show", :via => :get
   end
 
   scope :module => "icm" do

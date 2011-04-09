@@ -41,20 +41,20 @@
            <tr>
               <td class="labelCol"><label><%=(t :label_csi_survey_email_notify)%></label></td>
               <td class="dataCol"><%= check_img(@survey.email_notify)%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><label><%=(t :label_csi_survey_with_incident_request)%></label></td>
+              <td class="dataCol"><%= check_img(@survey.with_incident_request)%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_csi_survey_publish_response)%></label></td>
               <td class="dataCol"><%= check_img(@survey.publish_response)%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><label><%=(t :label_csi_survey_incident_request_from)%></label></td>
+              <td class="dataCol"><%=@survey.with_incident_request_from.strftime("%Y-%m-%d")%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_csi_survey_comment_flag)%></label></td>
               <td class="dataCol"><%= check_img(@survey.comment_flag)%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><label><%=(t :label_csi_survey_incident_request_to)%></label></td>
+              <td class="dataCol"><%=@survey.with_incident_request_to.strftime("%Y-%m-%d")%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_csi_survey_result_only_author)%></label></td>

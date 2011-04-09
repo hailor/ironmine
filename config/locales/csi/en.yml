@@ -38,6 +38,10 @@ en:
    label_csi_survey_person_count: Total People
    label_csi_survey_created_at: Created At
    label_csi_survey_result_only_author: Only Author Allowed to View Results
+   label_csi_survey_with_incident_request: Show in All Incident Request
+   label_csi_survey_incident_request_from: Incident Requests Form
+   label_csi_survey_incident_request_to: To
+   label_csi_survey: Survey
    #========================= end   irm regions_controller=======================#
    #========================= start irm regions_controller=======================#
    label_csi_survey_subject: Subject
