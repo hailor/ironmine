@@ -21,7 +21,7 @@ YUI.add('cascadeselect', function(Y) {
         initializer: function(config) {
           var source = Y.one(this.get("source"));
           source.on(this.get("event"), Y.bind(this._onSourceEvent,this));
-
+          source.simulate('change');
         },
         _onSourceEvent : function(e){
            var targets = this.get("target");
