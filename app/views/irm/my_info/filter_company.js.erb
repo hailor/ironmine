@@ -1,0 +1,3 @@
+GY.use(function(Y){
+  Y.one("span#companyMenu").one("#selectComapnyContent").setContent("<%= escape_javascript(show_filtered_company(params[:query]))%>");
+});

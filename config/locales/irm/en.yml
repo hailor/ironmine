@@ -72,6 +72,7 @@ en:
   label_unchecked: Uncheck
   help: Help
   pass: Pass
+  select_all: Select All
 
   #usual words
   notice_account_invalid_creditentials: User or Password Error

@@ -17,7 +17,6 @@
       Y.on("domready",function(){
         Y.irm.menuButton("settingMenu","TR","BR");
         Y.irm.menuButton("pageMenu","TR","BR");
-        Y.irm.menuButton("companyMenu","TR","BR");
       });
     });
   </script>
@@ -79,18 +78,8 @@
                             <div class="menuItem"><%= link_to(t(:label_irm_common_logout),logout_url) %></div>
                           </div>
                         </span>
-                        <span id="companyMenu" class="menuParent" style="float:right">
-                          <div  class="menuLabel">
-                            <span tabindex="0" id="companyMenuTop" style=""><%= t(:label_company_access_menu_label) %></span>
-                            <div id="companyMenu-arrow"></div>
-                          </div>
-                          <div class="menuContent" >
-                            <%= form_tag({:controller=>"irm/my_info",:action=>"update_company_access",:return_controller=>params[:controller]},{:method=>:put}) do %>
-                              <%= current_company_access_menu %>
-                              <%= submit_tag t(:apply)%>
-                            <% end %>
-                          </div>
-                        </span>
+                        <%= current_company_access_menu %>
+
                       </div>
                     </div>
                   </td>

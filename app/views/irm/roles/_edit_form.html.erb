@@ -1,5 +1,13 @@
 <%= setting_title %>
-
+<script type="text/javascript">
+  GY.use("irm","node-base",function(Y){
+    Y.one("#selectableFunctions").delegate('click', function(e){
+       var checkbox = e.currentTarget;
+       var refFieldSet = checkbox.getAttribute("ref");
+       Y.one("#"+refFieldSet).all("input[type=checkbox]").set("checked",checkbox.get("checked"));
+    }, '.selectAll');
+  });
+</script>
 <%= form_for(@role,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
@@ -76,9 +84,15 @@
           </tbody>
         </table>
       </div>
-      <div class="pbBody">
+      <div class="pbBody" id="selectableFunctions">
         <% @fgs.each do |group|%>
-          <fieldset><legend><%= group[:name] %></legend>
+          <fieldset id="<%= group[:group_code].downcase %>Group"><legend><%= group[:name] %></legend>
+            <% if @fs[group[:group_code]]&&@fs[group[:group_code]].size>1%>
+                <div  style="float:left;width:33%;"><label>
+                <%= check_box_tag 'select_all',"all" , false,{:ref=>"#{group[:group_code].downcase}Group",:class=>"selectAll"} %>
+                <b><%= t(:select_all) %></b>
+                </label></div>
+            <% end %>
           <% @fs[group[:group_code]].each do |func| %>
               <div  style="float:left;width:33%;"><label>
               <%= check_box_tag 'role[functions][]', func.id, @role_function_ids.include?(func.id) %>

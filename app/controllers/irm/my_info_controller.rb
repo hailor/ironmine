@@ -22,6 +22,8 @@ class Irm::MyInfoController < ApplicationController
 
   end
 
+  def filter_company
+  end
 
   def update_company_access
     if params[:accessable_companies]
