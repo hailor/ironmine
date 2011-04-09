@@ -58,6 +58,8 @@ YUI.add('cascadeselect', function(Y) {
                  if(target.getAttribute("blank")!="")
                    options =  options+Y.Lang.substitute(OPTIONS_TEMPLATE,{label:target.getAttribute("blank"),value:""}) ;
                  target.setContent(options);
+                 target.set("value","");
+                 target.simulate('change');
                }
            }
         },
