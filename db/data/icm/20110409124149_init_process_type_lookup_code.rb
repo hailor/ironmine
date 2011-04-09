@@ -61,7 +61,6 @@ class InitProcessTypeLookupCode < ActiveRecord::Migration
 
     l_process.save
     Icm::RuleSetting.delete_all
-    Icm::RuleSettingsTl.delete_all
   end
 
   def self.down
