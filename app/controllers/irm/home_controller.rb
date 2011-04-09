@@ -5,6 +5,6 @@ class Irm::HomeController < ApplicationController
 
     @shown_month = Date.civil(@year, @month)
 
-    @event_strips = Irm::CalendarTask.event_strips_for_month(@shown_month)    
+    @event_strips = Irm::CalendarTask.event_strips_for_month(@shown_month, Irm::Calendar.current_calendar(Irm::Person.current.id))
   end
 end

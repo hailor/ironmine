@@ -1,13 +1,14 @@
-class CreateCalendarTasks < ActiveRecord::Migration
+class CreateIrmCalendarTasks < ActiveRecord::Migration
   def self.up
     if table_exists?("irm_calendar_tasks")
       drop_table :irm_calendar_tasks
     end
     create_table :irm_calendar_tasks do |t|
       t.integer  :company_id
-      t.integer :owner_id
+      t.integer :calendar_id
       t.string :name, :limit => 150, :null => false
       t.string :description, :limit => 3000
+      t.string :location, :string, :limit => 240
       t.datetime :start_at
       t.datetime :end_at
       t.datetime :completed

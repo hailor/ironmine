@@ -7,18 +7,18 @@ module Irm
             where("with_incident_request_to IS NULL OR with_incident_request_to > ?", Time.now).
             where("with_incident_request = ?", Irm::Constant::SYS_YES).enabled
 
+        cc = Irm::Calendar.current_calendar(request.requested_by)
+        person = Irm::Person.find(request.requested_by)
         surveys.each do |sv|
-          person = Irm::Person.find(request.requested_by)
           task = Irm::CalendarTask.new(:name => "[" + I18n.t(:label_csi_survey, :locale => person.language_code) + "]" + sv.title,
+                                :calendar_id => cc.id,
                                 :description => sv.description,
                                 :color => "345e77",
                                 :start_at => Time.now,
                                 :end_at => Time.now,
-                                :owner_id => request.requested_by,
-                                :url => {:controller=> "csi/survey", :action=>"reply", :id=>sv.id})
+                                :url => {:controller=> "csi/survey", :action=>"reply", :id=>sv.id},:source_id => sv.id, :source_type => sv.class)
           task.save
         end
-
       end
     end
   end
