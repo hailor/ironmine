@@ -29,6 +29,9 @@ ActionView::Base.send(:include,Irm::UrlHelper)
 #扩展link_to,url_for,增加权限验证
 ActionView::Base.send(:include,Irm::FormHelper)
 
+#扩展event_calendar
+EventCalendar::ClassMethods.send(:include, EventCalendar::EventCalendarEx)
+
 #Paperclip.options[:command_path] = "E:/Program Files/ImageMagick-6.6.3-Q16"
 
 #require 'rufus/scheduler'
