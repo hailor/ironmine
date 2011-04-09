@@ -28,7 +28,7 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_icm_rule_setting_company)%></label></td>
-              <td class="dataCol"><%=@rule_setting.company_name%></td>
+              <td class="dataCol"><%=@rule_setting[:company_name]%></td>
               <td class="labelCol"><label><%=(t :label_icm_rule_setting_report_date_changable)%></label></td>
               <td class="dataCol"><%=f.check_box :report_date_changable%></td>
             </tr>
@@ -42,9 +42,7 @@
               <td class="labelCol"><%=(t :label_icm_rule_setting_auto_closure_days)%></td>
               <td class="dataCol"><%=f.text_field :auto_closure_days,:required=>true%></td>
               <td class="labelCol"><label><%=t(:label_icm_rule_setting_assignment_process_code)%></label></td>
-              <td class="dataCol"><%=f.select :assignment_process_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                    options_for_select(available_processes,@rule_setting.assignment_process_code),
-                                                    {},{}%></td>
+              <td class="dataCol"><%=f.select :assignment_process_code,available_processes,{},{:required=>true}%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_script_status_code)%></label></td>

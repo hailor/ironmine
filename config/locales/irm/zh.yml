@@ -455,6 +455,7 @@ zh:
   label_irm_company_info: 公司详细信息
   label_irm_company_show: 公司
   label_irm_location_info: 位置信息
+  label_irm_company_support_manager: 支持管理员
   #=========================end irm companies_controller=======================#
   #=========================    irm login_records_controller=======================#
   label_irm_login_record_list: 用户登录历史
