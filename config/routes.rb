@@ -510,6 +510,8 @@ Ironmine::Application.routes.draw do
     match '/calendar_tasks/:id(.:format)' => "calendar_tasks#update", :via => :put
     match '/calendar_tasks/get_data(.:format)' => "calendar_tasks#get_data"
     match '/calendar_tasks/:id/show(.:format)' => "calendar_tasks#show", :via => :get
+
+    match '/calendars(/:year(/:month))' => 'calendars#get_full_calendar', :as => :calendar_task, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
   end
 
   scope :module => "icm" do
