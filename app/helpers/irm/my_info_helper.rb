@@ -31,6 +31,7 @@ module Irm::MyInfoHelper
          <div class="menuContent" >
     BEGIN_HEML
 
+    #如果公司数目大于5个则显示搜索
     menu <<  form_tag({:controller=>"irm/my_info",:action=>"filter_company",:format=>"js"},{:remote=>true})  do
        %(<div class="menuItem"><input name="query" type="text" size="10" />#{submit_tag t(:search)}</div>).html_safe
     end if accessable_companies.size>4
@@ -50,6 +51,7 @@ module Irm::MyInfoHelper
 
   def access_company_checkbox(accessable_companies)
     links = ""
+    # 如果可选公司数目只一个，则不显全选
     if accessable_companies.size>1
       tmp_cids = accessable_companies.collect{|ac| ac.id}
       tmp_cids.delete_if{|ci| session[:accessable_companies].include?(ci)}
@@ -65,8 +67,8 @@ module Irm::MyInfoHelper
     links.html_safe
   end
 
-  def show_filtered_company
-    query = params[:query].strip
+  def show_filtered_company(query)
+    query = query.strip
     accesses = Irm::CompanyAccess.query_by_person_id(Irm::Person.current.id).collect{|c| c.accessable_company_id}
     # no company or only global company
     if accesses.size<1||(accesses.size==1&&accesses[0]==1)
