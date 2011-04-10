@@ -104,7 +104,7 @@ class Icm::IncidentRequestsController < ApplicationController
       format.json {render :json=>to_jsonp(incident_requests.to_grid_json([:request_number,:title,:requested_name,:need_customer_reply,
                                                                           :company_name,:impact_range_name,
                                                                           :contact_name,:last_response_date,
-                                                                          :priority_name,:incident_status_name,:submitted_date],count,{:date_to_distance=>[:submitted_date]}))}
+                                                                          :priority_name,:incident_status_name,:submitted_date],count,{:date_to_distance=>[:last_response_date]}))}
       format.xml { render :xml => incident_requests }
     end
   end
@@ -129,6 +129,7 @@ class Icm::IncidentRequestsController < ApplicationController
     incident_request.submitted_by = Irm::Person.current.id
     incident_request.submitted_date = Time.now
     incident_request.last_request_date = Time.now
+    incident_request.last_response_date = 1.minute.ago
     incident_request.company_id = Irm::Person.find(incident_request.requested_by).company_id
     if incident_request.incident_status_code.nil?||incident_request.incident_status_code.blank?
       incident_request.incident_status_code = Icm::IncidentStatus.query_by_default_flag(Irm::Constant::SYS_YES).query_by_close_flag(Irm::Constant::SYS_NO).order_display.first.incident_status_code

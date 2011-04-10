@@ -20,7 +20,7 @@ module Icm::IncidentJournalsHelper
   end
 
   def list_journals(incident_request)
-    journals = Icm::IncidentJournal.list_all(incident_request.id)
+    journals = Icm::IncidentJournal.list_all(incident_request.id).includes(:incident_histories)
     render :partial=>"icm/incident_journals/list_journals",:locals=>{:journals=>journals,:grouped_files=>@request_files}
   end
 

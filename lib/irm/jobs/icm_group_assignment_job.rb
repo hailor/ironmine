@@ -4,6 +4,7 @@ module Irm
       include ActionController::UrlWriter
       def perform
         request = Icm::IncidentRequest.find(incident_request_id)
+        return if request.support_group_id&&request.support_person_id
         person = Irm::Person.find(request.requested_by)
 
         #按人员查找
@@ -11,17 +12,22 @@ module Irm
 
         #按部门查找
         unless r1.any?
-          r1 = Icm::GroupAssignment.query_by_department(person.department_id)
+          r1 = Icm::GroupAssignment.where(:customer_person_id=>nil).query_by_department(person.department_id)
         end
 
         #按组织查找
         unless r1.any?
-          r1 = Icm::GroupAssignment.query_by_organization(person.organization_id)
+          r1 = Icm::GroupAssignment.where(:customer_person_id=>nil).
+                                    where(:customer_department_id=>nil).
+                                    query_by_organization(person.organization_id)
         end
 
         #按公司查找
         unless r1.any?
-          r1 = Icm::GroupAssignment.query_by_company(person.company_id)
+          r1 = Icm::GroupAssignment.where(:customer_person_id=>nil).
+                                    where(:customer_department_id=>nil).
+                                    where(:customer_organization_id=>nil).
+                                    query_by_company(person.company_id)
         end
 
         assign_result = {}
@@ -33,19 +39,25 @@ module Irm
         else
           assign_result.merge!(setup_default_person(request))
         end
+        #get the support information
+        #generate incident journal
         ActiveRecord::Base.transaction do
           generate_journal(request,assign_result)
         end
       end
-
+      # get the person in the support group
       def setup_support_person(support_group,request)
         assign_result ={}
         rule_setting = Icm::RuleSetting.list_all.where(:company_id=>request.company_id).first
         if rule_setting
           if "LONGEST_TIME_NOT_ASSIGN".eql?(rule_setting.assign_process_type)
-            assigner = Irm::SupportGroupMember.query_by_support_group_code(support_group.group_code).with_person.order("#{Irm::Person.table_name}.last_assign").first
+            assigner = Irm::SupportGroupMember.query_by_support_group_code(support_group.group_code).
+                                               with_person.where("#{Irm::Person.table_name}.assignment_availability_flag = ?",Irm::Constant::SYS_YES).
+                                               order("#{Irm::Person.table_name}.last_assign").first
           else
-            assigner = Irm::SupportGroupMember.query_by_support_group_code(support_group.group_code).with_person.order("#{Irm::Person.table_name}.open_tasks").first
+            assigner = Irm::SupportGroupMember.query_by_support_group_code(support_group.group_code).
+                                               with_person.where("#{Irm::Person.table_name}.assignment_availability_flag = ?",Irm::Constant::SYS_YES).
+                                               order("#{Irm::Person.table_name}.open_tasks").first
           end
           if assigner
             assign_result.merge!({:support_person_id=>assigner.id})
@@ -56,6 +68,7 @@ module Irm
         assign_result
       end
 
+      # assign to admin
       def setup_default_person(request)
         assign_result ={}
         company = Irm::Company.find(request.company_id)
@@ -66,14 +79,15 @@ module Irm
         end
         assign_result
       end
-
+      #generate incident journal
       def generate_journal(request,assign_result)
         person = Irm::Person.find(assign_result[:support_person_id])
         language_code = person.language_code
         incident_journal = request.incident_journals.build({:replied_by=>assign_result[:support_person_id],:message_body=>I18n.t(:label_icm_incident_auto_assign,{:locale=>language_code})})
+        request_bak = request.dup
         request.update_attributes(assign_result)
-        person.update_attribute(:last_assigned_date,Time.now)
-        publish_pass_incident_request(incident_journal)
+        process_change_attributes([:support_group_id,:support_person_id],request,request_bak,incident_journal)
+        incident_journal = publish_pass_incident_request(incident_journal)
       end
 
       def publish_pass_incident_request(incident_journal)
@@ -91,6 +105,18 @@ module Irm
                                   :params=>{:to_person_ids=>person_ids,
                                             :journal=>incident_journal.attributes.merge(:url=>journal_url,:change_message=>"not change"),
                                             :request=>incident_request.attributes})
+        incident_journal
+      end
+
+      def process_change_attributes(attributes,new_value,old_value,ref_journal)
+        attributes.each do |key|
+          ovalue = old_value.send(key)
+          nvalue = new_value.send(key)
+            Icm::IncidentHistory.create({:journal_id=>ref_journal.id,
+                                         :property_key=>key.to_s,
+                                         :old_value=>ovalue,
+                                         :new_value=>nvalue}) if !ovalue.eql?(nvalue)
+        end
       end
     end
   end

@@ -1,4 +1,5 @@
 module Irm::CalendarTasksHelper
+  include ActionView::Helpers::UrlHelper
   def month_link(month_date)
     link_to(I18n.localize(month_date, :format => "%B"),
             {:controller => "irm/calendars", :action => :get_full_calendar,
@@ -23,7 +24,15 @@ module Irm::CalendarTasksHelper
     # args is an argument hash containing :event, :day, and :options
     calendar event_calendar_opts do |args|
       event, day = args[:event], args[:day]
-      html = %(<a href="/events/#{event.id}" title="#{h(event.name)}">)
+#      if event.url.blank?
+#        html = %(<a href="/events/#{event.id}" title="#{h(event.name)}">)
+      html = link_to(event.name,
+                     {:controller => "irm/calendar_tasks", :action => "show", :id => event.id},
+                     :title => event.name, :class => "calendar-event-preview", :id => "quick_show_" + event.id.to_s,
+                     :quick_show => url_for(:controller => "irm/calendar_tasks", :action => "quick_show", :id => event.id))
+#      else
+#        html = url_for(event.url)
+#      end
       html << display_event_time(event, day)
       html << %(#{h(event.name)}</a>)
       html

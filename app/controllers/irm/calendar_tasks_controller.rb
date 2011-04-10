@@ -9,6 +9,13 @@ class Irm::CalendarTasksController < ApplicationController
 #    @event_strips = Irm::CalendarTask.event_strips_for_month(@shown_month)
   end
 
+  def quick_show
+    @task = Irm::CalendarTask.find(params[:id])
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def edit
     @task = Irm::CalendarTask.find(params[:id])
 

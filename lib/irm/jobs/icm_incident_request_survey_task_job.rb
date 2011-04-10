@@ -16,7 +16,8 @@ module Irm
                                 :color => "345e77",
                                 :start_at => Time.now,
                                 :end_at => Time.now,
-                                :url => {:controller=> "csi/survey", :action=>"reply", :id=>sv.id},:source_id => sv.id, :source_type => sv.class)
+                                :url => {:controller=> "csi/surveys", :action=>"reply", :id=>sv.id},
+                                :source_id => sv.id, :source_type => sv.class)
           task.save
         end
       end

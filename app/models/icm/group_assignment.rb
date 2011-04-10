@@ -63,6 +63,7 @@ class Icm::GroupAssignment < ActiveRecord::Base
   scope :query_by_organization, lambda{|organization_id|
     where("#{table_name}.customer_organization_id = ?", organization_id)
   }
+
   
   scope :list_all, lambda {
     select("#{table_name}.*").

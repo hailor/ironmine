@@ -89,7 +89,7 @@ class Icm::IncidentRequest < ActiveRecord::Base
   scope :with_incident_status,lambda{|language|
     joins("LEFT OUTER JOIN #{Icm::IncidentStatus.view_name} incident_status ON  incident_status.incident_status_code = #{table_name}.incident_status_code AND incident_status.language= '#{language}'").
     joins("LEFT OUTER JOIN #{Icm::IncidentPhase.view_name} incident_phase ON  incident_phase.phase_code = incident_status.phase_code AND incident_phase.language= '#{language}'").
-    select(" incident_status.name incident_status_name,incident_phase.name incident_phase_name")
+    select(" incident_status.name incident_status_name,incident_phase.name incident_phase_name ,incident_status.close_flag incident_close_flag")
   }
   # 查询公司
   scope :with_company,lambda{|language|
@@ -100,6 +100,7 @@ class Icm::IncidentRequest < ActiveRecord::Base
   scope :query_by_support_person, lambda{|person_id|
     where("#{table_name}.support_person_id = ?", person_id)
   }
+
   scope :select_all,lambda{
     select("#{table_name}.*")
   }
@@ -167,6 +168,7 @@ class Icm::IncidentRequest < ActiveRecord::Base
         with_supporter.
         with_company(I18n.locale)
   end
+
 
   def concat_journals
     return_val = ""

@@ -83,6 +83,10 @@ class Csi::Survey < ActiveRecord::Base
     end
   end
 
+  def to_s
+    self.title
+  end
+
   private
   def generate_survey_code
     self.survey_code = "CSI"+ 1000000.to_s + (id % 1000000).to_s
