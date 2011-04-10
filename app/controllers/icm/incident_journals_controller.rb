@@ -90,7 +90,7 @@ class Icm::IncidentJournalsController < ApplicationController
         format.html { redirect_to({:action => "new"}) }
         format.xml  { render :xml => @incident_journal, :status => :created, :location => @incident_journal }
       else
-        format.html { render :action => "edit_close" }
+        format.html { render :action => "edit_pass" }
         format.xml  { render :xml => @incident_journal.errors, :status => :unprocessable_entity }
       end
     end
@@ -106,9 +106,9 @@ class Icm::IncidentJournalsController < ApplicationController
       @history = Skm::EntryOperateHistory.new({:operate_code=>"ICM_SEARCH",
                                                :incident_id=>@incident_request.id ,
                                                :search_key=>params[:entry_title],
-                                               :result_count=>count});
-      @history.save;
-    end;
+                                               :result_count=>count})
+      @history.save
+    end
 
     respond_to do |format|
       format.json  {render :json => to_jsonp(entry_headers.to_grid_json([:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date_f], count)) }
@@ -116,13 +116,13 @@ class Icm::IncidentJournalsController < ApplicationController
   end
 
   def apply_entry_header
-    @entry_header = Skm::EntryHeader.find(params[:id]);
+    @entry_header = Skm::EntryHeader.find(params[:id])
 
     @history = Skm::EntryOperateHistory.new({:operate_code=>"ICM_APPLY",
                                              :incident_id=>@incident_request.id ,
                                              :entry_id=>params[:id],
-                                             :version_number=>@entry_header.version_number});
-    @history.save;
+                                             :version_number=>@entry_header.version_number})
+    @history.save
 
     respond_to do |format|
       format.js
@@ -187,6 +187,7 @@ class Icm::IncidentJournalsController < ApplicationController
     incident_journal.reload
     incident_journal = Icm::IncidentJournal.select_all.with_replied_by.find(incident_journal.id)
     incident_request = Icm::IncidentRequest.list_all.find(incident_journal.incident_request_id)
+    incident_request.person_watchers << Irm::Person.find(@incident_request_bak.support_person_id) if @incident_request_bak.support_person_id
     person_ids = [incident_request.submitted_by,incident_request.requested_by,incident_journal.replied_by,incident_request.support_person_id]+incident_request.person_watchers.collect{|i| i.id}
     person_ids.uniq!
     journal_url = url_for({:host=>Irm::Constant::DEFAULT_HOST,
