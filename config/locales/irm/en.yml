@@ -73,6 +73,7 @@ en:
   help: Help
   pass: Pass
   select_all: Select All
+  null_string: Empty
 
   #usual words
   notice_account_invalid_creditentials: User or Password Error
@@ -439,6 +440,7 @@ en:
   label_irm_company_info: Company Info
   label_irm_company_show: Company
   label_irm_location_info: Location Info
+  label_irm_company_support_manager: Support Manager
   #=========================end irm companies_controller=======================#
   #=========================    irm login_records_controller=======================#
   label_irm_login_record_list: User login records

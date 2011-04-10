@@ -48,7 +48,7 @@
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_script_template)%></label></td>
               <td class="dataCol"><%= f.select(:template_code,nullable_options_for_select([],nil),{},
-                                  {:required=>true,
+                                  {
                                    :id=>"template_code",
                                    :href=>url_for(:controller=>"irm/mail_templates",:action=>"get_mail_templates",:format=>"json",:condition_code=>"{condition_code}"),
                                    :depend=>"condition_code",

@@ -73,6 +73,7 @@ zh:
   help: 帮助
   pass: 转交
   select_all: 全选
+  null_string: 空
   #常用语句
   notice_account_invalid_creditentials: 用户名或密码错误
   successfully_updated: 已经成功更新数据
@@ -455,6 +456,7 @@ zh:
   label_irm_company_info: 公司详细信息
   label_irm_company_show: 公司
   label_irm_location_info: 位置信息
+  label_irm_company_support_manager: 支持管理员
   #=========================end irm companies_controller=======================#
   #=========================    irm login_records_controller=======================#
   label_irm_login_record_list: 用户登录历史

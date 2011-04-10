@@ -41,14 +41,9 @@
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_company_name)%></label></td>
               <td class="dataCol"><%=f.text_field :name, :value=>@company[:name],:required=>true%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :label_irm_company_description)%></label></td>
-              <td class="dataCol"><%=f.text_area :description,:value=>@company[:description],:rows=>4%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><label for="company_support_manager"><%=t(:label_irm_company_support_manager)%></label></td>
+              <td class="dataCol"><%=f.blank_select :support_manager,available_person,
+                                                      {},{:id=>"company_support_manager"}%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_company_time_zone)%></label></td>
@@ -69,6 +64,8 @@
               <td class="dataCol"><%=f.text_field :budget_code,:value=>@company.budget_code%></td>
             </tr>
             <tr>
+              <td class="labelCol"><label><%=(t :label_irm_company_description)%></label></td>
+              <td class="dataCol"><%=f.text_area :description,:value=>@company[:description],:rows=>4%></td>
               <td class="labelCol"><label><%=(t :label_irm_company_status_code)%></label></td>
               <td class="dataCol"><%=f.select :status_code, available_active_status%></td>
             </tr>

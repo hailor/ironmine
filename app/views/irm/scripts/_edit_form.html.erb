@@ -43,7 +43,7 @@
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_script_template)%></label></td>
               <td class="dataCol"><%=f.select :template_code,nullable_options_for_select(available_mail_templates,@script.template_code),
-                                                    {},{:required=>true}%></td>
+                                                    {},{}%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>

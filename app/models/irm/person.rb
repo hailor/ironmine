@@ -268,6 +268,10 @@ class Irm::Person < ActiveRecord::Base
     eval('"' +PERSON_NAME_SQL_FORMATS[:firstname_lastname] + '"')
   end
 
+  def self.admin
+    Irm::Person.where(:login_name=>"admin").first
+  end
+
   # get avatar
   # required :id,:filename,:updated_at
   def self.avatar_url(attributes,style_name="original")
