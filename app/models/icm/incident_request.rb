@@ -100,6 +100,11 @@ class Icm::IncidentRequest < ActiveRecord::Base
   scope :query_by_support_person, lambda{|person_id|
     where("#{table_name}.support_person_id = ?", person_id)
   }
+  # use with_contact with_requested_by with_submmitted_by
+  scope :relate_person,lambda{|person_id|
+    where("#{table_name}.requested_by = ? OR #{table_name}.submitted_by = ? OR #{table_name}.contact_id = ? OR #{table_name}.support_person_id = ? OR EXISTS(SELECT 1 FROM #{Irm::Watcher.table_name} watcher WHERE watcher.watchable_id = #{table_name}.id AND watcher.watchable_type = ? AND watcher.member_id = ? AND watcher.member_type = ? )",
+    person_id,person_id,person_id,person_id,Icm::IncidentRequest.class.name,person_id,Irm::Person.class.name)
+  }
 
   scope :select_all,lambda{
     select("#{table_name}.*")
@@ -185,6 +190,14 @@ class Icm::IncidentRequest < ActiveRecord::Base
    else
      Irm::Constant::SYS_YES
    end
+  end
+
+  def need_assign
+    if(self.support_group_id.nil?||self.support_group_id.blank?)
+      Irm::Constant::SYS_YES
+    else
+      Irm::Constant::SYS_NO
+    end
   end
 
   private
