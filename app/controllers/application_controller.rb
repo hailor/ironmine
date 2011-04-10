@@ -336,4 +336,8 @@ class ApplicationController < ActionController::Base
 
     end
 
+    def allow_to_function?(function)
+      Irm::PermissionChecker.allow_to_function?(function)
+    end
+
 end
