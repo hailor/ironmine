@@ -7,7 +7,19 @@
      <div class="avatar">
        <img width="30" height="30" alt="" src="<%=replied_avatar(journal)%>">
      </div>
+     <%if journal.incident_histories.any? %>
+       <div class="message">
+         <ul>
+
+             <% journal.incident_histories.each do |h|%>
+               <li><%= h %>
+             <% end%>
+
+         </ul>
+       </div>
+     <%end%>
      <div class="message">
+
        <%= raw process_message(journal[:message_body])  %>
      </div>
      <%= list_journal_files(grouped_files,journal) %>

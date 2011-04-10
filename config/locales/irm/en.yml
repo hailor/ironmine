@@ -73,6 +73,7 @@ en:
   help: Help
   pass: Pass
   select_all: Select All
+  null_string: Empty
 
   #usual words
   notice_account_invalid_creditentials: User or Password Error

@@ -12,7 +12,9 @@ class Irm::SupportGroup < ActiveRecord::Base
 
   #加入activerecord的通用方法和scope
   query_extend
+
   scope :query_by_group_code,lambda{|group_code| where(:group_code=>group_code)}
+
 
   scope :query_by_company,lambda{|language,company_id| select("#{table_name}.id,#{Irm::SupportGroupsTl.table_name}.name,#{Irm::SupportGroupsTl.table_name}.description,"+
                                                           "v1.meaning status_meaning").
