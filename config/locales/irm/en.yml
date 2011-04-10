@@ -806,4 +806,5 @@ en:
   label_irm_calendar_task_end_at: End Date
   label_irm_calendar_task_color: Color
   label_irm_calendar_task_name: Task Name
+  label_irm_calendar_relation_object: Relation
   #======================== end calendar tasks====================
