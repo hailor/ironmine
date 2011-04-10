@@ -1,3 +1,5 @@
 GY.use(function(Y){
     Y.one("#event_calender_panel").set('innerHTML', '<%= escape_javascript(render :partial => "irm/calendars/full_calendar")%>');
+
+    Y.on("mouseover", handle_quick_show, ".calendar-event-preview");
 });
