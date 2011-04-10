@@ -12,7 +12,13 @@ class Skm::EntryHeadersController < ApplicationController
 
   def show
     @entry_header = Skm::EntryHeader.find(params[:id])
-    @return_url=request.env['HTTP_REFERER']  
+    @return_url=request.env['HTTP_REFERER']
+
+    @history = Skm::EntryOperateHistory.new({:operate_code=>"SKM_SHOW",
+                                             :entry_id=>params[:id],
+                                             :version_number => @entry_header.version_number});
+    @history.save;
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @entry_header }
@@ -247,6 +253,15 @@ class Skm::EntryHeadersController < ApplicationController
     entry_headers_scope = Skm::EntryHeader.list_all.published.current_entry
     entry_headers_scope = entry_headers_scope.match_value("#{Skm::EntryHeader.table_name}.entry_title",params[:search_value]) if params[:search_value]
     entry_headers,count = paginate(entry_headers_scope)
+
+    if  !params[:search_value].nil? then
+         @history = Skm::EntryOperateHistory.new({:operate_code=>"SKM_SEARCH",
+                                                  :incident_id=>@incident_request.id ,
+                                                  :search_key=>params[:search_value],
+                                                  :result_count=>count});
+         @history.save;
+    end;
+
     respond_to do |format|
       format.json  {render :json => to_jsonp(entry_headers.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date], count)) }
     end
