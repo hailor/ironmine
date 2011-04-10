@@ -1,7 +1,7 @@
 class Icm::IncidentJournalsController < ApplicationController
 
   before_filter :setup_up_incident_request
-  before_filter :backup_incident_request ,:only=>[:create,:update_close]
+  before_filter :backup_incident_request ,:only=>[:create,:update_close,:update_pass]
 
   def index
    redirect_to :action=>"new"
@@ -58,7 +58,7 @@ class Icm::IncidentJournalsController < ApplicationController
         process_change_attributes([:incident_status_code,:close_reason_code],@incident_request,@incident_request_bak,@incident_journal)
         process_files(@incident_journal)
 
-        publish_create_incident_journal(@incident_journal)
+        publish_close_incident_request(@incident_journal)
         #关闭事故单时，产生一个与之关联的投票任务
         Delayed::Job.enqueue(Irm::Jobs::IcmIncidentRequestSurveyTaskJob.new(@incident_request.id))
         format.html { redirect_to({:action => "new"}) }
@@ -126,7 +126,8 @@ class Icm::IncidentJournalsController < ApplicationController
     @incident_journal.replied_by=Irm::Person.current.id
     if Irm::Person.current.id.eql?(@incident_request.requested_by)
       @incident_request.last_request_date = Time.now
-    else
+    end
+    if Irm::Person.current.id.eql?(@incident_request.support_person_id)
       @incident_request.last_response_date = Time.now
     end
   end

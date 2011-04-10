@@ -54,7 +54,7 @@
   }
 </style>
 <%= page_title %>
-<%= form_for(@incident_request,:url=>{:action=>"update_close"},:builder => LabellingFormBuilder,:html => { :multipart => true }) do |f| %>
+<%= form_for(@incident_request,:url=>{:action=>"update_pass"},:builder => LabellingFormBuilder,:html => { :multipart => true }) do |f| %>
   <%=f.hidden_field :pass_flag,:value=>"Y" %>
 <div id="reply" class="bEditBlock bPageBlock">
   <div class="pbHeader">
