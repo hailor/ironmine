@@ -29,24 +29,6 @@ function show_irm_calendar(YAHOO,Event,Dom,id_button,id_date_field,id_cal){
                         dialog.hide();
                     }
                 });
-                function resetHandler() {
-                    // Reset the current calendar page to the select date, or
-                    // to today if nothing is selected.
-                    var selDates = calendar.getSelectedDates();
-                    var resetDate;
-
-                    if (selDates.length > 0) {
-                        resetDate = selDates[0];
-                    } else {
-                        resetDate = calendar.today;
-                    }
-
-                    calendar.cfg.setProperty("pagedate", resetDate);
-                    calendar.render();
-                }
-                function closeHandler() {
-                    dialog.hide();
-                }
                 dialog = new YAHOO.widget.Dialog("container", {
                     visible: false,
                     context: [id_button, "tl", "bl"],

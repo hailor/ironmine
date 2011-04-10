@@ -824,4 +824,5 @@ zh:
   label_irm_calendar_task_end_at: 结束日期
   label_irm_calendar_task_color: 显示颜色
   label_irm_calendar_task_name: 任务名称
+  label_irm_calendar_relation_object: 相关项
   #======================== end calendar tasks====================
