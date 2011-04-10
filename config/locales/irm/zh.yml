@@ -825,4 +825,6 @@ zh:
   label_irm_calendar_task_color: 显示颜色
   label_irm_calendar_task_name: 任务名称
   label_irm_calendar_relation_object: 相关项
+  label_irm_calendar_task_location: 地点
+  label_irm_calendar_task_percent_complete: 完成度
   #======================== end calendar tasks====================

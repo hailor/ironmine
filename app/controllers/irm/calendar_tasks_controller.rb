@@ -58,7 +58,7 @@ class Irm::CalendarTasksController < ApplicationController
   end
 
   def show
-
+    @task = Irm::CalendarTask.find(params[:id])
   end
 
   def get_data

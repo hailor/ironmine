@@ -809,4 +809,6 @@ en:
   label_irm_calendar_task_color: Color
   label_irm_calendar_task_name: Task Name
   label_irm_calendar_relation_object: Relation
+  label_irm_calendar_task_location: Location
+  label_irm_calendar_task_percent_complete: Percent Completed
   #======================== end calendar tasks====================
