@@ -1,5 +1,5 @@
-class Irm::CalendarTask < ActiveRecord::Base
-  set_table_name :irm_calendar_tasks
+class Irm::WfTask < ActiveRecord::Base
+  set_table_name :irm_wf_tasks
   has_event_calendar
   validates_presence_of :name
   serialize :url, Hash

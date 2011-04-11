@@ -19,15 +19,15 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_calendar_task_name)%></label></td>
+              <td class="labelCol"><label><%=(t :label_irm_wf_task_name)%></label></td>
               <td class="dataCol"><%= @task.name%></td>
-              <td class="labelCol"><label><%=(t :label_irm_calendar_task_start_at)%></label></td>
+              <td class="labelCol"><label><%=(t :label_irm_wf_task_start_at)%></label></td>
               <td class="dataCol"><%= @task.start_at.strftime("%Y-%m-%d") if @task.start_at%></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%= t :label_irm_calendar_task_location%></label></td>
+              <td class="labelCol"><label><%= t :label_irm_wf_task_location%></label></td>
               <td class="dataCol"><div><%= @task.location%></div></td>
-              <td class="labelCol"><label><%=(t :label_irm_calendar_task_end_at)%></label></td>
+              <td class="labelCol"><label><%=(t :label_irm_wf_task_end_at)%></label></td>
               <td class="dataCol"><%= @task.end_at.strftime("%Y-%m-%d") if @task.end_at%></td>
             </tr>
             <tr>

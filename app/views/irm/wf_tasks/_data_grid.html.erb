@@ -4,7 +4,7 @@
         <table cellpadding="0" cellspacing="0" border="0">
           <tbody>
             <tr>
-              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_calendar_task) %></h2></td>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_wf_task) %></h2></td>
               <td id="topButtonRow" class="pbButton">
                 <div class="button"><%= link_to t(:new), {:controller => "irm/calendar_tasks", :action => "new"}%></div>
               </td>
@@ -22,10 +22,10 @@
         </div>
         <%= datatable("calendar_tasks_list",url_for(:controller => "irm/calendar_tasks", :action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
-                       {:key=>"name",:label=>t(:label_irm_calendar_task_name),:sortable=>true, :width => "150px"},
-                       {:key=>"start_at",:label=>t(:label_irm_calendar_task_start_at),:sortable=>true, :width => "100px"},
-                       {:key=>"end_at",:label=>t(:label_irm_calendar_task_end_at),:sortable=>true, :width => "100px"},
-                       {:key=>"color",:label=>t(:label_irm_calendar_task_color),:sortable=>true},
+                       {:key=>"name",:label=>t(:label_irm_wf_task_name),:sortable=>true, :width => "150px"},
+                       {:key=>"start_at",:label=>t(:label_irm_wf_task_start_at),:sortable=>true, :width => "100px"},
+                       {:key=>"end_at",:label=>t(:label_irm_wf_task_end_at),:sortable=>true, :width => "100px"},
+                       {:key=>"color",:label=>t(:label_irm_wf_task_color),:sortable=>true},
                        {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}])%>
       </div>
     </div>
