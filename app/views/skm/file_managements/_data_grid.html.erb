@@ -23,7 +23,7 @@
             <%= link_to(t(:remove),{:controller => "skm/file_managements", :action=>"destroy",:id=>"{id}"},:confirm => t(:label_are_you_sure)) %>
           </div>
           <div id="data_file_name" style="display:none">
-            <%= link_to("{data_file_name}",{}, {:href => "/upload/irm/attachment_versions/{version_id}/original/{data_file_name}"}) %>
+            <%= link_to("{data_file_name}",{:controller => "skm/file_managements", :action => "show",:id=>"{id}", :version_id => "{version_id}",:data_file_name=>"{data_file_name}"}) %>
           </div>
         </div>
         <%= datatable("skm_files_list",url_for(:action=>"get_data",:format=>"json"),
