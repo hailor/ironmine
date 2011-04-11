@@ -37,19 +37,15 @@
                                               available_ass_support_groups,
                                               {},
                                               {:id=>"support_group", :required => true}%></td>
-              <td class="labelCol"></td>
-              <td class="dataCol"></td>
-            </tr>
-            <tr>
               <td class="labelCol"><label for="ass_company"><%=t(:label_irm_company_name)%></label></td>
               <td class="dataCol"><%=f.select :customer_company_id,
                                               available_ass_companies,
                                               {},
                                               {:id=>"ass_company", :required => true}%></td>
-              <td class="labelCol"></td>
-              <td class="dataCol"></td>
             </tr>
             <tr>
+              <td class="labelCol"><label for="ass_status_code"><%=(t :active)%></label></td>
+              <td class="dataCol"><%=f.select :status_code, available_active_status, {}, {:id => "ass_status_code"}%></td>
               <td class="labelCol"><label for="ass_organization"><%=t(:label_irm_location_organization)%></label></td>
               <td class="dataCol"><%=f.select :customer_organization_id,
                                               nullable_options_for_select(temp_ava_organizations_edit(@group_assignment.customer_company_id),@group_assignment.customer_organization_id),
@@ -58,10 +54,10 @@
                                                :depend=>"ass_company",
                                                :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
                                                :href=>url_for(:controller=>"icm/group_assignments",:action=>"get_customer_organizations",:format=>"json",:customer_company_id=>"{ass_company}")}%></td>
-              <td class="labelCol"></td>
-              <td class="dataCol"></td>
             </tr>
             <tr>
+              <td class="labelCol"></td>
+              <td class="dataCol"></td>
               <td class="labelCol"><label for="ass_department"><%=t(:label_irm_location_department)%></label></td>
               <td class="dataCol"><%=f.select :customer_department_id,
                                               nullable_options_for_select(temp_ava_departments_edit(@group_assignment.customer_organization_id),@group_assignment.customer_department_id),
@@ -70,10 +66,10 @@
                                                :depend=>"ass_organization",
                                                :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
                                                :href=>url_for(:controller=>"icm/group_assignments",:action=>"get_customer_departments",:format=>"json",:customer_organization_id=>"{ass_organization}")}%></td>
-              <td class="labelCol"></td>
-              <td class="dataCol"></td>
             </tr>
             <tr>
+              <td class="labelCol"></td>
+              <td class="dataCol"></td>
               <td class="labelCol"><label for="ass_people"><%=t(:label_irm_person)%></label></td>
               <td class="dataCol"><%=f.select :customer_person_id,
                                               nullable_options_for_select(temp_ava_people_edit(@group_assignment.customer_department_id),@group_assignment.customer_person_id),
@@ -82,15 +78,7 @@
                                               :depend=>"ass_department",
                                               :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
                                               :href=>url_for(:controller=>"icm/group_assignments",:action=>"get_customer_people",:format=>"json",:customer_department_id=>"{ass_department}")}%></td>
-              <td class="labelCol"></td>
-              <td class="dataCol"></td>
-            </tr>            
-            <tr>
-              <td class="labelCol"><label for="ass_status_code"><%=(t :active)%></label></td>
-              <td class="dataCol"><%=f.select :status_code, available_active_status, {}, {:id => "ass_status_code"}%></td>
-              <td class="labelCol"></td>
-              <td class="dataCol"></td>
-            </tr>        
+            </tr>
         </tbody>
       </table>
     </div>
