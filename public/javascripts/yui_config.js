@@ -48,6 +48,10 @@ var yuiConfig = {
         cascadeselect:{
             fullpath:"/javascripts/irm/cascadeselect.js",
             requires: ["io-base","substitute","json-parse"]
+        },
+        irmac:{
+            fullpath:"/javascripts/irm/autocomplete/autocomplete-base.js",
+            requires:['autocomplete-list', 'node-pluginhost']
         }
     },
     groups: {
