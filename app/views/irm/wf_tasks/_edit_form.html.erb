@@ -5,7 +5,7 @@
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_calendar_task_edit)%></h2></td>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_wf_task_edit)%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
             <div class="button"><%= link_back t(:cancel)%></div>
@@ -30,19 +30,19 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_calendar_task_name)%></label></td>
+              <td class="labelCol"><label><%=(t :label_irm_wf_task_name)%></label></td>
               <td class="dataCol"><%= f.text_field :name, :required => true%></td>
-              <td class="labelCol"><label><%=(t :label_irm_calendar_task_start_at)%></label></td>
+              <td class="labelCol"><label><%=(t :label_irm_wf_task_start_at)%></label></td>
               <td class="dataCol"><%=f.text_field :start_at, :id => "date1", :size => 18%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :description)%></label></td>
               <td class="dataCol"><%=f.text_area :description, :rows => 4%></td>
-              <td class="labelCol"><label><%=(t :label_irm_calendar_task_end_at)%></label></td>
+              <td class="labelCol"><label><%=(t :label_irm_wf_task_end_at)%></label></td>
               <td class="dataCol"><%=f.text_field :end_at, :id => "date2", :size => 18%></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_calendar_task_color)%></label></td>
+              <td class="labelCol"><label><%=(t :label_irm_wf_task_color)%></label></td>
               <td class="dataCol"><%=f.text_field :color%></td>
               <td class="labelCol">&nbsp;</td>
               <td class="dataCol">&nbsp;</td>

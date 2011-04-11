@@ -1,4 +1,4 @@
-class Irm::CalendarTasksController < ApplicationController
+class Irm::WfTasksController < ApplicationController
   
   def index
 #    @month = (params[:month] || (Time.zone || Time).now.month).to_i
@@ -10,31 +10,31 @@ class Irm::CalendarTasksController < ApplicationController
   end
 
   def quick_show
-    @task = Irm::CalendarTask.find(params[:id])
+    @task = Irm::WfTask.find(params[:id])
     respond_to do |format|
       format.html
     end
   end
 
   def edit
-    @task = Irm::CalendarTask.find(params[:id])
+    @task = Irm::WfTask.find(params[:id])
 
 
   end
 
   def new
-    @task = Irm::CalendarTask.new
+    @task = Irm::WfTask.new
     respond_to do |format|
       format.html
     end
   end
 
   def create
-    @task = Irm::CalendarTask.new(params[:irm_calendar_task])
+    @task = Irm::WfTask.new(params[:irm_wf_task])
     @task.color = "#ffffff"
     respond_to do |format|
       if @task.save
-        format.html { redirect_to({:controller => "irm/calendar_tasks", :action=>"index"}, :notice =>t(:successfully_created)) }
+        format.html { redirect_to({:controller => "wf_tasks", :action=>"index"}, :notice =>t(:successfully_created)) }
         format.xml  { render :xml => @task, :status => :created, :location => @task }
       else
         format.html { redirect_to({:action=>"new"})}
@@ -44,11 +44,11 @@ class Irm::CalendarTasksController < ApplicationController
   end
 
   def update
-    @task = Irm::CalendarTask.find(params[:id])
+    @task = Irm::WfTask.find(params[:id])
     @task.color = "#ffffff"
     respond_to do |format|
-      if @task.update_attributes(params[:irm_calendar_task])
-        format.html { redirect_to({:controller => "irm/calendar_tasks", :action=>"index"}, :notice => t(:successfully_updated)) }
+      if @task.update_attributes(params[:irm_wf_task])
+        format.html { redirect_to({:controller => "wf_tasks", :action=>"index"}, :notice => t(:successfully_updated)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -58,11 +58,11 @@ class Irm::CalendarTasksController < ApplicationController
   end
 
   def show
-    @task = Irm::CalendarTask.find(params[:id])
+    @task = Irm::WfTask.find(params[:id])
   end
 
   def get_data
-    tasks_scope = Irm::CalendarTask.where("1=1")
+    tasks_scope = Irm::WfTask.where("1=1")
 
     tasks,count = paginate(tasks_scope)
     respond_to do |format|

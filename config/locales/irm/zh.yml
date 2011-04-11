@@ -817,14 +817,14 @@ zh:
   label_irm_watcher_list: 跟踪者列表
   #======================== end watcher ======================
   #======================== calendar tasks====================
-  label_irm_calendar_task: 任务
-  label_irm_calendar_task_new: 创建任务
-  label_irm_calendar_task_edit: 编辑任务
-  label_irm_calendar_task_start_at: 开始日期
-  label_irm_calendar_task_end_at: 结束日期
-  label_irm_calendar_task_color: 显示颜色
-  label_irm_calendar_task_name: 任务名称
-  label_irm_calendar_relation_object: 相关项
-  label_irm_calendar_task_location: 地点
-  label_irm_calendar_task_percent_complete: 完成度
+  label_irm_wf_task: 任务
+  label_irm_wf_task_new: 创建任务
+  label_irm_wf_task_edit: 编辑任务
+  label_irm_wf_task_start_at: 开始日期
+  label_irm_wf_task_end_at: 结束日期
+  label_irm_wf_task_color: 显示颜色
+  label_irm_wf_task_name: 任务名称
+  label_irm_wf_relation_object: 相关项
+  label_irm_wf_task_location: 地点
+  label_irm_wf_task_percent_complete: 完成度
   #======================== end calendar tasks====================

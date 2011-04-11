@@ -801,14 +801,14 @@ en:
   label_irm_watcher_list: Watcher List
   #======================== end watcher ======================
   #======================== calendar tasks====================
-  label_irm_calendar_task: Tasks
-  label_irm_calendar_task_new: Create Task
-  label_irm_calendar_task_edit: Edit Task
-  label_irm_calendar_task_start_at: Start Date
-  label_irm_calendar_task_end_at: End Date
-  label_irm_calendar_task_color: Color
-  label_irm_calendar_task_name: Task Name
-  label_irm_calendar_relation_object: Relation
-  label_irm_calendar_task_location: Location
-  label_irm_calendar_task_percent_complete: Percent Completed
+  label_irm_wf_task: Tasks
+  label_irm_wf_task_new: Create Task
+  label_irm_wf_task_edit: Edit Task
+  label_irm_wf_task_start_at: Start Date
+  label_irm_wf_task_end_at: End Date
+  label_irm_wf_task_color: Color
+  label_irm_wf_task_name: Task Name
+  label_irm_wf_relation_object: Relation
+  label_irm_wf_task_location: Location
+  label_irm_wf_task_percent_complete: Percent Completed
   #======================== end calendar tasks====================
