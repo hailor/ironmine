@@ -31,8 +31,8 @@
         </div>
         <%= datatable("support_group",url_for(:action=>"get_data",:format=>"json"),
                   [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
-                   {:key=>"group_code",:label=>t(:label_irm_support_group_group_code),:sortable=>true,:searchable=>true,:width=>"20px"},
-                   {:key=>"name",:label=>t(:label_irm_support_group_name),:sortable=>true,:searchable=>true},
+                   {:key=>"group_code",:label=>t(:label_irm_support_group_group_code),:sortable=>true,:searchable=>true},
+                   {:key=>"name",:label=>t(:label_irm_support_group_name),:sortable=>true,:searchable=>true, :width => "300px"},
                    {:key=>"company_name",:label=>t(:label_irm_support_group_company_name),:sortable=>true,:searchable=>true,:width=>"30px"},
                    {:key=>"organization_name",:label=>t(:label_irm_support_group_organization_name),:sortable=>true,:searchable=>true,:width=>"30px"},
                    {:key=>"support_role_name",:label=>t(:label_irm_support_group_support_role),:sortable=>true,:width=>"30px"},
