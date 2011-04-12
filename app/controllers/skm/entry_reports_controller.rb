@@ -27,7 +27,7 @@ class Skm::EntryReportsController < ApplicationController
      if auto_run?(auto_run)
        return
      end
-     @table_column = params[:table_column]||"#{Skm::EntryOperateHistory.table_name}.created_at"
+     #@table_column = params[:table_column]||"#{Skm::EntryOperateHistory.table_name}.created_at"
      @timeframes_start_date = params[:timeframes_start_date]||show_date(:months_advance=>-1)
      @timeframes_end_date = params[:timeframes_end_date]||show_date
    end
@@ -37,7 +37,7 @@ class Skm::EntryReportsController < ApplicationController
      if auto_run?(auto_run)
        return
      end
-      @table_column = params[:table_column]||"#{Skm::EntryOperateHistory.table_name}.created_at"
+      @table_column = "#{Skm::EntryOperateHistory.table_name}.created_at"
       @timeframes_start_date = params[:timeframes_start_date]||show_date(:months_advance=>-1)
       @timeframes_end_date = params[:timeframes_end_date]||show_date
       @entry_history= Skm::EntryOperateHistory.query_history_by_date.

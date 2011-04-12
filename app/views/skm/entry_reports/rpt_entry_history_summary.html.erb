@@ -16,12 +16,6 @@
                       <tbody>
                           <tr>
                             <td>
-                              <label for="interval_c"><%= t(:label_icm_report_time_frame_column) %></label>
-                              <%=select_tag :table_column,options_from_collection_for_select(get_current_report_column("SKM_ENTRY_HISTORY_SUMMARY"),
-                                                                                             :wrap_table_column,:wrap_column_name),
-                                                    {:required=>true,:id=>"incident_request_service_code"}%>
-                            </td>
-                            <td>
                               <label for="interval_s"><%= t(:label_icm_report_time_frame_start_time) %></label>
                               <span class="dateInput dateOnlyInput">
                                 <%= text_field_tag :timeframes_start_date, @timeframes_start_date||show_date(:months_advance=>-1),:id=>"interval_s",:size=>12%>
@@ -65,7 +59,7 @@
                          <td style="width:40%">
                             <div id="completed_urgency_summary" class="datatable">
                             </div>
-                            <%= datatable("completed_urgency_summary",url_for(:action=>"get_report_summary",:auto_run=>Irm::Constant::SYS_NO,:table_column=>@table_column,:timeframes_start_date=>@timeframes_start_date,:timeframes_end_date=>@timeframes_end_date),
+                            <%= datatable("completed_urgency_summary",url_for(:action=>"get_report_summary",:auto_run=>Irm::Constant::SYS_NO,:timeframes_start_date=>@timeframes_start_date,:timeframes_end_date=>@timeframes_end_date),
                                       [{:key=>"search_key",:label=>t(:label_rpt_history_key),:width=>"200px"},
                                        {:key=>"result_count",:label=>t(:label_rpt_history_result_count),:width=>"100px"},
                                       {:key=>"source",:label=>t(:label_rpt_history_source),:width=>"300px"},
