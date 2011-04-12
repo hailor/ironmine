@@ -759,6 +759,8 @@ Ironmine::Application.routes.draw do
     #entry_reports
     match '/entry_reports/rpt_entry_submit_summary(.:format)'=>"entry_reports#rpt_entry_submit_summary"
     match '/entry_reports(/index)(.:format)'=>"entry_reports#index"
+    match '/entry_reports/get_report_summary(.:format)' => "entry_reports#get_report_summary"
+    match '/entry_reports/rpt_entry_history_summary(.:format)'=>"entry_reports#rpt_entry_history_summary"
 
     #file_managements
     match '/file_managements(/index)(.:format)' => "file_managements#index", :via => :get

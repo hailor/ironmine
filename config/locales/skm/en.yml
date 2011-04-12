@@ -90,3 +90,10 @@ en:
   label_skm_setting_sidebar_navigate: Sidebar Navigater
   label_skm_setting_sidebar_file_menu: Files Menu in Sidebar Navigator
   label_skm_setting_edit: Edit Service Knowledge Management Settings
+
+  #=========================skm report ========================================
+  label_rpt_history_key: Key words
+  label_rpt_history_result_count: Match result count
+  label_rpt_history_source: Search source
+  label_rpt_history_searched_by: Searched by
+  label_rpt_history_searched_day: Searched date
