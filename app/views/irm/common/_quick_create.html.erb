@@ -22,6 +22,9 @@
                   <%= link_to_checker(raw(get_img_icon("img7", {:class => "mruIcon", :title => t(:label_irm_bulletin)}, "Small") ) + t(:label_irm_bulletin),
                                       {:controller => "irm/bulletins", :action => "new"},
                                       {:class => "menuButtonMenuLink"})%>
+                  <%= link_to_checker(raw(get_img_icon("img2", {:class => "mruIcon", :title => t(:label_irm_wf_task)}, "Small") ) + t(:label_irm_wf_task),
+                                      {:controller => "irm/wf_tasks", :action => "new"},
+                                      {:class => "menuButtonMenuLink"})%>
             </div>
           </div>
         </div>
