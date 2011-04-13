@@ -95,7 +95,7 @@ class Irm::WfTasksController < ApplicationController
 
   def update
     @task = Irm::WfTask.find(params[:id])
-    @task.color = "#ffffff"
+    @task.color = "000000"
     respond_to do |format|
       if @task.update_attributes(params[:irm_wf_task])
         format.html { redirect_to({:controller => "wf_tasks", :action=>"index"}, :notice => t(:successfully_updated)) }
