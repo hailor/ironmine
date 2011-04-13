@@ -31,9 +31,53 @@ class Irm::WfTasksController < ApplicationController
 
   def create
     @task = Irm::WfTask.new(params[:irm_wf_task])
-    @task.color = "#ffffff"
+    @task.start_at = @task.start_at.strftime("%F") + " " + params[:start_at_h]
+    @task.end_at = @task.end_at.strftime("%F") + " " + params[:end_at_h]
+    rrule = {}
+    #从星期一开始
+    rrule = rrule.merge({:wkst => "MO"})
+    #如果创建周期标识打开
+    if params[:is_recurrence] == Irm::Constant::SYS_YES
+      rrule = rrule.merge({:until => DateTime.strptime(params[:recurrence_end_at], '%Y-%m-%d').strftime("%Y%m%d") + "T000000Z"})
+      if params[:rectype] == "DAILY"
+        #频率: 每天
+        rrule = rrule.merge({:freq => "DAILY"})
+        if params[:recd] == "EVERYDAY"
+          #间隔: 1
+          rrule = rrule.merge({:interval => "1"})
+        elsif params[:recd] == "CUSTOM"
+          #间隔: 用户输入
+          cus_freq = params[:recurrence_daily_cus_freq]
+          cus_freq = 1 if !cus_freq || cus_freq.blank?
+          rrule = rrule.merge({:interval => cus_freq})
+        end
+      elsif params[:rectype] == "WEEKLY"
+        #频率: 每星期
+        rrule = rrule.merge({:freq => "WEEKLY"})
+        ws = ""
+        params[:recurrence_every_week].each do |w|
+          ws << "," unless ws.blank?
+          ws << w[1]
+        end
+        #指定一星期中的某天
+        rrule = rrule.merge({:byday => ws})
+      elsif params[:rectype] == "MONTHLY"
+        #频率: 每月
+        rrule = rrule.merge({:freq => "MONTHLY"})
+        if params[:recm] == "DAY"
+
+        elsif params[:recm] == "WEEK"
+
+        end
+      end
+    end
+
+    @task.rrule = rrule
+    @task.color = "000000"
     respond_to do |format|
       if @task.save
+        #
+        @task.copy_recurrences
         format.html { redirect_to({:controller => "wf_tasks", :action=>"index"}, :notice =>t(:successfully_created)) }
         format.xml  { render :xml => @task, :status => :created, :location => @task }
       else
