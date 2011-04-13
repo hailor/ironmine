@@ -29,7 +29,7 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_wf_relation_object)%></label></td>
-              <td class="dataCol" colspan="3"><%= link_to eval(@task.source_type).find(@task.source_id).to_s, url_for(@task.url)%></td>
+              <td class="dataCol" colspan="3"><%= link_to(eval(@task.source_type).find(@task.source_id).to_s, url_for(@task.url)) if @task.source_type && @task.source_id && @task.url%></td>
             </tr>
         </tbody>
       </table>

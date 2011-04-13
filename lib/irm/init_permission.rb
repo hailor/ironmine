@@ -176,5 +176,11 @@ Irm::AccessControl.map do |map|
   #["index", "show_permissions", "show_permissions_data", "show_missed_permissions", "missed_permissions_data"]
   map.function :view_dev_tools,{"irm/dev_tools"=>["index", "show_permissions", "show_permissions_data", "show_missed_permissions"]}
 
+  #===================irm/wf_tasks============================
+  #["index", "show_permissions", "show_permissions_data", "show_missed_permissions", "missed_permissions_data"]
+  map.function :view_wf_tasks,{"irm/wf_tasks"=>["index", "show", "quick_show"]}
+  map.function :create_wf_tasks,{"irm/wf_tasks"=>["new", "create"]}
+  map.function :edit_wf_tasks,{"irm/wf_tasks"=>["edit", "update"]}
+
 
 end
