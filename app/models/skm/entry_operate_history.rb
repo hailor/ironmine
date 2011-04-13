@@ -10,5 +10,23 @@ class Skm::EntryOperateHistory < ActiveRecord::Base
                                 order("#{table_name}.created_at desc")
 
 
-end
+  scope :get_entry_show_history,lambda{|language| select("enh.entry_title,#{table_name}.version_number,cop.name company_name,concat(peo.last_name,peo.first_name) full_name,
+                                        DATE_FORMAT(enh.created_at,'%Y-%m-%d') created_day,count(*) result_count").
+                                joins(",skm_entry_headers enh").
+                                joins(",irm_companies_tl cop").
+                                joins(",irm_people peo").
+                                where("#{table_name}.operate_code in ('ICM_APPLY','SKM_SHOW') and #{table_name}.company_id = cop.company_id and #{table_name}.entry_id = enh.id and enh.created_by = peo.id
+                                      and cop.language='#{language}'").
+                                group("enh.entry_title,#{table_name}.version_number,cop.name,peo.last_name,peo.first_name,enh.created_at").
+                                order("result_count desc")}
 
+  scope :get_entry_apply_history,lambda{|language| select("enh.entry_title,#{table_name}.version_number,cop.name company_name,concat(peo.last_name,peo.first_name) full_name,
+                                        DATE_FORMAT(enh.created_at,'%Y-%m-%d') created_day,count(*) result_count").
+                                joins(",skm_entry_headers enh").
+                                joins(",irm_companies_tl cop").
+                                joins(",irm_people peo").
+                                where("#{table_name}.operate_code = 'ICM_APPLY' and #{table_name}.company_id = cop.company_id and #{table_name}.entry_id = enh.id and enh.created_by = peo.id
+                                      and cop.language='#{language}'").
+                                group("enh.entry_title,#{table_name}.version_number,cop.name,peo.last_name,peo.first_name,enh.created_at").
+                                order("result_count desc") }
+end

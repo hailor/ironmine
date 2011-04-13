@@ -92,8 +92,21 @@ en:
   label_skm_setting_edit: Edit Service Knowledge Management Settings
 
   #=========================skm report ========================================
+  label_skm_search_time_frame: Range of Entry search date
   label_rpt_history_key: Key words
   label_rpt_history_result_count: Match result count
   label_rpt_history_source: Search source
   label_rpt_history_searched_by: Searched by
   label_rpt_history_searched_day: Searched date
+  label_skm_entry_time_frame: Range of Entry create date
+  label_rpt_entry_name: Entry name
+  label_rpt_company_name: Company name
+  label_rpt_show_create_at: Entry create date
+  label_rpt_show_create_by: Entry create by
+  label_rpt_show_count: Show times
+  label_rpt_apply_count: Used by Incident
+
+  label_skm_rpt_home: Entry summary report
+  label_skm_rpt_search_key: Key words analysis report
+  label_skm_rpt_show_history: Entry view history report
+  label_skm_rpt_apply_history: Entry used by incident history report

@@ -460,6 +460,7 @@ Ironmine::Application.routes.draw do
     match '/reports/new(.:format)' => "reports#new", :via => :get
     match '/reports/create(.:format)' => "reports#create", :via => :post
     match '/reports/get_data(.:format)' => "reports#get_data"
+    match '/reports/:id/show(.:format)' => "reports#show", :via => :get
     match '/reports/:id(.:format)' => "reports#show", :via => :get
     match '/reports/:id/multilingual_edit(.:format)' => "reports#multilingual_edit", :via => :get
     match '/reports/:id/multilingual_update(.:format)' => "reports#multilingual_update", :via => :put
@@ -759,8 +760,15 @@ Ironmine::Application.routes.draw do
     #entry_reports
     match '/entry_reports/rpt_entry_submit_summary(.:format)'=>"entry_reports#rpt_entry_submit_summary"
     match '/entry_reports(/index)(.:format)'=>"entry_reports#index"
-    match '/entry_reports/get_report_summary(.:format)' => "entry_reports#get_report_summary"
-    match '/entry_reports/rpt_entry_history_summary(.:format)'=>"entry_reports#rpt_entry_history_summary"
+
+    match '/entry_reports/get_rpt_apply_data(.:format)' => "entry_reports#get_rpt_apply_data"
+    match '/entry_reports/rpt_entry_apply_summary(.:format)'=>"entry_reports#rpt_entry_apply_summary"
+
+    match '/entry_reports/rpt_search_history_summary(.:format)' => "entry_reports#rpt_search_history_summary"
+    match '/entry_reports/get_search_history_data(.:format)'=>"entry_reports#get_search_history_data"
+
+    match '/entry_reports/rpt_entry_show_history(.:format)' => "entry_reports#rpt_entry_show_history"
+    match '/entry_reports/get_rpt_show_data(.:format)'=>"entry_reports#get_rpt_show_data"
 
     #file_managements
     match '/file_managements(/index)(.:format)' => "file_managements#index", :via => :get

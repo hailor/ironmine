@@ -1,4 +1,4 @@
-<%= app_title(:description=>t(:label_skm_rpt_home)) %>
+<%= app_title(:description=>t(:label_skm_rpt_apply_history)) %>
 <div class="bFilterReport">
   <h2><%=t(:label_icm_report_param) %></h2>
   <div class="reportParameters">
@@ -9,29 +9,27 @@
         <tbody>
             <tr>
               <td>
+                <label for="subtotalBy0"><%=t(:label_irm_company_name)%>：</label>
+                <%=select_tag :company_id,nullable_options_for_select(available_company,@company_id),:required=>true %>
+              </td>
+              <td>
                 <fieldset>
                   <legend>
-                    <strong><%= t(:label_icm_report_time_frame) %></strong>
+                    <strong><%= t(:label_skm_entry_time_frame) %></strong>
                     <table cellpadding="0" cellspacing="0" border="0">
                       <tbody>
                           <tr>
                             <td>
-                              <label for="interval_c"><%= t(:label_icm_report_time_frame_column) %></label>
-                              <%=select_tag :table_column,options_from_collection_for_select(get_current_report_column("SKM_ENTRY_SUBMIT_SUMMARY"),
-                                                                                             :wrap_table_column,:wrap_column_name),
-                                                    {:required=>true,:id=>"incident_request_service_code"}%>
-                            </td>
-                            <td>
                               <label for="interval_s"><%= t(:label_icm_report_time_frame_start_time) %></label>
                               <span class="dateInput dateOnlyInput">
-                                <%= text_field_tag :timeframes_start_date, @timeframes_start_date||show_date(:months_advance=>-1),:id=>"interval_s",:size=>12%>
+                                <%= text_field_tag :entry_start_date, @entry_start_date||show_date(:months_advance=>-1),:id=>"interval_s",:size=>12%>
                                 <%= calendar_view("interval_s","interval_s","cal") %>
                               </span>
                             </td>
                             <td>
                               <label for="interval_e"><%= t(:label_icm_report_time_frame_end_time) %></label>
                               <span class="dateInput dateOnlyInput">
-                                <%= text_field_tag :timeframes_end_date, @timeframes_end_date||show_date,:id=>"interval_e",:size=>12%>
+                                <%= text_field_tag :entry_end_date, @entry_end_date||show_date,:id=>"interval_e",:size=>12%>
                                 <%= calendar_view("interval_e","interval_e","cal") %>
                               </span>
                             </td>
@@ -62,9 +60,21 @@
               <div id="fchArea" class="pbBody" >
                     <table style="width:100%">
                       <tr>
-                        <td style="width:100%">
-                           <%= line_chart("entry_submit_line_chart",@data_provider,{:width=>"95%",:height=>300}) %>
+                         <td style="width:40%">
+                            <div id="app_history" class="datatable">
+                            </div>
+                            <%= datatable("app_history",url_for(:action=>"get_rpt_apply_data",:auto_run=>Irm::Constant::SYS_NO,:company_id=>@company_id,:entry_start_date=>@entry_start_date,:entry_end_date=>@entry_end_date),
+                                      [{:key=>"entry_title",:label=>t(:label_rpt_entry_name),:width=>"350px"},
+                                       {:key=>"version_number",:label=>t(:label_skm_entry_header_version),:width=>"80px"},
+                                      {:key=>"company_name",:label=>t(:label_rpt_company_name),:width=>"200px"},
+                                      {:key=>"created_day",:label=>t(:label_rpt_show_create_at),:width=>"200px"},
+                                      {:key=>"full_name",:label=>t(:label_rpt_show_create_by),:width=>"200px"},
+                                      {:key=>"result_count",:label=>t(:label_rpt_apply_count),:width=>"200px"}]
+                                      )%>
                         </td>
+                        <td style="width:10%">
+                        </td>
+
                       </tr>
                     </table>
               </div>
@@ -75,5 +85,3 @@
     </div>
   </div>
 </div>
-
-

@@ -1,4 +1,4 @@
-<%= app_title(:description=>"关键字搜索分析报表") %>
+<%= app_title(:description=>t(:label_skm_rpt_search_key)) %>
 <div class="bFilterReport">
   <h2><%=t(:label_icm_report_param) %></h2>
   <div class="reportParameters">
@@ -9,9 +9,13 @@
         <tbody>
             <tr>
               <td>
+                <label for="subtotalBy0"><%=t(:label_irm_company_name)%>：</label>
+                <%=select_tag :company_id,nullable_options_for_select(available_company,@company_id),:required=>true %>
+              </td>
+              <td>
                 <fieldset>
                   <legend>
-                    <strong><%= t(:label_icm_report_time_frame) %></strong>
+                    <strong><%= t(:label_skm_search_time_frame) %></strong>
                     <table cellpadding="0" cellspacing="0" border="0">
                       <tbody>
                           <tr>
@@ -57,14 +61,14 @@
                     <table style="width:100%">
                       <tr>
                          <td style="width:40%">
-                            <div id="completed_urgency_summary" class="datatable">
+                            <div id="search_history" class="datatable">
                             </div>
-                            <%= datatable("completed_urgency_summary",url_for(:action=>"get_report_summary",:auto_run=>Irm::Constant::SYS_NO,:timeframes_start_date=>@timeframes_start_date,:timeframes_end_date=>@timeframes_end_date),
+                            <%= datatable("search_history",url_for(:action=>"get_search_history_data",:auto_run=>Irm::Constant::SYS_NO,:company_id=>@company_id,:timeframes_start_date=>@timeframes_start_date,:timeframes_end_date=>@timeframes_end_date),
                                       [{:key=>"search_key",:label=>t(:label_rpt_history_key),:width=>"200px"},
                                        {:key=>"result_count",:label=>t(:label_rpt_history_result_count),:width=>"100px"},
-                                      {:key=>"source",:label=>t(:label_rpt_history_source),:width=>"300px"},
-                                      {:key=>"full_name",:label=>t(:label_rpt_history_searched_by),:width=>"200px"},
-                                      {:key=>"created_day",:label=>t(:label_rpt_history_searched_day),:width=>"200px"}],
+                                       {:key=>"source",:label=>t(:label_rpt_history_source),:width=>"300px"},
+                                       {:key=>"full_name",:label=>t(:label_rpt_history_searched_by),:width=>"200px"},
+                                       {:key=>"created_day",:label=>t(:label_rpt_history_searched_day),:width=>"200px"}],
                                        {:row_perpage=>10})%>
                         </td>
                         <td style="width:10%">
