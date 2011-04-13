@@ -33,6 +33,7 @@ class Irm::WfTasksController < ApplicationController
     @task = Irm::WfTask.new(params[:irm_wf_task])
     @task.start_at = @task.start_at.strftime("%F") + " " + params[:start_at_h]
     @task.end_at = @task.end_at.strftime("%F") + " " + params[:end_at_h]
+    @task.calendar_id = Irm::Calendar.current_calendar(params[:assigned_to]).id
     rrule = {}
     #从星期一开始
     rrule = rrule.merge({:wkst => "MO"})
@@ -83,7 +84,7 @@ class Irm::WfTasksController < ApplicationController
     respond_to do |format|
       if @task.save
         #
-        @task.copy_recurrences
+        @task.copy_recurrences if params[:is_recurrence] == Irm::Constant::SYS_YES
         format.html { redirect_to({:controller => "wf_tasks", :action=>"index"}, :notice =>t(:successfully_created)) }
         format.xml  { render :xml => @task, :status => :created, :location => @task }
       else

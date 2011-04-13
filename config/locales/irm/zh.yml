@@ -841,5 +841,5 @@ zh:
   label_irm_wf_task_recurrence_every_week: 每 %{m} 个星期重复
   label_irm_wf_task_recurrence_day_of_every_month: 在每 %{m} 个月的第 %{n} 天
   label_irm_wf_task_recurrence_weekday_of_every_month: 在每 %{m} 个月的第 %{n}
-
+  label_irm_wf_task_assigned_to: 分配给
   #======================== end calendar tasks====================

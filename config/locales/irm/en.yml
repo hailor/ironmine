@@ -825,4 +825,5 @@ en:
   label_irm_wf_task_recurrence_every_week: Recurs every %{m} week(s) on
   label_irm_wf_task_recurrence_day_of_every_month: On day %{n} of every %{m} month(s)
   label_irm_wf_task_recurrence_weekday_of_every_month: On the %{n} of every %{m} month(s)
+  label_irm_wf_task_assigned_to: Assigned To
   #======================== end calendar tasks====================
