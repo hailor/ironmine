@@ -67,6 +67,29 @@ module Irm::WfTasksHelper
   end
 
   def available_wf_tasks_ordinal
-    [[I18n.t("ordinals")[0], "1"], [I18n.t("ordinals")[1], "2"], [I18n.t("ordinals")[2], "3"], [I18n.t("ordinals")[3], "4"], [I18n.t("ordinals")[5], "6"]]
+    [[I18n.t("ordinals")[0], "1"],
+     [I18n.t("ordinals")[1], "2"],
+     [I18n.t("ordinals")[2], "3"],
+     [I18n.t("ordinals")[3], "4"],
+     [I18n.t("ordinals")[5], "-1"]]
+  end
+
+  def my_tasks_list
+    my_tasks = Irm::Calendar.current_calendar(Irm::Person.current.id).wf_tasks.enabled.order("start_at ASC")
+    html = ""
+    my_tasks.each do |t|
+      if t.start_at.strftime("%F") == Time.now.strftime("%F")
+        date_str = t(:today)
+      elsif t.start_at.strftime("%F") == (Time.now + 1.day).strftime("%F")
+        date_str = t(:tomorrow)
+      else
+        date_str = t.start_at.strftime("%F")
+      end
+      to_date_str = ""
+      to_date_str = t.end_at.strftime("%F") + " " if !(t.start_at.strftime("%F") == t.end_at.strftime("%F"))
+      html << content_tag(:li, raw(date_str) + " " + t.start_at.strftime("%T") + " - " + raw(to_date_str) + t.end_at.strftime("%T") +
+              content_tag(:span, link_to(t.name,{:controller=>"irm/wf_tasks",:action=>"show",:id=>t.id}), :style => "float:right;"))
+    end
+    html
   end
 end

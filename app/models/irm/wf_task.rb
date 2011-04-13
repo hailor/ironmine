@@ -7,6 +7,8 @@ class Irm::WfTask < ActiveRecord::Base
   belongs_to :source, :polymorphic => true
   belongs_to :calendar
 
+  query_extend
+
   def rrule_string
     ret = ""
     if !self.rrule.blank?

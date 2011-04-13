@@ -115,7 +115,7 @@
                                                                         :m => (text_field_tag "recurrence_on_every_month_0", 1, :size => 2)) %></div>
                           <div><%= radio_button_tag "recm", "WEEK" %><%= raw(t :label_irm_wf_task_recurrence_weekday_of_every_month,
                                                                         :m => (text_field_tag "recurrence_on_every_month_1", 1, :size => 2),
-                                                                        :n => (select_tag "recurrence_ordinal", options_for_select(available_wf_tasks_ordinal)) +
+                                                                        :n => (select_tag "recurrence_week_ordinal", options_for_select(available_wf_tasks_ordinal)) +
                                                                                 (select_tag "recurrence_on_month_weekdays", options_for_select(available_week_days))) %></div>
                         </div>
                         <div id="y" style="display:none;">

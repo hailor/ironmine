@@ -65,9 +65,15 @@ class Irm::WfTasksController < ApplicationController
         #频率: 每月
         rrule = rrule.merge({:freq => "MONTHLY"})
         if params[:recm] == "DAY"
-
+          #每几个月
+          rrule = rrule.merge({:interval => params[:recurrence_on_every_month_0]})
+          #第几天
+          rrule = rrule.merge({:bymonthday => params[:recurrence_on_day_of_month]})
         elsif params[:recm] == "WEEK"
-
+          #每几个月
+          rrule = rrule.merge({:interval => params[:recurrence_on_every_month_1]})
+          #第几个礼拜几
+          rrule = rrule.merge({:byday => params[:recurrence_week_ordinal] + params[:recurrence_on_month_weekdays]})
         end
       end
     end
