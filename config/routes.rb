@@ -770,6 +770,8 @@ Ironmine::Application.routes.draw do
     match '/entry_reports/rpt_entry_show_history(.:format)' => "entry_reports#rpt_entry_show_history"
     match '/entry_reports/get_rpt_show_data(.:format)'=>"entry_reports#get_rpt_show_data"
 
+    match '/entry_reports/rpt_entry_history_summary(.:format)' => "entry_reports#rpt_entry_history_summary"
+
     #file_managements
     match '/file_managements(/index)(.:format)' => "file_managements#index", :via => :get
     match '/file_managements/:id/edit(.:format)' => "file_managements#edit", :via => :get
