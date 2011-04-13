@@ -61,7 +61,7 @@ class Icm::IncidentStatusesController < ApplicationController
     @incident_status.not_auto_mult=true
     respond_to do |format|
       if @incident_status.update_attributes(params[:icm_incident_status])
-        format.html { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
+        format.html { render({:action=>"show"}, :notice => t(:successfully_updated)) }
       else
         format.html { render({:action=>"multilingual_edit"}) }
       end

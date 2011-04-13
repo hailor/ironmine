@@ -563,6 +563,9 @@ Ironmine::Application.routes.draw do
     match '/close_reasons/create(.:format)' => "close_reasons#create", :via => :post
     match '/close_reasons/:id/show(.:format)' => "close_reasons#show", :via => :get
     match '/close_reasons/get_data(.:format)' => "close_reasons#get_data"
+    match '/close_reasons/:id/multilingual_edit(.:format)' => "close_reasons#multilingual_edit", :via => :get
+    match '/close_reasons/:id/multilingual_update(.:format)' => "close_reasons#multilingual_update", :via => :put
+
     #incident_phases
     match '/incident_phases(/index)(.:format)' => "incident_phases#index", :via => :get
     match '/incident_phases/:id/edit(.:format)' => "incident_phases#edit", :via => :get
