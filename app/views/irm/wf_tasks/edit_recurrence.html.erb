@@ -1,0 +1,204 @@
+<%= app_title %>
+<%= form_for(@task,:url=>{:action=>"update_recurrence"},:builder => LabellingFormBuilder) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_wf_task_new)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:controller => "irm/wf_tasks", :action => "show", :id => @task.id}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @task%>
+
+    <div class="pbSubheader first tertiaryPalette">
+      <h3><%= t(:label_irm_wf_task_recurrence) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table id="recurrences" class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><%= t :label_irm_wf_task_recurrence_frequency %></td>
+              <td>
+                <table class="recurrenceTable">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div style="margin-right:20px;">
+                          <div><%= radio_button_tag "rectype", "DAILY", false, :id => "rd" %><label for="rd"><%= t :label_irm_wf_task_recurrence_daily %></label></div>
+                          <div><%= radio_button_tag "rectype", "WEEKLY", false, :id => "rw"  %><label for="rw"><%= t :label_irm_wf_task_recurrence_weekly %></label></div>
+                          <div><%= radio_button_tag "rectype", "MONTHLY", false, :id => "rm"  %><label for="rm"><%= t :label_irm_wf_task_recurrence_monthly %></label></div>
+                          <div style="display:none;"><%= radio_button_tag "rectype", "YEARLY", false, :id => "ry"  %><label for="ry"><%= t :label_irm_wf_task_recurrence_yearly %></label></div>
+                        </div>
+                      </td>
+                      <td>
+                        <div id="d" style="display:none;">
+                          <div><%= radio_button_tag "recd", "EVERYDAY" %><%= t :label_irm_wf_task_recurrence_every_weekday %></div>
+                          <div><%= radio_button_tag "recd", "CUSTOM" %><%= t :label_irm_wf_task_recurrence_every %><%= text_field_tag "recurrence_daily_cus_freq", 1, :size => 2%><%= t :label_irm_wf_task_recurrence_day %></div>
+                        </div>
+                        <div id="w" style="display:none;">
+                          <div><%= raw(t(:label_irm_wf_task_recurrence_every_week, :m => (text_field_tag "recurrence_every_week_interval", 1, :size => 2)))%></div>
+                          <div>
+                            <%= check_box_tag "recurrence_every_week[0]", "SU", false, :id => "recurrence_every_week_su"%><label for="recurrence_every_week_su"><%= (t "date.day_names")[0]%></label>
+                            <%= check_box_tag "recurrence_every_week[1]", "MO", false, :id => "recurrence_every_week_mo"%><label for="recurrence_every_week_mo"><%= (t "date.day_names")[1]%></label>
+                            <%= check_box_tag "recurrence_every_week[2]", "TU", false, :id => "recurrence_every_week_tu"%><label for="recurrence_every_week_tu"><%= (t "date.day_names")[2]%></label>
+                            <%= check_box_tag "recurrence_every_week[3]", "WE", false, :id => "recurrence_every_week_we"%><label for="recurrence_every_week_we"><%= (t "date.day_names")[3]%></label>
+                            <%= check_box_tag "recurrence_every_week[4]", "TH", false, :id => "recurrence_every_week_th"%><label for="recurrence_every_week_th"><%= (t "date.day_names")[4]%></label>
+                            <%= check_box_tag "recurrence_every_week[5]", "FR", false, :id => "recurrence_every_week_fr"%><label for="recurrence_every_week_fr"><%= (t "date.day_names")[5]%></label>
+                            <%= check_box_tag "recurrence_every_week[6]", "SA", false, :id => "recurrence_every_week_sa"%><label for="recurrence_every_week_sa"><%= (t "date.day_names")[6]%></label>
+                          </div>
+                        </div>
+                        <div id="m" style="display:none;">
+                          <div><%= radio_button_tag "recm", "DAY" %><%= raw(t :label_irm_wf_task_recurrence_day_of_every_month,
+                                                                        :n => (select_tag "recurrence_on_day_of_month", options_for_select(available_month_days)),
+                                                                        :m => (text_field_tag "recurrence_on_every_month_0", 1, :size => 2)) %></div>
+                          <div><%= radio_button_tag "recm", "WEEK" %><%= raw(t :label_irm_wf_task_recurrence_weekday_of_every_month,
+                                                                        :m => (text_field_tag "recurrence_on_every_month_1", 1, :size => 2),
+                                                                        :n => (select_tag "recurrence_week_ordinal", options_for_select(available_wf_tasks_ordinal)) +
+                                                                                (select_tag "recurrence_on_month_weekdays", options_for_select(available_week_days))) %></div>
+                        </div>
+                        <div id="y" style="display:none;">
+
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <!--<tr>-->
+              <!--<td class="labelCol"><label><% (t :label_irm_wf_task_start_at) %></label></td>-->
+              <!--<td class="data2Col"><% text_field_tag "recurrence_start_at", "", :id => "date3", :size => 10, :required => true%></td>-->
+            <!--</tr>-->
+            <tr>
+              <td class="labelCol"><label><%= (t :label_irm_wf_task_end_at) %></label></td>
+              <td class="data2Col"><%=text_field_tag "recurrence_end_at", "", :id => "date4", :size => 10, :required => true%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:controller => "irm/wf_tasks", :action => "show", :id => @task.id}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+<% end %>
+
+<script type="text/javascript">
+  GY.use( 'yui2-calendar','yui2-container',function(Y) {
+      var YAHOO = Y.YUI2;
+      var Event = YAHOO.util.Event,Dom = YAHOO.util.Dom;
+       YAHOO.util.Event.onDOMReady(function () {
+          show_irm_calendar(YAHOO,Event,Dom,"date4","date4","cal4");
+       });
+  });
+
+  GY.use( 'node', function(Y){
+    var freq = '<%= @task.rrule[:freq]%>' ;
+    var interval = '<%= @task.rrule[:interval]%>';
+    var byday = '<%= @task.rrule[:byday]%>';
+    var bymonth = '<%= @task.rrule[:bymonth]%>';
+    var bymonth = '<%= @task.rrule[:bymonth]%>';
+    var wkst = '<%= @task.rrule[:wkst]%>';
+    var until = '<%= @task.rrule[:until]%>';
+
+    if(freq == "DAILY"){
+        Y.one("#rd").set("checked", "checked");
+        if (byday.split(",").length == 5){
+            Y.one("#recd_EVERYDAY").set("checked", "checked");
+        }
+        else{
+            Y.one("#recd_CUSTOM").set("checked", "checked");
+            if(interval == "") {
+                Y.one("#recurrence_daily_cus_freq").set("value", "1");
+            }
+            else {
+                Y.one("#recurrence_daily_cus_freq").set("value", interval);
+            }
+        }
+    }
+    else if(freq == "WEEKLY"){
+        Y.one("#rw").set("checked", "checked");
+        Y.one("#w").setStyle("display", "");
+        if(interval == "") {
+            Y.one("#recurrence_every_week_interval").set("value", "1")
+        }
+        else {
+            Y.one("#recurrence_every_week_interval").set("value", interval)
+        }
+        var byday_array = byday.split(',');
+        for(var i in byday_array){
+            Y.one("#recurrence_every_week_" + byday_array[i].toLowerCase()).set("checked", "checked");
+        }
+    }
+    else if(freq == "MONTHLY"){
+        Y.one("#rm").set("checked", "checked");
+        Y.one("#m").setStyle("display", "");
+        if(byday.length > 2 && ["SU","MO","TU","WE","TH","FR","SA"].indexOf(byday.substring(byday.length - 2, byday.length)) >= 0){
+            Y.one("#recm_WEEK").set("checked", "checked");
+            if(interval == "") {
+                Y.one("#recurrence_on_every_month_1").set("value", "1");
+            }
+            else {
+                Y.one("#recurrence_on_every_month_1").set("value", interval);
+            }
+            Y.one("#recurrence_week_ordinal > option[value='" + byday.substring(0, byday.length - 2) + "']").set("selected", "selected");
+            Y.one("#recurrence_on_month_weekdays > option[value='" + byday.substring(byday.length - 2, byday.length) + "']").set("selected", "selected");
+        }
+        else{
+            Y.one("#recm_DAY").set("checked", "checked");
+            if(interval == "") {
+                Y.one("#recurrence_on_every_month_0").set("value", "1");
+            }
+            else {
+                Y.one("#recurrence_on_every_month_0").set("value", interval);
+            }
+            Y.one("#recurrence_on_day_of_month > option[value='" + byday +"']").set("selected", "selected");
+        }
+    }
+
+  });
+
+  GY.use('node', function(Y){
+
+      Y.on("click", function(e){
+        show_rectype("d");
+      }, "#rd");
+
+      Y.on("click", function(e){
+        show_rectype("w");
+      }, "#rw");
+      Y.on("click", function(e){
+        show_rectype("m");
+      }, "#rm");
+      Y.on("click", function(e){
+        show_rectype("y");
+      }, "#ry");
+
+      function show_rectype(id){
+          Y.one("#m").setStyle("display", "none");
+          Y.one("#d").setStyle("display", "none");
+          Y.one("#w").setStyle("display", "none");
+          Y.one("#y").setStyle("display", "none");
+          Y.one("#" + id).setStyle("display", "");
+      }
+  })
+</script>

@@ -65,11 +65,11 @@
                         <h3 class="lbHeader"><%= t :my_task %></h3>
                         <div class="lbBody">
                           <ul>
-                            <%= raw(need_response_survey) %>
+                            <%= raw(my_tasks_list) %>
                           </ul>
                         </div>
                             <div class="quickCreateField">
-                              <div class="button"><input class="btn" type="button" value="<%=t :new_task%>"></div><br>
+                              <div class="button"><%= link_to t(:label_irm_wf_task_new), {:controller => "irm/wf_tasks", :action => "new"} %></div><br>
                             </div>
                       </div>
                     </div>

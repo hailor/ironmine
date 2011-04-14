@@ -15,8 +15,8 @@ class Irm::ReportsController < ApplicationController
   # GET /reports/1
   # GET /reports/1.xml
   def show
-    @report = Irm::Report.list_all.status_meaning.query_by_report_purpose(::I18n.locale).find(params[:id])
-
+    #@report = Irm::Report.list_all.status_meaning.query_by_report_purpose(::I18n.locale).find(params[:id])
+     @report = Irm::Report.multilingual.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @report }
@@ -91,12 +91,10 @@ class Irm::ReportsController < ApplicationController
     @report = Irm::Report.find(params[:id])
     @report.not_auto_mult=true
     respond_to do |format|
-      if @report.update_attributes(params[:report])
-        format.html { redirect_to(@report, :notice =>  t(:successfully_updated)) }
-        format.xml  { head :ok }
+      if @report.update_attributes(params[:irm_report])
+        format.html { render :action => "show" }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @report.errors, :status => :unprocessable_entity }
+        format.html { render :action => "multilingual_edit" }
       end
     end
   end

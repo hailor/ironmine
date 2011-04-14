@@ -89,6 +89,7 @@ zh:
   label_no_data: 没有找到数据
   label_sub_functions: 功能
   label_common_info: 一般信息
+  label_description_info: 描述信息
   label_is_required: 必填信息
   label_help_about_page: 此页面帮助
   label_detail_info: 详细信息
@@ -818,14 +819,40 @@ zh:
   label_irm_watcher_list: 跟踪者列表
   #======================== end watcher ======================
   #======================== calendar tasks====================
-  label_irm_calendar_task: 任务
-  label_irm_calendar_task_new: 创建任务
-  label_irm_calendar_task_edit: 编辑任务
-  label_irm_calendar_task_start_at: 开始日期
-  label_irm_calendar_task_end_at: 结束日期
-  label_irm_calendar_task_color: 显示颜色
-  label_irm_calendar_task_name: 任务名称
-  label_irm_calendar_relation_object: 相关项
+  label_irm_wf_task: 任务
+  label_irm_wf_task_new: 创建任务
+  label_irm_wf_task_edit: 编辑任务
+  label_irm_wf_task_start_at: 开始日期
+  label_irm_wf_task_end_at: 结束日期
+  label_irm_wf_task_color: 显示颜色
+  label_irm_wf_task_name: 任务名称
+  label_irm_wf_relation_object: 相关项
+  label_irm_wf_task_location: 地点
+  label_irm_wf_task_percent_complete: 完成度
+  label_irm_wf_task_recurrence: 周期
+  label_irm_wf_task_recurrence_new: 创建事件的重复序列
+  label_irm_wf_task_recurrence_frequency: 频率
+  label_irm_wf_task_recurrence_every_weekday: 每个工作日
+  label_irm_wf_task_recurrence_every: 每
+  label_irm_wf_task_recurrence_day: 天
+  label_irm_wf_task_recurrence_daily: 每天
+  label_irm_wf_task_recurrence_weekly: 每周
+  label_irm_wf_task_recurrence_monthly: 每月
+  label_irm_wf_task_recurrence_yearly: 每年
+  label_irm_wf_task_recurrence_every_week: 每 %{m} 个星期重复
+  label_irm_wf_task_recurrence_day_of_every_month: 在每 %{m} 个月的第 %{n} 天
+  label_irm_wf_task_recurrence_weekday_of_every_month: 在每 %{m} 个月的第 %{n}
+  label_irm_wf_task_assigned_to: 分配给
+  label_irm_wf_task_recurrence_edit: 编辑重复序列
+  label_action_edit_recurrence: 编辑重复序列
+  recurrence_occurs: Occurs
+  recurrence_byday: on day %{m}
+  recurrence_byday_week: on %{m}
+  recurrence_until: until %{m}
+  recurrence_daily: day(s)
+  recurrence_weekly: week(s)
+  recurrence_monthly: month(s)
+  recurrence_interval: every %{m}
   #======================== end calendar tasks====================
   #======================== business objects====================
   label_business_object_list: 业务对像

@@ -76,7 +76,12 @@ class Skm::FileManagementsController < ApplicationController
   end
 
   def show
-
+    @history = Skm::FileOperateHistory.new({:operate_code=>"TEST_SHOW",
+                                             :attachment_id=>params[:id],
+                                             :version_id =>params[:version_id],
+                                             :file_name=>params[:data_file_name]})
+    @history.save
+    redirect_to  "/upload/irm/attachment_versions/#{params[:version_id]}/original/#{params[:data_file_name]}"
   end
   
   def get_data

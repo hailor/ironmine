@@ -443,6 +443,9 @@ body .bWizardBlock .labelCol, body .bDetailBlock.bPageBlock .pbBody .labelCol, b
     padding-bottom:3px;
     padding-top:3px;
 }
+
+/*.labelCol{padding-top:7px !important;}*/
+
 body .bWizardBlock.pbBody.labelCol, body .bPageBlock .pbBody .labelCol {color:#4A4A56;}
 body .bPageBlock .pbBody .labelCol, body .bPageBlock .pbBody .dataCol, body .bPageBlock .pbBody .data2Col {
     padding-bottom:5px;
@@ -600,7 +603,7 @@ body .bEditBlock .pbBottomButtons, body .apexp .bPageBlock.apexDefaultPageBlock 
 form .pbBottomButtons > table {border-top:1px solid #FFFFFF;padding:0 !important;}
 
 /************** error messages and input required ******************/
-.requiredInput,  .requiredInput {height:100%;position:relative;}
+.requiredInput,  .requiredInput {height:100%;position:relative;display:inline-block;}
 .requiredInput .requiredBlock, .requiredInput .requiredBlock {
     background-color:#CC0000;
     bottom:1px;

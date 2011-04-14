@@ -22,17 +22,22 @@
             <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>
             <%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
+          <div id="vendor_group_flag" style="display:none">
+            <%= check_img("{vendor_group_flag}")%>
+          </div>
+          <div id="oncall_group_flag" style="display:none">
+            <%= check_img("{oncall_group_flag}")%>
+          </div>
         </div>
         <%= datatable("support_group",url_for(:action=>"get_data",:format=>"json"),
-                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
-                   {:key=>"group_code",:label=>t(:label_irm_support_group_group_code),:sortable=>true,:searchable=>true,:width=>"10%"},
-                   {:key=>"name",:label=>t(:label_irm_support_group_name),:sortable=>true,:searchable=>true,:width=>"15%"},
-                   {:key=>"company_name",:label=>t(:label_irm_support_group_company_name),:sortable=>true,:searchable=>true,:width=>"15%"},
-                   {:key=>"organization_name",:label=>t(:label_irm_support_group_organization_name),:sortable=>true,:searchable=>true,:width=>"15%"},
-                   {:key=>"support_role_name",:label=>t(:label_irm_support_group_support_role),:sortable=>true,:width=>"15%"},
-                   {:key=>"vendor_group_flag",:label=>t(:label_irm_support_group_vendor_group),:sortable=>true},
-                   {:key=>"oncall_group_flag",:label=>t(:label_irm_support_group_oncall_group),:sortable=>true},
-                   {:key=>"status_meaning",:label=>t(:label_irm_support_group_status_code),:sortable=>true,:width=>"40px"}],
+                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
+                   {:key=>"group_code",:label=>t(:label_irm_support_group_group_code),:sortable=>true,:searchable=>true},
+                   {:key=>"name",:label=>t(:label_irm_support_group_name),:sortable=>true,:searchable=>true, :width => "300px"},
+                   {:key=>"company_name",:label=>t(:label_irm_support_group_company_name),:sortable=>true,:searchable=>true,:width=>"30px"},
+                   {:key=>"organization_name",:label=>t(:label_irm_support_group_organization_name),:sortable=>true,:searchable=>true,:width=>"30px"},
+                   {:key=>"support_role_name",:label=>t(:label_irm_support_group_support_role),:sortable=>true,:width=>"30px"},
+                   {:key=>"vendor_group_flag",:label=>t(:label_irm_support_group_vendor_group),:formatter=>"Y.irm.template",:sortable=>true, :width=>"30px"},
+                   {:key=>"oncall_group_flag",:label=>t(:label_irm_support_group_oncall_group),:formatter=>"Y.irm.template",:sortable=>true, :width=>"30px"}],
                    {:paginator_box=>"supportgroupPaginator",:search_box=>"permissionsSearchBox"})%>
         <div id="supportgroupPaginator"></div>
       </div>

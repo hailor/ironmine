@@ -16,30 +16,23 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_calendar_task_name)%></label></td>
+              <td class="labelCol"><label><%=(t :label_irm_wf_task_name)%></label></td>
               <td class="dataCol" colspan="3"><%= @task.name%></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_calendar_task_start_at)%></label></td>
+              <td class="labelCol"><label><%=(t :label_irm_wf_task_start_at)%></label></td>
               <td class="dataCol" colspan="3"><%= @task.start_at.strftime("%Y-%m-%d") if @task.start_at%></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_calendar_task_end_at)%></label></td>
+              <td class="labelCol"><label><%=(t :label_irm_wf_task_end_at)%></label></td>
               <td class="dataCol" colspan="3"><%= @task.end_at.strftime("%Y-%m-%d") if @task.end_at%></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_calendar_relation_object)%></label></td>
-              <td class="dataCol" colspan="3"><%= link_to eval(@task.source_type).find(@task.source_id).to_s, url_for(@task.url)%></td>
+              <td class="labelCol"><label><%=(t :label_irm_wf_relation_object)%></label></td>
+              <td class="dataCol" colspan="3"><%= link_to(eval(@task.source_type).find(@task.source_id).to_s, url_for(@task.url)) if @task.source_type && @task.source_id && @task.url%></td>
             </tr>
         </tbody>
       </table>
     </div>
   </div>
 </div>
-
-<style type="text/css">
-.labelCol{
-    text-align:left;
-    width:20%;
-}
-</style>

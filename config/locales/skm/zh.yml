@@ -90,3 +90,23 @@ zh:
   label_skm_setting_sidebar_navigate: 显示边栏导航
   label_skm_setting_sidebar_file_menu: 显示文件管理
   label_skm_setting_edit: 修改知识库设置
+
+  #=========================skm report ========================================
+  label_skm_search_time_frame: 搜索操作时间范围
+  label_rpt_history_key: 关键字
+  label_rpt_history_result_count: 匹配结果数量
+  label_rpt_history_source: 搜索来源
+  label_rpt_history_searched_by: 搜索人员
+  label_rpt_history_searched_day: 搜索日期
+  label_skm_entry_time_frame: 文章创建时间范围
+  label_rpt_entry_name: 文章名称
+  label_rpt_company_name: 公司名称
+  label_rpt_show_create_at: 文章创建日期
+  label_rpt_show_create_by: 创建人员
+  label_rpt_show_count: 文章被查看次数
+  label_rpt_apply_count: 被事故单使用次数
+
+  label_skm_rpt_home: 知识库文档统计
+  label_skm_rpt_search_key: 关键字搜索分析报表
+  label_skm_rpt_show_history: 知识库文章查看分析报表
+  label_skm_rpt_apply_history: 事故单应用知识库分析报表

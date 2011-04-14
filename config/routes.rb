@@ -460,6 +460,7 @@ Ironmine::Application.routes.draw do
     match '/reports/new(.:format)' => "reports#new", :via => :get
     match '/reports/create(.:format)' => "reports#create", :via => :post
     match '/reports/get_data(.:format)' => "reports#get_data"
+    match '/reports/:id/show(.:format)' => "reports#show", :via => :get
     match '/reports/:id(.:format)' => "reports#show", :via => :get
     match '/reports/:id/multilingual_edit(.:format)' => "reports#multilingual_edit", :via => :get
     match '/reports/:id/multilingual_update(.:format)' => "reports#multilingual_update", :via => :put
@@ -504,14 +505,16 @@ Ironmine::Application.routes.draw do
     match '/watchers/delete_watcher(.:format)' => "watchers#delete_watcher"
 
 #    match '/calendar_tasks(/:year(/:month))' => 'calendar_tasks#index', :as => :calendar_task, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
-    match '/calendar_tasks(/index)(.:format)' => "calendar_tasks#index", :via => :get
-    match '/calendar_tasks/new(.:format)' => "calendar_tasks#new", :via => :get
-    match '/calendar_tasks/create(.:format)' => "calendar_tasks#create", :via => :post
-    match '/calendar_tasks/:id/edit(.:format)' => "calendar_tasks#edit", :via => :get
-    match '/calendar_tasks/:id(.:format)' => "calendar_tasks#update", :via => :put
-    match '/calendar_tasks/get_data(.:format)' => "calendar_tasks#get_data"
-    match '/calendar_tasks/:id/show(.:format)' => "calendar_tasks#show", :via => :get
-    match '/calendar_tasks/:id/quick_show(.:format)' => "calendar_tasks#quick_show", :via => :get
+    match '/wf_tasks(/index)(.:format)' => "wf_tasks#index", :via => :get
+    match '/wf_tasks/new(.:format)' => "wf_tasks#new", :via => :get
+    match '/wf_tasks/create(.:format)' => "wf_tasks#create", :via => :post
+    match '/wf_tasks/:id/edit(.:format)' => "wf_tasks#edit", :via => :get
+    match '/wf_tasks/:id(.:format)' => "wf_tasks#update", :via => :put
+    match '/wf_tasks/get_data(.:format)' => "wf_tasks#get_data"
+    match '/wf_tasks/:id/show(.:format)' => "wf_tasks#show", :via => :get
+    match '/wf_tasks/:id/edit_recurrence(.:format)' => "wf_tasks#edit_recurrence", :via => :get
+    match '/wf_tasks/:id/update_recurrence(.:format)' => "wf_tasks#update_recurrence", :via => :put
+    match '/wf_tasks/:id/quick_show(.:format)' => "wf_tasks#quick_show", :via => :get
 
     match '/calendars(/:year(/:month))' => 'calendars#get_full_calendar', :as => :calendar_task, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
     # business object
@@ -586,6 +589,9 @@ Ironmine::Application.routes.draw do
     match '/close_reasons/create(.:format)' => "close_reasons#create", :via => :post
     match '/close_reasons/:id/show(.:format)' => "close_reasons#show", :via => :get
     match '/close_reasons/get_data(.:format)' => "close_reasons#get_data"
+    match '/close_reasons/:id/multilingual_edit(.:format)' => "close_reasons#multilingual_edit", :via => :get
+    match '/close_reasons/:id/multilingual_update(.:format)' => "close_reasons#multilingual_update", :via => :put
+
     #incident_phases
     match '/incident_phases(/index)(.:format)' => "incident_phases#index", :via => :get
     match '/incident_phases/:id/edit(.:format)' => "incident_phases#edit", :via => :get
@@ -783,6 +789,17 @@ Ironmine::Application.routes.draw do
     #entry_reports
     match '/entry_reports/rpt_entry_submit_summary(.:format)'=>"entry_reports#rpt_entry_submit_summary"
     match '/entry_reports(/index)(.:format)'=>"entry_reports#index"
+
+    match '/entry_reports/get_rpt_apply_data(.:format)' => "entry_reports#get_rpt_apply_data"
+    match '/entry_reports/rpt_entry_apply_summary(.:format)'=>"entry_reports#rpt_entry_apply_summary"
+
+    match '/entry_reports/rpt_search_history_summary(.:format)' => "entry_reports#rpt_search_history_summary"
+    match '/entry_reports/get_search_history_data(.:format)'=>"entry_reports#get_search_history_data"
+
+    match '/entry_reports/rpt_entry_show_history(.:format)' => "entry_reports#rpt_entry_show_history"
+    match '/entry_reports/get_rpt_show_data(.:format)'=>"entry_reports#get_rpt_show_data"
+
+    match '/entry_reports/rpt_entry_history_summary(.:format)' => "entry_reports#rpt_entry_history_summary"
 
     #file_managements
     match '/file_managements(/index)(.:format)' => "file_managements#index", :via => :get
