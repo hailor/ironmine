@@ -2,6 +2,7 @@ class Irm::WfTask < ActiveRecord::Base
   set_table_name :irm_wf_tasks
   has_event_calendar
   validates_presence_of :name
+  validates_presence_of :start_at
   serialize :url, Hash
   serialize :rrule, Hash
   belongs_to :source, :polymorphic => true

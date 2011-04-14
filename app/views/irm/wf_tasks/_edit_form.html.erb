@@ -65,10 +65,10 @@
         </tbody>
       </table>
     </div>
+    <% if @task.rrule && @task.rrule.size > 0 %>
     <div class="pbSubheader first tertiaryPalette">
       <h3><%= t(:label_irm_wf_task_recurrence) %></h3>
     </div>
-    <% if @task.rrule && @task.rrule.size > 0 %>
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>

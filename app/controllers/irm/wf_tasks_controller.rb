@@ -33,6 +33,8 @@ class Irm::WfTasksController < ApplicationController
     @task = Irm::WfTask.new(params[:irm_wf_task])
     @task.start_at = @task.start_at.strftime("%F") + " " + params[:start_at_h]
     @task.end_at = @task.end_at.strftime("%F") + " " + params[:end_at_h]
+    #如果没有填结束时间,默认当天结束
+    @task.end_at = @task.start_at.strftime("%F") + " " + params[:end_at_h] if !@task.end_at || @task.end_at.blank?
     @task.calendar_id = Irm::Calendar.current_calendar(params[:assigned_to]).id
     rrule = {}
     #从星期一开始
