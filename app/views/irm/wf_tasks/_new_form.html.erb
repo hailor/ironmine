@@ -40,7 +40,7 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=t :label_irm_wf_task_assigned_to%></label></td>
-              <td class="dataCol"><%=select_tag "assigned_to", options_for_select(Irm::Person.enabled.collect{|p| [p.name, p.id]})%></td>
+              <td class="dataCol"><%=select_tag "assigned_to", options_for_select(Irm::Person.enabled.collect{|p| [p.name, p.id]}, Irm::Person.current.id)%></td>
               <td class="labelCol"><label><%=(t :label_irm_wf_task_end_at)%></label></td>
               <td class="dataCol"><%=f.text_field :end_at, :id => "date2", :size => 8, :required => true%>
                 <%=select_tag "end_at_h", options_for_select(available_hours), :id => "datetime2"%>

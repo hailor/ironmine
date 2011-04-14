@@ -33,19 +33,34 @@
               <td class="labelCol"><label><%=(t :label_irm_wf_task_name)%></label></td>
               <td class="dataCol"><%= f.text_field :name, :required => true%></td>
               <td class="labelCol"><label><%=(t :label_irm_wf_task_start_at)%></label></td>
-              <td class="dataCol"><%=f.text_field :start_at, :id => "date1", :size => 18%></td>
+              <td class="dataCol"><%=f.text_field :start_at, :id => "date1", :size => 8, :required => true, :value => @task.start_at.strftime("%F")%>
+                <%=select_tag "start_at_h", options_for_select(available_hours, @task.start_at.strftime("%R")), :id => "datetime1"%>
+                &nbsp;<% link_to Time.now.strftime("%r"), {}, :href => "javascript:void(0)", :id => "date_now_1"%>&nbsp;</td>
             </tr>
+            <tr>
+              <td class="labelCol"><label><%=t :label_irm_wf_task_assigned_to%></label></td>
+              <td class="dataCol"><%=select_tag "assigned_to", options_for_select(Irm::Person.enabled.collect{|p| [p.name, p.id]}, @task.calendar.assigned_to)%></td>
+              <td class="labelCol"><label><%=(t :label_irm_wf_task_end_at)%></label></td>
+              <td class="dataCol"><%=f.text_field :end_at, :id => "date2", :size => 8, :required => true, :value => @task.end_at.strftime("%F")%>
+                <%=select_tag "end_at_h", options_for_select(available_hours, @task.end_at.strftime("%R")), :id => "datetime2"%>
+                &nbsp;<% link_to Time.now.strftime("%r"), {}, :href => "javascript:void(0)", :id => "date_now_2"%>&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t :label_irm_wf_task_location%></label></td>
+                  <td class="dataCol"><%=f.text_field :location%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pbSubheader first tertiaryPalette">
+      <h3><%= t(:label_description_info) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :description)%></label></td>
-              <td class="dataCol"><%=f.text_area :description, :rows => 4%></td>
-              <td class="labelCol"><label><%=(t :label_irm_wf_task_end_at)%></label></td>
-              <td class="dataCol"><%=f.text_field :end_at, :id => "date2", :size => 18%></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :label_irm_wf_task_color)%></label></td>
-              <td class="dataCol"><%=f.text_field :color%></td>
-              <td class="labelCol">&nbsp;</td>
-              <td class="dataCol">&nbsp;</td>
+              <td class="data2Col"><%=f.text_area :description, :rows => 4, :cols => 80%></td>
             </tr>
         </tbody>
       </table>
