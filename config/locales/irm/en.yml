@@ -826,4 +826,14 @@ en:
   label_irm_wf_task_recurrence_day_of_every_month: On day %{n} of every %{m} month(s)
   label_irm_wf_task_recurrence_weekday_of_every_month: On the %{n} of every %{m} month(s)
   label_irm_wf_task_assigned_to: Assigned To
+  label_irm_wf_task_recurrence_edit: Edit Series
+  label_action_edit_recurrence: Edit Series
+  recurrence_occurs: Occurs
+  recurrence_byday: on day %{m}
+  recurrence_byday_week: on %{m}
+  recurrence_until: until %{m}
+  recurrence_daily: day(s)
+  recurrence_weekly: week(s)
+  recurrence_monthly: month(s)
+  recurrence_interval: every %{m}
   #======================== end calendar tasks====================

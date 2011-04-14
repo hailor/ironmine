@@ -1,4 +1,4 @@
-<%= setting_title %>
+<%= app_title %>
 <%= form_for(@task,:url=>{:controller => "irm/wf_tasks", :action=>"create"},:builder => LabellingFormBuilder) do |f| %>
 <%= hidden_field_tag "assigned_to", Irm::Person.current.id%>
 <div id="ep" class="bEditBlock bPageBlock">
@@ -9,7 +9,7 @@
           <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_wf_task_new)%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_back t(:cancel)%></div>
+            <div class="button"><%= link_to t(:cancel), {:controller => "irm/home", :action => "index"}%></div>
           </td>
         </tr>
       </tbody>
@@ -150,7 +150,7 @@
           <td class="pbTitle"></td>
           <td id="bottomButtonRow" class="pbButtonb">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_back t(:cancel)%></div>
+            <div class="button"><%= link_to t(:cancel), {:controller => "irm/home", :action => "index"}%></div>
           </td>
         </tr>
       </tbody>
@@ -161,6 +161,11 @@
 <% end %>
 
 <script type="text/javascript">
+
+  function copy_to_date2(){
+    alert("!!");
+  }
+
   GY.use( 'yui2-calendar','yui2-container',function(Y) {
       var YAHOO = Y.YUI2;
       var Event = YAHOO.util.Event,Dom = YAHOO.util.Dom;
@@ -191,11 +196,12 @@
         {
           Y.one("#is_recurrence").set("value", "Y");
           Y.one("#recurrences").setStyle("display", "");
-//          Y.one("#date2").set("disabled", true);
+          Y.one("#date2").set("disabled", true);
         }
         else
         {
-//          Y.one("#date2").set("disabled", false);
+          Y.one("#date2").set("disabled", false);
+          Y.one("#date2").set("value", "");
           Y.one("#is_recurrence").set("value", "N");
           Y.one("#recurrences").setStyle("display", "none");
         }

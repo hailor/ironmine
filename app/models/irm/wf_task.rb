@@ -51,4 +51,21 @@ class Irm::WfTask < ActiveRecord::Base
       new_task.save
     end
   end
+
+  def delete_recurrences(after = Time.now.strftime("%F"))
+
+    after = self.start_at.strftime("%F") if after < self.start_at
+
+    if self.parent_id && !self.parent_id.blank?
+      tasks = Irm::WfTask.where("parent_id = ? AND start_at > ? AND id <> ?", self.parent_id, after, self.id)
+      tasks.each do |t|
+        t.destroy
+      end
+    else
+      tasks = Irm::WfTask.where("parent_id = ? AND start_at > ?", self.id, after)
+      tasks.each do |t|
+        t.destroy
+      end
+    end
+  end
 end

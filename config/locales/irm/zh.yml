@@ -842,4 +842,14 @@ zh:
   label_irm_wf_task_recurrence_day_of_every_month: 在每 %{m} 个月的第 %{n} 天
   label_irm_wf_task_recurrence_weekday_of_every_month: 在每 %{m} 个月的第 %{n}
   label_irm_wf_task_assigned_to: 分配给
+  label_irm_wf_task_recurrence_edit: 编辑重复序列
+  label_action_edit_recurrence: 编辑重复序列
+  recurrence_occurs: Occurs
+  recurrence_byday: on day %{m}
+  recurrence_byday_week: on %{m}
+  recurrence_until: until %{m}
+  recurrence_daily: day(s)
+  recurrence_weekly: week(s)
+  recurrence_monthly: month(s)
+  recurrence_interval: every %{m}
   #======================== end calendar tasks====================

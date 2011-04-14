@@ -892,3 +892,9 @@ body .menuButton .menuButtonMenu, body .searchCustomization .menuButton .menuBut
     margin-right: 5px;
     vertical-align: -3px;
 }
+
+div.recurrenceSectionBackground {
+    background-color: #F3F3EC;
+    margin: 7px 12px 0 12px;
+    padding: 8px 0 8px 5px;
+}

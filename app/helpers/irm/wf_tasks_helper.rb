@@ -92,4 +92,29 @@ module Irm::WfTasksHelper
     end
     html
   end
+
+  def get_rrule_translate(rrule)
+    ret = ""
+    ret << t(:recurrence_occurs) + " "
+    if rrule[:freq]
+      tin = ""
+      if rrule[:interval]
+        tin << rrule[:interval]
+      else
+        tin << "1"
+      end
+      ret << t(:recurrence_interval, :m => tin) + " "
+      ret << t("recurrence_" + rrule[:freq].downcase)
+    end
+
+    if rrule[:byday]
+      d1 = rrule[:byday]
+      d2 = d1.slice(d1.size - 2, 2)
+      if ["SU", "MO", "TU", "WE", "TH", "FR", "SA"].include?(d2)
+
+      end
+    end
+
+    ret
+  end
 end
