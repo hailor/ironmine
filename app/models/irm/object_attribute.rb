@@ -15,6 +15,7 @@ class Irm::ObjectAttribute < ActiveRecord::Base
   validates_uniqueness_of :attribute_name, :scope=>:business_object_code,:if => Proc.new { |i| !i.attribute_name.blank?&&!i.business_object_code.blank? }
   validates_presence_of :exists_relation_flag,:relation_bo_code,:relation_table_alias_name,:relation_column,:if => Proc.new { |i| !i.attribute_type.blank?&&i.attribute_type.eql?("RELATION_COLUMN") }
   validates_presence_of :where_clause,:if => Proc.new { |i| !i.attribute_type.blank?&&i.attribute_type.eql?("RELATION_COLUMN")&&i.exists_relation_flag.eql?(Irm::Constant::SYS_NO) }
+  validate :validate_relation,:if=> Proc.new{|i| !self.relation_bo_code.blank?&&!i.attribute_type.blank?&&i.attribute_type.eql?("RELATION_COLUMN")}
 
   #加入activerecord的通用方法和scope
   query_extend
@@ -52,6 +53,14 @@ class Irm::ObjectAttribute < ActiveRecord::Base
   def clean_column(attributes=[])
     attributes.each do |a|
       self.send((a.to_s+"="),nil) if self.respond_to?((a.to_s+"="))
+    end
+  end
+
+  def validate_relation
+    if self.exists_relation_flag.eql?(Irm::Constant::SYS_YES)
+      attributes = self.class.where(:business_object_code=>self.business_object_code,:relation_bo_code=>self.relation_bo_code).where("#{self.class.table_name}.where_clause IS NOT NULL")
+      attribute = attributes.detect{|oa| oa.relation_table_alias_name.eql?(self.relation_table_alias_name)}
+      errors.add(:relation_table_alias_name,I18n.t(:label_irm_object_attribute_invalid_exists_relation_table)+":#{attributes.collect{|oa| oa.relation_table_alias_name}.join(",")}") if attribute.nil?
     end
   end
 

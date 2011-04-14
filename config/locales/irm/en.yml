@@ -870,4 +870,5 @@ en:
   label_irm_object_attribute_edit: Edit Object Attribute
   label_irm_object_attribute_description: Description
   label_irm_object_attributes_test_information: Test Infomation
+  label_irm_object_attribute_invalid_exists_relation_table: Please use exists table alias
   #======================== object attributes====================

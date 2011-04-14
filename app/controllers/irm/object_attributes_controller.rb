@@ -82,7 +82,7 @@ class Irm::ObjectAttributesController < ApplicationController
     @object_attribute.destroy
 
     respond_to do |format|
-      format.html { redirect_to(object_attributes_url) }
+      format.html { redirect_to(:controller=>"irm/business_objects",:action=>"show",:id=>@business_object.id) }
       format.xml  { head :ok }
     end
   end

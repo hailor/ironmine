@@ -877,7 +877,7 @@ zh:
   label_irm_object_attribute_relation_table_alias_name: 关联表别名
   label_irm_object_attribute_new: 新建对像属性
   label_irm_object_attribute_choose_attribute_type: 选择对像属性类型
-  label_irm_object_attribute_exists_relation_flag: 已关联该BO
+  label_irm_object_attribute_exists_relation_flag: 使用该BO已有关联
   label_irm_object_attribute_relation_type: 关联类型
   label_irm_object_attribute_lov_code: LOV
   label_irm_object_attribute_where_clause: 关联条件
@@ -887,4 +887,5 @@ zh:
   label_irm_object_attribute_edit: 编辑BO属性
   label_irm_object_attribute_description: 描述
   label_irm_object_attributes_test_information: 测试信息
+  label_irm_object_attribute_invalid_exists_relation_table: 请填写已经存在的表别名
   #======================== object attributes====================
