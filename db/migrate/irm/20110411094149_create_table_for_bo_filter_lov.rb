@@ -41,7 +41,7 @@ class CreateTableForBoFilterLov < ActiveRecord::Migration
       t.string :approval_page_field_flag,:limit=>1,:null => false,:default=>"Y"
       t.string :attribute_name,:limit=>30,:null => false
       t.string :attribute_type,:limit=>30,:null => false,:default=>"TABLE_COLUMN"
-      t.string :exists_relation_flag,:limit=>1,:null => false,:default=>"N"
+      t.string :exists_relation_flag,:limit=>1,:default=>"N"
       t.string :relation_bo_code, :limit => 30
       t.string :relation_table_alias_name, :limit => 30
       t.string :relation_column, :limit => 30

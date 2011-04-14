@@ -38,9 +38,9 @@ class Irm::ObjectAttribute < ActiveRecord::Base
   def check_attribute
     case self.attribute_type
       when "TABLE_COLUMN"
-        clean_column([:exists_relation_flag,:relation_bo_code,:relation_table_alias_name,:relation_column,:where_clause])
+        clean_column([:relation_bo_code,:relation_table_alias_name,:relation_column,:where_clause])
       when "MODEL_ATTRIBUTE"
-        clean_column([:exists_relation_flag,:relation_bo_code,:relation_table_alias_name,:relation_column,:where_clause])
+        clean_column([:relation_bo_code,:relation_table_alias_name,:relation_column,:where_clause])
       when "RELATION_COLUMN"
         relation_attribute = self.class.where(:business_object_code=>self.relation_bo_code,:attribute_name=>self.relation_column).first
         self.data_length = relation_attribute.data_length
