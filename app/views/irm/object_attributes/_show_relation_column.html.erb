@@ -1,0 +1,44 @@
+<table class="detailList" cellpadding="0" cellspacing="0" border="0">
+  <tbody>
+    <tr>
+      <td class="labelCol"><label for="object_attribute_attribute_name"><%=t(:label_irm_object_attribute_name)%></label></td>
+      <td class="dataCol"><div><%=@object_attribute[:name]%></div></td>
+      <td class="labelCol"><label for="object_attribute_attribute_name"><%=t(:label_irm_object_attribute_attribute_name)%></label></td>
+      <td class="dataCol"><div><%=@object_attribute.attribute_name%></div></td>
+    </tr>
+    <tr>
+      <td class="labelCol"><label for="object_attribute_lov_code"><%=t(:label_irm_object_attribute_lov_code)%></label></td>
+      <td class="dataCol"><div><%=@object_attribute.lov_code%></div></td>
+      <td class="labelCol"><label for="object_attribute_approval_page_field_flag"><%=t(:label_irm_object_attribute_approval_page_field_flag)%></label></td>
+      <td class="dataCol"><div><%=check_img(@object_attribute.approval_page_field_flag) %></div></td>
+    </tr>
+    <tr>
+      <td class="labelCol"><label for="relation_bo_code"><%=t(:label_irm_object_attribute_relation_bo_code)%></label></td>
+      <td class="dataCol"><div><%=@object_attribute[:relation_bo_name]%></div></td>
+      <td class="labelCol"><label for="relation_column"><%=t(:label_irm_object_attribute_relation_column)%></label></td>
+      <td class="dataCol"><div><%=@object_attribute.relation_column%></div></td>
+    </tr>
+    <tr>
+      <td class="labelCol"><label for="relation_table_alias_name"><%=t(:label_irm_object_attribute_relation_table_alias_name)%></label></td>
+      <td class="dataCol"><div><%=@object_attribute.relation_table_alias_name%></div></td>
+      <td class="labelCol"><label for="exists_relation_flag"><%=t(:label_irm_object_attribute_exists_relation_flag)%></label></td>
+      <td class="dataCol"><div><%=check_img(@object_attribute.exists_relation_flag)%></div></td>
+    </tr>
+    <tr>
+      <td class="labelCol"><label for="relation_type"><%=t(:label_irm_object_attribute_relation_type)%></label></td>
+      <td class="dataCol"><div><%=@object_attribute.relation_type%></div></td>
+      <td class="labelCol"><label for="lov_code"><%=t(:label_irm_object_attribute_lov_code)%></label></td>
+      <td class="dataCol"><div><%=@object_attribute.lov_code%></div></td>
+    </tr>
+    <tr>
+        <td class="labelCol"><label for="object_attribute_data_type"><%=t(:label_irm_object_attribute_data_type)%></label></td>
+        <td class="dataCol"><div><%=@object_attribute.data_type%></div></td>
+        <td class="labelCol"><label for="object_attribute_data_length"><%=t(:label_irm_object_attribute_data_length)%></label></td>
+        <td class="dataCol"><div><%=@object_attribute.data_length%></div></td>
+      </tr>
+    <tr>
+      <td class="labelCol"><label for="where_clause"><%=t(:label_irm_object_attribute_where_clause)%></label></td>
+      <td class="dataCol"><div><%=@object_attribute.where_clause%></div></td>
+    </tr>
+  </tbody>
+</table>

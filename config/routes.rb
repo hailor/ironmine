@@ -514,6 +514,30 @@ Ironmine::Application.routes.draw do
     match '/calendar_tasks/:id/quick_show(.:format)' => "calendar_tasks#quick_show", :via => :get
 
     match '/calendars(/:year(/:month))' => 'calendars#get_full_calendar', :as => :calendar_task, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
+    # business object
+    match '/business_objects(/index)(.:format)' => "business_objects#index", :via => :get
+    match '/business_objects/new(.:format)' => "business_objects#new", :via => :get
+    match '/business_objects/create(.:format)' => "business_objects#create", :via => :post
+    match '/business_objects/get_data(.:format)' => "business_objects#get_data"
+    match '/business_objects/:id/edit(.:format)' => "business_objects#edit", :via => :get
+    match '/business_objects/:id(.:format)' => "business_objects#update", :via => :put
+    match '/business_objects/:id/show(.:format)' => "business_objects#show", :via => :get
+    match '/business_objects/:id/execute_test(.:format)' => "business_objects#execute_test", :via => :get
+    match '/business_objects/:entry_id/:id/remove_entry(.:format)' => "business_objects#remove_entry", :via => :get
+    match '/business_objects/:id/multilingual_edit(.:format)' => "business_objects#multilingual_edit", :via => :get
+    match '/business_objects/:id/multilingual_update(.:format)' => "business_objects#multilingual_update", :via => :put
+    # object attributes
+    match '/object_attributes(/index)(.:format)' => "object_attributes#index", :via => :get
+    match '/business_objects/:bo_id/object_attributes/new(.:format)' => "object_attributes#new", :via => [:get,:post,:put]
+    match '/business_objects/:bo_id/object_attributes/create(.:format)' => "object_attributes#create", :via => :post
+    match '/business_objects/:bo_id/object_attributes/get_data(.:format)' => "object_attributes#get_data"
+    match '/business_objects/:bo_id/object_attributes/:id/edit(.:format)' => "object_attributes#edit", :via => :get
+    match '/business_objects/:bo_id/object_attributes/:id(.:format)' => "object_attributes#update", :via => :put
+    match '/business_objects/:bo_id/object_attributes/:id/show(.:format)' => "object_attributes#show", :via => :get
+    match '/business_objects/:bo_id/object_attributes/:id/delete(.:format)' => "object_attributes#destroy", :via => :delete
+    match '/business_objects/:bo_id/object_attributes/:id/multilingual_edit(.:format)' => "object_attributes#multilingual_edit", :via => :get
+    match '/business_objects/:bo_id/object_attributes/:id/multilingual_update(.:format)' => "object_attributes#multilingual_update", :via => :put
+    match '/object_attributes/relation_columns(.:format)' => "object_attributes#relation_columns", :via => :get
   end
 
   scope :module => "icm" do

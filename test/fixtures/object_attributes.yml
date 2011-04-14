@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  bussiness_object_code: MyString
+  approval_page_field_flag: MyString
+  attribute_name: MyString
+  table_name_column_flag: MyString
+  relation_flag: MyString
+  exists_relation_flag: MyString
+  relation_bo_code: MyString
+  table_alias_name: MyString
+  relation_column: MyString
+  where_clause: MyString
+  lov_code: MyString
+  data_type: MyString
+
+two:
+  bussiness_object_code: MyString
+  approval_page_field_flag: MyString
+  attribute_name: MyString
+  table_name_column_flag: MyString
+  relation_flag: MyString
+  exists_relation_flag: MyString
+  relation_bo_code: MyString
+  table_alias_name: MyString
+  relation_column: MyString
+  where_clause: MyString
+  lov_code: MyString
+  data_type: MyString

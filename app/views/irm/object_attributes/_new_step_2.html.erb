@@ -1,0 +1,13 @@
+<div  class="bWizardBlock">
+    <div class="pbWizardTitle tertiaryPalette">
+        <div class="ptRightTitle">
+            <%= t(:step_n_total_m, :n => "2", :m => "2") %>
+        </div>
+        <h2>
+            <%= t(:step_n, :n => "2") %><%= t(:label_irm_object_attribute_fill_attribute_info) %>
+        </h2>
+    </div>
+  <div class="pbBody">
+    <%= render "new_#{@object_attribute.attribute_type.downcase}"%>
+  </div>
+</div>
