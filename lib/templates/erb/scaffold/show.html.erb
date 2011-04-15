@@ -5,7 +5,7 @@
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%%= t(:label_<%= singular_name %>) %></h2></td>
+          <td class="pbTitle"><h2 class="mainTitle"><%%= t(:label_irm_<%= singular_name %>) %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%%= link_to t(:edit), {:action => "edit", :id => @incident_phase}%></div>
             <div class="button"><%%= link_to t(:back), {:action => "index"}%></div>
@@ -20,7 +20,7 @@
         <tbody>
           <% for attribute in attributes -%>
             <tr>
-              <td class="labelCol"><label ><%%=t(:label_<%= singular_name %>_<%= attribute.name %>)%></label></td>
+              <td class="labelCol"><label ><%%=t(:label_irm_<%= singular_name %>_<%= attribute.name %>)%></label></td>
               <td class="dataCol"><div><%%= @<%= singular_name %>.<%= attribute.name %> %></div></td>
               <td class="labelCol empty"><div>&nbsp;</div></td>
               <td class="dataCol empty"><div>&nbsp;</div></td>
