@@ -22,8 +22,8 @@ class Irm::WfTask < ActiveRecord::Base
         joins(", #{Irm::LookupValue.table_name} lv, #{Irm::LookupValuesTl.table_name} lvt").
         where("lvt.language = ?", I18n.locale).
         where("lvt.lookup_value_id = lv.id").
-        where("lt.lookup_type = ?", "IRM_WF_TASK_PRIORITY").
-        where("lt.lookup_code = #{table_name}.priority")
+        where("lv.lookup_type = ?", "IRM_WF_TASK_PRIORITY").
+        where("lv.lookup_code = #{table_name}.priority")
   }
 
   scope :with_task_status, lambda{
