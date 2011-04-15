@@ -25,23 +25,6 @@
               <td class="dataCol"><%= @task.start_at.strftime("%F %T") if @task.start_at%></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%= t :label_irm_wf_task_location%></label></td>
-              <td class="dataCol"><div><%= @task.location%></div></td>
-              <td class="labelCol"><label><%=(t :label_irm_wf_task_end_at)%></label></td>
-              <td class="dataCol"><%= @task.end_at.strftime("%F %T") if @task.end_at%></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :description)%></label></td>
-              <td class="dataCol" colspan="3"><%= @task.description%></td>
-            </tr>
-
-            <tr>
-              <td class="labelCol"><label><%=(t :label_irm_wf_task_name)%></label></td>
-              <td class="dataCol"><%= @task.name%></td>
-              <td class="labelCol"><label><%=(t :label_irm_wf_task_start_at)%></label></td>
-              <td class="dataCol"><%= @task.start_at.strftime("%F %T") if @task.start_at%></td>
-            </tr>
-            <tr>
               <td class="labelCol"><label><%=t :label_irm_wf_task_assigned_to%></label></td>
               <td class="dataCol"><%= @task.assigned_name%></td>
               <td class="labelCol"><label><%=(t :label_irm_wf_task_end_at)%></label></td>
