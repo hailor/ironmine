@@ -10,6 +10,8 @@ class Irm::WfTask < ActiveRecord::Base
 
   query_extend
 
+  before_save :before_save()
+
   scope :with_calendar, lambda{
     select("concat(p.first_name, p.last_name) assigned_name").
         joins(", #{Irm::Calendar.table_name} c").
@@ -94,6 +96,17 @@ class Irm::WfTask < ActiveRecord::Base
       tasks.each do |t|
         t.destroy
       end
+    end
+  end
+
+  private
+  def before_save()
+    if !self.priority || self.priority.blank?
+      self.priority = "NORMAL"
+    end
+
+    if !self.task_status || self.task_status.blank?
+      self.task_status = "NOT_STARTED"
     end
   end
 end
