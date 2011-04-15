@@ -120,7 +120,7 @@ class Irm::WfTasksController < ApplicationController
   end
 
   def show
-    @task = Irm::WfTask.find(params[:id])
+    @task = Irm::WfTask.with_task_status.with_calendar.with_priority.where("id = ?", params[:id]).first
   end
 
   def edit_recurrence

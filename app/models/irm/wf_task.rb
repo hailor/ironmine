@@ -10,6 +10,31 @@ class Irm::WfTask < ActiveRecord::Base
 
   query_extend
 
+  scope :with_calendar, lambda{
+    select("concat(p.first_name, p.last_name) assigned_name").
+        joins(", #{Irm::Calendar.table_name} c").
+        joins(", #{Irm::Person.table_name} p").
+        where("p.id = c.assigned_to").
+        where("c.id = #{table_name}.id")}
+
+  scope :with_priority, lambda{
+    select("lvt.meaning priority_name").
+        joins(", #{Irm::LookupValue.table_name} lv, #{Irm::LookupValuesTl.table_name} lvt").
+        where("lvt.language = ?", I18n.locale).
+        where("lvt.lookup_value_id = lv.id").
+        where("lt.lookup_type = ?", "IRM_WF_TASK_PRIORITY").
+        where("lt.lookup_code = #{table_name}.priority")
+  }
+
+  scope :with_task_status, lambda{
+    select("lvt.meaning priority_name").
+        joins(", #{Irm::LookupValue.table_name} lv, #{Irm::LookupValuesTl.table_name} lvt").
+        where("lvt.language = ?", I18n.locale).
+        where("lvt.lookup_value_id = lv.id").
+        where("lv.lookup_type = ?", "IRM_WF_TASK_STATUS").
+        where("lv.lookup_code = #{table_name}.task_status")
+  }
+
   def rrule_string
     ret = ""
     if !self.rrule.blank?
