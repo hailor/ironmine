@@ -10,7 +10,7 @@ class Irm::WfTask < ActiveRecord::Base
 
   query_extend
 
-  before_save :before_save()
+  before_save :before_save
 
   scope :with_calendar, lambda{
     select("concat(p.first_name, p.last_name) assigned_name").
