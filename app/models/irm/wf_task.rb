@@ -31,7 +31,7 @@ class Irm::WfTask < ActiveRecord::Base
   }
 
   scope :with_task_status, lambda{
-    select("lvt.meaning priority_name").
+    select("lvt.meaning task_status_name").
         joins(", #{Irm::LookupValue.table_name} lv, #{Irm::LookupValuesTl.table_name} lvt").
         where("lvt.language = ?", I18n.locale).
         where("lvt.lookup_value_id = lv.id").
