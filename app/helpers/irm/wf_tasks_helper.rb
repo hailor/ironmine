@@ -117,4 +117,12 @@ module Irm::WfTasksHelper
 
     ret
   end
+
+  def available_wf_task_statuses
+    Irm::LookupValue.multilingual.query_by_lookup_type("IRM_WF_TASK_STATUS").order("id ASC").enabled.collect{|p| [p[:meaning], p.lookup_code]}
+  end
+
+  def available_wf_task_priorities
+    Irm::LookupValue.multilingual.query_by_lookup_type("IRM_WF_TASK_PRIORITY").order("id ASC").enabled.collect{|p| [p[:meaning], p.lookup_code]}
+  end
 end

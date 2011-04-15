@@ -44,7 +44,7 @@ class Irm::WfTask < ActiveRecord::Base
     self.occurrences.each do |o|
       next if o.strftime("%F") == self.start_at.strftime("%F")
       new_task = Irm::WfTask.new(self.attributes)
-      new_task.start_at = o
+      new_task.start_at = DateTime.parse(o.strftime("%F") + "T"  + self.start_at.strftime("%T%z"))
       new_task.end_at = DateTime.parse(o.strftime("%F") + "T"  + self.end_at.strftime("%T%z"))
       new_task.created_at = Time.now
       new_task.updated_at = Time.now
@@ -53,15 +53,17 @@ class Irm::WfTask < ActiveRecord::Base
     end
   end
 
-  def delete_recurrences(after = Time.now.strftime("%F"))
+  def delete_recurrences(after = Time.now)
 
-    after = self.start_at.strftime("%F") if after < self.start_at
+    after = self.start_at.strftime("%F") if self.start_at - after > 1.day
 
     if self.parent_id && !self.parent_id.blank?
       tasks = Irm::WfTask.where("parent_id = ? AND start_at > ? AND id <> ?", self.parent_id, after, self.id)
       tasks.each do |t|
         t.destroy
       end
+
+      self.update_attribute(:parent_id, "")
     else
       tasks = Irm::WfTask.where("parent_id = ? AND start_at > ?", self.id, after)
       tasks.each do |t|

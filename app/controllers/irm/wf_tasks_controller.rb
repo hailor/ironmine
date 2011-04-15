@@ -32,7 +32,7 @@ class Irm::WfTasksController < ApplicationController
   def create
     @task = Irm::WfTask.new(params[:irm_wf_task])
     @task.start_at = @task.start_at.strftime("%F") + " " + params[:start_at_h]
-    @task.end_at = @task.end_at.strftime("%F") + " " + params[:end_at_h]
+    @task.end_at = @task.end_at.strftime("%F") + " " + params[:end_at_h]  if @task.end_at && !@task.end_at.blank?
     #如果没有填结束时间,默认当天结束
     @task.end_at = @task.start_at.strftime("%F") + " " + params[:end_at_h] if !@task.end_at || @task.end_at.blank?
     @task.calendar_id = Irm::Calendar.current_calendar(params[:assigned_to]).id
@@ -101,8 +101,15 @@ class Irm::WfTasksController < ApplicationController
 
   def update
     @task = Irm::WfTask.find(params[:id])
+
+    start_at = params[:irm_wf_task][:start_at] + " " + params[:start_at_h]
+    end_at = params[:irm_wf_task][:end_at] + " " + params[:end_at_h] if params[:irm_wf_task][:end_at] && !params[:irm_wf_task][:end_at].blank?
+    end_at = params[:irm_wf_task][:start_at] + " " + params[:end_at_h] if !params[:irm_wf_task][:end_at] || params[:irm_wf_task][:end_at].blank?
+    calendar_id = Irm::Calendar.current_calendar(params[:assigned_to]).id
+
     respond_to do |format|
-      if @task.update_attributes(params[:irm_wf_task])
+      if @task.update_attributes(params[:irm_wf_task]) &&
+          @task.update_attributes(:start_at => start_at, :end_at => end_at, :calendar_id => calendar_id)
         format.html { redirect_to({:controller => "wf_tasks", :action=>"index"}, :notice => t(:successfully_updated)) }
         format.xml  { head :ok }
       else
@@ -171,7 +178,7 @@ class Irm::WfTasksController < ApplicationController
 #    end
 
     respond_to do |format|
-      if @task.update_attributes(:rrule => rrule, :parent_id => "")
+      if @task.update_attributes(:rrule => rrule)
         #删除当前任务所设置的开始时间之后,尚未发生的任务
         @task.delete_recurrences
         #以这个任务为基准,重新计算之后的循环任务
