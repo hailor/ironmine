@@ -74,7 +74,7 @@ en:
   pass: Pass
   select_all: Select All
   null_string: Empty
-
+  test: Test
   #usual words
   notice_account_invalid_creditentials: User or Password Error
   successfully_updated: Successfully Updated
@@ -837,3 +837,38 @@ en:
   recurrence_monthly: month(s)
   recurrence_interval: every %{m}
   #======================== end calendar tasks====================
+  #======================== business objects====================
+  label_business_object_list: Business Object
+  label_irm_business_object_business_object_code: Code
+  label_irm_business_object_name: Name
+  label_irm_business_object_bo_table_name: Table Name
+  label_irm_business_object_bo_model_name: Model Name
+  label_irm_business_object_auto_generate_flag: Auto Generate
+  label_irm_business_object_multilingual_flag: Multilingual
+  label_irm_business_object_new: Copy Business Object
+  label_irm_business_object_new: Copy Business Object
+  label_irm_business_object_description: Description
+  #======================== end business objects====================
+  #======================== object attributes====================
+  label_irm_object_attributes: Object Attributes
+  label_irm_object_attribute_name: Name
+  label_irm_object_attribute_attribute_name: Attribute Name
+  label_irm_object_attribute_approval_page_field_flag: Approval Field
+  label_irm_object_attribute_relation_bo_code: Relation BO
+  label_irm_object_attribute_relation_column: Relation Column
+  label_irm_object_attribute_relation_table_alias_name: Relation BO alias
+  label_irm_object_attribute_attribute_type: Attribute Type
+  label_irm_object_attribute_new: New Object Attributes
+  label_irm_object_attribute_choose_attribute_type: Choose Attribute Type
+  label_irm_object_attribute_exists_relation_flag: Already Relationed
+  label_irm_object_attribute_relation_type: Relation Type
+  label_irm_object_attribute_lov_code: LOV
+  label_irm_object_attribute_where_clause: Where Clause
+  label_irm_object_attribute_fill_attribute_info: Attribute Info
+  label_irm_object_attribute_data_type: Data Type
+  label_irm_object_attribute_data_length: Data Length
+  label_irm_object_attribute_edit: Edit Object Attribute
+  label_irm_object_attribute_description: Description
+  label_irm_object_attributes_test_information: Test Infomation
+  label_irm_object_attribute_invalid_exists_relation_table: Please use exists table alias
+  #======================== object attributes====================

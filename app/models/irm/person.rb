@@ -284,6 +284,10 @@ class Irm::Person < ActiveRecord::Base
     Irm::PaperclipHelper.gpath(attributes,style_name)
   end
 
+  def self.env
+    {"env"=>{"language"=>Irm::Person.current.language_code.downcase}}
+  end
+
   def wrap_person_name
     self[:person_name]
   end

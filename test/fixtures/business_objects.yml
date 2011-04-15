@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  business_object_code: MyString
+  table_name: MyString
+  model_name: MyString
+  auto_generate_flag: MyString
+  multilingual_flag: MyString
+
+two:
+  business_object_code: MyString
+  table_name: MyString
+  model_name: MyString
+  auto_generate_flag: MyString
+  multilingual_flag: MyString

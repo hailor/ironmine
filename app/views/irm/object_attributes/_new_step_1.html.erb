@@ -1,0 +1,60 @@
+<%= form_for(@object_attribute,:url=>{:action=>"new", :step => "2"},:builder => LabellingFormBuilder) do |f| %>
+<div  class="bWizardBlock">
+    <div class="pbWizardTitle tertiaryPalette">
+        <div class="ptRightTitle">
+            <%= t(:step_n_total_m, :n => "1", :m => "2") %>
+        </div>
+        <h2>
+            <%= t(:step_n, :n => "1") %><%= t(:label_irm_object_attribute_choose_attribute_type) %>
+        </h2>
+    </div>
+  <div class="pbBody">
+    <div class="pbDescription ">
+    </div>
+    <div class="pbWizardBody">
+      <div class="secondaryPalette">
+        <div class="pbBody ">
+            <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+              <span class="pbSubExtra">
+                <span class="requiredLegend">
+                  <span class="requiredExampleOuter">
+                    <span class="requiredExample">&nbsp;</span>
+                  </span><span class="requiredMark">*</span>
+                  <span class="requiredText"> = <%=t(:label_is_required)%></span>
+                </span>
+              </span>
+              <h3><%= t(:label_common_info) %></h3>
+            </div>
+            <div class="pbSubsection">
+            <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                  <tr>
+                    <td class="labelCol"><label for="object_attribute_attribute_type"><%=t(:label_irm_object_attribute_attribute_type)%></label></td>
+                    <td class="dataCol"><%=f.select :attribute_type, available_attribute_type%></td>
+                    <td class="labelCol empty">&nbsp;</td>
+                    <td class="dataCol empty">&nbsp;<%f.hidden_field(:business_object_code)%></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="pbWizardFooter">
+        <div class="pbBottomButtons">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tbody>
+                <tr>
+                  <td class="pbTitle"></td>
+                  <td id="bottomButtonRow" class="pbButtonb">
+                    <div class="button"><%= f.submit t :next%></div>
+                    <div class="button"><%= link_to t(:cancel), {:id=>params[:bo_id],:action => "show",:controller=>"irm/business_objects"} %></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+</div>
+<%end%>

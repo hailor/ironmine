@@ -1,0 +1,44 @@
+<%= page_title %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_object_attribute_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+              </td>
+              <td class="pbHelp">
+                <div id="object_attributesSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="object_attributes" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+          </div>
+        </div>
+        <%= datatable("object_attributes",url_for(:action=>"get_data",:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
+                                              { :key => "bussiness_object_code", :label => t(:object_attribute_bussiness_object_code),:searchable=>true },
+                                              { :key => "approval_page_field_flag", :label => t(:object_attribute_approval_page_field_flag),:searchable=>true },
+                                              { :key => "attribute_name", :label => t(:object_attribute_attribute_name),:searchable=>true },
+                                              { :key => "table_name_column_flag", :label => t(:object_attribute_table_name_column_flag),:searchable=>true },
+                                              { :key => "relation_flag", :label => t(:object_attribute_relation_flag),:searchable=>true },
+                                              { :key => "exists_relation_flag", :label => t(:object_attribute_exists_relation_flag),:searchable=>true },
+                                              { :key => "relation_bo_code", :label => t(:object_attribute_relation_bo_code),:searchable=>true },
+                                              { :key => "table_alias_name", :label => t(:object_attribute_table_alias_name),:searchable=>true },
+                                              { :key => "relation_column", :label => t(:object_attribute_relation_column),:searchable=>true },
+                                              { :key => "where_clause", :label => t(:object_attribute_where_clause),:searchable=>true },
+                                              { :key => "lov_code", :label => t(:object_attribute_lov_code),:searchable=>true },
+                                              { :key => "data_type", :label => t(:object_attribute_data_type),:searchable=>true }
+                                              ],{:row_perpage=>20,:search_box=>"object_attributesSearchBox"})%>
+      </div>
+    </div>
+</div>
+
+

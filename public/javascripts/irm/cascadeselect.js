@@ -21,6 +21,7 @@ YUI.add('cascadeselect', function(Y) {
         initializer: function(config) {
           var source = Y.one(this.get("source"));
           source.on(this.get("event"), Y.bind(this._onSourceEvent,this));
+
         },
         _onSourceEvent : function(e){
            var targets = this.get("target");
@@ -58,7 +59,7 @@ YUI.add('cascadeselect', function(Y) {
                    options =  options+Y.Lang.substitute(OPTIONS_TEMPLATE,{label:target.getAttribute("blank"),value:""}) ;
                  target.setContent(options);
                  target.set("value","");
-                 target.simulate('change');
+                 target.simulate(this.get("event"));
                }
            }
         },

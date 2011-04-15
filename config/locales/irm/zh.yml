@@ -74,6 +74,7 @@ zh:
   pass: 转交
   select_all: 全选
   null_string: 空
+  test: 测试
   #常用语句
   notice_account_invalid_creditentials: 用户名或密码错误
   successfully_updated: 已经成功更新数据
@@ -859,3 +860,38 @@ zh:
   recurrence_monthly: month(s)
   recurrence_interval: every %{m}
   #======================== end calendar tasks====================
+  #======================== business objects====================
+  label_business_object_list: 业务对像
+  label_irm_business_object_business_object_code: 编码
+  label_irm_business_object_name: 名称
+  label_irm_business_object_bo_table_name: 表名
+  label_irm_business_object_bo_model_name: Model名称
+  label_irm_business_object_auto_generate_flag: 自动生成
+  label_irm_business_object_multilingual_flag: 多语言
+  label_irm_business_object_new: 复制业务对像
+  label_irm_business_object_edit: 编辑业务对像
+  label_irm_business_object_description: 描述
+  #======================== business objects====================
+  #======================== object attributes====================
+  label_irm_object_attributes: 属性
+  label_irm_object_attribute_name: 名称
+  label_irm_object_attribute_attribute_name: 属性名
+  label_irm_object_attribute_attribute_type: 属性类型
+  label_irm_object_attribute_approval_page_field_flag: 审批字段
+  label_irm_object_attribute_relation_bo_code: 关联BO
+  label_irm_object_attribute_relation_column: 关联列
+  label_irm_object_attribute_relation_table_alias_name: 关联表别名
+  label_irm_object_attribute_new: 新建对像属性
+  label_irm_object_attribute_choose_attribute_type: 选择对像属性类型
+  label_irm_object_attribute_exists_relation_flag: 使用该BO已有关联
+  label_irm_object_attribute_relation_type: 关联类型
+  label_irm_object_attribute_lov_code: LOV
+  label_irm_object_attribute_where_clause: 关联条件
+  label_irm_object_attribute_fill_attribute_info: 属性信息
+  label_irm_object_attribute_data_type: 数据类型
+  label_irm_object_attribute_data_length: 数据长度
+  label_irm_object_attribute_edit: 编辑BO属性
+  label_irm_object_attribute_description: 描述
+  label_irm_object_attributes_test_information: 测试信息
+  label_irm_object_attribute_invalid_exists_relation_table: 请填写已经存在的表别名
+  #======================== object attributes====================
