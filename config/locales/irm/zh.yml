@@ -888,4 +888,5 @@ zh:
   label_irm_object_attribute_description: 描述
   label_irm_object_attributes_test_information: 测试信息
   label_irm_object_attribute_invalid_exists_relation_table: 请填写已经存在的表别名
+  label_irm_object_attribute_invalid_model_attribute: BO对像中无该属性
   #======================== object attributes====================

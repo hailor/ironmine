@@ -16,7 +16,7 @@ class Irm::ObjectAttribute < ActiveRecord::Base
   validates_presence_of :exists_relation_flag,:relation_bo_code,:relation_table_alias_name,:relation_column,:if => Proc.new { |i| !i.attribute_type.blank?&&i.attribute_type.eql?("RELATION_COLUMN") }
   validates_presence_of :where_clause,:if => Proc.new { |i| !i.attribute_type.blank?&&i.attribute_type.eql?("RELATION_COLUMN")&&i.exists_relation_flag.eql?(Irm::Constant::SYS_NO) }
   validate :validate_relation,:if=> Proc.new{|i| !self.relation_bo_code.blank?&&!i.attribute_type.blank?&&i.attribute_type.eql?("RELATION_COLUMN")}
-
+  validate :validate_model_attribute,:if=> Proc.new{|i| !i.attribute_type.blank?&&i.attribute_type.eql?("MODEL_ATTRIBUTE")}
   #加入activerecord的通用方法和scope
   query_extend
 
@@ -62,6 +62,18 @@ class Irm::ObjectAttribute < ActiveRecord::Base
       attribute = attributes.detect{|oa| oa.relation_table_alias_name.eql?(self.relation_table_alias_name)}
       errors.add(:relation_table_alias_name,I18n.t(:label_irm_object_attribute_invalid_exists_relation_table)+":#{attributes.collect{|oa| oa.relation_table_alias_name}.join(",")}") if attribute.nil?
     end
+  end
+
+  def validate_model_attribute
+    if self.business_object&&self.business_object.bo_model_name
+      pass = true
+      begin
+        eval(%(#{self.business_object.bo_model_name}.new.send(:#{self.attribute_name})))
+      rescue => text
+        pass = false
+      end
+    end
+    errors.add(:attribute_name,I18n.t(:label_irm_object_attribute_invalid_model_attribute)) unless pass
   end
 
 end
