@@ -21,9 +21,9 @@
           <% for attribute in attributes -%>
             <tr>
               <td class="labelCol"><label ><%%=t(:label_<%= singular_name %>_<%= attribute.name %>)%></label></td>
-              <td class="dataCol"><%%= @<%= singular_name %>.<%= attribute.name %> %></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="dataCol"><div><%%= @<%= singular_name %>.<%= attribute.name %> %></div></td>
+              <td class="labelCol empty"><div>&nbsp;</div></td>
+              <td class="dataCol empty"><div>&nbsp;</div></td>
             </tr>
           <% end -%>
         </tbody>
