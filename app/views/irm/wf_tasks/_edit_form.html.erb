@@ -46,8 +46,15 @@
                 &nbsp;<% link_to Time.now.strftime("%r"), {}, :href => "javascript:void(0)", :id => "date_now_2"%>&nbsp;</td>
             </tr>
             <tr>
+              <td class="labelCol"><label><%= t :label_irm_wf_task_priority %></label></td>
+              <td class="dataCol"><%= f.select :priority, available_wf_task_priorities %></td>
               <td class="labelCol"><label><%=t :label_irm_wf_task_location%></label></td>
-                  <td class="dataCol"><%=f.text_field :location%></td>
+              <td class="dataCol"><%=f.text_field :location%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%= t :label_irm_wf_task_task_status %></label></td>
+              <td class="dataCol"><%= f.select :task_status, available_wf_task_statuses %></td>
+
             </tr>
         </tbody>
       </table>
@@ -113,10 +120,10 @@
   });
 
   GY.use('node', function(Y){
-      var rrule = '<%= @task.rrule.blank? ? 0 : @task.rrule.size%>';
+      var rrule = '<%= @task.rrule.nil? ? 0 : @task.rrule.size%>';
 
       function recurrences_checked(){
-        if (rrule != 0)
+        if (rrule == '0')
         {
           Y.one("#date2").set("disabled", false);
         }
