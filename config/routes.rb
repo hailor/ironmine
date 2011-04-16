@@ -1,7 +1,4 @@
 Ironmine::Application.routes.draw do
-  
-
-  resources :list_of_values
 
   scope :module => "irm" do
     root :to => "navigations#index"
@@ -528,7 +525,6 @@ Ironmine::Application.routes.draw do
     match '/business_objects/:id(.:format)' => "business_objects#update", :via => :put
     match '/business_objects/:id/show(.:format)' => "business_objects#show", :via => :get
     match '/business_objects/:id/execute_test(.:format)' => "business_objects#execute_test", :via => :get
-    match '/business_objects/:entry_id/:id/remove_entry(.:format)' => "business_objects#remove_entry", :via => :get
     match '/business_objects/:id/multilingual_edit(.:format)' => "business_objects#multilingual_edit", :via => :get
     match '/business_objects/:id/multilingual_update(.:format)' => "business_objects#multilingual_update", :via => :put
     # object attributes
@@ -543,6 +539,19 @@ Ironmine::Application.routes.draw do
     match '/business_objects/:bo_id/object_attributes/:id/multilingual_edit(.:format)' => "object_attributes#multilingual_edit", :via => :get
     match '/business_objects/:bo_id/object_attributes/:id/multilingual_update(.:format)' => "object_attributes#multilingual_update", :via => :put
     match '/object_attributes/relation_columns(.:format)' => "object_attributes#relation_columns", :via => :get
+    match '/object_attributes/selectable_columns(.:format)' => "object_attributes#selectable_columns", :via => :get
+    # list of values
+    match '/list_of_values(/index)(.:format)' => "list_of_values#index", :via => :get
+    match '/list_of_values/new(.:format)' => "list_of_values#new", :via => :get
+    match '/list_of_values/create(.:format)' => "list_of_values#create", :via => :post
+    match '/list_of_values/get_data(.:format)' => "list_of_values#get_data"
+    match '/list_of_values/:id/edit(.:format)' => "list_of_values#edit", :via => :get
+    match '/list_of_values/:id(.:format)' => "list_of_values#update", :via => :put
+    match '/list_of_values/:id/show(.:format)' => "list_of_values#show", :via => :get
+    match '/list_of_values/:id/multilingual_edit(.:format)' => "list_of_values#multilingual_edit", :via => :get
+    match '/list_of_values/:id/multilingual_update(.:format)' => "list_of_values#multilingual_update", :via => :put
+    match '/list_of_values/:id/execute_test(.:format)' => "list_of_values#execute_test", :via => :get
+
   end
 
   scope :module => "icm" do

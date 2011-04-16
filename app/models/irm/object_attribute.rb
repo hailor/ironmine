@@ -34,6 +34,15 @@ class Irm::ObjectAttribute < ActiveRecord::Base
     select(" attribute_type.meaning attribute_type_name")
   }
 
+  scope :table_column,lambda{
+    where(:attribute_type=>"TABLE_COLUMN")
+  }
+
+
+  scope :selectable_column,lambda{
+    where("#{table_name}.attribute_type='TABLE_COLUMN' OR #{table_name}.attribute_type = 'RELATION_COLUMN'")
+  }
+
 
   private
   def check_attribute

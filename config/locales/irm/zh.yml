@@ -890,3 +890,26 @@ zh:
   label_irm_object_attribute_invalid_exists_relation_table: 请填写已经存在的表别名
   label_irm_object_attribute_invalid_model_attribute: BO对像中无该属性
   #======================== object attributes====================
+  #======================== list of values====================
+  label_irm_list_of_value_list: 值列表
+  label_irm_list_of_value_lov_code: 编码
+  label_irm_list_of_value_name: 名称
+  label_irm_list_of_value_description: 描述
+  label_irm_list_of_value_bo_code: 业务对像
+  label_irm_list_of_value_id_column: ID列
+  label_irm_list_of_value_value_column: 值列
+  label_irm_list_of_value_value_title: 值标题
+  label_irm_list_of_value_desc_column: 描述列
+  label_irm_list_of_value_desc_title: 描述标题
+  label_irm_list_of_value_listable_flag: 下拉列表
+  label_irm_list_of_value_value_column_width: 值列宽
+  label_irm_list_of_value_desc_column_width: 描述列宽
+  label_irm_list_of_value_addition_column: 附加列
+  label_irm_list_of_value_addition_title: 附加列标题
+  label_irm_list_of_value_addition_column_width: 附加列宽
+  label_irm_list_of_value_where_clause: 条件
+  label_irm_list_of_value_query_clause: 查询参数条件
+  label_irm_list_of_value_addition_clause: 其他查询条件
+  label_irm_list_of_value_new: 新建值列表
+  label_irm_list_of_value_edit: 编辑值列表
+  #======================== end list of values====================

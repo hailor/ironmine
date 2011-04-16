@@ -123,10 +123,20 @@ class Irm::ObjectAttributesController < ApplicationController
   end
 
   def relation_columns
-    object_attributes_scope = Irm::ObjectAttribute.multilingual.query_by_business_object_code(params[:business_object_code]).order(:attribute_name)
+    object_attributes_scope = Irm::ObjectAttribute.multilingual.table_column.query_by_business_object_code(params[:business_object_code]).order(:attribute_name)
     object_attributes_scope = object_attributes_scope.match_value("#{Irm::ObjectAttribute.view_name}.name",params[:name])
 
-    object_attributes = object_attributes_scope.collect{|i| {:label=>i[:name], :value=>i.attribute_name,:id=>i.id}}
+    object_attributes = object_attributes_scope.collect{|i| {:label=>i.attribute_name, :value=>i.attribute_name,:id=>i.id}}
+    respond_to do |format|
+      format.json {render :json=>object_attributes.to_grid_json([:label,:value], object_attributes.count)}
+    end
+  end
+
+  def selectable_columns
+    object_attributes_scope = Irm::ObjectAttribute.multilingual.selectable_column.query_by_business_object_code(params[:business_object_code]).order(:attribute_name)
+    object_attributes_scope = object_attributes_scope.match_value("#{Irm::ObjectAttribute.view_name}.name",params[:name])
+
+    object_attributes = object_attributes_scope.collect{|i| {:label=>i.attribute_name, :value=>i.attribute_name,:id=>i.id}}
     respond_to do |format|
       format.json {render :json=>object_attributes.to_grid_json([:label,:value], object_attributes.count)}
     end

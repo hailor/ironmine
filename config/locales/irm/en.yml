@@ -873,3 +873,27 @@ en:
   label_irm_object_attribute_invalid_exists_relation_table: Please use exists table alias
   label_irm_object_attribute_invalid_model_attribute: Missing Attribute In BO
   #======================== object attributes====================
+  #======================== list of values====================
+  label_irm_list_of_value_list: List of Value
+  label_irm_list_of_value_lov_code: Code
+  label_irm_list_of_value_name: Name
+  label_irm_list_of_value_description: Description
+  label_irm_list_of_value_bo_code: Business Object
+  label_irm_list_of_value_id_column: ID Col
+  label_irm_list_of_value_value_column: Value Col
+  label_irm_list_of_value_value_title: Vaule Title
+  label_irm_list_of_value_desc_column: Desc Col
+  label_irm_list_of_value_desc_title: Desc Title
+  label_irm_list_of_value_listable_flag: List
+  label_irm_list_of_value_value_column_width: Value Col Width
+  label_irm_list_of_value_desc_column_width: Desc Col Width
+  label_irm_list_of_value_addition_column: Addition Col
+  label_irm_list_of_value_addition_title: Addition Title
+  label_irm_list_of_value_addition_column_width: Addition Col Width
+  label_irm_list_of_value_where_clause: Where Clause
+  label_irm_list_of_value_query_clause: Query Clause
+  label_irm_list_of_value_addition_clause: Addition Clause
+  label_irm_list_of_value_list_new: New List of Value
+  label_irm_list_of_value_edit: Edit List of Value
+  #======================== end list of values====================
+

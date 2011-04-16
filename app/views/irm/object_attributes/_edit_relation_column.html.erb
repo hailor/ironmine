@@ -39,7 +39,7 @@
             <td class="labelCol"><label for="relation_bo_code"><%=t(:label_irm_object_attribute_relation_bo_code)%></label></td>
             <td class="dataCol"><%=f.blank_select :relation_bo_code,available_business_object,{}, {:id=>"relation_bo_code",:required=>true}%></td>
             <td class="labelCol"><label for="relation_column"><%=t(:label_irm_object_attribute_relation_column)%></label></td>
-            <td class="dataCol"><%=f.blank_select :relation_column,available_object_attribute_name(@object_attribute.relation_bo_code), {},{:id=>"relation_column",
+            <td class="dataCol"><%=f.blank_select :relation_column,available_relationable_object_attribute(@object_attribute.relation_bo_code), {},{:id=>"relation_column",
                                                                         :required=>true,
                                                                         :href=>url_for(:controller=>"irm/object_attributes",:action=>"relation_columns",:format=>"json",:business_object_code=>"{relation_bo_code}"),
                                                                         :depend=>"relation_bo_code"}%></td>

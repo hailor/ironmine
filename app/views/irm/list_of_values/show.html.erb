@@ -1,0 +1,83 @@
+<%= page_title %>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= @list_of_value[:name] %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @list_of_value}%></div>
+            <div class="button"><%= link_to t(:test), {:action => "execute_test"}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_lov_code"><%=t(:label_irm_list_of_value_lov_code)%></label></td>
+              <td class="dataCol"><div><%=@list_of_value.lov_code%></div></td>
+              <td class="labelCol"><label for="list_of_value_name"><%=t(:label_irm_list_of_value_name)%></label></td>
+              <td class="dataCol"><div><%=@list_of_value[:name]%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_bo_code"><%=t(:label_irm_list_of_value_bo_code)%></label></td>
+              <td class="dataCol"><div><%=@list_of_value[:bo_name]%></div></td>
+              <td class="labelCol"><label for="list_of_value_id_column"><%=t(:label_irm_list_of_value_id_column)%></label></td>
+              <td class="dataCol"><div><%=@list_of_value.id_column%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_value_column"><%=t(:label_irm_list_of_value_value_column)%></label></td>
+              <td class="dataCol"><div><%=@list_of_value.value_column%></div></td>
+              <td class="labelCol"><label for="list_of_value_desc_column"><%=t(:label_irm_list_of_value_desc_column)%></label></td>
+              <td class="dataCol"><div><%=@list_of_value.desc_column%></div></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="list_of_value_value_title"><%=t(:label_irm_list_of_value_value_title)%></label></td>
+              <td class="dataCol"><div><%=@list_of_value[:value_title]%></div></td>
+              <td class="labelCol"><label for="list_of_value_description_title"><%=t(:label_irm_list_of_value_desc_title)%></label></td>
+              <td class="dataCol"><div><%=@list_of_value[:desc_title]%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_value_column_width"><%=t(:label_irm_list_of_value_value_column_width)%></label></td>
+              <td class="dataCol"><div><%=@list_of_value.value_column_width%></div></td>
+              <td class="labelCol"><label for="list_of_value_desc_column_width"><%=t(:label_irm_list_of_value_desc_column_width)%></label></td>
+              <td class="dataCol"><div><%=@list_of_value.desc_column_width%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_addition_column"><%=t(:label_irm_list_of_value_addition_column)%></label></td>
+              <td class="dataCol" colspan="3" style="width:82%"><div><%=@list_of_value.addition_column%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_addition_title"><%=t(:label_irm_list_of_value_addition_title)%></label></td>
+              <td class="dataCol" colspan="3" style="width:82%"><div><%=@list_of_value[:addition_title]%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_addition_column_width"><%=t(:label_irm_list_of_value_addition_column_width)%></label></td>
+              <td class="dataCol" colspan="3" style="width:82%"><div><%=@list_of_value.addition_column_width %></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_listable_flag"><%=t(:label_irm_list_of_value_listable_flag)%></label></td>
+              <td class="dataCol"><div><%=check_img(@list_of_value.listable_flag)%></div></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_where_clause"><%=t(:label_irm_list_of_value_where_clause)%></label></td>
+              <td class="dataCol" colspan="3" style="width:82%"><div><%=text_area_tag :where_clause ,@list_of_value.where_clause,:id=>"list_of_value_where_clause",:readonly=>true,:rows=>5,:cols=>100%></div></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="executeTest"></div>
+
+<%=render :partial=>"multilingual/show",:locals=>{:main_data=>@list_of_value} %>

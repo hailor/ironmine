@@ -1,0 +1,35 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  lov_code: MyString
+  name: MyString
+  bo_code: MyString
+  where_clause: MyText
+  id_column: MyString
+  value_column: MyString
+  value_column_width: 
+  value_title: MyString
+  desc_column: MyString
+  description_title: MyString
+  desc_column_width: 
+  addition_column: MyString
+  addition_title: MyString
+  addition_column_width: MyString
+  listable_flag: MyString
+
+two:
+  lov_code: MyString
+  name: MyString
+  bo_code: MyString
+  where_clause: MyText
+  id_column: MyString
+  value_column: MyString
+  value_column_width: 
+  value_title: MyString
+  desc_column: MyString
+  description_title: MyString
+  desc_column_width: 
+  addition_column: MyString
+  addition_title: MyString
+  addition_column_width: MyString
+  listable_flag: MyString
