@@ -33,7 +33,6 @@ class Skm::FileManagementsController < ApplicationController
     if request.post?
       #获取所有附件
       files = params[:file]
-
       #调用方法创建附件
       Irm::AttachmentVersion.create_verison_files(files,0,0)
     end

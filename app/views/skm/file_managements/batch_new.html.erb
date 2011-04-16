@@ -24,7 +24,7 @@
       <table cellpadding="0" cellspacing="0" border="0">
         <thead>
           <tr>
-            <th width="30%"></th>
+            <th width="20%"></th>
             <th width="40px"></th>
             <th><%= t :label_skm_file_name %></th>
             <th><%= t :label_skm_file_category %></th>
@@ -37,7 +37,7 @@
               <td class="dataCol"></td>
               <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(0);"} %></td>
               <td class="dataCol"><%=file_field_tag "file[0][file]", :required=>true%></td>
-              <td class="dataCol"><%=select_tag "file[0][file_category]", category_options%></td>
+              <td class="dataCol"><%=select_tag "file[0][file_category]", options_for_select(available_file_categories)%></td>
               <td class="dataCol"><%=text_field_tag "file[0][description]", "", {:rows => 3, :cols => 35}%></td>
               <td class="dataCol"><%=check_box_tag "file[0][private_flag]"%></td>
             </tr>
@@ -45,7 +45,7 @@
               <td class="dataCol"></td>
               <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(1);"} %></td>
               <td class="dataCol"><%=file_field_tag "file[1][file]", :required=>true%></td>
-              <td class="dataCol"><%=select_tag "file[1][file_category]", category_options%></td>
+              <td class="dataCol"><%=select_tag "file[1][file_category]", options_for_select(available_file_categories)%></td>
               <td class="dataCol"><%=text_field_tag "file[1][description]", "", {:rows => 3, :cols => 35}%></td>
               <td class="dataCol"><%=check_box_tag "file[1][private_flag]"%></td>
             </tr>
@@ -53,7 +53,7 @@
               <td class="dataCol"></td>
               <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(2);"} %></td>
               <td class="dataCol"><%=file_field_tag "file[2][file]", :required=>true%></td>
-              <td class="dataCol"><%=select_tag "file[2][file_category]", category_options%></td>
+              <td class="dataCol"><%=select_tag "file[2][file_category]", options_for_select(available_file_categories)%></td>
               <td class="dataCol"><%=text_field_tag "file[2][description]", "", {:rows => 3, :cols => 35}%></td>
               <td class="dataCol"><%=check_box_tag "file[2][private_flag]"%></td>
             </tr>
@@ -61,7 +61,7 @@
               <td class="dataCol"></td>
               <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(3);"} %></td>
               <td class="dataCol"><%=file_field_tag "file[3][file]", :required=>true%></td>
-              <td class="dataCol"><%=select_tag "file[3][file_category]", category_options%></td>
+              <td class="dataCol"><%=select_tag "file[3][file_category]", options_for_select(available_file_categories)%></td>
               <td class="dataCol"><%=text_field_tag "file[3][description]", "", {:rows => 3, :cols => 35}%></td>
               <td class="dataCol"><%=check_box_tag "file[3][private_flag]"%></td>
             </tr>
@@ -69,7 +69,7 @@
               <td class="dataCol"></td>
               <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(4);"} %></td>
               <td class="dataCol"><%=file_field_tag "file[4][file]", :required=>true%></td>
-              <td class="dataCol"><%=select_tag "file[4][file_category]", category_options%></td>
+              <td class="dataCol"><%=select_tag "file[4][file_category]", options_for_select(available_file_categories)%></td>
               <td class="dataCol"><%=text_field_tag "file[4][description]", "", {:rows => 3, :cols => 35}%></td>
               <td class="dataCol"><%=check_box_tag "file[4][private_flag]"%></td>              
             </tr>                
@@ -121,7 +121,7 @@
                   + '<td class="dataCol"></td>'
                   + '<td class="dataCol"><a onclick="delete_line(' + line_count + ');" href="javascript:void(0);"><%= t :delete%></a></td>'
                   + '<td class="dataCol"><input type="file" required="required" name="file[' + line_count + '][file]" id="file_' + line_count + '_file"></td>'
-                  + '<td class="dataCol"><select required="required" name="file[' + line_count + '][file_category]" id="file_' + line_count + '_file_category">' + '<%= category_options.gsub!(/\n+/, "")%>' + '</select></td>'
+                  + '<td class="dataCol"><select required="required" name="file[' + line_count + '][file_category]" id="file_' + line_count + '_file_category">' + '<%= options_for_select(available_file_categories).gsub!(/\n+/, "")%>' + '</select></td>'
                   + '<td class="dataCol"><input type="text" value="" rows="3" name="file[' + line_count + '][description]" id="file_' + line_count + '_description" cols="35"></td>'
                   + '<td class="dataCol"><input type="checkbox" value="1" name="file[' + line_count + '][private_flag]" id="file_' + line_count + '_private_flag"></td>'
                   + '</tr>');

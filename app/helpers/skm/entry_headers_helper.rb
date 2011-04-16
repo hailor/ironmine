@@ -32,4 +32,20 @@ module Skm::EntryHeadersHelper
     end
     raw(base_content)
   end
+
+  def list_exist_attachments_during_create(attachments)
+    html = ""
+    if attachments && attachments.any?
+      attachments.each do |a|
+        d1 = content_tag(:td, "", :class => "dataCol")
+        d2 = content_tag(:td, link_to(t(:delete), {:controller => "skm/entry_headers", :action => "remove_exits_attachment_during_create", :att_id => a.latest_version_id}, :remote => "true"), :class => "dataCol")
+        d3 = content_tag(:td, a.file_name, :class => "dataCol")
+        d4 = content_tag(:td, a.category_name, :class => "dataCol")
+        d5 = content_tag(:td, a.description, :class => "dataCol")
+        r = content_tag(:tr, d1 + d2 + d3 + d4 + d5)
+        html << r
+      end
+    end
+    raw(html)
+  end
 end

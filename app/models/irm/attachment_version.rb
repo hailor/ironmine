@@ -127,11 +127,11 @@ class Irm::AttachmentVersion < ActiveRecord::Base
     if attachments && attachments.is_a?(Hash)
       #对每个附件进行处理
       attachments.each_value do |attachment|
-        #创建附件容器
-        @container=Irm::Attachment.create()
         #获取文件
         file = attachment['file']
         next unless file && file.size > 0
+        #创建附件容器
+        @container=Irm::Attachment.create()
         #创建附件，此处的:data不是数据库列,而是在Attachment中用语句
         #has_attached_file :data, :styles => {:thumb=> "60x60#",:small => "150x150>" }
         #生成的由Paperclip插件处理

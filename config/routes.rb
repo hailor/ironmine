@@ -786,6 +786,7 @@ Ironmine::Application.routes.draw do
     match '/entry_headers/my_drafts(.:format)' => "entry_headers#my_drafts", :via => :get
     match '/entry_headers/:person_id/my_drafts_data' => "entry_headers#my_drafts_data"
     match '/entry_headers/new_from_icm_request' => "entry_headers#new_from_icm_request", :via => :get
+    match '/entry_headers/:att_id/remove_exits_attachment_during_create' => "entry_headers#remove_exits_attachment_during_create", :via => :get
     #entry_reports
     match '/entry_reports/rpt_entry_submit_summary(.:format)'=>"entry_reports#rpt_entry_submit_summary"
     match '/entry_reports(/index)(.:format)'=>"entry_reports#index"
