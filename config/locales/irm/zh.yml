@@ -387,6 +387,7 @@ zh:
   label_irm_mail_template_multilingual: 多语言
   label_irm_mail_template_multilingual_edit: 多语言编辑
   label_irm_mail_template_info: 邮件模板信息
+  label_irm_mail_template_content: 模板内容
   label_irm_mail_template_show: 邮件模板
   label_irm_scirpt_context_query_field: 邮件模板参数查询
   label_irm_scirpt_context_field_name: 参数名称
