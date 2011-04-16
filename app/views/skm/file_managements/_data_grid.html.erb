@@ -27,7 +27,7 @@
           </div>
         </div>
         <%= datatable("skm_files_list",url_for(:action=>"get_data",:format=>"json"),
-                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"40px"},
+                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50px"},
                    {:key=>"data_file_name",:label=>t(:label_skm_file_name),:formatter=>"Y.irm.template",:sortable=>true, :searchable => true,:width=>"15%"},
                    {:key=>"category_name",:label=>t(:label_skm_file_category), :width=>"15%"},
                    {:key=>"description",:label=>t(:description), :searchable => true,:width=>"25%"},
