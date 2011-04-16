@@ -11,7 +11,7 @@
               <%= link_to Irm::Person.current.name, {:controller => "irm/my_info", :action => "index"} %>
             </h1>
           </span>
-          <span class="pageDescription"><a href="javascript:void(0);"><%= Time.now.strftime(t("date.formats.long")) + t("date.day_names")[Time.now.strftime("%w").to_f]%></a></span>
+          <span class="pageDescription"><a href="javascript:void(0);" onclick="change_to_calendar_tab();"><%= Time.now.strftime(t("date.formats.long")) + t("date.day_names")[Time.now.strftime("%w").to_f]%></a></span>
       </div>
     </div>
     <div class="links">
@@ -252,7 +252,14 @@
     tabview.render();
     var currentTab = Y.one("#templateBody").getAttribute("current");
     Y.one("#templateBody").one("a#"+currentTab).simulate("click");
-  });        
+  });
+
+  //点击事件时,切换到工作日历的tab
+  function change_to_calendar_tab(){
+      GY.use("node", function(Y){
+            Y.one("a[id='calendar_task']").simulate("click");
+      });
+  }
 </script>
 
 <% content_for :sidebar do%>
