@@ -96,10 +96,17 @@
         </tbody>
       </table>
     </div>
+    <div class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend"><span class="requiredExampleOuter">
+          <span class="requiredExample">&nbsp;</span></span>
+           <span class="requiredMark">*</span><span class="requiredText"> = <%=t(:label_is_required)%></span></span></span>
+      <h3><%=t(:label_irm_mail_template_content)%></h3>
+    </div>
     <div class="pbSubsection" id="templateBody" style="display:none" current="<%=I18n.locale %>">
-      <ul style="width:10%">
+      <ul>
         <% available_languages.each do |language| %>
-          <li style="float:right;"><a id="<%= language[:language_code]%>" href="#template<%= language[:language_code]%>"><%= language[:description] %></a></li>
+          <li><a id="<%= language[:language_code]%>" href="#template<%= language[:language_code]%>"><%= language[:description] %></a></li>
           <li style="display:none"><a href="#xxx"></a></li>
         <% end %>
       </ul>
@@ -124,7 +131,7 @@
 
                 <tr>
                   <td class="labelCol"><label><%=t(:label_irm_mail_template_mail_body)%></label></td>
-                  <td class="data2Col" colspan="3"><%=tl_f.text_area :mail_body ,:cols => 85, :rows => 15,:required=>true%></td>
+                  <td class="data2Col" colspan="3"><%=tl_f.text_area :mail_body ,:cols => 85, :rows => 12,:required=>true%></td>
                 </tr>
             </tbody>
           </table>

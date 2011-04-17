@@ -33,7 +33,7 @@
               <td class="labelCol"><label><%=(t :label_irm_wf_task_name)%></label></td>
               <td class="dataCol"><%= f.text_field :name, :required => true%></td>
               <td class="labelCol"><label><%=(t :label_irm_wf_task_start_at)%></label></td>
-              <td class="dataCol"><%=f.text_field :start_at, :id => "date1", :size => 8, :required => true, :value => @task.start_at.strftime("%F")%>
+              <td class="dataCol"><%=f.text_field :start_at, :id => "date1", :size => 12, :required => true, :value => @task.start_at.strftime("%F")%>
                 <%=select_tag "start_at_h", options_for_select(available_hours, @task.start_at.strftime("%R")), :id => "datetime1"%>
                 &nbsp;<% link_to Time.now.strftime("%r"), {}, :href => "javascript:void(0)", :id => "date_now_1"%>&nbsp;</td>
             </tr>
@@ -41,13 +41,20 @@
               <td class="labelCol"><label><%=t :label_irm_wf_task_assigned_to%></label></td>
               <td class="dataCol"><%=select_tag "assigned_to", options_for_select(Irm::Person.enabled.collect{|p| [p.name, p.id]}, @task.calendar.assigned_to)%></td>
               <td class="labelCol"><label><%=(t :label_irm_wf_task_end_at)%></label></td>
-              <td class="dataCol"><%=f.text_field :end_at, :id => "date2", :size => 8, :required => true, :value => @task.end_at.strftime("%F")%>
+              <td class="dataCol"><%=f.text_field :end_at, :id => "date2", :size => 12, :required => true, :value => @task.end_at.strftime("%F")%>
                 <%=select_tag "end_at_h", options_for_select(available_hours, @task.end_at.strftime("%R")), :id => "datetime2"%>
                 &nbsp;<% link_to Time.now.strftime("%r"), {}, :href => "javascript:void(0)", :id => "date_now_2"%>&nbsp;</td>
             </tr>
             <tr>
+              <td class="labelCol"><label><%= t :label_irm_wf_task_priority %></label></td>
+              <td class="dataCol"><%= f.select :priority, available_wf_task_priorities %></td>
               <td class="labelCol"><label><%=t :label_irm_wf_task_location%></label></td>
-                  <td class="dataCol"><%=f.text_field :location%></td>
+              <td class="dataCol"><%=f.text_field :location%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%= t :label_irm_wf_task_task_status %></label></td>
+              <td class="dataCol"><%= f.select :task_status, available_wf_task_statuses %></td>
+
             </tr>
         </tbody>
       </table>
@@ -110,6 +117,25 @@
           show_irm_calendar(YAHOO,Event,Dom,"date1","date1","cal1");
           show_irm_calendar(YAHOO,Event,Dom,"date2","date2","cal2");
        });
+  });
+
+  GY.use('node', function(Y){
+      var rrule = '<%= @task.rrule.nil? ? 0 : @task.rrule.size%>';
+
+      function recurrences_checked(){
+        if (rrule == '0')
+        {
+          Y.one("#date2").set("disabled", false);
+        }
+        else
+        {
+          Y.one("#date2").set("disabled", true);
+          Y.one("#date2").set("value", "");
+        }
+      }
+
+      recurrences_checked();
+
   });
 </script>
 

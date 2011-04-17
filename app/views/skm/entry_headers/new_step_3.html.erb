@@ -1,5 +1,5 @@
 <%= app_title %>
-<%= form_for(@entry_header,:url=>{:action=>"new"},:builder => LabellingFormBuilder, :html => {:name => "new_skm_entry_header"}) do |f| %>
+<%= form_for(@entry_header,:url=>{:action=>"new"},:builder => LabellingFormBuilder, :html => {:name => "new_skm_entry_header", :multipart => true}) do |f| %>
     <%= f.hidden_field :entry_template_id %>
     <%= f.hidden_field :entry_title %>
     <%= f.hidden_field :keyword_tags %>
@@ -19,7 +19,68 @@
     <div class="pbWizardBody">
       <div class="secondaryPalette">
         <div class="pbBody">
-
+            <div class="pbSubsection">
+              <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                  <tr>
+                    <th width="20%"></th>
+                    <th width="40px"></th>
+                    <th><%= t :label_skm_file_name %></th>
+                    <th><%= t :label_skm_file_category %></th>
+                    <th><%= t :description%></th>
+                  </tr>
+                </thead>
+                <tbody id="file_body">
+                    <tbody id="exist_attachments_list">
+                        <%= list_exist_attachments_during_create(@attachments)%>
+                    </tbody>
+                    <tr id="file_0">
+                      <td class="dataCol"></td>
+                      <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(0);"} %></td>
+                      <td class="dataCol"><%=file_field_tag "file[0][file]", :required=>true%></td>
+                      <td class="dataCol"><%=select_tag "file[0][file_category]", options_for_select(available_file_categories)%></td>
+                      <td class="dataCol"><%=text_field_tag "file[0][description]", "", {:rows => 3, :cols => 35}%></td>
+                    </tr>
+                    <tr id="file_1">
+                      <td class="dataCol"></td>
+                      <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(1);"} %></td>
+                      <td class="dataCol"><%=file_field_tag "file[1][file]", :required=>true%></td>
+                      <td class="dataCol"><%=select_tag "file[1][file_category]", options_for_select(available_file_categories)%></td>
+                      <td class="dataCol"><%=text_field_tag "file[1][description]", "", {:rows => 3, :cols => 35}%></td>
+                    </tr>
+                    <tr id="file_2">
+                      <td class="dataCol"></td>
+                      <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(2);"} %></td>
+                      <td class="dataCol"><%=file_field_tag "file[2][file]", :required=>true%></td>
+                      <td class="dataCol"><%=select_tag "file[2][file_category]", options_for_select(available_file_categories)%></td>
+                      <td class="dataCol"><%=text_field_tag "file[2][description]", "", {:rows => 3, :cols => 35}%></td>
+                    </tr>
+                    <tr id="file_3">
+                      <td class="dataCol"></td>
+                      <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(3);"} %></td>
+                      <td class="dataCol"><%=file_field_tag "file[3][file]", :required=>true%></td>
+                      <td class="dataCol"><%=select_tag "file[3][file_category]", options_for_select(available_file_categories)%></td>
+                      <td class="dataCol"><%=text_field_tag "file[3][description]", "", {:rows => 3, :cols => 35}%></td>
+                    </tr>
+                    <tr id="file_4">
+                      <td class="dataCol"></td>
+                      <td class="dataCol"><%= link_to t(:delete), {}, {:href => "javascript:void(0);", :onclick => "delete_line(4);"} %></td>
+                      <td class="dataCol"><%=file_field_tag "file[4][file]", :required=>true%></td>
+                      <td class="dataCol"><%=select_tag "file[4][file_category]", options_for_select(available_file_categories)%></td>
+                      <td class="dataCol"><%=text_field_tag "file[4][description]", "", {:rows => 3, :cols => 35}%></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                      <td class="dataCol"></td>
+                      <td class="dataCol"></td>
+                      <td class="dataCol"><%= link_to t(:label_skm_file_add_line), {}, {:href => "javascript:void(0);", :onclick => "generate_line();"} %></td>
+                      <td class="dataCol"></td>
+                      <td class="dataCol"></td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
         </div>
       </div>
     </div>
@@ -62,6 +123,34 @@
     GY.use(function(Y){
         Y.one("#tr_");
     })
+  }
+
+
+  var line_count = 5;
+
+  function save(){
+    document.file_form.action = "batch_create";
+    file_form.submit();
+  }
+ function delete_line(l)
+ {
+      GY.use(function(Y){
+          Y.one("#file_" + l).remove();
+      })
+  }
+  function generate_line()
+  {
+      GY.use(function(Y){
+          var node = Y.Node.create('<tr id="file_' + line_count + '">'
+                  + '<td class="dataCol"></td>'
+                  + '<td class="dataCol"><a onclick="delete_line(' + line_count + ');" href="javascript:void(0);"><%= t :delete%></a></td>'
+                  + '<td class="dataCol"><input type="file" required="required" name="file[' + line_count + '][file]" id="file_' + line_count + '_file"></td>'
+                  + '<td class="dataCol"><select required="required" name="file[' + line_count + '][file_category]" id="file_' + line_count + '_file_category">' + '<%= options_for_select(available_file_categories).gsub!(/\n+/, "")%>' + '</select></td>'
+                  + '<td class="dataCol"><input type="text" value="" rows="3" name="file[' + line_count + '][description]" id="file_' + line_count + '_description" cols="35"></td>'
+                  + '</tr>');
+          Y.one("#file_body").appendChild(node);
+      });
+      line_count ++;
   }
 </script>
 <% end %>

@@ -387,6 +387,7 @@ zh:
   label_irm_mail_template_multilingual: 多语言
   label_irm_mail_template_multilingual_edit: 多语言编辑
   label_irm_mail_template_info: 邮件模板信息
+  label_irm_mail_template_content: 模板内容
   label_irm_mail_template_show: 邮件模板
   label_irm_scirpt_context_query_field: 邮件模板参数查询
   label_irm_scirpt_context_field_name: 参数名称
@@ -844,7 +845,13 @@ zh:
   label_irm_wf_task_recurrence_weekday_of_every_month: 在每 %{m} 个月的第 %{n}
   label_irm_wf_task_assigned_to: 分配给
   label_irm_wf_task_recurrence_edit: 编辑重复序列
+  label_irm_wf_task_priority: 优先级
+  label_irm_wf_task_task_status: 任务状态
+  label_irm_wf_task_mail: 电子邮件
+  label_irm_wf_task_phone: 联系电话
+
   label_action_edit_recurrence: 编辑重复序列
+
   recurrence_occurs: Occurs
   recurrence_byday: on day %{m}
   recurrence_byday_week: on %{m}
