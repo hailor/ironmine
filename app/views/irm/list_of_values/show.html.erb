@@ -8,7 +8,7 @@
           <td class="pbTitle"><h2 class="mainTitle"><%= @list_of_value[:name] %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @list_of_value}%></div>
-            <div class="button"><%= link_to t(:test), {:action => "execute_test"}%></div>
+            <div class="button"><%= link_to t(:test), {:action => "execute_test",:format=>:js},:remote=>true%></div>
             <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
           </td>
         </tr>

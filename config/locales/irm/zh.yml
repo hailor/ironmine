@@ -912,4 +912,5 @@ zh:
   label_irm_list_of_value_addition_clause: 其他查询条件
   label_irm_list_of_value_new: 新建值列表
   label_irm_list_of_value_edit: 编辑值列表
+  label_irm_list_of_value_test_information: 值列表测试结果
   #======================== end list of values====================

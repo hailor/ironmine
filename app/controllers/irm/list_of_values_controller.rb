@@ -81,6 +81,32 @@ class Irm::ListOfValuesController < ApplicationController
     end
   end
 
+
+  def execute_test
+    @list_of_value = Irm::ListOfValue.find(params[:id])
+    @rows = 10
+    @result_message = ""
+    @show_test_lov = true
+    begin
+      @result_message << "====================Generate model scope:====================\n"
+      model_query = @list_of_value.generate_scope
+      @result_message << model_query
+      @result_message << "\n"
+      @result_message << "====================Execute  query:====================\n"
+      result_scope = eval(model_query)
+      @result_message << "#{result_scope.to_sql}\n"
+      @result_message << "==================Result  count======================\n"
+      @result_message << "#{result_scope.length}\n"
+
+    rescue =>text
+      @show_test_lov = false
+      @rows = 20
+      @result_message << "====================Error  message:====================\n"
+      @result_message << text.message
+      puts("=====Execute error=========")
+    end
+  end
+
   def multilingual_edit
     @list_of_value = Irm::ListOfValue.find(params[:id])
   end

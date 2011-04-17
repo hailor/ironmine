@@ -14,7 +14,11 @@
         </table>
       </div>
       <div class="pbBody">
-        <%= text_area_tag(:message,@result_message,:style=>"width:100%",:rows=>@rows) %>
+        <%= lov_field_tag(:lov,@list_of_value.lov_code) if @show_test_lov %>
       </div>
+      <div class="pbBody">
+        <%= text_area_tag(:message,@result_message,:style=>"width:100%",:rows=>@rows,:readonly=>true) %>
+      </div>
+
     </div>
 </div>

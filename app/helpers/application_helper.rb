@@ -418,4 +418,12 @@ module ApplicationHelper
     (person_id&&Irm::Person.current.id.eql?(person_id))
   end
 
+  def blank_select_tag(name, collection,selected=nil, options = {})
+    choices = options_for_select(collection, selected = nil)
+    html_options=(options||{}).merge({:include_blank=>"--- #{I18n.t(:actionview_instancetag_blank_option)} ---",
+                                 :blank=> "--- #{I18n.t(:actionview_instancetag_blank_option)} ---"})
+    select_tag(name, choices,html_options)
+  end
+
+
 end

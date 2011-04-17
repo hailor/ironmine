@@ -1,6 +1,8 @@
 class Irm::ListOfValue < ActiveRecord::Base
   set_table_name :irm_list_of_values
 
+  belongs_to :business_object,:foreign_key=>:bo_code,:primary_key=>:business_object_code
+
   #多语言关系
   attr_accessor :name,:description,:value_title,:desc_title,:addition_title
   has_many :list_of_values_tls
@@ -19,12 +21,32 @@ class Irm::ListOfValue < ActiveRecord::Base
     select("#{Irm::BusinessObject.view_name}.name bo_name")
   }
 
-  def bo_attributes
-    bo_oas = []
-    bo_oas << id_column
-    bo_oas << value_column
-    bo_oas << desc_column
-    bo_oas << addition_column.split("#")
-    bo_oas.flatten
+
+
+  def generate_scope(options={})
+    model_query = self.business_object.generate_query_by_hash_attributes(self.lov_column_hash,true)
+    where_clause_str = ""
+    # parse params in where clause
+    if !self.where_clause.nil?&&!self.where_clause.strip.blank?
+      if %r{\{\{.*\}\}}.match(self.where_clause)
+      where_clause_template = Liquid::Template.parse self.where_clause
+      where_clause_str << %(.where("#{where_clause_template.render({"master_table"=>self.business_object.bo_table_name})}"))
+
+      else
+      where_clause_str << %(.where(#{self.where_clause}))
+      end
+    end
+    model_query = model_query+where_clause_str
+    model_query
   end
+
+  def lov_column_hash
+    column_hash = {self.id_column=>"id_value",self.value_column=>"value",self.desc_column=>"desc_value"}
+    addition_column.split("#").each do |ac|
+      column_hash.merge!({ac=>ac})
+    end unless addition_column.strip.blank?||addition_column.nil?
+    column_hash
+  end
+
+
 end
