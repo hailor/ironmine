@@ -6,7 +6,7 @@
 
   function handle_quick_show(e){
       //e.currentTarget.get("href")
-      GY.use("yui2-container", "io", "node", "yui2-dom", function(Y){
+      GY.use("yui2-container", "io", "yui2-dom", function(Y){
         var dialog;
         //确保没有HIDDEN的dialog，只留显示的那个，多余的全部删除
         remove_all_dialog();
@@ -52,7 +52,7 @@
   }
 
   function remove_all_dialog(){
-      GY.use("node", function(Y){
+      GY.use(function(Y){
         var d = Y.one("#container_c");
         if(d){
             d.remove();
