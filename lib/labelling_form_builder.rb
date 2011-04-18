@@ -34,11 +34,21 @@ class LabellingFormBuilder  < ActionView::Helpers::FormBuilder
   end
 
 
- def blank_select(field, choices, options = {}, html_options = {})
-    options=(options||{}).merge({:include_blank=>"--- #{I18n.t(:actionview_instancetag_blank_option)} ---"})
-    html_options =(html_options||{}).merge(:blank=> "--- #{I18n.t(:actionview_instancetag_blank_option)} ---")
-    select(field, choices, options, html_options)
+  def blank_select(field, choices, options = {}, html_options = {})
+     options=(options||{}).merge({:include_blank=>"--- #{I18n.t(:actionview_instancetag_blank_option)} ---"})
+     html_options =(html_options||{}).merge(:blank=> "--- #{I18n.t(:actionview_instancetag_blank_option)} ---")
+     select(field, choices, options, html_options)
   end
+
+
+  def lov_field(field, lov_code, options = {}, html_options = {})
+    lov = Irm::ListOfValue.where(:lov_code=>lov_code).first
+    values = []
+    values = eval(lov.generate_scope).collect{|v| [v[:desc_value],v[:value],v.attributes]} if lov
+    blank_select(field,values,options,html_options)
+  end
+
+
   
   def check_box(method, options = {}, checked_value = "Y", unchecked_value = "N")
     if !options.delete(:normal)

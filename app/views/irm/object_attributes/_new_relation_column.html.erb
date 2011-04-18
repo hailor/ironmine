@@ -29,7 +29,7 @@
                     <td class="labelCol"><label for="relation_bo_code"><%=t(:label_irm_object_attribute_relation_bo_code)%></label></td>
                     <td class="dataCol"><%=f.blank_select :relation_bo_code,available_business_object,{}, {:id=>"relation_bo_code",:required=>true}%></td>
                     <td class="labelCol"><label for="relation_column"><%=t(:label_irm_object_attribute_relation_column)%></label></td>
-                    <td class="dataCol"><%=f.blank_select :relation_column,available_object_attribute(@object_attribute.business_object_code,true), {},{:id=>"relation_column",
+                    <td class="dataCol"><%=f.blank_select :relation_column,available_relationable_object_attribute(@object_attribute.business_object_code), {},{:id=>"relation_column",
                                                                                 :required=>true,
                                                                                 :href=>url_for(:controller=>"irm/object_attributes",:action=>"relation_columns",:format=>"json",:business_object_code=>"{relation_bo_code}"),
                                                                                 :depend=>"relation_bo_code"}%></td>
@@ -44,7 +44,7 @@
                     <td class="labelCol"><label for="relation_type"><%=t(:label_irm_object_attribute_relation_type)%></label></td>
                     <td class="dataCol"><%=f.text_field :relation_type, {:id=>"relation_type"}%></td>
                     <td class="labelCol"><label for="lov_code"><%=t(:label_irm_object_attribute_lov_code)%></label></td>
-                    <td class="dataCol"><%=f.text_field :lov_code,{:id=>"lov_code"}%></td>
+                    <td class="dataCol"><%=f.lov_field :lov_code,"LIST_OF_VALUE",{},{:id=>"lov_code"}%></td>
                   </tr>
                   <tr>
                     <td class="labelCol"><label for="where_clause"><%=t(:label_irm_object_attribute_where_clause)%></label></td>

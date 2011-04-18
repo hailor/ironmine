@@ -3,7 +3,7 @@
 <div  class="bWizardBlock">
     <div class="pbWizardTitle tertiaryPalette">
         <div class="ptRightTitle">
-            <%= t(:step_n_total_m, :n => "2", :m => "3") %>
+            <%= t(:step_n_total_m, :n => "2", :m => "4") %>
         </div>
         <h2>
             <%= t(:step_n, :n => "2") %><%= t(:notice_skm_entry_header_input_content) %>
@@ -52,7 +52,7 @@
                     <tbody>
                         <tr>
                           <%= fields_for("skm_entry_details[]", e) do |ef|%>
-                          <td><%= ef.text_area :entry_content, {:rows => e.default_rows, :style => "width:100%;", :value => session[:skm_entry_details][e.id.to_s.to_sym][:entry_content]} %></td>
+                          <td><%= ef.text_area :entry_content, {:rows => e.default_rows, :style => "width:100%;", :value => (session[:skm_entry_details][e.id.to_s.to_sym][:entry_content] if session[:skm_entry_details])} %></td>
                               <%= ef.hidden_field :default_rows, :value => e.default_rows %>
                               <%= ef.hidden_field :element_name, :value => e.element_name %>
                               <%= ef.hidden_field :element_description, :value => e.element_description %>
@@ -113,7 +113,7 @@
 </div>
 <script type="text/javascript">
   function submit_next(){
-    document.new_skm_entry_header.action = "new?step=4";
+    document.new_skm_entry_header.action = "new?step=3";
     new_skm_entry_header.submit();
   }
 

@@ -1,0 +1,120 @@
+<%= form_for(@list_of_value,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_list_of_value_edit)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @list_of_value %>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend">
+          <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+          </span><span class="requiredMark">*</span>
+          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+        </span>
+      </span>
+      <h3><%= t(:label_common_info) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_lov_code"><%=t(:label_irm_list_of_value_lov_code)%></label></td>
+              <td class="dataCol"><%=@list_of_value.lov_code%></td>
+              <td class="labelCol"><label for="list_of_value_name"><%=t(:label_irm_list_of_value_name)%></label></td>
+              <td class="dataCol"><%=f.text_field :name, :required=>true ,:id=>"list_of_value_name"%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_bo_code"><%=t(:label_irm_list_of_value_bo_code)%></label></td>
+              <td class="dataCol"><%=f.blank_select :bo_code,available_business_object,{},:required=>true,:id=>"list_of_value_bo_code"%></td>
+              <td class="labelCol"><label for="list_of_value_id_column"><%=t(:label_irm_list_of_value_id_column)%></label></td>
+              <td class="dataCol"><%=f.blank_select :id_column,available_selectable_object_attribute(@list_of_value.bo_code),{},
+                                                    {:required=>true ,
+                                                     :id=>"list_of_value_id_column",
+                                                     :href=>url_for(:controller=>"irm/object_attributes",:action=>"selectable_columns",:format=>"json",:business_object_code=>"{list_of_value_bo_code}"),
+                                                     :depend=>"list_of_value_bo_code"}%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_value_column"><%=t(:label_irm_list_of_value_value_column)%></label></td>
+              <td class="dataCol"><%=f.blank_select :value_column,available_selectable_object_attribute(@list_of_value.bo_code),{},
+                                                    {:required=>true ,
+                                                     :id=>"list_of_value_value_column",
+                                                     :href=>url_for(:controller=>"irm/object_attributes",:action=>"selectable_columns",:format=>"json",:business_object_code=>"{list_of_value_bo_code}"),
+                                                     :depend=>"list_of_value_bo_code"}%></td>
+              <td class="labelCol"><label for="list_of_value_desc_column"><%=t(:label_irm_list_of_value_desc_column)%></label></td>
+              <td class="dataCol"><%=f.blank_select :desc_column,available_selectable_object_attribute(@list_of_value.bo_code),{},
+                                                    {:required=>true ,
+                                                     :id=>"list_of_value_desc_column",
+                                                     :href=>url_for(:controller=>"irm/object_attributes",:action=>"selectable_columns",:format=>"json",:business_object_code=>"{list_of_value_bo_code}"),
+                                                     :depend=>"list_of_value_bo_code"}%></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="list_of_value_value_title"><%=t(:label_irm_list_of_value_value_title)%></label></td>
+              <td class="dataCol"><%=f.text_field :value_title, :required=>true ,:id=>"list_of_value_value_title"%></td>
+              <td class="labelCol"><label for="list_of_value_description_title"><%=t(:label_irm_list_of_value_desc_title)%></label></td>
+              <td class="dataCol"><%=f.text_field :desc_title, :required=>true ,:id=>"list_of_value_description_title"%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_value_column_width"><%=t(:label_irm_list_of_value_value_column_width)%></label></td>
+              <td class="dataCol"><%=f.text_field :value_column_width, :required=>true ,:id=>"list_of_value_value_column_width"%></td>
+              <td class="labelCol"><label for="list_of_value_desc_column_width"><%=t(:label_irm_list_of_value_desc_column_width)%></label></td>
+              <td class="dataCol"><%=f.text_field :desc_column_width, :required=>true ,:id=>"list_of_value_desc_column_width"%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_addition_column"><%=t(:label_irm_list_of_value_addition_column)%></label></td>
+              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_field :addition_column, :size=>80 ,:id=>"list_of_value_addition_column"%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_addition_title"><%=t(:label_irm_list_of_value_addition_title)%></label></td>
+              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_field :addition_title, :size=>80,:id=>"list_of_value_addition_title"%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_addition_column_width"><%=t(:label_irm_list_of_value_addition_column_width)%></label></td>
+              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_field :addition_column_width ,:size=>80,:id=>"list_of_value_addition_column_width"%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_listable_flag"><%=t(:label_irm_list_of_value_listable_flag)%></label></td>
+              <td class="dataCol"><%=f.check_box :listable_flag,:id=>"list_of_value_listable_flag"%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_where_clause"><%=t(:label_irm_list_of_value_where_clause)%></label></td>
+              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_area :where_clause ,:id=>"list_of_value_where_clause",:rows=>5,:cols=>100%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
+<script type="text/javascript">
+  GY.use("cascadeselect",function(Y){
+     new Y.CascadeSelect({source: "#list_of_value_bo_code",target:["#list_of_value_id_column","#list_of_value_value_column","#list_of_value_desc_column"]});
+  });
+</script>

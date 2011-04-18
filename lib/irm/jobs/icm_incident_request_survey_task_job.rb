@@ -3,7 +3,7 @@ module Irm
     class IcmIncidentRequestSurveyTaskJob < Struct.new(:incident_request_id)
       def perform
         request = Icm::IncidentRequest.find(incident_request_id)
-        surveys = Csi::Survey.where("with_incident_request_from < ?", Time.now).
+        surveys = Csi::Survey.where("with_incident_request_from IS NULL OR with_incident_request_from < ?", Time.now).
             where("with_incident_request_to IS NULL OR with_incident_request_to > ?", Time.now).
             where("with_incident_request = ?", Irm::Constant::SYS_YES).enabled
 
