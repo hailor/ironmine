@@ -310,6 +310,45 @@ zh:
   label_irm_auth_source_edit: 编辑认证源
   label_irm_auth_source_data_info: LDAP数据属性
   #=========================    end auth_sources_controller=======================#
+  #=========================    irm ldap_sources_controller=======================#
+  label_irm_ldap_source_type: 认证源类型
+  label_irm_ldap_source_name: 认证源名称
+  label_irm_ldap_source_host: 主机
+  label_irm_ldap_source_port: 端口
+  label_irm_ldap_source_account: 账户
+  label_irm_ldap_source_account_password: 密码
+  label_irm_ldap_source_base_dn: 基准DN
+  label_irm_ldap_source_attr_login: 用户名属性
+  label_irm_ldap_source_attr_firstname: 名属性
+  label_irm_ldap_source_attr_lastname: 姓属性
+  label_irm_ldap_source_attr_email: 电子邮件属性
+  label_irm_ldap_source_onthefly_register_flag: 拷贝
+  label_irm_ldap_source: 认证源
+  label_irm_ldap_source_list: 认证源列表
+  label_irm_ldap_source_new: 创建认证源
+  label_irm_ldap_source_edit: 编辑认证源
+  label_irm_ldap_source_data_info: LDAP数据属性
+  #=========================    end ldap_sources_controller=======================#
+
+  #=========================    irm ldap_auth_headers_controller=======================#
+  label_ldap_auth_header_list: 认证方案列表
+  label_icm_ldap_auth_header_name: 认证方案
+  label_icm_ldap_auth_header_edit: 新建认证方案
+  label_icm_ldap_auth_header_new: 新建认证方案
+  ldap_auth_header_ldap_source: LDAP源
+  ldap_auth_header_auth_code: 认证方案编码
+  ldap_auth_header_auth_cn: 认证方案域
+  ldap_auth_header_description: 认证方案描述
+  ldap_auth_header_status_code: 认证方案状态
+  #=========================    end ldap_auth_headers_controller=======================#
+
+  label_icm_ldap_auth_attribute_new: 新建认证方案属性
+  label_ldap_auth_attribute_local_attr: 认证属性
+  label_ldap_auth_attribute_attr_type: 字段类型
+  label_ldap_auth_attribute_ldap_attr: ldap认证域
+  label_ldap_auth_attribute_description: 属性描述
+  label_ldap_auth_attribute_status_code: 是否可用
+
   #=========================    irm scripts_controller=======================#
   label_irm_script_script_code: 编码
   label_irm_script_name: 名称

@@ -12,7 +12,7 @@ gem 'liquid',:require=>'liquid'
 
 gem "daemons"
 
-gem "ruby-net-ldap"
+gem "net-ldap"
 
 gem "spreadsheet"
 

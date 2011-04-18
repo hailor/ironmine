@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  local_attr: MyString
+  attr_type: MyString
+  ldap_attr: MyString
+  description: MyString
+  status_code: MyString
+
+two:
+  local_attr: MyString
+  attr_type: MyString
+  ldap_attr: MyString
+  description: MyString
+  status_code: MyString
