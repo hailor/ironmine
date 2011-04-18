@@ -119,6 +119,8 @@ en:
   remember_user_name: Remember User Name
   no_account: No Account
   label_cancel_confirm: Data have not saved. Are you sure?
+  all: All
+  search_options: Search Options
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type

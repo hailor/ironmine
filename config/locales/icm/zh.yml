@@ -88,6 +88,7 @@ zh:
   #========================= end icm incident_statuses_controller=======================#
   #=========================    icm incident_requests_controller=======================#
   label_icm_reply: 回复
+  label_icm_incident_request: 事故单
   label_icm_incident_request_list: 事故单列表
   label_icm_incident_request_new: 新建事故单
   label_icm_incident_request_edit: 编辑事故单

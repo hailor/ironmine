@@ -90,6 +90,7 @@ en:
   #========================= end icm incident_statuses_controller=======================#
   #=========================    icm incident_requests_controller=======================#
   label_icm_reply: Reply
+  label_icm_incident_request: Incident request
   label_icm_incident_request_list: Incident request list
   label_icm_incident_request_new: New incident request
   label_icm_incident_request_edit: Edit incident request

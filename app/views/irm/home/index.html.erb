@@ -131,8 +131,8 @@
       });
 
       Y.one("#headerSearchOptionsLink").on("click", function(e){
-          dialog.setBody('test body');
-          dialog.setHeader('header');
+          dialog.setBody("<iframe src='/common/search_options' style='height:180px;'></iframe>");
+          dialog.setHeader('<%= t :search_options%>');
           dialog.render(document.body);
           dialog.center();
           dialog.show();
