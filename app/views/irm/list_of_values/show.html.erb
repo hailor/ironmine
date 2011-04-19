@@ -70,7 +70,11 @@
             </tr>
             <tr>
               <td class="labelCol"><label for="list_of_value_where_clause"><%=t(:label_irm_list_of_value_where_clause)%></label></td>
-              <td class="dataCol" colspan="3" style="width:82%"><div><%=text_area_tag :where_clause ,@list_of_value.where_clause,:id=>"list_of_value_where_clause",:readonly=>true,:rows=>5,:cols=>100%></div></td>
+              <td class="dataCol" colspan="3" style="width:82%"><div><%=text_area_tag :where_clause ,@list_of_value.where_clause,:id=>"list_of_value_where_clause",:readonly=>true,:rows=>3,:cols=>100%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_query_clause"><%=t(:label_irm_list_of_value_query_clause)%></label></td>
+              <td class="dataCol" colspan="3" style="width:82%"><%=text_area_tag :query_clause ,@list_of_value.query_clause,:id=>"list_of_value_query_clause",:readonly=>true,:rows=>3,:cols=>100%></td>
             </tr>
         </tbody>
       </table>

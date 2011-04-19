@@ -92,7 +92,11 @@
             </tr>
             <tr>
               <td class="labelCol"><label for="list_of_value_where_clause"><%=t(:label_irm_list_of_value_where_clause)%></label></td>
-              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_area :where_clause ,:id=>"list_of_value_where_clause",:rows=>5,:cols=>100%></td>
+              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_area :where_clause ,:id=>"list_of_value_where_clause",:rows=>3,:cols=>100%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_query_clause"><%=t(:label_irm_list_of_value_query_clause)%></label></td>
+              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_area :query_clause ,:id=>"list_of_value_query_clause",:rows=>3,:cols=>100%></td>
             </tr>
         </tbody>
       </table>
