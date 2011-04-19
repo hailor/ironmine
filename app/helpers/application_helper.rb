@@ -340,11 +340,11 @@ module ApplicationHelper
   #button，而id_cal是日历显示的ID，最好不一致
   def calendar_view(id_text_field,id_button,id_cal)
     script = %Q(
-       GY.use( 'yui2-calendar','yui2-container',function(Y) {
+       GY.use( 'yui2-calendar','yui2-container','calendarlocalization#{I18n.locale.to_s}',function(Y) {
             var YAHOO = Y.YUI2;
             var Event = YAHOO.util.Event,Dom = YAHOO.util.Dom;
              YAHOO.util.Event.onDOMReady(function () {
-                show_irm_calendar(YAHOO,Event,Dom,"#{id_button}","#{id_text_field}","#{id_cal}");
+                show_irm_calendar(YAHOO,Event,Dom,"#{id_button}","#{id_text_field}","#{id_cal}", yui_calendar_custom_cfg);
              });
        });
     )
