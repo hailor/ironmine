@@ -44,7 +44,7 @@ class Irm::WfTasksController < ApplicationController
       #如果创建周期标识打开,任务的结束日期只允许为开始日期当天
       @task.end_at = @task.start_at.strftime("%F") + " " + params[:end_at_h]
 
-      rrule = rrule.merge({:until => DateTime.strptime(params[:recurrence_end_at], '%Y-%m-%d').strftime("%Y%m%d") + "T000000Z"})
+      rrule = rrule.merge({:until => DateTime.strptime(params[:recurrence_end_at], '%Y-%m-%d').strftime("%Y%m%d") + "T235959Z"})
       if params[:rectype] == "DAILY"
         #频率: 每天
         rrule = rrule.merge({:freq => "DAILY"})
