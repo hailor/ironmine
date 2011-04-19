@@ -122,6 +122,7 @@
 
     if(freq == "DAILY"){
         Y.one("#rd").set("checked", "checked");
+        Y.one("#d").setStyle("display", "");
         if (byday.split(",").length == 5){
             Y.one("#recd_EVERYDAY").set("checked", "checked");
         }
