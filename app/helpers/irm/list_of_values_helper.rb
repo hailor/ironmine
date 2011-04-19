@@ -30,7 +30,7 @@ module Irm::ListOfValuesHelper
       acts = lov[:addition_title].split("#")
     end
     acs.each_with_index do |column,index|
-      columns <<{:key=>columns,:label=>acts[index],:width=>acws[index]}
+      columns <<{:key=>column,:label=>acts[index],:width=>acws[index]}
     end if acs
 
     script = autocomplete("#{input_node_id}Label",url_for(:controller=>"irm/list_of_values",:action=>"get_lov_data",:id=>lov.id),columns)
