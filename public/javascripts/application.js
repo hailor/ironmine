@@ -11,7 +11,7 @@ GY.use('node',function(Y){
             this.set("value", this.get('value').toString().replace(pattern,''));
           }
         }
-   })
+   });
 });
 function show_irm_calendar(YAHOO,Event,Dom,id_button,id_date_field,id_cal, cfg){
         var dialog, calendar;
