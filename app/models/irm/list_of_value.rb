@@ -29,11 +29,19 @@ class Irm::ListOfValue < ActiveRecord::Base
     # parse params in where clause
     if !self.where_clause.nil?&&!self.where_clause.strip.blank?
       if %r{\{\{.*\}\}}.match(self.where_clause)
-      where_clause_template = Liquid::Template.parse self.where_clause
-      where_clause_str << %(.where("#{where_clause_template.render({"master_table"=>self.business_object.bo_table_name})}"))
-
+        where_clause_template = Liquid::Template.parse self.where_clause
+        where_clause_str << %(.where("#{where_clause_template.render({"master_table"=>self.business_object.bo_table_name})}"))
       else
-      where_clause_str << %(.where(#{self.where_clause}))
+        where_clause_str << %(.where("#{self.where_clause}"))
+      end
+    end
+
+    if !self.query_clause.nil?&&!self.query_clause.strip.blank?&&options[:desc_value]&&!options[:desc_value].blank?
+      if %r{\{\{.*\}\}}.match(self.query_clause)
+        query_clause_template = Liquid::Template.parse self.query_clause
+        where_clause_str << %(.where("#{query_clause_template.render({"master_table"=>self.business_object.bo_table_name,"query"=>options[:desc_value]})}"))
+      else
+        where_clause_str << %(.where("#{self.query_clause}"))
       end
     end
     model_query = model_query+where_clause_str
@@ -46,6 +54,14 @@ class Irm::ListOfValue < ActiveRecord::Base
       column_hash.merge!({ac=>ac})
     end unless addition_column.strip.blank?||addition_column.nil?
     column_hash
+  end
+
+  def lov_columns
+    columns = [:id_value,:value,:desc_value]
+    addition_column.split("#").each do |ac|
+      columns << ac.to_sym
+    end unless addition_column.strip.blank?||addition_column.nil?
+    columns
   end
 
 
