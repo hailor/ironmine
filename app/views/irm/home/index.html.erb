@@ -121,6 +121,25 @@
 </style>
 
 <script type="text/javascript">
+  GY.use('yui2-container', function(Y){
+      var dialog;
+      dialog = new Y.YUI2.widget.Dialog("container_abc", {
+          visible: true,
+          context: [Y.one("#headerSearchOptionsLink"), "tl", "bl"],
+          draggable: false,
+          close: true
+      });
+
+      Y.one("#headerSearchOptionsLink").on("click", function(e){
+          dialog.setBody("<iframe src='/common/search_options' style='height:180px;'></iframe>");
+          dialog.setHeader('<%= t :search_options%>');
+          dialog.render(document.body);
+          dialog.center();
+          dialog.show();
+      });
+  });
+
+
   GY.use('dd', function(Y) {
       function Portal() {
         Portal.superclass.constructor.apply(this, arguments);

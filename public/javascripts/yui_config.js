@@ -52,6 +52,18 @@ var yuiConfig = {
         irmac:{
             fullpath:"/javascripts/irm/autocomplete/autocomplete-base.js",
             requires:['autocomplete-list', 'node-pluginhost','substitute']
+        },
+        calendarlocalizationzh:{
+            fullpath:"/javascripts/yui_calendar_localization/zh.js",
+            requires:[]
+        },
+        calendarlocalizationen:{
+            fullpath:"/javascripts/yui_calendar_localization/en.js",
+            requires:[]
+        },
+        calendarlocalizationjp:{
+            fullpath:"/javascripts/yui_calendar_localization/jp.js",
+            requires:[]
         }
     },
     groups: {

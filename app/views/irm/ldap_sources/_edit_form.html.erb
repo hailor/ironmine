@@ -1,0 +1,77 @@
+<%= setting_title %>
+<%= form_for(@ldap_source,:url=>{:action=>"update"},:builder => LabellingFormBuilder,:html => { :multipart => true }) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_ldap_source_edit)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @ldap_source%>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend">
+          <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+          </span><span class="requiredMark">*</span>
+          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+        </span>
+      </span>
+      <h3><%= t(:label_common_info) %></h3>
+    </div>
+
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_ldap_source_name)%></label></td>
+              <td class="dataCol"><%=f.text_field :name,:required=>true%></td>
+              <td class="labelCol"><label><%=t(:label_irm_ldap_source_account)%></label></td>
+              <td class="dataCol"><%= f.text_field :account,:required=>true%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_ldap_source_host)%></label></td>
+              <td class="dataCol"><%=f.text_field :host,:required=>true%></td>
+              <td class="labelCol"><%=t(:label_irm_ldap_source_account_password)%></td>
+              <td class="dataCol"><%= f.password_field :account_password,:required=>true%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_ldap_source_port)%></label></td>
+              <td class="dataCol"><%=f.text_field :port,:irm_numberonly=>true,:required=>true%></td>
+              <td class="labelCol"><%=t(:label_irm_ldap_source_base_dn)%></td>
+              <td class="dataCol"><%= f.text_field :base_dn,:required=>true%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :active)%></label></td>
+              <td class="dataCol"><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
+

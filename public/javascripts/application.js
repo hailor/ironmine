@@ -11,9 +11,9 @@ GY.use('node',function(Y){
             this.set("value", this.get('value').toString().replace(pattern,''));
           }
         }
-   })
+   });
 });
-function show_irm_calendar(YAHOO,Event,Dom,id_button,id_date_field,id_cal){
+function show_irm_calendar(YAHOO,Event,Dom,id_button,id_date_field,id_cal, cfg){
         var dialog, calendar;
         var showBtn = Dom.get(id_button);
         Event.on(showBtn, "click", function () {
@@ -50,14 +50,7 @@ function show_irm_calendar(YAHOO,Event,Dom,id_button,id_date_field,id_cal){
             // Lazy Calendar Creation - Wait to create the Calendar until
             // the first time the button is clicked.
             //if (!calendar) {
-                calendar = new YAHOO.widget.Calendar(id_cal, {
-                    iframe: false,
-                    // Turn iframe off,
-                    // since container has iframe support.
-                    hide_blank_weeks: true
-                    // Enable, to demonstrate how we handle changing height,
-                    //department using changeContent
-                });
+                calendar = new YAHOO.widget.Calendar(id_cal, cfg);
                 calendar.render();
 
                 calendar.selectEvent.subscribe(function () {
