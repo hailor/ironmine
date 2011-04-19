@@ -8,7 +8,7 @@
           <td class="pbTitle"><h2 class="mainTitle"><%= @list_of_value[:name] %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @list_of_value}%></div>
-            <div class="button"><%= link_to t(:test), {:action => "execute_test",:format=>:js},:remote=>true%></div>
+            <div class="button"><%= link_to t(:test), {:action => "execute_test"},:zone=>"#executeTest"%></div>
             <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
           </td>
         </tr>
@@ -81,3 +81,22 @@
 <div id="executeTest"></div>
 
 <%=render :partial=>"multilingual/show",:locals=>{:main_data=>@list_of_value} %>
+<script>
+  GY.use("gallerydispatcher",function(Y){
+      Y.one(document).delegate('click', function(e) {
+          var obj;
+          if(e.currentTarget.getData("dispatcher")){
+            obj = e.currentTarget.getData("dispatcher")
+          }else{
+            obj = new Y.Dispatcher({node:e.currentTarget.getAttribute("zone")});
+            e.currentTarget.setData("dispatcher",obj);
+          }
+
+
+          obj.set('uri', e.currentTarget.getAttribute("href"));
+          e.preventDefault();
+
+	  }, 'a[zone]');
+
+  });
+</script>

@@ -105,6 +105,23 @@ class Irm::ListOfValuesController < ApplicationController
       @result_message << text.message
       puts("=====Execute error=========")
     end
+    render :layout=>nil
+  end
+
+
+  def get_lov_data
+    list_of_value = Irm::ListOfValue.find(params[:id])
+    values_scope =  eval(list_of_value.generate_scope)
+    values,count = paginate(values_scope)
+    columns = [:id_value,:value,:desc_value]
+    unless list_of_value.addition_column.strip.blank?||list_of_value.addition_column.nil?
+      list_of_value.addition_column.split("#").each do |ac|
+        columns << ac.to_sym
+      end
+    end
+    respond_to do |format|
+      format.json {render :json=>to_jsonp(values.to_grid_json(columns,count))}
+    end
   end
 
   def multilingual_edit

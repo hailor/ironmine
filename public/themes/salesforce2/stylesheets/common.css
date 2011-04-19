@@ -711,6 +711,7 @@ div.grayButton a:hover{
 }
 .reportList .reportEntry {padding:1px 0 1px 24px;}
 
+/************** datatable paginator ******************/
 div  table.paginator{
     width: 100%;padding: 0 10px 0 10px;
 }
@@ -725,7 +726,33 @@ div  table.paginator .col4{text-align: right;}
 div  table.paginator label.prePageHolder{color: gray;}
 div  table.paginator label.nextPageHolder{color: gray;}
 
+/************** lov autocomplete ******************/
+table.lovDataTable{
+    width:100%;
+}
+table.lovDataTable tr.lovHeader{
+  background-color: #F8F8F8;
+}
 
+table.lovDataTable tr.lovHeader th{
+  font-weight: bold;
+  text-align:left;
+}
+table.lovDataTable tr.lovPaginator td{
+  background-color: #F8F8F8;
+  width: 100%;
+}
+
+table.lovDataTable tr.lovPaginator td div.displayRecord{
+    float: left;
+    text-align: left;
+    width:50%;
+}
+table.lovDataTable tr.lovPaginator td div.Page{
+    float: left;
+    text-align:left;
+    width:50%;
+}
 
 fieldset{
   border-width:1px;
