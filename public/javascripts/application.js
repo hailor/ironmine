@@ -12,6 +12,12 @@ GY.use('node',function(Y){
           }
         }
    });
+
+    Y.all('input[jrequired]').each(function(n){
+        var parent_node = n.get('parentNode');
+        var node = Y.Node.create('<div class="requiredInput"><div class="requiredBlock"></div>' + parent_node.getContent() + '</div>');
+        parent_node.setContent(node);
+    });
 });
 function show_irm_calendar(YAHOO,Event,Dom,id_button,id_date_field,id_cal, cfg){
         var dialog, calendar;
