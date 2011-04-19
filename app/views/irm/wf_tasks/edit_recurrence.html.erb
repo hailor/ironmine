@@ -72,10 +72,6 @@
                 </table>
               </td>
             </tr>
-            <!--<tr>-->
-              <!--<td class="labelCol"><label><% (t :label_irm_wf_task_start_at) %></label></td>-->
-              <!--<td class="data2Col"><% text_field_tag "recurrence_start_at", "", :id => "date3", :size => 10, :required => true%></td>-->
-            <!--</tr>-->
             <tr>
               <td class="labelCol"><label><%= (t :label_irm_wf_task_end_at) %></label></td>
               <td class="data2Col"><%=text_field_tag "recurrence_end_at", "", :id => "date4", :size => 10, :required => true%></td>
@@ -101,15 +97,9 @@
   </div>
 </div>
 <% end %>
-
+<%= calendar_view("date4","date4","cal4")%>
 <script type="text/javascript">
-  GY.use( 'yui2-calendar','yui2-container',function(Y) {
-      var YAHOO = Y.YUI2;
-      var Event = YAHOO.util.Event,Dom = YAHOO.util.Dom;
-       YAHOO.util.Event.onDOMReady(function () {
-          show_irm_calendar(YAHOO,Event,Dom,"date4","date4","cal4");
-       });
-  });
+
 
   GY.use( 'node', function(Y){
     var freq = '<%= @task.rrule[:freq]%>' ;
@@ -118,8 +108,8 @@
     var bymonth = '<%= @task.rrule[:bymonth]%>';
     var bymonth = '<%= @task.rrule[:bymonth]%>';
     var wkst = '<%= @task.rrule[:wkst]%>';
-    var until = '<%= @task.rrule[:until]%>';
-
+    var until = '<%= (Time.strptime(@task.rrule[:until], "%Y%m%dT%H%M%SZ")).strftime("%F")%>';
+    Y.one("#date4").set("value", until);
     if(freq == "DAILY"){
         Y.one("#rd").set("checked", "checked");
         Y.one("#d").setStyle("display", "");

@@ -131,8 +131,7 @@ class Irm::WfTasksController < ApplicationController
     rrule = {}
     #从星期一开始
     rrule = rrule.merge({:wkst => "MO"})
-    rrule = rrule.merge({:until => DateTime.strptime(params[:recurrence_end_at], '%Y-%m-%d').strftime("%Y%m%d") + "T000000Z"})
-
+    rrule = rrule.merge({:until => DateTime.strptime(params[:recurrence_end_at], '%Y-%m-%d').strftime("%Y%m%d") + "T235959Z"})
     if params[:rectype] == "DAILY"
       #频率: 每天
       rrule = rrule.merge({:freq => "DAILY"})
