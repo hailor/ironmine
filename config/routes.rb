@@ -551,7 +551,7 @@ Ironmine::Application.routes.draw do
     match '/list_of_values/:id/multilingual_edit(.:format)' => "list_of_values#multilingual_edit", :via => :get
     match '/list_of_values/:id/multilingual_update(.:format)' => "list_of_values#multilingual_update", :via => :put
     match '/list_of_values/:id/execute_test(.:format)' => "list_of_values#execute_test", :via => :get
-
+    match '/list_of_values/:id/get_lov_data(.:format)' => "list_of_values#get_lov_data", :via => :get
   end
 
   scope :module => "icm" do
