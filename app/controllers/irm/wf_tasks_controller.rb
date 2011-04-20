@@ -18,12 +18,13 @@ class Irm::WfTasksController < ApplicationController
 
   def edit
     @task = Irm::WfTask.find(params[:id])
-
-
+    @return_url=request.env['HTTP_REFERER']
   end
 
   def new
     @task = Irm::WfTask.new
+    #防止在新建页面, 从侧边栏又选择新建任务时,完成后又回到新建页面
+    @return_url=request.env['HTTP_REFERER'] if request.env['HTTP_REFERER'] != url_for(:controller => "irm/wf_tasks", :action => "new")
     respond_to do |format|
       format.html
     end
@@ -86,12 +87,19 @@ class Irm::WfTasksController < ApplicationController
 
     @task.rrule = rrule
     @task.color = "000000"
+
+    return_url = params[:return_url]
     respond_to do |format|
       if @task.save
-        #
         @task.copy_recurrences if params[:is_recurrence] == Irm::Constant::SYS_YES
-        format.html { redirect_to({:controller => "wf_tasks", :action=>"index"}, :notice =>t(:successfully_created)) }
-        format.xml  { render :xml => @task, :status => :created, :location => @task }
+        if return_url && !return_url.blank?
+          format.html { redirect_to(return_url, :notice =>t(:successfully_created)) }
+          format.xml  { render :xml => @task, :status => :created, :location => @task }
+        else
+          format.html { redirect_to({:controller => "wf_tasks", :action=>"my_tasks_index"}, :notice =>t(:successfully_created)) }
+          format.xml  { render :xml => @task, :status => :created, :location => @task }
+        end
+
       else
         format.html { redirect_to({:action=>"new"})}
         format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }
@@ -109,9 +117,14 @@ class Irm::WfTasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:irm_wf_task]) &&
-          @task.update_attributes(:start_at => start_at, :end_at => end_at, :calendar_id => calendar_id)
-        format.html { redirect_to({:controller => "wf_tasks", :action=>"index"}, :notice => t(:successfully_updated)) }
-        format.xml  { head :ok }
+        @task.update_attributes(:start_at => start_at, :end_at => end_at, :calendar_id => calendar_id)
+        if return_url && !return_url.blank?
+          format.html { redirect_to(return_url, :notice =>t(:successfully_created)) }
+          format.xml  { render :xml => @task, :status => :created, :location => @task }
+        else
+          format.html { redirect_to({:controller => "wf_tasks", :action=>"my_tasks_index"}, :notice => t(:successfully_updated)) }
+          format.xml  { head :ok }
+        end
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }
