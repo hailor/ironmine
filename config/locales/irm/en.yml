@@ -831,6 +831,7 @@ en:
   label_irm_wf_task_assigned_to: Assigned To
   label_irm_wf_task_recurrence_edit: Edit Series
   label_action_edit_recurrence: Edit Series
+  label_action_my_tasks_index: My Tasks
   recurrence_occurs: Occurs
   recurrence_byday: on day %{m}
   recurrence_byday_week: on %{m}

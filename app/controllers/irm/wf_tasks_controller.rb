@@ -194,11 +194,23 @@ class Irm::WfTasksController < ApplicationController
   end
 
   def get_data
-    tasks_scope = Irm::WfTask.where("1=1")
+    tasks_scope = Irm::WfTask.with_task_status.with_priority.uncompleted.with_calendar
 
     tasks,count = paginate(tasks_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(tasks.to_grid_json([:name,:start_at,:end_at,:color,:status_code], count)) }
+      format.json  {render :json => to_jsonp(tasks.to_grid_json([:name,:start_at,:end_at,:color,:status_code, :assigned_name, :priority_name, :task_status_name], count)) }
+    end
+  end
+
+  def my_tasks_index
+
+  end
+
+  def my_tasks_get_data
+    my_tasks_scope = Irm::WfTask.with_all.with_task_status.with_priority.uncompleted.with_calendar.assigned_to(Irm::Person.current.id)
+    my_tasks,count = paginate(my_tasks_scope)
+    respond_to do |format|
+      format.json {render :json => to_jsonp(my_tasks.to_grid_json([:name,:start_at,:end_at,:color,:status_code, :priority_name, :task_status_name], count))}
     end
   end
   

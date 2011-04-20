@@ -15,7 +15,7 @@ class Irm::WfTask < ActiveRecord::Base
   scope :with_all, lambda{select("#{table_name}.*")}
 
   scope :with_calendar, lambda{
-    select("concat(p.first_name, p.last_name) assigned_name").
+    select("concat(p.first_name, p.last_name) assigned_name, assigned_to assigned_to").
         joins(", #{Irm::Calendar.table_name} c").
         joins(", #{Irm::Person.table_name} p").
         where("p.id = c.assigned_to").
@@ -37,6 +37,14 @@ class Irm::WfTask < ActiveRecord::Base
         where("lvt.lookup_value_id = lv.id").
         where("lv.lookup_type = ?", "IRM_WF_TASK_STATUS").
         where("lv.lookup_code = #{table_name}.task_status")
+  }
+
+  scope :uncompleted, lambda{
+    where("#{table_name}.task_status <> ?", "COMPLETED")
+  }
+
+  scope :assigned_to, lambda{|person_id|
+    where("c.assigned_to = ?", person_id)
   }
 
   def rrule_string

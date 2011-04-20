@@ -890,9 +890,8 @@ zh:
   label_irm_wf_task_task_status: 任务状态
   label_irm_wf_task_mail: 电子邮件
   label_irm_wf_task_phone: 联系电话
-
   label_action_edit_recurrence: 编辑重复序列
-
+  label_action_my_tasks_index: 我的任务
   recurrence_occurs: Occurs
   recurrence_byday: on day %{m}
   recurrence_byday_week: on %{m}

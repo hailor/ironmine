@@ -75,7 +75,7 @@ module Irm::WfTasksHelper
   end
 
   def my_tasks_list
-    my_tasks = Irm::Calendar.current_calendar(Irm::Person.current.id).wf_tasks.enabled.order("start_at ASC")
+    my_tasks = Irm::Calendar.current_calendar(Irm::Person.current.id).wf_tasks.enabled.order("start_at ASC").limit(5)
     html = ""
     my_tasks.each do |t|
       if t.start_at.strftime("%F") == Time.now.strftime("%F")
