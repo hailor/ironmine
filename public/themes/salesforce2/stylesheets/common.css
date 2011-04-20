@@ -603,8 +603,17 @@ body .bEditBlock .pbBottomButtons, body .apexp .bPageBlock.apexDefaultPageBlock 
 form .pbBottomButtons > table {border-top:1px solid #FFFFFF;padding:0 !important;}
 
 /************** error messages and input required ******************/
-.requiredInput,  .requiredInput {height:100%;position:relative;display:inline-block;}
-.requiredInput .requiredBlock, .requiredInput .requiredBlock {
+.requiredInput {
+    height:100%;
+    position:relative;
+    display:inline-block;
+    width:100%;
+}
+.mulInput .requiredInput {
+    width: auto !important;
+}
+
+.requiredInput .requiredBlock {
     background-color:#CC0000;
     bottom:1px;
     left:-4px;
