@@ -121,6 +121,7 @@ en:
   label_cancel_confirm: Data have not saved. Are you sure?
   all: All
   search_options: Search Options
+  input_keyword_you_want_to_search: Input keyword you want to search
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type

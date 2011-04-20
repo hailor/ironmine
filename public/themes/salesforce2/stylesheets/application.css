@@ -1,7 +1,4 @@
 @charset "utf-8";
-a.headerSearchOptionsLink, a.headerSearchOptionsLink:hover{color: #fff; font-size: 0.92em;}
-a.headerSearchOptionsLink{text-decoration: none;}
-
 body.sfdcBody {background:url("../images/gradient_body.png") repeat-x scroll 0 0 #1797C0;}
 body.setupTab {margin:0 10px;}
 #contentWrapper {display:inline-block;min-width:100%;}
