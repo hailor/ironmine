@@ -14,7 +14,9 @@ class Irm::RuleFilterCriterion < ActiveRecord::Base
 
   # 验证规则
   #validates_presence_of :view_code,:column_code
-  validates_presence_of :operator_code,:filter_value, :if => Proc.new { |i| !i.attribute_name.blank? }
+  validates_presence_of :operator_code, :if => Proc.new { |i| i.attribute_name.present? }
+  validates_presence_of :filter_value, :if => Proc.new { |i| i.attribute_name.present?&&i.operator_code.present?&&!"NIL".eql?(i.operator_code)&&!"NNIL".eql?(i.operator_code) }
+
   #validates_uniqueness_of :filter_type,:scope=>[:view_code], :if => Proc.new { |i| !i.filter_type.blank?&&!i.view_code.blank? }
   validate :validate_data_type_filter_value, :if => Proc.new { |i| !i.attribute_name.blank? }
   #加入activerecord的通用方法和scope
