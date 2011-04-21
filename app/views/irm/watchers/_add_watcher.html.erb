@@ -1,0 +1,16 @@
+<div id="head_3_ep" class="pbSubheader tertiaryPalette">
+  <h3><%= t(:label_irm_watcher_new) %></h3>
+</div>
+<div class="pbSubsection">
+  <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+    <tbody>
+      <tr>
+        <td>
+          <% ava_watchers(watchable.id, watchable.class).each do |w|%>
+            <div style="padding:5px 20px 0 20px;float:left;"><%= check_box_tag "cwatcher[" + w[1].to_s + "]", w[1].to_s, false, :id => "cwatcher_" + w[1].to_s %><%= content_tag(:label, w[0], :for => "cwatcher_" + w[1].to_s)%></div>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
