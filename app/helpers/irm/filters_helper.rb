@@ -67,7 +67,7 @@ module Irm::FiltersHelper
     value_tag = ""
 
     if lov_code.present?
-      value_tag = form.lov_field(:filter_value,lov_code,{:label_value=>form.object.filter_value})
+      value_tag = form.lov_field(:filter_value,lov_code,{:id=>"filter_value_#{form.object.seq_num}",:label_required=>true})
     else
       value_tag = form.text_field :filter_value,:size=>30
     end
