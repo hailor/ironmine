@@ -1,0 +1,153 @@
+<%= page_title %>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_slm_service_catalog_show) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @service_catalog}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+
+            <tr>
+              <td class="labelCol"><label for="service_catalog_service_catalog_code"><%=t(:label_slm_service_catalog_catalog_code)%></label></td>
+              <td class="dataCol"><%=@service_catalog.catalog_code%></td>
+              <td class="labelCol"><label for="service_catalog_service_category_name"><%=t(:label_slm_service_catalog_service_category_code)%></label></td>
+              <td class="dataCol"><%=@service_catalog[:category_name]%></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="service_catalog_catalog_name"><%=t(:label_slm_service_catalog_name)%></label></td>
+              <td class="dataCol"><%=@service_catalog[:name]%></td>
+              <td class="labelCol"><label for="service_catalog_service_catalog_code"><%=t(:label_slm_service_catalog_priority_code)%></label></td>
+              <td class="dataCol"><%=@service_catalog[:priority_meaning]%></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="service_catalog_description"><%=t(:label_slm_service_catalog_description)%></label></td>
+              <td class="dataCol"><%= @service_catalog[:description]%></td>
+              <td class="labelCol"><label for="service_catalog_active_date"><%=t(:label_slm_service_catalog_active_date)%></label></td>
+              <td class="dataCol"><%= @service_catalog[:active_start_date]%><%t(:label_to)%><%= @service_catalog[:active_end_date]%></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="service_catalog_description"><%=t(:label_slm_service_catalog_service_owner)%></label></td>
+              <td class="dataCol"><%= @service_catalog[:person_name]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="service_catalog_system_description"><%=t(:label_slm_service_catalog_status_meaning)%></label></td>
+              <td class="dataCol"><%= @service_catalog[:status_meaning]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div id="id_service_catalog_member" class="bRelatedList">
+    <a name="id_service_catalog_member_target">
+    </a>
+    <div class="listRelatedObject taskBlock">
+      <div class="bPageBlock secondaryPalette">
+        <div class="pbHeader">
+          <table cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+            <tr>
+              <td class="pbTitle">
+                <h3 id="id_service_catalog_member_title"><%=t(:label_slm_service_catalog_service_member)%></h3>
+              </td>
+              <td class="pbButton">
+                <div class="button">
+                  <%= link_to(t(:label_add_service_member),{:controller=>"slm/service_members",:action=>"new",
+                                                            :service_catalog_id=>@service_catalog.id}) %>
+                </div>
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="id_service_member" class="pbBody">
+          <div id="service_member" class="datatable" style="width:100%;">
+          </div>
+          <!-- Begin company access table -->
+            <%= datatable("service_member",url_for(:controller=>"slm/service_members",:action=>"get_data",
+                                                   :service_catalog_id=>@service_catalog.id),
+                              [{:key=>"service_company_name",:label=>t(:label_slm_service_member_service_company),:sortable=>true,:width=>"80px"},
+                               {:key=>"service_organization_name",:label=>t(:label_slm_service_member_service_organization),:sortable=>true,:width=>"80px"},
+                               {:key=>"service_department_name",:label=>t(:label_slm_service_member_service_department),:sortable=>true,:width=>"80px"},
+                               {:key=>"service_person_name",:label=>t(:label_slm_service_member_service_person),:sortable=>true,:width=>"80px"},
+                               {:key=>"service_contract_name",:label=>t(:label_slm_service_member_service_contract),:sortable=>true,:width=>"80px"},
+                               {:key=>"status_meaning",:label=>t(:label_slm_service_member_status_meaning),:sortable=>true,:width=>"80px"}
+                              ],
+                               {:row_perpage=>5})%>
+          <!-- End company access table -->
+        </div>
+        <div class="pbFooter secondaryPalette">
+        <div class="bg"></div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<div id="id_service_catalog_breaks" class="bRelatedList">
+    <a name="id_service_catalog_breaks_target">
+    </a>
+    <div class="listRelatedObject taskBlock">
+      <div class="bPageBlock secondaryPalette">
+        <div class="pbHeader">
+          <table cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+            <tr>
+              <td class="pbTitle">
+                <h3 id="id_service_catalog_breaks_title"><%=t(:label_slm_service_catalog_service_break)%></h3>
+              </td>
+              <td class="pbButton">
+                <div class="button"><%= link_to(t(:label_add_service_break),{:controller=>"slm/service_breaks",:action=>"new",
+                                                                             :service_catalog_id=>@service_catalog.id}) %></div>
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="id_service_breaks" class="pbBody">
+          <div id="service_breaks" class="datatable" style="width:100%;">
+          </div>
+          <!-- Begin company access table -->
+            <%= datatable("service_breaks",url_for(:controller=>"slm/service_breaks",:action=>"get_data",
+                                                   :service_catalog_id=>1),
+                              [{:key=>"seq_number",:label=>t(:label_slm_service_break_seq_number),:sortable=>true,:width=>"80px"},
+                               {:key=>"start_date",:label=>t(:label_slm_service_break_start_date),:sortable=>true,:width=>"80px"},
+                               {:key=>"end_date",:label=>t(:label_slm_service_break_end_date),:sortable=>true,:width=>"80px"},
+                               {:key=>"meaning",:label=>t(:label_slm_service_break_status_meaning),:sortable=>true,:width=>"80px"}
+                              ],
+                               {:row_perpage=>5})%>
+          <!-- End company access table -->
+        </div>
+        <div class="pbFooter secondaryPalette">
+        <div class="bg"></div>
+        </div>
+      </div>
+    </div>
+</div>
