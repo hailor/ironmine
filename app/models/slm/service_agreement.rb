@@ -8,7 +8,7 @@ class Slm::ServiceAgreement < ActiveRecord::Base
   has_many :service_agreements_tls,:dependent => :destroy,:foreign_key=>"service_agreement_id"
   acts_as_multilingual
 
-  before_create :transform_time
+  before_save :transform_time
   query_extend
 
   #根据天，小时还有秒来区分

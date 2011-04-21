@@ -34,7 +34,7 @@ class Slm::ServiceAgreementsController < ApplicationController
 
   # GET /service_agreements/1/edit
   def edit
-    @service_agreement = Slm::ServiceAgreement.find(params[:id])
+    @service_agreement = Slm::ServiceAgreement.multilingual.find(params[:id])
   end
 
   # POST /service_agreements
@@ -100,11 +100,12 @@ class Slm::ServiceAgreementsController < ApplicationController
   end
 
   def get_data
-    service_agreements_scope = Slm::ServiceAgreement.multilingual
+    service_agreements_scope = Slm::ServiceAgreement.multilingual.status_meaning
     service_agreements_scope = service_agreements_scope.match_value("service_agreement.name",params[:name])
     service_agreements,count = paginate(service_agreements_scope)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(service_agreements.to_grid_json([:name,:description,:status_meaning],count))}
+      format.json {render :json=>to_jsonp(service_agreements.to_grid_json([:agreement_code,
+                                                                           :name,:description,:status_meaning],count))}
     end
   end
 end
