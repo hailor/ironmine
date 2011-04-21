@@ -10,7 +10,13 @@
           <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_wf_task_new)%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_to t(:cancel), {:controller => "irm/home", :action => "index"}%></div>
+            <div class="button">
+           <% if @return_url && !@return_url.blank?%>
+            <%= link_to t(:cancel), @return_url%>
+           <% else %>
+            <%= link_to t(:cancel), {:controller => "irm/wf_tasks", :action => "my_tasks_index"} %>
+           <% end %>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -158,7 +164,13 @@
           <td class="pbTitle"></td>
           <td id="bottomButtonRow" class="pbButtonb">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_to t(:cancel), {:controller => "irm/home", :action => "index"}%></div>
+            <div class="button">
+           <% if @return_url && !@return_url.blank?%>
+            <%= link_to t(:cancel), @return_url%>
+           <% else %>
+            <%= link_to t(:cancel), {:controller => "irm/wf_tasks", :action => "my_tasks_index"} %>
+           <% end %>
+            </div>
           </td>
         </tr>
       </tbody>
