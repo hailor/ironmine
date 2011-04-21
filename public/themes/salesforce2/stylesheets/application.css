@@ -763,7 +763,7 @@ body .bSubBlock {padding:5px;}
 .bSubBlock .lbBody li, .bSubBlock .lbBody .bSummary {line-height:25px;}
 .bSubBlock .lbBody .mainLink {font-weight:bold;}
 
-.toolsContent > tbody > tr > td{padding-bottom: 10px; width: 50%;}
+.toolsContent > tbody > tr > td{padding-top: 5px; width: 50%;}
 .toolsContentRight .tdRight, .toolsContentLeft .tdRight {float:right;padding-right:30px;}
 .toolsContent .toolsContentListTable {width:100%;}
 .toolsContent .toolsContentListTable > tbody > tr {background-color:#FFFFFF;border-bottom:1px solid #CBCBCB;line-height:25px;}
@@ -909,4 +909,4 @@ div.recurrenceSectionBackground {
     background-color: transparent;
 }
 
-.toolsContent {border-collapse: collapse !important; margin-top: 5px !important;}
+.toolsContent {border-collapse: collapse !important; margin-top: 0 !important;}
