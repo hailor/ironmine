@@ -179,7 +179,7 @@ class ApplicationController < ActionController::Base
   def data_filter(scoped)
     if(params[:_view_filter_id] && !params[:_view_filter_id].blank?)
       session[:_view_filter_id] = params[:_view_filter_id]
-      scoped = scoped.where(Irm::ViewFilter.find(params[:_view_filter_id]).where_clause)
+      scoped = scoped.where(Irm::RuleFilter.find(params[:_view_filter_id]).where_clause)
     end
     scoped
   end
