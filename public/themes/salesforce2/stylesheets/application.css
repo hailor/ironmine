@@ -895,3 +895,16 @@ div.recurrenceSectionBackground {
     margin: 7px 12px 0 12px;
     padding: 8px 0 8px 5px;
 }
+
+.toolsContent .bSubBlock{
+    border-width: 1px;
+    border-style: solid;
+    border-color: #bfbfbf !important;
+}
+
+.yui3-tabview .bPageBlock{
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    background-color: transparent;
+}
