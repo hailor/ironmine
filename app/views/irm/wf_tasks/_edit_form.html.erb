@@ -129,7 +129,7 @@
       var rrule = '<%= @task.rrule.nil? ? 0 : @task.rrule.size%>';
 
       function recurrences_checked(){
-        if (rrule == '0')
+        if (rrule == '0' || rrule == '1' )
         {
           Y.one("#date2").set("disabled", false);
         }
