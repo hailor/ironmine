@@ -73,6 +73,7 @@ zh:
   label_slm_service_agreement_name: 名称
   label_slm_service_agreement_description: 描述
   label_slm_service_agreement_active_start_date: 开始日期
+  label_slm_service_agreement_active_date: 有效日期
   label_slm_service_agreement_active_end_date: 结束日期
   label_slm_service_agreement_response_time: 相应时间
   label_slm_service_agreement_resolve_time: 解决时间

@@ -76,6 +76,7 @@ en:
   label_slm_service_agreement_description: Description
   label_slm_service_agreement_service_company: Service Company
   label_slm_service_agreement_active_start_date: Start Date
+  label_slm_service_agreement_active_date: Active Date
   label_slm_service_agreement_active_end_date: End Date
   label_slm_service_agreement_response_time: Response Time
   label_slm_service_agreement_resolve_time: Resolve Time

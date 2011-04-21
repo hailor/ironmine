@@ -17,4 +17,10 @@ class Slm::ServiceAgreement < ActiveRecord::Base
     self.resolve_time = self.solve_day.to_i * 86400 + self.solve_hour.to_i * 60 + self.solve_minute.to_i
   end
 
+
+  scope :query_by_company_id,lambda{|language| select("v2.name company_name").
+                                               joins("inner join irm_companies_vl v2").
+                                               where("v2.id=#{table_name}.service_company_id AND "+
+                                                     "v2.language=?",language)}
+
 end

@@ -5,9 +5,9 @@
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_slm_service_category_show) %></h2></td>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_slm_service_agreement_show) %></h2></td>
           <td id="topButtonRow" class="pbButton">
-            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @service_category}%></div>
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @service_agreement}%></div>
             <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
           </td>
         </tr>
@@ -20,31 +20,38 @@
         <tbody>
 
             <tr>
-              <td class="labelCol"><label for="service_category_service_category_code"><%=t(:label_slm_service_category_category_code)%></label></td>
-              <td class="dataCol"><%=@service_category.category_code%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><label for="service_agreement_service_company"><%=t(:label_slm_service_agreement_service_company)%></label></td>
+              <td class="dataCol"><%=@service_agreement[:company_name]%></td>
+              <td class="labelCol"><label for="service_agreement_active_date"><%=t(:label_slm_service_agreement_active_date)%></label></td>
+              <td class="dataCol"><%=@service_agreement.active_start_date%><%= t(:label_to) %>
+                                        <%= @service_agreement.active_end_date %></td>
             </tr>
 
             <tr>
-              <td class="labelCol"><label for="service_category_system_name"><%=t(:label_slm_service_category_name)%></label></td>
-              <td class="dataCol"><%=@service_category[:name]%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><label for="service_agreement_service_agreement_code"><%=t(:label_slm_service_agreement_agreement_code)%></label></td>
+              <td class="dataCol"><%=@service_agreement.agreement_code%></td>
+              <td class="labelCol"><%=t(:label_slm_service_agreement_response_time)%></td>
+              <td class="dataCol"><%=get_day_count(@service_agreement.response_time)%><%= t(:label_slm_service_agreement_response_day) %>
+                                  <%=get_hour_count(@service_agreement.response_time)%><%= t(:label_slm_service_agreement_response_hour) %>
+                                  <%=get_minute_count(@service_agreement.response_time)%><%= t(:label_slm_service_agreement_response_minute) %>
+              </td>
             </tr>
 
             <tr>
-              <td class="labelCol"><label for="service_category_system_description"><%=t(:label_slm_service_category_description)%></label></td>
-              <td class="dataCol"><%= @service_category[:description]%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><label for="service_agreement_system_name"><%=t(:label_slm_service_agreement_name)%></label></td>
+              <td class="dataCol"><%=@service_agreement[:name]%></td>
+              <td class="labelCol empty"><%=t(:label_slm_service_agreement_resolve_time)%></td>
+              <td class="dataCol empty"><%=get_day_count(@service_agreement.resolve_time)%><%= t(:label_slm_service_agreement_response_day) %>
+                                  <%=get_hour_count(@service_agreement.resolve_time)%><%= t(:label_slm_service_agreement_response_hour) %>
+                                  <%=get_minute_count(@service_agreement.resolve_time)%><%= t(:label_slm_service_agreement_response_minute) %>
+              </td>
             </tr>
 
             <tr>
-              <td class="labelCol"><label for="service_category_system_description"><%=t(:label_slm_service_category_status_meaning)%></label></td>
-              <td class="dataCol"><%= @service_category[:status_meaning]%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><label for="service_agreement_system_description"><%=t(:label_slm_service_agreement_description)%></label></td>
+              <td class="dataCol"><%= @service_agreement[:description]%></td>
+              <td class="labelCol"><label for="service_agreement_system_description"><%=t(:label_slm_service_catalog_status_meaning)%></label></td>
+              <td class="dataCol"><%= @service_agreement[:status_meaning]%></td>
             </tr>
           
         </tbody>
