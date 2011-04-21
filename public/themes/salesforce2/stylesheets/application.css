@@ -1,7 +1,4 @@
 @charset "utf-8";
-a.headerSearchOptionsLink, a.headerSearchOptionsLink:hover{color: #fff; font-size: 0.92em;}
-a.headerSearchOptionsLink{text-decoration: none;}
-
 body.sfdcBody {background:url("../images/gradient_body.png") repeat-x scroll 0 0 #1797C0;}
 body.setupTab {margin:0 10px;}
 #contentWrapper {display:inline-block;min-width:100%;}
@@ -376,30 +373,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 
-/************** error messages and input required ******************/
-.bPageBlock .requiredInput {height:100%;position:relative;}
-.bPageBlock .requiredInput .requiredBlock {
-    background-color:#CC0000;
-    bottom:1px;
-    left:-4px;
-    position:absolute;
-    top:1px;
-    width:3px;
-}
-.bPageBlock .detailList .errorMsg {
-    padding-left:3px;
-}
-.errorStyle, .errorMsg, .importantWarning, .pbBody .errorStyle a, .pbBody .errorMsg a {
-    color:#D74C3B;
-}
-.bPageBlock .detailList .error, .bPageTitle .tagDropDown #tag_edit_error, .bPageTitle .tagDropDown .tagDropDownContent .error, .tagRenameMenu .error, .inlineEditDiv .error, .inlineEditRequiredDiv .error {
-    border:2px solid #CC0000;
-}
-.bPageBlock .pbError, .editListError {
-    color:#CC0000;
-    font-weight:bold;
-    text-align:center;
-}
 /********************************************************************/
 .listRelatedObject .pbBody {padding: 0 !important;}
 .datatable table{width:100%;}
@@ -915,4 +888,23 @@ body .menuButton .menuButtonMenu, body .searchCustomization .menuButton .menuBut
 #sidebarDiv .menuButtonMenu a .mruIcon, #sidebarDivRight .menuButtonMenu a .mruIcon {
     margin-right: 5px;
     vertical-align: -3px;
+}
+
+div.recurrenceSectionBackground {
+    background-color: #F3F3EC;
+    margin: 7px 12px 0 12px;
+    padding: 8px 0 8px 5px;
+}
+
+.toolsContent .bSubBlock{
+    border-width: 1px;
+    border-style: solid;
+    border-color: #bfbfbf !important;
+}
+
+.yui3-tabview .bPageBlock{
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    background-color: transparent;
 }

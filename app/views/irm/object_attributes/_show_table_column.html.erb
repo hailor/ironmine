@@ -1,0 +1,22 @@
+<table class="detailList" cellpadding="0" cellspacing="0" border="0">
+  <tbody>
+      <tr>
+        <td class="labelCol"><label for="object_attribute_attribute_name"><%=t(:label_irm_object_attribute_name)%></label></td>
+        <td class="dataCol"><div><%=@object_attribute[:name]%></div></td>
+        <td class="labelCol"><label for="object_attribute_attribute_name"><%=t(:label_irm_object_attribute_attribute_name)%></label></td>
+        <td class="dataCol"><div><%=@object_attribute.attribute_name%></div></td>
+      </tr>
+      <tr>
+        <td class="labelCol"><label for="object_attribute_lov_code"><%=t(:label_irm_object_attribute_lov_code)%></label></td>
+        <td class="dataCol"><div><%=@object_attribute.lov_code%></div></td>
+        <td class="labelCol"><label for="object_attribute_approval_page_field_flag"><%=t(:label_irm_object_attribute_approval_page_field_flag)%></label></td>
+        <td class="dataCol"><div><%=check_img(@object_attribute.approval_page_field_flag)%></div></td>
+      </tr>
+      <tr>
+        <td class="labelCol"><label for="object_attribute_data_type"><%=t(:label_irm_object_attribute_data_type)%></label></td>
+        <td class="dataCol"><div><%=@object_attribute.data_type%></div></td>
+        <td class="labelCol"><label for="object_attribute_data_length"><%=t(:label_irm_object_attribute_data_length)%></label></td>
+        <td class="dataCol"><div><%=@object_attribute.data_length%></div></td>
+      </tr>
+  </tbody>
+</table>

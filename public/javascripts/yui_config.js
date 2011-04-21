@@ -38,7 +38,7 @@ var yuiConfig = {
         },
         gallerydispatcher:{
             fullpath:"/javascripts/gallery/gallery-dispatcher.js",
-            requires: []
+            requires: ['base', 'node-base', 'io-base', 'get', 'async-queue', 'classnamemanager']
         },        
         dialog:{
             fullpath:"/javascripts/irm/dialog/dialog-base.js",
@@ -48,6 +48,22 @@ var yuiConfig = {
         cascadeselect:{
             fullpath:"/javascripts/irm/cascadeselect.js",
             requires: ["io-base","substitute","json-parse"]
+        },
+        irmac:{
+            fullpath:"/javascripts/irm/autocomplete/autocomplete-base.js",
+            requires:['autocomplete-list', 'node-pluginhost','substitute']
+        },
+        calendarlocalizationzh:{
+            fullpath:"/javascripts/yui_calendar_localization/zh.js",
+            requires:[]
+        },
+        calendarlocalizationen:{
+            fullpath:"/javascripts/yui_calendar_localization/en.js",
+            requires:[]
+        },
+        calendarlocalizationjp:{
+            fullpath:"/javascripts/yui_calendar_localization/jp.js",
+            requires:[]
         }
     },
     groups: {

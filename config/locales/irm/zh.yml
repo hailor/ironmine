@@ -74,6 +74,7 @@ zh:
   pass: 转交
   select_all: 全选
   null_string: 空
+  test: 测试
   #常用语句
   notice_account_invalid_creditentials: 用户名或密码错误
   successfully_updated: 已经成功更新数据
@@ -88,6 +89,7 @@ zh:
   label_no_data: 没有找到数据
   label_sub_functions: 功能
   label_common_info: 一般信息
+  label_description_info: 描述信息
   label_is_required: 必填信息
   label_help_about_page: 此页面帮助
   label_detail_info: 详细信息
@@ -108,6 +110,9 @@ zh:
   remember_user_name: 记住用户名
   no_account: 没有账户
   label_cancel_confirm: 数据没有保存，您确定要取消吗？
+  all: 全部
+  search_options: 搜索选项
+  input_keyword_you_want_to_search: 请输入你要搜索的关键词
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=====================#
   label_lookup_types: 快速编码类型
@@ -308,6 +313,45 @@ zh:
   label_irm_auth_source_edit: 编辑认证源
   label_irm_auth_source_data_info: LDAP数据属性
   #=========================    end auth_sources_controller=======================#
+  #=========================    irm ldap_sources_controller=======================#
+  label_irm_ldap_source_type: 认证源类型
+  label_irm_ldap_source_name: 认证源名称
+  label_irm_ldap_source_host: 主机
+  label_irm_ldap_source_port: 端口
+  label_irm_ldap_source_account: 账户
+  label_irm_ldap_source_account_password: 密码
+  label_irm_ldap_source_base_dn: 基准DN
+  label_irm_ldap_source_attr_login: 用户名属性
+  label_irm_ldap_source_attr_firstname: 名属性
+  label_irm_ldap_source_attr_lastname: 姓属性
+  label_irm_ldap_source_attr_email: 电子邮件属性
+  label_irm_ldap_source_onthefly_register_flag: 拷贝
+  label_irm_ldap_source: 认证源
+  label_irm_ldap_source_list: 认证源列表
+  label_irm_ldap_source_new: 创建认证源
+  label_irm_ldap_source_edit: 编辑认证源
+  label_irm_ldap_source_data_info: LDAP数据属性
+  #=========================    end ldap_sources_controller=======================#
+
+  #=========================    irm ldap_auth_headers_controller=======================#
+  label_ldap_auth_header_list: 认证方案列表
+  label_icm_ldap_auth_header_name: 认证方案
+  label_icm_ldap_auth_header_edit: 新建认证方案
+  label_icm_ldap_auth_header_new: 新建认证方案
+  ldap_auth_header_ldap_source: LDAP源
+  ldap_auth_header_auth_code: 认证方案编码
+  ldap_auth_header_auth_cn: 认证方案域
+  ldap_auth_header_description: 认证方案描述
+  ldap_auth_header_status_code: 认证方案状态
+  #=========================    end ldap_auth_headers_controller=======================#
+
+  label_icm_ldap_auth_attribute_new: 新建认证方案属性
+  label_ldap_auth_attribute_local_attr: 认证属性
+  label_ldap_auth_attribute_attr_type: 字段类型
+  label_ldap_auth_attribute_ldap_attr: ldap认证域
+  label_ldap_auth_attribute_description: 属性描述
+  label_ldap_auth_attribute_status_code: 是否可用
+
   #=========================    irm scripts_controller=======================#
   label_irm_script_script_code: 编码
   label_irm_script_name: 名称
@@ -385,6 +429,7 @@ zh:
   label_irm_mail_template_multilingual: 多语言
   label_irm_mail_template_multilingual_edit: 多语言编辑
   label_irm_mail_template_info: 邮件模板信息
+  label_irm_mail_template_content: 模板内容
   label_irm_mail_template_show: 邮件模板
   label_irm_scirpt_context_query_field: 邮件模板参数查询
   label_irm_scirpt_context_field_name: 参数名称
@@ -827,4 +872,93 @@ zh:
   label_irm_wf_relation_object: 相关项
   label_irm_wf_task_location: 地点
   label_irm_wf_task_percent_complete: 完成度
+  label_irm_wf_task_recurrence: 周期
+  label_irm_wf_task_recurrence_new: 创建事件的重复序列
+  label_irm_wf_task_recurrence_frequency: 频率
+  label_irm_wf_task_recurrence_every_weekday: 每个工作日
+  label_irm_wf_task_recurrence_every: 每
+  label_irm_wf_task_recurrence_day: 天
+  label_irm_wf_task_recurrence_daily: 每天
+  label_irm_wf_task_recurrence_weekly: 每周
+  label_irm_wf_task_recurrence_monthly: 每月
+  label_irm_wf_task_recurrence_yearly: 每年
+  label_irm_wf_task_recurrence_every_week: 每 %{m} 个星期重复
+  label_irm_wf_task_recurrence_day_of_every_month: 在每 %{m} 个月的第 %{n} 天
+  label_irm_wf_task_recurrence_weekday_of_every_month: 在每 %{m} 个月的第 %{n}
+  label_irm_wf_task_assigned_to: 分配给
+  label_irm_wf_task_recurrence_edit: 编辑重复序列
+  label_irm_wf_task_priority: 优先级
+  label_irm_wf_task_task_status: 任务状态
+  label_irm_wf_task_mail: 电子邮件
+  label_irm_wf_task_phone: 联系电话
+  label_action_edit_recurrence: 编辑重复序列
+  label_action_my_tasks_index: 我的任务
+  recurrence_occurs: Occurs
+  recurrence_byday: on day %{m}
+  recurrence_byday_week: on %{m}
+  recurrence_until: until %{m}
+  recurrence_daily: day(s)
+  recurrence_weekly: week(s)
+  recurrence_monthly: month(s)
+  recurrence_interval: every %{m}
   #======================== end calendar tasks====================
+  #======================== business objects====================
+  label_business_object_list: 业务对像
+  label_irm_business_object_business_object_code: 编码
+  label_irm_business_object_name: 名称
+  label_irm_business_object_bo_table_name: 表名
+  label_irm_business_object_bo_model_name: Model名称
+  label_irm_business_object_auto_generate_flag: 自动生成
+  label_irm_business_object_multilingual_flag: 多语言
+  label_irm_business_object_new: 复制业务对像
+  label_irm_business_object_edit: 编辑业务对像
+  label_irm_business_object_description: 描述
+  #======================== business objects====================
+  #======================== object attributes====================
+  label_irm_object_attributes: 属性
+  label_irm_object_attribute_name: 名称
+  label_irm_object_attribute_attribute_name: 属性名
+  label_irm_object_attribute_attribute_type: 属性类型
+  label_irm_object_attribute_approval_page_field_flag: 审批字段
+  label_irm_object_attribute_relation_bo_code: 关联BO
+  label_irm_object_attribute_relation_column: 关联列
+  label_irm_object_attribute_relation_table_alias_name: 关联表别名
+  label_irm_object_attribute_new: 新建对像属性
+  label_irm_object_attribute_choose_attribute_type: 选择对像属性类型
+  label_irm_object_attribute_exists_relation_flag: 使用该BO已有关联
+  label_irm_object_attribute_relation_type: 关联类型
+  label_irm_object_attribute_lov_code: LOV
+  label_irm_object_attribute_where_clause: 关联条件
+  label_irm_object_attribute_fill_attribute_info: 属性信息
+  label_irm_object_attribute_data_type: 数据类型
+  label_irm_object_attribute_data_length: 数据长度
+  label_irm_object_attribute_edit: 编辑BO属性
+  label_irm_object_attribute_description: 描述
+  label_irm_object_attributes_test_information: 测试信息
+  label_irm_object_attribute_invalid_exists_relation_table: 请填写已经存在的表别名
+  label_irm_object_attribute_invalid_model_attribute: BO对像中无该属性
+  #======================== object attributes====================
+  #======================== list of values====================
+  label_irm_list_of_value_list: 值列表
+  label_irm_list_of_value_lov_code: 编码
+  label_irm_list_of_value_name: 名称
+  label_irm_list_of_value_description: 描述
+  label_irm_list_of_value_bo_code: 业务对像
+  label_irm_list_of_value_id_column: ID列
+  label_irm_list_of_value_value_column: 值列
+  label_irm_list_of_value_value_title: 值标题
+  label_irm_list_of_value_desc_column: 描述列
+  label_irm_list_of_value_desc_title: 描述标题
+  label_irm_list_of_value_listable_flag: 下拉列表
+  label_irm_list_of_value_value_column_width: 值列宽
+  label_irm_list_of_value_desc_column_width: 描述列宽
+  label_irm_list_of_value_addition_column: 附加列
+  label_irm_list_of_value_addition_title: 附加列标题
+  label_irm_list_of_value_addition_column_width: 附加列宽
+  label_irm_list_of_value_where_clause: 条件
+  label_irm_list_of_value_query_clause: 查询参数条件
+  label_irm_list_of_value_addition_clause: 其他查询条件
+  label_irm_list_of_value_new: 新建值列表
+  label_irm_list_of_value_edit: 编辑值列表
+  label_irm_list_of_value_test_information: 值列表测试结果
+  #======================== end list of values====================

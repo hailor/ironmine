@@ -54,6 +54,23 @@ class Icm::ImpactRangesController < ApplicationController
     end
   end
 
+
+  def multilingual_edit
+    @impact_range = Icm::ImpactRange.find(params[:id])
+  end
+
+  def multilingual_update
+    @impact_range = Icm::ImpactRange.find(params[:id])
+    @impact_range.not_auto_mult=true
+    respond_to do |format|
+      if @impact_range.update_attributes(params[:icm_impact_range])
+        format.html { render({:action=>"show"}, :notice => t(:successfully_updated)) }
+      else
+        format.html { render({:action=>"multilingual_edit"}) }
+      end
+    end
+  end
+
   def destroy
     @impact_range = Icm::ImpactRange.find(params[:id])
     @impact_range.destroy

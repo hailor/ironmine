@@ -1,0 +1,3 @@
+GY.use('node', function(Y){
+    Y.one("#exist_attachments_list").set('innerHTML', '<%= escape_javascript(list_exist_attachments_during_create(@attachments))%>');
+});

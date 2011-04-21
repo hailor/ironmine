@@ -34,11 +34,25 @@ class LabellingFormBuilder  < ActionView::Helpers::FormBuilder
   end
 
 
- def blank_select(field, choices, options = {}, html_options = {})
-    options=(options||{}).merge({:include_blank=>"--- #{I18n.t(:actionview_instancetag_blank_option)} ---"})
-    html_options =(html_options||{}).merge(:blank=> "--- #{I18n.t(:actionview_instancetag_blank_option)} ---")
-    select(field, choices, options, html_options)
+  def blank_select(field, choices, options = {}, html_options = {})
+     options=(options||{}).merge({:include_blank=>"--- #{I18n.t(:actionview_instancetag_blank_option)} ---"})
+     html_options =(html_options||{}).merge(:blank=> "--- #{I18n.t(:actionview_instancetag_blank_option)} ---")
+     select(field, choices, options, html_options)
   end
+
+
+  def lov_field(field, lov_code, options = {}, html_options = {})
+    lov = Irm::ListOfValue.where(:lov_code=>lov_code).first
+    if lov.listable_flag.eql?(Irm::Constant::SYS_YES)
+      lov_as_select(field,lov,options,html_options)
+    else
+      lov_as_autocomplete(field,lov,options,html_options)
+    end
+
+  end
+
+
+
   
   def check_box(method, options = {}, checked_value = "Y", unchecked_value = "N")
     if !options.delete(:normal)
@@ -62,5 +76,36 @@ class LabellingFormBuilder  < ActionView::Helpers::FormBuilder
 #                                    {:class => (@object && @object.errors[field] ? "error" : nil),
 #                                     :for => (@object_name.to_s + "_" + field.to_s)},false)
   end
+
+  private
+  def lov_as_select(field,lov,options,html_options)
+    # TODO cascade select
+    values = []
+    values = eval(lov.generate_scope).collect{|v| [v[:desc_value],v[:value],v.attributes]}
+    blank_select(field,values,options,html_options)
+  end
+
+  def lov_as_autocomplete(field,lov,options,html_options)
+    input_node_id =  options.delete(:id)||field
+    hidden_tag_str = text_field(field,options.merge({:style=>"display:none;",:id=>input_node_id}))
+    label_tag_str = @template.text_field_tag("#{input_node_id}Label",options.delete(:label_value),options.merge(:id=>"#{input_node_id}Label"))
+
+    columns = []
+    columns <<{:key=>"id_value",:hidden=>true}
+    columns <<{:key=>"desc_value",:label=>lov[:desc_title],:width=>lov.desc_column_width}
+    columns <<{:key=>"value",:label=>lov[:value_title],:width=>lov.value_column_width,:return_to=>"##{input_node_id}Label"}
+    unless lov.addition_column.strip.blank?||lov.addition_column.nil?
+      acs =   lov.addition_column.split("#")
+      acws = lov.addition_column_width.split("#")
+      acts = lov[:addition_title].split("#")
+    end
+    acs.each_with_index do |column,index|
+      columns <<{:key=>columns,:label=>acts[index],:width=>acws[index]}
+    end if acs
+
+    script = @template.autocomplete("#{input_node_id}Label",@template.url_for(:controller=>"irm/list_of_values",:action=>"get_lov_data",:id=>lov.id),columns)
+    (hidden_tag_str+label_tag_str+script).html_safe
+  end
+
   
 end

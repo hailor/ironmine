@@ -69,23 +69,12 @@
         </tbody>
       </table>
     </div>
-    <div class="listRelatedObject setupBlock">
-    <div class="bPageBlock">
-      <div class="pbHeader">
-        <table cellpadding="0" cellspacing="0" border="0">
-          <tbody>
-            <tr>
-              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_function_list) %></h2></td>
-              <td class="pbButton">
-              </td>
-              <td class="pbHelp">
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="pbBody" id="selectableFunctions">
-        <% @fgs.each do |group|%>
+
+    <div class="pbSubheader first tertiaryPalette">
+      <h3><%= t(:label_irm_function_list) %></h3>
+    </div>
+    <div class="pbSubsection" id="selectableFunctions">
+      <% @fgs.each do |group|%>
           <fieldset id="<%= group[:group_code].downcase %>Group"><legend><%= group[:name] %></legend>
             <% if @fs[group[:group_code]]&&@fs[group[:group_code]].size>1%>
                 <div  style="float:left;width:33%;"><label>
@@ -101,10 +90,8 @@
           <% end if @fs[group[:group_code]] %>
           </fieldset>
         <%end%>
-      </div>
     </div>
 </div>
-  </div>
   <div class="pbBottomButtons">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>

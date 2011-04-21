@@ -7,6 +7,7 @@ Ironmine::Application.routes.draw do
     match 'access_deny' => 'navigations#access_deny'
     match 'logout'=>'common#logout',:as=>:logout
     match 'forgot_password' => "common#forgot_password"
+    match 'common/search_options' => "common#search_options"
     #lookup_types
     match '/lookup_types/new(.:format)'=>"lookup_types#new",:via=>:get
     match '/lookup_types/create(.:format)'=>"lookup_types#create",:via=>:post
@@ -180,6 +181,44 @@ Ironmine::Application.routes.draw do
     match '/auth_sources/:id/multilingual_update(.:format)' => "auth_sources#multilingual_update", :via => :put
     match '/auth_sources/get_data(.:format)' => "auth_sources#get_data"
     match '/auth_sources/:id/show(.:format)' => "auth_sources#show", :via => :get
+
+    #ldap_sources
+    match '/ldap_sources(/index)(.:format)' => "ldap_sources#index", :via => :get
+    match '/ldap_sources/:id/edit(.:format)' => "ldap_sources#edit", :via => :get
+    match '/ldap_sources/execute_test(.:format)' => "ldap_sources#execute_test", :via => :get
+    match '/ldap_sources/:id/execute_test(.:format)' => "ldap_sources#execute_test", :via => :get
+    match '/ldap_sources/:id(.:format)' => "ldap_sources#update", :via => :put
+    match '/ldap_sources/new(.:format)' => "ldap_sources#new", :via => :get
+    match '/ldap_sources/create(.:format)' => "ldap_sources#create", :via => :post
+    match '/ldap_sources/:id/multilingual_edit(.:format)' => "ldap_sources#multilingual_edit", :via => :get
+    match '/ldap_sources/:id/multilingual_update(.:format)' => "ldap_sources#multilingual_update", :via => :put
+    match '/ldap_sources/get_data(.:format)' => "ldap_sources#get_data"
+    match '/ldap_sources/:id/show(.:format)' => "ldap_sources#show", :via => :get
+
+    #ldap_sources
+    match '/ldap_auth_headers(/index)(.:format)' => "ldap_auth_headers#index", :via => :get
+    match '/ldap_auth_headers/:id/edit(.:format)' => "ldap_auth_headers#edit", :via => :get
+    match '/ldap_auth_headers/execute_test(.:format)' => "ldap_auth_headers#execute_test", :via => :get
+    match '/ldap_auth_headers/:id/execute_test(.:format)' => "ldap_auth_headers#execute_test", :via => :get
+    match '/ldap_auth_headers/:id(.:format)' => "ldap_auth_headers#update", :via => :put
+    match '/ldap_auth_headers/new(.:format)' => "ldap_auth_headers#new", :via => :get
+    match '/ldap_auth_headers/create(.:format)' => "ldap_auth_headers#create", :via => :post
+    match '/ldap_auth_headers/:id/multilingual_edit(.:format)' => "ldap_auth_headers#multilingual_edit", :via => :get
+    match '/ldap_auth_headers/:id/multilingual_update(.:format)' => "ldap_auth_headers#multilingual_update", :via => :put
+    match '/ldap_auth_headers/get_data(.:format)' => "ldap_auth_headers#get_data"
+    match '/ldap_auth_headers/:id/show(.:format)' => "ldap_auth_headers#show", :via => :get
+
+    match '/ldap_auth_attributes(/index)(.:format)' => "ldap_auth_attributes#index", :via => :get
+    match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/new(.:format)' => "ldap_auth_attributes#new", :via => [:get,:post,:put]
+    match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/create(.:format)' => "ldap_auth_attributes#create", :via => :post
+    match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/get_data(.:format)' => "ldap_auth_attributes#get_data"
+    match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/:id/edit(.:format)' => "ldap_auth_attributes#edit", :via => :get
+    match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/:id(.:format)' => "ldap_auth_attributes#update", :via => :put
+    match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/:id/show(.:format)' => "ldap_auth_attributes#show", :via => :get
+    match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/:id/delete(.:format)' => "ldap_auth_attributes#destroy", :via => :delete
+    match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/:id/multilingual_edit(.:format)' => "ldap_auth_attributes#multilingual_edit", :via => :get
+    match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/:id/multilingual_update(.:format)' => "ldap_auth_attributes#multilingual_update", :via => :put
+
     #scripts
     match '/scripts(/index)(.:format)' => "scripts#index", :via => :get
     match '/scripts/get_data(.:format)' => "scripts#get_data"
@@ -461,6 +500,7 @@ Ironmine::Application.routes.draw do
     match '/reports/new(.:format)' => "reports#new", :via => :get
     match '/reports/create(.:format)' => "reports#create", :via => :post
     match '/reports/get_data(.:format)' => "reports#get_data"
+    match '/reports/:id/show(.:format)' => "reports#show", :via => :get
     match '/reports/:id(.:format)' => "reports#show", :via => :get
     match '/reports/:id/multilingual_edit(.:format)' => "reports#multilingual_edit", :via => :get
     match '/reports/:id/multilingual_update(.:format)' => "reports#multilingual_update", :via => :put
@@ -512,9 +552,49 @@ Ironmine::Application.routes.draw do
     match '/wf_tasks/:id(.:format)' => "wf_tasks#update", :via => :put
     match '/wf_tasks/get_data(.:format)' => "wf_tasks#get_data"
     match '/wf_tasks/:id/show(.:format)' => "wf_tasks#show", :via => :get
+    match '/wf_tasks/:id/edit_recurrence(.:format)' => "wf_tasks#edit_recurrence", :via => :get
+    match '/wf_tasks/:id/update_recurrence(.:format)' => "wf_tasks#update_recurrence", :via => :put
     match '/wf_tasks/:id/quick_show(.:format)' => "wf_tasks#quick_show", :via => :get
+    match '/wf_tasks/my_tasks_index(.:format)' => "wf_tasks#my_tasks_index", :via => :get
+    match '/wf_tasks/my_tasks_get_data(.:format)' => "wf_tasks#my_tasks_get_data"
 
     match '/calendars(/:year(/:month))' => 'calendars#get_full_calendar', :as => :calendar_task, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
+    # business object
+    match '/business_objects(/index)(.:format)' => "business_objects#index", :via => :get
+    match '/business_objects/new(.:format)' => "business_objects#new", :via => :get
+    match '/business_objects/create(.:format)' => "business_objects#create", :via => :post
+    match '/business_objects/get_data(.:format)' => "business_objects#get_data"
+    match '/business_objects/:id/edit(.:format)' => "business_objects#edit", :via => :get
+    match '/business_objects/:id(.:format)' => "business_objects#update", :via => :put
+    match '/business_objects/:id/show(.:format)' => "business_objects#show", :via => :get
+    match '/business_objects/:id/execute_test(.:format)' => "business_objects#execute_test", :via => :get
+    match '/business_objects/:id/multilingual_edit(.:format)' => "business_objects#multilingual_edit", :via => :get
+    match '/business_objects/:id/multilingual_update(.:format)' => "business_objects#multilingual_update", :via => :put
+    # object attributes
+    match '/object_attributes(/index)(.:format)' => "object_attributes#index", :via => :get
+    match '/business_objects/:bo_id/object_attributes/new(.:format)' => "object_attributes#new", :via => [:get,:post,:put]
+    match '/business_objects/:bo_id/object_attributes/create(.:format)' => "object_attributes#create", :via => :post
+    match '/business_objects/:bo_id/object_attributes/get_data(.:format)' => "object_attributes#get_data"
+    match '/business_objects/:bo_id/object_attributes/:id/edit(.:format)' => "object_attributes#edit", :via => :get
+    match '/business_objects/:bo_id/object_attributes/:id(.:format)' => "object_attributes#update", :via => :put
+    match '/business_objects/:bo_id/object_attributes/:id/show(.:format)' => "object_attributes#show", :via => :get
+    match '/business_objects/:bo_id/object_attributes/:id/delete(.:format)' => "object_attributes#destroy", :via => :delete
+    match '/business_objects/:bo_id/object_attributes/:id/multilingual_edit(.:format)' => "object_attributes#multilingual_edit", :via => :get
+    match '/business_objects/:bo_id/object_attributes/:id/multilingual_update(.:format)' => "object_attributes#multilingual_update", :via => :put
+    match '/object_attributes/relation_columns(.:format)' => "object_attributes#relation_columns", :via => :get
+    match '/object_attributes/selectable_columns(.:format)' => "object_attributes#selectable_columns", :via => :get
+    # list of values
+    match '/list_of_values(/index)(.:format)' => "list_of_values#index", :via => :get
+    match '/list_of_values/new(.:format)' => "list_of_values#new", :via => :get
+    match '/list_of_values/create(.:format)' => "list_of_values#create", :via => :post
+    match '/list_of_values/get_data(.:format)' => "list_of_values#get_data"
+    match '/list_of_values/:id/edit(.:format)' => "list_of_values#edit", :via => :get
+    match '/list_of_values/:id(.:format)' => "list_of_values#update", :via => :put
+    match '/list_of_values/:id/show(.:format)' => "list_of_values#show", :via => :get
+    match '/list_of_values/:id/multilingual_edit(.:format)' => "list_of_values#multilingual_edit", :via => :get
+    match '/list_of_values/:id/multilingual_update(.:format)' => "list_of_values#multilingual_update", :via => :put
+    match '/list_of_values/:id/execute_test(.:format)' => "list_of_values#execute_test", :via => :get
+    match '/list_of_values/:id/get_lov_data(.:format)' => "list_of_values#get_lov_data", :via => :get
   end
 
   scope :module => "icm" do
@@ -563,6 +643,9 @@ Ironmine::Application.routes.draw do
     match '/close_reasons/create(.:format)' => "close_reasons#create", :via => :post
     match '/close_reasons/:id/show(.:format)' => "close_reasons#show", :via => :get
     match '/close_reasons/get_data(.:format)' => "close_reasons#get_data"
+    match '/close_reasons/:id/multilingual_edit(.:format)' => "close_reasons#multilingual_edit", :via => :get
+    match '/close_reasons/:id/multilingual_update(.:format)' => "close_reasons#multilingual_update", :via => :put
+
     #incident_phases
     match '/incident_phases(/index)(.:format)' => "incident_phases#index", :via => :get
     match '/incident_phases/:id/edit(.:format)' => "incident_phases#edit", :via => :get
@@ -757,11 +840,21 @@ Ironmine::Application.routes.draw do
     match '/entry_headers/my_drafts(.:format)' => "entry_headers#my_drafts", :via => :get
     match '/entry_headers/:person_id/my_drafts_data' => "entry_headers#my_drafts_data"
     match '/entry_headers/new_from_icm_request' => "entry_headers#new_from_icm_request", :via => :get
+    match '/entry_headers/:att_id/remove_exits_attachment_during_create' => "entry_headers#remove_exits_attachment_during_create", :via => :get
     #entry_reports
     match '/entry_reports/rpt_entry_submit_summary(.:format)'=>"entry_reports#rpt_entry_submit_summary"
     match '/entry_reports(/index)(.:format)'=>"entry_reports#index"
-    match '/entry_reports/get_report_summary(.:format)' => "entry_reports#get_report_summary"
-    match '/entry_reports/rpt_entry_history_summary(.:format)'=>"entry_reports#rpt_entry_history_summary"
+
+    match '/entry_reports/get_rpt_apply_data(.:format)' => "entry_reports#get_rpt_apply_data"
+    match '/entry_reports/rpt_entry_apply_summary(.:format)'=>"entry_reports#rpt_entry_apply_summary"
+
+    match '/entry_reports/rpt_search_history_summary(.:format)' => "entry_reports#rpt_search_history_summary"
+    match '/entry_reports/get_search_history_data(.:format)'=>"entry_reports#get_search_history_data"
+
+    match '/entry_reports/rpt_entry_show_history(.:format)' => "entry_reports#rpt_entry_show_history"
+    match '/entry_reports/get_rpt_show_data(.:format)'=>"entry_reports#get_rpt_show_data"
+
+    match '/entry_reports/rpt_entry_history_summary(.:format)' => "entry_reports#rpt_entry_history_summary"
 
     #file_managements
     match '/file_managements(/index)(.:format)' => "file_managements#index", :via => :get

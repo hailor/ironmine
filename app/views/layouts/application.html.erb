@@ -11,7 +11,6 @@
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/common.css"></link>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/tabbar.css"></link>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/icons.css"></link>
-
   <script type="text/javascript">
     GY.use("irm","node-base",function(Y){
       Y.on("domready",function(){
@@ -43,7 +42,7 @@
                           </div>
                         </div>
                         <div id="searchOptionsContainer" class="headerSearchOptions">
-                          <a href="javascript:void(0);" class="headerSearchOptionsLink"><%= t(:options) %></a>
+                          <a href="javascript:void(0);" id="headerSearchOptionsLink" class="headerSearchOptionsLink"><%= t(:options) %></a>
                         </div>
                       </div>
                     </form>
@@ -132,5 +131,27 @@
             </table>
         </div>
     </div>
+
+<link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/custom_yui_container_skin.css"></link>
+<script type="text/javascript">
+
+  GY.use('yui2-container', function(Y){
+      var dialog;
+      dialog = new Y.YUI2.widget.Dialog("container_abc", {
+          visible: true,
+          context: [Y.one("#headerSearchOptionsLink"), "tl", "bl"],
+          draggable: false,
+          close: true
+      });
+
+      Y.one("#headerSearchOptionsLink").on("click", function(e){
+          dialog.setBody("<iframe src='/common/search_options' style='height:180px;'></iframe>");
+          dialog.setHeader('<%= t :search_options%>');
+          dialog.render(document.body);
+          dialog.center();
+          dialog.show();
+      });
+  });
+</script>
 </body>
 </html>

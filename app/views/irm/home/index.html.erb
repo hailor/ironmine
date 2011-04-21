@@ -11,7 +11,7 @@
               <%= link_to Irm::Person.current.name, {:controller => "irm/my_info", :action => "index"} %>
             </h1>
           </span>
-          <span class="pageDescription"><a href="javascript:void(0);"><%= Time.now.strftime(t("date.formats.long")) + t("date.day_names")[Time.now.strftime("%w").to_f]%></a></span>
+          <span class="pageDescription"><a href="javascript:void(0);" onclick="change_to_calendar_tab();"><%= Time.now.strftime(t("date.formats.long")) + t("date.day_names")[Time.now.strftime("%w").to_f]%></a></span>
       </div>
     </div>
     <div class="links">
@@ -61,17 +61,7 @@
                   </td>
                   <td>
                     <div class="toolsContentRight">
-                      <div class="bSubBlock">
-                        <h3 class="lbHeader"><%= t :my_task %></h3>
-                        <div class="lbBody">
-                          <ul>
-                            <%= raw(need_response_survey) %>
-                          </ul>
-                        </div>
-                            <div class="quickCreateField">
-                              <div class="button"><input class="btn" type="button" value="<%=t :new_task%>"></div><br>
-                            </div>
-                      </div>
+                        <%= render :partial => "irm/wf_tasks/my_tasks" %>
                     </div>
                   </td>
                 </tr>
@@ -121,6 +111,8 @@
 </style>
 
 <script type="text/javascript">
+
+
   GY.use('dd', function(Y) {
       function Portal() {
         Portal.superclass.constructor.apply(this, arguments);
@@ -252,7 +244,14 @@
     tabview.render();
     var currentTab = Y.one("#templateBody").getAttribute("current");
     Y.one("#templateBody").one("a#"+currentTab).simulate("click");
-  });        
+  });
+
+  //点击事件时,切换到工作日历的tab
+  function change_to_calendar_tab(){
+      GY.use("node", function(Y){
+            Y.one("a[id='calendar_task']").simulate("click");
+      });
+  }
 </script>
 
 <% content_for :sidebar do%>

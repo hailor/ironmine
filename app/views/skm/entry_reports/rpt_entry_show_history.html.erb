@@ -1,0 +1,92 @@
+<%= app_title(:description=>t(:label_skm_rpt_show_history)) %>
+<div class="bFilterReport">
+  <h2><%=t(:label_icm_report_param) %></h2>
+  <div class="reportParameters">
+    <%= form_tag({}, :method => :get) do %>
+    <%= hidden_field_tag :auto_run,Irm::Constant::SYS_NO %>
+    <div class="row">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+            <tr>
+              <td>
+                <label for="subtotalBy0"><%=t(:label_irm_company_name)%>：</label>
+                <%=select_tag :company_id,nullable_options_for_select(available_company,@company_id),:required=>true %>
+              </td>
+              <td>
+                <fieldset>
+                  <legend>
+                    <strong><%= t(:label_skm_entry_time_frame) %></strong>
+                    <table cellpadding="0" cellspacing="0" border="0">
+                      <tbody>
+                          <tr>
+                            <td>
+                              <label for="interval_s"><%= t(:label_icm_report_time_frame_start_time) %></label>
+                              <span class="dateInput dateOnlyInput">
+                                <%= text_field_tag :entry_start_date, @entry_start_date||show_date(:months_advance=>-1),:id=>"interval_s",:size=>12%>
+                                <%= calendar_view("interval_s","interval_s","cal") %>
+                              </span>
+                            </td>
+                            <td>
+                              <label for="interval_e"><%= t(:label_icm_report_time_frame_end_time) %></label>
+                              <span class="dateInput dateOnlyInput">
+                                <%= text_field_tag :entry_end_date, @entry_end_date||show_date,:id=>"interval_e",:size=>12%>
+                                <%= calendar_view("interval_e","interval_e","cal") %>
+                              </span>
+                            </td>
+                          </tr>
+                      </tbody>
+                    </table>
+                  </legend>
+                </fieldset>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="reportActions pbButton">
+    <%= submit_tag t(:submit),{:class =>"btn"}%>
+    <input class="btn" type="submit" value="自定义">
+    <input class="btn" type="submit" value="另存为">
+    <input class="btn" type="submit" value="导出详细信息">
+  </div>
+  <% end %>
+  <div class="bGeneratedReport">
+    <div class="bPageBlock">
+      <div class="pbBody">
+        <div class="pbSubblock">
+          <div class="pbSubbody">
+            <div class="reportOutput">
+              <div id="fchArea" class="pbBody" >
+                    <table style="width:100%">
+                      <tr>
+                         <td style="width:40%">
+                            <div id="show_history" class="datatable">
+                            </div>
+                            <%= datatable("show_history",url_for(:action=>"get_rpt_show_data",:auto_run=>Irm::Constant::SYS_NO,:company_id=>@company_id,:entry_start_date=>@entry_start_date,:entry_end_date=>@entry_end_date),
+                                      [{:key=>"entry_title",:label=>t(:label_rpt_entry_name),:width=>"350px"},
+                                       {:key=>"version_number",:label=>t(:label_skm_entry_header_version),:width=>"80px"},
+                                      {:key=>"company_name",:label=>t(:label_rpt_company_name),:width=>"200px"},
+                                      {:key=>"created_day",:label=>t(:label_rpt_show_create_at),:width=>"200px"},
+                                      {:key=>"full_name",:label=>t(:label_rpt_show_create_by),:width=>"200px"},
+                                      {:key=>"result_count",:label=>t(:label_rpt_show_count),:width=>"200px"}]
+                                      )%>
+                        </td>
+                        <td style="width:10%">
+                        </td>
+
+                      </tr>
+                    </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

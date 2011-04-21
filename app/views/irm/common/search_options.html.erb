@@ -1,0 +1,31 @@
+<div>
+  <div style="margin-left:5px;margin-right:5px;">
+    <%= text_field_tag "search_option_input", t(:input_keyword_you_want_to_search) , :onfocus => "if (value =='#{t(:input_keyword_you_want_to_search)}'){value =''}", :onblur =>"if (value ==''){value='#{t(:input_keyword_you_want_to_search)}'}", :style => "width:100%" %></div>
+  <fieldset>
+  <table style="font-size:12px">
+    <tr><td><%= check_box_tag("search_option_all") %>
+      <label for="search_option_all"><%= t :all %></label>
+      </td>
+    </tr>
+    <tr><td><%= check_box_tag("search_option_skm_entry") %>
+      <label for="search_option_skm_entry"><%= t :label_skm_entry_header %></label>
+      </td>
+    </tr>
+    <tr><td><%= check_box_tag("search_option_icm_incident_request") %>
+      <label for="search_option_icm_incident_request"><%= t :label_icm_incident_request %></label>
+      </td>
+    </tr>
+  </table>
+  </fieldset>
+  <table style="width:100%">
+    <tr>
+      <td>
+        <div class="button" style="margin-left:30%;padding-top:10px;">
+        <%= link_to t(:search), {}, :href => "javascript:void(0);" %>
+        <%= link_to t(:cancel), {}, :href => "javascript:void(0);" %>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/common.css"></link>

@@ -28,7 +28,11 @@ class Skm::EntryHeader < ActiveRecord::Base
   scope :query_by_day,select("DATE_FORMAT(#{table_name}.created_at,'%Y-%m-%d') created_day,sum(1) entry_count").
                       group("DATE_FORMAT(#{table_name}.created_at,'%Y-%m-%d')").
                       order("DATE_FORMAT(#{table_name}.created_at,'%Y-%m-%d') asc")
-  
+
+  scope :with_favorite_flag, lambda{|person_id|
+    select("if(ef.id is null, 'Y', 'N') is_favorite").
+    joins("LEFT OUTER JOIN #{Skm::EntryFavorite.table_name} ef ON ef.person_id = #{person_id} AND ef.entry_header_id = #{table_name}.id")
+  }
   def self.generate_doc_number(prefix = "")
       num = Time.now.strftime("%y%m%d").to_i * 1000000 + rand(10)
       return prefix + num.to_s

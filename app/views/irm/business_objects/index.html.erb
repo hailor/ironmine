@@ -1,0 +1,39 @@
+<%= page_title %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_business_object_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+              </td>
+              <td class="pbHelp">
+                <div id="business_objectsSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="business_objects" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+              <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+          </div>
+        </div>
+        <%= datatable("business_objects",url_for(:action=>"get_data",:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
+                       { :key => "business_object_code", :label => t(:label_irm_business_object_business_object_code),:searchable=>true },
+                       { :key => "name", :label => t(:label_irm_business_object_name),:searchable=>true },
+                       { :key => "bo_table_name", :label => t(:label_irm_business_object_bo_table_name),:searchable=>true },
+                       { :key => "bo_model_name", :label => t(:label_irm_business_object_bo_model_name),:searchable=>true },
+                       { :key => "auto_generate_flag", :hidden=>true,:label => t(:label_irm_business_object_auto_generate_flag)},
+                       { :key => "multilingual_flag", :hidden=>true, :label => t(:label_irm_business_object_multilingual_flag)}
+                       ],{:paginator_box=>"business_objectsPaginator",:search_box=>"business_objectsSearchBox"})%>
+        <div id="business_objectsPaginator"></div>
+      </div>
+    </div>
+</div>
+
+

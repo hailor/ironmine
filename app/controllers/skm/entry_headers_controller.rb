@@ -1,7 +1,8 @@
 class Skm::EntryHeadersController < ApplicationController
   def index
-    session[:skm_entry_header] = nil
-    session[:skm_entry_details] = nil
+      session[:skm_entry_header] = nil
+      session[:skm_entry_details] = nil
+      session[:skm_entry_attachments] = nil
     @entry_header = Skm::EntryHeader.new
 
     respond_to do |format|
@@ -16,8 +17,8 @@ class Skm::EntryHeadersController < ApplicationController
 
     @history = Skm::EntryOperateHistory.new({:operate_code=>"SKM_SHOW",
                                              :entry_id=>params[:id],
-                                             :version_number => @entry_header.version_number});
-    @history.save;
+                                             :version_number => @entry_header.version_number})
+    @history.save
 
     respond_to do |format|
       format.html # show.html.erb
@@ -28,6 +29,11 @@ class Skm::EntryHeadersController < ApplicationController
   def new
     session[:skm_entry_header] = params[:skm_entry_header] if params[:skm_entry_header]
     session[:skm_entry_details] = params[:skm_entry_details] if params[:skm_entry_details]
+    if !params[:step]
+      session[:skm_entry_header] = nil
+      session[:skm_entry_details] = nil
+      session[:skm_entry_attachments] = nil
+    end
     if !params[:step] || params[:step] == "1"
       respond_to do |format|
         format.html { redirect_to({:action=>"new_step_1"}) }
@@ -37,10 +43,17 @@ class Skm::EntryHeadersController < ApplicationController
         format.html { redirect_to({:action=>"new_step_2"}) }
       end
     elsif params[:step] == "3"
+    #获取所有附件
       respond_to do |format|
         format.html { redirect_to({:action=>"new_step_3"}) }
       end
     elsif params[:step] == "4"
+
+      files = params[:file]
+      #调用方法创建附件
+      attached = Irm::AttachmentVersion.create_verison_files(files, "Skm::EntryHeader", -1)
+      t = session[:skm_entry_attachments]
+      (session[:skm_entry_attachments] = (t ? t : []) + attached.collect(&:id)) if attached
       respond_to do |format|
         format.html { redirect_to({:action=>"new_step_4"}) }
       end
@@ -85,6 +98,7 @@ class Skm::EntryHeadersController < ApplicationController
       @entry_details << t
     end
 
+    #验证上一步的输入正确性
     content_validate_flag = true
     @entry_details.each do |ed|
       (content_validate_flag = false ) if !ed.valid?
@@ -96,7 +110,11 @@ class Skm::EntryHeadersController < ApplicationController
         format.xml  { render :xml => @entry_header.errors, :status => :unprocessable_entity }
       end
     end
-    3.times { @entry_header.entry_subjects.build }
+
+    if session[:skm_entry_attachments] && session[:skm_entry_attachments].size > 0
+      @attachments = Irm::Attachment.list_all.where("latest_version_id IN (?)", session[:skm_entry_attachments])
+    end
+#    3.times { @entry_header.entry_subjects.build }
   end
 
   def new_step_4
@@ -120,6 +138,7 @@ class Skm::EntryHeadersController < ApplicationController
     @entry_details.each do |ed|
       (content_validate_flag = false ) if !ed.valid?
     end
+
     if !@entry_header.valid? || !content_validate_flag
       @elements = Skm::EntryTemplateDetail.owned_elements(@entry_header.entry_template_id)
       respond_to do |format|
@@ -127,8 +146,8 @@ class Skm::EntryHeadersController < ApplicationController
         format.xml  { render :xml => @entry_header.errors, :status => :unprocessable_entity }
       end
     end
-    3.times { @entry_header.entry_subjects.build }
-    @entry_subject = Skm::EntrySubject.new
+#    3.times { @entry_header.entry_subjects.build }
+#    @entry_subject = Skm::EntrySubject.new
   end
 
   def edit
@@ -153,8 +172,16 @@ class Skm::EntryHeadersController < ApplicationController
     @entry_header.author_id = Irm::Person.current.id
     respond_to do |format|
       if @entry_header.save
+        #关联创建过程中关联的文件
+        if session[:skm_entry_attachments] && session[:skm_entry_attachments].size > 0
+          attachments = Irm::AttachmentVersion.where("id IN (?)", session[:skm_entry_attachments])
+          attachments.each do |at|
+            at.update_attribute(:source_id, @entry_header.id)
+          end
+        end
         session[:skm_entry_header] = nil
         session[:skm_entry_details] = nil
+        session[:skm_entry_attachments] = nil
         if params[:status] == "DRAFT"
           format.html { redirect_to({:action=>"my_drafts"}, :notice =>t(:successfully_created)) }
         else
@@ -227,13 +254,13 @@ class Skm::EntryHeadersController < ApplicationController
   end
 
   def get_data
-    entry_headers_scope = Skm::EntryHeader.list_all.published.current_entry
+    entry_headers_scope = Skm::EntryHeader.list_all.published.current_entry.with_favorite_flag(Irm::Person.current.id)
     entry_headers_scope = entry_headers_scope.match_value("#{Skm::EntryHeader.table_name}.doc_number",params[:doc_number]) if params[:doc_number]
     entry_headers_scope = entry_headers_scope.match_value("#{Skm::EntryHeader.table_name}.keyword_tags",params[:keyword_tags]) if params[:keyword_tags]
     entry_headers_scope = entry_headers_scope.match_value("#{Skm::EntryHeader.table_name}.entry_title",params[:entry_title]) if params[:entry_title]
     entry_headers,count = paginate(entry_headers_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(entry_headers.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date_f], count)) }
+      format.json  {render :json => to_jsonp(entry_headers.to_grid_json(['0',:is_favorite, :entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date_f], count)) }
     end
   end
 
@@ -260,7 +287,7 @@ class Skm::EntryHeadersController < ApplicationController
                                                   :search_key=>params[:search_value],
                                                   :result_count=>count});
          @history.save;
-    end;
+    end
 
     respond_to do |format|
       format.json  {render :json => to_jsonp(entry_headers.to_grid_json(['0',:entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date], count)) }
@@ -365,6 +392,17 @@ class Skm::EntryHeadersController < ApplicationController
       if entry_header.save
         format.html { redirect_to(:controller => "skm/entry_headers", :action => "edit", :id => entry_header.id)}
         format.xml  { head :ok }
+      end
+    end
+  end
+
+  def remove_exits_attachment_during_create
+    @file = Irm::Attachment.where(:latest_version_id => params[:att_id]).first
+    session[:skm_entry_attachments].delete_if{|i| i==params[:att_id]}
+    @attachments = Irm::Attachment.list_all.where("latest_version_id IN (?)", session[:skm_entry_attachments])
+    respond_to do |format|
+      if @file.destroy
+          format.js { render :remove_exits_attachment_during_create }
       end
     end
   end

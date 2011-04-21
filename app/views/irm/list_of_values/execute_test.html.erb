@@ -1,0 +1,24 @@
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_list_of_value_test_information) %></h2></td>
+              <td class="pbButton">
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <%= lov_field_tag(:lov,@list_of_value.lov_code) if @show_test_lov %>
+      </div>
+      <div class="pbBody">
+        <%= text_area_tag(:message,@result_message,:style=>"width:100%",:rows=>@rows,:readonly=>true) %>
+      </div>
+
+    </div>
+</div>

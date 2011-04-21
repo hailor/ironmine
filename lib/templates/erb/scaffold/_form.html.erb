@@ -4,7 +4,7 @@
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%%=t(:label_icm_<%= singular_name %>_new)%></h2></td>
+          <td class="pbTitle"><h2 class="mainTitle"><%%=t(:label_irm_<%= singular_name %>_new)%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%%= f.submit t(:save)%></div>
             <div class="button"><%%= link_back t(:cancel)%></div>
@@ -31,7 +31,7 @@
         <tbody>
           <% for attribute in attributes -%>
             <tr>
-              <td class="labelCol"><label for="<%= singular_name %>_<%= attribute.name %>"><%%=t(:label_<%= singular_name %>_<%= attribute.name %>)%></label></td>
+              <td class="labelCol"><label for="<%= singular_name %>_<%= attribute.name %>"><%%=t(:label_irm_<%= singular_name %>_<%= attribute.name %>)%></label></td>
               <td class="dataCol"><%%=f.<%= attribute.field_type %> :<%= attribute.name %>, :required=>true ,:id=>"<%= singular_name %>_<%= attribute.name %>"%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>

@@ -84,7 +84,7 @@ class Icm::CloseReasonsController < ApplicationController
     @close_reason.not_auto_mult=true
     respond_to do |format|
       if @close_reason.update_attributes(params[:icm_close_reason])
-        format.html { redirect_to({:action=>"multilingual_edit",:format=>"js"}, :notice => t(:successfully_updated)) }
+        format.html { redirect_to({:action=>"show"}, :notice => t(:successfully_updated)) }
       else
         format.html { render({:action=>"multilingual_edit"}) }
       end
