@@ -121,6 +121,7 @@ en:
   label_cancel_confirm: Data have not saved. Are you sure?
   all: All
   search_options: Search Options
+  input_keyword_you_want_to_search: Input keyword you want to search
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type
@@ -831,6 +832,7 @@ en:
   label_irm_wf_task_assigned_to: Assigned To
   label_irm_wf_task_recurrence_edit: Edit Series
   label_action_edit_recurrence: Edit Series
+  label_action_my_tasks_index: My Tasks
   recurrence_occurs: Occurs
   recurrence_byday: on day %{m}
   recurrence_byday_week: on %{m}

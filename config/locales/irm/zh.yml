@@ -112,6 +112,7 @@ zh:
   label_cancel_confirm: 数据没有保存，您确定要取消吗？
   all: 全部
   search_options: 搜索选项
+  input_keyword_you_want_to_search: 请输入你要搜索的关键词
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=====================#
   label_lookup_types: 快速编码类型
@@ -890,9 +891,8 @@ zh:
   label_irm_wf_task_task_status: 任务状态
   label_irm_wf_task_mail: 电子邮件
   label_irm_wf_task_phone: 联系电话
-
   label_action_edit_recurrence: 编辑重复序列
-
+  label_action_my_tasks_index: 我的任务
   recurrence_occurs: Occurs
   recurrence_byday: on day %{m}
   recurrence_byday_week: on %{m}

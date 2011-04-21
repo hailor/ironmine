@@ -30,7 +30,7 @@ class InitTaskPriorityAndTaskStatusLookupData < ActiveRecord::Migration
     irm_wf_task_statusin_progress.lookup_values_tls.build(:lookup_value_id=>irm_wf_task_statusin_progress.id,:meaning=>'进行中',:description=>'进行中',:language=>'zh',:status_code=>'ENABLED',:source_lang=>'en')
     irm_wf_task_statusin_progress.lookup_values_tls.build(:lookup_value_id=>irm_wf_task_statusin_progress.id,:meaning=>'In Progress',:description=>'In Progress',:language=>'en',:status_code=>'ENABLED',:source_lang=>'en')
     irm_wf_task_statusin_progress.save
-    irm_wf_task_statuscompeted= Irm::LookupValue.new(:lookup_type=>'IRM_WF_TASK_STATUS',:lookup_code=>'COMPETED',:start_date_active=>'2011-02-20',:status_code=>'ENABLED',:not_auto_mult=>true)
+    irm_wf_task_statuscompeted= Irm::LookupValue.new(:lookup_type=>'IRM_WF_TASK_STATUS',:lookup_code=>'COMPLETED',:start_date_active=>'2011-02-20',:status_code=>'ENABLED',:not_auto_mult=>true)
     irm_wf_task_statuscompeted.lookup_values_tls.build(:lookup_value_id=>irm_wf_task_statuscompeted.id,:meaning=>'已完成',:description=>'已完成',:language=>'zh',:status_code=>'ENABLED',:source_lang=>'en')
     irm_wf_task_statuscompeted.lookup_values_tls.build(:lookup_value_id=>irm_wf_task_statuscompeted.id,:meaning=>'Completed',:description=>'Completed',:language=>'en',:status_code=>'ENABLED',:source_lang=>'en')
     irm_wf_task_statuscompeted.save

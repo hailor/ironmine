@@ -75,7 +75,8 @@ module Irm::WfTasksHelper
   end
 
   def my_tasks_list
-    my_tasks = Irm::Calendar.current_calendar(Irm::Person.current.id).wf_tasks.enabled.order("start_at ASC")
+    my_tasks = Irm::Calendar.current_calendar(Irm::Person.current.id).wf_tasks.uncompleted.enabled.order("start_at ASC").limit(5)
+
     html = ""
     my_tasks.each do |t|
       if t.start_at.strftime("%F") == Time.now.strftime("%F")
@@ -91,6 +92,10 @@ module Irm::WfTasksHelper
               content_tag(:span, link_to(t.name,{:controller=>"irm/wf_tasks",:action=>"show",:id=>t.id}), :style => "float:right;"))
     end
     html
+  end
+
+  def my_tasks_count
+    Irm::Calendar.current_calendar(Irm::Person.current.id).wf_tasks.uncompleted.enabled.size.to_s
   end
 
   def get_rrule_translate(rrule)

@@ -61,17 +61,7 @@
                   </td>
                   <td>
                     <div class="toolsContentRight">
-                      <div class="bSubBlock">
-                        <h3 class="lbHeader"><%= t :my_task %></h3>
-                        <div class="lbBody">
-                          <ul>
-                            <%= raw(my_tasks_list) %>
-                          </ul>
-                        </div>
-                            <div class="quickCreateField">
-                              <div class="button"><%= link_to t(:label_irm_wf_task_new), {:controller => "irm/wf_tasks", :action => "new"} %></div><br>
-                            </div>
-                      </div>
+                        <%= render :partial => "irm/wf_tasks/my_tasks" %>
                     </div>
                   </td>
                 </tr>
@@ -121,23 +111,6 @@
 </style>
 
 <script type="text/javascript">
-  GY.use('yui2-container', function(Y){
-      var dialog;
-      dialog = new Y.YUI2.widget.Dialog("container_abc", {
-          visible: true,
-          context: [Y.one("#headerSearchOptionsLink"), "tl", "bl"],
-          draggable: false,
-          close: true
-      });
-
-      Y.one("#headerSearchOptionsLink").on("click", function(e){
-          dialog.setBody("<iframe src='/common/search_options' style='height:180px;'></iframe>");
-          dialog.setHeader('<%= t :search_options%>');
-          dialog.render(document.body);
-          dialog.center();
-          dialog.show();
-      });
-  });
 
 
   GY.use('dd', function(Y) {

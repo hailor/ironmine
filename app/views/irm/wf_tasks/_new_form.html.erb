@@ -1,6 +1,7 @@
 <%= app_title %>
 <%= form_for(@task,:url=>{:controller => "irm/wf_tasks", :action=>"create"},:builder => LabellingFormBuilder) do |f| %>
 <%= hidden_field_tag "assigned_to", Irm::Person.current.id%>
+<%= hidden_field_tag "return_url",@return_url%>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -9,7 +10,13 @@
           <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_wf_task_new)%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_to t(:cancel), {:controller => "irm/home", :action => "index"}%></div>
+            <div class="button">
+           <% if @return_url && !@return_url.blank?%>
+            <%= link_to t(:cancel), @return_url%>
+           <% else %>
+            <%= link_to t(:cancel), {:controller => "irm/wf_tasks", :action => "my_tasks_index"} %>
+           <% end %>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -34,7 +41,7 @@
               <td class="labelCol"><label><%=(t :label_irm_wf_task_name)%></label></td>
               <td class="dataCol"><%= f.text_field :name, :required => true%></td>
               <td class="labelCol"><label><%=(t :label_irm_wf_task_start_at)%></label></td>
-              <td class="dataCol"><%=f.text_field :start_at, :id => "date1", :size => 12, :required => true%>
+              <td class="dataCol mulInput"><%=f.text_field :start_at, :id => "date1", :size => 12, :required => true%>
                 <%=select_tag "start_at_h", options_for_select(available_hours), :id => "datetime1"%>
                 &nbsp;<% link_to Time.now.strftime("%r"), {}, :href => "javascript:void(0)", :id => "date_now_1"%>&nbsp;</td>
             </tr>
@@ -42,7 +49,7 @@
               <td class="labelCol"><label><%=t :label_irm_wf_task_assigned_to%></label></td>
               <td class="dataCol"><%=select_tag "assigned_to", options_for_select(Irm::Person.enabled.collect{|p| [p.name, p.id]}, Irm::Person.current.id)%></td>
               <td class="labelCol"><label><%=(t :label_irm_wf_task_end_at)%></label></td>
-              <td class="dataCol"><%=f.text_field :end_at, :id => "date2", :size => 12, :required => true%>
+              <td class="dataCol mulInput"><%=f.text_field :end_at, :id => "date2", :size => 12, :required => true%>
                 <%=select_tag "end_at_h", options_for_select(available_hours), :id => "datetime2"%>
                 &nbsp;<% link_to Time.now.strftime("%r"), {}, :href => "javascript:void(0)", :id => "date_now_2"%>&nbsp;</td>
             </tr>
@@ -157,7 +164,13 @@
           <td class="pbTitle"></td>
           <td id="bottomButtonRow" class="pbButtonb">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_to t(:cancel), {:controller => "irm/home", :action => "index"}%></div>
+            <div class="button">
+           <% if @return_url && !@return_url.blank?%>
+            <%= link_to t(:cancel), @return_url%>
+           <% else %>
+            <%= link_to t(:cancel), {:controller => "irm/wf_tasks", :action => "my_tasks_index"} %>
+           <% end %>
+            </div>
           </td>
         </tr>
       </tbody>

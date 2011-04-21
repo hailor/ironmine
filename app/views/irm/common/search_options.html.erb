@@ -1,5 +1,6 @@
 <div>
-  <%= text_field_tag "search_option_input" %>
+  <div style="margin-left:5px;margin-right:5px;">
+    <%= text_field_tag "search_option_input", t(:input_keyword_you_want_to_search) , :onfocus => "if (value =='#{t(:input_keyword_you_want_to_search)}'){value =''}", :onblur =>"if (value ==''){value='#{t(:input_keyword_you_want_to_search)}'}", :style => "width:100%" %></div>
   <fieldset>
   <table style="font-size:12px">
     <tr><td><%= check_box_tag("search_option_all") %>

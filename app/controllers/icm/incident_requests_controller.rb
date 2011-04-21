@@ -45,6 +45,15 @@ class Icm::IncidentRequestsController < ApplicationController
       if @incident_request.save
         process_files(@incident_request)
         publish_create_incident_request(@incident_request)
+
+        #add watchers
+        if params[:cwatcher] && params[:cwatcher].size > 0
+          params[:cwatcher].each do |w|
+            watcher = Irm::Person.find(w[0])
+            @incident_request.person_watchers << watcher
+          end
+        end
+
         #如果没有填写support_group, 插入Delay Job任务
         if @incident_request.support_group_id.nil? || @incident_request.support_group_id.blank?
           Delayed::Job.enqueue(Irm::Jobs::IcmGroupAssignmentJob.new(@incident_request.id))

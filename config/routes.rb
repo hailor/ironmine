@@ -554,6 +554,8 @@ Ironmine::Application.routes.draw do
     match '/wf_tasks/:id/edit_recurrence(.:format)' => "wf_tasks#edit_recurrence", :via => :get
     match '/wf_tasks/:id/update_recurrence(.:format)' => "wf_tasks#update_recurrence", :via => :put
     match '/wf_tasks/:id/quick_show(.:format)' => "wf_tasks#quick_show", :via => :get
+    match '/wf_tasks/my_tasks_index(.:format)' => "wf_tasks#my_tasks_index", :via => :get
+    match '/wf_tasks/my_tasks_get_data(.:format)' => "wf_tasks#my_tasks_get_data"
 
     match '/calendars(/:year(/:month))' => 'calendars#get_full_calendar', :as => :calendar_task, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
     # business object
