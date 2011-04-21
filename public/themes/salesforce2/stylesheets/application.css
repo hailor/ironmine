@@ -908,3 +908,5 @@ div.recurrenceSectionBackground {
     border-bottom-width: 0;
     background-color: transparent;
 }
+
+.toolsContent {border-collapse: collapse !important; margin-top: 5px !important;}
