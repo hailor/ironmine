@@ -1,6 +1,6 @@
 class Irm::FiltersController < ApplicationController
   skip_before_filter :menu_setup
-  before_filter :filters_menu  #, :only => [:new,:edit]
+  before_filter :filters_menu  , :except => [:operator_value]
   # Date.today.prev_month.at_beginning_of_month
   # Date.today.at_beginning_of_week-1
 
@@ -9,24 +9,25 @@ class Irm::FiltersController < ApplicationController
   end
 
   def new
-    @view_filter = Irm::ViewFilter.new({:filter_type=>params[:ft]})
+    @rule_filter = Irm::RuleFilter.new({:filter_type=>"PAGE_FILTER",:bo_code=>params[:bc],:source_code=>params[:sc]})
     0.upto 4 do |index|
-      @view_filter.view_filter_criterions.build({:seq_num=>index+1})
+      @rule_filter.rule_filter_criterions.build({:seq_num=>index+1})
     end
   end
 
   def create
 
-    @view_filter = Irm::ViewFilter.new(params[:irm_view_filter])
-    params[:ft] = @view_filter.filter_type
-    @view_filter.view_filter_criterions.each  do |fc|
-        fc[:view_code] = @view_filter[:view_code]
-        fc.view_filter = @view_filter
-    end
-    @view_filter.own_id = Irm::Person.current.id
+    @rule_filter = Irm::RuleFilter.new(params[:irm_rule_filter])
+    params[:sc] = @rule_filter.source_code
+    params[:bc] = @rule_filter.bo_code
+    #@rule_filter.view_filter_criterions.each  do |fc|
+    #    fc[:view_code] = @view_filter[:view_code]
+    #    fc.view_filter = @view_filter
+    #end
+    @rule_filter.own_id = Irm::Person.current.id
 
     respond_to do |format|
-      if @view_filter.save
+      if @rule_filter.save
         format.html {redirect_back}
         format.xml  {redirect_back}
       else
@@ -37,14 +38,14 @@ class Irm::FiltersController < ApplicationController
   end
 
   def edit
-    @view_filter = Irm::ViewFilter.find(params[:id])
+    @rule_filter = Irm::RuleFilter.find(params[:id])
   end
 
   def update
-    @view_filter = Irm::ViewFilter.find(params[:id])
+    @rule_filter = Irm::RuleFilter.find(params[:id])
 
     respond_to do |format|
-      if @view_filter.update_attributes(params[:irm_view_filter])
+      if @rule_filter.update_attributes(params[:irm_rule_filter])
         format.html {redirect_back}
         format.xml  {redirect_back}
       else
@@ -52,6 +53,13 @@ class Irm::FiltersController < ApplicationController
         format.xml  { render :xml => @action.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  def operator_value
+    @object_attribute = Irm::ObjectAttribute.query(params[:attribute_id]).first
+    @rule_filter_criterion = Irm::RuleFilterCriterion.new
+    num = (params[:seq_num]||1).to_i-1
+    @named_form = "irm_rule_filter[rule_filter_criterions_attributes][#{num}]"
   end
 
 
