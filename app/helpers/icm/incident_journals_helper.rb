@@ -24,6 +24,10 @@ module Icm::IncidentJournalsHelper
     render :partial=>"icm/incident_journals/list_journals",:locals=>{:journals=>journals,:grouped_files=>@request_files}
   end
 
+  def journals_size(incident_request)
+    Icm::IncidentJournal.list_all(incident_request.id).size
+  end
+
   def list_journal_files(grouped_files,journal)
     return if grouped_files[journal.id].nil?||grouped_files[journal.id].size<1
     file_lists = ""
