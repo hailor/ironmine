@@ -29,7 +29,7 @@
         <tbody>
             <tr>
               <td class="labelCol"><label for="service_break_category_code"><%=t(:label_slm_service_break_seq_number)%></label></td>
-              <td class="dataCol"><%=f.text_field :seq_number, :required=>true ,:irm_uppercase=>true,
+              <td class="dataCol"><%=f.text_field :seq_number, :required=>true ,:size=>4,
                                                   :id=>"service_break_seq_number"%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>

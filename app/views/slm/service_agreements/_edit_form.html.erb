@@ -42,7 +42,7 @@
 
             <tr>
               <td class="labelCol"><label for="service_agreement_name"><%=t(:label_slm_service_agreement_name)%></label></td>
-              <td class="dataCol"><%= f.text_field :name, :value=>@service_agreement[:name],
+              <td class="dataCol"><%= f.text_field :name, :required=>true ,:value=>@service_agreement[:name],
                                                    :id=>"service_agreement_system_name"%></td>
               <td class="labelCol"><label for="service_agreement_response_time"><%=t(:label_slm_service_agreement_response_time)%></label></td>
               <td class="dataCol"><%= f.text_field :response_day, :size => 2,:value=>get_day_count(@service_agreement.response_time),:id=>"service_agreement_response_day"%>
