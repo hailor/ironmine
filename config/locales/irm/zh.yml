@@ -919,7 +919,8 @@ zh:
   label_irm_object_attribute_name: 名称
   label_irm_object_attribute_attribute_name: 属性名
   label_irm_object_attribute_attribute_type: 属性类型
-  label_irm_object_attribute_approval_page_field_flag: 审批字段
+  label_irm_object_attribute_approval_page_field_flag: 审批
+  label_irm_object_attribute_filter_flag: 过滤
   label_irm_object_attribute_relation_bo_code: 关联BO
   label_irm_object_attribute_relation_column: 关联列
   label_irm_object_attribute_relation_table_alias_name: 关联表别名

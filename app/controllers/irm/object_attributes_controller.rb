@@ -14,7 +14,7 @@ class Irm::ObjectAttributesController < ApplicationController
   # GET /object_attributes/1
   # GET /object_attributes/1.xml
   def show
-    @object_attribute = Irm::ObjectAttribute.with_attribute_type(I18n.locale).with_relation_bo(I18n.locale).multilingual.find(params[:id])
+    @object_attribute = Irm::ObjectAttribute.with_lov(I18n.locale).with_attribute_type(I18n.locale).with_relation_bo(I18n.locale).multilingual.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -112,7 +112,7 @@ class Irm::ObjectAttributesController < ApplicationController
     object_attributes,count = paginate(object_attributes_scope)
     respond_to do |format|
       format.json {render :json=>to_jsonp(object_attributes.to_grid_json([:name,
-                                                                          :approval_page_field_flag,
+                                                                          :approval_page_field_flag,:filter_flag,
                                                                           :attribute_name,
                                                                           :attribute_type_name,
                                                                           :relation_bo_name,
