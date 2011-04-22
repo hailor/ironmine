@@ -13,7 +13,7 @@
           </div>
         </div>
        <%= datatable("incident_requests",url_for(:action=>"get_data",:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50px"},
                        { :key => "request_number", :label => "#",:searchable=>true,:width=>"20px"},
                        { :key => "incident_status_name",:hidden=>true },
                        { :key => "need_customer_reply",:hidden=>true },

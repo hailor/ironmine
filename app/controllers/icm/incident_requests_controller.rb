@@ -106,6 +106,13 @@ class Icm::IncidentRequestsController < ApplicationController
   end
 
   def get_data
+    return_columns = [:request_number,
+                      :company_name,
+                      :title,
+                      :incident_status_name,
+                      :requested_name,
+                      :need_customer_reply,
+                      :last_response_date]
     bo = Irm::BusinessObject.where(:business_object_code=>"ICM_INCIDENT_REQUESTS").first
     incident_requests_scope = eval(bo.generate_query(true)).query_by_company_ids(session[:accessable_companies]).order("last_response_date desc,last_request_date desc,weight_value,company_id")
 
@@ -117,28 +124,32 @@ class Icm::IncidentRequestsController < ApplicationController
 
     incident_requests,count = paginate(incident_requests_scope)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(incident_requests.to_grid_json([:request_number,:title,:requested_name,:need_customer_reply,
-                                                                          :company_name,:impact_range_name,
-                                                                          :contact_name,:last_response_date,
-                                                                          :priority_name,:incident_status_name,:submitted_date],count,{:date_to_distance=>[:last_response_date]}))}
+      format.json {render :json=>to_jsonp(incident_requests.to_grid_json(return_columns,count,{:date_to_distance=>[:last_response_date]}))}
       format.xml { render :xml => incident_requests }
     end
   end
 
   def get_help_desk_data
-    incident_requests_scope = Icm::IncidentRequest.list_all.query_by_company_ids(session[:accessable_companies]).order("last_request_date desc,last_response_date desc,weight_value,company_id,id")
+    return_columns = [:request_number,
+                      :company_name,
+                      :title,
+                      :incident_status_name,
+                      :requested_name,
+                      :need_customer_reply,
+                      :last_request_date,
+                      :priority_name]
+    bo = Irm::BusinessObject.where(:business_object_code=>"ICM_INCIDENT_REQUESTS").first
+    incident_requests_scope = eval(bo.generate_query_by_attributes(return_columns,true)).query_by_company_ids(session[:accessable_companies]).order("last_request_date desc,last_response_date desc,weight_value,company_id,id")
     if !allow_to_function?(:view_all_incident_request)
       incident_requests_scope = incident_requests_scope.relate_person(Irm::Person.current.id)
     end
     incident_requests,count = paginate(incident_requests_scope)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(incident_requests.to_grid_json([:request_number,:company_name,:title,:requested_name,:need_customer_reply,
-                                                                          :urgence_name,:impact_range_name,
-                                                                          :contact_name,:last_request_date,
-                                                                          :priority_name,:incident_status_name,:submitted_date],count,{:date_to_distance=>[:last_request_date]}))}
+      format.json {render :json=>to_jsonp(incident_requests.to_grid_json(return_columns,count,{:date_to_distance=>[:last_request_date]}))}
       format.xml { render :xml => incident_requests }
     end
   end
+
   def save_as_skm
 
   end
