@@ -1,0 +1,7 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  agreement_code: MyString
+
+two:
+  agreement_code: MyString

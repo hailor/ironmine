@@ -1,0 +1,80 @@
+<%= form_for(@service_category,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_slm_service_category_edit)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @service_category%>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend"><span class="requiredExampleOuter">
+          <span class="requiredExample">&nbsp;</span></span>
+           <span class="requiredMark">*</span><span class="requiredText"> = <%=t(:label_is_required)%></span></span></span>
+      <h3><%=t(:label_slm_service_category_info)%></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+             <tr>
+              <td class="labelCol"><label for="service_category_category_code"><%=t(:label_slm_service_category_category_code)%></label></td>
+              <td class="dataCol"><%=f.text_field :category_code, :required=>true ,:id=>"service_category_service_category_code"%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="service_category_name"><%=t(:label_slm_service_category_name)%></label></td>
+              <td class="dataCol"><%=f.text_field :system_name,:value=>@service_category[:system_name],  :required=>true ,:id=>"service_category_system_name"%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="service_category_description"><%=t(:label_slm_service_category_description)%></label></td>
+              <td class="dataCol"><%= f.text_area :system_description, :value=>@service_category[:system_description], :rows => 4,:id=>"service_category_system_description"%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label><%=(t :label_slm_service_category_status_meaning)%></label></td>
+              <td class="dataCol"><%=f.select :status_code,options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@service_category.status_code)%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label><%=(t :label_slm_service_category_status_meaning)%></label></td>
+              <td class="dataCol"><%=f.select :status_code,options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@service_category.status_code)%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>

@@ -77,7 +77,7 @@ module Irm::FiltersHelper
 
   private
   def view_filter_columns(bo_code)
-    Irm::ObjectAttribute.selectable_column.query_by_status_code("ENABLED").multilingual.where(:business_object_code=>bo_code).collect{|i|[i[:name],i.attribute_name,{:attribute_id=>i.id}]}
+    Irm::ObjectAttribute.selectable_column.query_by_status_code("ENABLED").multilingual.filterable.where(:business_object_code=>bo_code).collect{|i|[i[:name],i.attribute_name,{:attribute_id=>i.id}]}
   end
 
   def view_filters(source_code)
