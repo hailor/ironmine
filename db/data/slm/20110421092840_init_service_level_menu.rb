@@ -14,12 +14,12 @@ class InitServiceLevelMenu < ActiveRecord::Migration
      slm_service_agreement_menu.menus_tls.build(:language=>'en',:source_lang=>'en',:name=>'Service Agreement',:description=>'Service Agreement')
      slm_service_agreement_menu.save
 
-     slm_menu_entry_1= Irm::MenuEntry.new(:menu_code=>'SLM_ADMIN_SETTING_MENU',:sub_menu_code=>'SLM_ADMIN_CATALOG_MENU',:page_controller=>nil,:display_sequence=>30,:display_flag=>'Y',:not_auto_mult=>true)
+     slm_menu_entry_1= Irm::MenuEntry.new(:menu_code=>'SLM_ADMIN_SETTING_MENU',:sub_menu_code=>'SLM_ADMIN_CATALOG_MENU',:page_controller=>nil,:display_sequence=>10,:display_flag=>'Y',:not_auto_mult=>true)
      slm_menu_entry_1.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'服务目录设置',:description=>'服务目录设置')
      slm_menu_entry_1.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Service Catalog Setting',:description=>'Service Catalog Setting')
      slm_menu_entry_1.save
 
-     slm_menu_entry_2= Irm::MenuEntry.new(:menu_code=>'SLM_ADMIN_SETTING_MENU',:sub_menu_code=>'SLM_ADMIN_AGREEMENT_MENU',:page_controller=>nil,:display_sequence=>10,:display_flag=>'Y',:not_auto_mult=>true)
+     slm_menu_entry_2= Irm::MenuEntry.new(:menu_code=>'SLM_ADMIN_SETTING_MENU',:sub_menu_code=>'SLM_ADMIN_AGREEMENT_MENU',:page_controller=>nil,:display_sequence=>20,:display_flag=>'Y',:not_auto_mult=>true)
      slm_menu_entry_2.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'服务协议设置',:description=>'服务协议设置')
      slm_menu_entry_2.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Service Agreement Setting',:description=>'Service Agreement Setting')
      slm_menu_entry_2.save
