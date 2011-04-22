@@ -52,7 +52,7 @@
 
             <tr>
               <td class="labelCol"><label for="service_catalog_active_start_date"><%=t(:label_slm_service_catalog_active_start_date)%></label></td>
-              <td class="dataCol"><%= f.text_field :active_start_date, :id=>"service_catalog_active_start_date"%></td>
+              <td class="dataCol"><%= f.text_field :active_start_date,:value=>show_date, :id=>"service_catalog_active_start_date"%></td>
               <td class="labelCol"><label for="service_catalog_slm_code"><%=t(:label_slm_service_catalog_slm_code)%></label></td>
               <td class="dataCol"><%=f.blank_select :slm_code,
                                       available_service_agreement,{},

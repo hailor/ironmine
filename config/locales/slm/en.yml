@@ -7,18 +7,18 @@ en:
   label_slm_service_category_show: Service Category Show
   label_slm_service_category_new: New Service Category
   label_slm_service_category_edit: Edit Service Category
-  label_slm_service_category_category_code: Category Code
+  label_slm_service_category_category_code: Code
   label_slm_service_category_name: Name
   label_slm_service_category_description: Description
   label_slm_service_category_status_meaning: Status Meaning
   label_slm_service_category_info: Service Category Info
   #=========================    end service_categories_controller=======================#
   #=========================    slm service_catalogs_controller=======================#
-  label_slm_service_catalog_list: Service Catalog List
-  label_slm_service_catalog_show: Service Catalog Show
-  label_slm_service_catalog_new: New Service Catalog
-  label_slm_service_catalog_edit: Edit Service Catalog
-  label_slm_service_catalog_catalog_code: Catalog Code
+  label_slm_service_catalog_list: Service List
+  label_slm_service_catalog_show: Service Show
+  label_slm_service_catalog_new: New Service
+  label_slm_service_catalog_edit: Edit Service
+  label_slm_service_catalog_catalog_code: Code
   label_slm_service_catalog_name: Name
   label_slm_service_catalog_description: Description
   label_slm_service_catalog_status_meaning: Status Meaning
@@ -26,17 +26,17 @@ en:
   label_slm_service_catalog_service_category_code: Service Category
   label_slm_service_catalog_priority_code: Priority
   label_slm_service_catalog_external_system_code:  External System
-  label_slm_service_catalog_active_start_date: Active Start Date
-  label_slm_service_catalog_active_end_date: Active End Date
-  label_slm_service_catalog_service_owner: Service Owner
-  label_slm_service_catalog_slm_code: SLA Code
+  label_slm_service_catalog_active_start_date: Start Date
+  label_slm_service_catalog_active_end_date: End Date
+  label_slm_service_catalog_service_owner: Owner
+  label_slm_service_catalog_slm_code: SLA
   label_slm_service_catalog_statistics_api: Statistics API
   label_slm_service_catalog_active_date: Active Date
   label_to: To
-  label_slm_service_catalog_service_member: Service Member
-  label_slm_service_catalog_service_break: Service Break
-  label_add_service_member: Add Service Member
-  label_add_service_break: Add Service Break
+  label_slm_service_catalog_service_member: Member
+  label_slm_service_catalog_service_break: Break
+  label_add_service_member: Add Member
+  label_add_service_break: Add Break
   #=========================    end service_catalogs_controller=======================#
   #=========================    slm service_breaks_controller=======================#
   label_slm_service_member_list: Service Member List
@@ -71,7 +71,7 @@ en:
   label_slm_service_agreement_new: Service Agreement New
   label_slm_service_agreement_edit: Service Agreement Edit
   label_slm_service_agreement_info: Service Agreement Info
-  label_slm_service_agreement_agreement_code: Agreement Code
+  label_slm_service_agreement_agreement_code: Code
   label_slm_service_agreement_name: Name
   label_slm_service_agreement_description: Description
   label_slm_service_agreement_service_company: Service Company

@@ -11,11 +11,11 @@ zh:
   label_slm_service_category_info: 服务类别信息
   #=========================    end service_categories_controller=======================#
   #=========================    slm service_catalogs_controller=======================#
-  label_slm_service_catalog_list: 服务目录列表
-  label_slm_service_catalog_show: 服务目录显示
-  label_slm_service_catalog_new: 新建服务目录
-  label_slm_service_catalog_edit: 编辑服务目录
-  label_slm_service_catalog_catalog_code: 服务目录编码
+  label_slm_service_catalog_list: 服务列表
+  label_slm_service_catalog_show: 服务显示
+  label_slm_service_catalog_new: 新建服务
+  label_slm_service_catalog_edit: 编辑服务
+  label_slm_service_catalog_catalog_code: 编码
   label_slm_service_catalog_name: 名称
   label_slm_service_catalog_description: 描述
   label_slm_service_catalog_status_meaning: 记录描述
@@ -23,17 +23,17 @@ zh:
   label_slm_service_catalog_service_category_code: 服务类别
   label_slm_service_catalog_priority_code: 优先级
   label_slm_service_catalog_external_system_code:  外部系统
-  label_slm_service_catalog_active_start_date: 有效开始时间
-  label_slm_service_catalog_active_end_date: 有效结束时间
-  label_slm_service_catalog_service_owner: 服务拥有者
-  label_slm_service_catalog_slm_code: 服务协议
+  label_slm_service_catalog_active_start_date: 开始日期
+  label_slm_service_catalog_active_end_date: 结束日期
+  label_slm_service_catalog_service_owner: 拥有者
+  label_slm_service_catalog_slm_code: SLA
   label_slm_service_catalog_statistics_api: 数据API
   label_slm_service_catalog_active_date: 有效时间
   label_to: 到
-  label_slm_service_catalog_service_member: 服务使用成员
+  label_slm_service_catalog_service_member: 使用成员
   label_slm_service_catalog_service_break: 添加时间段
-  label_add_service_member: 添加服务成员
-  label_add_service_break: 添加服务时间段
+  label_add_service_member: 添加成员
+  label_add_service_break: 添加时间段
   #=========================    end service_catalogs_controller=======================#
   #=========================    slm service_members_controller=======================#
   label_slm_service_member_list: 服务成员列表
@@ -69,7 +69,7 @@ zh:
   label_slm_service_agreement_edit: 编辑服务协议
   label_slm_service_agreement_info: 服务协议编辑
   label_slm_service_agreement_service_company: 公司
-  label_slm_service_agreement_agreement_code: 服务协议编码
+  label_slm_service_agreement_agreement_code: 编码
   label_slm_service_agreement_name: 名称
   label_slm_service_agreement_description: 描述
   label_slm_service_agreement_active_start_date: 开始日期
