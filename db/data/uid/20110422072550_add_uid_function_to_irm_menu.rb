@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AddUidFunctionToIrmMenu < ActiveRecord::Migration
   def self.up
      uid_external_system_menu= Irm::Menu.new(:menu_code=>'IRM_EXTERNAL_SYSTEM_MENU',:leaf_flag=>'N',:not_auto_mult=>true)
