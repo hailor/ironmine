@@ -34,7 +34,7 @@ class Icm::IncidentJournalsController < ApplicationController
         format.html { redirect_to({:action => "new"}, :notice => 'Incident journal was successfully created.') }
         format.xml  { render :xml => @incident_journal, :status => :created, :location => @incident_journal }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :layout=>"application_right"}
         format.xml  { render :xml => @incident_journal.errors, :status => :unprocessable_entity }
       end
     end
