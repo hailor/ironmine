@@ -101,8 +101,8 @@ class Slm::ServiceCategoriesController < ApplicationController
 
   def get_data
     service_categories_scope = Slm::ServiceCategory.multilingual.status_meaning
-    service_categories_scope = service_categories_scope.match_value("slm_service_category.name",params[:name])
-    service_categories_scope = service_categories_scope.match_value("slm_service_category.category_code",params[:category_code])
+    service_categories_scope = service_categories_scope.match_value("slm_service_categories_tl.name",params[:name])
+    service_categories_scope = service_categories_scope.match_value("slm_service_categories.category_code",params[:category_code])
     service_categories,count = paginate(service_categories_scope)
     respond_to do |format|
       format.json {render :json=>to_jsonp(service_categories.to_grid_json([:category_code,:name,:description,:status_meaning],count))}
