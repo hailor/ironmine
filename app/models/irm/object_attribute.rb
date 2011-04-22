@@ -44,6 +44,18 @@ class Irm::ObjectAttribute < ActiveRecord::Base
   }
 
 
+  def select_table_name
+    t_name = ""
+    case self.attribute_type
+      when "TABLE_COLUMN"
+        t_name = self.business_object.bo_table_name
+      when "RELATION_COLUMN"
+        t_name = self.relation_table_alias_name
+    end
+    t_name
+  end
+
+
   private
   def check_attribute
     case self.attribute_type

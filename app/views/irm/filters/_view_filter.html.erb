@@ -4,12 +4,12 @@
       <label style="text-align: left; font-weight: bold; padding-right: 0.69em;" for="fcf"><%= t(:irm_view_filter) %></label>
       <span class="fBody">
         <select id="<%= datatable_id %>ViewFilter" class="viewFilter" ref="<%= datatable_id %>Datatable">
-          <%=available_view_filter(filter_type)%>
+          <%=available_view_filter(source_code)%>
         </select>
       </span>
       <span class="fFooter">
        <%= link_to(t(:edit),{:controller => "irm/filters", :action=>"edit",:id=>"{id}",:pca=>"#{params[:controller]}##{params[:action]}##{back_url}",:back_url=>back_url},{:id=>"#{datatable_id}ViewFilterEditLink"}) %> |
-       <%= link_to(t(:label_irm_new_view_filter),{:controller => "irm/filters", :action=>"new",:ft=>filter_type,:pca=>"#{params[:controller]}##{params[:action]}##{back_url}",:back_url=>back_url}) %>
+       <%= link_to(t(:label_irm_new_view_filter),{:controller => "irm/filters", :action=>"new",:sc=>source_code,:bc=>bo_code,:pca=>"#{params[:controller]}##{params[:action]}##{back_url}",:back_url=>back_url}) %>
       </span>
     </span>
   </div>

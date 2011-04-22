@@ -81,19 +81,29 @@ class LabellingFormBuilder  < ActionView::Helpers::FormBuilder
   def lov_as_select(field,lov,options,html_options)
     # TODO cascade select
     values = []
-    values = eval(lov.generate_scope).collect{|v| [v[:desc_value],v[:value],v.attributes]}
+    values = eval(lov.generate_scope).collect{|v| [v[:show_value],v[:id_value],v.attributes]}
     blank_select(field,values,options,html_options)
   end
 
   def lov_as_autocomplete(field,lov,options,html_options)
     input_node_id =  options.delete(:id)||field
+    value = object.send(field.to_sym)
+    label_value = options.delete(:label_value)
+    if value.present?&&!label_value.present?
+      if options.delete(:label_required)
+        label_value = lov.lov_value(value)
+      else
+        label_value = value
+      end
+    end
     hidden_tag_str = text_field(field,options.merge({:style=>"display:none;",:id=>input_node_id}))
-    label_tag_str = @template.text_field_tag("#{input_node_id}Label",options.delete(:label_value),options.merge(:id=>"#{input_node_id}Label"))
+    label_tag_str = @template.text_field_tag("#{input_node_id}Label",label_value,options.merge(:id=>"#{input_node_id}Label"))
 
     columns = []
-    columns <<{:key=>"id_value",:hidden=>true}
-    columns <<{:key=>"desc_value",:label=>lov[:desc_title],:width=>lov.desc_column_width}
-    columns <<{:key=>"value",:label=>lov[:value_title],:width=>lov.value_column_width,:return_to=>"##{input_node_id}Label"}
+    columns <<{:key=>"id_value",:hidden=>true,:return_to=>"##{input_node_id}"}
+    columns <<{:key=>"show_value",:label=>lov[:value_title],:width=>lov.value_column_width}
+    columns <<{:key=>"desc_value",:label=>lov[:desc_title],:width=>lov.desc_column_width} if lov.desc_column.present?
+
     unless lov.addition_column.strip.blank?||lov.addition_column.nil?
       acs =   lov.addition_column.split("#")
       acws = lov.addition_column_width.split("#")

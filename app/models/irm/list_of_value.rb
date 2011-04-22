@@ -6,7 +6,7 @@ class Irm::ListOfValue < ActiveRecord::Base
   #多语言关系
   attr_accessor :name,:description,:value_title,:desc_title,:addition_title
   has_many :list_of_values_tls
-  acts_as_multilingual({:columns =>[:name,:description,:value_title,:desc_title,:addition_title],:required=>[:name,:value_title,:desc_title]})
+  acts_as_multilingual({:columns =>[:name,:description,:value_title,:desc_title,:addition_title],:required=>[:name,:value_title]})
 
   validates_presence_of :lov_code,:bo_code,:id_column,:value_column
   validates_uniqueness_of :lov_code,:if => Proc.new { |i| !i.lov_code.blank? }
@@ -26,6 +26,13 @@ class Irm::ListOfValue < ActiveRecord::Base
   def generate_scope(options={})
     model_query = self.business_object.generate_query_by_hash_attributes(self.lov_column_hash,true)
     where_clause_str = ""
+    lov_id_value = options.delete(:id_value)
+
+    # parse id value
+    if lov_id_value.present?
+        where_clause_str << %(.where("#{self.business_object.bo_table_name}.#{self.id_column} = '#{lov_id_value}'"))
+    end
+
     # parse params in where clause
     if !self.where_clause.nil?&&!self.where_clause.strip.blank?
       if %r{\{\{.*\}\}}.match(self.where_clause)
@@ -36,7 +43,7 @@ class Irm::ListOfValue < ActiveRecord::Base
       end
     end
 
-    if !self.query_clause.nil?&&!self.query_clause.strip.blank?&&options[:desc_value]&&!options[:desc_value].blank?
+    if !self.query_clause.nil?&&!self.query_clause.strip.blank?&&options[:show_value]&&!options[:show_value].blank?
       if %r{\{\{.*\}\}}.match(self.query_clause)
         query_clause_template = Liquid::Template.parse self.query_clause
         where_clause_str << %(.where("#{query_clause_template.render({"master_table"=>self.business_object.bo_table_name,"query"=>options[:desc_value]})}"))
@@ -49,7 +56,8 @@ class Irm::ListOfValue < ActiveRecord::Base
   end
 
   def lov_column_hash
-    column_hash = {self.id_column=>"id_value",self.value_column=>"value",self.desc_column=>"desc_value"}
+    column_hash = {self.id_column=>"id_value",self.value_column=>"show_value"}
+    column_hash.merge!(self.desc_column=>"desc_value") if self.desc_column.present?
     addition_column.split("#").each do |ac|
       column_hash.merge!({ac=>ac})
     end unless addition_column.strip.blank?||addition_column.nil?
@@ -62,6 +70,12 @@ class Irm::ListOfValue < ActiveRecord::Base
       columns << ac.to_sym
     end unless addition_column.strip.blank?||addition_column.nil?
     columns
+  end
+
+  def lov_value(id_value)
+    lov_value = eval(generate_scope(:id_value=>id_value)).first
+    lov_value = lov_value[:show_value] if lov_value
+    lov_value
   end
 
 

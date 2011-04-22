@@ -106,11 +106,15 @@ class Icm::IncidentRequestsController < ApplicationController
   end
 
   def get_data
-    incident_requests_scope = Icm::IncidentRequest.list_all.query_by_company_ids(session[:accessable_companies]).order("last_response_date desc,last_request_date desc,weight_value,company_id")
-    #incident_requests_scope = incident_requests_scope.match_value("incident_request.name",params[:name])
+    bo = Irm::BusinessObject.where(:business_object_code=>"ICM_INCIDENT_REQUESTS").first
+    incident_requests_scope = eval(bo.generate_query(true)).query_by_company_ids(session[:accessable_companies]).order("last_response_date desc,last_request_date desc,weight_value,company_id")
+
     if !allow_to_function?(:view_all_incident_request)
       incident_requests_scope = incident_requests_scope.relate_person(Irm::Person.current.id)
     end
+
+    #incident_requests_scope = incident_requests_scope.match_value("incident_request.name",params[:name])
+
     incident_requests,count = paginate(incident_requests_scope)
     respond_to do |format|
       format.json {render :json=>to_jsonp(incident_requests.to_grid_json([:request_number,:title,:requested_name,:need_customer_reply,
