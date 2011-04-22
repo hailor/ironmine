@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class InitServiceCatalogPriority < ActiveRecord::Migration
   def self.up
     slm_catalog_priority=Irm::LookupType.new(:lookup_level=>'GLOBAL',:lookup_type=>'SLM_CATALOG_PRIORITY',:status_code=>'ENABLED',:not_auto_mult=>true)
