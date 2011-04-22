@@ -1,4 +1,5 @@
 require 'paperclip_processors/cropper'
+require 'hz2py'
 include Paperclip
 class Irm::Person < ActiveRecord::Base
 
@@ -173,6 +174,9 @@ class Irm::Person < ActiveRecord::Base
   def before_save
      #如果password变量值不为空,则修改密码
      self.hashed_password = Irm::Identity.hash_password(self.password) if self.password&&!self.password.blank?
+    if self.changes.keys.include?("first_name")||self.changes.keys.include?("last_name")
+      process_full_name
+    end
   end
 
   def self.list_all
@@ -291,11 +295,17 @@ class Irm::Person < ActiveRecord::Base
   def wrap_person_name
     self[:person_name]
   end
-  
+
+  def process_full_name
+      self.full_name = eval('"' + (PERSON_NAME_FORMATS[:firstname_lastname]) + '"')
+      self.full_name_pinyin= Hz2py.do(self.full_name).downcase.gsub(/\s|[^a-z]/,"")
+  end
   private
   def reprocess_avatar
       avatar.reprocess!
   end
+
+
 end
 
 
