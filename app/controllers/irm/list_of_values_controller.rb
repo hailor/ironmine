@@ -90,7 +90,7 @@ class Irm::ListOfValuesController < ApplicationController
     begin
       query_params = {}
       if @list_of_value.listable_flag.eql?(Irm::Constant::SYS_NO)&&!@list_of_value.query_clause.nil?&&!@list_of_value.query_clause.strip.blank?
-        query_params = {:desc_value=>"test"}
+        query_params = {:show_value=>"test"}
       end
       @result_message << "====================Generate model scope:====================\n"
       model_query = @list_of_value.generate_scope(query_params)
@@ -121,7 +121,7 @@ class Irm::ListOfValuesController < ApplicationController
     end
     values_scope =  eval(list_of_value.generate_scope(query_params))
     values,count = paginate(values_scope)
-    columns = [:id_value,:value,:desc_value]
+    columns = [:id_value,:show_value,:desc_value]
     unless list_of_value.addition_column.strip.blank?||list_of_value.addition_column.nil?
       list_of_value.addition_column.split("#").each do |ac|
         columns << ac.to_sym

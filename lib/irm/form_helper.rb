@@ -23,4 +23,9 @@ module Irm::FormHelper
         form_content.safe_concat(output)
         form_content.safe_concat('</form>')
   end
+
+  def named_fields_for(name,real_object, *args, &block)
+    object = real_object
+    @template.fields_for(name, *args, &block)
+  end
 end

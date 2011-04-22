@@ -1,0 +1,3 @@
+<%= fields_for @named_form,@rule_filter_criterion,:builder => LabellingFormBuilder do |sub_f|%>
+    <%= render_operator_and_value(@object_attribute,sub_f) %>
+<% end%>

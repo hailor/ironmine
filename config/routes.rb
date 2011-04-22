@@ -472,11 +472,12 @@ Ironmine::Application.routes.draw do
     #user_home
     match '/user_home(/index)(.:format)' => "user_home#index", :via => :get
     #view_filter
-    match '/filters/index/:ft(.:format)' => "filters#index", :via => :get
-    match '/filters/new/:ft(.:format)' => "filters#new", :via => :get
+    match '/filters/index/:sc/:bc(.:format)' => "filters#index", :via => :get
+    match '/filters/new/:sc/:bc(.:format)' => "filters#new", :via => :get
     match '/filters/create(.:format)' => "filters#create", :via => :post
     match '/filters/:id/edit(.:format)' => "filters#edit", :via => :get
     match '/filters/:id(.:format)' => "filters#update", :via => :put
+    match '/filters/operator_value(.:format)' => "filters#operator_value", :via => :get
     #role
     match '/roles(/index)(.:format)' => "roles#index", :via => :get
     match '/roles/:id/edit(.:format)' => "roles#edit", :via => :get

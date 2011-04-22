@@ -32,6 +32,7 @@ module Irm::NavigationsHelper
   end
   # 生成二级菜单
   def level_two_menu
+    return unless @page_menus
     menus = @page_menus.dup
     return nil unless menus&&menus.size>0
     entries = Irm::MenuManager.sub_entries_by_menu(menus[0])
