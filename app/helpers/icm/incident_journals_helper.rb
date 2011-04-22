@@ -38,9 +38,9 @@ module Icm::IncidentJournalsHelper
     image_path = nil
     image_path = f.data.url(:thumb) if f.image?
     image_path = theme_image_path(Irm::AttachmentVersion.file_type_icon(f.data.original_filename)) unless image_path
-    link = "<div class='fileIcon'><a target='_blank' href='#{f.data.url}' stats=""><img src='#{image_path}'></a></div>"
-    description = "<div class='fileInfo'><div title='#{f.data.original_filename}' class='fileName'><b>#{f.data.original_filename}</b></div>
-                   <div title='#{f.description}' class='fileDesc'>#{f.description}</div></div>"
+    link = "<div class='fileIcon'><img style='width:20px;height:20px;' src='#{image_path}'></div>"
+    description = "<a target='_blank' href='#{f.data.url}' stats=""><div class='fileInfo'><div title='#{f.data.original_filename}' class='fileName'><b>#{f.data.original_filename}</b></div>
+                   <div title='#{f.description}' class='fileDesc'>#{f.description}</div></div></a>"
     content_tag(:div, (link.html_safe + description.html_safe).html_safe,{:class=>"fileItem"}).html_safe
   end
 

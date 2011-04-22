@@ -773,3 +773,6 @@ fieldset{
 legend{
   padding: 0 5px 0 5px;
 }
+/*cux yui css*/
+.yui-skin-sam .yui-editor-container{border:1px solid #d1d1d1 !important;}
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-subcont{border-bottom-color: #d1d1d1 !important;}
