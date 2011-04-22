@@ -19,5 +19,10 @@ module Slm::ServiceAgreementsHelper
        time - get_hour_count(time) * 60 - get_day_count(time)* 86400
     end
   end
+
+
+  def available_service_agreement
+    Slm::ServiceAgreement.multilingual.collect{|m| [m[:name], m.agreement_code]}
+  end
   
 end

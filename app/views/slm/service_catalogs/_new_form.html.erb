@@ -54,8 +54,8 @@
               <td class="labelCol"><label for="service_catalog_active_start_date"><%=t(:label_slm_service_catalog_active_start_date)%></label></td>
               <td class="dataCol"><%= f.text_field :active_start_date, :id=>"service_catalog_active_start_date"%></td>
               <td class="labelCol"><label for="service_catalog_slm_code"><%=t(:label_slm_service_catalog_slm_code)%></label></td>
-              <td class="dataCol"><%=f.select :slm_code,
-                                      available_lookup_type('SLM_CATALOG_PRIORITY'),{},
+              <td class="dataCol"><%=f.blank_select :slm_code,
+                                      available_service_agreement,{},
                                              :id=>"service_catalog_slm_code"%></td>
             </tr>
 
@@ -100,3 +100,6 @@
   </div>
 </div>
 <% end %>
+
+<%= calendar_view("service_catalog_active_start_date","service_catalog_active_start_date","cal") %>
+<%= calendar_view("service_catalog_active_end_date","service_catalog_active_end_date","cal") %>
