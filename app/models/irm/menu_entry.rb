@@ -20,6 +20,7 @@ class Irm::MenuEntry < ActiveRecord::Base
   query_extend
 
   scope :query_by_menu_code,lambda{|menu_code|where(:menu_code => menu_code)}
+  scope :query_by_page_controller,lambda{|page_controller|where(:page_controller => page_controller)}
   scope :query_by_sub_menu_code,lambda{|sub_menu_code|where(:sub_menu_code => sub_menu_code)}
 
 

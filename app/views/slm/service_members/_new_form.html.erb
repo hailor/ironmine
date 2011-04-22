@@ -1,0 +1,106 @@
+<%= form_for(@service_member,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+<%= hidden_field_tag :return_url,@return_url %>
+<%= f.hidden_field :service_catalog_id,:value=>@service_catalog_id %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_slm_service_member_new)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel),@return_url%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @service_member %>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend">
+          <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+          </span><span class="requiredMark">*</span>
+          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+        </span>
+      </span>
+      <h3><%= t(:label_common_info) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+
+            <tr>
+              <td class="labelCol"><label for="service_member_category_code"><%=t(:label_slm_service_member_service_company)%></label></td>
+              <td class="dataCol"><%=f.select(:service_company_id,available_company,{},:required=>true,:id=>"company_id")%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="service_member_name"><%=t(:label_slm_service_member_service_organization)%></label></td>
+              <td class="dataCol"><%= f.blank_select(:service_organization_id,[],{},
+                                  {:required=>true,
+                                   :id=>"organization_id",
+                                   :href=>url_for(:controller=>"irm/organizations",:action=>"get_by_company",:format=>"json",:belonged_company_id=>"{company_id}"),
+                                   :depend=>"company_id"
+                                   }) %>
+              </td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="service_member_description"><%=t(:label_slm_service_member_service_department)%></label></td>
+              <td class="dataCol"><%= f.blank_select(:service_department_id,[],{},
+                                  {:required=>true,
+                                   :id=>"department_id",
+                                   :href=>url_for(:controller=>"irm/departments",:action=>"get_by_organization",:format=>"json",:organization_id=>"{organization_id}"),
+                                   :depend=>"organization_id"
+                                   }) %></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="service_member_description"><%=t(:label_slm_service_member_service_person)%></label></td>
+              <td class="dataCol"><%=f.select :service_person_id,available_service_owner,{},{:required=>true}%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="service_member_description"><%=t(:label_slm_service_member_service_contract)%></label></td>
+              <td class="dataCol"><%=f.select :service_contract_id,available_service_owner,{},{:required=>true}%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="service_member_description"><%=t(:label_slm_service_member_description)%></label></td>
+              <td class="dataCol"><%= f.text_field :description,:id=>"service_member_system_description"%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:cancel),@return_url%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,2 @@
+module Slm::ServiceBreaksHelper
+end
