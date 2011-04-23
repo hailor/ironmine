@@ -109,6 +109,17 @@ class Irm::WfTask < ActiveRecord::Base
     end
   end
 
+  def self.complete_task(source, person_id)
+    s = Irm::WfTask.with_all.enabled.uncompleted.with_calendar.assigned_to(person_id)
+        where("source_type = ? AND source_id = ?", source.class.name, source.id).
+        where("start_at < ?", Time.now)
+
+    if s.any?
+      s.first.update_attribute(:task_status, "COMPLETED")
+    end
+
+  end
+
   private
   def before_save()
     if !self.priority || self.priority.blank?
