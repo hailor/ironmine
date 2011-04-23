@@ -25,7 +25,7 @@ class Icm::IncidentRequestsController < ApplicationController
     @incident_request = Icm::IncidentRequest.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render :layout => "application_full"}# new.html.erb
       format.xml  { render :xml => @incident_request }
     end
   end

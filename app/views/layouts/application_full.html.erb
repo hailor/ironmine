@@ -11,13 +11,11 @@
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/common.css"></link>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/tabbar.css"></link>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/icons.css"></link>
-
   <script type="text/javascript">
     GY.use("irm","node-base",function(Y){
       Y.on("domready",function(){
         Y.irm.menuButton("settingMenu","TR","BR");
         Y.irm.menuButton("pageMenu","TR","BR");
-        Y.irm.menuButton("companyMenu","TR","BR");
       });
     });
   </script>
@@ -44,7 +42,7 @@
                           </div>
                         </div>
                         <div id="searchOptionsContainer" class="headerSearchOptions">
-                          <a href="javascript:void(0);" id="headerSearchOptionsLink"><%= t(:options) %></a>
+                          <a href="javascript:void(0);" id="headerSearchOptionsLink" class="headerSearchOptionsLink"><%= t(:options) %></a>
                         </div>
                       </div>
                     </form>
@@ -79,18 +77,8 @@
                             <div class="menuItem"><%= link_to(t(:label_irm_common_logout),logout_url) %></div>
                           </div>
                         </span>
-                        <span id="companyMenu" class="menuParent" style="float:right">
-                          <div  class="menuLabel">
-                            <span tabindex="0" id="companyMenuTop" style=""><%= t(:label_company_access_menu_label) %></span>
-                            <div id="companyMenu-arrow"></div>
-                          </div>
-                          <div class="menuContent" >
-                            <%= form_tag({:controller=>"irm/my_info",:action=>"update_company_access",:return_controller=>params[:controller]},{:method=>:put}) do %>
-                              <%= current_company_access_menu %>
-                              <%= submit_tag t(:apply)%>
-                            <% end %>
-                          </div>
-                        </span>
+                        <%= current_company_access_menu %>
+
                       </div>
                     </div>
                   </td>
@@ -125,24 +113,17 @@
                 <div id="bd_br"></div>
             </div>
 
-            <div id="sidebarDivRight" style="margin-top:70px;">
-                <div class="sidebarInner">
-                    <%= render :partial =>"/irm/common/quick_create"%>
-                    <%if has_content?(:sidebar) %>
-                        <%= yield :sidebar %>
-                    <%end%>
-                </div>
-            </div>
-
             <table id="bodyTable" class="outer" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td id="bodyCell" class="oLeft">
+                  <td id="bodyCell" class="oRight" style="padding-left:0;">
                     <%= yield %>
                   </td>
                 </tr>
             </table>
         </div>
     </div>
+
+<link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/custom_yui_container_skin.css"></link>
 <script type="text/javascript">
 
   GY.use('yui2-container', function(Y){

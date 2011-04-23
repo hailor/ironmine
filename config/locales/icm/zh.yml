@@ -129,7 +129,7 @@ zh:
   label_icm_incident_reply_support_group_id: 转交组
   label_icm_incident_reply_support_person_id: 转交人
   label_icm_incident_reply_incident_status_code: 新状态
-  apply_skm: 应用知识库
+  apply_skm: 搜索知识库
   label_icm_incident_journal_list: 回复历史
   label_icm_incident_journal_new: 回复
   label_icm_incident_journal_back_to_request_list: 返回事故单列表

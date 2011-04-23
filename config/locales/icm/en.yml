@@ -126,11 +126,11 @@ en:
   label_icm_my_solved_request: My Solved Requests
   label_icm_save_as_skm: Save As SKM Entry
   label_icm_incident_auto_assign: System Auto Assign
-  #========================= end iicm incident_requests_controller=======================#
+  #========================= end icm incident_requests_controller=======================#
   #=========================    icm incident_journals_controller=======================#
   label_icm_incident_reply_support_group_id: Referred group
   label_icm_incident_reply_support_person_id: Referred person
-  apply_skm: Apply Service Knowledge
+  apply_skm: Search Service Knowledge
   label_icm_incident_reply_incident_status_code: New Incident Status
   label_icm_incident_journal_list: Request histories
   label_icm_incident_journal_new: Reply
