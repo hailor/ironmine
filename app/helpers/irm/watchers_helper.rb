@@ -23,4 +23,8 @@ module Irm::WatchersHelper
     end
     raw(ret)
   end
+
+  def watchers_size(watchable)
+    watchable.all_person_watchers.size
+  end
 end

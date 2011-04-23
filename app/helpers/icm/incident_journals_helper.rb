@@ -5,8 +5,18 @@ module Icm::IncidentJournalsHelper
     # file belongs to request
     files_belong_to_request = Irm::AttachmentVersion.query_incident_request_file((incident_request.id))
 
-    @request_files.merge!({0=>files_belong_to_request})
+    @request_files.merge!({0=>files_belong_to_request}) if files_belong_to_request.size > 0 #防止事故单没有附件的时候, 产生一个空的数组
 
+  end
+
+  def list_all_files
+    html = ""
+    @request_files.values.flatten.each do |e|
+      html << "<div style='padding-bottom:5px;'><a target='_blank' href='#{e.data.url}' stats="">
+              <div class='fileInfo'><div title='#{e.data.original_filename}' class='fileName'><b>#{e.data.original_filename}</b></div>
+              </div></a></div>"
+    end
+    raw(html)
   end
 
   def list_request_file

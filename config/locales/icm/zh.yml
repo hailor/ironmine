@@ -124,6 +124,7 @@ zh:
   label_icm_my_solved_request: 我的已解决的事故单
   label_icm_save_as_skm: 创建知识库
   label_icm_incident_auto_assign: 系统自动分派
+  label_icm_incident_request_attachment_list: 附件列表
   #========================= end icm incident_requests_controller=======================#
   #=========================    icm incident_journals_controller=======================#
   label_icm_incident_reply_support_group_id: 转交组
