@@ -200,7 +200,7 @@
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td><h2 style="font-size: 18px;"><%=t(:label_icm_incident_journal_list)%></h2>(<%= journals_size(@incident_request)%>)</td>
+          <td><h2 style="font-size: 18px;"><%=t(:label_icm_incident_journal_list)%>&nbsp;(<%= journals_size(@incident_request)%>)</h2></td>
         </tr>
       </tbody>
     </table>
@@ -235,7 +235,8 @@
       <tbody>
         <tr>
           <td class="pbTitle">
-            <h2 class="mainTitle"><%=t(:label_icm_incident_journal_new)%></h2>
+            <div style="float:left;"><h2 class="mainTitle"><%=t(:label_icm_incident_journal_new)%></h2></div>
+            <div style="float:left;padding-top:5px; margin-left:20px;"><a href="javascript:void(0)" id="applySKM"><%= t(:apply_skm) %></a></div>
           </td>
           <td class="pbButton">
             <label for="incident_request_incident_status_code"><%=t(:label_icm_incident_reply_incident_status_code)%></label>
@@ -243,7 +244,7 @@
                                                     {},{:id=>"incident_request_incident_status_code"}%>
           </td>
           <td class="pbHelp">
-            <a href="javascript:void(0)" id="applySKM"><%= t(:apply_skm) %></a>
+
           </td>
         </tr>
       </tbody>
