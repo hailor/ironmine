@@ -23,6 +23,11 @@ module Irm::MenuManager
         items[:permission_menus]
       end
 
+      # 所有权限对应的上级菜单，以HASH形式保存
+      def reports
+        items[:reports]
+      end
+
       # 所有菜单对应的上级菜单，以HASH形式保存
       def menu_menus
         items[:menu_menus]
@@ -40,6 +45,8 @@ module Irm::MenuManager
         prepare_permission_cache
         # 初始化权限对应的菜单
         prepare_parent_menu
+
+        prepare_report_cache
 
         #rescue =>text
         #  puts("Init menu error:#{text}")
@@ -284,6 +291,18 @@ module Irm::MenuManager
           end
         end
         allowed_menus.first.dup
+      end
+
+
+      # =====================================生成report缓存===============================================
+      def prepare_report_cache
+        reports = Irm::Report.all
+        reports_cache  = []
+        reports_cache = reports.collect{|r| Irm::Permission.url_key(r.page_controller,r.page_action)}
+
+        map do |m|
+          m.merge!({:reports=>reports_cache})
+        end
       end
 
 
