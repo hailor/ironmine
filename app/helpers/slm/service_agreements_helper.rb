@@ -26,7 +26,6 @@ module Slm::ServiceAgreementsHelper
   end
 
   def checkbox_show_flag(flag)
-    puts '1111111'+flag.to_s
      if(flag.present? && flag.to_i == 1)
        true
      else
@@ -43,12 +42,17 @@ module Slm::ServiceAgreementsHelper
   end
 
   def show_options(value_type,value)
-    value_options = show_selected(value_type,value)
-    if value_options.present?
-      "<option value=\"#{value}\">#{value_options}</option>".html_safe
+    result =""
+    if (value_type == 'USER')
+      user_scope = Irm::Person.query_all_person
+      user =  user_scope.collect{|i|[i[:person_name],i.id]}
+      result =  user
     else
-      "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe
+      role_scope = Irm::Role.multilingual.enabled
+      role =  role_scope.collect{|i|[i[:name],i.id]}
+      result = role
     end
+    result
   end
 
   def show_selected(value_type,value)

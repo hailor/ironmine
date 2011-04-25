@@ -161,8 +161,9 @@
                                             </td>
                                             <td>
                                               &nbsp;&nbsp;&nbsp;
-                                              <%= select_tag(:rs_first_escalation_assignee,options_for_select(show_options(@service_agreement.rs_first_escalation_assignee,
-                                                                                                                        @service_agreement.rs_first_escalation_assignee)),{:id=>"id_assignee",
+                                              <%= select_tag(:rs_first_escalation_assignee, "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
+                                                             options_for_select(show_options(@service_agreement.rs_first_escalation_assignee,
+                                                                                             @service_agreement.rs_first_escalation_assignee),@service_agreement.rs_first_escalation_assignee),{:id=>"id_assignee",
                                                :href=>url_for(:controller=>"slm/service_agreements",:action=>"get_by_assignee_type",
                                                               :format=>"json",:assignee_type=>"{id_assignee_type}"),
                                                :depend=>"id_assignee_type"
@@ -273,7 +274,8 @@
                                             </td>
                                             <td>
                                               &nbsp;&nbsp;&nbsp;
-                                              <%= select_tag(:first_escalation_assignee,options_for_select(show_options(@service_agreement.first_escalation_assignee,
+                                              <%= select_tag(:first_escalation_assignee, "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
+                                                             options_for_select(show_options(@service_agreement.first_escalation_assignee,
                                                                                                                         @service_agreement.first_escalation_assignee)),{:id=>"id_assignee_first",
                                                :href=>url_for(:controller=>"slm/service_agreements",:action=>"get_by_assignee_type",
                                                               :format=>"json",:assignee_type=>"{id_assignee_type_first}"),
@@ -347,7 +349,8 @@
                                             </td>
                                             <td>
                                               &nbsp;&nbsp;&nbsp;
-                                              <%= select_tag(:second_escalation_assignee,options_for_select(show_options(@service_agreement.second_escalation_assignee,
+                                              <%= select_tag(:second_escalation_assignee,"<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
+                                                             options_for_select(show_options(@service_agreement.second_escalation_assignee,
                                                                                                                         @service_agreement.second_escalation_assignee)),{:id=>"id_assignee_second",
                                                :href=>url_for(:controller=>"slm/service_agreements",:action=>"get_by_assignee_type",
                                                               :format=>"json",:assignee_type=>"{id_assignee_type_second}"),
@@ -421,8 +424,8 @@
                                             </td>
                                             <td>
                                               &nbsp;&nbsp;&nbsp;
-                                              <%= select_tag(:third_escalation_assignee,options_for_select(show_options(@service_agreement.third_assignee_type,
-                                                                                                                        @service_agreement.third_escalation_assignee)),{:id=>"id_assignee_third",
+                                              <%= select_tag(:third_escalation_assignee,"<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +                                              options_for_select(show_options(@service_agreement.third_assignee_type,
+                                                                                                                        @service_agreement.third_escalation_assignee),@service_agreement.third_escalation_assignee),{:id=>"id_assignee_third",
                                                :href=>url_for(:controller=>"slm/service_agreements",:action=>"get_by_assignee_type",
                                                               :format=>"json",:assignee_type=>"{id_assignee_type_third}"),
                                                :depend=>"id_assignee_type_third"
