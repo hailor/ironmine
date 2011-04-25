@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   # 检查是否需要登录
   def check_if_login_required
     # 如果用户已经登录,则无需登录,否则转向登录页面
-     if Irm::Person.current.logged?||(Irm::PermissionChecker.public?({:controller=>params[:controller],:action=>params[:action]}))
+     if Irm::Person.current.logged?||public_permission?
        return true
      else
        require_login
@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
 
   # 检查用户的权限
   def check_permission
-    if Irm::Person.current&&!Irm::PermissionChecker.allow_to_url?({:controller=>params[:controller],:action=>params[:action]})
+    if Irm::Person.current.logged?&&!Irm::PermissionChecker.allow_to_url?({:controller=>params[:controller],:action=>params[:action]})
         flash[:error]=t(:access_denied,:permission=>"#{params[:controller]}/#{params[:action]}")
         redirect_to({:controller => 'irm/navigations', :action => 'access_deny'})
     end
@@ -340,4 +340,11 @@ class ApplicationController < ActionController::Base
       Irm::PermissionChecker.allow_to_function?(function)
     end
 
+  def public_permission?
+    Irm::PermissionChecker.public?({:controller=>params[:controller],:action=>params[:action]})
+  end
+
+  def login_permission?
+    Irm::PermissionChecker.login?({:controller=>params[:controller],:action=>params[:action]})
+  end
 end

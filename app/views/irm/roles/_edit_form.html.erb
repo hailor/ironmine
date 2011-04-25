@@ -75,19 +75,22 @@
     </div>
     <div class="pbSubsection" id="selectableFunctions">
       <% @fgs.each do |group|%>
+          <% next unless @fs[group[:group_code]]&&@fs[group[:group_code]].any?%>
           <fieldset id="<%= group[:group_code].downcase %>Group"><legend><%= group[:name] %></legend>
-            <% if @fs[group[:group_code]]&&@fs[group[:group_code]].size>1%>
+            <% if @fs[group[:group_code]].size>1%>
                 <div  style="float:left;width:33%;"><label>
                 <%= check_box_tag 'select_all',"all" , false,{:ref=>"#{group[:group_code].downcase}Group",:class=>"selectAll"} %>
                 <b><%= t(:select_all) %></b>
                 </label></div>
             <% end %>
           <% @fs[group[:group_code]].each do |func| %>
-              <div  style="float:left;width:33%;"><label>
-              <%= check_box_tag 'role[functions][]', func.id, @role_function_ids.include?(func.id) %>
-              <%= func[:name] %>
-              </label></div>
-          <% end if @fs[group[:group_code]] %>
+              <div  style="float:left;width:33%;">
+                <label>
+                  <%= check_box_tag 'role[functions][]', func.id, @role_function_ids.include?(func.id) %>
+                  <%= func[:name] %>
+                </label>
+              </div>
+          <% end  %>
           </fieldset>
         <%end%>
     </div>

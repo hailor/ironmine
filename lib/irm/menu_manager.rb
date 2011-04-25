@@ -14,10 +14,18 @@ module Irm::MenuManager
         items[:public_functions]
       end
 
+      def login_functions
+        items[:login_functions]
+      end
 
       # 所有权限对应的上级菜单，以HASH形式保存
       def permission_menus
         items[:permission_menus]
+      end
+
+      # 所有权限对应的上级菜单，以HASH形式保存
+      def reports
+        items[:reports]
       end
 
       # 所有菜单对应的上级菜单，以HASH形式保存
@@ -37,6 +45,8 @@ module Irm::MenuManager
         prepare_permission_cache
         # 初始化权限对应的菜单
         prepare_parent_menu
+
+        prepare_report_cache
 
         #rescue =>text
         #  puts("Init menu error:#{text}")
@@ -90,6 +100,7 @@ module Irm::MenuManager
       def prepare_permission_cache
         permissions = Irm::Permission.all
         public_functions_cache = Irm::Function.where(:public_flag=>"Y").collect{|f| f.function_code}
+        login_functions_cache = Irm::Function.where(:login_flag=>"Y").collect{|f| f.function_code}
         permissions_cache = {}
         permissions.each do |p|
           permission_key = Irm::Permission.url_key(p.page_controller,p.page_action)
@@ -101,7 +112,7 @@ module Irm::MenuManager
         end
 
         map do |m|
-          m.merge!({:permissions=>permissions_cache,:public_functions=>public_functions_cache})
+          m.merge!({:permissions=>permissions_cache,:public_functions=>public_functions_cache,:login_functions=>login_functions_cache})
         end
       end
 
@@ -280,6 +291,18 @@ module Irm::MenuManager
           end
         end
         allowed_menus.first.dup
+      end
+
+
+      # =====================================生成report缓存===============================================
+      def prepare_report_cache
+        reports = Irm::Report.all
+        reports_cache  = []
+        reports_cache = reports.collect{|r| Irm::Permission.url_key(r.page_controller,r.page_action)}
+
+        map do |m|
+          m.merge!({:reports=>reports_cache})
+        end
       end
 
 
