@@ -88,7 +88,7 @@
         <div id="id_service_member" class="pbBody">
           <div id="service_member" class="datatable" style="width:100%;">
           </div>
-          <!-- Begin company access table -->
+          <!-- Begin service members table -->
             <%= datatable("service_member",url_for(:controller=>"slm/service_members",:action=>"get_data",
                                                    :service_catalog_id=>@service_catalog.id),
                               [{:key=>"service_company_name",:label=>t(:label_slm_service_member_service_company),:sortable=>true,:width=>"80px"},
@@ -99,7 +99,7 @@
                                {:key=>"status_meaning",:label=>t(:label_slm_service_member_status_meaning),:sortable=>true,:width=>"80px"}
                               ],
                                {:row_perpage=>5})%>
-          <!-- End company access table -->
+          <!-- End service members table -->
         </div>
         <div class="pbFooter secondaryPalette">
         <div class="bg"></div>
@@ -134,7 +134,7 @@
         <div id="id_service_breaks" class="pbBody">
           <div id="service_breaks" class="datatable" style="width:100%;">
           </div>
-          <!-- Begin company access table -->
+          <!-- Begin service breaks table -->
             <%= datatable("service_breaks",url_for(:controller=>"slm/service_breaks",:action=>"get_data",
                                                    :service_catalog_id=>1),
                               [{:key=>"seq_number",:label=>t(:label_slm_service_break_seq_number),:sortable=>true,:width=>"80px"},
@@ -143,7 +143,7 @@
                                {:key=>"meaning",:label=>t(:label_slm_service_break_status_meaning),:sortable=>true,:width=>"80px"}
                               ],
                                {:row_perpage=>5})%>
-          <!-- End company access table -->
+          <!-- End service breaks table -->
         </div>
         <div class="pbFooter secondaryPalette">
         <div class="bg"></div>

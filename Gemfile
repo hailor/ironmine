@@ -50,7 +50,7 @@ gem 'hz2py'
 # and rake tasks are available in development mode:
 group :development, :test do
 #gem 'ferret'
-  gem 'mysql'
+  gem 'mysql2'
 end
 
 group :production do

@@ -104,3 +104,9 @@
   </div>
 </div>
 <% end %>
+<script type="text/javascript">
+  GY.use("cascadeselect",function(Y){
+     new Y.CascadeSelect({source: "#company_id",target:["#organization_id","#department_id"]});
+     new Y.CascadeSelect({source: "#organization_id",target:["#department_id"]});
+  });
+</script>

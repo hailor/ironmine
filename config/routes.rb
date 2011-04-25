@@ -975,6 +975,9 @@ Ironmine::Application.routes.draw do
     #service_agreements
     match '/service_agreements(/index)(.:format)' => "service_agreements#index", :via => :get
     match '/service_agreements/get_data(.:format)' => "service_agreements#get_data"
+    match '/service_agreements/add_response_time_rule(.:format)' => "service_agreements#add_response_time_rule"
+    match '/service_agreements/add_solve_time_rule(.:format)' => "service_agreements#add_solve_time_rule"
+    match '/service_agreements/get_by_assignee_type(.:format)' => "service_agreements#get_by_assignee_type"
     match '/service_agreements/:id/edit(.:format)' => "service_agreements#edit", :via => :get
     match '/service_agreements/:id(.:format)' => "service_agreements#update", :via => :put
     match '/service_agreements/new(.:format)' => "service_agreements#new", :via => :get
