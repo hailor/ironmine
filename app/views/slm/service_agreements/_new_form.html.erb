@@ -51,9 +51,9 @@
               <td class="labelCol"><label for="service_agreement_response_time"><%=t(:label_slm_service_agreement_response_time)%></label></td>
               <td class="dataCol"><%= f.text_field :response_day, :size => 2,:id=>"service_agreement_response_day"%>
                                   <%=t(:label_slm_service_agreement_response_day)%>
-                                  <%= f.text_field :response_hour, :size => 2,:id=>"service_agreement_response_hour"%>
+                                  <%= f.select :response_hour, available_lookup_type('SLM_SERVICE_HOUR'),:size => 2,:id=>"service_agreement_response_hour"%>
                                   <%=t(:label_slm_service_agreement_response_hour)%>
-                                  <%= f.text_field :response_minute, :size => 2,:id=>"service_agreement_response_minute"%>
+                                  <%= f.select :response_minute,available_lookup_type('SLM_SERVICE_MINUTE'), :size => 2,:id=>"service_agreement_response_minute"%>
                                   <%=t(:label_slm_service_agreement_response_minute)%>
               </td>
             </tr>
@@ -64,9 +64,9 @@
               <td class="labelCol"><label for="service_agreement_resolve_time"><%=t(:label_slm_service_agreement_resolve_time)%></label></td>
               <td class="dataCol"><%= f.text_field :solve_day, :size => 2,:id=>"service_agreement_response_day"%>
                                   <%=t(:label_slm_service_agreement_solve_day)%>
-                                  <%= f.text_field :solve_hour, :size => 2,:id=>"service_agreement_response_hour"%>
+                                  <%= f.select :solve_hour, available_lookup_type('SLM_SERVICE_HOUR'),:size => 2,:id=>"service_agreement_response_hour"%>
                                   <%=t(:label_slm_service_agreement_solve_hour)%>
-                                  <%= f.text_field :solve_minute, :size => 2,:id=>"service_agreement_response_minute"%>
+                                  <%= f.select :solve_minute,available_lookup_type('SLM_SERVICE_MINUTE'), :size => 2,:id=>"service_agreement_response_minute"%>
                                   <%=t(:label_slm_service_agreement_solve_minute)%></td>
             </tr>
 

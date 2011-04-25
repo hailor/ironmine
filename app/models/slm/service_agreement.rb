@@ -6,6 +6,8 @@ class Slm::ServiceAgreement < ActiveRecord::Base
   attr_accessor :solve_day,:solve_hour,:solve_minute
   attr_accessor :rs_first_day,:rs_first_hour,:rs_first_minute
 
+  attr_accessor :update_time_flag
+
 
   attr_accessor :name,:description
   has_many :service_agreements_tls,:dependent => :destroy,:foreign_key=>"service_agreement_id"
@@ -16,8 +18,10 @@ class Slm::ServiceAgreement < ActiveRecord::Base
 
   #根据天，小时还有秒来区分
   def transform_time
-    self.response_time = self.response_day.to_i * 86400  + self.response_hour.to_i * 60 + self.response_minute.to_i
-    self.resolve_time = self.solve_day.to_i * 86400 + self.solve_hour.to_i * 60 + self.solve_minute.to_i
+    if !(self.update_time_flag == Irm::Constant::SYS_YES)
+      self.response_time = self.response_day.to_i * 86400  + self.response_hour.to_i * 60 + self.response_minute.to_i
+      self.resolve_time = self.solve_day.to_i * 86400 + self.solve_hour.to_i * 60 + self.solve_minute.to_i
+    end
   end
 
 

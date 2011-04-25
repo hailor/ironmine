@@ -123,6 +123,7 @@ class Slm::ServiceAgreementsController < ApplicationController
      if @response_escalation_enabled.to_i == 1
         rs_first_elapse_time = @rs_first_day.to_i * 86400 + @rs_first_hour.to_i * 60 + @rs_first_minute.to_i
         @service_agreement.not_auto_mult=true
+        @service_agreement.update_time_flag=Irm::Constant::SYS_YES
         @service_agreement.update_attributes({:response_escalation_enabled=>@response_escalation_enabled,
                                               :rs_first_escalation_mode=>@rs_first_escalation_mode,
                                               :rs_first_elapse_time=>rs_first_elapse_time,
@@ -204,6 +205,7 @@ class Slm::ServiceAgreementsController < ApplicationController
      end
      if @attr.present?
         @service_agreement.not_auto_mult=true
+        @service_agreement.update_time_flag=Irm::Constant::SYS_YES
         @service_agreement.update_attributes(@attr)
      end
     respond_to do |format|

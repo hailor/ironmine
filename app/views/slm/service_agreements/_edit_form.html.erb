@@ -47,9 +47,9 @@
               <td class="labelCol"><label for="service_agreement_response_time"><%=t(:label_slm_service_agreement_response_time)%></label></td>
               <td class="dataCol"><%= f.text_field :response_day, :size => 2,:value=>get_day_count(@service_agreement.response_time),:id=>"service_agreement_response_day"%>
                                   <%=t(:label_slm_service_agreement_response_day)%>
-                                  <%= f.text_field :response_hour, :size => 2,:value=>get_hour_count(@service_agreement.response_time),:id=>"service_agreement_response_hour"%>
+                                  <%= f.select :response_hour, options_for_select(available_lookup_type('SLM_SERVICE_HOUR'),get_hour_count(@service_agreement.response_time)),:size => 2,:id=>"service_agreement_response_hour"%>
                                   <%=t(:label_slm_service_agreement_response_hour)%>
-                                  <%= f.text_field :response_minute, :size => 2,:value=>get_minute_count(@service_agreement.response_time),:id=>"service_agreement_response_minute"%>
+                                  <%= f.select :response_minute, options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'),get_minute_count(@service_agreement.response_time)),:size => 2,:id=>"service_agreement_response_minute"%>
                                   <%=t(:label_slm_service_agreement_response_minute)%>
               </td>
             </tr>
@@ -61,9 +61,9 @@
               <td class="labelCol"><label for="service_agreement_resolve_time"><%=t(:label_slm_service_agreement_resolve_time)%></label></td>
               <td class="dataCol"><%= f.text_field :solve_day, :size => 2,:value=>get_day_count(@service_agreement.resolve_time),:id=>"service_agreement_response_day"%>
                                   <%=t(:label_slm_service_agreement_solve_day)%>
-                                  <%= f.text_field :solve_hour, :size => 2,:value=>get_day_count(@service_agreement.resolve_time),:id=>"service_agreement_response_hour"%>
+                                  <%= f.select :solve_hour, options_for_select(available_lookup_type('SLM_SERVICE_HOUR'),get_hour_count(@service_agreement.response_time)),:size => 2,:id=>"service_agreement_response_hour"%>
                                   <%=t(:label_slm_service_agreement_solve_hour)%>
-                                  <%= f.text_field :solve_minute, :size => 2,:value=>get_day_count(@service_agreement.resolve_time),:id=>"service_agreement_response_minute"%>
+                                  <%= f.select :solve_minute, options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'),get_minute_count(@service_agreement.response_time)),:size => 2,:id=>"service_agreement_response_minute"%>
                                   <%=t(:label_slm_service_agreement_solve_minute)%></td>
             </tr>
         </tbody>
