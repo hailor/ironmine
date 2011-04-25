@@ -19,7 +19,7 @@ class Irm::RolesController < ApplicationController
     @role = Irm::Role.new
     @role_function_ids = []
     @fgs = Irm::FunctionGroup.multilingual.enabled
-    fs = Irm::Function.multilingual.enabled
+    fs = Irm::Function.multilingual.enabled.where(:public_flag=>Irm::Constant::SYS_NO,:login_flag=>Irm::Constant::SYS_NO)
     @fs = fs.group_by{|i| i.group_code}
     respond_to do |format|
       format.html # new.html.erb
@@ -31,7 +31,7 @@ class Irm::RolesController < ApplicationController
     @role = Irm::Role.multilingual.find(params[:id])
     @role_function_ids = @role.role_functions.collect{|i| i.function_id}
     @fgs = Irm::FunctionGroup.multilingual.enabled
-    fs = Irm::Function.multilingual.enabled
+    fs = Irm::Function.multilingual.enabled.where(:public_flag=>Irm::Constant::SYS_NO,:login_flag=>Irm::Constant::SYS_NO)
     @fs = fs.group_by{|i| i.group_code}
   end
 
@@ -48,7 +48,7 @@ class Irm::RolesController < ApplicationController
         format.xml  { render :xml => @role, :status => :created, :location => @role }
       else
         @fgs = Irm::FunctionGroup.multilingual.enabled
-        fs = Irm::Function.multilingual.enabled
+        fs = Irm::Function.multilingual.enabled.where(:public_flag=>Irm::Constant::SYS_NO,:login_flag=>Irm::Constant::SYS_NO)
         @fs = fs.group_by{|i| i.group_code}
         format.html { render :action => "new" }
         format.xml  { render :xml => @role.errors, :status => :unprocessable_entity }
@@ -70,7 +70,7 @@ class Irm::RolesController < ApplicationController
         format.xml  { head :ok }
       else
         @fgs = Irm::FunctionGroup.multilingual.enabled
-        fs = Irm::Function.multilingual.enabled
+        fs = Irm::Function.multilingual.enabled.where(:public_flag=>Irm::Constant::SYS_NO,:login_flag=>Irm::Constant::SYS_NO)
         @fs = fs.group_by{|i| i.group_code}
         format.html { render :action => "edit" }
         format.xml  { render :xml => @role.errors, :status => :unprocessable_entity }
