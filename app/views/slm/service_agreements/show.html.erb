@@ -135,19 +135,19 @@
                                             <td width="30" nowrap="">
                                               <%= select_tag(:rs_first_escalation_mode,
                                                              "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
-                                                             options_for_select(available_lookup_type('SLM_ESCALATION_MODE'))) %>
+                                                             options_for_select(available_lookup_type('SLM_ESCALATION_MODE'),@service_agreement.rs_first_escalation_mode)) %>
                                             </td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                             <td width="30" class="alignRight">
-                                              <%= text_field_tag :rs_first_day,0,:size=>3 %>
+                                              <%= text_field_tag :rs_first_day,get_day_count(@service_agreement.rs_first_elapse_time),:size=>3 %>
                                             </td>
                                             <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_day) %></td>
                                             <td>
-                                               <%= select_tag(:rs_first_hour,options_for_select(available_lookup_type('SLM_SERVICE_HOUR'))) %>
+                                               <%= select_tag(:rs_first_hour,options_for_select(available_lookup_type('SLM_SERVICE_HOUR'),get_hour_count(@service_agreement.rs_first_elapse_time))) %>
                                             </td>
                                             <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_hour) %></td>
                                             <td>
-                                               <%= select_tag(:rs_first_minute,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'))) %>
+                                               <%= select_tag(:rs_first_minute,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'),get_minute_count(@service_agreement.rs_first_elapse_time))) %>
                                             </td>
                                             <td nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_minute) %></td>
                                             <td>
@@ -157,11 +157,12 @@
                                             <td>
                                               &nbsp;&nbsp;&nbsp;<%= select_tag(:rs_first_assignee_type,
                                                                                "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
-                                                                                       options_for_select(available_lookup_type('SLM_CHOICE_TYPE')),:id=>"id_assignee_type") %>
+                                                                                       options_for_select(available_lookup_type('SLM_CHOICE_TYPE'),@service_agreement.rs_first_assignee_type),:id=>"id_assignee_type") %>
                                             </td>
                                             <td>
                                               &nbsp;&nbsp;&nbsp;
-                                              <%= select_tag(:rs_first_escalation_assignee,[],{:id=>"id_assignee",
+                                              <%= select_tag(:rs_first_escalation_assignee,options_for_select(show_options(@service_agreement.rs_first_escalation_assignee,
+                                                                                                                        @service_agreement.rs_first_escalation_assignee)),{:id=>"id_assignee",
                                                :href=>url_for(:controller=>"slm/service_agreements",:action=>"get_by_assignee_type",
                                                               :format=>"json",:assignee_type=>"{id_assignee_type}"),
                                                :depend=>"id_assignee_type"
@@ -250,15 +251,15 @@
                                             </td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                             <td width="30" class="alignRight">
-                                              <%= text_field_tag :solve_first_day,0,:size=>3 %>
+                                              <%= text_field_tag :solve_first_day,get_day_count(@service_agreement.first_elapse_time),:size=>3 %>
                                             </td>
                                             <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_day) %></td>
                                             <td>
-                                               <%= select_tag(:solve_first_hour,options_for_select(available_lookup_type('SLM_SERVICE_HOUR'))) %>
+                                               <%= select_tag(:solve_first_hour,options_for_select(available_lookup_type('SLM_SERVICE_HOUR'),get_hour_count(@service_agreement.first_elapse_time))) %>
                                             </td>
                                             <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_hour) %></td>
                                             <td>
-                                               <%= select_tag(:solve_first_minute,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'))) %>
+                                               <%= select_tag(:solve_first_minute,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'),get_minute_count(@service_agreement.first_elapse_time))) %>
                                             </td>
                                             <td nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_minute) %></td>
                                             <td>
@@ -268,11 +269,12 @@
                                             <td>
                                               &nbsp;&nbsp;&nbsp;<%= select_tag(:first_assignee_type,
                                                                                "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
-                                                                                       options_for_select(available_lookup_type('SLM_CHOICE_TYPE')),:id=>"id_assignee_type_first") %>
+                                                                                       options_for_select(available_lookup_type('SLM_CHOICE_TYPE'),@service_agreement.first_assignee_type),:id=>"id_assignee_type_first") %>
                                             </td>
                                             <td>
                                               &nbsp;&nbsp;&nbsp;
-                                              <%= select_tag(:first_escalation_assignee,[],{:id=>"id_assignee_first",
+                                              <%= select_tag(:first_escalation_assignee,options_for_select(show_options(@service_agreement.first_escalation_assignee,
+                                                                                                                        @service_agreement.first_escalation_assignee)),{:id=>"id_assignee_first",
                                                :href=>url_for(:controller=>"slm/service_agreements",:action=>"get_by_assignee_type",
                                                               :format=>"json",:assignee_type=>"{id_assignee_type_first}"),
                                                :depend=>"id_assignee_type_first"
@@ -318,19 +320,19 @@
                                             <td width="30" nowrap="">
                                               <%= select_tag(:second_escalation_mode,
                                                              "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
-                                                             options_for_select(available_lookup_type('SLM_ESCALATION_MODE'))) %>
+                                                             options_for_select(available_lookup_type('SLM_ESCALATION_MODE'),@service_agreement.second_escalation_mode)) %>
                                             </td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                             <td width="30" class="alignRight">
-                                              <%= text_field_tag :solve_second_day,0,:size=>3 %>
+                                              <%= text_field_tag :solve_second_day,get_day_count(@service_agreement.second_elapse_time),:size=>3 %>
                                             </td>
                                             <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_day) %></td>
                                             <td>
-                                               <%= select_tag(:solve_second_hour,options_for_select(available_lookup_type('SLM_SERVICE_HOUR'))) %>
+                                               <%= select_tag(:solve_second_hour,options_for_select(available_lookup_type('SLM_SERVICE_HOUR'),get_hour_count(@service_agreement.second_elapse_time))) %>
                                             </td>
                                             <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_hour) %></td>
                                             <td>
-                                               <%= select_tag(:solve_second_minute,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'))) %>
+                                               <%= select_tag(:solve_second_minute,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'),get_minute_count(@service_agreement.second_elapse_time))) %>
                                             </td>
                                             <td nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_minute) %></td>
                                             <td>
@@ -340,11 +342,13 @@
                                             <td>
                                               &nbsp;&nbsp;&nbsp;<%= select_tag(:second_assignee_type,
                                                                                "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
-                                                                                       options_for_select(available_lookup_type('SLM_CHOICE_TYPE')),:id=>"id_assignee_type_second") %>
+                                                                                       options_for_select(available_lookup_type('SLM_CHOICE_TYPE'),
+                                                                                                          @service_agreement.second_assignee_type),:id=>"id_assignee_type_second") %>
                                             </td>
                                             <td>
                                               &nbsp;&nbsp;&nbsp;
-                                              <%= select_tag(:second_escalation_assignee,[],{:id=>"id_assignee_second",
+                                              <%= select_tag(:second_escalation_assignee,options_for_select(show_options(@service_agreement.second_escalation_assignee,
+                                                                                                                        @service_agreement.second_escalation_assignee)),{:id=>"id_assignee_second",
                                                :href=>url_for(:controller=>"slm/service_agreements",:action=>"get_by_assignee_type",
                                                               :format=>"json",:assignee_type=>"{id_assignee_type_second}"),
                                                :depend=>"id_assignee_type_second"
@@ -391,19 +395,19 @@
                                             <td width="30" nowrap="">
                                               <%= select_tag(:third_escalation_mode,
                                                              "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
-                                                             options_for_select(available_lookup_type('SLM_ESCALATION_MODE'))) %>
+                                                             options_for_select(available_lookup_type('SLM_ESCALATION_MODE'),@service_agreement.third_escalation_mode)) %>
                                             </td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                             <td width="30" class="alignRight">
-                                              <%= text_field_tag :solve_third_day,0,:size=>3 %>
+                                              <%= text_field_tag :solve_third_day,get_day_count(@service_agreement.third_elapse_time),:size=>3 %>
                                             </td>
                                             <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_day) %></td>
                                             <td>
-                                               <%= select_tag(:solve_third_hour,options_for_select(available_lookup_type('SLM_SERVICE_HOUR'))) %>
+                                               <%= select_tag(:solve_third_hour,options_for_select(available_lookup_type('SLM_SERVICE_HOUR'),get_hour_count(@service_agreement.third_elapse_time))) %>
                                             </td>
                                             <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_hour) %></td>
                                             <td>
-                                               <%= select_tag(:solve_third_minute,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'))) %>
+                                               <%= select_tag(:solve_third_minute,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'),get_minute_count(@service_agreement.third_elapse_time))) %>
                                             </td>
                                             <td nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_minute) %></td>
                                             <td>
@@ -413,11 +417,12 @@
                                             <td>
                                               &nbsp;&nbsp;&nbsp;<%= select_tag(:third_assignee_type,
                                                                                "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
-                                                                                       options_for_select(available_lookup_type('SLM_CHOICE_TYPE')),:id=>"id_assignee_type_third") %>
+                                                                                       options_for_select(available_lookup_type('SLM_CHOICE_TYPE'),@service_agreement.third_assignee_type),:id=>"id_assignee_type_third") %>
                                             </td>
                                             <td>
                                               &nbsp;&nbsp;&nbsp;
-                                              <%= select_tag(:third_escalation_assignee,[],{:id=>"id_assignee_third",
+                                              <%= select_tag(:third_escalation_assignee,options_for_select(show_options(@service_agreement.third_assignee_type,
+                                                                                                                        @service_agreement.third_escalation_assignee)),{:id=>"id_assignee_third",
                                                :href=>url_for(:controller=>"slm/service_agreements",:action=>"get_by_assignee_type",
                                                               :format=>"json",:assignee_type=>"{id_assignee_type_third}"),
                                                :depend=>"id_assignee_type_third"
@@ -463,19 +468,21 @@
                                             <td width="30" nowrap="">
                                               <%= select_tag(:fourth_escalation_mode,
                                                              "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
-                                                             options_for_select(available_lookup_type('SLM_ESCALATION_MODE'))) %>
+                                                             options_for_select(available_lookup_type('SLM_ESCALATION_MODE'),@service_agreement.fourth_escalation_mode)) %>
                                             </td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                             <td width="30" class="alignRight">
-                                              <%= text_field_tag :solve_fourth_day,0,:size=>3 %>
+                                              <%= text_field_tag :solve_fourth_day,get_day_count(@service_agreement.fourth_elapse_time),:size=>3 %>
                                             </td>
                                             <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_day) %></td>
                                             <td>
-                                               <%= select_tag(:solve_fourth_hour,options_for_select(available_lookup_type('SLM_SERVICE_HOUR'))) %>
+                                               <%= select_tag(:solve_fourth_hour,options_for_select(available_lookup_type('SLM_SERVICE_HOUR'),
+                                                                                                    get_hour_count(@service_agreement.fourth_elapse_time))) %>
                                             </td>
                                             <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_hour) %></td>
                                             <td>
-                                               <%= select_tag(:solve_fourth_minute,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'))) %>
+                                               <%= select_tag(:solve_fourth_minute,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'),
+                                                                                                    get_minute_count(@service_agreement.fourth_elapse_time))) %>
                                             </td>
                                             <td nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_minute) %></td>
                                             <td>
@@ -485,11 +492,12 @@
                                             <td>
                                               &nbsp;&nbsp;&nbsp;<%= select_tag(:fourth_assignee_type,
                                                                                "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
-                                                                                       options_for_select(available_lookup_type('SLM_CHOICE_TYPE')),:id=>"id_assignee_type_fourth") %>
+                                                                                       options_for_select(available_lookup_type('SLM_CHOICE_TYPE'),@service_agreement.fourth_assignee_type),:id=>"id_assignee_type_fourth") %>
                                             </td>
                                             <td>
                                               &nbsp;&nbsp;&nbsp;
-                                              <%= select_tag(:fourth_escalation_assignee,[],{:id=>"id_assignee_fourth",
+                                              <%= select_tag(:fourth_escalation_assignee,options_for_select(show_options(@service_agreement.fourth_escalation_assignee,
+                                                                                                                        @service_agreement.fourth_escalation_assignee)),{:id=>"id_assignee_fourth",
                                                :href=>url_for(:controller=>"slm/service_agreements",:action=>"get_by_assignee_type",
                                                               :format=>"json",:assignee_type=>"{id_assignee_type_fourth}"),
                                                :depend=>"id_assignee_type_fourth"

@@ -41,5 +41,28 @@ module Slm::ServiceAgreementsHelper
        "display:none;"
      end
   end
+
+  def show_options(value_type,value)
+    value_options = show_selected(value_type,value)
+    if value_options.present?
+      "<option value=\"#{value}\">#{value_options}</option>".html_safe
+    else
+      "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe
+    end
+  end
+
+  def show_selected(value_type,value)
+    value_options = ""
+    if value.present?
+        if(value_type == 'USER')
+          value_options = Irm::Person.query_all_person.find(value)[:person_name]
+        else
+          value_options = Irm::Role.multilingual.find(value)[:name]
+        end
+    else
+      value_options=""
+    end
+    value_options
+  end
   
 end
