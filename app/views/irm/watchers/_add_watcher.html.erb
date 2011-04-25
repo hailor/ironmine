@@ -1,16 +1,42 @@
 <div id="head_3_ep" class="pbSubheader tertiaryPalette">
-  <h3><%= t(:label_irm_watcher_new) %></h3>
+  <h3><%= t(:label_irm_watcher_new) %></h3>&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= lov_field_tag "people_list", "PEOPLE_LIST", :id => "watcher_lov" %>
+  <div class="button" style="float:none;display:inline;">
+    <%= link_to t(:add), {}, {:href => "javascript:void(0);", :id => "add_to_watcher"} %>
+  </div>
 </div>
 <div class="pbSubsection">
   <table class="detailList" cellpadding="0" cellspacing="0" border="0">
     <tbody>
       <tr>
-        <td>
-          <% ava_watchers(watchable.id, watchable.class).each do |w|%>
-            <div style="padding:5px 20px 0 20px;float:left;"><%= check_box_tag "cwatcher[" + w[1].to_s + "]", w[1].to_s, false, :id => "cwatcher_" + w[1].to_s %><%= content_tag(:label, w[0], :for => "cwatcher_" + w[1].to_s)%></div>
-          <% end %>
+        <td id="watcher_list">
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<script type="text/javascript">
+  var counter = 0;
+  GY.use("node", function(Y){
+    Y.one("#add_to_watcher").on("click", function(e){
+        var person_id = Y.one("#watcher_lov").get("value");
+        var person_name = Y.one("#watcher_lovLabel").get("value");
+
+        var node = Y.Node.create('<div style="padding:5px 20px 0 20px;float:left;vertical-align:middle;" id="w_' + counter + '"><span>'
+                + person_name + '</span>'
+                + '<a href="javascript:void(0);" onclick="delete_w(' + counter + ')"><img class="btn_delete" src="/images/s.gif" title="<%= t(:delete)%>"/></a>'
+                + '<input type="hidden" name="cwatcher[' + person_id + ']" value=' + person_id + '></div>');
+
+        Y.one("#watcher_list").appendChild(node);
+        counter ++ ;
+    });
+  });
+
+  function delete_w(id)
+  {
+      GY.use(function(Y){
+        Y.one("#w_" + id).remove();
+      });
+  }
+</script>

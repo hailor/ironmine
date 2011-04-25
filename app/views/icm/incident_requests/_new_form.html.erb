@@ -42,7 +42,7 @@
             <% if allow_to_function?(:create_icdt_rqst_for_other) %>
               <tr>
                 <td class="labelCol"><label for="incident_request_requested_by"><%=t(:label_icm_incident_request_requested_by)%></label></td>
-                <td class="dataCol"><%=f.select :requested_by,nullable_options_for_select(available_person, Irm::Person.current.id),
+                <td class="dataCol"><%=f.select :requested_by,nullable_options_for_select(available_person, @incident_request.requested_by),
                                                       {},{:required=>true,:id=>"incident_request_requested_by"}%></td>
                 <td class="labelCol empty">&nbsp;</td>
                 <td class="dataCol empty">&nbsp;</td>
@@ -124,7 +124,7 @@
                 <td class="labelCol"><label for="incident_request_contact_id"><%=t(:label_icm_incident_request_contact)%></label></td>
                 <td class="dataCol">
                   <div style="display:inline">
-                    <%=f.select :contact_id,nullable_options_for_select(available_contact,@incident_request.contact_id),
+                    <%=f.select :contact_id,nullable_options_for_select(available_contact,Irm::Person.current.id),
                                                         {},{:required=>true,:id=>"incident_request_contact_id"}%>
                   </div>
                 </td>

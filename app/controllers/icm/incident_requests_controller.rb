@@ -48,8 +48,8 @@ class Icm::IncidentRequestsController < ApplicationController
 
         #add watchers
         if params[:cwatcher] && params[:cwatcher].size > 0
-          params[:cwatcher].each do |w|
-            watcher = Irm::Person.find(w[0])
+          params[:cwatcher].collect{|p| [p[0]]}.uniq.each do |w|
+            watcher = Irm::Person.find(w)
             @incident_request.person_watchers << watcher
           end
         end
