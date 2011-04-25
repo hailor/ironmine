@@ -195,4 +195,7 @@ Irm::AccessControl.map do |map|
   map.function :view_list_of_values,{"irm/list_of_values"=>["index", "show"]}
   map.function :create_list_of_values,{"irm/list_of_values"=>["new", "create"]}
   map.function :edit_list_of_values,{"irm/list_of_values"=>["edit", "update", "multilingual_edit", "multilingual_update"]}
+  #===================irm/wf_settings============================
+  #["index", "edit", "update"]
+  map.function :workflow_setting,{"irm/wf_settings"=>["index","edit", "update"]}
 end

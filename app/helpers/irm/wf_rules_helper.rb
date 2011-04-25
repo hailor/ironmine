@@ -1,2 +1,2 @@
-module WfRulesHelper
+module Irm::WfRulesHelper
 end

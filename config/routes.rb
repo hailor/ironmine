@@ -1,7 +1,4 @@
 Ironmine::Application.routes.draw do
-
-  resources :wf_rules
-
   scope :module => "irm" do
     root :to => "navigations#index"
     match 'login'=>'common#login',:as=>:login
@@ -598,6 +595,10 @@ Ironmine::Application.routes.draw do
     match '/list_of_values/:id/multilingual_update(.:format)' => "list_of_values#multilingual_update", :via => :put
     match '/list_of_values/:id/execute_test(.:format)' => "list_of_values#execute_test", :via => :get
     match '/list_of_values/:id/get_lov_data(.:format)' => "list_of_values#get_lov_data", :via => :get
+    # wf_settings
+    match '/wf_settings(/index)(.:format)' => "wf_settings#index", :via => :get
+    match '/wf_settings/edit(.:format)' => "wf_settings#edit", :via => :get
+    match '/wf_settings(.:format)' => "wf_settings#update", :via => :put
   end
 
   scope :module => "icm" do

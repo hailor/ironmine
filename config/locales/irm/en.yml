@@ -903,4 +903,9 @@ en:
   label_irm_list_of_value_edit: Edit List of Value
   label_irm_list_of_value_test_information: Test Result for List of Value
   #======================== end list of values====================
+  #======================== wf settings====================
+  label_irm_wf_setting_new: Workflow Setting
+  label_irm_wf_setting_default_workflow_person: Default workflow approver
+  label_irm_wf_setting_email_approval_flag: Enable Email Approval Response
+  #======================== end wf settings====================
 
