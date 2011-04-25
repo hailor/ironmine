@@ -128,53 +128,49 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_service_code)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:service_name] %></div></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_service_code)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:service_name] %></div></td>
+              <td class="label3Col empty">&nbsp;</td>
+              <td class="data3Col empty">&nbsp;</td>
+              <td class="label3Col empty">&nbsp;</td>
+              <td class="data3Col empty">&nbsp;</td>
             </tr>
             <tr>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_requested_by)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:requested_name] %></div></td>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_contact)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:contact_name] %>(<%= @incident_request[:contact_number] %>)</div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_requested_by)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:requested_name] %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_contact)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:contact_name] %>(<%= @incident_request[:contact_number] %>)</div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_submitted_by)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:submitted_name] %></div></td>
             </tr>
             <tr>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_incident_status_code)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:incident_status_name] %></div></td>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_incident_phase_code)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:incident_phase_name] %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_incident_status_code)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:incident_status_name] %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_incident_phase_code)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:incident_phase_name] %></div></td>
             </tr>
             <tr>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_submitted_by)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:submitted_name] %></div></td>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_submitted_date)%></label></td>
-              <td class="dataCol"><div><%= format_date(@incident_request[:submitted_date]) %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_submitted_date)%></label></td>
+              <td class="data3Col"><div><%= format_date(@incident_request[:submitted_date]) %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_request_type_code)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:request_type_name] %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_report_source_code)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:report_source_name] %></div></td>
             </tr>
 
             <tr>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_urgence_code)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:urgence_name] %></div></td>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_impact_range_code)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:impact_range_name] %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_urgence_code)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:urgence_name] %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_impact_range_code)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:impact_range_name] %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_priority)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:priority_name] %></div></td>
             </tr>
             <tr>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_priority)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:priority_name] %></div></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_request_type_code)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:request_type_name] %></div></td>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_report_source_code)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:report_source_name] %></div></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_support_group)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:support_group_name] %></div></td>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_support_person)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:support_person_name] %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_support_group)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:support_group_name] %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_support_person)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:support_person_name] %></div></td>
             </tr>
         </tbody>
       </table>
