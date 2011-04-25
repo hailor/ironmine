@@ -5,7 +5,8 @@ class Irm::PermissionChecker
     url_options.symbolize_keys!
     assigned_to_functions = Irm::MenuManager.permissions[Irm::Permission.url_key(url_options[:page_controller]||url_options[:controller],url_options[:page_action]||url_options[:action])]
     assigned_to_functions||=[]
-    if assigned_to_functions&&assigned_to_functions.any?
+    # TODO check all permission   &&assigned_to_functions.any?
+    if assigned_to_functions
       public_functions = Irm::MenuManager.public_functions
       return true if assigned_to_functions.detect{|f| public_functions.include?(f)}
       return false unless Irm::Person.current.logged?
