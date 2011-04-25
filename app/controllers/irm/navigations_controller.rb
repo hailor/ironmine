@@ -15,7 +15,11 @@ class Irm::NavigationsController < ApplicationController
   end
 
   def access_deny
-    
+    respond_to do |format|
+      format.html
+      format.xml  { render :status => :access_deny }
+      format.js  {  }
+    end
   end
 
   def combo

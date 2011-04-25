@@ -4,13 +4,15 @@ class Irm::PermissionChecker
   def self.allow_to_url?(url_options={})
     url_options.symbolize_keys!
     assigned_to_functions = Irm::MenuManager.permissions[Irm::Permission.url_key(url_options[:page_controller]||url_options[:controller],url_options[:page_action]||url_options[:action])]
-    return true if assigned_to_functions.nil?||assigned_to_functions.length<1
-    public_functions = Irm::MenuManager.public_functions
-    return true if assigned_to_functions.detect{|f| public_functions.include?(f)}
-    if(Irm::Person.current.nil?)
-      return false
+    assigned_to_functions||=[]
+    if assigned_to_functions.any?
+      public_functions = Irm::MenuManager.public_functions
+      return true if assigned_to_functions.detect{|f| public_functions.include?(f)}
+      return false unless Irm::Person.current.logged?
+      login_functions = Irm::MenuManager.login_functions
+      return true if assigned_to_functions.detect{|f| login_functions.include?(f)}
     end
-    Irm::Person.current.allowed_to?(assigned_to_functions)
+    Irm::Person.current.logged?&&Irm::Person.current.allowed_to?(assigned_to_functions)
   end
 
   def self.public?(url_options={})
@@ -20,6 +22,7 @@ class Irm::PermissionChecker
     return true if assigned_to_functions&&assigned_to_functions.detect{|f| public_functions.include?(f)}
     false
   end
+
 
   def self.allow_to_function?(function_code)
     function_code = function_code.to_s.upcase

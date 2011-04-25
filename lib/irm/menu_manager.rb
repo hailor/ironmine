@@ -14,6 +14,9 @@ module Irm::MenuManager
         items[:public_functions]
       end
 
+      def login_functions
+        items[:login_functions]
+      end
 
       # 所有权限对应的上级菜单，以HASH形式保存
       def permission_menus
@@ -90,6 +93,7 @@ module Irm::MenuManager
       def prepare_permission_cache
         permissions = Irm::Permission.all
         public_functions_cache = Irm::Function.where(:public_flag=>"Y").collect{|f| f.function_code}
+        login_functions_cache = Irm::Function.where(:login_flag=>"Y").collect{|f| f.function_code}
         permissions_cache = {}
         permissions.each do |p|
           permission_key = Irm::Permission.url_key(p.page_controller,p.page_action)
@@ -101,7 +105,7 @@ module Irm::MenuManager
         end
 
         map do |m|
-          m.merge!({:permissions=>permissions_cache,:public_functions=>public_functions_cache})
+          m.merge!({:permissions=>permissions_cache,:public_functions=>public_functions_cache,:login_functions=>login_functions_cache})
         end
       end
 
