@@ -896,7 +896,7 @@ div.recurrenceSectionBackground {
     padding: 8px 0 8px 5px;
 }
 
-.toolsContent .bSubBlock{
+.first .bSubBlock{
     border-width: 1px;
     border-style: solid;
     border-color: #bfbfbf !important;

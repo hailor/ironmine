@@ -245,17 +245,32 @@ class Irm::Person < ActiveRecord::Base
    end
 
 
-
+  # allow to access functions?
   def allowed_to?(function_codes)
     return true if function_codes.detect{|fc| functions.include?(fc)}
     return true if Irm::Role.current&&Irm::Role.current.allowed_to?(function_codes)
     return true if Irm::Person.current.login_name.eql?("admin")
     false
   end
+
+  # allow to access report groups ?
+  def allow_to_report_groups?(report_group_codes)
+    return true if report_groups.detect{|rgc| report_group_codes.include?(rgc)}
+    return if Irm::Role.current&&Irm::report_group_codes.include?(Role.current.group_code)
+    false
+  end
+
   # hidden functions ownned by person
   def functions
-    return @functions if @functions
-    @functions = Irm::Function.query_hidden_functions(self.id).collect{|f| f.function_code}
+    return @function_codes if @function_codes
+    @function_codes = Irm::Function.query_hidden_functions(self.id).collect{|f| f.function_code}
+    @report_group_codes = Irm::Role.hidden.collect{|r| r.report_group_code}
+  end
+
+  def report_groups
+    return @report_group_codes if @report_group_codes
+    @function_codes = Irm::Function.query_hidden_functions(self.id).collect{|f| f.function_code}
+    @report_group_codes = Irm::Role.hidden.collect{|r| r.report_group_code}
   end
 
   def hidden_roles

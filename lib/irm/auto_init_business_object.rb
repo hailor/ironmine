@@ -108,7 +108,7 @@ class Irm::AutoInitBusinessObject
   def check_column(bo_code,columns)
     attributes = Irm::ObjectAttribute.where(:relation_bo_code=>bo_code,:attribute_type=>"RELATION_COLUMN")
     attributes.each do |oa|
-      column = columns.detect{|c| c[0].eql?(oa.attribute_name)}
+      column = columns.detect{|c| c[0].eql?(oa.relation_column)}
       if column
         data_type_length = column[1].split("(")
         data_type = data_type_length[0]

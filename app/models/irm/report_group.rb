@@ -14,4 +14,11 @@ class Irm::ReportGroup < ActiveRecord::Base
 
   #加入activerecord的通用方法和scope
   query_extend
+
+
+  scope :query_by_url,lambda{|controller,action|
+    joins("JOIN #{Irm::ReportGroupMember.table_name} ON #{Irm::ReportGroupMember.table_name}.group_code = #{table_name}.group_code").
+    joins("JOIN #{Irm::Report.table_name} ON  #{Irm::ReportGroupMember.table_name}.report_code = #{Irm::Report.table_name}.report_code").
+    where("#{Irm::Report.table_name}.page_controller = ? AND #{Irm::Report.table_name}.page_action = ?",controller,action)
+  }
 end

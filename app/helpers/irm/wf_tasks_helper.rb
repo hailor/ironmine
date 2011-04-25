@@ -88,8 +88,14 @@ module Irm::WfTasksHelper
       end
       to_date_str = ""
       to_date_str = t.end_at.strftime("%F") + " " if !(t.start_at.strftime("%F") == t.end_at.strftime("%F"))
-      html << content_tag(:li, raw(date_str) + " " + t.start_at.strftime("%T") + " - " + raw(to_date_str) + t.end_at.strftime("%T") +
-              content_tag(:span, link_to(t.name,{:controller=>"irm/wf_tasks",:action=>"show",:id=>t.id}), :style => "float:right;"))
+      if t.source_type == Csi::Survey.name && !t.url.blank?
+        html << content_tag(:li, raw(date_str) + " " + t.start_at.strftime("%T") + " - " + raw(to_date_str) + t.end_at.strftime("%T") +
+              content_tag(:span, link_to(t.name, t.url), :style => "float:right;"))
+      else
+        html << content_tag(:li, raw(date_str) + " " + t.start_at.strftime("%T") + " - " + raw(to_date_str) + t.end_at.strftime("%T") +
+                content_tag(:span, link_to(t.name,{:controller=>"irm/wf_tasks",:action=>"show",:id=>t.id}), :style => "float:right;"))
+      end
+
     end
     html
   end
