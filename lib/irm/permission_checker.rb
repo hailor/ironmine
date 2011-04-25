@@ -33,12 +33,13 @@ class Irm::PermissionChecker
 
   private
   def self.allow_to_report(url_options={})
+    return false unless Irm::Person.current.logged?
     url_options.symbolize_keys!
     page_controller = url_options[:page_controller]||url_options[:controller]
     page_action = url_options[:page_action]||url_options[:action]
     return false unless Irm::MenuManager.reports.include?(Irm::Permission.url_key(page_controller,page_action))
     assigned_to_report_groups = Irm::ReportGroup.query_by_url(page_controller,page_action).collect{|i| i.group_code}
     return false unless assigned_to_report_groups.any?
-    Irm::Person.current.logged?&&Irm::Person.current.allow_to_report_groups?(assigned_to_report_groups)
+    Irm::Person.current.allow_to_report_groups?(assigned_to_report_groups)
   end
 end
