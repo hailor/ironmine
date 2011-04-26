@@ -26,6 +26,10 @@ class Irm::RuleFilter < ActiveRecord::Base
     where("#{table_name}.own_id = ? OR #{table_name}.restrict_visibility=?",Irm::Person.current.id,Irm::Constant::SYS_NO)
   }
 
+  scope :query_by_source,lambda{|source_type,source_id|
+    where(:source_type=>source_type,:source_id=>source_id)
+  }
+
   def where_clause
     where_conditon = self.condition_clause.dup
     params = where_conditon.scan(/\{\{\S*\}\}/)
@@ -40,6 +44,34 @@ class Irm::RuleFilter < ActiveRecord::Base
     where_conditon = where_conditon[0] unless where_conditon.length>1
     where_conditon
   end
+
+
+  def meaning
+    conditions = {}
+    rule_filter_criterions.each{|fc| conditions.merge!(fc.seq_num=>fc.meaning) if fc.attribute_name&&!fc.attribute_name.blank?}
+    seq_nums = self.raw_condition_clause.scan(/\d+/)
+    meaning = self.raw_condition_clause.dup
+    # 将数据换成带^符号的数字
+    # 防止参数中出现数字出现替换错误
+    seq_nums.each do |sq|
+      meaning.gsub!(sq,"^#{sq}")
+    end
+    seq_nums.each do |sq|
+      meaning.gsub!("^#{sq}",conditions[sq.to_i])
+    end
+    meaning.gsub!("AND",I18n.t(:label_rule_filter_clause_and))
+    meaning.gsub!("OR",I18n.t(:label_rule_filter_clause_or))
+    meaning
+  end
+
+  def self.create_for_source(bo_code,source_type,source_id)
+    rule_filter = self.new({:filter_type=>"RULE_FILTER",:bo_code=>bo_code,:source_type=>source_type,:source_id=>source_id})
+    0.upto 4 do |index|
+      rule_filter.rule_filter_criterions.build({:seq_num=>index+1})
+    end
+    rule_filter
+  end
+
 
   private
   # 检查查询条件
