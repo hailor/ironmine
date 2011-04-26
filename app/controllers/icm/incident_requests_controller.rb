@@ -48,8 +48,8 @@ class Icm::IncidentRequestsController < ApplicationController
 
         #add watchers
         if params[:cwatcher] && params[:cwatcher].size > 0
-          params[:cwatcher].each do |w|
-            watcher = Irm::Person.find(w[0])
+          params[:cwatcher].collect{|p| [p[0]]}.uniq.each do |w|
+            watcher = Irm::Person.find(w)
             @incident_request.person_watchers << watcher
           end
         end
@@ -152,6 +152,22 @@ class Icm::IncidentRequestsController < ApplicationController
 
   def save_as_skm
 
+  end
+
+  def get_external_systems
+    external_systems_scope = Uid::ExternalSystem.multilingual.enabled.with_person(params[:requested_by])
+    external_systems = external_systems_scope.collect{|i| {:label=>i[:system_name], :value=>i.external_system_code,:id=>i.id}}
+    respond_to do |format|
+      format.json {render :json=>external_systems.to_grid_json([:label, :value],external_systems.count)}
+    end
+  end
+
+  def get_slm_services
+    services_scope = Slm::ServiceCatalog.multilingual.enabled.where("external_system_code = ?", params[:external_system_code])
+    services = services_scope.collect{|i| {:label => i[:name], :value => i.catalog_code, :id => i.id}}
+    respond_to do |format|
+      format.json {render :json=>services.to_grid_json([:label, :value],services.count)}
+    end
   end
 
   private

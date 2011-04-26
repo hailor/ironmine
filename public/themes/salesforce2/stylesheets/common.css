@@ -439,21 +439,39 @@ body .bPageBlock, body .bPageBlock .pbBody, body .bPageBlock .pbBottomButtons {
 .bPageBlock .setupOverview a, .bPageBlock .setupResource a {text-decoration:none;}
 .bPageBlock .setupOverview a:hover, .bPageBlock .setupResource a:hover {text-decoration:underline;}
 .bWizardBlock .detailList, .bPageBlock .detailList {width:100%;}
-body .bWizardBlock .labelCol, body .bDetailBlock.bPageBlock .pbBody .labelCol, body .bDetailBlock.bPageBlock .pbBody .dataCol, body .bDetailBlock.bPageBlock .pbBody .data2Col, body .bPageBlock.bEditBlock .pbBody .labelCol, body .bPageBlock.bEditBlock .pbBody .dataCol, body .bPageBlock.bEditBlock .pbBody .data2Col {
+body .bWizardBlock .labelCol,
+body .bDetailBlock.bPageBlock .pbBody .labelCol,
+body .bDetailBlock.bPageBlock .pbBody .dataCol,
+body .bDetailBlock.bPageBlock .pbBody .data2Col,
+body .bDetailBlock.bPageBlock .pbBody .data3Col,
+body .bPageBlock.bEditBlock .pbBody .labelCol,
+body .bPageBlock.bEditBlock .pbBody .dataCol,
+body .bPageBlock.bEditBlock .pbBody .data2Col,
+body .bPageBlock.bEditBlock .pbBody .data3Col{
     padding-bottom:3px;
     padding-top:3px;
 }
 
 /*.labelCol{padding-top:7px !important;}*/
 
-body .bWizardBlock.pbBody.labelCol, body .bPageBlock .pbBody .labelCol {color:#4A4A56;}
-body .bPageBlock .pbBody .labelCol, body .bPageBlock .pbBody .dataCol, body .bPageBlock .pbBody .data2Col {
+body .bWizardBlock.pbBody.labelCol, body .bPageBlock .pbBody .labelCol, body .bPageBlock .pbBody .label3Col  {color:#4A4A56;}
+body .bPageBlock .pbBody .label3Col,
+body .bPageBlock .pbBody .labelCol,
+body .bPageBlock .pbBody .dataCol,
+body .bPageBlock .pbBody .data2Col,
+body .bPageBlock .pbBody .data3Col {
     padding-bottom:5px;
     padding-top:5px;
 }
 .bWizardBlock .detailList .labelCol, .bPageBlock .detailList .labelCol {white-space:nowrap;}
 .bWizardBlock .detailList .labelCol, .bPageBlock .detailList .labelCol {width:18%;}
 .bWizardBlock .detailList .dataCol, .bPageBlock .detailList .dataCol {width:32%;}
+
+.bWizardBlock .detailList .label3Col, .bPageBlock .detailList .label3Col {white-space:nowrap;}
+.bWizardBlock .detailList .label3Col, .bPageBlock .detailList .label3Col {width:13%;}
+.bWizardBlock .detailList .data3Col, .bPageBlock .detailList .data3Col {width:20%;}
+.bWizardBlock .data3Col, .bPageBlock .data3Col {padding:2px 2px 2px 10px;text-align:left;}
+
 .bWizardBlock .detailList .dataCol, .bPageBlock .detailList .surveydataCol {width:40%;}
 .bWizardBlock .dataCol,.bPageBlock .dataCol {padding:2px 2px 2px 10px;text-align:left;}
 .bPageBlock textarea {font-size: 12px;}
@@ -465,7 +483,8 @@ body .bPageBlock .detailList tr td, body .bPageBlock .detailList tr th, body tab
     border-bottom:1px solid #E3DEB8;
 }
 .bPageBlock .detailList th, .bPageBlock .detailList td {vertical-align:top;}
-.bWizardBlock .labelCol, .bPageBlock .labelCol {
+.bWizardBlock .labelCol, .bPageBlock .labelCol,
+.bWizardBlock .label3Col, .bPageBlock .label3Col{
     color:#333333;
     font-size:91%;
     font-weight:bold;
