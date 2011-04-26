@@ -138,6 +138,23 @@ class Slm::ServiceAgreementsController < ApplicationController
   def add_solve_time_rule
      @service_agreement_id = params[:service_agreement_id]
      @service_agreement = Slm::ServiceAgreement.find(@service_agreement_id)
+     @attr = Hash.new
+     #======================first============================#
+     @response_escalation_enabled = params[:response_escalation_enabled]
+     @rs_first_day = params[:rs_first_day]
+     @rs_first_hour = params[:rs_first_hour]
+     @rs_first_minute = params[:rs_first_minute]
+     @rs_first_escalation_mode = params[:rs_first_escalation_mode]
+     @rs_first_assignee_type = params[:rs_first_assignee_type]
+     @rs_first_escalation_assignee = params[:rs_first_escalation_assignee]
+     if @response_escalation_enabled.to_i == 1
+        rs_first_elapse_time = @rs_first_day.to_i * 86400 + @rs_first_hour.to_i * 60 + @rs_first_minute.to_i
+        @attr.merge!({:response_escalation_enabled=>@response_escalation_enabled,
+                      :rs_first_escalation_mode=>@rs_first_escalation_mode,
+                      :rs_first_elapse_time=>rs_first_elapse_time,
+                      :rs_first_assignee_type=>@rs_first_assignee_type,
+                      :rs_first_escalation_assignee=>@rs_first_escalation_assignee})
+     end
      #======================first============================#
      @first_escalation_enabled = params[:first_escalation_enabled]
      @solve_first_day = params[:solve_first_day]
@@ -145,8 +162,7 @@ class Slm::ServiceAgreementsController < ApplicationController
      @solve_first_minute = params[:solve_first_minute]
      @first_escalation_mode = params[:first_escalation_mode]
      @first_assignee_type = params[:first_assignee_type]
-     @first_escalation_assignee = params[:first_escalation_assignee]
-     @attr = Hash.new
+     @first_escalation_assignee = params[:first_escalation_assignee]     
      if @first_escalation_enabled.to_i == 1
         solve_first_elapse_time = @solve_first_day.to_i * 86400 + @solve_first_hour.to_i * 60 + @solve_first_minute.to_i
         @attr.merge!({:first_escalation_enabled=>@first_escalation_enabled,
@@ -189,9 +205,9 @@ class Slm::ServiceAgreementsController < ApplicationController
      end
      #======================fourth============================#
      @fourth_escalation_enabled = params[:fourth_escalation_enabled]
-     @solve_fourth_day = params[:rs_fourth_day]
-     @solve_fourth_hour = params[:rs_fourth_hour]
-     @solve_fourth_minute = params[:rs_fourth_minute]
+     @solve_fourth_day = params[:solve_fourth_day]
+     @solve_fourth_hour = params[:solve_fourth_hour]
+     @solve_fourth_minute = params[:solve_fourth_minute]
      @fourth_escalation_mode = params[:fourth_escalation_mode]
      @fourth_assignee_type = params[:fourth_assignee_type]
      @fourth_escalation_assignee = params[:fourth_escalation_assignee]
@@ -203,11 +219,9 @@ class Slm::ServiceAgreementsController < ApplicationController
                       :fourth_assignee_type=>@fourth_assignee_type,
                       :fourth_escalation_assignee=>@fourth_escalation_assignee})
      end
-     if @attr.present?
-        @service_agreement.not_auto_mult=true
-        @service_agreement.update_time_flag=Irm::Constant::SYS_YES
-        @service_agreement.update_attributes(@attr)
-     end
+     @service_agreement.not_auto_mult=true
+     @service_agreement.update_time_flag=Irm::Constant::SYS_YES
+     @service_agreement.update_attributes(@attr)
     respond_to do |format|
       format.js
     end

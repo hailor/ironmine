@@ -110,9 +110,15 @@ zh:
   label_slm_service_agreement_solve_day: 天
   label_slm_service_agreement_solve_hour: 时
   label_slm_service_agreement_solve_minute: 分
-  label_slm_service_agreement_add_response_time_rule: 添加时间规则
+  label_slm_service_agreement_solve_second: 秒
+  label_slm_service_agreement_add_response_time_rule: 添加规则
   label_slm_service_agreement_add_response_time: 超过响应时间时升级
-  label_slm_service_agreement_add_solve_time: 超过响应时间时升级
+  label_slm_service_agreement_add_solve_time: 超过解决时间时升级
   label_slm_service_agreement_upgrade_to: 升级到
   label_slm_service_agreement_save_successfully: 保存成功
+  label_slm_service_agreement_upgrade: 升级
+  label_slm_service_agreement_first_grade: 一级
+  label_slm_service_agreement_second_grade: 二级
+  label_slm_service_agreement_third_grade: 三级
+  label_slm_service_agreement_fourth_grade: 四级
   #=========================    end service_agreements_controller=======================#

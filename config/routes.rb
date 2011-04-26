@@ -962,18 +962,18 @@ Ironmine::Application.routes.draw do
     match '/service_catalogs/:service_catalog_id/service_members/:id/edit(.:format)' => "service_members#edit", :via => :get
     match '/service_catalogs/:service_catalog_id/service_members/:id(.:format)' => "service_members#update", :via => :put
     match '/service_catalogs/:service_catalog_id/service_members/new(.:format)' => "service_members#new", :via => :get
-    match '/service_catalogs/:service_catalog_id/service_members/:id(.:format)' => "service_members#show", :via => :get
     match '/service_catalogs/:service_catalog_id/service_members/create(.:format)' => "service_members#create", :via => :post
     match '/service_catalogs/:service_catalog_id/service_members/:id(.:format)' => "service_members#destroy", :via => :delete
+    match '/service_catalogs/:service_catalog_id/service_members/:id(.:format)' => "service_members#show", :via => :get
     #service_breaks
     match '/service_catalogs/:service_catalog_id/service_breaks(/index)(.:format)' => "service_breaks#index", :via => :get
     match '/service_catalogs/:service_catalog_id/service_breaks/get_data(.:format)' => "service_breaks#get_data"
     match '/service_catalogs/:service_catalog_id/service_breaks/:id/edit(.:format)' => "service_breaks#edit", :via => :get
     match '/service_catalogs/:service_catalog_id/service_breaks/:id(.:format)' => "service_breaks#update", :via => :put
     match '/service_catalogs/:service_catalog_id/service_breaks/new(.:format)' => "service_breaks#new", :via => :get
-    match '/service_catalogs/:service_catalog_id/service_breaks/:id(.:format)' => "service_breaks#show", :via => :get
     match '/service_catalogs/:service_catalog_id/service_breaks/create(.:format)' => "service_breaks#create", :via => :post
     match '/service_catalogs/:service_catalog_id/service_breaks/:id(.:format)' => "service_breaks#destroy", :via => :delete
+    match '/service_catalogs/:service_catalog_id/service_breaks/:id(.:format)' => "service_breaks#show", :via => :get
     #service_agreements
     match '/service_agreements(/index)(.:format)' => "service_agreements#index", :via => :get
     match '/service_agreements/get_data(.:format)' => "service_agreements#get_data"
