@@ -103,7 +103,7 @@
 					<table cellspacing="0" cellpadding="0" border="0">
 						<tbody><tr>
 							<td>
-                                <%= check_box_tag(:response_escalation_enabled,@service_agreement.response_escalation_enabled,
+                                <%= check_box_tag(:response_escalation_enabled,@service_agreement.response_escalation_enabled||1,
                                                   checkbox_show_flag(@service_agreement.response_escalation_enabled),
                                                   {:onclick=>"javascript:ShowHide('level0',this);",:id=>"id_checkbox0"}) %>
                             </td>
@@ -130,7 +130,7 @@
                                             </td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                             <td width="30" class="alignRight">
-                                              <%= text_field_tag :rs_first_day,get_day_count(@service_agreement.rs_first_elapse_time),:size=>3 %>
+                                              <%= text_field_tag :rs_first_day,get_day_count(@service_agreement.rs_first_elapse_time)||0,:size=>3 %>
                                             </td>
                                             <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_day) %></td>
                                             <td>
@@ -190,7 +190,8 @@
     </a>
     <div class="listRelatedObject taskBlock">
      <%= form_tag(url_for(:controller=>"slm/service_agreements",:action=>"add_solve_time_rule",
-                             :service_agreement_id=>@service_agreement.id),:method => :put,:remote=>true) do -%>
+                          :service_agreement_id=>@service_agreement.id),
+                          :method => :put,:remote=>true) do -%>
       <div class="bPageBlock secondaryPalette">
         <div class="pbHeader">
           <table cellspacing="0" cellpadding="0" border="0">
@@ -216,7 +217,7 @@
 					<table cellspacing="0" cellpadding="0" border="0">
 						<tbody><tr>
 							<td>
-                                <%= check_box_tag(:first_escalation_enabled,@service_agreement.first_escalation_enabled,
+                                <%= check_box_tag(:first_escalation_enabled,@service_agreement.first_escalation_enabled||1,
                                                   checkbox_show_flag(@service_agreement.first_escalation_enabled),
                                                   {:onclick=>"javascript:ShowHide('level1',this);"}) %>
                             </td>
@@ -243,7 +244,7 @@
                                             </td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                             <td width="30" class="alignRight">
-                                              <%= text_field_tag :solve_first_day,get_day_count(@service_agreement.first_elapse_time),:size=>3 %>
+                                              <%= text_field_tag :solve_first_day,get_day_count(@service_agreement.first_elapse_time)||0,:size=>3 %>
                                             </td>
                                             <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_day) %></td>
                                             <td>
@@ -290,8 +291,8 @@
 					<table cellspacing="0" cellpadding="0" border="0">
 						<tbody><tr>
 							<td>
-                                <%= check_box_tag(:second_escalation_mode,@service_agreement.second_escalation_mode,
-                                                  checkbox_show_flag(@service_agreement.second_escalation_mode),
+                                <%= check_box_tag(:second_escalation_enabled,@service_agreement.second_escalation_enabled||1,
+                                                  checkbox_show_flag(@service_agreement.second_escalation_enabled),
                                                   {:onclick=>"javascript:ShowHide('level2',this);"}) %>
                             </td>
 							<td nowrap="" class="fontBlackBold"><span><%= t(:label_slm_service_agreement_response_escalation_enabled) %></span></td>
@@ -301,7 +302,7 @@
 			</tr>
 			<tr>
 				<td>
-					<div style="<%=div_show_flag(@service_agreement.second_escalation_mode)%>"  id="level2">
+					<div style="<%=div_show_flag(@service_agreement.second_escalation_enabled)%>"  id="level2">
 						<table width="100%" cellspacing="0" cellpadding="3" border="0">
 							<tbody>
                                <tr>
@@ -317,7 +318,7 @@
                                             </td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                             <td width="30" class="alignRight">
-                                              <%= text_field_tag :solve_second_day,get_day_count(@service_agreement.second_elapse_time),:size=>3 %>
+                                              <%= text_field_tag :solve_second_day,get_day_count(@service_agreement.second_elapse_time)||0,:size=>3 %>
                                             </td>
                                             <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_day) %></td>
                                             <td>
@@ -393,7 +394,7 @@
                                             </td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                             <td width="30" class="alignRight">
-                                              <%= text_field_tag :solve_third_day,get_day_count(@service_agreement.third_elapse_time),:size=>3 %>
+                                              <%= text_field_tag :solve_third_day,get_day_count(@service_agreement.third_elapse_time)||0,:size=>3 %>
                                             </td>
                                             <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_day) %></td>
                                             <td>
@@ -439,7 +440,7 @@
 					<table cellspacing="0" cellpadding="0" border="0">
 						<tbody><tr>
 							<td>
-                                <%= check_box_tag(:fourth_escalation_enabled,@service_agreement.fourth_escalation_enabled,
+                                <%= check_box_tag(:fourth_escalation_enabled,@service_agreement.fourth_escalation_enabled||1,
                                                   checkbox_show_flag(@service_agreement.fourth_escalation_enabled),
                                                   {:onclick=>"javascript:ShowHide('level4',this);"}) %>
                             </td>
@@ -466,7 +467,7 @@
                                             </td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                             <td width="30" class="alignRight">
-                                              <%= text_field_tag :solve_fourth_day,get_day_count(@service_agreement.fourth_elapse_time),:size=>3 %>
+                                              <%= text_field_tag :solve_fourth_day,get_day_count(@service_agreement.fourth_elapse_time)||0,:size=>3 %>
                                             </td>
                                             <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_day) %></td>
                                             <td>

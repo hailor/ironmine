@@ -203,11 +203,10 @@ class Slm::ServiceAgreementsController < ApplicationController
                       :fourth_assignee_type=>@fourth_assignee_type,
                       :fourth_escalation_assignee=>@fourth_escalation_assignee})
      end
-     if @attr.present?
-        @service_agreement.not_auto_mult=true
-        @service_agreement.update_time_flag=Irm::Constant::SYS_YES
-        @service_agreement.update_attributes(@attr)
-     end
+     @service_agreement.not_auto_mult=true
+     @service_agreement.update_time_flag=Irm::Constant::SYS_YES
+     @service_agreement.update_attributes(@attr)
+     puts '111111111111'+@service_agreement.errors.to_s
     respond_to do |format|
       format.js
     end
