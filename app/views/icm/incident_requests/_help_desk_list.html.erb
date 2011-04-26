@@ -9,7 +9,7 @@
                '<%= icon_link("btn_reply", t(:label_icm_reply),{:controller=>"icm/incident_journals",:action=>"new",:request_id=>"{id}"}) %>({incident_status_name})<%= link_to( "{title}",{:controller=>"icm/incident_journals",:action=>"new",:request_id=>"{id}"}) %>'
             }
             else{
-              '({incident_status_name}){title}'
+              '({incident_status_name})<%= link_to( "{title}",{:controller=>"icm/incident_journals",:action=>"new",:request_id=>"{id}"}) %>'
             }
           </div>
         </div>

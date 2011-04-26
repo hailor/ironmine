@@ -12,5 +12,23 @@ class DemoController < ApplicationController
 #                    end
 #                  end
     y = test.occurrences
+
+
+   begin
+     all_routes = Rails.application.routes.routes
+     routes = all_routes.collect do |route|
+       key_method = Hash.method_defined?('key') ? 'key' : 'index'
+       name = Rails.application.routes.named_routes.routes.send(key_method, route).to_s
+       reqs = route.requirements.empty? ? "" : route.requirements.inspect
+       {:name => name, :verb => route.verb.to_s, :path => route.path, :reqs => reqs}
+     end
+     routes.reject!{ |r| r[:path] == "/rails/info/properties" } # skip the route if it's internal info route
+     @route_permissions = []
+     routes.each do |r|
+       @route_permissions<<eval(r[:reqs])
+     end
+
+     puts("+++++++++++++++++++++++++++++++++++++" + @route_permissions.to_json)
+    end
   end
 end

@@ -10,6 +10,11 @@
                 <%=f.select :requested_by,nullable_options_for_select(available_person,@incident_request.requested_by),
                                                               {},{:id=>"incident_request_requested_by"}%>
               </div>
+                <script type="text/javascript">
+                GY.use("cascadeselect",function(Y){
+                    new Y.CascadeSelect({source: "#incident_request_requested_by",target:["#ass_external_system"]});
+                });
+                </script>
             <% else %>
                 <%= f.hidden_field(:requested_by,:value=>Irm::Person.current.id) %>
             <% end %>
@@ -61,7 +66,6 @@
 
 <script type="text/javascript">
 GY.use("cascadeselect",function(Y){
-    new Y.CascadeSelect({source: "#incident_request_requested_by",target:["#ass_external_system"]});
     new Y.CascadeSelect({source: "#ass_external_system",target:["#incident_request_service_code"]});
 });
 </script>
