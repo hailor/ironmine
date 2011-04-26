@@ -113,9 +113,15 @@ en:
   label_slm_service_agreement_solve_day: Day
   label_slm_service_agreement_solve_hour: Hour
   label_slm_service_agreement_solve_minute: Minute
-  label_slm_service_agreement_add_response_time_rule: Add Time Rule
+  label_slm_service_agreement_solve_second:  Second
+  label_slm_service_agreement_add_response_time_rule: Add Rule
   label_slm_service_agreement_add_response_time: Upgrade when exceed response time
   label_slm_service_agreement_add_solve_time: Upgrade when exceed solve time
   label_slm_service_agreement_upgrade_to: Upgrade To
   label_slm_service_agreement_save_successfully: Save Successfully
+  label_slm_service_agreement_upgrade: Upgrade
+  label_slm_service_agreement_first_grade: First Grade
+  label_slm_service_agreement_second_grade: Second Grade
+  label_slm_service_agreement_third_grade: Third Grade
+  label_slm_service_agreement_fourth_grade: Fourth Grade
   #=========================    end service_agreements_controller=======================#

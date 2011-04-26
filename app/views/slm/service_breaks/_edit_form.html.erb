@@ -37,14 +37,26 @@
 
             <tr>
               <td class="labelCol"><label for="service_break_name"><%=t(:label_slm_service_break_start_date)%></label></td>
-              <td class="dataCol"><%=f.text_field :start_date, :required=>true ,:id=>"service_break_start_date"%></td>
+              <td class="dataCol">
+                                  <%= f.select :start_hour, options_for_select(available_lookup_type('SLM_SERVICE_HOUR'),get_time_hour(@service_break.start_time)),:size => 2,:id=>"service_agreement_response_hour"%>
+                                  <%=t(:label_slm_service_agreement_solve_hour)%>
+                                  <%= f.select :start_minute,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'),get_time_minute(@service_break.start_time)), :size => 2,:id=>"service_agreement_response_minute"%>
+                                  <%=t(:label_slm_service_agreement_solve_minute)%>
+                                 <%= f.select :start_second,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'),get_time_second(@service_break.start_time)), :size => 2,:id=>"service_agreement_response_minute"%>
+                                  <%=t(:label_slm_service_agreement_solve_second)%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
 
             <tr>
               <td class="labelCol"><label for="service_break_description"><%=t(:label_slm_service_break_end_date)%></label></td>
-              <td class="dataCol"><%= f.text_area :end_date, :rows => 4,:id=>"service_break_end_date"%></td>
+              <td class="dataCol">
+                                  <%= f.select :end_hour, options_for_select(available_lookup_type('SLM_SERVICE_HOUR'),get_time_hour(@service_break.end_time)),:size => 2,:id=>"service_agreement_response_hour"%>
+                                  <%=t(:label_slm_service_agreement_solve_hour)%>
+                                  <%= f.select :end_minute,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'),get_time_minute(@service_break.end_time)), :size => 2,:id=>"service_agreement_response_minute"%>
+                                  <%=t(:label_slm_service_agreement_solve_minute)%>
+                                 <%= f.select :end_second,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'),get_time_second(@service_break.end_time)), :size => 2,:id=>"service_agreement_response_minute"%>
+                                  <%=t(:label_slm_service_agreement_solve_second)%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>

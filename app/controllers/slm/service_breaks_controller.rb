@@ -61,9 +61,10 @@ class Slm::ServiceBreaksController < ApplicationController
   def destroy
     @service_break = Slm::ServiceBreak.find(params[:id])
     @service_break.destroy
+    @return_url=request.env['HTTP_REFERER']
 
     respond_to do |format|
-      format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_deleted)) }
+      format.html { redirect_to(@return_url, :notice => t(:successfully_deleted)) }
       format.xml  { head :ok }
     end
   end
@@ -72,8 +73,8 @@ class Slm::ServiceBreaksController < ApplicationController
     service_breaks_scope = Slm::ServiceBreak.query_by_status_meaning(I18n::locale)
     service_breaks,count = paginate(service_breaks_scope)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(service_breaks.to_grid_json([:seq_number,:start_date,
-                                                                       :end_date,:meaning],count))}
+      format.json {render :json=>to_jsonp(service_breaks.to_grid_json([:seq_number,:start_time,
+                                                                       :end_time,:meaning],count))}
     end
   end
   

@@ -61,9 +61,10 @@ class Slm::ServiceMembersController < ApplicationController
   def destroy
     @service_member = Slm::ServiceMember.find(params[:id])
     @service_member.destroy
+    @return_url=request.env['HTTP_REFERER']
 
     respond_to do |format|
-      format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_deleted)) }
+      format.html { redirect_to(@return_url, :notice => t(:successfully_deleted)) }
       format.xml  { head :ok }
     end
   end

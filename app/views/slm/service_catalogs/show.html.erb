@@ -87,11 +87,17 @@
         </div>
         <div id="id_service_member" class="pbBody">
           <div id="service_member" class="datatable" style="width:100%;">
+            <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:controller => "slm/service_members",:action=>"edit",:id=>"{id}",:service_catalog_id=>@service_catalog.id}) %>|
+           <%= link_to(t(:delete),{:controller => "slm/service_members",:action=>"destroy",:id=>"{id}",:service_catalog_id=>@service_catalog.id},:confirm => t(:label_are_you_sure) ,
+                                      :method => :delete) %>
+          </div>
           </div>
           <!-- Begin service members table -->
             <%= datatable("service_member",url_for(:controller=>"slm/service_members",:action=>"get_data",
                                                    :service_catalog_id=>@service_catalog.id),
-                              [{:key=>"service_company_name",:label=>t(:label_slm_service_member_service_company),:sortable=>true,:width=>"80px"},
+                              [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
+                               {:key=>"service_company_name",:label=>t(:label_slm_service_member_service_company),:sortable=>true,:width=>"80px"},
                                {:key=>"service_organization_name",:label=>t(:label_slm_service_member_service_organization),:sortable=>true,:width=>"80px"},
                                {:key=>"service_department_name",:label=>t(:label_slm_service_member_service_department),:sortable=>true,:width=>"80px"},
                                {:key=>"service_person_name",:label=>t(:label_slm_service_member_service_person),:sortable=>true,:width=>"80px"},
@@ -133,13 +139,18 @@
         </div>
         <div id="id_service_breaks" class="pbBody">
           <div id="service_breaks" class="datatable" style="width:100%;">
+              <div id="id" style="display:none">
+                   <%= link_to(t(:edit),{:controller => "slm/service_breaks",:action=>"edit",:id=>"{id}",:service_catalog_id=>@service_catalog.id}) %>|
+                <%= link_to(t(:delete),{:controller => "slm/service_breaks",:action=>"destroy",:id=>"{id}",:service_catalog_id=>@service_catalog.id},:confirm => t(:label_are_you_sure) , :method => :delete) %>
+             </div>
           </div>
           <!-- Begin service breaks table -->
             <%= datatable("service_breaks",url_for(:controller=>"slm/service_breaks",:action=>"get_data",
                                                    :service_catalog_id=>1),
-                              [{:key=>"seq_number",:label=>t(:label_slm_service_break_seq_number),:sortable=>true,:width=>"80px"},
-                               {:key=>"start_date",:label=>t(:label_slm_service_break_start_date),:sortable=>true,:width=>"80px"},
-                               {:key=>"end_date",:label=>t(:label_slm_service_break_end_date),:sortable=>true,:width=>"80px"},
+                              [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
+                               {:key=>"seq_number",:label=>t(:label_slm_service_break_seq_number),:sortable=>true,:width=>"80px"},
+                               {:key=>"start_time",:label=>t(:label_slm_service_break_start_date),:sortable=>true,:width=>"80px"},
+                               {:key=>"end_time",:label=>t(:label_slm_service_break_end_date),:sortable=>true,:width=>"80px"},
                                {:key=>"meaning",:label=>t(:label_slm_service_break_status_meaning),:sortable=>true,:width=>"80px"}
                               ],
                                {:row_perpage=>5})%>

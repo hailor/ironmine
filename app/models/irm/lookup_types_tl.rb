@@ -3,5 +3,6 @@ class Irm::LookupTypesTl < ActiveRecord::Base
 
   belongs_to :irm_lookup_types,:class_name=>"Irm::LookupType"
 
+
   query_extend
 end
