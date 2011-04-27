@@ -82,9 +82,10 @@
                                             nullable_options_for_select(available_service(@incident_request.external_system_code),@incident_request.service_code),
                                             {},
                                             {:id=>"incident_request_service_code",
-                                             :depend=>"ass_external_system",
+                                             :depend=>"ass_external_system,incident_request_requested_by",
                                              :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
-                                             :href=>url_for(:controller=>"icm/incident_requests",:action=>"get_slm_services",:format=>"json",:external_system_code=>"{ass_external_system}"),
+                                             :href=>url_for(:controller=>"icm/incident_requests",:action=>"get_slm_services",:format=>"json",
+                                                            :external_system_code=>"{ass_external_system}", :requested_by => "{incident_request_requested_by}"),
                                              :required => true}%>
               </td>
               <td class="labelCol empty">&nbsp;</td>
@@ -258,6 +259,7 @@
 GY.use("cascadeselect",function(Y){
     new Y.CascadeSelect({source: "#incident_request_requested_by",target:["#ass_external_system"]});
     new Y.CascadeSelect({source: "#ass_external_system",target:["#incident_request_service_code"]});
+    new Y.CascadeSelect({source: "#incident_request_requested_by",target:["#incident_request_service_code"]});
 });
 
 
