@@ -798,7 +798,7 @@ legend{
 
 #selectComapnyContent{
     margin-top: 5px;
-    margin-bottom: 5px;
-    border: 1px solid #cccccc;
+    margin-bottom: 1px;
+    border: 1px solid #e8e8e8;
     padding: 5px;
 }
