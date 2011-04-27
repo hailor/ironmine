@@ -151,6 +151,7 @@ zh:
   label_action_edit_close: 关闭事故单
   label_action_update_close: 关闭事故单
   label_icm_incident_journal_pass: 转交事故单
+  label_action_short_create: 创建
   #========================= end icm incident_journals_controller=======================#
   #=========================    icm incident_reports_controller=======================#
   label_icm_urgency_name: 紧急度
