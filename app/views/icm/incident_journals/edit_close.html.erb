@@ -64,7 +64,7 @@
           <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_icm_incident_journal_close)%></h2></td>
           <td class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_to t(:label_icm_incident_joural_back_to_request), {:action => "new"}%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "new"}%></div>
           </td>
         </tr>
       </tbody>
@@ -126,7 +126,7 @@
           <td class="pbTitle"></td>
           <td id="bottomButtonRow" class="pbButtonb">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_to t(:label_icm_incident_joural_back_to_request), {:action => "new"}%></div>            
+            <div class="button"><%= link_to t(:cancel), {:action => "new"}%></div>
           </td>
         </tr>
       </tbody>
