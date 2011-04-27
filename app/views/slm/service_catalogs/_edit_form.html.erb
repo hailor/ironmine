@@ -65,7 +65,7 @@
                       <td class="labelCol"><label><%=(t :label_slm_service_catalog_service_owner)%></label></td>
                       <td class="dataCol"><%=f.select :service_owner_id,available_service_owner,{},{:required=>true}%></td>
                       <td class="labelCol"><label><%=(t :label_slm_service_catalog_external_system_code)%></label></td>
-                      <td class="dataCol"><%=f.blank_select :external_system_code,options_from_collection_for_select(available_external_systems,:external_system_code,:wrap_system_name),
+                      <td class="dataCol"><%=f.blank_select :external_system_code,options_from_collection_for_select(available_external_systems,:external_system_code,:wrap_system_name, @service_catalog.external_system_code),
                                                             {},{:id=>"external_system_code",:required=>true}%></td>
                     </tr>
 

@@ -1,4 +1,4 @@
-<%= app_title %>
+<%= app_title({:description => t(:new)}) %>
 <%= form_for(@entry_header,:url=>{:action=>"new"},:builder => LabellingFormBuilder, :html => {:name => "new_skm_entry_header"}) do |f| %>
 <div  class="bWizardBlock">
     <div class="pbWizardTitle tertiaryPalette">
