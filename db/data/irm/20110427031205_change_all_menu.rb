@@ -10,11 +10,11 @@ class ChangeAllMenu < ActiveRecord::Migration
     irm_top_setup_menu.menus_tls.build(:language=>'en',:source_lang=>'en',:name=>'Top Setup',:description=>'Top Setup Menu')
     irm_top_setup_menu.save
     irm_personal_menu= Irm::Menu.new(:menu_code=>'PERSONAL_MENU',:leaf_flag=>'N',:not_auto_mult=>true)
-    irm_personal_menu.menus_tls.build(:language=>'zh',:source_lang=>'en',:name=>'个人',:description=>'个人菜单')
+    irm_personal_menu.menus_tls.build(:language=>'zh',:source_lang=>'en',:name=>'我的简档',:description=>'我的简档菜单')
     irm_personal_menu.menus_tls.build(:language=>'en',:source_lang=>'en',:name=>'Personal',:description=>'Personal Menu')
     irm_personal_menu.save
     irm_personal_setup= Irm::Menu.new(:menu_code=>'PERSONAL_SETUP',:leaf_flag=>'N',:not_auto_mult=>true)
-    irm_personal_setup.menus_tls.build(:language=>'zh',:source_lang=>'en',:name=>'个人简档',:description=>'个人简档菜单')
+    irm_personal_setup.menus_tls.build(:language=>'zh',:source_lang=>'en',:name=>'个人设置',:description=>'个人设置菜单')
     irm_personal_setup.menus_tls.build(:language=>'en',:source_lang=>'en',:name=>'Personal Setup',:description=>'Personal Setup menu')
     irm_personal_setup.save
     irm_personal_info= Irm::Menu.new(:menu_code=>'PERSONAL_INFO',:leaf_flag=>'N',:not_auto_mult=>true)
@@ -145,17 +145,21 @@ class ChangeAllMenu < ActiveRecord::Migration
     irm_service_knowledge_page.menus_tls.build(:language=>'zh',:source_lang=>'en',:name=>'知识库',:description=>'知识库菜单')
     irm_service_knowledge_page.menus_tls.build(:language=>'en',:source_lang=>'en',:name=>'Service Knowledge',:description=>'Service Knowledge Menu')
     irm_service_knowledge_page.save
+    irm_survery= Irm::Menu.new(:menu_code=>'SURVERY',:leaf_flag=>'N',:not_auto_mult=>true)
+    irm_survery.menus_tls.build(:language=>'zh',:source_lang=>'en',:name=>'调查问卷',:description=>'调查问卷菜单')
+    irm_survery.menus_tls.build(:language=>'en',:source_lang=>'en',:name=>'Survery',:description=>'Survery')
+    irm_survery.save
     irm_report= Irm::Menu.new(:menu_code=>'REPORT',:leaf_flag=>'N',:not_auto_mult=>true)
     irm_report.menus_tls.build(:language=>'zh',:source_lang=>'en',:name=>'报表',:description=>'报表菜单')
     irm_report.menus_tls.build(:language=>'en',:source_lang=>'en',:name=>'Report',:description=>'Report Menu')
     irm_report.save
 
     irm_menu_entiry_2= Irm::MenuEntry.new(:menu_code=>'TOP_SETUP_MENU',:sub_menu_code=>'PERSONAL_MENU',:page_controller=>nil,:display_sequence=>10,:display_flag=>'Y',:not_auto_mult=>true)
-    irm_menu_entiry_2.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'个人',:description=>'个人')
+    irm_menu_entiry_2.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'我的简档',:description=>'我的简档')
     irm_menu_entiry_2.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Personal',:description=>'Personal')
     irm_menu_entiry_2.save
     irm_menu_entiry_3= Irm::MenuEntry.new(:menu_code=>'PERSONAL_MENU',:sub_menu_code=>'PERSONAL_SETUP',:page_controller=>nil,:display_sequence=>10,:display_flag=>'Y',:not_auto_mult=>true)
-    irm_menu_entiry_3.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'个人简档',:description=>'个人简档')
+    irm_menu_entiry_3.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'个人设置',:description=>'个人设置')
     irm_menu_entiry_3.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Personal Setup',:description=>'Personal Setup')
     irm_menu_entiry_3.save
     irm_menu_entiry_4= Irm::MenuEntry.new(:menu_code=>'PERSONAL_SETUP',:sub_menu_code=>'PERSONAL_INFO',:page_controller=>nil,:display_sequence=>10,:display_flag=>'Y',:not_auto_mult=>true)
@@ -330,13 +334,13 @@ class ChangeAllMenu < ActiveRecord::Migration
     irm_menu_entiry_46.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'管理设置',:description=>'管理设置')
     irm_menu_entiry_46.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Admin Setup',:description=>'Admin Setup')
     irm_menu_entiry_46.save
-    irm_menu_entiry_47= Irm::MenuEntry.new(:menu_code=>'ADMIN_SETUP',:sub_menu_code=>'USER',:page_controller=>nil,:display_sequence=>10,:display_flag=>'Y',:not_auto_mult=>true)
-    irm_menu_entiry_47.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'用户',:description=>'用户')
-    irm_menu_entiry_47.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'User',:description=>'User')
+    irm_menu_entiry_47= Irm::MenuEntry.new(:menu_code=>'ADMIN_SETUP',:sub_menu_code=>'MANAGE_USER',:page_controller=>nil,:display_sequence=>10,:display_flag=>'Y',:not_auto_mult=>true)
+    irm_menu_entiry_47.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'管理用户',:description=>'管理用户')
+    irm_menu_entiry_47.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Manage User',:description=>'Manage User')
     irm_menu_entiry_47.save
     irm_menu_entiry_48= Irm::MenuEntry.new(:menu_code=>'MANAGE_USER',:sub_menu_code=>'USER',:page_controller=>nil,:display_sequence=>10,:display_flag=>'Y',:not_auto_mult=>true)
-    irm_menu_entiry_48.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'管理用户',:description=>'管理用户')
-    irm_menu_entiry_48.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Manage User',:description=>'Manage User')
+    irm_menu_entiry_48.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'用户',:description=>'用户')
+    irm_menu_entiry_48.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'User',:description=>'User')
     irm_menu_entiry_48.save
     irm_menu_entiry_49= Irm::MenuEntry.new(:menu_code=>'USER',:sub_menu_code=>nil,:page_controller=>'irm/people',:display_sequence=>10,:display_flag=>'Y',:not_auto_mult=>true)
     irm_menu_entiry_49.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'用户',:description=>'用户')
@@ -554,22 +558,38 @@ class ChangeAllMenu < ActiveRecord::Migration
     skm_menu_entiry_102.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'文件管理',:description=>'文件管理')
     skm_menu_entiry_102.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'File Management',:description=>'File Management')
     skm_menu_entiry_102.save
-    irm_menu_entiry_103= Irm::MenuEntry.new(:menu_code=>'SERVICE_DESK',:sub_menu_code=>'REPORT',:page_controller=>nil,:display_sequence=>40,:display_flag=>'Y',:not_auto_mult=>true)
-    irm_menu_entiry_103.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'报表',:description=>'报表')
-    irm_menu_entiry_103.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Report',:description=>'Report')
-    irm_menu_entiry_103.save
-    irm_menu_entiry_104= Irm::MenuEntry.new(:menu_code=>'REPORT',:sub_menu_code=>nil,:page_controller=>'irm/report_lists',:display_sequence=>10,:display_flag=>'Y',:not_auto_mult=>true)
-    irm_menu_entiry_104.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'报表列表',:description=>'报表列表')
-    irm_menu_entiry_104.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Report List',:description=>'Report List')
-    irm_menu_entiry_104.save
-    icm_menu_entiry_105= Irm::MenuEntry.new(:menu_code=>'REPORT',:sub_menu_code=>nil,:page_controller=>'icm/incident_reports',:display_sequence=>20,:display_flag=>'N',:not_auto_mult=>true)
-    icm_menu_entiry_105.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'事故单报表',:description=>'事故单报表')
-    icm_menu_entiry_105.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Incident Report',:description=>'Incident Report')
-    icm_menu_entiry_105.save
-    skm_menu_entiry_106= Irm::MenuEntry.new(:menu_code=>'REPORT',:sub_menu_code=>nil,:page_controller=>'skm/entry_reports',:display_sequence=>30,:display_flag=>'N',:not_auto_mult=>true)
-    skm_menu_entiry_106.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'知识库报表',:description=>'知识库报表')
-    skm_menu_entiry_106.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Service Knowledge Report',:description=>'Service Knowledge Report')
-    skm_menu_entiry_106.save
+    csi_menu_entiry_103= Irm::MenuEntry.new(:menu_code=>'SERVICE_DESK',:sub_menu_code=>'SURVERY',:page_controller=>nil,:display_sequence=>40,:display_flag=>'Y',:not_auto_mult=>true)
+    csi_menu_entiry_103.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'调查问卷',:description=>'调查问卷')
+    csi_menu_entiry_103.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Survery',:description=>'Survery')
+    csi_menu_entiry_103.save
+    csi_menu_entiry_104= Irm::MenuEntry.new(:menu_code=>'SURVERY',:sub_menu_code=>nil,:page_controller=>'csi/surveys',:display_sequence=>10,:display_flag=>'Y',:not_auto_mult=>true)
+    csi_menu_entiry_104.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'调查问卷',:description=>'调查问卷')
+    csi_menu_entiry_104.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Survery',:description=>'Survery')
+    csi_menu_entiry_104.save
+    csi_menu_entiry_105= Irm::MenuEntry.new(:menu_code=>'SURVERY',:sub_menu_code=>nil,:page_controller=>'csi/survey_subjects',:display_sequence=>20,:display_flag=>'N',:not_auto_mult=>true)
+    csi_menu_entiry_105.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'调查问题',:description=>'调查问题')
+    csi_menu_entiry_105.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Survery Subject',:description=>'Survery Subject')
+    csi_menu_entiry_105.save
+    csi_menu_entiry_106= Irm::MenuEntry.new(:menu_code=>'SURVERY',:sub_menu_code=>nil,:page_controller=>'csi/survey_ranges',:display_sequence=>30,:display_flag=>'N',:not_auto_mult=>true)
+    csi_menu_entiry_106.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'调查问卷范围',:description=>'调查问卷范围')
+    csi_menu_entiry_106.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Survery Range',:description=>'Survery Range')
+    csi_menu_entiry_106.save
+    irm_menu_entiry_107= Irm::MenuEntry.new(:menu_code=>'SERVICE_DESK',:sub_menu_code=>'REPORT',:page_controller=>nil,:display_sequence=>50,:display_flag=>'Y',:not_auto_mult=>true)
+    irm_menu_entiry_107.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'报表',:description=>'报表')
+    irm_menu_entiry_107.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Report',:description=>'Report')
+    irm_menu_entiry_107.save
+    irm_menu_entiry_108= Irm::MenuEntry.new(:menu_code=>'REPORT',:sub_menu_code=>nil,:page_controller=>'irm/report_lists',:display_sequence=>10,:display_flag=>'Y',:not_auto_mult=>true)
+    irm_menu_entiry_108.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'报表列表',:description=>'报表列表')
+    irm_menu_entiry_108.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Report List',:description=>'Report List')
+    irm_menu_entiry_108.save
+    icm_menu_entiry_109= Irm::MenuEntry.new(:menu_code=>'REPORT',:sub_menu_code=>nil,:page_controller=>'icm/incident_reports',:display_sequence=>20,:display_flag=>'N',:not_auto_mult=>true)
+    icm_menu_entiry_109.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'事故单报表',:description=>'事故单报表')
+    icm_menu_entiry_109.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Incident Report',:description=>'Incident Report')
+    icm_menu_entiry_109.save
+    skm_menu_entiry_110= Irm::MenuEntry.new(:menu_code=>'REPORT',:sub_menu_code=>nil,:page_controller=>'skm/entry_reports',:display_sequence=>30,:display_flag=>'N',:not_auto_mult=>true)
+    skm_menu_entiry_110.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'知识库报表',:description=>'知识库报表')
+    skm_menu_entiry_110.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Service Knowledge Report',:description=>'Service Knowledge Report')
+    skm_menu_entiry_110.save
 
   end
 
