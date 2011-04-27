@@ -7,12 +7,11 @@ class AddOtherFunctions < ActiveRecord::Migration
     irm_irm_wf_task.function_groups_tls.build(:language=>'en',:source_lang=>'en',:name=>'Workflow Task',:description=>'Workflow Task')
     irm_irm_wf_task.save
     
-    irm_view_my_info= Irm::Function.new(:group_code=>'IRM_PUBLIC',:function_code=>'VIEW_MY_INFO',:default_flag=>'N',:public_flag=>'N',:not_auto_mult=>true)
+    irm_view_my_info= Irm::Function.new(:group_code=>'IRM_PUBLIC',:function_code=>'VIEW_MY_INFO',:default_flag=>'N',:login_flag => 'Y', :public_flag=>'N',:not_auto_mult=>true)
     irm_view_my_info.functions_tls.build(:language=>'zh',:source_lang=>'en',:name=>'查看个人信息',:description=>'查看个人信息')
     irm_view_my_info.functions_tls.build(:language=>'en',:source_lang=>'en',:name=>'View My Info',:description=>'View My Info')
     irm_view_my_info.save
-
-    irm_edit_my_info= Irm::Function.new(:group_code=>'IRM_PUBLIC',:function_code=>'EDIT_MY_INFO',:default_flag=>'N',:public_flag=>'N',:not_auto_mult=>true)
+    irm_edit_my_info= Irm::Function.new(:group_code=>'IRM_PUBLIC',:function_code=>'EDIT_MY_INFO',:default_flag=>'N',:login_flag => 'Y', :public_flag=>'N',:not_auto_mult=>true)
     irm_edit_my_info.functions_tls.build(:language=>'zh',:source_lang=>'en',:name=>'编辑个人信息',:description=>'编辑个人信息')
     irm_edit_my_info.functions_tls.build(:language=>'en',:source_lang=>'en',:name=>'Edit My Info',:description=>'Edit My Info')
     irm_edit_my_info.save
