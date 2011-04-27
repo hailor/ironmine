@@ -33,6 +33,10 @@ class Icm::IncidentRequestsController < ApplicationController
   # GET /incident_requests/1/edit
   def edit
     @incident_request = Icm::IncidentRequest.find(params[:id])
+    respond_to do |format|
+      format.html { render :layout => "application_full"}# new.html.erb
+      format.xml  { render :xml => @incident_request }
+    end
   end
 
   # POST /incident_requests
