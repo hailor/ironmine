@@ -16,7 +16,7 @@
                 });
                 </script>
             <% else %>
-                <%= f.hidden_field(:requested_by,:value=>Irm::Person.current.id) %>
+                <%= f.hidden_field(:requested_by,:value=>Irm::Person.current.id, :id => "incident_request_requested_by") %>
             <% end %>
 
               <div class="quickCreateField">
@@ -44,9 +44,10 @@
                     nullable_options_for_select([],nil),
                     {},
                     {:id=>"incident_request_service_code",
-                     :depend=>"ass_external_system",
+                     :depend=>"ass_external_system,incident_request_requested_by",
                      :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
-                     :href=>url_for(:controller=>"icm/incident_requests",:action=>"get_slm_services",:format=>"json",:external_system_code=>"{ass_external_system}")}%>
+                     :href=>url_for(:controller=>"icm/incident_requests",:action=>"get_slm_services",:format=>"json",
+                                                            :external_system_code=>"{ass_external_system}", :requested_by => "{incident_request_requested_by}")}%>
             </div>
             <div class="quickCreateField">
               <label for="incident_request_title"><%=t(:label_icm_incident_request_title)%><%= required_icon %></label><br>
