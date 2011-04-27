@@ -66,14 +66,14 @@
 
             <tr>
               <td class="labelCol"><label for="service_member_description"><%=t(:label_slm_service_member_service_person)%></label></td>
-              <td class="dataCol"><%=f.select :service_person_id,available_service_owner,{},{:required=>true}%></td>
+              <td class="dataCol"><%=f.blank_select :service_person_id,available_service_owner,{},{:blank=> "--- #{t(:actionview_instancetag_blank_option)} ---"}%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
 
             <tr>
               <td class="labelCol"><label for="service_member_description"><%=t(:label_slm_service_member_service_contract)%></label></td>
-              <td class="dataCol"><%=f.select :service_contract_id,available_service_owner,{},{:required=>true}%></td>
+              <td class="dataCol"><%=f.blank_select :service_contract_id,available_service_owner,{},{:blank=> "--- #{t(:actionview_instancetag_blank_option)} ---"}%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
