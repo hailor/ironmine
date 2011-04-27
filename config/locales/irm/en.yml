@@ -925,4 +925,5 @@ en:
   label_irm_wf_rule_select_bo: Select Business Object
   label_irm_wf_rule_config: Config Workflow Rule
   label_irm_wf_rule_description: Description
+  label_irm_wf_rule_active: Active
   #========================end wf rules====================

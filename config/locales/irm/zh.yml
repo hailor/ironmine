@@ -985,4 +985,5 @@ zh:
   label_irm_wf_rule_select_bo: 选择工作流规则业务对像
   label_irm_wf_rule_config: 设置工作流规则
   label_irm_wf_rule_description: 描述
+  label_irm_wf_rule_active: 启用
   #========================end wf rules====================
