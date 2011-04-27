@@ -1,16 +1,54 @@
 <%= app_title({:title=>"#{t(:label_irm_report)}"}) %>
 <div class="bOverviewSearch">
-  <div><%= t(:label_please_input_search) %>
+  <div>
     <div class="pbSearch">
-      <form onsubmit="if (window.ffInAlert) { return false; }if(this.search){this.search.blur();}"
-            name="srch" method="GET" id="srch" action="/ui/rpt/Search">
-        <input type="hidden" value="C" name="searchtype" id="searchtype">
-        <input type="text" size="30" name="search" maxlength="255"
-               id="srch_Input" class="searchTextBox"><input type="submit" title="<%= t(:find) %>"
-                                                            name="go" class="btn" value="<%= t(:find) %>">
-      </form>
+      <%= form_tag(:action => "index") do %>
+      <span class="bFilter">
+        <label style="text-align: left; font-weight: bold; padding-right: 0.69em;"><%= t(:label_irm_report_category) %>：</label>
+        <span class="fBody">
+            <%= select_tag("report_category", options_for_select(available_report_categories, @report_category), {:include_blank => t(:select)}) %>
+            <%= submit_tag t(:jump), :title => t(:jump), :class => "btn" %>
+        </span>
+        <span class="fFooter">
+        </span>
+      </span>
+      <% end %>
     </div>
   </div>
+</div>
+
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_region_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+              </td>
+              <td class="pbHelp">
+                <div id="permissionsSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="report_list" class="datatable" style="width:100%;">
+          <div id="name" style="display:none">
+            <a href="{page_controller}/{page_action}">{name}</a>
+          </div>
+        </div>
+        <%= datatable("report_list",url_for(:action=>"get_data", :report_category => @report_category,:format=>"json"),
+                  [{:key=>"id",:label=>t(:operation),:hidden => true},
+                   {:key=>"name",:label=>t(:label_irm_report_name), :sortable=>true,:searchable=>true,:width=>"40%"},
+                   {:key=>"description",:label=>t(:label_irm_report_description),:sortable=>true},
+                   {:key=>"page_controller",:label=>t(:label_irm_report_page_controller),:hidden=>true},
+                   {:key=>"page_action",:label=>t(:label_irm_report_page_action),:hidden=>true},],
+                   {:search_box=>"permissionsSearchBox",:paginator_box=>"regionPaginator"})%>
+        <div id="regionPaginator"></div>
+      </div>
+    </div>
 </div>
 
 <script type="text/javascript">
