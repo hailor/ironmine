@@ -13,7 +13,7 @@ class Slm::ServiceCatalogsController < ApplicationController
   # GET /service_catalogs/1
   # GET /service_catalogs/1.xml
   def show
-    @service_catalog = Slm::ServiceCatalog.multilingual.status_meaning.query_by_category_code(I18n::locale).
+    @service_catalog = Slm::ServiceCatalog.multilingual.with_external_system.with_slm_agreement.status_meaning.query_by_category_code(I18n::locale).
                        query_by_owner_id.query_by_priority_code(I18n::locale).find(params[:id])
 
     respond_to do |format|

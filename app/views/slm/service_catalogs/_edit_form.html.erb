@@ -25,57 +25,56 @@
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
-                    <tr>
-                      <td class="labelCol"><label for="service_catalog_service_catalog_code"><%=t(:label_slm_service_catalog_catalog_code)%></label></td>
-                      <td class="dataCol"><%=f.text_field :catalog_code, :required=>true ,:irm_uppercase=>true,:id=>"service_catalog_service_catalog_code"%></td>
-                      <td class="labelCol"><label for="service_catalog_service_category_code">
-                        <%=t(:label_slm_service_catalog_service_category_code)%></label></td>
-                      <td class="dataCol"><%=f.select :service_category_code,
-                                              options_from_collection_for_select(available_service_categories,:category_code,:wrap_name),{},
-                                                     :required=>true ,:id=>"service_catalog_service_category_code"%></td>
-                    </tr>
+            <tr>
+              <td class="labelCol"><label for="service_catalog_service_catalog_code"><%=t(:label_slm_service_catalog_catalog_code)%></label></td>
+              <td class="dataCol"><%=f.text_field :catalog_code, :required=>true ,:irm_uppercase=>true,:id=>"service_catalog_service_catalog_code"%></td>
+              <td class="labelCol"><label for="service_catalog_service_category_code">
+                <%=t(:label_slm_service_catalog_service_category_code)%></label></td>
+              <td class="dataCol"><%=f.select :service_category_code,
+                                      options_from_collection_for_select(available_service_categories,:category_code,:wrap_name),{},
+                                             :required=>true ,:id=>"service_catalog_service_category_code"%></td>
+            </tr>
 
-                    <tr>
-                      <td class="labelCol"><label for="service_catalog_name"><%=t(:label_slm_service_catalog_name)%></label></td>
-                      <td class="dataCol"><%=f.text_field :name, :required=>true ,:id=>"service_catalog_name"%></td>
-                      <td class="labelCol"><label for="service_catalog_priority_code">
-                        <%=t(:label_slm_service_catalog_priority_code)%></label></td>
-                      <td class="dataCol"><%=f.select :priority_code,
-                                              available_lookup_type('SLM_CATALOG_PRIORITY'),{},
-                                                     :required=>true ,:id=>"service_catalog_priority_code"%></td>
-                    </tr>
+            <tr>
+              <td class="labelCol"><label for="service_catalog_name"><%=t(:label_slm_service_catalog_name)%></label></td>
+              <td class="dataCol"><%=f.text_field :name, :required=>true ,:id=>"service_catalog_name"%></td>
+              <td class="labelCol"><label for="service_catalog_priority_code">
+                <%=t(:label_slm_service_catalog_priority_code)%></label></td>
+              <td class="dataCol"><%=f.select :priority_code,
+                                      available_lookup_type('SLM_CATALOG_PRIORITY'),{},
+                                             :required=>true ,:id=>"service_catalog_priority_code"%></td>
+            </tr>
 
-                    <tr>
-                      <td class="labelCol"><label for="service_catalog_active_start_date"><%=t(:label_slm_service_catalog_active_start_date)%></label></td>
-                      <td class="dataCol"><%= f.text_field :active_start_date, :id=>"service_catalog_active_start_date"%></td>
-                      <td class="labelCol"><label for="service_catalog_slm_code"><%=t(:label_slm_service_catalog_slm_code)%></label></td>
-                      <td class="dataCol"><%=f.blank_select :slm_code,
-                                              available_service_agreement,{},
-                                                     :id=>"service_catalog_slm_code"%></td>
-                    </tr>
+            <tr>
+              <td class="labelCol"><label for="service_catalog_active_start_date"><%=t(:label_slm_service_catalog_active_start_date)%></label></td>
+              <td class="dataCol"><%= f.text_field :active_start_date, :id=>"service_catalog_active_start_date"%></td>
+              <td class="labelCol"><label for="service_catalog_slm_code"><%=t(:label_slm_service_catalog_slm_code)%></label></td>
+              <td class="dataCol"><%=f.blank_select :slm_code,
+                                      available_service_agreement,{},
+                                             :id=>"service_catalog_slm_code"%></td>
+            </tr>
 
-                    <tr>
-                      <td class="labelCol"><label for="service_catalog_active_end_date"><%=t(:label_slm_service_catalog_active_end_date)%></label></td>
-                      <td class="dataCol"><%= f.text_field :active_end_date, :id=>"service_catalog_active_end_date"%></td>
-                      <td class="labelCol"><label for="service_catalog_statistics_api"><%=t(:label_slm_service_catalog_statistics_api)%></label></td>
-                      <td class="dataCol"><%=f.text_field :statistics_api ,:id=>"service_catalog_statistics_api"%></td>
-                    </tr>
+            <tr>
+              <td class="labelCol"><label for="service_catalog_active_end_date"><%=t(:label_slm_service_catalog_active_end_date)%></label></td>
+              <td class="dataCol"><%= f.text_field :active_end_date, :id=>"service_catalog_active_end_date"%></td>
+              <td class="labelCol"><label for="service_catalog_statistics_api"><%=t(:label_slm_service_catalog_statistics_api)%></label></td>
+              <td class="dataCol"><%=f.text_field :statistics_api ,:id=>"service_catalog_statistics_api"%></td>
+            </tr>
 
-                    <tr>
-                      <td class="labelCol"><label><%=(t :label_slm_service_catalog_service_owner)%></label></td>
-                      <td class="dataCol"><%=f.select :service_owner_id,available_service_owner,{},{:required=>true}%></td>
-                      <td class="labelCol"><label><%=(t :label_slm_service_catalog_external_system_code)%></label></td>
-                      <td class="dataCol"><%=f.blank_select :external_system_code,options_from_collection_for_select(available_external_systems,:external_system_code,:wrap_system_name, @service_catalog.external_system_code),
-                                                            {},{:id=>"external_system_code",:required=>true}%></td>
-                    </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_slm_service_catalog_service_owner)%></label></td>
+              <td class="dataCol"><%=f.select :service_owner_id,available_service_owner,{},{:required=>true}%></td>
+              <td class="labelCol"><label><%=(t :label_slm_service_catalog_external_system_code)%></label></td>
+              <td class="dataCol"><%=f.blank_select :external_system_code,options_from_collection_for_select(available_external_systems,:external_system_code,:wrap_system_name, @service_catalog.external_system_code),
+                                                    {},{:id=>"external_system_code",:required=>true}%></td>
+            </tr>
 
-                    <tr>
-                      <td class="labelCol"><label for="service_catalog_description"><%=t(:label_slm_service_catalog_description)%></label></td>
-                      <td class="dataCol"><%= f.text_area :description, :rows => 4,:id=>"service_catalog_description"%></td>
-                      <td class="labelCol empty">&nbsp;</td>
-                      <td class="dataCol empty">&nbsp;</td>
-                    </tr>
-
+            <tr>
+              <td class="labelCol"><label for="service_catalog_description"><%=t(:label_slm_service_catalog_description)%></label></td>
+              <td class="dataCol"><%= f.text_area :description, :rows => 4,:id=>"service_catalog_description"%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
         </tbody>
       </table>
     </div>
@@ -95,3 +94,5 @@
   </div>
 </div>
 <% end %>
+<%= calendar_view("service_catalog_active_start_date","service_catalog_active_start_date","cal") %>
+<%= calendar_view("service_catalog_active_end_date","service_catalog_active_end_date","cal") %>
