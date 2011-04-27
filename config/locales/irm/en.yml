@@ -903,4 +903,26 @@ en:
   label_irm_list_of_value_edit: Edit List of Value
   label_irm_list_of_value_test_information: Test Result for List of Value
   #======================== end list of values====================
-
+  #======================== wf settings====================
+  label_irm_wf_setting_new: Workflow Setting
+  label_irm_wf_setting_default_workflow_person: Default workflow approver
+  label_irm_wf_setting_email_approval_flag: Enable Email Approval Response
+  #======================== end wf settings====================
+  #======================== wf rules====================
+  label_rule_filter_clause_and: And
+  label_rule_filter_clause_or: Or
+  label_irm_wf_rule_list: Workflow Rule
+  label_irm_wf_rule_new: New Workflow Rule
+  label_irm_wf_rule_edit: Edit Workflow Rule
+  label_irm_wf_rule_bo_code: Business Object
+  label_irm_wf_rule_name: Name
+  label_irm_wf_rule_rule_code: Code
+  label_irm_wf_rule_evaluate_criteria_rule: Evaluate Rule
+  label_irm_wf_rule_evaluate_rule_mode: Criteria Rule
+  label_irm_wf_rule_status_code: Status
+  label_irm_wf_rule_evaluation_criteria: Evaluation Criteria
+  label_irm_wf_rule_filter: Rule Criteria
+  label_irm_wf_rule_select_bo: Select Business Object
+  label_irm_wf_rule_config: Config Workflow Rule
+  label_irm_wf_rule_description: Description
+  #========================end wf rules====================

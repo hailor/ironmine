@@ -1,0 +1,13 @@
+<%= page_title %>
+<%= render "new_step_#{@wf_rule.step}"%>
+<script type="text/javascript">
+  GY.use("node-base",function(Y){
+      Y.one("form.new_irm_wf_rule").delegate("click",function(e){
+          e._currentTarget.setAttribute("action",e.target.getAttribute("href"));
+
+          e.preventDefault();
+          e._currentTarget.submit();
+      },"a.submit");
+  });
+
+</script>

@@ -22,6 +22,25 @@ class Irm::RuleFilterCriterion < ActiveRecord::Base
   #加入activerecord的通用方法和scope
   query_extend
 
+
+  def meaning
+    operator_meaing = Irm::LookupValue.multilingual.query_by_lookup_type("RULE_FILTER_OPERATOR").query_by_lookup_code(self.operator_code).first[:meaning]
+    object_attribute = Irm::ObjectAttribute.multilingual.where(:business_object_code=>self.rule_filter.bo_code,:attribute_name=>self.attribute_name).first
+    return  unless object_attribute
+    attribute_meaning = object_attribute[:name]
+    filter_value_meaning = ""
+    if !self.operator_code.eql?('NIL')&&!self.operator_code.eql?('NNIL')
+      if object_attribute.lov_code.present?
+        lov = Irm::ListOfValue.where(:lov_code=>object_attribute.lov_code).first
+        filter_value_meaning = lov.lov_value(self.filter_value)  if lov
+      else
+        filter_value_meaning = self.filter_value
+      end
+    end
+    "(#{attribute_meaning} #{operator_meaing} #{filter_value_meaning})"
+
+  end
+
   def to_condition
     object_attribute = self.ref_object_attribute
     operator_filter_value = parse_condition(object_attribute,self.operator_code,self.filter_value)|| "=#{object_attribute.select_table_name}.#{self.attribute_name}"
