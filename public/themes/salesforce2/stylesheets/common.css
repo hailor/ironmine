@@ -795,3 +795,10 @@ legend{
 /*cux yui css*/
 .yui-skin-sam .yui-editor-container{border:1px solid #d1d1d1 !important;}
 .yui-skin-sam .yui-toolbar-container .yui-toolbar-subcont{border-bottom-color: #d1d1d1 !important;}
+
+#selectComapnyContent{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #cccccc;
+    padding: 5px;
+}

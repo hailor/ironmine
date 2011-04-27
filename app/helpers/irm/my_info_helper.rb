@@ -28,7 +28,7 @@ module Irm::MyInfoHelper
            <span tabindex="0" id="companyMenuTop" style="">#{t(:label_company_access_menu_label)}</span>
            <div id="companyMenu-arrow"></div>
          </div>
-         <div class="menuContent" >
+         <div class="menuContent" style="padding-bottom:8px;">
     BEGIN_HEML
 
     #如果公司数目大于5个则显示搜索
@@ -40,7 +40,15 @@ module Irm::MyInfoHelper
     menu << %(<div id="selectComapnyContent">)
     menu << access_company_checkbox(accessable_companies)
     menu << %(</div>)
-    menu << submit_tag(t(:apply))
+
+    if accessable_companies.size>1
+      tmp_cids = accessable_companies.collect{|ac| ac.id}
+      tmp_cids.delete_if{|ci| session[:accessable_companies].include?(ci)}
+      select_all_content = check_box_tag("select_all","all",tmp_cids.size==0,{:id=>"selectAll"}) + label_tag("selectAll",t(:select_all))
+      menu << content_tag(:div,select_all_content,{:class=>"menuItem", :style => "float:left;"})
+    end
+    menu << submit_tag(t(:apply), :style => "float:right;")
+    menu << "&nbsp;"
     menu << "</form>"
     menu << %(</div>)
     menu << "</span>"
@@ -52,12 +60,12 @@ module Irm::MyInfoHelper
   def access_company_checkbox(accessable_companies)
     links = ""
     # 如果可选公司数目只一个，则不显全选
-    if accessable_companies.size>1
-      tmp_cids = accessable_companies.collect{|ac| ac.id}
-      tmp_cids.delete_if{|ci| session[:accessable_companies].include?(ci)}
-      select_all_content = check_box_tag("select_all","all",tmp_cids.size==0,{:id=>"selectAll"}) + label_tag("selectAll",t(:select_all))
-      links << content_tag(:div,select_all_content,{:class=>"menuItem"})
-    end
+#    if accessable_companies.size>1
+#      tmp_cids = accessable_companies.collect{|ac| ac.id}
+#      tmp_cids.delete_if{|ci| session[:accessable_companies].include?(ci)}
+#      select_all_content = check_box_tag("select_all","all",tmp_cids.size==0,{:id=>"selectAll"}) + label_tag("selectAll",t(:select_all))
+#      links << content_tag(:div,select_all_content,{:class=>"menuItem"})
+#    end
     links << %(<div id="selectableCompany">)
     accessable_companies.each_with_index do |ac,index|
       content = check_box_tag("accessable_companies[]",ac.id,session[:accessable_companies].include?(ac.id),{:id=>"accessable_companies_#{ac.id}"}) + label_tag("accessable_companies_#{ac.id}",ac[:name])
