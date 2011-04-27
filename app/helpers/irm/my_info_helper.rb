@@ -14,10 +14,10 @@ module Irm::MyInfoHelper
         Y.on("domready",function(){
           Y.irm.menuButton("companyMenu","TR","BR");
         });
-        Y.one("#selectComapnyContent").delegate('click', function(e){
+        Y.one("#selectAll").on('click', function(e){
            var checkbox = e.currentTarget;
            Y.one("#selectableCompany").all("input[type=checkbox]").set("checked",checkbox.get("checked"));
-        }, '#selectAll');
+        });
       });
     </script>
     BEGIN_SCRIPT
@@ -28,7 +28,7 @@ module Irm::MyInfoHelper
            <span tabindex="0" id="companyMenuTop" style="">#{t(:label_company_access_menu_label)}</span>
            <div id="companyMenu-arrow"></div>
          </div>
-         <div class="menuContent" style="padding-bottom:10px;">
+         <div class="menuContent" style="padding-bottom:12px;">
     BEGIN_HEML
 
     #如果公司数目大于5个则显示搜索
