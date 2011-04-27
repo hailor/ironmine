@@ -1,4 +1,4 @@
-<%= app_title %>
+<%= app_title({:description => t(:new)}) %>
 <%= form_for(@entry_header,:url=>{:action=>"new"},:builder => LabellingFormBuilder, :html => {:name => "new_skm_entry_header", :multipart => true}) do |f| %>
     <%= f.hidden_field :entry_template_id %>
     <%= f.hidden_field :entry_title %>
