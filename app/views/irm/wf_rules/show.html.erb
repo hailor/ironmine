@@ -5,9 +5,9 @@
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_wf_rule) %></h2></td>
+          <td class="pbTitle"><h2 class="mainTitle"><%= @wf_rule.name %></h2></td>
           <td id="topButtonRow" class="pbButton">
-            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @incident_phase}%></div>
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @wf_rule}%></div>
             <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
           </td>
         </tr>
@@ -18,43 +18,50 @@
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
-                      <tr>
-              <td class="labelCol"><label ><%=t(:label_irm_wf_rule_bo_code)%></label></td>
-              <td class="dataCol"><div><%= @wf_rule.bo_code %></div></td>
-              <td class="labelCol empty"><div>&nbsp;</div></td>
-              <td class="dataCol empty"><div>&nbsp;</div></td>
-            </tr>
-                      <tr>
+            <tr>
               <td class="labelCol"><label ><%=t(:label_irm_wf_rule_name)%></label></td>
               <td class="dataCol"><div><%= @wf_rule.name %></div></td>
+              <td class="labelCol empty"><%=t(:label_irm_wf_rule_rule_code)%></td>
+              <td class="dataCol empty"><div><%= @wf_rule.rule_code %></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_rule_bo_code)%></label></td>
+              <td class="dataCol"><div><%= @wf_rule[:bo_name] %></div></td>
               <td class="labelCol empty"><div>&nbsp;</div></td>
               <td class="dataCol empty"><div>&nbsp;</div></td>
             </tr>
-                      <tr>
-              <td class="labelCol"><label ><%=t(:label_irm_wf_rule_description)%></label></td>
-              <td class="dataCol"><div><%= @wf_rule.description %></div></td>
+
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_rule_evaluate_criteria_rule)%></label></td>
+              <td class="dataCol"><div><%= @wf_rule[:evaluate_criteria_rule_name] %></div></td>
               <td class="labelCol empty"><div>&nbsp;</div></td>
               <td class="dataCol empty"><div>&nbsp;</div></td>
             </tr>
-                      <tr>
-              <td class="labelCol"><label ><%=t(:label_irm_wf_rule_evaluatecriteria_rule)%></label></td>
-              <td class="dataCol"><div><%= @wf_rule.evaluatecriteria_rule %></div></td>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_rule_evaluate_criteria_filter)%></label></td>
+              <td class="dataCol"><div><%= @rule_filter.meaning %></div></td>
               <td class="labelCol empty"><div>&nbsp;</div></td>
               <td class="dataCol empty"><div>&nbsp;</div></td>
             </tr>
-                      <tr>
+            <tr>
               <td class="labelCol"><label ><%=t(:label_irm_wf_rule_evaluate_rule_mode)%></label></td>
-              <td class="dataCol"><div><%= @wf_rule.evaluate_rule_mode %></div></td>
+              <td class="dataCol"><div><%= @wf_rule[:evaluate_rule_mode_name] %></div></td>
               <td class="labelCol empty"><div>&nbsp;</div></td>
               <td class="dataCol empty"><div>&nbsp;</div></td>
             </tr>
-                      <tr>
+            <tr>
               <td class="labelCol"><label ><%=t(:label_irm_wf_rule_status_code)%></label></td>
               <td class="dataCol"><div><%= @wf_rule.status_code %></div></td>
               <td class="labelCol empty"><div>&nbsp;</div></td>
               <td class="dataCol empty"><div>&nbsp;</div></td>
             </tr>
-                  </tbody>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_rule_description)%></label></td>
+              <td class="dataCol"><div><%= @wf_rule.description %></div></td>
+              <td class="labelCol empty"><div>&nbsp;</div></td>
+              <td class="dataCol empty"><div>&nbsp;</div></td>
+            </tr>
+        </tbody>
       </table>
     </div>
   </div>

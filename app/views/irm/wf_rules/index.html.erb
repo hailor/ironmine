@@ -24,13 +24,11 @@
         </div>
         <%= datatable("wf_rules",url_for(:action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
-                                              { :key => "bo_code", :label => t(:label_irm_wf_rule_bo_code),:searchable=>true },
-                                              { :key => "name", :label => t(:label_irm_wf_rule_name),:searchable=>true },
-                                              { :key => "description", :label => t(:label_irm_wf_rule_description),:searchable=>true },
-                                              { :key => "evaluatecriteria_rule", :label => t(:label_irm_wf_rule_evaluatecriteria_rule),:searchable=>true },
-                                              { :key => "evaluate_rule_mode", :label => t(:label_irm_wf_rule_evaluate_rule_mode),:searchable=>true },
-                                              { :key => "status_code", :label => t(:label_irm_wf_rule_status_code),:searchable=>true }
-                                              ],{:paginator_box=>"wf_rulesPaginatorBox",:search_box=>"wf_rulesSearchBox"})%>
+                       { :key => "bo_name", :label => t(:label_irm_wf_rule_bo_code),:searchable=>true },
+                       { :key => "rule_code", :label => t(:label_irm_wf_rule_rule_code),:searchable=>true },
+                       { :key => "name", :label => t(:label_irm_wf_rule_name),:searchable=>true },
+                       { :key => "evaluate_criteria_rule_name", :label => t(:label_irm_wf_rule_evaluate_criteria_rule),:searchable=>true }
+                      ],{:paginator_box=>"wf_rulesPaginatorBox",:search_box=>"wf_rulesSearchBox"})%>
         <div id="wf_rulesPaginatorBox"></div>
       </div>
     </div>

@@ -599,6 +599,14 @@ Ironmine::Application.routes.draw do
     match '/wf_settings(/index)(.:format)' => "wf_settings#index", :via => :get
     match '/wf_settings/edit(.:format)' => "wf_settings#edit", :via => :get
     match '/wf_settings(.:format)' => "wf_settings#update", :via => :put
+    # wf_rules
+    match '/wf_rules(/index)(.:format)' => "wf_rules#index", :via => :get
+    match '/wf_rules/new(.:format)' => "wf_rules#new", :via => [:get,:post,:put]
+    match '/wf_rules/create(.:format)' => "wf_rules#create", :via => :post
+    match '/wf_rules/get_data(.:format)' => "wf_rules#get_data"
+    match '/wf_rules/:id/edit(.:format)' => "wf_rules#edit", :via => :get
+    match '/wf_rules/:id(.:format)' => "wf_rules#update", :via => :put
+    match '/wf_rules/:id/show(.:format)' => "wf_rules#show", :via => :get
   end
 
   scope :module => "icm" do

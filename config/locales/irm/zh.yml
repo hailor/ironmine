@@ -968,3 +968,21 @@ zh:
   label_irm_wf_setting_default_workflow_person: 工作流默认审批人
   label_irm_wf_setting_email_approval_flag:  启用电子邮件审批
   #======================== end wf settings====================
+  #======================== wf rules====================
+  label_rule_filter_clause_and: 和
+  label_rule_filter_clause_or: 或
+  label_irm_wf_rule_list: 工作流规则
+  label_irm_wf_rule_new: 新建工作流规则
+  label_irm_wf_rule_edit: 编辑工作流规则
+  label_irm_wf_rule_bo_code: 业务对像
+  label_irm_wf_rule_name: 名称
+  label_irm_wf_rule_rule_code: 编码
+  label_irm_wf_rule_evaluate_criteria_rule: 评估规则
+  label_irm_wf_rule_evaluate_rule_mode: 评估方式
+  label_irm_wf_rule_status_code: 状态
+  label_irm_wf_rule_evaluation_criteria: 评估规则
+  label_irm_wf_rule_filter: 评估过滤规则
+  label_irm_wf_rule_select_bo: 选择工作流规则业务对像
+  label_irm_wf_rule_config: 设置工作流规则
+  label_irm_wf_rule_description: 描述
+  #========================end wf rules====================
