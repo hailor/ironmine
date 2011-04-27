@@ -28,7 +28,7 @@ module Irm::MyInfoHelper
            <span tabindex="0" id="companyMenuTop" style="">#{t(:label_company_access_menu_label)}</span>
            <div id="companyMenu-arrow"></div>
          </div>
-         <div class="menuContent" style="padding-bottom:8px;">
+         <div class="menuContent" style="padding-bottom:10px;">
     BEGIN_HEML
 
     #如果公司数目大于5个则显示搜索
