@@ -1,6 +1,6 @@
 zh:
    #========================= start csi surveys_controller=======================#
-   label_csi_survey_new: 新建调查问卷
+   label_csi_survey_new: 发起调查
    label_csi_survey_info: 调查问卷
    label_csi_survey_company: 公司名称
    label_csi_survey_title: 问卷名称

@@ -11,8 +11,8 @@ class InitSurveyFunctions < ActiveRecord::Migration
     csi_view_survey.functions_tls.build(:language=>'en',:source_lang=>'en',:name=>'View Survey',:description=>'View Survey')
     csi_view_survey.save
     csi_new_survey= Irm::Function.new(:group_code=>'CSI_SURVEY',:function_code=>'NEW_SURVEY',:default_flag=>'N',:public_flag=>'N',:not_auto_mult=>true)
-    csi_new_survey.functions_tls.build(:language=>'zh',:source_lang=>'en',:name=>'新建调查问卷',:description=>'新建调查问卷')
-    csi_new_survey.functions_tls.build(:language=>'en',:source_lang=>'en',:name=>'New Survey',:description=>'New Survey')
+    csi_new_survey.functions_tls.build(:language=>'zh',:source_lang=>'en',:name=>'发起调查',:description=>'发起调查')
+    csi_new_survey.functions_tls.build(:language=>'en',:source_lang=>'en',:name=>'Initiate Survey',:description=>'Initiate Survey')
     csi_new_survey.save
     csi_edit_survey= Irm::Function.new(:group_code=>'CSI_SURVEY',:function_code=>'EDIT_SURVEY',:default_flag=>'N',:public_flag=>'N',:not_auto_mult=>true)
     csi_edit_survey.functions_tls.build(:language=>'zh',:source_lang=>'en',:name=>'编辑调查问卷',:description=>'编辑调查问卷')
@@ -23,8 +23,8 @@ class InitSurveyFunctions < ActiveRecord::Migration
     csi_view_survey_result.functions_tls.build(:language=>'en',:source_lang=>'en',:name=>'View Survey Result',:description=>'View Survey Result')
     csi_view_survey_result.save
     csi_reply_survey= Irm::Function.new(:group_code=>'CSI_SURVEY',:function_code=>'REPLY_SURVEY',:default_flag=>'N',:public_flag=>'N',:not_auto_mult=>true)
-    csi_reply_survey.functions_tls.build(:language=>'zh',:source_lang=>'en',:name=>'回答调查问卷',:description=>'回答调查问卷')
-    csi_reply_survey.functions_tls.build(:language=>'en',:source_lang=>'en',:name=>'Reply Survey',:description=>'Reply Survey')
+    csi_reply_survey.functions_tls.build(:language=>'zh',:source_lang=>'en',:name=>'参与调查',:description=>'参与调查')
+    csi_reply_survey.functions_tls.build(:language=>'en',:source_lang=>'en',:name=>'Join Survey',:description=>'Join Survey')
     csi_reply_survey.save
   end
 
