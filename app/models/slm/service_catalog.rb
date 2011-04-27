@@ -32,4 +32,17 @@ class Slm::ServiceCatalog < ActiveRecord::Base
                "priority_vl.language = ?",language)
            }
 
+  scope :with_external_system, lambda{
+    joins(" LEFT OUTER JOIN #{Uid::ExternalSystem.table_name} es ON es.external_system_code = #{table_name}.external_system_code").
+      joins(" LEFT OUTER JOIN #{Uid::ExternalSystemsTl.table_name} est ON es.id = est.external_system_id AND est.language = '#{I18n.locale}'").
+      select("est.system_name external_system_name")
+
+  }
+
+  scope :with_slm_agreement, lambda{
+    joins(" LEFT OUTER JOIN #{Slm::ServiceAgreement.table_name} sa ON sa.agreement_code = #{table_name}.slm_code").
+        joins(" LEFT OUTER JOIN #{Slm::ServiceAgreementsTl.table_name} sat ON sat.service_agreement_id = sa.id AND sat.language = '#{I18n.locale}'").
+        select("sat.name service_agreement_name")
+  }
+
 end
