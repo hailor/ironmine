@@ -66,6 +66,7 @@
       <table cellpadding="0" cellspacing="0" border="0">
         <thead>
           <tr>
+            <th width="20%"></th>
             <th></th>
             <th><%=t(:irm_filter_criterions_column_code)%></th>
             <th><div style="width:30%;float:left;"><%=t(:irm_filter_criterions_operator_code)%></div> <div style="width:70%;float:left;"><%=t(:irm_filter_criterions_filter_value)%></div></th>
@@ -74,6 +75,7 @@
         <tbody>
         <%= f.fields_for :rule_filter_criterions,:normal=>true do |sub_f|%>
             <tr>
+              <td width="20%"></td>
               <td width="10px" class="dataCol"><%=sub_f.object.seq_num%>.</td>
               <td class="dataCol">
                 <%=sub_f.hidden_field(:seq_num)%>
@@ -86,9 +88,11 @@
             </tr>
         <%end %>
         <tr>
+          <td width="20%"></td>
           <td colspan="3" class="dataCol"><%=(t :label_irm_view_filter_view_condition_clause)%></td>
         </tr>
         <tr>
+          <td width="20%"></td>
           <td class="dataCol" colspan="3"><%=f.text_field :raw_condition_clause, :size=>60,:id=>"rawConditionClause"%></td>
         </tr>
         </tbody>

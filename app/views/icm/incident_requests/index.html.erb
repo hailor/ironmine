@@ -1,10 +1,5 @@
 <%= app_title %>
-<% if Irm::Role.current&&Irm::Role.current.service_role_type.eql?("CUSTOMER") %>
-  <%= view_filter("ICM_INCIDENT_REQUEST_INDEX_B","ICM_INCIDENT_REQUESTS","incident_requests") %>
-<% else %>
-  <%= view_filter("ICM_INCIDENT_REQUEST_INDEX_A","ICM_INCIDENT_REQUESTS","incident_requests") %>
-<% end %>
-
+<%= view_filter("ICM_INCIDENT_REQUEST_INDEX_B","ICM_INCIDENT_REQUESTS","incident_requests") %>
 <div class="listRelatedObject setupBlock">
     <div class="bPageBlock">
       <div class="pbHeader">
