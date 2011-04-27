@@ -77,11 +77,11 @@ class ChangeAllMenu < ActiveRecord::Migration
     irm_admin_setup.menus_tls.build(:language=>'zh',:source_lang=>'en',:name=>'管理设置',:description=>'管理设置菜单')
     irm_admin_setup.menus_tls.build(:language=>'en',:source_lang=>'en',:name=>'Admin Setup',:description=>'Admin Setup Menu')
     irm_admin_setup.save
-    irm_manage_user= Irm::Menu.new(:menu_code=>'MANAGE_USER',:leaf_flag=>'Y',:not_auto_mult=>true)
+    irm_manage_user= Irm::Menu.new(:menu_code=>'MANAGE_USER',:leaf_flag=>'N',:not_auto_mult=>true)
     irm_manage_user.menus_tls.build(:language=>'zh',:source_lang=>'en',:name=>'管理用户',:description=>'管理用户菜单')
     irm_manage_user.menus_tls.build(:language=>'en',:source_lang=>'en',:name=>'Manage User',:description=>'Manage User Menu')
     irm_manage_user.save
-    irm_user= Irm::Menu.new(:menu_code=>'USER',:leaf_flag=>'N',:not_auto_mult=>true)
+    irm_user= Irm::Menu.new(:menu_code=>'USER',:leaf_flag=>'Y',:not_auto_mult=>true)
     irm_user.menus_tls.build(:language=>'zh',:source_lang=>'en',:name=>'用户',:description=>'用户菜单')
     irm_user.menus_tls.build(:language=>'en',:source_lang=>'en',:name=>'User',:description=>'User Menu')
     irm_user.save
