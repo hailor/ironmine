@@ -122,7 +122,8 @@
 
   <div class="pbBody">
     <div class="pbSubheader tertiaryPalette first" style="background-color:#aeaeae;padding-left:15px;">
-      <h3><%=@incident_request[:title]%></h3><div style="margin-left: 15px; display:inline;">(<a href="javascript:void(0)" id="showMore"><%= t(:label_icm_incident_more_info) %></a>)</div>
+      <h3>(<%= @incident_request[:incident_status_name] %>)<%=@incident_request[:title]%></h3>
+      <div style="margin-left: 15px; display:inline;">(<a href="javascript:void(0)" id="showMore"><%= t(:label_icm_incident_more_info) %></a>)</div>
     </div>
     <div class="pbSubsection hidden" id="incidentDetail">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
@@ -225,9 +226,7 @@
             <% end %>
           </td>
           <td class="pbButton">
-            <label for="incident_request_incident_status_code"><%=t(:label_icm_incident_reply_incident_status_code)%></label>
-            <%=f.blank_select :incident_status_code,available_request_status_code,
-                                                    {},{:id=>"incident_request_incident_status_code"}%>
+
           </td>
           <td class="pbHelp">
 
@@ -287,6 +286,14 @@
                 <%= sub_f.text_area :message_body ,:id=>"msgEditor",:style=>"display:none;"%>
               </td>
               <% end%>
+            </tr>
+
+            <tr>
+              <td class="dataCol">
+                <label for="incident_request_incident_status_code"><%=t(:label_icm_incident_reply_incident_status_code)%></label>
+                <%=f.blank_select :incident_status_code,available_request_status_code,
+                                                        {},{:id=>"incident_request_incident_status_code"}%>
+              </td>
             </tr>
             <tr>
               <td class="dataCol" colspan="4" width="100%">

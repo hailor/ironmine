@@ -54,7 +54,8 @@
               <td class="labelCol"><label for="incident_request_service_code"><%=t(:label_icm_incident_request_target_system)%></label></td>
               <td class="dataCol">
                 <% if allow_to_function?(:create_icdt_rqst_for_other) %>
-                    <%=f.select :external_system_code,nullable_options_for_select([],nil),{},
+                    <%=f.select :external_system_code,
+                                nullable_options_for_select(available_external_systems_with_person(@incident_request.requested_by).collect{|p| [p[:system_name], p.id]},@incident_request.external_system_code),{},
                             {:id=>"ass_external_system",
                              :depend=>"incident_request_requested_by",
                              :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
@@ -78,7 +79,7 @@
             <tr>
               <td class="labelCol"><label for="incident_request_service_code"><%=t(:label_icm_incident_request_service_code)%></label></td>
               <td class="dataCol"><%=f.select :service_code,
-                                            nullable_options_for_select([],nil),
+                                            nullable_options_for_select(available_service(@incident_request.external_system_code),@incident_request.service_code),
                                             {},
                                             {:id=>"incident_request_service_code",
                                              :depend=>"ass_external_system",
@@ -96,7 +97,9 @@
 
             <tr>
               <td class="labelCol"><label for="incident_request_summary"><%=t(:label_icm_incident_request_summary)%></label></td>
-              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_area :summary,:rows=>5,:cols=>100,:value=>"Default", :required=>true ,:style=>"display:none;",:id=>"incident_request_summary"%></td>
+              <td class="dataCol" colspan="3" style="width:82%">
+                <%=f.text_area :summary,:rows=>5,:cols=>100,:required=>true ,:style=>"display:none;",:id=>"incident_request_summary"%>
+              </td>
             </tr>
             <tr>
               <td class="labelCol"></td>
@@ -195,11 +198,8 @@
                 <%=f.blank_select :request_type_code,available_request_type,
                                                     {},{:required=>true,:id=>"incident_request_request_type_code"}%>
               </td>
-              <td class="labelCol"><label for="incident_request_incident_status_code"><%=t(:label_icm_incident_request_incident_status_code)%></label></td>
-              <td class="dataCol">
-                <%=f.select :incident_status_code,options_for_select(available_all_request_status_code,@incident_request.incident_status_code),
-                                                    {},{:required=>true,:id=>"incident_request_incident_status_code"}%>
-              </td>
+              <td class="labelCol"></td>
+              <td class="dataCol"></td>
             </tr>
 
             <tr>

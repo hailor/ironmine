@@ -1,6 +1,11 @@
 module Icm::IncidentRequestsHelper
-  def available_service
-    Irm::LookupValue.query_by_lookup_type("ICM_SERVICE_CODE").multilingual.collect{|p|[p[:meaning],p[:lookup_code]]}
+  def available_service(external_system_code)
+    services = []
+    if external_system_code && !external_system_code.blank?
+      services_scope = Slm::ServiceCatalog.multilingual.enabled.where("external_system_code = ?", params[:external_system_code])
+      services = services_scope.collect{|i| [i[:name], i.catalog_code]}
+    end
+    services
   end
 
   def available_person
