@@ -74,8 +74,8 @@ module Irm::WfTasksHelper
      [I18n.t("ordinals")[5], "-1"]]
   end
 
-  def my_tasks_list
-    my_tasks = Irm::Calendar.current_calendar(Irm::Person.current.id).wf_tasks.uncompleted.enabled.order("start_at ASC").limit(5)
+  def my_tasks_list(list_limit = 5)
+    my_tasks = Irm::Calendar.current_calendar(Irm::Person.current.id).wf_tasks.uncompleted.enabled.order("start_at ASC").limit(list_limit)
 
     html = ""
     my_tasks.each do |t|
@@ -101,7 +101,7 @@ module Irm::WfTasksHelper
   end
 
   def my_tasks_count
-    Irm::Calendar.current_calendar(Irm::Person.current.id).wf_tasks.uncompleted.enabled.size.to_s
+    Irm::Calendar.current_calendar(Irm::Person.current.id).wf_tasks.uncompleted.enabled.size
   end
 
   def get_rrule_translate(rrule)

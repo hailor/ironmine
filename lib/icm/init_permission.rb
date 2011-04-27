@@ -6,7 +6,7 @@ Irm::AccessControl.map do |map|
                                                                  :get_slm_services],
                                        "icm/incident_journals"=>[:index,:new]}
   # 创建事故单
-  map.function :create_incident_request,{"icm/incident_requests"=>[:new,:create]}
+  map.function :create_incident_request,{"icm/incident_requests"=>[:new,:create, :short_create]}
   # 编辑事故单
   map.function :edit_incident_request,{"icm/incident_requests"=>[:edit,:update]}
   # 回复事故单
