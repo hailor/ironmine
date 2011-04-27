@@ -13,6 +13,10 @@ class Irm::FiltersController < ApplicationController
     0.upto 4 do |index|
       @rule_filter.rule_filter_criterions.build({:seq_num=>index+1})
     end
+
+    respond_to do |format|
+      format.html{render :layout => "application_full" }
+    end
   end
 
   def create
@@ -31,7 +35,7 @@ class Irm::FiltersController < ApplicationController
         format.html {redirect_back}
         format.xml  {redirect_back}
       else
-        format.html { render "new" }
+        format.html { render "new", :layout => "application_full" }
         format.xml  { render :xml => @view_filter.errors, :status => :unprocessable_entity }
       end
     end
@@ -39,6 +43,9 @@ class Irm::FiltersController < ApplicationController
 
   def edit
     @rule_filter = Irm::RuleFilter.find(params[:id])
+    respond_to do |format|
+      format.html{render :layout => "application_full" }
+    end
   end
 
   def update
@@ -49,7 +56,7 @@ class Irm::FiltersController < ApplicationController
         format.html {redirect_back}
         format.xml  {redirect_back}
       else
-        format.html { render "edit" }
+        format.html { render "edit", :layout => "application_full" }
         format.xml  { render :xml => @action.errors, :status => :unprocessable_entity }
       end
     end
