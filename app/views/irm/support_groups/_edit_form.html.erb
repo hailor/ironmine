@@ -37,25 +37,18 @@
               <td class="labelCol"><label><%=(t :label_irm_support_group_name)%></label></td>
               <td class="dataCol"><%=f.text_field :name, :required=>true%></td>
               <td class="labelCol"><label><%=(t :label_irm_support_group_organization_name)%></label></td>
-              <td class="dataCol"><%= f.blank_select(:organization_id,available_organization(@support_group.company_id),{
+              <td class="dataCol"><%= f.blank_select(:organization_id,available_organization(@support_group.company_id),{},
+                                  {:required=>true,
                                    :id=>"organization_id",
                                    :href=>url_for(:controller=>"irm/organizations",:action=>"get_by_company",:format=>"json",:belonged_company_id=>"{company_id}"),
                                    :depend=>"company_id"
                                    }) %></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_support_group_description)%></label></td>
-              <td class="dataCol"><%=f.text_area :description,:rows=>4%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-            <tr>
               <td class="labelCol"><label><%=(t :label_irm_support_group_oncall_group)%></label></td>
               <td class="dataCol"><%=f.check_box :oncall_group_flag%></td>
               <td class="labelCol"><%=(t :label_irm_support_group_support_role)%></td>
-              <td class="dataCol"><%=f.blank_select(:support_role_code,
-                                                options_from_collection_for_select(available_support_role,:lookup_code,:wrap_meaning,@support_group.support_role_code),
-                                                {})%></td>
+              <td class="dataCol"><%=f.blank_select(:support_role_code,available_support_role,{},:required=>true)%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_support_group_vendor_group)%></label></td>
@@ -63,6 +56,12 @@
               <td class="labelCol"><label><%=(t :label_irm_support_group_status_code)%></label></td>
               <td class="dataCol"><%=f.select :status_code,options_from_collection_for_select(available_status,:lookup_code,:wrap_meaning,@support_group.status_code)%>
               </td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_support_group_description)%></label></td>
+              <td class="dataCol"><%=f.text_area :description,:rows=>4%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
             </tr>
         </tbody>
       </table>

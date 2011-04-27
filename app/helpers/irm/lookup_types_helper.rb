@@ -45,6 +45,6 @@ def available_external_login_source_type
   end
 
   def available_support_role
-    Irm::LookupValue.query_by_lookup_type("IRM_SUPPORT_ROLE").multilingual
+    Irm::LookupValue.query_by_lookup_type("IRM_SUPPORT_ROLE").multilingual.collect{|i| [i[:meaning],i[:lookup_code]]}
   end
 end
