@@ -299,16 +299,8 @@ img.img17Large{
 
 img.img18Small{background:url("../images/16_16/Star.png") no-repeat scroll; width: 16px; height: 16px;}
 img.img18General{
-    background-image:url("/images/products32.png");
-    background-position:0 0;
-    height:32px;
-    width:32px;
 }
 img.img18Large{
-    background-image:url("/images/master.png");
-    background-position:0 -1385px;
-    height:32px;
-    width:32px;
 }
 
 
