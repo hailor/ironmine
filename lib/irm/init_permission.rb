@@ -2,9 +2,10 @@ Irm::AccessControl.map do |map|
   #============= 系统主页==============================
   # 主页
   map.function :home_page,{"irm/home"=>[:index], "irm/calendars" => ["get_full_calendar"]}
-  map.function :public_function,{"irm/common"=>[:login],
-                                 "irm/filters" => ["edit", "new", "create", "update", "index", "operator_value"],
-                                 "irm/setting" => ["common"]}
+  map.function :public_function,{"irm/common"=>[:login], "irm/navigations" => ["access_deny", "combo"]}
+  map.function :login_function,{ "irm/filters" => ["edit", "new", "create", "update", "index", "operator_value"],
+                                 "irm/setting" => ["common"],
+                                 "irm/navigations" => ["change_role", "index"]}
   #=====common setting===================
   #===================irm/global_settings============================
   #["index", "edit", "update", "crop"]
@@ -219,8 +220,10 @@ Irm::AccessControl.map do |map|
   map.function :edit_list_of_values,{"irm/list_of_values"=>["edit", "update", "multilingual_edit", "multilingual_update"]}
 
   #====================irm/my_info =================================
-  map.function :view_my_info, {"irm/my_info" => ["index", "filter_company"], "irm/my_login_history" => ["index", "get_login_data"],
-                               "irm/my_password" => ["index"]}
+  map.function :view_my_info, {"irm/my_info" => ["index", "filter_company"],
+                               "irm/my_login_history" => ["index", "get_login_data"],
+                               "irm/my_password" => ["index"],
+                               "irm/my_avatar" => ["index"]}
   map.function :edit_my_info, {"irm/my_info" => ["edit", "update", "update_company_access"],
                                "irm/my_avatar" => ["avatar_crop", "edit", "update"],
                                "irm/my_password" => ["edit_password", "update_password"]}
