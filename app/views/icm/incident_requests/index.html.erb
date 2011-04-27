@@ -26,7 +26,9 @@
     </div>
 </div>
 
+<% if allow_to_function?(:view_reports) %>
 <%= render "/irm/report_lists/report_category",{:category_code=>"INCIDENT_REQUEST",:options=>{:report_purpose=>"REPORT"}} %>
+<% end %>
 
 <% content_for :sidebar do%>
     <%= render :partial =>"/icm/incident_requests/short_cut_new" %>
