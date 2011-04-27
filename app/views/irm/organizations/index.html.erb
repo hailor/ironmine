@@ -17,13 +17,13 @@
         </table>
       </div>
       <div class="pbBody">
-        <div id="organization" class="datatable" style="width:100%;">
+        <div id="organization_lists" class="datatable" style="width:100%;">
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>&nbsp;
             <%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
-        <%= datatable("organization",url_for(:action=>"get_data",:format=>"json"),
+        <%= datatable("organization_lists",url_for(:action=>"get_data",:format=>"json"),
                   [{:key=>"id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"80px"},
                    {:key=>"company_name",:label=>t(:label_irm_organization_company_name),:sortable=>true,:searchable=>true,:width=>"10%"},
                    {:key=>"short_name",:label=>t(:label_irm_organization_short_name),:sortable=>true,:searchable=>true,:width=>"10%"},
