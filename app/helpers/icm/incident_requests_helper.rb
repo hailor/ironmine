@@ -1,5 +1,5 @@
 module Icm::IncidentRequestsHelper
-  def available_service(external_system_code)
+  def available_service(external_system_code=nil)
     services = []
     if external_system_code && !external_system_code.blank?
       services_scope = Slm::ServiceCatalog.multilingual.enabled.where("external_system_code = ?", params[:external_system_code])

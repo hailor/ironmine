@@ -124,7 +124,7 @@ class Irm::PeopleController < ApplicationController
   end
 
   def get_available_roles
-    roles_scope = Irm::Role.multilingual.enabled.query_by_role_name(params[:role_name]).without_person(params[:person_id])
+    roles_scope = Irm::Role.multilingual.enabled.query_by_role_name(params[:role_name]).without_person(params[:id])
     roles,count = paginate(roles_scope)
     respond_to do |format|
       format.json  {render :json => to_jsonp(roles.to_grid_json([:name,:role_code,:status_code, :description], count)) }
@@ -143,23 +143,25 @@ class Irm::PeopleController < ApplicationController
   end
 
   def select_roles
-    @return_url=params[:return_url]||request.env['HTTP_REFERER']
-    @person = Irm::Person.find(params[:person_id])
-    @role_name = params[:role_name] if params[:role_name]
+    @person_role = Irm::PersonRole.new
+    @person_role.status_code=""
   end
 
   def add_roles
-    return_url=params[:return_url]
-#    permissions = Irm::Permission.where("id IN (?)", params[:irm_function_permissions][:permission_code])
-    params[:irm_person_roles][:ids].each do |p|
-      Irm::PersonRole.create({:role_id => Irm::Role.find(p).id, :person_id => params[:person_id]})
+    @person_role = Irm::PersonRole.new(params[:irm_person_role])
+    added_person = Irm::Person.find(params[:id])
+    respond_to do |format|
+      if(!@person_role.status_code.blank?)
+        @person_role.status_code.split(",").delete_if{|i| i.blank?}.each do |id|
+          Irm::PersonRole.create(:person_id=>params[:id],:role_id=>id)
+        end
+        format.html { redirect_to({:action=>"show"}, :notice => t(:successfully_created)) }
+        format.xml  { render :xml => @person_role, :status => :created, :location => @report_group_member }
+      else
+        @person_role.errors.add(:status_code,"")
+        format.html { render :action => "select_roles" }
+        format.xml  { render :xml => @person_role.errors, :status => :unprocessable_entity }
+      end
     end
-
-    flash[:notice] = t(:successfully_updated)
-    if return_url.blank?
-      redirect_to({:action=>"select_roles", :person_id=> params[:person_id]})
-    else
-      redirect_to(return_url)
-    end    
   end
 end
