@@ -36,11 +36,12 @@
 
             <tr>
               <td class="labelCol"><label for="service_member_name"><%=t(:label_slm_service_member_service_organization)%></label></td>
-              <td class="dataCol"><%= f.blank_select(:service_organization_id,[],{},
-                                  {:required=>true,
-                                   :id=>"organization_id",
+              <td class="dataCol"><%= f.select(:service_organization_id,
+                                    nullable_options_for_select(temp_ava_organizations_edit(@service_member.service_company_id),@service_member.service_organization_id), {},
+                                  {:id=>"organization_id",
                                    :href=>url_for(:controller=>"irm/organizations",:action=>"get_by_company",:format=>"json",:belonged_company_id=>"{company_id}"),
-                                   :depend=>"company_id"
+                                   :depend=>"company_id",
+                                   :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---"
                                    }) %>
               </td>
               <td class="labelCol empty">&nbsp;</td>
@@ -49,11 +50,12 @@
 
             <tr>
               <td class="labelCol"><label for="service_member_description"><%=t(:label_slm_service_member_service_department)%></label></td>
-              <td class="dataCol"><%= f.blank_select(:service_department_id,[],{},
-                                  {:required=>true,
-                                   :id=>"department_id",
+              <td class="dataCol"><%= f.select(:service_department_id,
+                                   nullable_options_for_select(temp_ava_departments_edit(@service_member.service_organization_id),@service_member.service_department_id), {},
+                                  {:id=>"department_id",
                                    :href=>url_for(:controller=>"irm/departments",:action=>"get_by_organization",:format=>"json",:organization_id=>"{organization_id}"),
-                                   :depend=>"organization_id"
+                                   :depend=>"organization_id",
+                                   :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---"
                                    }) %></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
@@ -61,14 +63,18 @@
 
             <tr>
               <td class="labelCol"><label for="service_member_description"><%=t(:label_slm_service_member_service_person)%></label></td>
-              <td class="dataCol"><%=f.select :service_person_id,available_service_owner,{},{:required=>true}%></td>
+              <td class="dataCol"><%=f.blank_select :service_person_id,
+                                                    available_service_owner,{},
+                                                    {:blank=> "--- #{t(:actionview_instancetag_blank_option)} ---"}%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
 
             <tr>
               <td class="labelCol"><label for="service_member_description"><%=t(:label_slm_service_member_service_contract)%></label></td>
-              <td class="dataCol"><%=f.select :service_contract_id,available_service_owner,{},{:required=>true}%></td>
+              <td class="dataCol"><%=f.blank_select :service_contract_id,
+                                                    available_service_owner,{},
+                                                    {:blank=> "--- #{t(:actionview_instancetag_blank_option)} ---"}%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
@@ -98,3 +104,9 @@
   </div>
 </div>
 <% end %>
+<script type="text/javascript">
+  GY.use("cascadeselect",function(Y){
+     new Y.CascadeSelect({source: "#company_id",target:["#organization_id","#department_id"]});
+     new Y.CascadeSelect({source: "#organization_id",target:["#department_id"]});
+  });
+</script>

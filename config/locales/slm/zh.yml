@@ -41,12 +41,12 @@ zh:
   label_slm_service_member_new: 新建服务成员
   label_slm_service_member_edit: 编辑服务成员
   label_slm_service_member_info: 服务成员信息
-  label_slm_service_member_service_catalog: 服务目录
-  label_slm_service_member_service_company: 服务公司
-  label_slm_service_member_service_organization: 服务组织
-  label_slm_service_member_service_department: 服务部门
-  label_slm_service_member_service_person: 服务人员
-  label_slm_service_member_service_contract: 服务联系人
+  label_slm_service_member_service_catalog: 目录
+  label_slm_service_member_service_company: 公司
+  label_slm_service_member_service_organization: 组织
+  label_slm_service_member_service_department: 部门
+  label_slm_service_member_service_person: 人员
+  label_slm_service_member_service_contract: 联系人
   label_slm_service_member_description: 描述
   label_slm_service_member_status_meaning: 记录状态
   #=========================    end service_members_controller=======================#
