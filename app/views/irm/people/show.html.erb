@@ -110,7 +110,7 @@
                  <td class="dataCol"><%=@person[:department_name]%></td>
                  <td class="labelCol"><label>
                     <%=t(:label_irm_person_vip_flag)%></label></td>
-                 <td class="dataCol"><%=@person.vip_flag%></td>
+                 <td class="dataCol"><%=check_img(@person.vip_flag)%></td>
              </tr>
              <tr>
                  <td class="labelCol"><label><%=t(:label_irm_person_home_phone)%></label></td>
@@ -119,7 +119,7 @@
                  </td>
                  <td class="labelCol"><label>
                      <%=t(:label_irm_person_assignment_availability_flag)%></label></td>
-                  <td class="dataCol"><%=@person.assignment_availability_flag%></td>
+                  <td class="dataCol"><%=check_img(@person.assignment_availability_flag)%></td>
              </tr>
              <tr>
                  <td class="labelCol"><label><%=t(:label_irm_person_home_address)%></label></td>
