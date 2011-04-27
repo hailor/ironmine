@@ -24,10 +24,8 @@
           </div>
         </div>
         <%= datatable("reports",url_for(:action=>"get_data",:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
-                       
-                       { :key => "report_code", :label => t(:label_irm_report_report_code),:searchable=>true },
-                       
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
+
                        { :key => "name", :label => t(:label_irm_report_name),:searchable=>true },
                        
                        { :key => "category_name", :label => t(:label_irm_report_category_code),:searchable=>true },

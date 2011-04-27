@@ -170,11 +170,11 @@ zh:
   label_irm_language_new: 创建语言
   label_irm_language_edit: 编辑语言
   label_irm_language_list: 语言列表
-  label_irm_language_language_code: 语言编码
+  label_irm_language_language_code: 语言
   label_irm_language_info: 语言信息
   label_irm_language_description: 描述
   label_irm_language_installed_flag: 是否安装
-  label_irm_language_status_code: 状态编码
+  label_irm_language_status_code: 状态
   label_irm_language_show: 显示语言
   #=========================    irm languages_controller=======================#
   #=========================    irm common_controller=======================#
@@ -985,4 +985,5 @@ zh:
   label_irm_wf_rule_select_bo: 选择工作流规则业务对像
   label_irm_wf_rule_config: 设置工作流规则
   label_irm_wf_rule_description: 描述
+  label_irm_wf_rule_active: 启用
   #========================end wf rules====================

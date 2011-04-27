@@ -182,7 +182,7 @@ en:
   label_irm_language_info: Language Info
   label_irm_language_description: Description
   label_irm_language_installed_flag: Installed Flag
-  label_irm_language_status_code: Status Code
+  label_irm_language_status_code: Status
   label_irm_language_show: Show Language
   #=========================    irm languages_controller=======================#
   #=========================    irm common_controller=======================#
@@ -925,4 +925,5 @@ en:
   label_irm_wf_rule_select_bo: Select Business Object
   label_irm_wf_rule_config: Config Workflow Rule
   label_irm_wf_rule_description: Description
+  label_irm_wf_rule_active: Active
   #========================end wf rules====================

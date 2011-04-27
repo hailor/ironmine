@@ -9,27 +9,6 @@ module Irm::NavigationsHelper
     Irm::MenuManager.menus[menu_code]
   end
 
-  def current_role_name
-    if Irm::Person.current&&Irm::Role.current
-      Irm::Role.multilingual.find(Irm::Role.current.id)[:name]
-    end
-  end
-
-  # 生成一级菜单
-  def list_roles
-    if Irm::Person.current.nil?
-      return "".html_safe
-    end
-    roles = Irm::Role.multilingual.not_hidden.query_by_person(Irm::Person.current.id)
-    return nil unless roles&&roles.size>0
-    links = ""
-    roles.each do |r|
-      next if Irm::Role.current&&r.id.eql?(Irm::Role.current.id)
-      links << content_tag(:span,link_to(r[:name],{:controller=>"irm/navigations",:action=>"change_role",:role_id=>r.id,:top_menu=>r.menu_code}),{:class=>"menuItem"})
-    end
-
-    links.html_safe
-  end
   # 生成二级菜单
   def level_two_menu
     return unless @page_menus

@@ -15,7 +15,6 @@
     GY.use("irm","node-base",function(Y){
       Y.on("domready",function(){
         Y.irm.menuButton("settingMenu","TR","BR");
-        Y.irm.menuButton("pageMenu","TR","BR");
       });
     });
   </script>
@@ -51,17 +50,7 @@
                     <div class="multiforce">
                       <div class="messages"></div>
                       <div>
-                        <% if Irm::Role.current %>
-                        <span id="pageMenu" class="menuParent" style="float:right;">
-                          <div  class="menuLabel">
-                            <span tabindex="0" id="pageMenuTop" style=""><%= current_role_name %></span>
-                            <div id="pageMenu-arrow"></div>
-                          </div>
-                          <div class="menuContent" >
-                            <%= list_roles %>
-                          </div>
-                        </span>
-                        <% end %>
+                        <%= current_role_menu %>
                         <span class="navLinks" style="float:right">
                           <span class="linkElements">
                             <a style="margin-right:29px;" href="#" onclick="window.open ('/helpfiles/index.html', 'Ironmine Help', 'height=800px, width=870px, top=0, left=0, toolbar=no, menubar=no,scrollbars=yes, location=no, status=no');"><%= t :help %></a>
