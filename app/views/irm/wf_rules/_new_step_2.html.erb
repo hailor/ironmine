@@ -1,0 +1,102 @@
+<div  class="bWizardBlock">
+    <div class="pbWizardTitle tertiaryPalette">
+        <div class="ptRightTitle">
+            <%= t(:step_n_total_m, :n => "2", :m => "2") %>
+        </div>
+        <h2>
+            <%= t(:step_n, :n => "2") %><%= t(:label_irm_wf_rule_config) %>
+        </h2>
+    </div>
+  <div class="pbBody">
+    <%= form_for(@wf_rule,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+      <%= error_for @wf_rule %>
+      <%= error_for @rule_filter %>
+      <%= @rule_filter.errors %>
+      <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+        <span class="pbSubExtra">
+          <span class="requiredLegend">
+            <span class="requiredExampleOuter">
+              <span class="requiredExample">&nbsp;</span>
+            </span><span class="requiredMark">*</span>
+            <span class="requiredText"> = <%=t(:label_is_required)%></span>
+          </span>
+        </span>
+        <h3><%= t(:label_common_info) %></h3>
+      </div>
+      <div class="pbSubsection">
+        <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+              <tr>
+                <td class="labelCol"><label for="wf_rule_bo_code"><%=t(:label_irm_wf_rule_bo_code)%></label></td>
+                <td class="dataCol"><%=bo_name(@wf_rule.bo_code)%></td>
+                <td class="labelCol empty">&nbsp;</td>
+                <td class="dataCol empty">&nbsp;</td>
+              </tr>
+              <tr>
+                <td class="labelCol"><label for="wf_rule_name"><%=t(:label_irm_wf_rule_name)%></label></td>
+                <td class="dataCol"><%=f.text_field :name, :required=>true ,:id=>"wf_rule_name"%></td>
+                <td class="labelCol empty">&nbsp;</td>
+                <td class="dataCol empty">&nbsp;</td>
+              </tr>
+              <tr>
+                <td class="labelCol"><label for="wf_rule_code"><%=t(:label_irm_wf_rule_rule_code)%></label></td>
+                <td class="dataCol"><%=f.text_field :rule_code, :required=>true,:irm_uppercase=>true ,:id=>"wf_rule_code"%></td>
+                <td class="labelCol empty">&nbsp;</td>
+                <td class="dataCol empty">&nbsp;</td>
+              </tr>
+              <tr>
+                <td class="labelCol"><label for="wf_rule_description"><%=t(:label_irm_wf_rule_description)%></label></td>
+                <td class="dataCol"><%=f.text_area :description,:id=>"wf_rule_description",:rows=>3%></td>
+                <td class="labelCol empty">&nbsp;</td>
+                <td class="dataCol empty">&nbsp;</td>
+              </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div id="head_2_ep" class="pbSubheader tertiaryPalette">
+        <h3><%= t(:label_irm_wf_rule_evaluation_criteria) %></h3>
+      </div>
+      <div class="pbSubsection">
+        <%=f.hidden_field :evaluate_rule_mode, :value=>"FILTER"%>
+        <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="labelCol"><label for="wf_rule_evaluate_criteria_rule"><%=t(:label_irm_wf_rule_evaluate_criteria_rule)%></label></td>
+              <td class="dataCol" colspan="3" style="width:82%">
+                <% available_evaluate_criteria_rules.each_with_index do |rule,index| %>
+                  <div>
+                    <%=f.radio_button :evaluate_criteria_rule, rule[1],{:id=>"evaluate_criteria_rule_#{index}"}%>
+                    <label for="evaluate_criteria_rule_<%= index %>"> <%= rule[0] %> </label>
+                  </div>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="head_3_ep" class="pbSubheader tertiaryPalette">
+        <h3><%= t(:label_irm_wf_rule_filter) %></h3>
+      </div>
+      <% if @rule_filter %>
+        <%= render "rule_filter" %>
+      <% end %>
+      <div class="pbWizardFooter">
+          <div class="pbBottomButtons">
+              <table cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                  <tr>
+                    <td class="pbTitle"></td>
+                    <td id="bottomButtonRow" class="pbButtonb">
+                      <div class="button"><%= link_to t(:last), {:action => "new",:step=>1} %></div>
+                      <div class="button"><%= f.submit t :save %></div>
+                      <div class="button"><%= link_to t(:cancel), {:action => "index"} %></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+      </div>
+    <%end%>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  bo_code: MyString
+  name: MyString
+  description: MyString
+  evaluatecriteria_rule: MyString
+  evaluate_rule_mode: MyString
+  status_code: MyString
+
+two:
+  bo_code: MyString
+  name: MyString
+  description: MyString
+  evaluatecriteria_rule: MyString
+  evaluate_rule_mode: MyString
+  status_code: MyString

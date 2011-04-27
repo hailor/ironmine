@@ -85,19 +85,7 @@ module Irm::FiltersHelper
   end
 
   def view_filter_operators(data_type)
-    operators = [{:lookup_code=>"E",:meaning=>"等于"},
-                 {:lookup_code=>"N",:meaning=>"不等于"},
-                 {:lookup_code=>"L",:meaning=>"小于"},
-                 {:lookup_code=>"G",:meaning=>"大于"},
-                 {:lookup_code=>"M",:meaning=>"小于或等于"},
-                 {:lookup_code=>"H",:meaning=>"大于或等于"},
-                 {:lookup_code=>"NIL",:meaning=>"等于空值"},
-                 {:lookup_code=>"NNIL",:meaning=>"不等于空值"},
-                 {:lookup_code=>"BW",:meaning=>"起始字符"},
-                 {:lookup_code=>"EW",:meaning=>"结束字符"},
-                 {:lookup_code=>"U",:meaning=>"包括"},
-                 {:lookup_code=>"X",:meaning=>"不包括"},
-                 {:lookup_code=>"IN",:meaning=>"(日期)N天内"}]
+    operators = Irm::LookupValue.query_by_lookup_type("RULE_FILTER_OPERATOR").multilingual.order_id
     available_ops = (Irm::RuleFilterCriterion::OPERATORS[data_type.to_sym]+Irm::RuleFilterCriterion::OPERATORS[:common]).uniq
     operators.collect{|o| [o[:meaning],o[:lookup_code]] if available_ops.include?(o[:lookup_code])}.compact
   end

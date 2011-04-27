@@ -235,4 +235,12 @@ Irm::AccessControl.map do |map|
   map.function :new_watchers, {"irm/watchers" => ["add_watcher"]}
   map.function :delete_watchers, {"irm/watchers" => ["delete_watcher"]}
 
+  #===================irm/wf_settings============================
+  #["index", "edit", "update"]
+  map.function :workflow_setting,{"irm/wf_settings"=>["index","edit", "update"]}
+  #===================irm/wf_rules============================
+  #["index", "new", "create", "get_data", "edit", "update", "show"]
+  map.function :view_wf_rules,{"irm/wf_rules"=>["index", "show"]}
+  map.function :create_wf_rules,{"irm/wf_rules"=>["new", "create"]}
+  map.function :edit_wf_rules,{"irm/wf_rules"=>["edit", "update"]}
 end
