@@ -350,7 +350,7 @@ class ChangeAllMenu < ActiveRecord::Migration
     irm_menu_entiry_50.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'用户可访问公司',:description=>'用户可访问公司')
     irm_menu_entiry_50.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Company Access',:description=>'Company Access')
     irm_menu_entiry_50.save
-    irm_menu_entiry_51= Irm::MenuEntry.new(:menu_code=>'USER',:sub_menu_code=>nil,:page_controller=>'irm/roles',:display_sequence=>20,:display_flag=>'Y',:not_auto_mult=>true)
+    irm_menu_entiry_51= Irm::MenuEntry.new(:menu_code=>'MANAGE_USER',:sub_menu_code=>nil,:page_controller=>'irm/roles',:display_sequence=>20,:display_flag=>'Y',:not_auto_mult=>true)
     irm_menu_entiry_51.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'角色',:description=>'角色')
     irm_menu_entiry_51.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Role',:description=>'Role')
     irm_menu_entiry_51.save
