@@ -219,7 +219,7 @@ Irm::AccessControl.map do |map|
   map.function :edit_list_of_values,{"irm/list_of_values"=>["edit", "update", "multilingual_edit", "multilingual_update"]}
 
   #====================irm/my_info =================================
-  map.function :view_my_info, {"irm/my_info" => ["index"], "irm/my_login_history" => ["index", "get_login_data"],
+  map.function :view_my_info, {"irm/my_info" => ["index", "filter_company"], "irm/my_login_history" => ["index", "get_login_data"],
                                "irm/my_password" => ["index"]}
   map.function :edit_my_info, {"irm/my_info" => ["edit", "update", "update_company_access"],
                                "irm/my_avatar" => ["avatar_crop", "edit", "update"],
