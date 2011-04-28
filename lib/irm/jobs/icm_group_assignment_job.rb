@@ -71,6 +71,7 @@ module Irm
       # assign to admin
       def setup_default_person(request)
         assign_result ={}
+        return assign_result
         company = Irm::Company.find(request.company_id)
         if company&&company.support_manager&&Irm::Person.query(company.support_manager).first
           assign_result.merge!(:support_person_id=>company.support_manager,:support_group_id=>nil)

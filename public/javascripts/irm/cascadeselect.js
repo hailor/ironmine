@@ -44,7 +44,7 @@ YUI.add('cascadeselect', function(Y) {
                  }
                }
 
-               if(value_length==depends.length){
+               if(value_length==depends.length||value_length>0){
                  href = Y.Lang.substitute(unescape(href),url_options);
                  var cfg = {
                      on: {complete: this._prepareOptions},
@@ -59,7 +59,7 @@ YUI.add('cascadeselect', function(Y) {
                    options =  options+Y.Lang.substitute(OPTIONS_TEMPLATE,{label:target.getAttribute("blank"),value:""}) ;
                  target.setContent(options);
                  target.set("value","");
-                 target.simulate(this.get("event"));
+                 target.simulate("change");
                }
            }
         },

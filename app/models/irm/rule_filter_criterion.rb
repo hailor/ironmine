@@ -79,8 +79,8 @@ class Irm::RuleFilterCriterion < ActiveRecord::Base
   end
 
   def process_param(filter_value)
-    if filter_value.scan(/^\{\{\S+\}\}$/).length==1
-      param = filter_value.scan(/^\{\{\S+\}\}$/).first
+    if filter_value.scan(/^\{\{(\S+)\}\}$/).length==1
+      param = filter_value.scan(/^\{\{(\S+)\}\}$/).first.first
       info = ""
       if param.include?("destroy")||param.include?("update")
         info = "invalid key word"
@@ -88,7 +88,7 @@ class Irm::RuleFilterCriterion < ActiveRecord::Base
       end
       begin
         filter_value = eval(param).to_s
-        rescue StandardError=>text
+        rescue StandardError,SyntaxError=>text
           info = text
       end if info.blank?
 

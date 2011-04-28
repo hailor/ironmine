@@ -198,6 +198,68 @@ class Icm::IncidentRequestsController < ApplicationController
     end
   end
 
+
+  def assign_dashboard
+    respond_to do |format|
+      format.html # index.html.erb
+    end
+  end
+
+  def assignable_data
+    return_columns = [:request_number,
+                      :company_name,
+                      :title,
+                      :incident_status_name,
+                      :close_flag,
+                      :requested_name,
+                      :last_request_date,
+                      :priority_name]
+    bo = Irm::BusinessObject.where(:business_object_code=>"ICM_INCIDENT_REQUESTS").first
+    incident_requests_scope = eval(bo.generate_query_by_attributes(return_columns,true)).query_by_company_ids(session[:accessable_companies]).order("created_at")
+    incident_requests_scope = incident_requests_scope.where("support_group_id IS NULL OR support_person_id IS NULL")
+    incident_requests,count = paginate(incident_requests_scope)
+    respond_to do |format|
+      format.json {render :json=>to_jsonp(incident_requests.to_grid_json(return_columns,count))}
+      format.xml { render :xml => incident_requests }
+    end
+  end
+
+  def assign_request
+
+    incident_requests = []
+    params[:incident_request_ids].split(",").each do |icid|
+      incident_requests << Icm::IncidentRequest.query(icid).first
+    end
+    incident_requests.compact!
+    if params[:support_group_id].present?
+      incident_requests.each do |req|
+        req.support_group_id = params[:support_group_id]
+      end
+
+      if params[:support_person_id].present?
+        incident_requests.each do |req|
+          req.support_person_id = params[:support_person_id]
+          req.save
+        end
+      else
+        incident_requests.each do |req|
+          req.support_person_id = nil
+          req.save
+          Delayed::Job.enqueue(Irm::Jobs::IcmGroupAssignmentJob.new(req.id))
+        end
+      end
+    else
+      incident_requests.each do |req|
+        Delayed::Job.enqueue(Irm::Jobs::IcmGroupAssignmentJob.new(req.id))
+      end
+    end
+    @count = incident_requests.size
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   private
   def prepared_for_create(incident_request)
     incident_request.submitted_by = Irm::Person.current.id
