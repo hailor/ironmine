@@ -1,4 +1,4 @@
-module Irm::WfTasksHelper
+module Irm::TodoEventsHelper
   include ActionView::Helpers::UrlHelper
   def month_link(month_date)
     link_to(I18n.localize(month_date, :format => "%B"),
@@ -28,14 +28,14 @@ module Irm::WfTasksHelper
 #        html = %(<a href="/events/#{event.id}" title="#{h(event.name)}">)
       if event.rrule && event.rrule.size > 1
         html = link_to(content_tag(:img, "", :src => "/images/recurring_activity.gif") + event.name,
-                       {:controller => "irm/wf_tasks", :action => "show", :id => event.id},
+                       {:controller => "irm/todo_events", :action => "show", :id => event.id},
                        :title => event.name, :class => "calendar-event-preview", :id => "quick_show_" + event.id.to_s,
-                       :quick_show => url_for(:controller => "irm/wf_tasks", :action => "quick_show", :id => event.id))
+                       :quick_show => url_for(:controller => "irm/todo_events", :action => "quick_show", :id => event.id))
       else
         html = link_to(event.name,
-                       {:controller => "irm/wf_tasks", :action => "show", :id => event.id},
+                       {:controller => "irm/todo_events", :action => "show", :id => event.id},
                        :title => event.name, :class => "calendar-event-preview", :id => "quick_show_" + event.id.to_s,
-                       :quick_show => url_for(:controller => "irm/wf_tasks", :action => "quick_show", :id => event.id))
+                       :quick_show => url_for(:controller => "irm/todo_events", :action => "quick_show", :id => event.id))
       end
 
 #      else
@@ -66,7 +66,7 @@ module Irm::WfTasksHelper
      [I18n.t("date.day_names")[3], "WE"],[I18n.t("date.day_names")[4], "TH"],[I18n.t("date.day_names")[5], "FR"],[I18n.t("date.day_names")[6], "SA"]]
   end
 
-  def available_wf_tasks_ordinal
+  def available_todo_events_ordinal
     [[I18n.t("ordinals")[0], "1"],
      [I18n.t("ordinals")[1], "2"],
      [I18n.t("ordinals")[2], "3"],
@@ -74,11 +74,11 @@ module Irm::WfTasksHelper
      [I18n.t("ordinals")[5], "-1"]]
   end
 
-  def my_tasks_list(list_limit = 5)
-    my_tasks = Irm::Calendar.current_calendar(Irm::Person.current.id).wf_tasks.uncompleted.enabled.order("start_at ASC").limit(list_limit)
+  def my_events_list(list_limit = 5)
+    my_events = Irm::Calendar.current_calendar(Irm::Person.current.id).todo_events.uncompleted.enabled.order("start_at ASC").limit(list_limit)
 
     html = ""
-    my_tasks.each do |t|
+    my_events.each do |t|
       if t.start_at.strftime("%F") == Time.now.strftime("%F")
         date_str = t(:today)
       elsif t.start_at.strftime("%F") == (Time.now + 1.day).strftime("%F")
@@ -93,15 +93,15 @@ module Irm::WfTasksHelper
               content_tag(:span, link_to(t.name, t.url), :style => "float:right;"))
       else
         html << content_tag(:li, raw(date_str) + " " + t.start_at.strftime("%T") + " - " + raw(to_date_str) + t.end_at.strftime("%T") +
-                content_tag(:span, link_to(t.name,{:controller=>"irm/wf_tasks",:action=>"show",:id=>t.id}), :style => "float:right;"))
+                content_tag(:span, link_to(t.name,{:controller=>"irm/todo_events",:action=>"show",:id=>t.id}), :style => "float:right;"))
       end
 
     end
     html
   end
 
-  def my_tasks_count
-    Irm::Calendar.current_calendar(Irm::Person.current.id).wf_tasks.uncompleted.enabled.size
+  def my_events_count
+    Irm::Calendar.current_calendar(Irm::Person.current.id).todo_events.uncompleted.enabled.size
   end
 
   def get_rrule_translate(rrule)
@@ -129,11 +129,11 @@ module Irm::WfTasksHelper
     ret
   end
 
-  def available_wf_task_statuses
-    Irm::LookupValue.multilingual.query_by_lookup_type("IRM_WF_TASK_STATUS").order("id ASC").enabled.collect{|p| [p[:meaning], p.lookup_code]}
+  def available_todo_event_statuses
+    Irm::LookupValue.multilingual.query_by_lookup_type("IRM_TODO_EVENT_STATUS").order("id ASC").enabled.collect{|p| [p[:meaning], p.lookup_code]}
   end
 
-  def available_wf_task_priorities
-    Irm::LookupValue.multilingual.query_by_lookup_type("IRM_WF_TASK_PRIORITY").order("id ASC").enabled.collect{|p| [p[:meaning], p.lookup_code]}
+  def available_todo_event_priorities
+    Irm::LookupValue.multilingual.query_by_lookup_type("IRM_TODO_EVENT_PRIORITY").order("id ASC").enabled.collect{|p| [p[:meaning], p.lookup_code]}
   end
 end

@@ -18,8 +18,8 @@ class CreateIrmTodoEvents < ActiveRecord::Migration
       t.boolean :all_day, :default => false
       t.string :color, :limit => 30
       t.string :source_type, :limit => 30
-      t.integer :source_id,
-      t.text  :rrule
+      t.integer :source_id
+      t.text   :rrule
       t.integer :parent_id
       t.string :event_status, :limit => 30
       t.string   :status_code,:limit => 30,:null => false, :default => "ENABLED"

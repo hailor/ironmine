@@ -6,7 +6,7 @@ class Csi::Survey < ActiveRecord::Base
   validates_presence_of :title
   validates_uniqueness_of :title
 
-  has_many :wf_tasks, :as => :source
+  has_many :todo_events, :as => :source
   has_many :survey_subjects
   has_many :survey_ranges
   scope :query_by_person_id,lambda{|person_id| where(:person_id=>person_id)}

@@ -1,4 +1,4 @@
-class Irm::WfTasksController < ApplicationController
+class Irm::TodoEventsController < ApplicationController
   
   def index
 #    @month = (params[:month] || (Time.zone || Time).now.month).to_i
@@ -10,28 +10,28 @@ class Irm::WfTasksController < ApplicationController
   end
 
   def quick_show
-    @task = Irm::WfTask.find(params[:id])
+    @task = Irm::TodoEvent.find(params[:id])
     respond_to do |format|
       format.html
     end
   end
 
   def edit
-    @task = Irm::WfTask.find(params[:id])
+    @task = Irm::TodoEvent.find(params[:id])
     @return_url=request.env['HTTP_REFERER']
   end
 
   def new
-    @task = Irm::WfTask.new
+    @task = Irm::TodoEvent.new
     #防止在新建页面, 从侧边栏又选择新建任务时,完成后又回到新建页面
-    @return_url=request.env['HTTP_REFERER'] if request.env['HTTP_REFERER'] != url_for(:controller => "irm/wf_tasks", :action => "new")
+    @return_url=request.env['HTTP_REFERER'] if request.env['HTTP_REFERER'] != url_for(:controller => "todo_events", :action => "new")
     respond_to do |format|
       format.html
     end
   end
 
   def create
-    @task = Irm::WfTask.new(params[:irm_wf_task])
+    @task = Irm::TodoEvent.new(params[:irm_todo_event])
     @task.start_at = @task.start_at.strftime("%F") + " " + params[:start_at_h]
     @task.end_at = @task.end_at.strftime("%F") + " " + params[:end_at_h]  if @task.end_at && !@task.end_at.blank?
     #如果没有填结束时间,默认当天结束
@@ -96,7 +96,7 @@ class Irm::WfTasksController < ApplicationController
           format.html { redirect_to(return_url, :notice =>t(:successfully_created)) }
           format.xml  { render :xml => @task, :status => :created, :location => @task }
         else
-          format.html { redirect_to({:controller => "wf_tasks", :action=>"my_tasks_index"}, :notice =>t(:successfully_created)) }
+          format.html { redirect_to({:controller => "irm/todo_events", :action=>"my_events_index"}, :notice =>t(:successfully_created)) }
           format.xml  { render :xml => @task, :status => :created, :location => @task }
         end
 
@@ -108,21 +108,21 @@ class Irm::WfTasksController < ApplicationController
   end
 
   def update
-    @task = Irm::WfTask.find(params[:id])
+    @task = Irm::TodoEvent.find(params[:id])
 
-    start_at = params[:irm_wf_task][:start_at] + " " + params[:start_at_h]
-    end_at = params[:irm_wf_task][:end_at] + " " + params[:end_at_h] if params[:irm_wf_task][:end_at] && !params[:irm_wf_task][:end_at].blank?
-    end_at = params[:irm_wf_task][:start_at] + " " + params[:end_at_h] if !params[:irm_wf_task][:end_at] || params[:irm_wf_task][:end_at].blank?
+    start_at = params[:irm_todo_event][:start_at] + " " + params[:start_at_h]
+    end_at = params[:irm_todo_event][:end_at] + " " + params[:end_at_h] if params[:irm_todo_event][:end_at] && !params[:irm_todo_event][:end_at].blank?
+    end_at = params[:irm_todo_event][:start_at] + " " + params[:end_at_h] if !params[:irm_todo_event][:end_at] || params[:irm_todo_event][:end_at].blank?
     calendar_id = Irm::Calendar.current_calendar(params[:assigned_to]).id
 
     respond_to do |format|
-      if @task.update_attributes(params[:irm_wf_task]) &&
+      if @task.update_attributes(params[:irm_todo_event]) &&
         @task.update_attributes(:start_at => start_at, :end_at => end_at, :calendar_id => calendar_id)
         if return_url && !return_url.blank?
           format.html { redirect_to(return_url, :notice =>t(:successfully_created)) }
           format.xml  { render :xml => @task, :status => :created, :location => @task }
         else
-          format.html { redirect_to({:controller => "wf_tasks", :action=>"my_tasks_index"}, :notice => t(:successfully_updated)) }
+          format.html { redirect_to({:controller => "irm/todo_events", :action=>"my_events_index"}, :notice => t(:successfully_updated)) }
           format.xml  { head :ok }
         end
       else
@@ -133,11 +133,11 @@ class Irm::WfTasksController < ApplicationController
   end
 
   def show
-    @task = Irm::WfTask.with_all.with_task_status.with_calendar.with_priority.where("#{Irm::WfTask.table_name}.id = ?", params[:id]).first
+    @task = Irm::TodoEvent.with_all.with_task_status.with_calendar.with_priority.where("#{Irm::TodoEvent.table_name}.id = ?", params[:id]).first
   end
 
   def edit_recurrence
-    @task = Irm::WfTask.find(params[:id])
+    @task = Irm::TodoEvent.find(params[:id])
   end
 
   def update_recurrence
@@ -182,7 +182,7 @@ class Irm::WfTasksController < ApplicationController
         rrule = rrule.merge({:byday => params[:recurrence_week_ordinal] + params[:recurrence_on_month_weekdays]})
       end
     end
-    @task = Irm::WfTask.find(params[:id])
+    @task = Irm::TodoEvent.find(params[:id])
 #    if @task.parent_id && !@task.parent_id.blank?
 #      tasks = Irm::WfTask.where(:id => @task.parent_id)
 #    else
@@ -196,7 +196,7 @@ class Irm::WfTasksController < ApplicationController
         #以这个任务为基准,重新计算之后的循环任务
         @task.copy_recurrences
 
-        format.html { redirect_to({:controller => "wf_tasks", :action=>"index"}, :notice => t(:successfully_updated)) }
+        format.html { redirect_to({:controller => "irm/todo_events", :action=>"index"}, :notice => t(:successfully_updated)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -207,7 +207,7 @@ class Irm::WfTasksController < ApplicationController
   end
 
   def get_data
-    tasks_scope = Irm::WfTask.with_task_status.with_priority.uncompleted.with_calendar
+    tasks_scope = Irm::TodoEvent.with_task_status.with_priority.uncompleted.with_calendar
 
     tasks,count = paginate(tasks_scope)
     respond_to do |format|
@@ -215,12 +215,12 @@ class Irm::WfTasksController < ApplicationController
     end
   end
 
-  def my_tasks_index
+  def my_events_index
 
   end
 
-  def my_tasks_get_data
-    my_tasks_scope = Irm::WfTask.with_all.with_task_status.with_priority.uncompleted.with_calendar.assigned_to(Irm::Person.current.id)
+  def my_events_get_data
+    my_tasks_scope = Irm::TodoEvent.with_all.with_task_status.with_priority.uncompleted.with_calendar.assigned_to(Irm::Person.current.id)
     my_tasks,count = paginate(my_tasks_scope)
     respond_to do |format|
       format.json {render :json => to_jsonp(my_tasks.to_grid_json([:name,:start_at,:end_at,:color,:status_code, :priority_name, :task_status_name], count))}

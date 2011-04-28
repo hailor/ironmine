@@ -19,21 +19,21 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_wf_task_name)%></label></td>
+              <td class="labelCol"><label><%=(t :label_irm_todo_event_name)%></label></td>
               <td class="dataCol"><%= @task.name%></td>
-              <td class="labelCol"><label><%=(t :label_irm_wf_task_start_at)%></label></td>
+              <td class="labelCol"><label><%=(t :label_irm_todo_event_start_at)%></label></td>
               <td class="dataCol"><%= @task.start_at.strftime("%F %T") if @task.start_at%></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=t :label_irm_wf_task_assigned_to%></label></td>
+              <td class="labelCol"><label><%=t :label_irm_todo_event_assigned_to%></label></td>
               <td class="dataCol"><%= @task.assigned_name%></td>
-              <td class="labelCol"><label><%=(t :label_irm_wf_task_end_at)%></label></td>
+              <td class="labelCol"><label><%=(t :label_irm_todo_event_end_at)%></label></td>
               <td class="dataCol"><%= @task.end_at.strftime("%F %T") if @task.end_at %></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%= t :label_irm_wf_task_priority %></label></td>
+              <td class="labelCol"><label><%= t :label_irm_todo_event_priority %></label></td>
               <td class="dataCol"><%= @task.priority_name %></td>
-              <td class="labelCol"><label><%=t :label_irm_wf_task_location%></label></td>
+              <td class="labelCol"><label><%=t :label_irm_todo_event_location%></label></td>
               <td class="dataCol"><%= @task.location%></td>
             </tr>
             <tr>
@@ -42,8 +42,8 @@
 
             </tr>
             <tr>
-              <td class="labelCol"><label><%= t :label_irm_wf_task_task_status %></label></td>
-              <td class="dataCol"><%= @task.task_status_name %></td>
+              <td class="labelCol"><label><%= t :label_irm_todo_event_event_status %></label></td>
+              <td class="dataCol"><%= @task.event_status_name %></td>
 
             </tr>
         </tbody>
