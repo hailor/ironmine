@@ -24,7 +24,7 @@
           </div>
         </div>
         <%= datatable("report_groups",url_for(:action=>"get_data",:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
                        
                        { :key => "group_code", :label => t(:label_irm_report_group_group_code),:searchable=>true },
                        

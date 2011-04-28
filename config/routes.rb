@@ -404,10 +404,9 @@ Ironmine::Application.routes.draw do
     match '/people/:id/multilingual_edit(.:format)' => "people#multilingual_edit", :via => :get
     match '/people/:id/multilingual_update(.:format)' => "people#multilingual_update", :via => :put
     match '/people/choose_company(.:format)' => "people#choose_company"
-    match '/people/:person_id/add_roles(.:format)' => "people#add_roles", :via => :get
-    match '/people/:person_id/get_available_roles(.:format)' => "people#get_available_roles", :via => :get
-    match '/people/:person_id/select_roles(.:format)' => "people#select_roles"
-    match '/people/:person_id/add_roles(.:format)' => "people#add_roles", :via => :post
+    match '/people/:id/get_available_roles(.:format)' => "people#get_available_roles", :via => :get
+    match '/people/:id/select_roles(.:format)' => "people#select_roles", :via => :get
+    match '/people/:id/add_roles(.:format)' => "people#add_roles", :via => :post
     match '/people/:person_id/:role_id/remove_role(.:format)' => "people#remove_role", :via => :get
     match '/people/:person_id/get_owned_roles(.:format)' => "people#get_owned_roles", :via => :get
     #company_accesses

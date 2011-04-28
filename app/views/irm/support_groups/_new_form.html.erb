@@ -35,38 +35,36 @@
               <td class="labelCol"><label><%=(t :label_irm_support_group_group_code)%></label></td>
               <td class="dataCol"><%=f.text_field :group_code, :irm_uppercase=>true,:required=>true%></td>
               <td class="labelCol"><label><%=(t :label_irm_support_group_company_name)%></label></td>
-              <td class="dataCol"><%=f.select(:company_id,nullable_collection_options(available_company,:id,:wrap_name,nil),
+              <td class="dataCol"><%=f.blank_select(:company_id,available_company,
                                                 {},:id=>"company_id",:required=>true)%></td>
             </tr>
             <tr>              
               <td class="labelCol"><label><%=(t :label_irm_support_group_name)%></label></td>
               <td class="dataCol"><%=f.text_field :name, :required=>true%></td>
               <td class="labelCol"><label><%=(t :label_irm_support_group_organization_name)%></label></td>
-              <td class="dataCol"><%= f.select(:organization_id,nullable_options_for_select([],nil),{},
+              <td class="dataCol"><%= f.blank_select(:organization_id,available_organization(@support_group.company_id),{},
                                   {:required=>true,
                                    :id=>"organization_id",
                                    :href=>url_for(:controller=>"irm/organizations",:action=>"get_by_company",:format=>"json",:belonged_company_id=>"{company_id}"),
-                                   :depend=>"company_id",
-                                   :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---"
+                                   :depend=>"company_id"
                                    }) %></td>
             </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :label_irm_support_group_description)%></label></td>
-              <td class="dataCol"><%=f.text_area :description,:rows=>4%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
+
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_support_group_oncall_group)%></label></td>
               <td class="dataCol"><%=f.check_box :oncall_group_flag%></td>
               <td class="labelCol"><%=(t :label_irm_support_group_support_role)%></td>
-              <td class="dataCol"><%=f.select(:support_role_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_support_role,:lookup_code,:wrap_meaning),
-                                                {},:required=>true)%></td>
+              <td class="dataCol"><%=f.blank_select(:support_role_code,available_support_role,{},:required=>true)%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_support_group_vendor_group)%></label></td>
               <td class="dataCol"><%=f.check_box :vendor_group_flag%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_support_group_description)%></label></td>
+              <td class="dataCol"><%=f.text_area :description,:rows=>4%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>

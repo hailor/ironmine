@@ -31,12 +31,6 @@
               <td class="dataCol"><%=@support_group[:organization_name]%></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_support_group_description)%></label></td>
-              <td class="dataCol"><%=@support_group[:description]%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-            <tr>
               <td class="labelCol"><label><%=(t :label_irm_support_group_oncall_group)%></label></td>
               <td class="dataCol"><%= check_img(@support_group.oncall_group_flag)%></td>
               <td class="labelCol"><%=(t :label_irm_support_group_support_role)%></td>
@@ -47,6 +41,10 @@
               <td class="dataCol"><%= check_img(@support_group.vendor_group_flag)%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_support_group_description)%></label></td>
+              <td class="dataCol" colspan="3" style="width:82%"><%=@support_group[:description]%></td>
             </tr>
         </tbody>
       </table>

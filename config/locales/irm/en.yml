@@ -647,6 +647,7 @@ en:
   label_irm_person_approve_request_mail: Approve Request Mail
   label_irm_person_delegate_manager: Manager
   label_action_select_roles: Select Roles
+  label_action_add_roles: Select Roles
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: Flex

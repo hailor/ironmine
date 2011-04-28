@@ -93,7 +93,7 @@ function show_irm_calendar(YAHOO,Event,Dom,id_button,id_date_field,id_cal, cfg){
 //记住用户名
 GY.use("cookie",function(Y){
    if(Y.Cookie.get("username")){
-      Y.Cookie.set("username", Y.Cookie.get("username"), { expires: new Date("January 12, 2025") });
+      Y.Cookie.set("username", Y.Cookie.get("username"), { path:"/",expires: new Date("January 12, 2025") });
    }
 });
 YUI(yuiConfig).use('node-base', 'node-event-delegate', 'io-form','yui2-container',function(Y){

@@ -703,6 +703,7 @@ zh:
   label_irm_person_approve_request_mail: 审批邮件通知
   label_irm_person_delegate_manager: 主管
   label_action_select_roles: 选择角色
+  label_action_add_roles: 选择角色
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: 弹性域

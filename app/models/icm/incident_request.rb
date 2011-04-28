@@ -5,7 +5,7 @@ class Icm::IncidentRequest < ActiveRecord::Base
 
   validates_presence_of :title,:summary,:service_code,:requested_by,:submitted_by,:impact_range_code,:urgence_code,:priority_code,:request_type_code,:incident_status_code,:report_source_code
 
-  attr_accessor :pass_flag
+  attr_accessor :pass_flag,:close_flag
 
   validates_presence_of :support_group_id,:support_person_id,:if=>Proc.new{|i| !i.pass_flag.nil?&&!i.pass_flag.blank?}
 
@@ -89,7 +89,7 @@ class Icm::IncidentRequest < ActiveRecord::Base
   scope :with_incident_status,lambda{|language|
     joins("LEFT OUTER JOIN #{Icm::IncidentStatus.view_name} incident_status ON  incident_status.incident_status_code = #{table_name}.incident_status_code AND incident_status.language= '#{language}'").
     joins("LEFT OUTER JOIN #{Icm::IncidentPhase.view_name} incident_phase ON  incident_phase.phase_code = incident_status.phase_code AND incident_phase.language= '#{language}'").
-    select(" incident_status.name incident_status_name,incident_phase.name incident_phase_name ,incident_status.close_flag incident_close_flag")
+    select(" incident_status.name incident_status_name,incident_phase.name incident_phase_name ,incident_status.close_flag close_flag")
   }
   # 查询公司
   scope :with_company,lambda{|language|
@@ -185,6 +185,10 @@ class Icm::IncidentRequest < ActiveRecord::Base
   end
 
   def need_customer_reply
+  # if the request is closed
+   return "C" if self.close?
+   # other person of the incident request
+   return "O" unless self.requested_by = Irm::Person.current.id||self.support_person_id = Irm::Person.current.id
    if (self.last_request_date||self.created_at)>(self.last_response_date||Time.now)
      Irm::Constant::SYS_NO
    else
@@ -198,6 +202,23 @@ class Icm::IncidentRequest < ActiveRecord::Base
     else
       Irm::Constant::SYS_NO
     end
+  end
+
+
+  def close?
+    Irm::Constant::SYS_YES.eql?(self.status_close_flag)
+  end
+
+  # setup close flag
+  def status_close_flag
+    return self.close_flag if self.close_flag
+    if self[:close_flag]
+      self.close_flag = self[:close_flag]
+      return self.close_flag
+    end
+    status  = Icm::IncidentStatus.find_by_incident_status_code(self.incident_status_code)
+    self.close_flag = status.close_flag if status
+    return self.close_flag
   end
 
   private

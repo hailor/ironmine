@@ -99,17 +99,19 @@
         <tr>
           <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_incident_request) %></h2></td>
           <td id="topButtonRow" class="pbButton">
-              <%if @incident_request[:close_reason_code].nil? && allow_to_function?(:reply_incident_request)%>
+              <%if !@incident_request.close? && allow_to_function?(:reply_incident_request)%>
                     <div class="button"><a href="#reply"><%=t(:label_icm_incident_journal_new)%></a></div>
               <% end %>
           </td>
           <td class="pbHelp">
               <div class="grayButton"><%= link_to t(:label_icm_incident_journal_back_to_request_list), {:controller=>"icm/incident_requests",:action => "index"}%></div>
-            <%if @incident_request[:close_reason_code].nil? %>
+            <%if !@incident_request.close? %>
               <% if current_person?(@incident_request.support_person_id) %>
                     <div class="grayButton"><%= link_to t(:pass), {:action => "edit_pass"}%></div>
               <% end %>
-              <div class="grayButton"><%= link_to t(:close), {:action => "edit_close"}%></div>
+              <% if current_person?(@incident_request.support_person_id)||current_person?(@incident_request.requested_by) %>
+                <div class="grayButton"><%= link_to t(:close), {:action => "edit_close"}%></div>
+              <% end %>
               <div class="grayButton"><%= link_to t(:edit), {:controller=>"icm/incident_requests",:action => "edit", :id => @incident_request.id}%></div>
             <%else%>
               <div class="grayButton"><%= link_to t(:label_icm_save_as_skm), {:controller=>"skm/entry_headers",:action => "new_from_icm_request", :request_id => @incident_request.id}%></div>
