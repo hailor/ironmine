@@ -188,7 +188,7 @@ class Icm::IncidentRequest < ActiveRecord::Base
   # if the request is closed
    return "C" if self.close?
    # other person of the incident request
-   return "O" unless self.requested_by = Irm::Person.current.id||self.support_person_id = Irm::Person.current.id
+   return "O" unless Irm::Person.current.id.eql?(self.requested_by)||Irm::Person.current.id.eql?(self.support_person_id)
    if (self.last_request_date||self.created_at)>(self.last_response_date||Time.now)
      Irm::Constant::SYS_NO
    else
