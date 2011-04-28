@@ -126,7 +126,7 @@
       <h3>(<%= @incident_request[:incident_status_name] %>)<%=@incident_request[:title]%></h3>
       <div style="margin-left: 15px; display:inline;">(<a href="javascript:void(0)" id="showMore"><%= t(:label_icm_incident_more_info) %></a>)</div>
     </div>
-    <div class="pbSubsection hidden" id="incidentDetail">
+    <div class="pbSubsection <%="hidden" unless Irm::Constant::SYS_YES.eql?(params[:show_info])%>" id="incidentDetail">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
@@ -186,7 +186,7 @@
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td><h2 style="font-size: 18px;"><%=t(:label_icm_incident_journal_list)%>&nbsp;(<%= journals_size(@incident_request)%>)</h2></td>
+          <td><h2 style="font-size: 18px;"><%=t(:label_icm_incident_journal_list)%>&nbsp;(<%= journals_size(@incident_request)+1%>)</h2></td>
         </tr>
       </tbody>
     </table>
