@@ -86,7 +86,7 @@
                 <%= sub_f.hidden_field(:incident_request_id) %>
               <td class="labelCol"><%= t(:label_icm_incident_journal_reply) %></td>
               <td class="dataCol" colspan="3" width="82%">
-                <%= sub_f.text_area :message_body ,:id=>"msgEditor",:value=>"   ",:required=>true,:style=>"display:none;"%>
+                <%= sub_f.text_area :message_body ,:id=>"msgEditor",:required=>true,:style=>"display:none;"%>
               </td>
               <% end%>
             </tr>
@@ -159,7 +159,7 @@ GY.use('node','substitute','yui2-editor', function(Y) {
         }
     });
     editor.render();
-    Y.one(".edit_icm_incident_request").on("submit",function(){
+    Y.all(".edit_icm_incident_request input[type=submit]").on("click",function(){
       editor.saveHTML();
     });
 

@@ -271,7 +271,7 @@ GY.use('irm','node','substitute','yui2-editor', function(Y) {
         }
     });
     editor.render();
-    Y.one("#new_icm_incident_request").on("submit",function(){
+    Y.all("#new_icm_incident_request input[type=submit]").on("click",function(){
       editor.saveHTML();
     });
     Y.one("#fileButtons #addButton").on('click',function(){

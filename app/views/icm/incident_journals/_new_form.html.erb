@@ -366,8 +366,8 @@ GY.use('irm','node','substitute','yui2-editor', function(Y) {
     });
     editor.render();
     Y.irm.setAttribute("journalMsgEditor",editor,"Editor");
-    Y.one("#new_icm_incident_reply").on("submit",function(){
-      editor.saveHTML();    
+    Y.all("#new_icm_incident_reply input[type=submit]").on("click",function(){
+      editor.saveHTML();
     });
 
     Y.one("#fileButtons #addButton").on('click',function(){

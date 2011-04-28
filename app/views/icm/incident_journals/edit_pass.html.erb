@@ -166,7 +166,7 @@ GY.use('node','substitute','yui2-editor', function(Y) {
         }
     });
     editor.render();
-    Y.one(".edit_icm_incident_request").on("submit",function(){
+    Y.all(".edit_icm_incident_request input[type=submit]").on("click",function(){
       editor.saveHTML();
     });
 
