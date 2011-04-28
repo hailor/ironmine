@@ -72,6 +72,9 @@ class Irm::RuleFilter < ActiveRecord::Base
     rule_filter
   end
 
+  def generate_scope
+    eval(self.business_object.generate_query(true)).where(self.where_clause)
+  end
 
   private
   # 检查查询条件

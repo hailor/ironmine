@@ -1,7 +1,6 @@
 <% if allow_to_function?(:view_watchers) %>
     <% l_editable = allow_to_function?(:edit_watchers)%>
     <% (l_editable = editable && l_editable) if !editable.nil?%>
-    <% puts("++++++++++++++++++++++++" + l_editable.to_s)%>
     <%= form_tag({:controller => "irm/watchers", :action => "add_watcher", :watchable_id => watchable.id}, :remote => true) do %>
     <div class="sidebarModule">
         <div class="sidebarModuleHeader"><h2><%= t :label_irm_watcher %><%= ("(" + watchers_size(watchable).to_s + ")") if l_editable%><span style="float:right;"><a style="color:#fff;" href="javascript:void(0);" onclick="show_new_form();"><%= t(:add) if l_editable%></a></span></h2></div>
