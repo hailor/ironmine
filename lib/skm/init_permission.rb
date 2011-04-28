@@ -27,7 +27,7 @@ Irm::AccessControl.map do |map|
   map.function :view_skm_entries, {"skm/entry_headers" => ["index", "show", "index_search", "get_history_entries_data", "get_data",
                                                            "my_favorites_data", "my_favorites", "add_favorites", "data_grid"],
                                    "icm/incident_journals" => ["get_entry_header_data", "apply_entry_header"]}
-  map.function :create_skm_entries, {"skm/entry_headers" => ["new", "create", "new_step_1", "new_step_2", "new_step_3", "new_step_4"]}
+  map.function :create_skm_entries, {"skm/entry_headers" => ["new", "create", "new_step_1", "new_step_2", "new_step_3", "new_step_4", "new_from_icm_request"]}
   map.function :edit_skm_entries, {"skm/entry_headers" => ["edit", "update"]}
 
 end
