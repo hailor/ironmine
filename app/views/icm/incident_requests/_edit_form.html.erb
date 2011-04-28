@@ -55,7 +55,7 @@
               <td class="dataCol">
                 <% if allow_to_function?(:create_icdt_rqst_for_other) %>
                     <%=f.select :external_system_code,
-                                nullable_options_for_select(available_external_systems_with_person(@incident_request.requested_by).collect{|p| [p[:system_name], p.id]},@incident_request.external_system_code),{},
+                                nullable_options_for_select(available_external_systems_with_person(@incident_request.requested_by).collect{|p| [p[:system_name], p.external_system_code]},@incident_request.external_system_code),{},
                             {:id=>"ass_external_system",
                              :depend=>"incident_request_requested_by",
                              :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
@@ -63,7 +63,7 @@
                              :required => true}%>
                 <% else %>
                     <%=f.select :external_system_code,
-                            nullable_options_for_select(available_external_systems_with_person(Irm::Person.current.id).collect{|p| [p[:system_name], p.id]},nil),
+                            nullable_options_for_select(available_external_systems_with_person(Irm::Person.current.id).collect{|p| [p[:system_name], p.external_system_code]},nil),
                             {},
                             {:id=>"ass_external_system",
                              :depend=>"incident_request_requested_by",

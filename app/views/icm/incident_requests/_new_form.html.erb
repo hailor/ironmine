@@ -61,7 +61,7 @@
                              :href=>url_for(:controller=>"icm/incident_requests",:action=>"get_external_systems",:format=>"json",:requested_by=>"{incident_request_requested_by}")}%>
                 <% else %>
                     <%=f.select :external_system_code,
-                            nullable_options_for_select(available_external_systems_with_person(Irm::Person.current.id).collect{|p| [p[:system_name], p.id]},nil),
+                            nullable_options_for_select(available_external_systems_with_person(Irm::Person.current.id).collect{|p| [p[:system_name], p.external_system_code]},nil),
                             {},
                             {:id=>"ass_external_system",
                              :depend=>"incident_request_requested_by",
