@@ -288,7 +288,7 @@
               </td>
               <% end%>
             </tr>
-
+            <% unless Irm::Role.current&&Irm::Role.current.service_role_type.eql?("CUSTOMER")%>
             <tr>
               <td class="dataCol">
                 <label for="incident_request_incident_status_code"><%=t(:label_icm_incident_reply_incident_status_code)%></label>
@@ -296,6 +296,7 @@
                                                         {},{:id=>"incident_request_incident_status_code"}%>
               </td>
             </tr>
+            <% end %>
             <tr>
               <td class="dataCol" colspan="4" width="100%">
 
