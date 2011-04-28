@@ -398,6 +398,7 @@ GY.use('irm','node','substitute','yui2-editor', function(Y) {
 </script>
 
 <% content_for :sidebar do%>
-    <%= render :partial =>"/irm/watchers/sidebar_watcher_list", :locals => {:watchable => @incident_request} %>
+    <%= render :partial =>"/irm/watchers/sidebar_watcher_list",
+               :locals => {:watchable => @incident_request, :editable => @incident_request[:close_reason_code].nil?} %>
     <%= render :partial =>"/icm/incident_requests/sidebar_attachment_list"%>
 <% end %>

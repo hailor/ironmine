@@ -16,11 +16,11 @@
                 });
                 </script>
             <% else %>
-                <%= f.hidden_field(:requested_by,:value=>Irm::Person.current.id) %>
+                <%= f.hidden_field(:requested_by,:value=>Irm::Person.current.id, :id => "incident_request_requested_by") %>
             <% end %>
 
               <div class="quickCreateField">
-                <label for="ass_external_system"><%=t(:label_icm_incident_request_target_system)%><%= required_icon %></label><br>
+                <label for="ass_external_system"><%=t(:label_icm_incident_request_target_system)%></label><br>
             <% if allow_to_function?(:create_icdt_rqst_for_other) %>
                 <%=f.select :external_system_code,nullable_options_for_select([], nil),{},
                         {:id=>"ass_external_system",
@@ -29,7 +29,7 @@
                          :href=>url_for(:controller=>"icm/incident_requests",:action=>"get_external_systems",:format=>"json",:requested_by=>"{incident_request_requested_by}")}%>
             <% else %>
                 <%=f.select :external_system_code,
-                        nullable_options_for_select(available_external_systems_with_person(Irm::Person.current.id).collect{|p| [p[:system_name], p.id]},nil),
+                        nullable_options_for_select(available_external_systems_with_person(Irm::Person.current.id).collect{|p| [p[:system_name], p.external_system_code]},nil),
                         {},
                         {:id=>"ass_external_system",
                          :depend=>"incident_request_requested_by",
@@ -44,9 +44,10 @@
                     nullable_options_for_select([],nil),
                     {},
                     {:id=>"incident_request_service_code",
-                     :depend=>"ass_external_system",
+                     :depend=>"ass_external_system,incident_request_requested_by",
                      :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
-                     :href=>url_for(:controller=>"icm/incident_requests",:action=>"get_slm_services",:format=>"json",:external_system_code=>"{ass_external_system}")}%>
+                     :href=>url_for(:controller=>"icm/incident_requests",:action=>"get_slm_services",:format=>"json",
+                                                            :external_system_code=>"{ass_external_system}", :requested_by => "{incident_request_requested_by}")}%>
             </div>
             <div class="quickCreateField">
               <label for="incident_request_title"><%=t(:label_icm_incident_request_title)%><%= required_icon %></label><br>

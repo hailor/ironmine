@@ -756,6 +756,7 @@ en:
   label_irm_report_group_status_code: Status
   label_irm_report_group_new: New report group
   label_irm_report_group_edit: Edit report group
+  label_irm_report_category: Report category
   #========================= end irm report_groups ===================================
   #========================= irm report_group_members ===================================
   label_irm_report_group_member_list: Report group member

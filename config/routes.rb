@@ -515,7 +515,8 @@ Ironmine::Application.routes.draw do
     match '/report_groups/:id/multilingual_update(.:format)' => "report_groups#multilingual_update", :via => :put
 
     #report_lists
-    match '/report_lists/index(.:format)' => "report_lists#index", :via => :get
+    match '/report_lists/index(.:format)' => "report_lists#index"
+    match '/report_lists/get_data(.:format)' => "report_lists#get_data"
     #report_groups
     match '/report_groups/:group_id/members(/index)(.:format)' => "report_group_members#index", :via => :get
     match '/report_groups/:group_id/members/new(.:format)' => "report_group_members#new", :via => :get
