@@ -1,11 +1,9 @@
 <%= app_title %>
+<%= view_filter("SKM_ENTRY_HEADERS_INDEX","SKM_ENTRY_HEADERS","entry_headers_list") %>
 <div class="bOverviewSearch">
   <div>
     <div class="pbSearch">
-      <%= form_tag("/entry_headers/index_search", :method => :post) do %>
-        <%= text_field_tag "search_value", "", :size => 30 %>
-        <%= submit_tag t(:label_skm_entry_header_search_by_title), :class => "btn" %>
-      <% end %>
+
     </div>
   </div>
 </div>

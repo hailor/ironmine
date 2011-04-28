@@ -33,7 +33,7 @@
                    {:key=>"full_title",:label=>t(:label_skm_entry_header_title),:sortable=>true, :searchable => true,:formatter=>"Y.irm.template"},
                    {:key=>"published_date_f",:label=>t(:label_skm_entry_header_published_date),:sortable=>true, :width => "180px"},
                    {:key=>"is_favorite", :hidden => true}],
-                   {:search_box => "entryHeadersSearchBox", :paginator_box => "entry_headers_list_paginator_box" })%>
+                   {:search_box => "entryHeadersSearchBox", :paginator_box => "entry_headers_list_paginator_box", :not_load => true })%>
         <div id="entry_headers_list_paginator_box"></div>
       </div>
     </div>
