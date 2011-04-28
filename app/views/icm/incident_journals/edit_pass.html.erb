@@ -89,11 +89,11 @@
                                    }) %></td>
 
             </tr>
-              <%= fields_for @incident_journal,:as=>"incident_journal",:normal=>true do |sub_f|%>
+              <%= fields_for @incident_journal,:as=>"incident_journal",:builder => LabellingFormBuilder,:normal=>true do |sub_f|%>
                 <%= sub_f.hidden_field(:incident_request_id) %>
               <td class="labelCol"><%= t(:label_icm_incident_journal_reply) %></td>
               <td class="dataCol" colspan="3" width="82%">
-                <%= sub_f.text_area :message_body ,:id=>"msgEditor",:style=>"display:none;"%>
+                <%= sub_f.text_area :message_body ,:id=>"msgEditor",:required=>true,:style=>"display:none;"%>
               </td>
               <% end%>
             </tr>

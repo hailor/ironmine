@@ -5,8 +5,8 @@ class Icm::IncidentJournal < ActiveRecord::Base
 
   has_many :incident_histories,:foreign_key => "journal_id"
 
-  validates_presence_of :replied_by,:message_body
-
+  validates_presence_of :replied_by
+  validates_presence_of :message_body,:message=>I18n.t(:label_icm_incident_journal_message_body_not_blank)
 
   # 查询出提交人
   scope :with_replied_by,lambda{

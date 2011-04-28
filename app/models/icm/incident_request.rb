@@ -3,9 +3,12 @@ class Icm::IncidentRequest < ActiveRecord::Base
 
   has_many :incident_journals
 
-  validates_presence_of :title,:summary,:service_code,:requested_by,:submitted_by,:impact_range_code,:urgence_code,:priority_code,:request_type_code,:incident_status_code,:report_source_code
+  validates_presence_of :title,:service_code,:requested_by,:submitted_by,:impact_range_code,:urgence_code,:priority_code,:request_type_code,:incident_status_code,:report_source_code
 
   attr_accessor :pass_flag,:close_flag
+
+  validates_presence_of :summary,:message=>I18n.t(:label_icm_incident_journal_message_body_not_blank)
+
 
   validates_presence_of :support_group_id,:support_person_id,:if=>Proc.new{|i| !i.pass_flag.nil?&&!i.pass_flag.blank?}
 
