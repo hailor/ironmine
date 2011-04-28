@@ -201,7 +201,7 @@
       </table>
     </div>
 
-    <%= render :partial => "irm/watchers/add_watcher", :locals => {:watchable => @incident_request}%>
+    <%= (render :partial => "irm/watchers/add_watcher", :locals => {:watchable => @incident_request}) if allow_to_function?(:new_watchers)%>
   </div>
   <div class="pbBottomButtons">
     <table cellpadding="0" cellspacing="0" border="0">

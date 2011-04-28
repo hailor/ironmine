@@ -235,8 +235,7 @@ Irm::AccessControl.map do |map|
 
   #====================irm/watchers ========================================
   map.function :view_watchers, {}
-  map.function :new_watchers, {"irm/watchers" => ["add_watcher"]}
-  map.function :delete_watchers, {"irm/watchers" => ["delete_watcher"]}
+  map.function :edit_watchers, {"irm/watchers" => ["add_watcher", "delete_watcher"]}
 
   #===================irm/wf_settings============================
   #["index", "edit", "update"]
