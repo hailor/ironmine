@@ -96,7 +96,7 @@ module Icm::IncidentRequestsHelper
 
   def over_view_list
     html = ""
-    @filters = Irm::RuleFilter.where("bo_code = ?", "ICM_INCIDENT_REQUESTS").enabled
+    @filters = Irm::RuleFilter.where("bo_code = ?", "ICM_INCIDENT_REQUESTS").hold.enabled
     @filters.each do |f|
       td1 = content_tag(:td, content_tag(:a, f[:filter_name], :href => url_for(:controller => "icm/incident_requests", :action => "index", :filter_id => f.id)))
 
