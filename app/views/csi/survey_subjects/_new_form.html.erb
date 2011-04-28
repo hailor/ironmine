@@ -12,7 +12,8 @@
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
             <div class="button"><%= f.submit t(:save_and_new)%></div>
-            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
+            <div class="button"><%= link_to t(:cancel), {:controller=>"csi/surveys",
+                                                         :action => "show",:id=>@survey_id}%></div>
           </td>
         </tr>
       </tbody>
@@ -67,3 +68,7 @@
     </div>
   <% end %>
 </div>
+
+<% content_for :sidebar do %>
+    <%= render :partial =>"/irm/common/recently_objects" %>
+<% end %>

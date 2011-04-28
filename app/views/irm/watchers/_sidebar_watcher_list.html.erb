@@ -1,8 +1,11 @@
+<% l_editable = true%>
+<% l_editable = editable if !editable.nil?%>
 <%= form_tag({:controller => "irm/watchers", :action => "add_watcher", :watchable_id => watchable.id}, :remote => true) do %>
 <div class="sidebarModule">
-    <div class="sidebarModuleHeader"><h2><%= t :label_irm_watcher %>(<%= watchers_size(watchable)%>)<span style="float:right;"><a style="color:#fff;" href="javascript:void(0);" onclick="show_new_form();">新增</a></span></h2></div>
+    <div class="sidebarModuleHeader"><h2><%= t :label_irm_watcher %><%= ("(" + watchers_size(watchable) + ")") if l_editable%><span style="float:right;"><a style="color:#fff;" href="javascript:void(0);" onclick="show_new_form();"><% t(:add) if l_editable%></a></span></h2></div>
     <div class="sidebarModuleBody">
     <table>
+      <% if l_editable %>
       <tbody id="new_form" style="display:none;">
         <tr>
           <td>
@@ -18,24 +21,25 @@
           </td>
         </tr>
       </tbody>
+
+        <script type="text/javascript">
+        function show_new_form() {
+            GY.use(function(Y){
+                Y.one("#new_form").setStyle("display", "");
+            })
+        }
+
+        function hide_new_form() {
+            GY.use(function(Y){
+                Y.one("#new_form").setStyle("display", "none");
+            })
+        }
+        </script>
+      <% end %>
       <tbody id="watcher_list">
-        <%= watchers_list(watchable)%>
+        <%= watchers_list(watchable, l_editable)%>
       </tbody>
     </table>
     </div>
 </div>
 <% end %>
-
-<script type="text/javascript">
-function show_new_form() {
-    GY.use(function(Y){
-        Y.one("#new_form").setStyle("display", "");
-    })
-}
-
-function hide_new_form() {
-    GY.use(function(Y){
-        Y.one("#new_form").setStyle("display", "none");
-    })
-}
-</script>
