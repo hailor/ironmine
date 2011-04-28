@@ -23,9 +23,9 @@
         <%= datatable("login_history_list",url_for( :action => "get_login_data",:format=>"json", :id => Irm::Person.current.id),
                       [{:key=>"user_ip",:label=>t(:label_irm_login_record_user_ip),:width=>"110px"},
 
-                       { :key => "operate_system", :label => t(:label_irm_login_record_operate_system),:width=>"110px" },
+                       { :key => "operate_system", :label => t(:label_irm_login_record_operate_system),:width=>"160px" },
 
-                       { :key => "browser", :label => t(:label_irm_login_record_browser) ,:width=>"140px"},
+                       { :key => "browser", :label => t(:label_irm_login_record_browser) ,:width=>"160px"},
 
                        { :key => "login_at", :label => t(:label_irm_login_record_login_at)},
 
