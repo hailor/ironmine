@@ -284,7 +284,7 @@
               <%= fields_for @incident_journal,:as=>"incident_journal",:builder => LabellingFormBuilder,:normal=>true do |sub_f|%>
                 <%= sub_f.hidden_field(:incident_request_id) %>    
               <td class="dataCol" colspan="4" width="100%">
-                <%= sub_f.text_area :message_body ,:id=>"msgEditor",:required=>true,:style=>"display:none;"%>
+                <%= sub_f.text_area :message_body ,:id=>"msgEditor",:value=>"  ",:required=>true,:style=>"display:none;"%>
               </td>
               <% end%>
             </tr>
