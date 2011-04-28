@@ -22,4 +22,10 @@ class Slm::ServiceMember < ActiveRecord::Base
   scope :query_by_service_organization, lambda{|service_organization_id| where("#{table_name}.service_organization_id = ?", service_organization_id)}
   scope :query_by_service_department, lambda{|service_department_id| where("#{table_name}.service_department_id = ?", service_department_id)}
   scope :query_by_service_person, lambda{|service_person_id| where("#{table_name}.service_person_id = ?", service_person_id)}
+
+  scope :with_service_catalog, lambda{
+    joins(",#{Slm::ServiceCatalog.table_name} sc").
+      where("sc.id = #{table_name}.service_catalog_id").
+        select("sc.catalog_code catalog_code")
+  }
 end
