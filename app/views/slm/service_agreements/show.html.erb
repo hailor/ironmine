@@ -76,6 +76,42 @@
        }
 </script>
 
+<div  class="bRelatedList">
+    <div class="listRelatedObject taskBlock">
+      <div class="bPageBlock secondaryPalette">
+        <div class="pbHeader">
+          <table cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+            <tr>
+              <td class="pbTitle">
+                <h3><%=t(:label_slm_service_agreement_match_filter)%></h3>
+              </td>
+              <td class="pbButton">
+                <div class="button">
+                  <div class="button"><%= link_to t(:edit), {:action => "match_filter_edit"}%></div>
+                </div>
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" class="graybgBorder">
+			<tbody><tr>
+				<td class="dataCol">
+                  <div><%= @service_agreement.match_filter_meaning %></div>
+				</td>
+			</tr>
+		</tbody>
+        </table>
+        <div class="pbFooter secondaryPalette">
+        <div class="bg"></div>
+        </div>
+      </div>
+    </div>
+</div>
+
 <div id="id_service_catalog_breaks" class="bRelatedList">
     <a name="id_service_catalog_breaks_target">
     </a>

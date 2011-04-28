@@ -99,6 +99,33 @@ class Slm::ServiceAgreementsController < ApplicationController
     end
   end
 
+  def match_filter_edit
+    service_agreement = Slm::ServiceAgreement.find(params[:id])
+    @rule_filter = Irm::RuleFilter.query_by_source(service_agreement.class.name,service_agreement.id).first
+    if @rule_filter.nil?
+      @rule_filter = Irm::RuleFilter.create_for_source("INCIDENT_REQUESTS",service_agreement.class.name,service_agreement.id)
+      @rule_filter.save
+    end
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def match_filter_update
+    service_agreement = Slm::ServiceAgreement.find(params[:id])
+    @rule_filter = Irm::RuleFilter.query_by_source(service_agreement.class.name,service_agreement.id).first
+
+    respond_to do |format|
+      if @rule_filter.update_attributes(params[:irm_rule_filter])
+        format.html {redirect_to({:action => "show"})}
+        format.xml  { head :ok }
+      else
+        format.html { render "match_filter_edit" }
+        format.xml  { render :xml => @action.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
   def get_data
     service_agreements_scope = Slm::ServiceAgreement.multilingual.status_meaning
     service_agreements_scope = service_agreements_scope.match_value("slm_service_agreements_tl.name",params[:name])

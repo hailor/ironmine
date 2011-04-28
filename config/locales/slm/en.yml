@@ -124,4 +124,9 @@ en:
   label_slm_service_agreement_second_grade: Second Grade
   label_slm_service_agreement_third_grade: Third Grade
   label_slm_service_agreement_fourth_grade: Fourth Grade
+  label_slm_service_agreement_match_filter: Matching rules
+  label_slm_service_agreement_match_filter_null: Matching For All Incident Request
+  label_action_match_filter_edit: Edit Match Filter
+  label_slm_service_agreement_match_filter_edit: Edit Match Filter
+  label_action_match_filter_update: Edit Match Filter
   #=========================    end service_agreements_controller=======================#

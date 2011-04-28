@@ -30,4 +30,21 @@ class Slm::ServiceAgreement < ActiveRecord::Base
                                                where("v2.id=#{table_name}.service_company_id AND "+
                                                      "v2.language=?",language)}
 
+
+  def match_filter
+    return @match_filter if @match_filter
+    @match_filter = Irm::RuleFilter.query_by_source(self.class.name,self.id).first
+    return @match_filter
+  end
+
+  def match_filter_meaning
+    meaning = ""
+    if self.match_filter
+      meaning=  self.match_filter.meaning
+    else
+      meaning = I18n.t(:label_slm_service_agreement_match_filter_null)
+    end
+    meaning = I18n.t(:label_slm_service_agreement_match_filter_null) if meaning.blank?
+    meaning
+  end
 end

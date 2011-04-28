@@ -95,7 +95,7 @@
 
             <tr>
               <td class="labelCol"><label for="incident_request_summary"><%=t(:label_icm_incident_request_summary)%></label></td>
-              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_area :summary,:rows=>5,:cols=>100,:value=>"Default", :required=>true ,:style=>"display:none;",:id=>"incident_request_summary"%></td>
+              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_area :summary,:rows=>5,:cols=>100,:value=>"   ", :required=>true ,:style=>"display:none;",:id=>"incident_request_summary"%></td>
             </tr>
             <tr>
               <td class="labelCol"></td>
@@ -271,7 +271,7 @@ GY.use('irm','node','substitute','yui2-editor', function(Y) {
         }
     });
     editor.render();
-    Y.one("#new_icm_incident_request").on("submit",function(){
+    Y.all("#new_icm_incident_request input[type=submit]").on("click",function(){
       editor.saveHTML();
     });
     Y.one("#fileButtons #addButton").on('click',function(){

@@ -105,17 +105,16 @@
           </td>
           <td class="pbHelp">
               <div class="grayButton"><%= link_to t(:label_icm_incident_journal_back_to_request_list), {:controller=>"icm/incident_requests",:action => "index"}%></div>
-            <%if !@incident_request.close? %>
-              <% if current_person?(@incident_request.support_person_id) %>
-                    <div class="grayButton"><%= link_to t(:pass), {:action => "edit_pass"}%></div>
-              <% end %>
-              <% if current_person?(@incident_request.support_person_id)||current_person?(@incident_request.requested_by) %>
-                <div class="grayButton"><%= link_to t(:close), {:action => "edit_close"}%></div>
-              <% end %>
-              <div class="grayButton"><%= link_to t(:edit), {:controller=>"icm/incident_requests",:action => "edit", :id => @incident_request.id}%></div>
-            <%else%>
+              <%if !@incident_request.close? %>
+                <% if current_person?(@incident_request.support_person_id) %>
+                      <div class="grayButton"><%= link_to t(:pass), {:action => "edit_pass"}%></div>
+                <% end %>
+                <% if current_person?(@incident_request.support_person_id)||current_person?(@incident_request.requested_by) %>
+                  <div class="grayButton"><%= link_to t(:close), {:action => "edit_close"}%></div>
+                <% end %>
+                <div class="grayButton"><%= link_to t(:edit), {:controller=>"icm/incident_requests",:action => "edit", :id => @incident_request.id}%></div>
+              <%end%>
               <div class="grayButton"><%= link_to t(:label_icm_save_as_skm), {:controller=>"skm/entry_headers",:action => "new_from_icm_request", :request_id => @incident_request.id}%></div>
-            <%end%>
           </td>
         </tr>
       </tbody>
@@ -127,7 +126,7 @@
       <h3>(<%= @incident_request[:incident_status_name] %>)<%=@incident_request[:title]%></h3>
       <div style="margin-left: 15px; display:inline;">(<a href="javascript:void(0)" id="showMore"><%= t(:label_icm_incident_more_info) %></a>)</div>
     </div>
-    <div class="pbSubsection hidden" id="incidentDetail">
+    <div class="pbSubsection <%="hidden" unless Irm::Constant::SYS_YES.eql?(params[:show_info])%>" id="incidentDetail">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
@@ -187,7 +186,7 @@
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td><h2 style="font-size: 18px;"><%=t(:label_icm_incident_journal_list)%>&nbsp;(<%= journals_size(@incident_request)%>)</h2></td>
+          <td><h2 style="font-size: 18px;"><%=t(:label_icm_incident_journal_list)%>&nbsp;(<%= journals_size(@incident_request)+1%>)</h2></td>
         </tr>
       </tbody>
     </table>
@@ -282,14 +281,14 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <%= fields_for @incident_journal,:as=>"incident_journal",:normal=>true do |sub_f|%>
+              <%= fields_for @incident_journal,:as=>"incident_journal",:builder => LabellingFormBuilder,:normal=>true do |sub_f|%>
                 <%= sub_f.hidden_field(:incident_request_id) %>    
               <td class="dataCol" colspan="4" width="100%">
-                <%= sub_f.text_area :message_body ,:id=>"msgEditor",:style=>"display:none;"%>
+                <%= sub_f.text_area :message_body ,:id=>"msgEditor",:value=>"  ",:required=>true,:style=>"display:none;"%>
               </td>
               <% end%>
             </tr>
-
+            <% unless Irm::Role.current&&Irm::Role.current.service_role_type.eql?("CUSTOMER")%>
             <tr>
               <td class="dataCol">
                 <label for="incident_request_incident_status_code"><%=t(:label_icm_incident_reply_incident_status_code)%></label>
@@ -297,6 +296,7 @@
                                                         {},{:id=>"incident_request_incident_status_code"}%>
               </td>
             </tr>
+            <% end %>
             <tr>
               <td class="dataCol" colspan="4" width="100%">
 
@@ -367,8 +367,8 @@ GY.use('irm','node','substitute','yui2-editor', function(Y) {
     });
     editor.render();
     Y.irm.setAttribute("journalMsgEditor",editor,"Editor");
-    Y.one("#new_icm_incident_reply").on("submit",function(){
-      editor.saveHTML();    
+    Y.all("#new_icm_incident_reply input[type=submit]").on("click",function(){
+      editor.saveHTML();
     });
 
     Y.one("#fileButtons #addButton").on('click',function(){

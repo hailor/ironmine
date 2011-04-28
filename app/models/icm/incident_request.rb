@@ -3,9 +3,12 @@ class Icm::IncidentRequest < ActiveRecord::Base
 
   has_many :incident_journals
 
-  validates_presence_of :title,:summary,:service_code,:requested_by,:submitted_by,:impact_range_code,:urgence_code,:priority_code,:request_type_code,:incident_status_code,:report_source_code
+  validates_presence_of :title,:service_code,:requested_by,:submitted_by,:impact_range_code,:urgence_code,:priority_code,:request_type_code,:incident_status_code,:report_source_code
 
   attr_accessor :pass_flag,:close_flag
+
+  validates_presence_of :summary,:message=>I18n.t(:label_icm_incident_journal_message_body_not_blank)
+
 
   validates_presence_of :support_group_id,:support_person_id,:if=>Proc.new{|i| !i.pass_flag.nil?&&!i.pass_flag.blank?}
 
@@ -188,8 +191,8 @@ class Icm::IncidentRequest < ActiveRecord::Base
   # if the request is closed
    return "C" if self.close?
    # other person of the incident request
-   return "O" unless self.requested_by = Irm::Person.current.id||self.support_person_id = Irm::Person.current.id
-   if (self.last_request_date||self.created_at)>(self.last_response_date||Time.now)
+   return "O" unless Irm::Person.current.id.eql?(self.requested_by)||Irm::Person.current.id.eql?(self.support_person_id)
+   if (self.last_request_date||self.created_at)>(self.last_response_date||self.created_at)
      Irm::Constant::SYS_NO
    else
      Irm::Constant::SYS_YES

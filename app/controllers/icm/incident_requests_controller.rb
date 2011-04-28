@@ -62,7 +62,7 @@ class Icm::IncidentRequestsController < ApplicationController
         if @incident_request.support_group_id.nil? || @incident_request.support_group_id.blank?
           Delayed::Job.enqueue(Irm::Jobs::IcmGroupAssignmentJob.new(@incident_request.id))
         end
-        format.html { redirect_to({:controller=>"icm/incident_journals",:action=>"new",:request_id=>@incident_request.id}, :notice => t(:successfully_created)) }
+        format.html { redirect_to({:controller=>"icm/incident_journals",:action=>"new",:request_id=>@incident_request.id,:show_info=>Irm::Constant::SYS_YES}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @incident_request, :status => :created, :location => @incident_request }
       else
         format.html { render :action => "new", :layout => "application_full" }
@@ -84,7 +84,7 @@ class Icm::IncidentRequestsController < ApplicationController
     respond_to do |format|
       if @incident_request.save
         publish_create_incident_request(@incident_request)
-        format.html { redirect_to({:controller=>"icm/incident_journals",:action=>"new",:request_id=>@incident_request.id}, :notice => t(:successfully_created)) }
+        format.html { redirect_to({:controller=>"icm/incident_journals",:action=>"new",:request_id=>@incident_request.id,:show_info=>Irm::Constant::SYS_YES}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @incident_request, :status => :created, :location => @incident_request }
       else
         format.html { render :action => "new", :layout => "application_full" }
@@ -119,7 +119,7 @@ class Icm::IncidentRequestsController < ApplicationController
                       :need_customer_reply,
                       :last_response_date]
     bo = Irm::BusinessObject.where(:business_object_code=>"ICM_INCIDENT_REQUESTS").first
-    incident_requests_scope = eval(bo.generate_query_by_attributes(return_columns,true)).query_by_company_ids(session[:accessable_companies]).order("last_response_date desc,last_request_date desc,weight_value,company_id")
+    incident_requests_scope = eval(bo.generate_query_by_attributes(return_columns,true)).query_by_company_ids(session[:accessable_companies]).order("close_flag ,last_response_date desc,last_request_date desc,weight_value,company_id")
 
     if !allow_to_function?(:view_all_incident_request)
       incident_requests_scope = incident_requests_scope.relate_person(Irm::Person.current.id)
@@ -145,7 +145,7 @@ class Icm::IncidentRequestsController < ApplicationController
                       :last_request_date,
                       :priority_name]
     bo = Irm::BusinessObject.where(:business_object_code=>"ICM_INCIDENT_REQUESTS").first
-    incident_requests_scope = eval(bo.generate_query_by_attributes(return_columns,true)).query_by_company_ids(session[:accessable_companies]).order("last_request_date desc,last_response_date desc,weight_value,company_id,id")
+    incident_requests_scope = eval(bo.generate_query_by_attributes(return_columns,true)).query_by_company_ids(session[:accessable_companies]).order("close_flag ,last_request_date desc,last_response_date desc,weight_value,company_id,id")
     if !allow_to_function?(:view_all_incident_request)
       incident_requests_scope = incident_requests_scope.relate_person(Irm::Person.current.id)
     end
