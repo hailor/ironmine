@@ -93,4 +93,23 @@ module Icm::IncidentRequestsHelper
   def my_solved_request
     Icm::IncidentRequest.where("incident_status_code = ? OR incident_status_code = ?", "SOLVE_RECOVER", "CLOSE_INCIDENT").where("submitted_by = ?", Irm::Person.current.id).size()
   end
+
+  def over_view_list
+    html = ""
+    @filters = Irm::RuleFilter.where("bo_code = ?", "ICM_INCIDENT_REQUESTS").hold.enabled
+    @filters.each do |f|
+      td1 = content_tag(:td, content_tag(:a, f[:filter_name], :href => url_for(:controller => "icm/incident_requests", :action => "index", :filter_id => f.id)))
+
+      incident_requests_scope = f.generate_scope.query_by_company_ids(session[:accessable_companies])
+
+      if !allow_to_function?(:view_all_incident_request)
+        incident_requests_scope = incident_requests_scope.relate_person(Irm::Person.current.id)
+      end
+
+      td2 = content_tag(:td, incident_requests_scope.count.to_s, :class => "tdRight")
+      html << content_tag(:tr, td1 + td2)
+    end
+
+    raw(html)
+  end
 end

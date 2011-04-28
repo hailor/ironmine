@@ -30,33 +30,7 @@
                 <tr>
                   <td>
                     <div class="toolsContentLeft first">
-                      <div class="bSubBlock">
-                        <h3 class="lbHeader"><%= t :my_all_count %></h3>
-                        <div class="lbBody">
-                          <table class="toolsContentListTable">
-                            <tr>
-                              <td><a href="#"><%= t :label_icm_wait_for_me_request_count %></a></td>
-                              <td class="tdRight"><%= wait_for_me_request_count %></td>
-                            </tr>
-                            <tr>
-                              <td><a href="#"><%= t :label_icm_reply_today_count %></a></td>
-                              <td class="tdRight"><%= reply_today_count %></td>
-                            </tr>
-                            <tr>
-                              <td><a href="#"><%= t :label_icm_request_submitted_today_count %></a></td>
-                              <td class="tdRight"><%= request_submitted_today_count%></td>
-                            </tr>
-                            <tr>
-                              <td><a href="#"><%= t :label_icm_my_un_solved_request %></a></td>
-                              <td class="tdRight"><%= my_un_solved_request %></td>
-                            </tr>
-                            <tr>
-                              <td><a href="#"><%= t :label_icm_my_solved_request %></a></td>
-                              <td class="tdRight"><%= my_solved_request %></td>
-                            </tr>
-                          </table>
-                        </div>
-                      </div>
+                      <%= render :partial => "irm/common/over_view" %>
                     </div>
                   </td>
                   <td>
