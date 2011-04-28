@@ -121,4 +121,9 @@ zh:
   label_slm_service_agreement_second_grade: 二级
   label_slm_service_agreement_third_grade: 三级
   label_slm_service_agreement_fourth_grade: 四级
+  label_slm_service_agreement_match_filter: 匹配规则
+  label_slm_service_agreement_match_filter_null: 适用所有事故单
+  label_action_match_filter_edit: 编辑匹配规则
+  label_slm_service_agreement_match_filter_edit: 编辑服务协议匹配规则
+  label_action_match_filter_update: 编辑匹配规则
   #=========================    end service_agreements_controller=======================#

@@ -110,6 +110,7 @@ class Irm::RuleFilter < ActiveRecord::Base
 
   def generate_condition
     conditions = {}
+    self.raw_condition_clause||=""
     rule_filter_criterions.each{|fc| conditions.merge!(fc.seq_num=>fc.to_condition) if fc.attribute_name&&!fc.attribute_name.blank?}
     seq_nums = self.raw_condition_clause.scan(/\d+/)
     clause = self.raw_condition_clause.dup

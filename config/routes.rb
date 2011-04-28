@@ -997,6 +997,8 @@ Ironmine::Application.routes.draw do
     match '/service_agreements/create(.:format)' => "service_agreements#create", :via => :post
     match '/service_agreements/:id/multilingual_edit(.:format)' => "service_agreements#multilingual_edit", :via => :get
     match '/service_agreements/:id/multilingual_update(.:format)' => "service_agreements#multilingual_update", :via => :put
+    match '/service_agreements/:id/match_filter_edit(.:format)' => "service_agreements#match_filter_edit", :via => :get
+    match '/service_agreements/:id/match_filter_update(.:format)' => "service_agreements#match_filter_update", :via => :put
   end
   
   match '/demo(/index)' => 'demo#index'
