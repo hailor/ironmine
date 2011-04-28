@@ -128,6 +128,9 @@ en:
   label_icm_incident_auto_assign: System Auto Assign
   label_icm_incident_request_attachment_list: Attachment List
   label_icm_incident_request_target_system: System
+  label_action_assign_dashboard: Incident Request Assign DashBoard
+  label_icm_incident_request_assignable_list: Assignable Incident Request
+  label_icm_incident_request_assign: Assign
   #========================= end icm incident_requests_controller=======================#
   #=========================    icm incident_journals_controller=======================#
   label_icm_incident_reply_support_group_id: Referred group

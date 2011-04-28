@@ -59,10 +59,12 @@ Y.extend(IrmDTSelector, Y.Plugin.Base, {
             o.td=Y.Lang.substitute( this.get("tdValueTemplate"), o);
         },
         _beforeUiSetRecordset:function(rs){
-          this.selectedIndex = [];
+            var dt = this.get("host");
+            this.selectedIndex = [];
             var allcheckbox = this.get("host")._parentNode.one("th.datableSelector input[type=checkbox]");
             if(allcheckbox)
               allcheckbox.set("checked",false);
+            dt.fire("selectedChange",this.selectedItems());
         },
         _onAllSelected:function(e){
           var dt = this.get("host"),
@@ -129,7 +131,6 @@ Y.extend(IrmDTSelector, Y.Plugin.Base, {
           return (this.get("mode") == "single");
         },
         _defSelectedChange:function(e){
-          Y.log(e);
         }
 
     });

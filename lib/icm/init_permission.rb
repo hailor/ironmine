@@ -17,7 +17,7 @@ Irm::AccessControl.map do |map|
   # 转交事故单
   map.function :pass_incident_request,{}
   # 分配事故单
-  map.function :assign_incident_request,{}
+  map.function :assign_incident_request,{"icm/incident_requests"=>[:assign_dashboard,:assignable_data,:assign_request]}
   # 查看所有事故单
   map.function :view_all_incident_request ,{"icm/incident_requests"=>[:index]}
   # 为他人提交事故单
