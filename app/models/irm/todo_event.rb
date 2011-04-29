@@ -30,7 +30,7 @@ class Irm::TodoEvent < ActiveRecord::Base
         where("lv2.lookup_code = #{table_name}.priority")
   }
 
-  scope :with_task_status, lambda{
+  scope :with_event_status, lambda{
     select("lvt.meaning event_status_name").
         joins(", #{Irm::LookupValue.table_name} lv, #{Irm::LookupValuesTl.table_name} lvt").
         where("lvt.language = ?", I18n.locale).
