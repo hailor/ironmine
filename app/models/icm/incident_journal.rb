@@ -24,4 +24,19 @@ class Icm::IncidentJournal < ActiveRecord::Base
     query_by_request(request_id).with_replied_by
   end
 
+  def self.generate_journal(incident_request,request_attributes,journal_attributes)
+    incident_request_bak = incident_request.dup
+    incident_journal = incident_request.incident_journals.build(journal_attributes)
+    return nil unless incident_request.update_attributes(request_attributes)
+    request_attributes.each do |key,value|
+        ovalue = incident_request_bak.send(key)
+        nvalue = incident_request.send(key)
+          Icm::IncidentHistory.create({:journal_id=>incident_journal.id,
+                                       :property_key=>key.to_s,
+                                       :old_value=>ovalue,
+                                       :new_value=>nvalue}) if !ovalue.eql?(nvalue)
+    end
+    return incident_journal
+  end
+
 end
