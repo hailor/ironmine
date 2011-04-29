@@ -74,7 +74,7 @@ class Irm::MailTemplate < ActiveRecord::Base
     # 将所有symbol的key转化为string类型
     recursive_stringify_keys(params)
     params_dup = params.dup
-    to_people = Irm::Person.query_by_ids(params_dup["to_person_ids"]).include_identity
+    to_people = Irm::Person.query_by_ids(params_dup["to_person_ids"])
     to_people.each do |p|
       next unless Irm::Constant::SYS_YES.eql?(p.notification_flag)
       email_template  = self.class.query_by_language(p.language_code).find(self.id)
