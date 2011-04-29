@@ -39,7 +39,7 @@
                 <td class="yui3-column"><div class='yui3-datatable-liner'><%= company[:name] %></div></td>
                 <td class="yui3-column">
                     <div class='yui3-datatable-liner'><%= check_box_tag "irm_company_access[#{company.id}][company_access_flag]",'Y',
-                                      company_access_flag(@person_id,company.id,"company_access_flag"),{:disabled=>company.id.eql?(Irm::Company.current.id)}%>
+                                      company_access_flag(@person_id,company.id,"company_access_flag"),{:disabled=>company_access_flag(@person_id,company.id,"company_access_flag")&&company.id.eql?(Irm::Person.current.company_id)}%>
                     </div>
                 </td>
 
