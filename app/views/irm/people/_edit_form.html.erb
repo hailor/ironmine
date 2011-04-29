@@ -41,16 +41,17 @@
             <tr>
               <td class="labelCol"><label><%= t(:label_irm_identity_password)%></label></td>
               <td class="dataCol"><%=f.password_field(:password, :size=>40)%></td>
-              <td class="labelCol"><label><%= t(:label_irm_identity_password_confirmation)%></label></td>
-              <td class="dataCol"><%=f.password_field(:password_confirmation, :size=>40)%></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><%= t(:label_irm_identity_language_code) %></td>
-              <td class="dataCol"><%= f.select(:language_code, options_for_select(selectable_languages,@person.language_code)) %></td>
               <td class="labelCol"><%=(t :label_irm_person_title)%></td>
               <td class="dataCol">
                 <%=f.select :title,options_for_select(person_title,@person.title),
                                                     {},{:required=>true,:id=>"irm_person_title"}%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%= t(:label_irm_identity_password_confirmation)%></label></td>
+              <td class="dataCol"><%=f.password_field(:password_confirmation, :size=>40)%></td>
+              <td class="labelCol"><%= t(:label_irm_identity_language_code) %></td>
+              <td class="dataCol"><%= f.select(:language_code, options_for_select(selectable_languages,@person.language_code)) %></td>
+
             </tr>
         </tbody>
       </table>
@@ -65,7 +66,7 @@
         <tbody>
              <tr>
                  <td class="labelCol"><label><%=t(:label_irm_person_company)%></label></td>
-                 <td class="dataCol"><%=f.select(:company_id,available_company,{},:required=>true,:id=>"company_id")%></td>
+                 <td class="dataCol"><%=@person[:company_name]%></td>
                   <td class="labelCol"><label><%=(t :label_irm_person_region_code)%></label></td>
                   <td class="dataCol"><%=f.blank_select :region_code,available_region,{},{:required=>true,:id=>"region_code"}%></td>
              </tr>
@@ -106,27 +107,31 @@
 
              </tr>
              <tr>
-                 <td class="labelCol"><label><%=t(:label_irm_person_mobile_phone)%></label></td>
+                <td class="labelCol"><label><%=t(:label_irm_person_bussiness_phone)%></label></td>
                  <td class="dataCol">
-                   <%=f.text_field :mobile_phone%>
+                   <%=f.text_field :bussiness_phone,:required=>true%>
                  </td>
+
                  <td class="labelCol"><label><%=t(:label_irm_person_home_address)%></label></td>
                  <td class="dataCol">
                    <%=f.text_field :home_address%>
                  </td>
              </tr>
              <tr>
-                 <td class="labelCol"><label><%=t(:label_irm_person_vip_flag)%></label></td>
-                 <td class="dataCol"><%=f.check_box :vip_flag%></td>
+                 <td class="labelCol"><label><%=t(:label_irm_person_mobile_phone)%></label></td>
+                 <td class="dataCol">
+                   <%=f.text_field :mobile_phone%>
+                 </td>
+
                  <td class="labelCol"><label><%=t(:label_irm_person_home_phone)%></label></td>
                  <td class="dataCol">
                    <%=f.text_field :home_phone%>
                  </td>
              </tr>
              <tr>
-                 <td class="labelCol"><label>
-                     <%=t(:label_irm_person_assignment_availability_flag)%></label></td>
-                 <td class="dataCol"><%=f.check_box :assignment_availability_flag%></td>
+                 <td class="labelCol"><label><%=t(:label_irm_person_vip_flag)%></label></td>
+                 <td class="dataCol"><%=f.check_box :vip_flag%></td>
+
                  <td class="labelCol"><label><%=t(:label_irm_person_fax_number)%></label></td>
                  <td class="dataCol">
                    <%=f.text_field :fax_number%>
@@ -135,34 +140,24 @@
              </tr>
              <tr>
                <td class="labelCol"><label>
-                     <%=t(:label_irm_person_unrestricted_access_flag)%></label></td>
-                <td class="dataCol"><%=f.check_box :unrestricted_access_flag%></td>
-                <td class="labelCol"><label><%=t(:label_irm_person_bussiness_phone)%></label></td>
-                 <td class="dataCol">
-                   <%=f.text_field :bussiness_phone%>
-                 </td>
-
-             </tr>
-             <tr>
-               <td class="labelCol"></td>
-               <td class="dataCol"></td>
+                     <%=t(:label_irm_person_assignment_availability_flag)%></label></td>
+                 <td class="dataCol"><%=f.check_box :assignment_availability_flag%></td>
                <td class="labelCol">
                  <label><%=t(:label_irm_person_notification_flag)%></label>
                </td>
                <td class="dataCol"><%=f.check_box :notification_flag,:checked => true%></td>
 
-
-
              </tr>
              <tr>
-               <td class="labelCol"></td>
-               <td class="dataCol"></td>
-                  <td class="labelCol"><label><%=t(:label_irm_person_notification_lang)%></label>
-                 </td>
-                 <td class="dataCol"><%=f.select :notification_lang,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                           options_from_collection_for_select(available_languages,:language_code,:wrap_description,@person.notification_lang)%></td>
+               <td class="labelCol"><label><%=t(:label_irm_person_unrestricted_access_flag)%></label></td>
+                <td class="dataCol"><%=f.check_box :unrestricted_access_flag%></td>
+                <td class="labelCol"><label><%=t(:label_irm_person_notification_lang)%></label>
+                </td>
+                <td class="dataCol"><%=f.select :notification_lang,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                                          options_from_collection_for_select(available_languages,:language_code,:wrap_description,@person.notification_lang)%></td>
 
              </tr>
+
         </tbody>
       </table>
     </div>

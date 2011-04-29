@@ -267,7 +267,7 @@ zh:
   #=========================    irm identities_controller=======================#
   label_irm_identity_new: 新建帐号
   label_irm_identity_edit: 编辑帐号
-  label_irm_identity_login_name: 登陆用户名
+  label_irm_identity_login_name: 登陆名
   label_irm_identity_password: 密码
   label_irm_identity_password_confirmation: 确认密码
   label_irm_identity_full_name: 姓名

@@ -33,7 +33,9 @@ class Irm::Company < ActiveRecord::Base
                                                          "v1.language=? AND v2.language=? ",language,language)}
 
 
-
+  scope :useable,lambda{
+    where("#{table_name}.type IS NULL")
+  }
 
   #设定当前用户
   def self.current=(company)

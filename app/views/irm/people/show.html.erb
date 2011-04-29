@@ -204,7 +204,7 @@
             <%= datatable("person",url_for(:controller=>"irm/company_accesses",:action=>"get_data",:person_id=>@person.id),
                               [{:key=>"company_name",:label=>t(:label_irm_person_company),:sortable=>true},
                                {:key=>"company_access_flag",:label=>t(:label_irm_person_company_access_flag),:formatter=>"Y.irm.template",:sortable=>true},
-                               {:key=>"support_stuff_flag",:label=>t(:label_irm_person_support_stuff_flag),:formatter=>"Y.irm.template",:sortable=>true}])%>
+                               {:key=>"support_stuff_flag",:hidden=>true,:label=>t(:label_irm_person_support_stuff_flag),:formatter=>"Y.irm.template",:sortable=>true}])%>
           <!-- End company access table -->
         </div>
         <div class="pbFooter secondaryPalette">
