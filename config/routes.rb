@@ -545,18 +545,18 @@ Ironmine::Application.routes.draw do
     match '/watchers/delete_watcher(.:format)' => "watchers#delete_watcher"
 
 #    match '/calendar_tasks(/:year(/:month))' => 'calendar_tasks#index', :as => :calendar_task, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
-    match '/wf_tasks(/index)(.:format)' => "wf_tasks#index", :via => :get
-    match '/wf_tasks/new(.:format)' => "wf_tasks#new", :via => :get
-    match '/wf_tasks/create(.:format)' => "wf_tasks#create", :via => :post
-    match '/wf_tasks/:id/edit(.:format)' => "wf_tasks#edit", :via => :get
-    match '/wf_tasks/:id(.:format)' => "wf_tasks#update", :via => :put
-    match '/wf_tasks/get_data(.:format)' => "wf_tasks#get_data"
-    match '/wf_tasks/:id/show(.:format)' => "wf_tasks#show", :via => :get
-    match '/wf_tasks/:id/edit_recurrence(.:format)' => "wf_tasks#edit_recurrence", :via => :get
-    match '/wf_tasks/:id/update_recurrence(.:format)' => "wf_tasks#update_recurrence", :via => :put
-    match '/wf_tasks/:id/quick_show(.:format)' => "wf_tasks#quick_show", :via => :get
-    match '/wf_tasks/my_tasks_index(.:format)' => "wf_tasks#my_tasks_index", :via => :get
-    match '/wf_tasks/my_tasks_get_data(.:format)' => "wf_tasks#my_tasks_get_data"
+    match '/todo_events(/index)(.:format)' => "todo_events#index", :via => :get
+    match '/todo_events/new(.:format)' => "todo_events#new", :via => :get
+    match '/todo_events/create(.:format)' => "todo_events#create", :via => :post
+    match '/todo_events/:id/edit(.:format)' => "todo_events#edit", :via => :get
+    match '/todo_events/:id(.:format)' => "todo_events#update", :via => :put
+    match '/todo_events/get_data(.:format)' => "todo_events#get_data"
+    match '/todo_events/:id/show(.:format)' => "todo_events#show", :via => :get
+    match '/todo_events/:id/edit_recurrence(.:format)' => "todo_events#edit_recurrence", :via => :get
+    match '/todo_events/:id/update_recurrence(.:format)' => "todo_events#update_recurrence", :via => :put
+    match '/todo_events/:id/quick_show(.:format)' => "todo_events#quick_show", :via => :get
+    match '/todo_events/my_events_index(.:format)' => "todo_events#my_events_index", :via => :get
+    match '/todo_events/my_events_get_data(.:format)' => "todo_events#my_events_get_data"
 
     match '/calendars(/:year(/:month))' => 'calendars#get_full_calendar', :as => :calendar_task, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
     # business object

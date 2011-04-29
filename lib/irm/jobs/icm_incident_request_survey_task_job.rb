@@ -10,7 +10,7 @@ module Irm
         cc = Irm::Calendar.current_calendar(request.requested_by)
         person = Irm::Person.find(request.requested_by)
         surveys.each do |sv|
-          task = Irm::WfTask.new(:name => "[" + I18n.t(:label_csi_survey, :locale => person.language_code) + "]" + sv.title,
+          task = Irm::TodoEvent.new(:name => "[" + I18n.t(:label_csi_survey, :locale => person.language_code) + "]" + sv.title,
                                 :calendar_id => cc.id,
                                 :description => sv.description,
                                 :color => "345e77",

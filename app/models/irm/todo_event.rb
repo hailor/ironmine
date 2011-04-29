@@ -1,5 +1,5 @@
-class Irm::WfTask < ActiveRecord::Base
-  set_table_name :irm_wf_tasks
+class Irm::TodoEvent < ActiveRecord::Base
+  set_table_name :irm_todo_events
   has_event_calendar
   validates_presence_of :name
   validates_presence_of :start_at
@@ -26,21 +26,21 @@ class Irm::WfTask < ActiveRecord::Base
         joins(", #{Irm::LookupValue.table_name} lv2, #{Irm::LookupValuesTl.table_name} lvt2").
         where("lvt2.language = ?", I18n.locale).
         where("lvt2.lookup_value_id = lv2.id").
-        where("lv2.lookup_type = ?", "IRM_WF_TASK_PRIORITY").
+        where("lv2.lookup_type = ?", "IRM_TODO_EVENT_PRIORITY").
         where("lv2.lookup_code = #{table_name}.priority")
   }
 
-  scope :with_task_status, lambda{
-    select("lvt.meaning task_status_name").
+  scope :with_event_status, lambda{
+    select("lvt.meaning event_status_name").
         joins(", #{Irm::LookupValue.table_name} lv, #{Irm::LookupValuesTl.table_name} lvt").
         where("lvt.language = ?", I18n.locale).
         where("lvt.lookup_value_id = lv.id").
-        where("lv.lookup_type = ?", "IRM_WF_TASK_STATUS").
-        where("lv.lookup_code = #{table_name}.task_status")
+        where("lv.lookup_type = ?", "IRM_TODO_EVENT_STATUS").
+        where("lv.lookup_code = #{table_name}.event_status")
   }
 
   scope :uncompleted, lambda{
-    where("#{table_name}.task_status <> ?", "COMPLETED")
+    where("#{table_name}.event_status <> ?", "COMPLETED")
   }
 
   scope :assigned_to, lambda{|person_id|
@@ -80,7 +80,7 @@ class Irm::WfTask < ActiveRecord::Base
   def copy_recurrences
     self.occurrences.each do |o|
       next if o.strftime("%F") == self.start_at.strftime("%F")
-      new_task = Irm::WfTask.new(self.attributes)
+      new_task = Irm::TodoEvent.new(self.attributes)
       new_task.start_at = DateTime.parse(o.strftime("%F") + "T"  + self.start_at.strftime("%T%z"))
       new_task.end_at = DateTime.parse(o.strftime("%F") + "T"  + self.end_at.strftime("%T%z"))
       new_task.created_at = Time.now
@@ -95,14 +95,14 @@ class Irm::WfTask < ActiveRecord::Base
     after = self.start_at.strftime("%F") if self.start_at - after > 1.day
 
     if self.parent_id && !self.parent_id.blank?
-      tasks = Irm::WfTask.where("parent_id = ? AND start_at > ? AND id <> ?", self.parent_id, after, self.id)
+      tasks = Irm::TodoEvent.where("parent_id = ? AND start_at > ? AND id <> ?", self.parent_id, after, self.id)
       tasks.each do |t|
         t.destroy
       end
 
       self.update_attribute(:parent_id, "")
     else
-      tasks = Irm::WfTask.where("parent_id = ? AND start_at > ?", self.id, after)
+      tasks = Irm::TodoEvent.where("parent_id = ? AND start_at > ?", self.id, after)
       tasks.each do |t|
         t.destroy
       end
@@ -110,12 +110,12 @@ class Irm::WfTask < ActiveRecord::Base
   end
 
   def self.complete_task(source, person_id)
-    s = Irm::WfTask.with_all.enabled.uncompleted.with_calendar.assigned_to(person_id)
+    s = Irm::TodoEvent.with_all.enabled.uncompleted.with_calendar.assigned_to(person_id)
         where("source_type = ? AND source_id = ?", source.class.name, source.id).
         where("start_at < ?", Time.now)
 
     if s.any?
-      s.first.update_attribute(:task_status, "COMPLETED")
+      s.first.update_attribute(:event_status, "COMPLETED")
     end
 
   end
@@ -126,8 +126,8 @@ class Irm::WfTask < ActiveRecord::Base
       self.priority = "NORMAL"
     end
 
-    if !self.task_status || self.task_status.blank?
-      self.task_status = "NOT_STARTED"
+    if !self.event_status || self.event_status.blank?
+      self.event_status = "NOT_STARTED"
     end
   end
 end

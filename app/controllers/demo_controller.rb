@@ -1,6 +1,6 @@
 class DemoController < ApplicationController
   def index
-    test = Irm::WfTask.find(5)
+    test = Irm::TodoEvent.find(5)
 #    rule = RiCal::PropertyValue::RecurrenceRule(:freq => "MONTHLY", :interval => 1, :until => "20110430T045959Z", :byday=>"MO,SU")
 #    ical_event =   RiCal.Calendar do |cal|
 #                    cal.event do |event|
