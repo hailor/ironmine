@@ -4,9 +4,9 @@
         <table cellpadding="0" cellspacing="0" border="0">
           <tbody>
             <tr>
-              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_wf_task) %></h2></td>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_todo_event) %></h2></td>
               <td id="topButtonRow" class="pbButton">
-                <div class="button"><%= link_to t(:new), {:controller => "irm_todo_events", :action => "new"}%></div>
+                <div class="button"><%= link_to t(:new), {:controller => "irm/todo_events", :action => "new"}%></div>
               </td>
               <td class="pbHelp">
               </td>
@@ -15,18 +15,18 @@
         </table>
       </div>
       <div class="pbBody">
-        <div id="calendar_tasks_list" class="datatable" style="width:100%">
+        <div id="todo_events_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:controller => "irm_todo_events", :action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:controller => "irm_todo_events", :action=>"show",:id=>"{id}"}) %>
+            <%= link_to(t(:edit),{:controller => "irm/todo_events", :action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:controller => "irm/todo_events", :action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
-        <%= datatable("calendar_tasks_list",url_for(:controller => "irm_todo_events", :action=>"get_data",:format=>"json"),
+        <%= datatable("todo_events_list",url_for(:controller => "irm/todo_events", :action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
-                       {:key=>"name",:label=>t(:label_irm_wf_task_name),:sortable=>true, :width => "100%"},
-                       {:key=>"start_at",:label=>t(:label_irm_wf_task_start_at),:sortable=>true, :width => "80px"},
-                       {:key=>"end_at",:label=>t(:label_irm_wf_task_end_at),:sortable=>true, :width => "80px"},
-                       {:key=>"priority_name",:label=>t(:label_irm_wf_task_priority),:sortable=>true, :width => "100px"},
-                       {:key=>"task_status_name",:label=>t(:label_irm_wf_task_task_status),:sortable=>true, :width => "80px"},
+                       {:key=>"name",:label=>t(:label_irm_todo_event_name),:sortable=>true, :width => "100%"},
+                       {:key=>"start_at",:label=>t(:label_irm_todo_event_start_at),:sortable=>true, :width => "80px"},
+                       {:key=>"end_at",:label=>t(:label_irm_todo_event_end_at),:sortable=>true, :width => "80px"},
+                       {:key=>"priority_name",:label=>t(:label_irm_todo_event_priority),:sortable=>true, :width => "100px"},
+                       {:key=>"event_status_name",:label=>t(:label_irm_todo_event_event_status),:sortable=>true, :width => "80px"},
                        {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}])%>
       </div>
     </div>
