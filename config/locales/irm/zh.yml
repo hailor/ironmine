@@ -890,7 +890,7 @@ zh:
   label_irm_todo_event_assigned_to: 分配给
   label_irm_todo_event_recurrence_edit: 编辑重复序列
   label_irm_todo_event_priority: 优先级
-  label_irm_todo_event_event_status: 任务状态
+  label_irm_todo_event_event_status: 事件状态
   label_irm_todo_event_mail: 电子邮件
   label_irm_todo_event_phone: 联系电话
   label_action_edit_recurrence: 编辑重复序列
