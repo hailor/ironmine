@@ -133,7 +133,7 @@ class Irm::TodoEventsController < ApplicationController
   end
 
   def show
-    @task = Irm::TodoEvent.with_all.with_task_status.with_calendar.with_priority.where("#{Irm::TodoEvent.table_name}.id = ?", params[:id]).first
+    @task = Irm::TodoEvent.with_all.with_event_status.with_calendar.with_priority.where("#{Irm::TodoEvent.table_name}.id = ?", params[:id]).first
   end
 
   def edit_recurrence

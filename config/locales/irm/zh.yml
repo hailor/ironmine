@@ -100,8 +100,8 @@ zh:
   common_report: 常用报表
   go_to_report: 转至报表
   tool: 工具
-  new_event: 创建任务
-  my_event: 我的任务
+  new_event: 创建事件
+  my_event: 我的事件
   my_all_count: 我的一览表
   label_irm_no_event: 没有事件
   find: 查找
