@@ -12,7 +12,7 @@ class Irm::PeopleController < ApplicationController
   end
 
   def show
-    @person = Irm::Person.query_by_company_id(I18n::locale).query_show_wrap_info(I18n::locale).find(params[:id])
+    @person = Irm::Person.list_all.find(params[:id])
     @company_access_count= Irm::CompanyAccess.query_by_person_id(params[:id]).query_wrap_info(I18n::locale).size
     @support_group_count = Irm::SupportGroupMember.query_support_group_by_person_id(I18n::locale,params[:id]).size
     @owned_roles_count = @person.roles.size 

@@ -167,6 +167,12 @@ class Irm::Person < ActiveRecord::Base
     select("#{Irm::Person.name_to_sql(nil,"manager",'manager_name')}")
   }
 
+  # query title
+  scope :with_title,lambda{|language|
+    joins("LEFT OUTER JOIN #{Irm::LookupValue.view_name} title ON title.lookup_type='IRM_PERSON_TITLE' AND title.lookup_code = #{table_name}.title AND title.language= '#{language}'").
+    select(" title.meaning title_name")
+  }
+
   scope :select_all,lambda{
     select("#{table_name}.*,#{Irm::Person.name_to_sql(nil,table_name,"person_name")}")
   }
@@ -182,6 +188,7 @@ class Irm::Person < ActiveRecord::Base
   def self.list_all
         select_all.
         with_company(I18n.locale).
+        with_title(I18n.locale).
         with_organization(I18n.locale).
         with_department(I18n.locale).
         with_region(I18n.locale).
