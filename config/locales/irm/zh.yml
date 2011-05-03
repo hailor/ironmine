@@ -336,18 +336,77 @@ zh:
   label_icm_ldap_auth_header_edit: 新建认证方案
   label_icm_ldap_auth_header_new: 新建认证方案
   ldap_auth_header_ldap_source: LDAP源
-  ldap_auth_header_auth_code: 认证方案编码
+  ldap_auth_header_auth_code: 认证方案名称
   ldap_auth_header_auth_cn: 认证方案域
   ldap_auth_header_description: 认证方案描述
   ldap_auth_header_status_code: 认证方案状态
   #=========================    end ldap_auth_headers_controller=======================#
 
   label_icm_ldap_auth_attribute_new: 新建认证方案属性
+  label_ldap_auth_attribute: 认证方案属性
   label_ldap_auth_attribute_local_attr: 认证属性
   label_ldap_auth_attribute_attr_type: 字段类型
   label_ldap_auth_attribute_ldap_attr: ldap认证域
   label_ldap_auth_attribute_description: 属性描述
   label_ldap_auth_attribute_status_code: 是否可用
+
+  label_irm_ldap_syn_header_list: 同步方案列表
+  label_irm_ldap_syn_header: 同步方案
+  label_irm_ldap_syn_header_new: 新建同步方案
+  label_irm_ldap_syn_header_syn_type: 同步实体类型
+  label_irm_ldap_syn_header_syn_object: 同步对象
+  label_irm_ldap_syn_header_syn_cn: LDAP域
+  label_irm_ldap_syn_header_syn_multi_language_flag: 多语言同步
+  label_irm_ldap_syn_header_ldap_filter: 过滤条件
+  label_irm_ldap_syn_header_description: 同步方案描述
+  label_irm_ldap_syn_header_status_code: 是否可用
+  label_irm_ldap_syn_header_comp_title: 公司同步信息
+  label_irm_ldap_syn_header_org_title: 组织同步信息
+  label_irm_ldap_syn_header_dept_title: 部门同步信息
+  label_irm_ldap_syn_header_peo_title: 人员同步信息
+  label_irm_ldap_syn_header_syn_name: 方案名称
+  label_irm_ldap_syn_header_base_dn: LDAP同步起点域
+  label_irm_ldap_syn_header_comp_level: 公司层次级别
+  label_irm_ldap_syn_header_comp_filter: 公司过滤条件
+  label_irm_ldap_syn_header_comp_desc: 公司同步备注
+  label_irm_ldap_syn_header_org_level: 组织层次级别
+  label_irm_ldap_syn_header_org_filter: 组织过滤条件
+  label_irm_ldap_syn_header_org_desc: 组织同步备注
+  label_irm_ldap_syn_header_dept_level: 部门层次级别
+  label_irm_ldap_syn_header_dept_filter: 部门过滤条件
+  label_irm_ldap_syn_header_dept_desc: 部门同步备注
+  label_irm_ldap_syn_header_peo_level: 人员层次级别
+  label_irm_ldap_syn_header_peo_filter: 人员过滤条件
+  label_irm_ldap_syn_header_peo_desc: 人员同步备注
+  label_irm_ldap_syn_header_peo_auth_header: 人员同步备注
+  label_irm_ldap_syn_header_comp_syn_flag: 是否同步公司
+  label_irm_ldap_syn_header_org_syn_flag: 是否同步组织
+  label_irm_ldap_syn_header_dept_syn_flag: 是否同步部门
+  label_irm_ldap_syn_header_peo_syn_flag: 是否同步人员
+  label_irm_ldap_syn_header_peo_header: 人员同步属性
+  label_irm_ldap_syn_attribute_comp_list: 公司同步属性列表
+  label_irm_ldap_syn_attribute_org_list: 组织同步属性列表
+  label_irm_ldap_syn_attribute_dept_list: 部门同步属性列表
+  label_irm_ldap_syn_attribute_peo_list: 人员同步属性列表
+
+  label_irm_ldap_filter: 过滤条件
+  label_irm_ldap_description: 备注
+  label_irm_ldap_base_dn: LDAP域
+  label_irm_ldap_syn_attribute_list: 同步属性列表
+  label_irm_ldap_syn_attribute: 同步属性
+  label_irm_ldap_syn_attribute_new: 新建同步属性
+  label_irm_ldap_syn_attribute_local_attr: 本地字段
+  label_irm_ldap_syn_attribute_ldap_attr: ldap域/默认值
+  label_irm_ldap_syn_attribute_ldap_attr_type: 值类型
+  label_irm_ldap_syn_attribute_language_code: 值语言
+
+  label_irm_ldap_syn_attribute_null_able: 非空
+  label_irm_ldap_syn_attribute_description: 描述
+
+  label_irm_ldap_syn_person_list: 人员默认值设置
+  label_irm_ldap_syn_person_new: 新建人员默认值
+  label_irm_ldap_syn_person_edit: 编辑人员默认值
+  label_irm_ldap_syn_person_name: 默认值方案名称
 
   #=========================    irm scripts_controller=======================#
   label_irm_script_script_code: 编码

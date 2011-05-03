@@ -1,3 +1,4 @@
+<%= setting_title %>
 <%= form_for(@ldap_auth_attribute,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
@@ -32,13 +33,7 @@
 
             <tr>
               <td class="labelCol"><label><%=t(:label_ldap_auth_attribute_local_attr)%></label></td>
-              <td class="dataCol"><%=f.blank_select(:local_attr, available_object_attribute_name('IRM_PEOPLE'),{},:required=>true)%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=t(:label_ldap_auth_attribute_attr_type)%></label></td>
-              <td class="dataCol"><%=f.text_field :attr_type, :required=>true%></td>
+              <td class="dataCol"><%=f.blank_select(:local_attr, available_ldap_object_attribute('IRM_PEOPLE'),{},:required=>true)%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>

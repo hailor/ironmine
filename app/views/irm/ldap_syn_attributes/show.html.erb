@@ -1,0 +1,48 @@
+<%= page_title %>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_ldap_syn_attribute) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to(t(:edit),{:controller => "irm/ldap_syn_attributes", :action => "edit", :ah_id => @ldap_syn_attribute.ldap_syn_header_id,:id=>@ldap_syn_attribute.id}) %></div>
+            <div class="button"><%= link_to(t(:back),{:controller => "irm/ldap_syn_headers", :action => "show", :id =>  @ldap_syn_attribute.ldap_syn_header_id}) %></div>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+                      <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_ldap_syn_attribute_local_attr)%></label></td>
+              <td class="dataCol"><div><%= @ldap_syn_attribute.local_attr %></div></td>
+              <td class="labelCol"><label ><%=t(:label_irm_ldap_syn_attribute_ldap_attr_type)%></label></td>
+              <td class="dataCol"><div><%= @ldap_syn_attribute.value_type_name %></div></td>
+            </tr>
+                      <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_ldap_syn_attribute_ldap_attr)%></label></td>
+              <td class="dataCol"><div><%= @ldap_syn_attribute.ldap_attr %></div></td>
+              <td class="labelCol"><label ><%=t(:label_irm_ldap_syn_attribute_null_able)%></label></td>
+              <td class="dataCol"><div><%= @ldap_syn_attribute.null_able %></div></td>
+            </tr>
+
+
+                      <tr>
+
+              <td class="labelCol"><label ><%=t(:label_irm_ldap_syn_attribute_description)%></label></td>
+              <td class="dataCol"><div><%= @ldap_syn_attribute.description %></div></td>
+               <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+                  </tbody>
+      </table>
+    </div>
+  </div>
+</div>

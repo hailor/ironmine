@@ -7,8 +7,9 @@
         <tr>
           <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_ldap_auth_attribute) %></h2></td>
           <td id="topButtonRow" class="pbButton">
-            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @incident_phase}%></div>
-            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+            <div class="button"><%= link_to(t(:edit),{:controller => "irm/ldap_auth_attributes", :action => "edit", :ah_id => @ldap_auth_attribute.ldap_auth_header_id,:id=>@ldap_auth_attribute.id}) %></div>
+            <div class="button"><%= link_to(t(:back),{:controller => "irm/ldap_auth_headers", :action => "show", :id =>  @ldap_auth_attribute.ldap_auth_header_id}) %></div>
+
           </td>
         </tr>
       </tbody>
@@ -18,19 +19,13 @@
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
-                      <tr>
+            <tr>
               <td class="labelCol"><label ><%=t(:label_ldap_auth_attribute_local_attr)%></label></td>
               <td class="dataCol"><%= @ldap_auth_attribute.local_attr %></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-                      <tr>
               <td class="labelCol"><label ><%=t(:label_ldap_auth_attribute_attr_type)%></label></td>
               <td class="dataCol"><%= @ldap_auth_attribute.attr_type %></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
             </tr>
-                      <tr>
+            <tr>
               <td class="labelCol"><label ><%=t(:label_ldap_auth_attribute_ldap_attr)%></label></td>
               <td class="dataCol"><%= @ldap_auth_attribute.ldap_attr %></td>
               <td class="labelCol empty">&nbsp;</td>

@@ -25,15 +25,8 @@ class Irm::LdapSourcesController < ApplicationController
   end
 
   def execute_test
-    if !params[:id].nil?
-      @result_message =params[:host]
       @ldap_source = Irm::LdapSource.find(params[:id])
-      @result_message =@ldap_source.host
-    else
-     @result_message = "test OK"
-    end
-    #@ldap_source = Irm::LdapSource.new(params[:irm_ldap_source])
-    #@ldap_source.company_id = Irm::Company.current.id
+      @result_message =@ldap_source.test_connection
   end
 
   def edit

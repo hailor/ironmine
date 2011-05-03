@@ -1,0 +1,61 @@
+    <div id="head_2_ep" class="pbSubheader first tertiaryPalette">
+        <h3><%= t(:label_irm_ldap_syn_header_comp_title) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_ldap_syn_header_comp_syn_flag)%></label></td>
+              <td class="dataCol"><%= check_img(@ldap_syn_header.comp_syn_flag) %></td>
+              <td class="labelCol"><label ><%=t(:label_irm_ldap_syn_header_comp_level)%></label></td>
+              <td class="dataCol"><div><%= @ldap_syn_header.comp_level %></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_ldap_syn_header_comp_filter)%></label></td>
+              <td class="dataCol"><div><%= @ldap_syn_header.comp_filter %></div></td>
+              <td class="labelCol"><label ><%=t(:label_irm_ldap_syn_header_comp_desc)%></label></td>
+               <td class="dataCol"><%= @ldap_syn_header.comp_desc %></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+<div class="listRelatedObject setupBlock">
+  <div class="bPageBlock">
+    <div class="pbHeader">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_ldap_syn_attribute_comp_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:controller => "irm/ldap_syn_attributes", :action => "new", :ah_id => @ldap_syn_header.id,:type=>@ldap_syn_header.comp_object,:back_url=>url_for({})}%></div>
+              </td>
+              <td class="pbHelp">
+                <div id="ldap_syn_attributesSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="comp_syn_attributes" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:controller => "irm/ldap_syn_attributes", :action => "edit", :ah_id => @ldap_syn_header.id,:id=>"{id}",:back_url=>url_for({})}) %>
+
+            <%= link_to(t(:delete),{:controller => "irm/ldap_syn_attributes", :action => "destroy", :ah_id => @ldap_syn_header.id,:id=>"{id}",:back_url=>url_for({})},{:method => :delete,:confirm => t(:label_are_you_sure)}) %>
+
+          </div>
+        </div>
+        <%= datatable("comp_syn_attributes",url_for(:controller => "irm/ldap_syn_attributes", :action=>"get_data",:ah_id => @ldap_syn_header.id,:type=>@ldap_syn_header.comp_object,:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
+                       { :key => "local_attr", :label => t(:label_irm_ldap_syn_attribute_local_attr),:searchable=>true },
+                       { :key => "ldap_attr", :label => t(:label_irm_ldap_syn_attribute_ldap_attr),:searchable=>true },
+                       { :key => "value_type_name", :label => t(:label_irm_ldap_syn_attribute_ldap_attr_type),:searchable=>true },
+                       { :key => "null_able", :label => t(:label_irm_ldap_syn_attribute_null_able),:searchable=>true },
+                       { :key => "description", :label => t(:label_irm_ldap_syn_attribute_description),:searchable=>true },
+                       ],{:search_box=>"ldap_syn_attributesSearchBox"})%>
+
+      </div>
+    </div>
+</div>

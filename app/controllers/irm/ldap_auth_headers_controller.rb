@@ -101,10 +101,10 @@ class Irm::LdapAuthHeadersController < ApplicationController
 
   def get_data
     ldap_auth_headers_scope = Irm::LdapAuthHeader.query_auth_info
-    ldap_auth_headers_scope = ldap_auth_headers_scope.match_value("ldap_auth_header.name",params[:auth_code])
+    ldap_auth_headers_scope = ldap_auth_headers_scope.match_value("ldap_auth_header.name",params[:name])
     ldap_auth_headers,count = paginate(ldap_auth_headers_scope)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(ldap_auth_headers.to_grid_json([:ldap_source,:auth_code,:auth_cn,:description,:status_code],count))}
+      format.json {render :json=>to_jsonp(ldap_auth_headers.to_grid_json([:ldap_source,:name,:auth_cn,:description,:status_code],count))}
     end
   end
 end

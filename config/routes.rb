@@ -192,7 +192,7 @@ Ironmine::Application.routes.draw do
     match '/ldap_sources/get_data(.:format)' => "ldap_sources#get_data"
     match '/ldap_sources/:id/show(.:format)' => "ldap_sources#show", :via => :get
 
-    #ldap_sources
+    #ldap_auth_headers
     match '/ldap_auth_headers(/index)(.:format)' => "ldap_auth_headers#index", :via => :get
     match '/ldap_auth_headers/:id/edit(.:format)' => "ldap_auth_headers#edit", :via => :get
     match '/ldap_auth_headers/execute_test(.:format)' => "ldap_auth_headers#execute_test", :via => :get
@@ -204,17 +204,57 @@ Ironmine::Application.routes.draw do
     match '/ldap_auth_headers/:id/multilingual_update(.:format)' => "ldap_auth_headers#multilingual_update", :via => :put
     match '/ldap_auth_headers/get_data(.:format)' => "ldap_auth_headers#get_data"
     match '/ldap_auth_headers/:id/show(.:format)' => "ldap_auth_headers#show", :via => :get
-
+    #ldap_auth_attributes
     match '/ldap_auth_attributes(/index)(.:format)' => "ldap_auth_attributes#index", :via => :get
     match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/new(.:format)' => "ldap_auth_attributes#new", :via => [:get,:post,:put]
     match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/create(.:format)' => "ldap_auth_attributes#create", :via => :post
     match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/get_data(.:format)' => "ldap_auth_attributes#get_data"
     match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/:id/edit(.:format)' => "ldap_auth_attributes#edit", :via => :get
-    match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/:id(.:format)' => "ldap_auth_attributes#update", :via => :put
+    match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/:id/update(.:format)' => "ldap_auth_attributes#update", :via => :put
     match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/:id/show(.:format)' => "ldap_auth_attributes#show", :via => :get
     match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/:id/delete(.:format)' => "ldap_auth_attributes#destroy", :via => :delete
     match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/:id/multilingual_edit(.:format)' => "ldap_auth_attributes#multilingual_edit", :via => :get
     match '/ldap_auth_headers/:ah_id/ldap_auth_attributes/:id/multilingual_update(.:format)' => "ldap_auth_attributes#multilingual_update", :via => :put
+
+    #ldap_syn_header
+    match '/ldap_syn_headers(/index)(.:format)' => "ldap_syn_headers#index", :via => :get
+    match '/ldap_syn_headers/:id/edit(.:format)' => "ldap_syn_headers#edit", :via => :get
+    match '/ldap_syn_headers/execute_test(.:format)' => "ldap_syn_headers#execute_test", :via => :get
+    match '/ldap_syn_headers/:id/execute_test(.:format)' => "ldap_syn_headers#execute_test", :via => :get
+    match '/ldap_syn_headers/:id(.:format)' => "ldap_syn_headers#update", :via => :put
+    match '/ldap_syn_headers/new(.:format)' => "ldap_syn_headers#new", :via => :get
+    match '/ldap_syn_headers/create(.:format)' => "ldap_syn_headers#create", :via => :post
+    match '/ldap_syn_headers/:id/multilingual_edit(.:format)' => "ldap_syn_headers#multilingual_edit", :via => :get
+    match '/ldap_syn_headers/:id/multilingual_update(.:format)' => "ldap_syn_headers#multilingual_update", :via => :put
+    match '/ldap_syn_headers/get_data(.:format)' => "ldap_syn_headers#get_data"
+    match '/ldap_syn_headers/:id/show(.:format)' => "ldap_syn_headers#show", :via => :get
+
+    #ldap_syn_attributes
+    match '/ldap_syn_attributes(/index)(.:format)' => "ldap_syn_attributes#index", :via => :get
+    match '/ldap_syn_headers/:ah_id/:type/ldap_syn_attributes/new(.:format)' => "ldap_syn_attributes#new", :via => [:get,:post,:put]
+    match '/ldap_syn_headers/:ah_id/:type/ldap_syn_attributes/create(.:format)' => "ldap_syn_attributes#create", :via => :post
+    match '/ldap_syn_headers/:ah_id/:type/ldap_syn_attributes/get_data(.:format)' => "ldap_syn_attributes#get_data"
+    match '/ldap_syn_headers/:ah_id/ldap_syn_attributes/:id/edit(.:format)' => "ldap_syn_attributes#edit", :via => :get
+    match '/ldap_syn_headers/:ah_id/ldap_syn_attributes/:id/show(.:format)' => "ldap_syn_attributes#show", :via => :get
+    match '/ldap_syn_headers/:ah_id/ldap_syn_attributes/:id(.:format)' => "ldap_syn_attributes#update", :via => :put
+    match '/ldap_syn_headers/:ah_id/ldap_syn_attributes/:id/delete(.:format)' => "ldap_syn_attributes#destroy", :via => :delete
+    match '/ldap_syn_headers/:ah_id/ldap_syn_attributes/:id/multilingual_edit(.:format)' => "ldap_syn_attributes#multilingual_edit", :via => :get
+    match '/ldap_syn_headers/:ah_id/ldap_syn_attributes/:id/multilingual_update(.:format)' => "ldap_syn_attributes#multilingual_update", :via => :put
+
+    #ldap_syn_people
+    match '/ldap_syn_people(/index)(.:format)' => "ldap_syn_people#index", :via => :get
+    match '/ldap_syn_people/:id/edit(.:format)' => "ldap_syn_people#edit", :via => :get
+    match '/ldap_syn_people/execute_test(.:format)' => "ldap_syn_people#execute_test", :via => :get
+    match '/ldap_syn_people/:id/execute_test(.:format)' => "ldap_syn_people#execute_test", :via => :get
+    match '/ldap_syn_people/:id(.:format)' => "ldap_syn_people#update", :via => :put
+    match '/ldap_syn_people/new(.:format)' => "ldap_syn_people#new", :via => :get
+    match '/ldap_syn_people/create(.:format)' => "ldap_syn_people#create", :via => :post
+    match '/ldap_syn_people/:id/multilingual_edit(.:format)' => "ldap_syn_people#multilingual_edit", :via => :get
+    match '/ldap_syn_people/:id/multilingual_update(.:format)' => "ldap_syn_people#multilingual_update", :via => :put
+    match '/ldap_syn_people/get_data(.:format)' => "ldap_syn_people#get_data"
+    match '/ldap_syn_people/get_by_ldap_source(.:format)' => "ldap_syn_people#get_by_ldap_source", :via => :get
+    match '/ldap_syn_people/:id/show(.:format)' => "ldap_syn_people#show", :via => :get
+
 
     #scripts
     match '/scripts(/index)(.:format)' => "scripts#index", :via => :get
