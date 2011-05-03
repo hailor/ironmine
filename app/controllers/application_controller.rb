@@ -49,7 +49,6 @@ class ApplicationController < ActionController::Base
       end
       if Irm::Person.current.logged?
         session[:accessable_companies] ||= Irm::CompanyAccess.query_by_person_id(Irm::Person.current.id).collect{|c| c.accessable_company_id}
-        #Irm::Person.accessable_company_ids = session[:accessable_companies]
       end
     end
   end

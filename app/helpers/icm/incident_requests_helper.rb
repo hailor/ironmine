@@ -43,7 +43,7 @@ module Icm::IncidentRequestsHelper
   end
 
   def available_support_group
-    Irm::SupportGroup.multilingual.collect{|s| [s[:name],s.id]}
+    Irm::SupportGroup.query_by_company_ids(Irm::Person.current.accessable_company_ids).multilingual.collect{|s| [s[:name],s.id]}
   end
 
   def available_urgence_code
