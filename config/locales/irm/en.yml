@@ -582,6 +582,7 @@ en:
   label_irm_support_group_show: Support Group
   label_irm_support_group_person_name: Person Name
   label_action_select_person: Choose support group member
+  label_action_new_from_person: Choose support group
   #=========================end irm support_groups_controller=======================#
   #=========================    irm people_controller=======================#
   label_irm_person: Person
@@ -649,6 +650,7 @@ en:
   label_irm_person_delegate_manager: Manager
   label_action_select_roles: Select Roles
   label_action_add_roles: Select Roles
+  label_irm_person_add_to_support_group: Add to Support Group
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: Flex

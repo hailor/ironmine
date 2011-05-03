@@ -93,11 +93,10 @@ Irm::AccessControl.map do |map|
   #===================irm/support_group_members============================
   #["index", "edit", "update", "delete", "new", "create", "get_data", "select_person", "get_person"]
   map.function :view_support_groups,{"irm/support_groups"=>["index", "show", "get_data", "get_support_group_member", "choose_person"],
-                                     "irm/support_group_members"=>["select_person","index", "get_person", "get_options"]}
-  map.function :create_support_groups,{"irm/support_groups"=>["new", "create"],
-                                       "irm/support_group_members"=>["new", "create"]}
-  map.function :edit_support_groups,{"irm/support_groups"=>["edit", "update", "multilingual_edit", "multilingual_update",
-                                                            "delete_member", "create_member"]}
+                                     "irm/support_group_members"=>["get_person", "get_options"]}
+  map.function :create_support_groups,{"irm/support_groups"=>["new", "create"]}
+  map.function :edit_support_groups,{"irm/support_groups"=>["edit", "update", "multilingual_edit", "multilingual_update","delete_member", "create_member"],
+                                     "irm/support_group_members"=>["select_person", "create","delete_from_person","new_from_person","get_person_support_group","create_from_person"]}
 
   #=====permission ===================
   #===================irm/identities============================

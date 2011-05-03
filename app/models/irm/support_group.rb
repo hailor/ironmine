@@ -36,4 +36,14 @@ class Irm::SupportGroup < ActiveRecord::Base
                                                          "#{table_name}.organization_id = v3.id AND v3.language=? AND "+
                                                          "v1.language=? AND v4.language=?",
                                                          language,language,language,language)}
+
+  scope :not_include_person,lambda{|person_id|
+    where("NOT EXISTS(SELECT 1 FROM #{Irm::SupportGroupMember.table_name} sgm WHERE sgm.person_id =? AND support_group_code = #{table_name}.group_code)",person_id)
+  }
+
+  scope :with_company,lambda{|language|
+    joins("JOIN #{Irm::Company.view_name} ON #{Irm::Company.view_name}.id = #{table_name}.company_id").
+    select("#{Irm::Company.view_name}.name company_name").
+    where("#{Irm::Company.view_name}.language = ?",language)
+  }
 end
