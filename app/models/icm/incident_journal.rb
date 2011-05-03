@@ -8,6 +8,13 @@ class Icm::IncidentJournal < ActiveRecord::Base
   validates_presence_of :replied_by
   validates_presence_of :message_body,:message=>I18n.t(:label_icm_incident_journal_message_body_not_blank)
 
+  acts_as_recently_objects(:title => "title",
+                           :target => "incident_request",
+                           :target_controller => "icm/incident_journals",
+                           :target_action => "new",
+                           :target_id => "id",
+                           :target_id_column => "request_id")
+
   # 查询出提交人
   scope :with_replied_by,lambda{
     joins("LEFT OUTER JOIN #{Irm::Person.table_name} replied ON  replied.id = #{table_name}.replied_by").

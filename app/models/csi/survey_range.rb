@@ -56,4 +56,8 @@ class Csi::SurveyRange < ActiveRecord::Base
     people = people.uniq
     people.size
   end
+
+  acts_as_recently_objects(:title => "title",
+                           :target_controller => "csi/surveys",
+                           :target => "survey")
 end

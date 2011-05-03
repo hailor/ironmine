@@ -17,22 +17,14 @@ module Irm::CommonHelper
   end
 
   def show_recently_object_list
-    result_list = []
-    entry_headers = Skm::EntryHeader.list_all.published.current_entry.order("updated_at DESC").limit(10)
-    surveys = Csi::Survey.find_recently_ten
-    entry_headers.each do |eh|
-      result_list << {:controller => "skm/entry_headers", :action => "show", :id => eh.id, :title => eh.entry_title, :updated_at => eh.updated_at}
-    end
-    surveys.each do |sv|
-      result_list << {:controller => "csi/surveys", :action => "show", :id => sv.id, :title => sv.title, :updated_at => sv.updated_at}
-    end
 
-    result_list = result_list.sort{|x, y| y[:updated_at] <=> x[:updated_at] }
     html_content = ""
-    counter = 0
-    result_list.each do |e|
-      html_content << content_tag(:tr, content_tag(:td, link_to(get_list_icon + e[:title], {:controller => e[:controller], :action => e[:action], :id => e[:id]}, {:title => e[:title]})))
-      break if (counter += 1) == 10
+    obs = Irm::RecentlyObject.where("1=1").order("updated_at DESC").limit(10)
+    obs.each do |ob|
+      title = eval(ob.source_type).find(ob.source_id).recently_object_name
+      url_ops = eval(ob.source_type).find(ob.source_id).recently_object_url_options
+      puts("+++++++++++" + url_ops.to_json)
+      html_content << content_tag(:tr, content_tag(:td, link_to(get_list_icon + title, url_ops, {:title => title})))
     end
 
     raw(html_content)

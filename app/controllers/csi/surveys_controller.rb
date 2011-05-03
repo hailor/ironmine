@@ -24,7 +24,7 @@ class Csi::SurveysController < ApplicationController
   # GET /surveys/new
   # GET /surveys/new.xml
   def new
-    @survey =Csi:: Survey.new
+    @survey =Csi::Survey.new
     @return_url=request.env['HTTP_REFERER']
 
     respond_to do |format|
