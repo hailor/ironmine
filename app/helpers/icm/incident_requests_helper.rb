@@ -23,7 +23,7 @@ module Icm::IncidentRequestsHelper
     needed_to_replace = people.detect{|person| Irm::Person.current.id.eql?(person[1])}
     if needed_to_replace
       people.delete_if{|person| Irm::Person.current.id.eql?(person[1])}
-      people.unshift([Irm::Person.current.name,Irm::Person.current.id,{:phone=>Irm::Person.current.mobile_phone}])
+      people.unshift([Irm::Person.current.name,Irm::Person.current.id,{:phone=>Irm::Person.current.bussiness_phone}])
     end
     people
   end
