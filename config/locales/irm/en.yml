@@ -122,6 +122,7 @@ en:
   all: All
   search_options: Search Options
   input_keyword_you_want_to_search: Input keyword you want to search
+  display_all: Show All
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=======================#
   label_lookup_types: Lookup Type

@@ -113,6 +113,7 @@ zh:
   all: 全部
   search_options: 搜索选项
   input_keyword_you_want_to_search: 请输入你要搜索的关键词
+  display_all: 全部显示
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=====================#
   label_lookup_types: 快速编码类型

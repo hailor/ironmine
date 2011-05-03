@@ -802,3 +802,12 @@ legend{
     border: 1px solid #e8e8e8;
     padding: 5px;
 }
+
+.bSubBlock .pbHelp {
+    padding-bottom: 1px;
+    padding-left: 1px;
+    padding-right: 5px;
+    padding-top: 1px;
+    text-align: right;
+    vertical-align: middle;
+}
