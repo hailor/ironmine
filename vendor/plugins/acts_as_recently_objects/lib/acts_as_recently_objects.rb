@@ -78,27 +78,31 @@ module Ironmine
         private
         def last_same?
           ro = Irm::RecentlyObject.all.last()
-          r_source = eval(ro.source_type).find(ro.source_id)
+          if ro
 
-          l_target = r_source
-          r_target = self
-          if r_source.target != "self"
-            r_source.target.split(".").each do |l|
-              l_target = l_target.send(l.to_sym)
+            r_source = eval(ro.source_type).find(ro.source_id)
+
+            l_target = r_source
+            r_target = self
+            if r_source.target != "self"
+              r_source.target.split(".").each do |l|
+                l_target = l_target.send(l.to_sym)
+              end
+            end
+
+            if self.target != "self"
+              self.target.split(".").each do |r|
+                r_target = r_target.send(r.to_sym)
+              end
+            end
+
+            if(l_target.class.name == r_target.class.name && ( l_target[r_source.target_id.to_sym].to_s == (r_target[self.target_id.to_sym]).to_s))
+              return true
+            else
+              return false
             end
           end
-
-          if self.target != "self"
-            self.target.split(".").each do |r|
-              r_target = r_target.send(r.to_sym)
-            end
-          end
-
-          if(l_target.class.name == r_target.class.name && ( l_target[r_source.target_id.to_sym].to_s == (r_target[self.target_id.to_sym]).to_s))
-            true
-          else
-            false
-          end
+          false
         end
 
         module ClassMethods
