@@ -14,7 +14,7 @@ class InitWfTaskPermissionData < ActiveRecord::Migration
     irm_view_wf_tasks.functions_tls.build(:language=>'en',:source_lang=>'en',:name=>'View Event',:description=>'View Event')
     irm_view_wf_tasks.save
 
-    irm_menu_entiry_113= Irm::MenuEntry.new(:menu_code=>'IRM_HOME_MENU',:sub_menu_code=>nil,:page_controller=>'irm/wf_events',:display_sequence=>80,:display_flag=>'N',:not_auto_mult=>true)
+    irm_menu_entiry_113= Irm::MenuEntry.new(:menu_code=>'IRM_HOME_MENU',:sub_menu_code=>nil,:page_controller=>'irm/todo_events',:display_sequence=>80,:display_flag=>'N',:not_auto_mult=>true)
     irm_menu_entiry_113.menu_entries_tls.build(:language=>'zh',:source_lang=>'en',:name=>'事件',:description=>'事件')
     irm_menu_entiry_113.menu_entries_tls.build(:language=>'en',:source_lang=>'en',:name=>'Events',:description=>'Events')
     irm_menu_entiry_113.save
