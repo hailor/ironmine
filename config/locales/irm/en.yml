@@ -835,7 +835,7 @@ en:
   label_irm_todo_event_assigned_to: Assigned To
   label_irm_todo_event_recurrence_edit: Edit Series
   label_action_edit_recurrence: Edit Series
-  label_action_my_tasks_index: My Tasks
+  label_action_my_events_index: My Events
   recurrence_occurs: Occurs
   recurrence_byday: on day %{m}
   recurrence_byday_week: on %{m}
