@@ -43,7 +43,8 @@ class Skm::EntryHeader < ActiveRecord::Base
   end
 
   query_extend
-
+  acts_as_recently_objects(:title => "entry_title",
+                           :target_controller => "skm/entry_headers")
 
   def to_html
     self.entry_title

@@ -2,7 +2,8 @@ class Csi::SurveySubject < ActiveRecord::Base
   set_table_name :csi_survey_subjects
 
   belongs_to :survey
-  has_many :subject_options,:foreign_key=>"subject_id"
+  has_many :subject_options, :foreign_key=>"subject_id"
+  has_many :survey_results, :foreign_key => "subject_id"
   validates_presence_of :name,:seq_num
 
   TYPES = [['text', 'string'], ['paragraph_text', 'text'],
@@ -33,4 +34,7 @@ class Csi::SurveySubject < ActiveRecord::Base
      next_seq_num
   end
 
+  acts_as_recently_objects(:title => "title",
+                           :target_controller => "csi/surveys",
+                           :target => "survey")
 end
