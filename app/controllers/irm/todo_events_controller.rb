@@ -114,7 +114,7 @@ class Irm::TodoEventsController < ApplicationController
     end_at = params[:irm_todo_event][:end_at] + " " + params[:end_at_h] if params[:irm_todo_event][:end_at] && !params[:irm_todo_event][:end_at].blank?
     end_at = params[:irm_todo_event][:start_at] + " " + params[:end_at_h] if !params[:irm_todo_event][:end_at] || params[:irm_todo_event][:end_at].blank?
     calendar_id = Irm::Calendar.current_calendar(params[:assigned_to]).id
-
+    return_url = params[:return_url]
     respond_to do |format|
       if @task.update_attributes(params[:irm_todo_event]) &&
         @task.update_attributes(:start_at => start_at, :end_at => end_at, :calendar_id => calendar_id)

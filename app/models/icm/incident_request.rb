@@ -15,7 +15,7 @@ class Icm::IncidentRequest < ActiveRecord::Base
   #加入activerecord的通用方法和scope
   query_extend
   after_create :generate_request_number
-  acts_as_recently_objects
+  acts_as_recently_objects(:title => "self.title")
 
   before_validation_on_create  :setup_priority
   # 查询当天新建的事故单，根据数量生成序列号
