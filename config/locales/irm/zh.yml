@@ -636,6 +636,8 @@ zh:
   label_irm_support_group_add_person: 添加成员
   label_irm_support_group_show: 支持组
   label_irm_support_group_person_name: 人员名称
+  label_action_select_person: 选择支持组成员
+  label_action_new_from_person: 选择加入的支持组
   #=========================end irm support_groups_controller=======================#
   #=========================    irm people_controller=======================#
   label_irm_person: 人员
@@ -704,6 +706,7 @@ zh:
   label_irm_person_delegate_manager: 主管
   label_action_select_roles: 选择角色
   label_action_add_roles: 选择角色
+  label_irm_person_add_to_support_group: 加入支持组
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: 弹性域

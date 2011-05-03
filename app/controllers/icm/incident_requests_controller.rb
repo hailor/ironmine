@@ -125,7 +125,8 @@ class Icm::IncidentRequestsController < ApplicationController
       incident_requests_scope = incident_requests_scope.relate_person(Irm::Person.current.id)
     end
 
-    #incident_requests_scope = incident_requests_scope.match_value("incident_request.name",params[:name])
+    incident_requests_scope = incident_requests_scope.match_value("#{Icm::IncidentRequest.table_name}.request_number",params[:request_number])
+    incident_requests_scope = incident_requests_scope.match_value("#{Icm::IncidentRequest.table_name}.title",params[:title])
 
     incident_requests,count = paginate(incident_requests_scope)
     respond_to do |format|
@@ -149,6 +150,8 @@ class Icm::IncidentRequestsController < ApplicationController
     if !allow_to_function?(:view_all_incident_request)
       incident_requests_scope = incident_requests_scope.relate_person(Irm::Person.current.id)
     end
+    incident_requests_scope = incident_requests_scope.match_value("#{Icm::IncidentRequest.table_name}.request_number",params[:request_number])
+    incident_requests_scope = incident_requests_scope.match_value("#{Icm::IncidentRequest.table_name}.title",params[:title])
     incident_requests,count = paginate(incident_requests_scope)
     respond_to do |format|
       format.json {render :json=>to_jsonp(incident_requests.to_grid_json(return_columns,count,{:date_to_distance=>[:last_request_date]}))}

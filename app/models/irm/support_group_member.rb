@@ -40,6 +40,7 @@ class Irm::SupportGroupMember < ActiveRecord::Base
     where("#{Irm::SupportGroup.view_name}.id = ?",group_id)
   }
 
+
   def self.check_person_exists?(support_group_code,person_id)
     @support_group_member = self.query_by_support_group_code(support_group_code).query_by_person_id(person_id)
     if @support_group_member.blank?

@@ -444,15 +444,17 @@ Ironmine::Application.routes.draw do
     match '/id_flex_segments/:id/show(.:format)' => "id_flex_segments#show", :via => :get
     #support_group_members
     match '/support_group_members(/index)(.:format)' => "support_group_members#index", :via => :get
-    match '/support_group_members/:id/edit(.:format)' => "support_group_members#edit", :via => :get
-    match '/support_group_members/:id(.:format)' => "support_group_members#update", :via => :put
-    match '/support_group_members/:id(.:format)' => "support_group_members#delete", :via => :delete
-    match '/support_group_members/new(.:format)' => "support_group_members#new", :via => :get    
-    match '/support_group_members/create(.:format)' => "support_group_members#create"
+    match '/support_group_members/:id/delete(.:format)' => "support_group_members#delete", :via => :delete
+    match '/support_group_members/:support_group_id/create(.:format)' => "support_group_members#create"
     match '/support_group_members/get_data(.:format)' => "support_group_members#get_data"
-    match '/support_group_members/select_person(.:format)' => "support_group_members#select_person"
+    match '/support_group_members/:support_group_id/select_person(.:format)' => "support_group_members#select_person"
     match '/support_group_members/get_person(.:format)' => "support_group_members#get_person"
     match '/support_group_members/get_options(.:format)' => "support_group_members#get_options",:via=>:get
+    match '/support_group_members/:person_id/new_from_person(.:format)' => "support_group_members#new_from_person",:via=>:get
+    match '/support_group_members/:person_id/get_person_support_group(.:format)' => "support_group_members#get_person_support_group",:via=>:get
+    match '/support_group_members/:person_id/create_from_person(.:format)' => "support_group_members#create_from_person",:via=>:post
+    match '/support_group_members/:id/delete_from_person(.:format)' => "support_group_members#delete_from_person", :via => :delete
+
 
     #locations
     match '/locations(/index)(.:format)' => "locations#index", :via => :get

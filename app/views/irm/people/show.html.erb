@@ -227,7 +227,9 @@
                 <h3 id="id_person_support_group_title"><%=t(:label_irm_person_support_group)%></h3>
               </td>
               <td class="pbButton">
-                <div class="button">&nbsp;</div>
+                <div class="button"><%= link_to t(:label_irm_person_add_to_support_group), "#",
+                                                :onclick=>"navigateToUrl('#{url_for(:controller=>"irm/support_group_members",
+                                                          :action => "new_from_person",:person_id=>@person.id)}');"%></div>
               </td>
               <td class="pbHelp">
               </td>
@@ -237,10 +239,16 @@
         </div>
         <div id="id_support_group" class="pbBody">
           <div id="support_group" class="datatable" style="width:100%;">
+            <div id="id" style="display:none">
+              <%= icon_link_remove({:controller=>"irm/support_group_members",:action=>"delete_from_person",:id=>"{id}",
+                                      :person_id=>@person.id},:confirm => t(:label_are_you_sure) ,
+                                      :method => :delete) %>
+            </div>
           </div>
           <!-- Begin company access table -->
             <%= datatable("support_group",url_for(:controller=>"irm/people",:action=>"get_support_group",:person_id=>@person.id),
-                              [{:key=>"support_group_name",:label=>t(:label_irm_support_group_name),:sortable=>true},
+                              [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"40px"},
+                               {:key=>"support_group_name",:label=>t(:label_irm_support_group_name),:sortable=>true},
                                {:key=>"description",:label=>t(:label_irm_support_group_description),:sortable=>true},
                                {:key=>"status_meaning",:label=>t(:label_irm_support_group_status_code),:sortable=>true,:width=>"80px"}])%>
           <!-- End company access table -->
