@@ -1,26 +1,26 @@
 class Irm::SupportGroupMembersController < ApplicationController
 
   def select_person
-    @return_url=params[:return_url]||request.env['HTTP_REFERER']
-    @person_name = params[:person_name]
-    @support_group_member = Irm::SupportGroupMember.new
-    @support_group_code = params[:support_group_code]
+    @support_group = Irm::SupportGroup.find(params[:support_group_id])
+    @support_group_member = Irm::SupportGroupMember.new(:support_group_code=>params[:support_group_code])
+    @support_group_member.status_code = ""
   end
 
   def create
-    return_url=params[:return_url]
-    support_group_code=params[:support_group_code]
-    person_name = params[:person_name]
-    (params[:irm_support_group_member][:person_id] || []).each {|person_id|
-       Irm::SupportGroupMember.create({:person_id=>person_id,
-                                       :support_group_code=>support_group_code})
-    }
-    flash[:notice] = t(:successfully_updated)
-    if return_url.blank?
-      redirect_to({:action=>"select_person",:support_group_code=>support_group_code,
-                   :person_name=>person_name})
-    else
-      redirect_to(return_url)
+    @support_group = Irm::SupportGroup.find(params[:support_group_id])
+    @support_group_member = Irm::SupportGroupMember.new(params[:irm_support_group_member])
+    respond_to do |format|
+      if(!@support_group_member.status_code.blank?)
+        @support_group_member.status_code.split(",").delete_if{|i| i.blank?}.each do |id|
+          Irm::SupportGroupMember.create(:person_id=>id,:support_group_code=>@support_group.group_code)
+        end
+        format.html { redirect_to({:controller => "irm/support_groups",:action=>"show",:id=>@support_group.id}, :notice => t(:successfully_created)) }
+        format.xml  { render :xml => @support_group_member, :status => :created}
+      else
+        @support_group_member.errors.add(:status_code,"")
+        format.html { render :action => "select_person" }
+        format.xml  { render :xml => @person_role.errors, :status => :unprocessable_entity }
+      end
     end
   end
   
@@ -28,7 +28,7 @@ class Irm::SupportGroupMembersController < ApplicationController
     @support_group_members= Irm::SupportGroupMember.query_wrap_info(I18n::locale,params[:support_group_code])
     @support_group_members,count = paginate(@support_group_members)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(@support_group_members.to_grid_json(['R',:person_name,:company_name,:email_address], count))}
+      format.json {render :json=>to_jsonp(@support_group_members.to_grid_json([:person_name,:company_name,:email_address], count))}
     end
   end
 

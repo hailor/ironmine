@@ -444,13 +444,10 @@ Ironmine::Application.routes.draw do
     match '/id_flex_segments/:id/show(.:format)' => "id_flex_segments#show", :via => :get
     #support_group_members
     match '/support_group_members(/index)(.:format)' => "support_group_members#index", :via => :get
-    match '/support_group_members/:id/edit(.:format)' => "support_group_members#edit", :via => :get
-    match '/support_group_members/:id(.:format)' => "support_group_members#update", :via => :put
     match '/support_group_members/:id(.:format)' => "support_group_members#delete", :via => :delete
-    match '/support_group_members/new(.:format)' => "support_group_members#new", :via => :get    
-    match '/support_group_members/create(.:format)' => "support_group_members#create"
+    match '/support_group_members/:support_group_id/create(.:format)' => "support_group_members#create"
     match '/support_group_members/get_data(.:format)' => "support_group_members#get_data"
-    match '/support_group_members/select_person(.:format)' => "support_group_members#select_person"
+    match '/support_group_members/:support_group_id/select_person(.:format)' => "support_group_members#select_person"
     match '/support_group_members/get_person(.:format)' => "support_group_members#get_person"
     match '/support_group_members/get_options(.:format)' => "support_group_members#get_options",:via=>:get
 
