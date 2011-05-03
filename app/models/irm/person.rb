@@ -200,6 +200,13 @@ class Irm::Person < ActiveRecord::Base
     @current_person = current_person
   end
 
+  def self.accessable_company_ids
+    @accessable_company_ids||[]
+  end
+
+  def self.accessable_company_ids=(company_ids)
+    @accessable_company_ids=company_ids
+  end
 
    #返回匿名用户,一个数据库中只有一个匿名用户
    def self.anonymous

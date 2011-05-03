@@ -8,7 +8,7 @@ class Irm::CompanyAccessesController < ApplicationController
    @person_id = params[:person_id] if params[:person_id]
    @company_access = Irm::CompanyAccess.new
    @return_url=request.env['HTTP_REFERER']
-   @companies= Irm::Company.query_by_status_code("ENABLED").multilingual
+   @companies= Irm::Company.useable.query_by_status_code("ENABLED").multilingual
 
     respond_to do |format|
       format.html # new.html.erb

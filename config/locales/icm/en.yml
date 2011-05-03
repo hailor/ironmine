@@ -126,6 +126,7 @@ en:
   label_icm_my_solved_request: My Solved Requests
   label_icm_save_as_skm: Save As SKM Entry
   label_icm_incident_auto_assign: System Auto Assign
+  label_icm_incident_assign_dashboard: Assigned by Assign DashBoard
   label_icm_incident_request_attachment_list: Attachment List
   label_icm_incident_request_target_system: System
   label_action_assign_dashboard: Incident Request Assign DashBoard

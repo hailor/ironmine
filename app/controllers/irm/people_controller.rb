@@ -31,7 +31,7 @@ class Irm::PeopleController < ApplicationController
 
   # GET /people/1/edit
   def edit
-    @person = Irm::Person.find(params[:id])
+    @person = Irm::Person.query_by_company_id(I18n::locale).query_show_wrap_info(I18n::locale).find(params[:id])
   end
 
   # POST /people
@@ -86,7 +86,7 @@ class Irm::PeopleController < ApplicationController
 
     @people,count = paginate(@people)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(@people.to_grid_json([:login_name,:person_name,:region_name,:email_address,:mobile_phone,:company_name], count))}
+      format.json {render :json=>to_jsonp(@people.to_grid_json([:login_name,:person_name,:region_name,:email_address,:bussiness_phone,:company_name], count))}
     end
   end
 
