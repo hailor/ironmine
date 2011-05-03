@@ -74,7 +74,7 @@ module Irm::SettingHelper
             icon_link = link_to("",{},{:href=>"javascript:void(0)",:real=>"#{e[:menu_code].downcase}",:class=>"NavIconLink NavTreeCol",:id=>"#{e[:menu_code].downcase}_icon"})
             font_link = link_to(e[:name],{:controller=>e[:page_controller],:action=>e[:page_action],:mc=>e[:menu_code],:mi=>e[:menu_entry_id]},{:title=>e[:description],:class=>"setupFolder",:id=>"#{e[:menu_code].downcase}_font"})
             child_div = content_tag(:div,generate_sidebar_menu(e[:menu_code],next_level),{:style=>"display:none;",:class=>"childContainer",:id=>"#{e[:menu_code].downcase}_child"})
-            functions << content_tag(:div,icon_link+font_link+child_div,{:mi=>"#{e[:menu_code].downcase}",:class=>"parent",:id=>"#{e[:menu_code].downcase}"})
+            functions << content_tag(:div,icon_link+font_link+child_div,{:mi=>"#{e[:menu_code].downcase}",:class=>"parent parent_#{level}",:id=>"#{e[:menu_code].downcase}"})
           end
         else
           key = Irm::Permission.url_key(e[:page_action],e[:page_action])

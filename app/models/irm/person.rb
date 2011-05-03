@@ -1,4 +1,5 @@
 require 'paperclip_processors/cropper'
+require 'hz2py'
 include Paperclip
 class Irm::Person < ActiveRecord::Base
 
@@ -166,6 +167,12 @@ class Irm::Person < ActiveRecord::Base
     select("#{Irm::Person.name_to_sql(nil,"manager",'manager_name')}")
   }
 
+  # query title
+  scope :with_title,lambda{|language|
+    joins("LEFT OUTER JOIN #{Irm::LookupValue.view_name} title ON title.lookup_type='IRM_PERSON_TITLE' AND title.lookup_code = #{table_name}.title AND title.language= '#{language}'").
+    select(" title.meaning title_name")
+  }
+
   scope :select_all,lambda{
     select("#{table_name}.*,#{Irm::Person.name_to_sql(nil,table_name,"person_name")}")
   }
@@ -173,11 +180,15 @@ class Irm::Person < ActiveRecord::Base
   def before_save
      #如果password变量值不为空,则修改密码
      self.hashed_password = Irm::Identity.hash_password(self.password) if self.password&&!self.password.blank?
+    if self.changes.keys.include?("first_name")||self.changes.keys.include?("last_name")
+      process_full_name
+    end
   end
 
   def self.list_all
         select_all.
         with_company(I18n.locale).
+        with_title(I18n.locale).
         with_organization(I18n.locale).
         with_department(I18n.locale).
         with_region(I18n.locale).
@@ -196,6 +207,11 @@ class Irm::Person < ActiveRecord::Base
     @current_person = current_person
   end
 
+  def accessable_company_ids
+    return @accessable_company_ids if @accessable_company_ids
+    @accessable_company_ids = company_accesses.collect{|ca| ca.accessable_company_id}
+    return @accessable_company_ids
+  end
 
    #返回匿名用户,一个数据库中只有一个匿名用户
    def self.anonymous
@@ -241,17 +257,32 @@ class Irm::Person < ActiveRecord::Base
    end
 
 
-
+  # allow to access functions?
   def allowed_to?(function_codes)
     return true if function_codes.detect{|fc| functions.include?(fc)}
     return true if Irm::Role.current&&Irm::Role.current.allowed_to?(function_codes)
     return true if Irm::Person.current.login_name.eql?("admin")
     false
   end
+
+  # allow to access report groups ?
+  def allow_to_report_groups?(report_group_codes)
+    return true if report_groups.detect{|rgc| report_group_codes.include?(rgc)}
+    return if Irm::Role.current&&Irm::report_group_codes.include?(Role.current.group_code)
+    false
+  end
+
   # hidden functions ownned by person
   def functions
-    return @functions if @functions
-    @functions = Irm::Function.query_hidden_functions(self.id).collect{|f| f.function_code}
+    return @function_codes if @function_codes
+    @function_codes = Irm::Function.query_hidden_functions(self.id).collect{|f| f.function_code}
+    @report_group_codes = Irm::Role.hidden.collect{|r| r.report_group_code}
+  end
+
+  def report_groups
+    return @report_group_codes if @report_group_codes
+    @function_codes = Irm::Function.query_hidden_functions(self.id).collect{|f| f.function_code}
+    @report_group_codes = Irm::Role.hidden.collect{|r| r.report_group_code}
   end
 
   def hidden_roles
@@ -291,11 +322,17 @@ class Irm::Person < ActiveRecord::Base
   def wrap_person_name
     self[:person_name]
   end
-  
+
+  def process_full_name
+      self.full_name = eval('"' + (PERSON_NAME_FORMATS[:firstname_lastname]) + '"')
+      self.full_name_pinyin= Hz2py.do(self.full_name).downcase.gsub(/\s|[^a-z]/,"")
+  end
   private
   def reprocess_avatar
       avatar.reprocess!
   end
+
+
 end
 
 

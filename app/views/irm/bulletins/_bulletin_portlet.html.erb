@@ -1,5 +1,18 @@
 <div class="bSubBlock">
-<h3 class="lbHeader"><%= t(:label_irm_bulletin) %></h3>
+<h3 class="lbHeader"></h3>
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+  <tbody>
+    <tr>
+      <td class="pbTitle"><h3 class="lbHeader"><%= t(:label_irm_bulletin) %></h3></td>
+      <td id="topButtonRow" class="pbButton">
+        <div class="button"><%= link_to t(:new), :controller => "irm/bulletins", :action => "new"%></div>
+      </td>
+      <td class="pbHelp">
+        <%= link_to t(:display_all), :controller => "irm/bulletins", :action => "index" %>
+      </td>
+    </tr>
+  </tbody>
+</table>
 <div class="lbBody">
   <div id="bulletins_list" class="datatable" style="width:100%">
       <div id="bulletin_title" style="display:none">
@@ -10,7 +23,8 @@
                 [{:key=>"id",:label=>"", :hidden => true},
                  {:key=>"bulletin_title",:label=>t(:label_irm_bulletin_title), :formatter=>"Y.irm.template", :sortable=>true, :width =>"430px"},
                  {:key=>"page_views",:label=>t(:label_irm_bulletin_page_views),:sortable=>true, :width => "40px"},
-                 {:key=>"published_date",:label=>t(:label_irm_bulletin_published_date),:sortable=>true, :width => "130px"}])%>
-
+                 {:key=>"published_date",:label=>t(:label_irm_bulletin_published_date),:sortable=>true, :width => "130px"}],
+                 {:paginator_box=>"bulletinsPaginatorBox"})%>
+        <div id="bulletinsPaginatorBox"></div>
 </div>
 </div>

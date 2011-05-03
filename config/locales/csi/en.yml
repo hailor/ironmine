@@ -1,6 +1,6 @@
 en:
    #========================= start irm regions_controller=======================#
-   label_csi_survey_new: New Survey
+   label_csi_survey_new: Initiate a Survey
    label_csi_survey_info: Survey
    label_csi_survey_company: Company
    label_csi_survey_title: Title

@@ -25,7 +25,7 @@ class Icm::IncidentRequestsController < ApplicationController
     @incident_request = Icm::IncidentRequest.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render :layout => "application_full"}# new.html.erb
       format.xml  { render :xml => @incident_request }
     end
   end
@@ -33,6 +33,10 @@ class Icm::IncidentRequestsController < ApplicationController
   # GET /incident_requests/1/edit
   def edit
     @incident_request = Icm::IncidentRequest.find(params[:id])
+    respond_to do |format|
+      format.html { render :layout => "application_full"}# new.html.erb
+      format.xml  { render :xml => @incident_request }
+    end
   end
 
   # POST /incident_requests
@@ -45,14 +49,23 @@ class Icm::IncidentRequestsController < ApplicationController
       if @incident_request.save
         process_files(@incident_request)
         publish_create_incident_request(@incident_request)
+
+        #add watchers
+        if params[:cwatcher] && params[:cwatcher].size > 0
+          params[:cwatcher].collect{|p| [p[0]]}.uniq.each do |w|
+            watcher = Irm::Person.find(w)
+            @incident_request.person_watchers << watcher
+          end
+        end
+
         #如果没有填写support_group, 插入Delay Job任务
         if @incident_request.support_group_id.nil? || @incident_request.support_group_id.blank?
           Delayed::Job.enqueue(Irm::Jobs::IcmGroupAssignmentJob.new(@incident_request.id))
         end
-        format.html { redirect_to({:controller=>"icm/incident_journals",:action=>"new",:request_id=>@incident_request.id}, :notice => t(:successfully_created)) }
+        format.html { redirect_to({:controller=>"icm/incident_journals",:action=>"new",:request_id=>@incident_request.id,:show_info=>Irm::Constant::SYS_YES}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @incident_request, :status => :created, :location => @incident_request }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :layout => "application_full" }
         format.xml  { render :xml => @incident_request.errors, :status => :unprocessable_entity }
       end
     end
@@ -71,10 +84,10 @@ class Icm::IncidentRequestsController < ApplicationController
     respond_to do |format|
       if @incident_request.save
         publish_create_incident_request(@incident_request)
-        format.html { redirect_to({:controller=>"icm/incident_journals",:action=>"new",:request_id=>@incident_request.id}, :notice => t(:successfully_created)) }
+        format.html { redirect_to({:controller=>"icm/incident_journals",:action=>"new",:request_id=>@incident_request.id,:show_info=>Irm::Constant::SYS_YES}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @incident_request, :status => :created, :location => @incident_request }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :layout => "application_full" }
         format.xml  { render :xml => @incident_request.errors, :status => :unprocessable_entity }
       end
     end      
@@ -90,44 +103,153 @@ class Icm::IncidentRequestsController < ApplicationController
         format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { render :action => "edit", :layout => "application_full" }
         format.xml  { render :xml => @incident_request.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   def get_data
-    incident_requests_scope = Icm::IncidentRequest.list_all.query_by_company_ids(session[:accessable_companies]).order("last_response_date desc,last_request_date desc,weight_value,company_id")
-    #incident_requests_scope = incident_requests_scope.match_value("incident_request.name",params[:name])
+    return_columns = [:request_number,
+                      :company_name,
+                      :title,
+                      :incident_status_name,
+                      :close_flag,
+                      :requested_name,
+                      :need_customer_reply,
+                      :last_response_date]
+    bo = Irm::BusinessObject.where(:business_object_code=>"ICM_INCIDENT_REQUESTS").first
+    incident_requests_scope = eval(bo.generate_query_by_attributes(return_columns,true)).query_by_company_ids(session[:accessable_companies]).order("close_flag ,last_response_date desc,last_request_date desc,weight_value,company_id")
+
     if !allow_to_function?(:view_all_incident_request)
       incident_requests_scope = incident_requests_scope.relate_person(Irm::Person.current.id)
     end
+
+    incident_requests_scope = incident_requests_scope.match_value("#{Icm::IncidentRequest.table_name}.request_number",params[:request_number])
+    incident_requests_scope = incident_requests_scope.match_value("#{Icm::IncidentRequest.table_name}.title",params[:title])
+
     incident_requests,count = paginate(incident_requests_scope)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(incident_requests.to_grid_json([:request_number,:title,:requested_name,:need_customer_reply,
-                                                                          :company_name,:impact_range_name,
-                                                                          :contact_name,:last_response_date,
-                                                                          :priority_name,:incident_status_name,:submitted_date],count,{:date_to_distance=>[:last_response_date]}))}
+      format.json {render :json=>to_jsonp(incident_requests.to_grid_json(return_columns,count,{:date_to_distance=>[:last_response_date]}))}
       format.xml { render :xml => incident_requests }
     end
   end
 
   def get_help_desk_data
-    incident_requests_scope = Icm::IncidentRequest.list_all.query_by_company_ids(session[:accessable_companies]).order("last_request_date desc,last_response_date desc,weight_value,company_id,id")
+    return_columns = [:request_number,
+                      :company_name,
+                      :title,
+                      :incident_status_name,
+                      :close_flag,
+                      :requested_name,
+                      :need_customer_reply,
+                      :last_request_date,
+                      :priority_name]
+    bo = Irm::BusinessObject.where(:business_object_code=>"ICM_INCIDENT_REQUESTS").first
+    incident_requests_scope = eval(bo.generate_query_by_attributes(return_columns,true)).query_by_company_ids(session[:accessable_companies]).order("close_flag ,last_request_date desc,last_response_date desc,weight_value,company_id,id")
     if !allow_to_function?(:view_all_incident_request)
       incident_requests_scope = incident_requests_scope.relate_person(Irm::Person.current.id)
     end
+    incident_requests_scope = incident_requests_scope.match_value("#{Icm::IncidentRequest.table_name}.request_number",params[:request_number])
+    incident_requests_scope = incident_requests_scope.match_value("#{Icm::IncidentRequest.table_name}.title",params[:title])
     incident_requests,count = paginate(incident_requests_scope)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(incident_requests.to_grid_json([:request_number,:company_name,:title,:requested_name,:need_customer_reply,
-                                                                          :urgence_name,:impact_range_name,
-                                                                          :contact_name,:last_request_date,
-                                                                          :priority_name,:incident_status_name,:submitted_date],count,{:date_to_distance=>[:last_request_date]}))}
+      format.json {render :json=>to_jsonp(incident_requests.to_grid_json(return_columns,count,{:date_to_distance=>[:last_request_date]}))}
       format.xml { render :xml => incident_requests }
     end
   end
+
   def save_as_skm
 
+  end
+
+  def get_external_systems
+    external_systems_scope = Uid::ExternalSystem.multilingual.enabled.with_person(params[:requested_by])
+    external_systems = external_systems_scope.collect{|i| {:label=>i[:system_name], :value=>i.external_system_code,:id=>i.id}}
+    respond_to do |format|
+      format.json {render :json=>external_systems.to_grid_json([:label, :value],external_systems.count)}
+    end
+  end
+
+  def get_slm_services
+    requested_by = Irm::Person.current
+    if params[:requested_by] && !params[:requested_by].blank?
+      requested_by = Irm::Person.find(params[:requested_by])
+    end
+
+    #按人员查找
+    r1 = Slm::ServiceMember.where("1=1").query_by_service_person(requested_by).with_service_catalog
+
+    #按部门查找
+    r1 += Slm::ServiceMember.where(:service_person_id=>nil).query_by_service_department(requested_by.department_id).with_service_catalog
+
+    #按组织查找
+    r1 += Slm::ServiceMember.where(:service_person_id=>nil).
+                              where(:service_department_id=>nil).
+                              query_by_service_organization(requested_by.organization_id).with_service_catalog
+
+    #按公司查找
+    r1 += Slm::ServiceMember.where(:service_person_id=>nil).
+                              where(:service_department_id=>nil).
+                              where(:service_organization_id=>nil).
+                              query_by_service_company(requested_by.company_id).with_service_catalog
+    services_scope = Slm::ServiceCatalog.multilingual.enabled.where("external_system_code = ? AND catalog_code IN (?)",
+                                                                    params[:external_system_code], r1.collect(&:catalog_code))
+    services = services_scope.collect{|i| {:label => i[:name], :value => i.catalog_code, :id => i.id}}
+    respond_to do |format|
+      format.json {render :json=>services.to_grid_json([:label, :value],services.count)}
+    end
+  end
+
+
+  def assign_dashboard
+    respond_to do |format|
+      format.html # index.html.erb
+    end
+  end
+
+  def assignable_data
+    return_columns = [:request_number,
+                      :company_name,
+                      :title,
+                      :incident_status_name,
+                      :close_flag,
+                      :requested_name,
+                      :last_request_date,
+                      :priority_name]
+    bo = Irm::BusinessObject.where(:business_object_code=>"ICM_INCIDENT_REQUESTS").first
+    incident_requests_scope = eval(bo.generate_query_by_attributes(return_columns,true)).query_by_company_ids(session[:accessable_companies]).order("created_at")
+    incident_requests_scope = incident_requests_scope.where("support_group_id IS NULL AND support_person_id IS NULL")
+    incident_requests,count = paginate(incident_requests_scope)
+    respond_to do |format|
+      format.json {render :json=>to_jsonp(incident_requests.to_grid_json(return_columns,count))}
+      format.xml { render :xml => incident_requests }
+    end
+  end
+
+  def assign_request
+
+    incident_requests = []
+    params[:incident_request_ids].split(",").each do |icid|
+      incident_requests << Icm::IncidentRequest.query(icid).first
+    end
+    incident_requests.compact!
+    incident_requests.each do |req|
+      if params[:support_group_id].present?
+        if params[:support_person_id]
+          Delayed::Job.enqueue(Irm::Jobs::IcmGroupAssignmentJob.new(req.id,{:support_group_id=>params[:support_group_id],:support_person_id=>params[:support_person_id],:assign_dashboard=>true,:assign_dashboard_operator=>Irm::Person.current.id}))
+        else
+          Delayed::Job.enqueue(Irm::Jobs::IcmGroupAssignmentJob.new(req.id,{:support_group_id=>params[:support_group_id],:assign_dashboard=>true,:assign_dashboard_operator=>Irm::Person.current.id}))
+        end
+      else
+        Delayed::Job.enqueue(Irm::Jobs::IcmGroupAssignmentJob.new(req.id,{}))
+      end
+    end
+    @count = incident_requests.size
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   private

@@ -1,7 +1,7 @@
 class Irm::Calendar < ActiveRecord::Base
   set_table_name :irm_calendars
   validates_presence_of :name
-  has_many :wf_tasks
+  has_many :todo_events
 
   query_extend
 

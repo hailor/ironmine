@@ -17,20 +17,30 @@
       border-left: 0px;
       border-right: 0px;
   }
-  div.reply{
-      margin-bottom: 2px;
 
-      padding: 0 0 1em 2em;
-      height: auto;
-      background: url("/images/arrow_out_longer.png") no-repeat scroll 0 0 transparent;
+  div.reply div.replyHeader[submit_by="<%= @incident_request.submitted_by%>"]{
+      /*提单人回复的*/
+      background-color: #ffebeb !important;
   }
+
   div.reply div.replyHeader{
-
+      background-color: #efefef;
+      padding: 3px 0 0 3px;
+      height: 28px;
+      -moz-border-radius: 0 4px 4px 0;
+      -webkit-border-top-right-radius: 4px;
+      -webkit-border-bottom-right-radius: 4px;
   }
+
+  div.reply div.replyHeader[submit_by="<%= Irm::Person.current.id%>"]{
+      /*自己回复的*/
+      background-color: #ddeef4 !important;
+  }
+
+
   div.reply div.replyHeaderSection{
     padding: 5px 5px 5px 0px;
     min-height: 40px;
-    border-bottom: 1px solid #CCCCCC;
   }
   div.reply h3{
       font-weight:bold;
@@ -59,21 +69,17 @@
     line-height: 1.6em;
     margin-top: 5px;  
     margin-right: 5px;
-    overflow: hidden;
-    position: relative;
-    border-top: 2px solid #E3EEF8;  
+    border-top: 2px solid #efefef;
   }
   div.fileList div.fileItem{
     color: #888888;
     display: inline;
     padding-bottom: 5px;
-    float: left;
+    text-align:left;
   }
 
   div.fileList div.fileItem div.fileIcon{
     background-color: white;
-    border: 1px solid #D0D0D0;
-    float: left;
     line-height: 0;
     margin-right: 0.7em;
     padding: 2px;
@@ -84,39 +90,31 @@
     float: left;
     vertical-align: top;
   }
-
-  div.fileList div.fileItem .fileInfo{
-      width: 100px;
-      overflow-x: hidden;
-      float:left;
-      white-space: nowrap;
-  }
-
-
 </style>
 <form>
-<div id="ep" class="bPageBlock">
+<div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
           <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_incident_request) %></h2></td>
           <td id="topButtonRow" class="pbButton">
-            <div class="button"><%= link_to t(:label_icm_incident_journal_back_to_request_list), {:controller=>"icm/incident_requests",:action => "index"}%></div>
+              <%if !@incident_request.close? && allow_to_function?(:reply_incident_request)%>
+                    <div class="button"><a href="#reply"><%=t(:label_icm_incident_journal_new)%></a></div>
+              <% end %>
           </td>
           <td class="pbHelp">
-            <%if @incident_request[:close_reason_code].nil? %>
-              <%if allow_to_function?(:reply_incident_request)%>
-                    <div class="grayButton"><a href="#reply"><%=t(:label_icm_incident_journal_new)%></a></div>
+              <div class="grayButton"><%= link_to t(:label_icm_incident_journal_back_to_request_list), {:controller=>"icm/incident_requests",:action => "index"}%></div>
+              <%if !@incident_request.close? %>
+                <% if current_person?(@incident_request.support_person_id) %>
+                      <div class="grayButton"><%= link_to t(:pass), {:action => "edit_pass"}%></div>
+                <% end %>
+                <% if current_person?(@incident_request.support_person_id)||current_person?(@incident_request.requested_by) %>
+                  <div class="grayButton"><%= link_to t(:close), {:action => "edit_close"}%></div>
+                <% end %>
+                <div class="grayButton"><%= link_to t(:edit), {:controller=>"icm/incident_requests",:action => "edit", :id => @incident_request.id}%></div>
               <%end%>
-              <% if current_person?(@incident_request.support_person_id) %>
-                    <div class="grayButton"><%= link_to t(:pass), {:action => "edit_pass"}%></div>
-              <% end %>
-              <div class="grayButton"><%= link_to t(:close), {:action => "edit_close"}%></div>
-              <div class="grayButton"><%= link_to t(:edit), {:controller=>"icm/incident_requests",:action => "edit", :id => @incident_request.id}%></div>
-            <%else%>
               <div class="grayButton"><%= link_to t(:label_icm_save_as_skm), {:controller=>"skm/entry_headers",:action => "new_from_icm_request", :request_id => @incident_request.id}%></div>
-            <%end%>
           </td>
         </tr>
       </tbody>
@@ -124,60 +122,57 @@
   </div>
 
   <div class="pbBody">
-    <div class="pbSubheader tertiaryPalette first">
-      <h3><%=@incident_request[:title]%></h3>(<a href="javascript:void(0)" id="showMore"><%= t(:label_icm_incident_more_info) %></a>)
+    <div class="pbSubheader tertiaryPalette first" style="background-color:#aeaeae;padding-left:15px;">
+      <h3>(<%= @incident_request[:incident_status_name] %>)<%=@incident_request[:title]%></h3>
+      <div style="margin-left: 15px; display:inline;">(<a href="javascript:void(0)" id="showMore"><%= t(:label_icm_incident_more_info) %></a>)</div>
     </div>
-    <div class="pbSubsection hidden" id="incidentDetail">
+    <div class="pbSubsection <%="hidden" unless Irm::Constant::SYS_YES.eql?(params[:show_info])%>" id="incidentDetail">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_service_code)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:service_name] %></div></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_service_code)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:service_name] %></div></td>
+              <td class="label3Col empty">&nbsp;</td>
+              <td class="data3Col empty">&nbsp;</td>
+              <td class="label3Col empty">&nbsp;</td>
+              <td class="data3Col empty">&nbsp;</td>
             </tr>
             <tr>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_requested_by)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:requested_name] %></div></td>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_contact)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:contact_name] %>(<%= @incident_request[:contact_number] %>)</div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_requested_by)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:requested_name] %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_contact)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:contact_name] %>(<%= @incident_request[:contact_number] %>)</div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_submitted_by)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:submitted_name] %></div></td>
             </tr>
             <tr>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_incident_status_code)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:incident_status_name] %></div></td>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_incident_phase_code)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:incident_phase_name] %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_incident_status_code)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:incident_status_name] %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_incident_phase_code)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:incident_phase_name] %></div></td>
             </tr>
             <tr>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_submitted_by)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:submitted_name] %></div></td>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_submitted_date)%></label></td>
-              <td class="dataCol"><div><%= format_date(@incident_request[:submitted_date]) %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_submitted_date)%></label></td>
+              <td class="data3Col"><div><%= format_date(@incident_request[:submitted_date]) %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_request_type_code)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:request_type_name] %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_report_source_code)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:report_source_name] %></div></td>
             </tr>
 
             <tr>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_urgence_code)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:urgence_name] %></div></td>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_impact_range_code)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:impact_range_name] %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_urgence_code)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:urgence_name] %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_impact_range_code)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:impact_range_name] %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_priority)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:priority_name] %></div></td>
             </tr>
             <tr>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_priority)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:priority_name] %></div></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_request_type_code)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:request_type_name] %></div></td>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_report_source_code)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:report_source_name] %></div></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_support_group)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:support_group_name] %></div></td>
-              <td class="labelCol"><label ><%=t(:label_icm_incident_request_support_person)%></label></td>
-              <td class="dataCol"><div><%= @incident_request[:support_person_name] %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_support_group)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:support_group_name] %></div></td>
+              <td class="label3Col"><label ><%=t(:label_icm_incident_request_support_person)%></label></td>
+              <td class="data3Col"><div><%= @incident_request[:support_person_name] %></div></td>
             </tr>
         </tbody>
       </table>
@@ -186,25 +181,28 @@
   </div>
 </div>
 </form>
-<div id="histories" class="bEditBlock bPageBlock">
-  <div class="pbHeader">
+<div id="histories">
+  <div style="padding: 0 0 10px 0; font-weight: bold;">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_icm_incident_journal_list)%></h2></td>
+          <td><h2 style="font-size: 18px;"><%=t(:label_icm_incident_journal_list)%>&nbsp;(<%= journals_size(@incident_request)+1%>)</h2></td>
         </tr>
       </tbody>
     </table>
   </div>
   <div class="pbBody">
     <div class="reply">
-     <div id="journal_0" class="replyHeader">
-       <h3><%= @incident_request[:submitted_name]  %> <%= t(:label_icm_submit_title,:message=>distance_of_time_in_words(Time.now, @incident_request[:submitted_date])) %></h3>
+     <div id="journal_0" class="replyHeader" submit_by="<%= @incident_request.submitted_by%>">
+       <div style="float:left"><img width="25" height="25" alt="" src="<%= person_avatar(@incident_request.submitted_by) %>"></div>
+       <div style="float:left; padding:5px 0 0 5px;">
+         <h3><%= @incident_request[:submitted_name]  %></h3>
+            <span style="color:#666666;font-style:italic;">
+              <%= t(:label_icm_submit_title,:message=>distance_of_time_in_words(Time.now, @incident_request[:submitted_date])) %>
+            </span>
+       </div>
      </div>
      <div class="replyHeaderSection">
-       <div class="avatar">
-         <img width="30" height="30" alt="" src="<%= person_avatar(@incident_request.submitted_by) %>">
-       </div>
        <div class="message">
          <% prepare_request_files(@incident_request)%>
          <%= raw process_message(@incident_request[:summary])  %>
@@ -223,20 +221,28 @@
       <tbody>
         <tr>
           <td class="pbTitle">
-            <h2 class="mainTitle"><%=t(:label_icm_incident_journal_new)%></h2>
-            <a href="javascript:void(0)" id="applySKM"><%= t(:apply_skm) %></a>
+            <div style="float:left;"><h2 class="mainTitle"><%=t(:label_icm_incident_journal_new)%></h2></div>
+            <%if allow_to_function?(:view_skm_entries) %>
+                <div style="float:left;padding-top:5px; margin-left:20px;"><a href="javascript:void(0)" id="applySKM"><%= t(:apply_skm) %></a></div>
+            <% end %>
           </td>
           <td class="pbButton">
-            <div class="button"><%= f.submit t(:save)%></div>
+
+          </td>
+          <td class="pbHelp">
+
           </td>
         </tr>
       </tbody>
     </table>
   </div>
   <div class="pbBody">
+    <%if allow_to_function?(:view_skm_entries) %>
     <div id="linktoSKM" class="hidden">
-      <div class="pbSubheader tertiaryPalette first">
-        <input id="searchSKMText" type="text" size="35"/><a id="searchSKM" href="javascript:void(0)"><%= t(:search) %></a>
+      <div class="pbSubsection">
+        <div style="padding:5px 0 5px 5px;"><input id="searchSKMText" type="text" size="35"/><div class="button" style="float:none !important; display:inline"><a id="searchSKM" href="javascript:void(0)"><%= t(:search) %></a></div></div>
+      </div>
+      <div class="pbSubsection">
         <div id="entry_headers_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
             <%= link_to(t(:apply),{ :action=>"apply_entry_header",:id=>"{id}"},:remote=>true) %>
@@ -246,33 +252,51 @@
           </div>
         </div>
         <%= datatable("entry_headers_list",url_for(:action=>"get_entry_header_data",:format=>"json"),
-                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"30px"},
+                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50px"},
                    {:key=>"full_title",:label=>t(:label_skm_entry_header_title),:sortable=>true, :searchable => true,:formatter=>"Y.irm.template"},
                    {:key=>"published_date_f",:label=>t(:label_skm_entry_header_published_date),:sortable=>true, :width => "180px"}],
                    {:row_perpage=>5,:paginator_box=>"entryPaginator"})%>
         <div id="entryPaginator"></div>
       </div>
     </div>
+
+    <script type="text/javascript">
+      GY.use('irm','node', function(Y) {
+        Y.one("#applySKM").on("click",function(e){
+            if(Y.one("#linktoSKM").hasClass("hidden")){
+              Y.one("#linktoSKM").removeClass("hidden")
+            }else{
+              Y.one("#linktoSKM").addClass("hidden")
+            }
+        });
+
+        Y.one("#searchSKM").on("click",function(e){
+            var datasource = Y.irm.entry_headers_listDatatable.datasource;
+            datasource.query({entry_title:Y.one("#searchSKMText").get("value")});
+        });
+      })
+    </script>
+    <% end %>
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <td class="labelCol"><label for="incident_request_incident_status_code"><%=t(:label_icm_incident_reply_incident_status_code)%></label></td>
-              <td class="dataCol">
-                <%=f.blank_select :incident_status_code,available_request_status_code,
-                                                    {},{:id=>"incident_request_incident_status_code"}%>
-              </td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-            <tr>
-              <%= fields_for @incident_journal,:as=>"incident_journal",:normal=>true do |sub_f|%>
+              <%= fields_for @incident_journal,:as=>"incident_journal",:builder => LabellingFormBuilder,:normal=>true do |sub_f|%>
                 <%= sub_f.hidden_field(:incident_request_id) %>    
               <td class="dataCol" colspan="4" width="100%">
-                <%= sub_f.text_area :message_body ,:id=>"msgEditor",:style=>"display:none;"%>
+                <%= sub_f.text_area :message_body ,:id=>"msgEditor",:value=>"  ",:required=>true,:style=>"display:none;"%>
               </td>
               <% end%>
             </tr>
+            <% unless Irm::Role.current&&Irm::Role.current.service_role_type.eql?("CUSTOMER")%>
+            <tr>
+              <td class="dataCol">
+                <label for="incident_request_incident_status_code"><%=t(:label_icm_incident_reply_incident_status_code)%></label>
+                <%=f.blank_select :incident_status_code,available_request_status_code,
+                                                        {},{:id=>"incident_request_incident_status_code"}%>
+              </td>
+            </tr>
+            <% end %>
             <tr>
               <td class="dataCol" colspan="4" width="100%">
 
@@ -343,8 +367,8 @@ GY.use('irm','node','substitute','yui2-editor', function(Y) {
     });
     editor.render();
     Y.irm.setAttribute("journalMsgEditor",editor,"Editor");
-    Y.one("#new_icm_incident_reply").on("submit",function(){
-      editor.saveHTML();    
+    Y.all("#new_icm_incident_reply input[type=submit]").on("click",function(){
+      editor.saveHTML();
     });
 
     Y.one("#fileButtons #addButton").on('click',function(){
@@ -359,19 +383,6 @@ GY.use('irm','node','substitute','yui2-editor', function(Y) {
         Y.log(this.getAttribute("delete_ref"));
         Y.one("#"+this.getAttribute("delete_ref")).remove();
     },'.deleteAttach') ;
-    Y.one("#applySKM").on("click",function(e){
-        if(Y.one("#linktoSKM").hasClass("hidden")){
-          Y.one("#linktoSKM").removeClass("hidden")
-        }else{
-          Y.one("#linktoSKM").addClass("hidden")
-        }
-    });
-
-    Y.one("#searchSKM").on("click",function(e){
-        var datasource = Y.irm.entry_headers_listDatatable.datasource;
-        datasource.query({entry_title:Y.one("#searchSKMText").get("value")});
-    });
-
 });
 </script>
 <%end%>
@@ -388,5 +399,7 @@ GY.use('irm','node','substitute','yui2-editor', function(Y) {
 </script>
 
 <% content_for :sidebar do%>
-    <%= render :partial =>"/irm/watchers/sidebar_watcher_list", :locals => {:watchable => @incident_request} %>
+    <%= render :partial =>"/irm/watchers/sidebar_watcher_list",
+               :locals => {:watchable => @incident_request, :editable => @incident_request[:close_reason_code].nil?} %>
+    <%= render :partial =>"/icm/incident_requests/sidebar_attachment_list"%>
 <% end %>

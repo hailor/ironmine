@@ -1,18 +1,17 @@
 <%= app_title %>
+<%= view_filter("SKM_ENTRY_HEADERS_INDEX","SKM_ENTRY_HEADERS","entry_headers_list") %>
 <div class="bOverviewSearch">
   <div>
     <div class="pbSearch">
-      <%= form_tag("/entry_headers/index_search", :method => :post) do %>
-        <%= text_field_tag "search_value", "", :size => 30 %>
-        <%= submit_tag t(:label_skm_entry_header_search_by_title), :class => "btn" %>
-      <% end %>
+
     </div>
   </div>
 </div>
-<%= view_filter("SKM_ENTRY_HEADERS_INDEX_A","entry_headers_list") %>
+<% #view_filter("SKM_ENTRY_HEADERS_INDEX_A","entry_headers_list") %>
 <%= render "data_grid" %>
-
+<% if allow_to_function?(:view_reports) %>
 <%= render "/irm/report_lists/report_category",{:category_code=>"SERVICE_KNOWLEDGE_MANAGE",:options=>{}} %>
+<% end %>
 <%= content_for :sidebar do%>
     <%= render "skm/entry_headers/sidebar_navigate_menu"%>
     <%= render :partial =>"/irm/common/recently_objects" %>

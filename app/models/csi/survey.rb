@@ -2,11 +2,13 @@ class Csi::Survey < ActiveRecord::Base
   set_table_name :csi_surveys
 
   query_extend
+  acts_as_recently_objects(:title => "title",
+                           :target_controller => "csi/surveys")
 
   validates_presence_of :title
   validates_uniqueness_of :title
 
-  has_many :wf_tasks, :as => :source
+  has_many :todo_events, :as => :source
   has_many :survey_subjects
   has_many :survey_ranges
   scope :query_by_person_id,lambda{|person_id| where(:person_id=>person_id)}
@@ -90,6 +92,6 @@ class Csi::Survey < ActiveRecord::Base
   private
   def generate_survey_code
     self.survey_code = "CSI"+ 1000000.to_s + (id % 1000000).to_s
-    self.update_attribute(:survey_code,self.survey_code)
+    self.update_attribute(:survey_code, self.survey_code)
   end
 end

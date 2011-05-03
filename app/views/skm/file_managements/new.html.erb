@@ -1,1 +1,5 @@
 <%= render 'new_form'%>
+<%= content_for :sidebar do%>
+    <%= render "skm/entry_headers/sidebar_navigate_menu"%>
+    <%= render :partial =>"/irm/common/recently_objects" %>
+<% end -%>

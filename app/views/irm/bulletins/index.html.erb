@@ -1,0 +1,33 @@
+<%= app_title %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_bulletin) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:controller => "irm/bulletins", :action => "new"}%></div>
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="bulletins_list" class="datatable" style="width:100%">
+          <div id="bulletin_title" style="display:none">
+            <%= link_to("{bulletin_title}", {:controller => "irm/bulletins", :action => "show", :id => "{id}"})%>
+          </div>
+        </div>
+          <%= datatable("bulletins_list",url_for(:controller => "irm/bulletins", :action=>"get_data",:format=>"json"),
+                        [{:key=>"id",:label=>"", :hidden => true},
+                         {:key=>"bulletin_title",:label=>t(:label_irm_bulletin_title), :formatter=>"Y.irm.template", :sortable=>true, :width =>"430px"},
+                         {:key=>"page_views",:label=>t(:label_irm_bulletin_page_views),:sortable=>true, :width => "40px"},
+                         {:key=>"published_date",:label=>t(:label_irm_bulletin_published_date),:sortable=>true, :width => "130px"}],
+                         {:paginator_box=>"bulletinsPaginatorBox"})%>
+        <div id="bulletinsPaginatorBox"></div>
+      </div>
+    </div>
+</div>

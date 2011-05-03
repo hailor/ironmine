@@ -100,16 +100,20 @@ zh:
   common_report: 常用报表
   go_to_report: 转至报表
   tool: 工具
-  new_task: 创建任务
-  my_task: 我的任务
+  new_event: 创建事件
+  my_event: 我的事件
   my_all_count: 我的一览表
-  label_irm_no_task: 没有任务
+  label_irm_no_event: 没有事件
   find: 查找
   my_view: 我的视图
   calendar_task: 工作日历
   remember_user_name: 记住用户名
   no_account: 没有账户
   label_cancel_confirm: 数据没有保存，您确定要取消吗？
+  all: 全部
+  search_options: 搜索选项
+  input_keyword_you_want_to_search: 请输入你要搜索的关键词
+  display_all: 全部显示
   #=========================end usual custom=======================#
   #=========================    irm lookup_types_controller=====================#
   label_lookup_types: 快速编码类型
@@ -167,11 +171,11 @@ zh:
   label_irm_language_new: 创建语言
   label_irm_language_edit: 编辑语言
   label_irm_language_list: 语言列表
-  label_irm_language_language_code: 语言编码
+  label_irm_language_language_code: 语言
   label_irm_language_info: 语言信息
   label_irm_language_description: 描述
   label_irm_language_installed_flag: 是否安装
-  label_irm_language_status_code: 状态编码
+  label_irm_language_status_code: 状态
   label_irm_language_show: 显示语言
   #=========================    irm languages_controller=======================#
   #=========================    irm common_controller=======================#
@@ -264,7 +268,7 @@ zh:
   #=========================    irm identities_controller=======================#
   label_irm_identity_new: 新建帐号
   label_irm_identity_edit: 编辑帐号
-  label_irm_identity_login_name: 登陆用户名
+  label_irm_identity_login_name: 登陆名
   label_irm_identity_password: 密码
   label_irm_identity_password_confirmation: 确认密码
   label_irm_identity_full_name: 姓名
@@ -692,6 +696,8 @@ zh:
   label_irm_support_group_add_person: 添加成员
   label_irm_support_group_show: 支持组
   label_irm_support_group_person_name: 人员名称
+  label_action_select_person: 选择支持组成员
+  label_action_new_from_person: 选择加入的支持组
   #=========================end irm support_groups_controller=======================#
   #=========================    irm people_controller=======================#
   label_irm_person: 人员
@@ -759,6 +765,8 @@ zh:
   label_irm_person_approve_request_mail: 审批邮件通知
   label_irm_person_delegate_manager: 主管
   label_action_select_roles: 选择角色
+  label_action_add_roles: 选择角色
+  label_irm_person_add_to_support_group: 加入支持组
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: 弹性域
@@ -867,6 +875,7 @@ zh:
   label_irm_report_group_edit: 编辑报表组
   label_irm_report_favorite_flag: 是否常用
   label_irm_report_report_purpose:  报表用途
+  label_irm_report_category: 报表分类
   #========================= end irm report_groups ===================================
   #========================= irm report_group_members ===================================
   label_irm_report_group_member_list: 报表
@@ -918,38 +927,37 @@ zh:
   label_irm_watcher_list: 跟踪者列表
   #======================== end watcher ======================
   #======================== calendar tasks====================
-  label_irm_wf_task: 任务
-  label_irm_wf_task_new: 创建任务
-  label_irm_wf_task_edit: 编辑任务
-  label_irm_wf_task_start_at: 开始日期
-  label_irm_wf_task_end_at: 结束日期
-  label_irm_wf_task_color: 显示颜色
-  label_irm_wf_task_name: 任务名称
+  label_irm_todo_event: 事件
+  label_irm_todo_event_new: 创建事件
+  label_irm_todo_event_edit: 编辑事件
+  label_irm_todo_event_start_at: 开始日期
+  label_irm_todo_event_end_at: 结束日期
+  label_irm_todo_event_color: 显示颜色
+  label_irm_todo_event_name: 事件名称
   label_irm_wf_relation_object: 相关项
-  label_irm_wf_task_location: 地点
-  label_irm_wf_task_percent_complete: 完成度
-  label_irm_wf_task_recurrence: 周期
-  label_irm_wf_task_recurrence_new: 创建事件的重复序列
-  label_irm_wf_task_recurrence_frequency: 频率
-  label_irm_wf_task_recurrence_every_weekday: 每个工作日
-  label_irm_wf_task_recurrence_every: 每
-  label_irm_wf_task_recurrence_day: 天
-  label_irm_wf_task_recurrence_daily: 每天
-  label_irm_wf_task_recurrence_weekly: 每周
-  label_irm_wf_task_recurrence_monthly: 每月
-  label_irm_wf_task_recurrence_yearly: 每年
-  label_irm_wf_task_recurrence_every_week: 每 %{m} 个星期重复
-  label_irm_wf_task_recurrence_day_of_every_month: 在每 %{m} 个月的第 %{n} 天
-  label_irm_wf_task_recurrence_weekday_of_every_month: 在每 %{m} 个月的第 %{n}
-  label_irm_wf_task_assigned_to: 分配给
-  label_irm_wf_task_recurrence_edit: 编辑重复序列
-  label_irm_wf_task_priority: 优先级
-  label_irm_wf_task_task_status: 任务状态
-  label_irm_wf_task_mail: 电子邮件
-  label_irm_wf_task_phone: 联系电话
-
+  label_irm_todo_event_location: 地点
+  label_irm_todo_event_percent_complete: 完成度
+  label_irm_todo_event_recurrence: 周期
+  label_irm_todo_event_recurrence_new: 创建事件的重复序列
+  label_irm_todo_event_recurrence_frequency: 频率
+  label_irm_todo_event_recurrence_every_weekday: 每个工作日
+  label_irm_todo_event_recurrence_every: 每
+  label_irm_todo_event_recurrence_day: 天
+  label_irm_todo_event_recurrence_daily: 每天
+  label_irm_todo_event_recurrence_weekly: 每周
+  label_irm_todo_event_recurrence_monthly: 每月
+  label_irm_todo_event_recurrence_yearly: 每年
+  label_irm_todo_event_recurrence_every_week: 每 %{m} 个星期重复
+  label_irm_todo_event_recurrence_day_of_every_month: 在每 %{m} 个月的第 %{n} 天
+  label_irm_todo_event_recurrence_weekday_of_every_month: 在每 %{m} 个月的第 %{n}
+  label_irm_todo_event_assigned_to: 分配给
+  label_irm_todo_event_recurrence_edit: 编辑重复序列
+  label_irm_todo_event_priority: 优先级
+  label_irm_todo_event_event_status: 事件状态
+  label_irm_todo_event_mail: 电子邮件
+  label_irm_todo_event_phone: 联系电话
   label_action_edit_recurrence: 编辑重复序列
-
+  label_action_my_events_index: 我的事件
   recurrence_occurs: Occurs
   recurrence_byday: on day %{m}
   recurrence_byday_week: on %{m}
@@ -976,7 +984,8 @@ zh:
   label_irm_object_attribute_name: 名称
   label_irm_object_attribute_attribute_name: 属性名
   label_irm_object_attribute_attribute_type: 属性类型
-  label_irm_object_attribute_approval_page_field_flag: 审批字段
+  label_irm_object_attribute_approval_page_field_flag: 审批
+  label_irm_object_attribute_filter_flag: 过滤
   label_irm_object_attribute_relation_bo_code: 关联BO
   label_irm_object_attribute_relation_column: 关联列
   label_irm_object_attribute_relation_table_alias_name: 关联表别名
@@ -1019,3 +1028,27 @@ zh:
   label_irm_list_of_value_edit: 编辑值列表
   label_irm_list_of_value_test_information: 值列表测试结果
   #======================== end list of values====================
+  #======================== wf settings====================
+  label_irm_wf_setting_new: 工作流设置
+  label_irm_wf_setting_default_workflow_person: 工作流默认审批人
+  label_irm_wf_setting_email_approval_flag:  启用电子邮件审批
+  #======================== end wf settings====================
+  #======================== wf rules====================
+  label_rule_filter_clause_and: 和
+  label_rule_filter_clause_or: 或
+  label_irm_wf_rule_list: 工作流规则
+  label_irm_wf_rule_new: 新建工作流规则
+  label_irm_wf_rule_edit: 编辑工作流规则
+  label_irm_wf_rule_bo_code: 业务对像
+  label_irm_wf_rule_name: 名称
+  label_irm_wf_rule_rule_code: 编码
+  label_irm_wf_rule_evaluate_criteria_rule: 评估规则
+  label_irm_wf_rule_evaluate_rule_mode: 评估方式
+  label_irm_wf_rule_status_code: 状态
+  label_irm_wf_rule_evaluation_criteria: 评估规则
+  label_irm_wf_rule_filter: 评估过滤规则
+  label_irm_wf_rule_select_bo: 选择工作流规则业务对像
+  label_irm_wf_rule_config: 设置工作流规则
+  label_irm_wf_rule_description: 描述
+  label_irm_wf_rule_active: 启用
+  #========================end wf rules====================

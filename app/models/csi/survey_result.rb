@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class Csi::SurveyResult < ActiveRecord::Base
   set_table_name :csi_survey_results
+  belongs_to :survey_subject, :foreign_key => "subject_id"
 
   validates_presence_of :subject_result,:if =>Proc.new { |a|
     (Csi::SurveySubject.query_by_subject_id(a.subject_id).first.required_flag=="Y")}
@@ -33,4 +34,7 @@ class Csi::SurveyResult < ActiveRecord::Base
                                                      "#{table_name}.person_id = ?",
                                                      survey_id,person_id)}
 
+  acts_as_recently_objects(:title => "title",
+                         :target_controller => "csi/surveys",
+                         :target => "survey_subject.survey")
 end

@@ -1,4 +1,4 @@
-<%= app_title %>
+<%= app_title({:description => t(:new)}) %>
 <%= form_for(@entry_header,:url=>{:action=>"new"},:builder => LabellingFormBuilder, :html => {:name => "new_skm_entry_header"}) do |f| %>
 <div class="bWizardBlock bDetailBlock">
     <div class="pbWizardTitle tertiaryPalette">
@@ -65,3 +65,8 @@
   }        
 </script>
 <% end %>
+
+<%= content_for :sidebar do%>
+    <%= render "skm/entry_headers/sidebar_navigate_menu"%>
+    <%= render :partial =>"/irm/common/recently_objects" %>
+<% end -%>

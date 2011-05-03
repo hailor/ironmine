@@ -259,6 +259,40 @@ module ApplicationHelper
     javascript_tag(script)
   end
 
+  def autocomplete(id,source_url,columns,options={})
+    columns_conf = []
+    data_fields = []
+    return_tos = []
+    columns.each do |c|
+      data_fields << %Q("#{c[:key]||c[:field]}")
+      return_tos << %Q(#{c[:key]||c[:field]}:"#{c[:return_to]}")  if c[:return_to]&&!"#{c[:return_to]}".eql?("##{id}")
+      next if c[:hidden]
+      column = "{"
+      c.each do |key,value|
+        if(!key.to_s.eql?("width"))
+          column << %Q(#{key.to_s}:"#{value}",)
+        else
+          column << %Q(#{key.to_s}:#{value},)
+        end
+      end
+      columns_conf << column.chop
+      columns_conf << "}"
+    end
+    script = %Q(
+         GY.use("irmac","datasource-get", "datasource-jsonschema",function(Y){
+         var #{id}ACDS = new Y.DataSource.Get({source:"#{source_url}"}).plug(Y.Plugin.DataSourceJSONSchema, {
+                             schema: {
+                               metaFields: {numRows:"numRows"},
+                               resultListLocator: "items",
+                               resultFields: [#{data_fields.join(",")}]
+                    }
+          })
+         Y.one("##{id}").plug(Y.irmac.AutoComplete,{zIndex:1000,inputNode:"##{id}",source:#{id}ACDS,returnValues:{#{return_tos.join(",")}},displayConfigs:[#{columns_conf.join(",")}]});
+         });
+    )
+    javascript_tag(script)
+  end
+
   def tabview(id, srcs = {})
     script = %Q(
       GY.use("tabview", "gallerywidgetio", "async-queue", function(Y) {
@@ -340,11 +374,11 @@ module ApplicationHelper
   #button，而id_cal是日历显示的ID，最好不一致
   def calendar_view(id_text_field,id_button,id_cal)
     script = %Q(
-       GY.use( 'yui2-calendar','yui2-container',function(Y) {
+       GY.use( 'yui2-calendar','yui2-container','calendarlocalization#{I18n.locale.to_s}',function(Y) {
             var YAHOO = Y.YUI2;
             var Event = YAHOO.util.Event,Dom = YAHOO.util.Dom;
              YAHOO.util.Event.onDOMReady(function () {
-                show_irm_calendar(YAHOO,Event,Dom,"#{id_button}","#{id_text_field}","#{id_cal}");
+                show_irm_calendar(YAHOO,Event,Dom,"#{id_button}","#{id_text_field}","#{id_cal}", yui_calendar_custom_cfg);
              });
        });
     )

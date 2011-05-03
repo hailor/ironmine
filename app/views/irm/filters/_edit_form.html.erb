@@ -1,7 +1,9 @@
 <%= setting_title %>
-<%= form_for(@view_filter,:url=>{:action=>"update",:pca=>params[:pca]},:builder => LabellingFormBuilder) do |f| %>
+<%= form_for(@rule_filter,:url=>{:action=>"update",:pca=>params[:pca]},:builder => LabellingFormBuilder) do |f| %>
     <%= back_url_hidden_field_tag %>
     <%= f.hidden_field(:filter_type) %>
+    <%= f.hidden_field(:source_code) %>
+    <%= f.hidden_field(:bo_code) %>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -31,17 +33,18 @@
       <h3><%=t(:label_irm_view_filter_step_one)%></h3>
     </div>
     <div class="pbSubsection">
+
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_view_filter_view_code)%></label></td>
-              <td class="dataCol"><%=@view_filter.view_code%></td>
+              <td class="dataCol"><%=@rule_filter.filter_code%></td>
               <td class="labelCol"></td>
               <td class="dataCol"></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_view_filter_view_name)%></label></td>
-              <td class="dataCol"><%=f.text_field :view_name, :required=>true,:size=>40%></td>
+              <td class="dataCol"><%=f.text_field :filter_name, :required=>true,:size=>40%></td>
               <td class="labelCol"></td>
               <td class="dataCol"></td>
             </tr>
@@ -51,36 +54,46 @@
               <td class="labelCol"></td>
               <td class="dataCol"></td>
             </tr>
+
+
         </tbody>
       </table>
     </div>
     <div class="pbSubheader">
       <h3><%=t(:label_irm_view_filter_step_two)%></h3>
     </div>
-    <div class="pbSubsection">
+    <div class="pbSubsection" id="filterContent" href="<%= url_for(:action=>"operator_value",:seq_num=>"{seq_num}",:attribute_id=>"{attribute_id}") %>">
       <table cellpadding="0" cellspacing="0" border="0">
         <thead>
           <tr>
+            <th width="20%"></th>
             <th></th>
             <th><%=t(:irm_filter_criterions_column_code)%></th>
-            <th><%=t(:irm_filter_criterions_operator_code)%></th>
-            <th><%=t(:irm_filter_criterions_filter_value)%></th>
+            <th><div style="width:30%;float:left;"><%=t(:irm_filter_criterions_operator_code)%></div> <div style="width:70%;float:left;"><%=t(:irm_filter_criterions_filter_value)%></div></th>
           </tr>
         </thead>
         <tbody>
-        <%= f.fields_for :view_filter_criterions,:normal=>true do |sub_f|%>
+        <%= f.fields_for :rule_filter_criterions,:normal=>true do |sub_f|%>
             <tr>
-              <td width="10px" class="dataCol"><%=sub_f.object.seq_num%>.</td>              
-              <td class="dataCol"><%=sub_f.hidden_field(:seq_num)%><%=sub_f.select(:column_code,available_view_column(@view_filter.filter_type,sub_f.object.column_code),{:required=>true,:size=>10},{:class=>"filterColumnSelect",:ref=>sub_f.object.seq_num})%></td>
-              <td class="dataCol"><%=sub_f.select(:operator_code,available_view_operator(sub_f.object.operator_code), :required=>true,:size=>10)%></td>
-              <td class="dataCol"><%=sub_f.text_field :filter_value,:size=>30%></td>
+              <td width="20%"></td>
+              <td width="10px" class="dataCol"><%=sub_f.object.seq_num%>.</td>
+              <td class="dataCol">
+                <%=sub_f.hidden_field(:seq_num)%>
+                <%=sub_f.hidden_field(:bo_code,:value=>@rule_filter.bo_code)%>
+                <%=sub_f.blank_select(:attribute_name,available_view_column(@rule_filter.bo_code),{:required=>true,:size=>10},{:class=>"filterColumnSelect",:ref=>sub_f.object.seq_num})%>
+              </td>
+              <td class="dataCol" id="filter<%=sub_f.object.seq_num%>">
+                <%= render_exists_operator_and_value(@rule_filter.bo_code,sub_f.object.attribute_name,sub_f)  %>
+              </td>
             </tr>
         <%end %>
         <tr>
-          <td colspan="4" class="dataCol"><%=(t :label_irm_view_filter_view_condition_clause)%></td>
+          <td width="20%"></td>
+          <td colspan="3" class="dataCol"><%=(t :label_irm_view_filter_view_condition_clause)%></td>
         </tr>
         <tr>
-          <td class="dataCol" colspan="4"><%=f.text_field :raw_condition_clause, :size=>60,:id=>"rawConditionClause"%></td>
+          <td width="20%"></td>
+          <td class="dataCol" colspan="3"><%=f.text_field :raw_condition_clause, :size=>60,:id=>"rawConditionClause"%></td>
         </tr>
         </tbody>
       </table>
@@ -88,24 +101,45 @@
     <div class="pbSubheader">
       <h3><%=t(:label_irm_view_filter_step_three)%></h3>
     </div>
-    <div class="pbSubsection">
-      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
-        <tbody>
-            <tr>
-              <td class="labelCol"><%=f.radio_button(:restrict_visibility,"Y")%></td>
-              <td class="dataCol"><label><%=t(:label_irm_view_filter_restrict_visibility_for_me)%></label></td>
-              <td class="labelCol"></td>
-              <td class="dataCol"></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><%=f.radio_button(:restrict_visibility,"N")%></td>
-              <td class="dataCol"><label><%=t(:label_irm_view_filter_restrict_visibility_for_all)%></label></td>
-              <td class="labelCol"></td>
-              <td class="dataCol"></td>
-            </tr>
-        </tbody>
-      </table>
-    </div>
+    <% if current_person?(@rule_filter.own_id)%>
+      <div class="pbSubsection">
+        <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+              <tr>
+                <td class="labelCol"><%=f.radio_button(:restrict_visibility,"Y")%></td>
+                <td class="dataCol"><label><%=t(:label_irm_view_filter_restrict_visibility_for_me)%></label></td>
+                <td class="labelCol"></td>
+                <td class="dataCol"></td>
+              </tr>
+              <tr>
+                <td class="labelCol"><%=f.radio_button(:restrict_visibility,"N")%></td>
+                <td class="dataCol"><label><%=t(:label_irm_view_filter_restrict_visibility_for_all)%></label></td>
+                <td class="labelCol"></td>
+                <td class="dataCol"></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <div class="pbSubsection">
+        <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+              <tr>
+                <td class="labelCol"><%=f.radio_button(:restrict_visibility,"Y",{:disabled=>true})%></td>
+                <td class="dataCol"><label><%=t(:label_irm_view_filter_restrict_visibility_for_me)%></label></td>
+                <td class="labelCol"></td>
+                <td class="dataCol"></td>
+              </tr>
+              <tr>
+                <td class="labelCol"><%=f.radio_button(:restrict_visibility,"N",{:disabled=>true})%></td>
+                <td class="dataCol"><label><%=t(:label_irm_view_filter_restrict_visibility_for_all)%></label></td>
+                <td class="labelCol"></td>
+                <td class="dataCol"></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    <%end%>
   </div>
   <div class="pbBottomButtons">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -122,10 +156,33 @@
   </div>
 </div>
 <% end %>
+
 <script type="text/javascript">
-  GY.use("irm",function(Y){
+  GY.use("irm","gallerydispatcher","substitute",function(Y){
       Y.on("domready",function(){
-        Y.one(document).delegate('change',Y.irm.rawConditionClause,".filterColumnSelect")
+        Y.on('change',Y.irm.rawConditionClause,".filterColumnSelect");
+        Y.on('change', function(e) {
+          var obj;
+          var seq_num = e.currentTarget.getAttribute("ref");
+          var attribute_id = "";
+          if(e.currentTarget.getData("dispatcher")){
+            obj = e.currentTarget.getData("dispatcher")
+          }else{
+
+            obj = new Y.Dispatcher({node:"#filter"+seq_num});
+            e.currentTarget.setData("dispatcher",obj);
+          }
+
+          if(e.currentTarget.get("value")&&e.currentTarget.get("value")!=""){
+             attribute_id = e.target.one("option[value="+e.target.get("value")+"]").getAttribute("attribute_id")
+           }
+          var url = unescape(Y.one("#filterContent").getAttribute("href"));
+          url = Y.Lang.substitute(url,{seq_num:seq_num,attribute_id:attribute_id});
+
+          obj.set('uri', url);
+
+	    }, '.filterColumnSelect');
       });
+
   });
 </script>

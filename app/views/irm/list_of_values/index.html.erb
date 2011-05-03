@@ -21,6 +21,9 @@
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
+          <div id="listable_flag" style="display:none">
+            <%= check_img("{listable_flag}") %>
+          </div>
         </div>
         <%= datatable("list_of_values",url_for(:action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
@@ -30,9 +33,7 @@
                                               { :key => "id_column", :label => t(:label_irm_list_of_value_id_column),:searchable=>true },
                                               { :key => "value_column", :label => t(:label_irm_list_of_value_value_column),:searchable=>true },
                                               { :key => "value_title", :label => t(:label_irm_list_of_value_value_title),:searchable=>true },
-                                              { :key => "desc_column", :label => t(:label_irm_list_of_value_desc_column),:searchable=>true },
-                                              { :key => "desc_title", :label => t(:label_irm_list_of_value_desc_title),:searchable=>true },
-                                              { :key => "listable_flag", :label => t(:label_irm_list_of_value_listable_flag),:searchable=>true }
+                                              { :key => "listable_flag",:formatter=>"Y.irm.template", :label => t(:label_irm_list_of_value_listable_flag),:searchable=>true }
                                               ],{:paginator_box=>"list_of_valuesPaginatorBox",:search_box=>"list_of_valuesSearchBox"})%>
         <div id="list_of_valuesPaginatorBox"></div>
       </div>

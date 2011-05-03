@@ -24,7 +24,7 @@ class Csi::SurveysController < ApplicationController
   # GET /surveys/new
   # GET /surveys/new.xml
   def new
-    @survey =Csi:: Survey.new
+    @survey =Csi::Survey.new
     @return_url=request.env['HTTP_REFERER']
 
     respond_to do |format|
@@ -226,6 +226,8 @@ class Csi::SurveysController < ApplicationController
 
     respond_to do |format|
         if save_flag
+          #回答完成后, 看是否有该问卷调查的任务,有的话把任务变为完成状态
+          Irm::TodoEvent.complete_task(@survey, Irm::Person.current.id)
           format.html { redirect_to({:action=>"thanks",:survey_id=>@survey_id,:return_url=>@return_url},
                                      :notice => @thank_message) }
           format.xml  { render :xml => @survey, :status => :created, :location => @survey }

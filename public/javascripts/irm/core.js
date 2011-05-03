@@ -106,17 +106,46 @@ YUI.add('irm', function(Y) {
     Y.irm.navTree = function(domid,p_current_permissions,p_current_menus){
         var current_permissions = p_current_permissions;
         var current_menus = p_current_menus;
+        //get default opened menu from cookie
+        var menu_cookie = Y.Cookie.get("navTreeMenu");
+        var cookie_menus =[];
+        if(menu_cookie){
+          cookie_menus =  menu_cookie.split(",");
+        }
+        else{
+          Y.Cookie.set("navTreeMenu", "",{ path:"/"});
+        }
+        current_menus = current_menus.concat(cookie_menus);
+
         // 处理展开事件
         Y.one("#"+domid).delegate("click",function(e){
           if(this.hasClass("NavTreeCol")){
             this.removeClass("NavTreeCol");
             this.addClass("NavTreeExp");
             Y.one('#'+this.getAttribute("real")+"_child").setStyle("display","block");
+            var menu_code =  this.getAttribute("real");
+            var menu_cookie = Y.Cookie.get("navTreeMenu");
+            if(menu_cookie.indexOf(menu_code)<0){
+              if(menu_cookie.length>0)
+              {
+                  menu_cookie = menu_cookie+","+menu_code;
+              }
+              else
+              {
+                  menu_cookie = menu_code;
+              }
+              Y.Cookie.set("navTreeMenu",menu_cookie,{ path:"/"});
+            }
           }
           else{
             this.removeClass("NavTreeExp");
             this.addClass("NavTreeCol");
             Y.one('#'+this.getAttribute("real")+"_child").setStyle("display","none");
+            var menu_code =  this.getAttribute("real");
+            var menu_cookie = Y.Cookie.get("navTreeMenu");
+            menu_cookie = menu_cookie.replace(","+menu_code,"")
+            menu_cookie = menu_cookie.replace(menu_code+",","")
+            Y.Cookie.set("navTreeMenu",menu_cookie,{ path:"/"});
           }
 
         },".NavIconLink")
@@ -218,6 +247,28 @@ YUI.add('irm', function(Y) {
         }
       };
 
+    Y.irm.refreshFilterOptions = function(e) {
+        var obj;
+        var seq_num = e.currentTarget.getAttribute("ref");
+        var attribute_id = "";
+        if(e.currentTarget.getData("dispatcher")){
+          obj = e.currentTarget.getData("dispatcher")
+        }else{
+
+          obj = new Y.Dispatcher({node:"#filter"+seq_num});
+          e.currentTarget.setData("dispatcher",obj);
+        }
+
+        if(e.currentTarget.get("value")&&e.currentTarget.get("value")!=""){
+           attribute_id = e.target.one("option[value="+e.target.get("value")+"]").getAttribute("attribute_id")
+         }
+        var url = unescape(Y.one("#filterContent").getAttribute("href"));
+        url = Y.Lang.substitute(url,{seq_num:seq_num,attribute_id:attribute_id});
+
+        obj.set('uri', url);
+
+	  };
+
 }, '0.1.1' /* module version */, {
-    requires: ['base',"overlay","node-event-simulate","event-custom","event-mouseenter"]
+    requires: ['base',"overlay","cookie","node-event-simulate","event-custom","event-mouseenter"]
 });

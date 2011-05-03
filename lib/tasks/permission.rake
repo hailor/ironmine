@@ -25,9 +25,9 @@ namespace :irm do
     key = ENV["C"]
 
     grouped_routes = route_permissions.group_by{|rp| rp[:controller]}
-    grouped_routes.delete_if{|key,value| controllers.include?(key)}
+    grouped_routes.delete_if{|k,value| controllers.include?(k)} unless key
     grouped_routes.each do |controller,permissions|
-      next if key&&!controller.include?(key)
+      next if !key.nil?&&!controller.include?(key)
 
       puts "#{BOLD}#{RED}#===================#{controller}============================#{CLEAR}"
       all_actions = permissions.collect{|p| p[:action]}

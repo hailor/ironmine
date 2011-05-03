@@ -1,14 +1,18 @@
 <%journals.each_with_index do |journal,index|  %>
  <div class="reply">
-   <div id="journal_<%= journal.id %>" class="replyHeader">
-     <h3><%= journal[:replied_name]  %> <%= t(:label_icm_reply_title,:message=>distance_of_time_in_words(Time.now, journal[:created_at])) %></h3>
+   <div id="journal_<%= journal.id %>" class="replyHeader"  submit_by="<%= journal[:replied_by]%>">
+
+       <div style="float:left"><img width="25" height="25" alt="" src="<%=replied_avatar(journal)%>"></div>
+       <div style="float:left; padding:5px 0 0 5px;">
+         <h3><%= journal[:replied_name]  %></h3>
+            <span style="color:#666666;font-style:italic;">
+              <%= t(:label_icm_reply_title,:message=>distance_of_time_in_words(Time.now, journal[:created_at])) %>
+            </span>
+       </div>
    </div>
    <div class="replyHeaderSection">
-     <div class="avatar">
-       <img width="30" height="30" alt="" src="<%=replied_avatar(journal)%>">
-     </div>
      <%if journal.incident_histories.any? %>
-       <div class="message">
+       <div class="message" style="font-style:italic;padding-bottom:10px;">
          <ul>
 
              <% journal.incident_histories.each do |h|%>

@@ -1,6 +1,11 @@
 module Icm::IncidentRequestsHelper
-  def available_service
-    Irm::LookupValue.query_by_lookup_type("ICM_SERVICE_CODE").multilingual.collect{|p|[p[:meaning],p[:lookup_code]]}
+  def available_service(external_system_code=nil)
+    services = []
+    if external_system_code && !external_system_code.blank?
+      services_scope = Slm::ServiceCatalog.multilingual.enabled.where("external_system_code = ?", params[:external_system_code])
+      services = services_scope.collect{|i| [i[:name], i.catalog_code]}
+    end
+    services
   end
 
   def available_person
@@ -14,11 +19,11 @@ module Icm::IncidentRequestsHelper
   end
 
   def available_contact
-    people = Irm::Person.query_by_support_staff_flag(Irm::Constant::SYS_NO).order_id.all.collect{|p|[p.name,p[:id],{:phone=>p.mobile_phone}]}
+    people = Irm::Person.query_by_support_staff_flag(Irm::Constant::SYS_NO).order_id.all.collect{|p|[p.name,p[:id],{:phone=>p.bussiness_phone}]}
     needed_to_replace = people.detect{|person| Irm::Person.current.id.eql?(person[1])}
     if needed_to_replace
       people.delete_if{|person| Irm::Person.current.id.eql?(person[1])}
-      people.unshift([Irm::Person.current.name,Irm::Person.current.id,{:phone=>Irm::Person.current.mobile_phone}])
+      people.unshift([Irm::Person.current.name,Irm::Person.current.id,{:phone=>Irm::Person.current.bussiness_phone}])
     end
     people
   end
@@ -38,7 +43,7 @@ module Icm::IncidentRequestsHelper
   end
 
   def available_support_group
-    Irm::SupportGroup.multilingual.collect{|s| [s[:name],s.id]}
+    Irm::SupportGroup.query_by_company_ids(Irm::Person.current.accessable_company_ids).multilingual.collect{|s| [s[:name],s.id]}
   end
 
   def available_urgence_code
@@ -87,5 +92,24 @@ module Icm::IncidentRequestsHelper
 
   def my_solved_request
     Icm::IncidentRequest.where("incident_status_code = ? OR incident_status_code = ?", "SOLVE_RECOVER", "CLOSE_INCIDENT").where("submitted_by = ?", Irm::Person.current.id).size()
+  end
+
+  def over_view_list
+    html = ""
+    @filters = Irm::RuleFilter.where("bo_code = ?", "ICM_INCIDENT_REQUESTS").hold.enabled
+    @filters.each do |f|
+      td1 = content_tag(:td, content_tag(:a, f[:filter_name], :href => url_for(:controller => "icm/incident_requests", :action => "index", :filter_id => f.id)))
+
+      incident_requests_scope = f.generate_scope.query_by_company_ids(session[:accessable_companies])
+
+      if !allow_to_function?(:view_all_incident_request)
+        incident_requests_scope = incident_requests_scope.relate_person(Irm::Person.current.id)
+      end
+
+      td2 = content_tag(:td, incident_requests_scope.count.to_s, :class => "tdRight")
+      html << content_tag(:tr, td1 + td2)
+    end
+
+    raw(html)
   end
 end

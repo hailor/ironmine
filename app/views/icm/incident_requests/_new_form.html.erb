@@ -34,28 +34,60 @@
           <span class="requiredText"> = <%=t(:label_is_required)%></span>
         </span>
       </span>
-      <h3><%= t(:label_common_info) %></h3>
-    </div>
-    <div class="pbSubsection">
-      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
-        <tbody>
-            <tr>
-              <td class="labelCol"><label for="incident_request_service_code"><%=t(:label_icm_incident_request_service_code)%></label></td>
-              <td class="dataCol"><%=f.select :service_code,nullable_options_for_select(available_service,@incident_request.service_code),
-                                                    {},{:required=>true,:id=>"incident_request_service_code"}%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-
-        </tbody>
-      </table>
-    </div>
-    <div id="head_2_ep" class="pbSubheader tertiaryPalette">
       <h3><%= t(:label_icm_incident_requset_base_info) %></h3>
     </div>
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
+            <% if allow_to_function?(:create_icdt_rqst_for_other) %>
+              <tr>
+                <td class="labelCol"><label for="incident_request_requested_by"><%=t(:label_icm_incident_request_requested_by)%></label></td>
+                <td class="dataCol"><%=f.select :requested_by,nullable_options_for_select(available_person, @incident_request.requested_by),
+                                                      {},{:required=>true,:id=>"incident_request_requested_by"}%></td>
+                <td class="labelCol empty">&nbsp;</td>
+                <td class="dataCol empty">&nbsp;</td>
+              </tr>
+            <% else %>
+                <%= f.hidden_field(:requested_by,:value=>Irm::Person.current.id, :id=>"incident_request_requested_by") %>
+            <% end %>
+            <tr>
+              <td class="labelCol"><label for="incident_request_service_code"><%=t(:label_icm_incident_request_target_system)%></label></td>
+              <td class="dataCol">
+                <% if allow_to_function?(:create_icdt_rqst_for_other) %>
+                    <%=f.select :external_system_code,nullable_options_for_select([],nil),{},
+                            {:id=>"ass_external_system",
+                             :depend=>"incident_request_requested_by",
+                             :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
+                             :href=>url_for(:controller=>"icm/incident_requests",:action=>"get_external_systems",:format=>"json",:requested_by=>"{incident_request_requested_by}")}%>
+                <% else %>
+                    <%=f.select :external_system_code,
+                            nullable_options_for_select(available_external_systems_with_person(Irm::Person.current.id).collect{|p| [p[:system_name], p.external_system_code]},nil),
+                            {},
+                            {:id=>"ass_external_system",
+                             :depend=>"incident_request_requested_by",
+                             :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
+                             :href=>url_for(:controller=>"icm/incident_requests",:action=>"get_external_systems",:format=>"json",:requested_by=>"{incident_request_requested_by}")}%>
+                <% end %>
+              </td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="incident_request_service_code"><%=t(:label_icm_incident_request_service_code)%></label></td>
+              <td class="dataCol"><%=f.select :service_code,
+                                            nullable_options_for_select([],nil),
+                                            {},
+                                            {:id=>"incident_request_service_code",
+                                             :depend=>"ass_external_system,incident_request_requested_by",
+                                             :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
+                                             :href=>url_for(:controller=>"icm/incident_requests",:action=>"get_slm_services",:format=>"json",
+                                                            :external_system_code=>"{ass_external_system}", :requested_by => "{incident_request_requested_by}"),
+                                             :required => true}%>
+              </td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
             <tr>
               <td class="labelCol"><label for="incident_request_title"><%=t(:label_icm_incident_request_title)%></label></td>
               <td class="dataCol" colspan="3" style="width:82%"><%=f.text_field :title,:size=>80, :required=>true ,:id=>"incident_request_title"%></td>
@@ -63,7 +95,7 @@
 
             <tr>
               <td class="labelCol"><label for="incident_request_summary"><%=t(:label_icm_incident_request_summary)%></label></td>
-              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_area :summary,:rows=>5,:cols=>100,:value=>"Default", :required=>true ,:style=>"display:none;",:id=>"incident_request_summary"%></td>
+              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_area :summary,:rows=>5,:cols=>100,:value=>"   ", :required=>true ,:style=>"display:none;",:id=>"incident_request_summary"%></td>
             </tr>
             <tr>
               <td class="labelCol"></td>
@@ -97,24 +129,11 @@
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
-
-              <% if allow_to_function?(:create_icdt_rqst_for_other) %>
-              <tr>
-                <td class="labelCol"><label for="incident_request_requested_by"><%=t(:label_icm_incident_request_requested_by)%></label></td>
-                <td class="dataCol"><%=f.select :requested_by,nullable_options_for_select(available_person,@incident_request.requested_by),
-                                                      {},{:required=>true,:id=>"incident_request_requested_by"}%></td>
-                <td class="labelCol empty">&nbsp;</td>
-                <td class="dataCol empty">&nbsp;</td>
-              </tr>
-              <% else %>
-                <%= f.hidden_field(:requested_by,:value=>Irm::Person.current.id) %>
-              <% end %>
-
             <tr>
                 <td class="labelCol"><label for="incident_request_contact_id"><%=t(:label_icm_incident_request_contact)%></label></td>
                 <td class="dataCol">
                   <div style="display:inline">
-                    <%=f.select :contact_id,nullable_options_for_select(available_contact,@incident_request.contact_id),
+                    <%=f.select :contact_id,nullable_options_for_select(available_contact,Irm::Person.current.id),
                                                         {},{:required=>true,:id=>"incident_request_contact_id"}%>
                   </div>
                 </td>
@@ -181,6 +200,8 @@
         </tbody>
       </table>
     </div>
+
+    <%= (render :partial => "irm/watchers/add_watcher", :locals => {:watchable => @incident_request}) if allow_to_function?(:new_watchers)%>
   </div>
   <div class="pbBottomButtons">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -222,6 +243,11 @@
 </script>
 
 <script type="text/javascript">
+GY.use("cascadeselect",function(Y){
+    new Y.CascadeSelect({source: "#incident_request_requested_by",target:["#ass_external_system"]});
+    new Y.CascadeSelect({source: "#ass_external_system",target:["#incident_request_service_code"]});
+    new Y.CascadeSelect({source: "#incident_request_requested_by",target:["#incident_request_service_code"]});
+});
 
 GY.use('irm','node','substitute','yui2-editor', function(Y) {
   var YAHOO = Y.YUI2;
@@ -245,7 +271,7 @@ GY.use('irm','node','substitute','yui2-editor', function(Y) {
         }
     });
     editor.render();
-    Y.one("#new_icm_incident_request").on("submit",function(){
+    Y.all("#new_icm_incident_request input[type=submit]").on("click",function(){
       editor.saveHTML();
     });
     Y.one("#fileButtons #addButton").on('click',function(){
@@ -260,5 +286,6 @@ GY.use('irm','node','substitute','yui2-editor', function(Y) {
         Y.log(this.getAttribute("delete_ref"));
         Y.one("#"+this.getAttribute("delete_ref")).remove();
     },'.deleteAttach') ;
+    Y.one("#incident_request_contact_id").simulate("change");
 });
 </script>

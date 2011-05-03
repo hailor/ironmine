@@ -88,8 +88,12 @@ class Irm::ListOfValuesController < ApplicationController
     @result_message = ""
     @show_test_lov = true
     begin
+      query_params = {}
+      if @list_of_value.listable_flag.eql?(Irm::Constant::SYS_NO)&&!@list_of_value.query_clause.nil?&&!@list_of_value.query_clause.strip.blank?
+        query_params = {:show_value=>"test"}
+      end
       @result_message << "====================Generate model scope:====================\n"
-      model_query = @list_of_value.generate_scope
+      model_query = @list_of_value.generate_scope(query_params)
       @result_message << model_query
       @result_message << "\n"
       @result_message << "====================Execute  query:====================\n"
@@ -104,6 +108,27 @@ class Irm::ListOfValuesController < ApplicationController
       @result_message << "====================Error  message:====================\n"
       @result_message << text.message
       puts("=====Execute error=========")
+    end
+    render :layout=>nil
+  end
+
+
+  def get_lov_data
+    list_of_value = Irm::ListOfValue.find(params[:id])
+    query_params = {}
+    list_of_value.lov_columns.each do |k|
+      query_params[k] = params[k] if params[k]
+    end
+    values_scope =  eval(list_of_value.generate_scope(query_params))
+    values,count = paginate(values_scope)
+    columns = [:id_value,:show_value,:desc_value]
+    unless list_of_value.addition_column.strip.blank?||list_of_value.addition_column.nil?
+      list_of_value.addition_column.split("#").each do |ac|
+        columns << ac.to_sym
+      end
+    end
+    respond_to do |format|
+      format.json {render :json=>to_jsonp(values.to_grid_json(columns,count))}
     end
   end
 

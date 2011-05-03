@@ -18,7 +18,7 @@ class Icm::CloseReasonsController < ApplicationController
     @close_reason = Icm::CloseReason.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render :layout => "application_full"}# new.html.erb
       format.xml  { render :xml => @close_reason }
     end
   end
@@ -35,7 +35,7 @@ class Icm::CloseReasonsController < ApplicationController
         format.html { redirect_to({:action=>"index"}, :notice =>t(:successfully_created)) }
         format.xml  { render :xml => @close_reason, :status => :created, :location => @close_reason }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :layout => "application_full" }
         format.xml  { render :xml => @close_reason.errors, :status => :unprocessable_entity }
       end
     end

@@ -31,12 +31,6 @@
               <td class="dataCol"><%=@support_group[:organization_name]%></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=(t :label_irm_support_group_description)%></label></td>
-              <td class="dataCol"><%=@support_group[:description]%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-            <tr>
               <td class="labelCol"><label><%=(t :label_irm_support_group_oncall_group)%></label></td>
               <td class="dataCol"><%= check_img(@support_group.oncall_group_flag)%></td>
               <td class="labelCol"><%=(t :label_irm_support_group_support_role)%></td>
@@ -47,6 +41,10 @@
               <td class="dataCol"><%= check_img(@support_group.vendor_group_flag)%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_support_group_description)%></label></td>
+              <td class="dataCol" colspan="3" style="width:82%"><%=@support_group[:description]%></td>
             </tr>
         </tbody>
       </table>
@@ -68,7 +66,7 @@
               </td>
               <td class="pbButton">
                 <div class="button"><%= link_to t(:label_irm_support_group_add_person), {:controller=>"irm/support_group_members",
-                                                          :action => "select_person",:support_group_code=>@support_group.group_code}%></div>
+                                                          :action => "select_person",:support_group_id=>@support_group.id}%></div>
               </td>
               <td class="pbHelp">
               </td>
@@ -86,12 +84,12 @@
           </div>
           <!-- Begin company access table -->
             <%= datatable("person",url_for(:controller=>"irm/support_group_members",:action=>"get_data",:support_group_code=>@support_group.group_code),
-                              [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
+                              [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"40px"},
                                {:key=>"person_name",:label=>t(:label_irm_support_group_person_name),:sortable=>true},
                                {:key=>"company_name",:label=>t(:label_irm_support_group_company_name),:sortable=>true},
                                {:key=>"email_address",:label=>t(:label_irm_person_email_address),:sortable=>true}],
-                               {:row_perpage=>5})%>
-          <!-- End company access table -->
+                               {:paginator_box=>"personPaginator"})%>
+          <div id="personPaginator"></div>
         </div>
         <div class="pbFooter secondaryPalette">
         <div class="bg"></div>

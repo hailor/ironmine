@@ -26,4 +26,5 @@ class Icm::IncidentStatus < ActiveRecord::Base
   scope :query_by_default_flag,lambda{|flag|
     where("#{table_name}.default_flag = ?" ,flag)
   }
+
 end

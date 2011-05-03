@@ -61,7 +61,7 @@ class Irm::Report < ActiveRecord::Base
   }
   scope :query_by_report_purpose,lambda{|report_purpose| where(:report_purpose => report_purpose)}
 
-
+  scope :with_blank_url,lambda{select(" ' ' url ")}
   def self.list_all
     multilingual.with_category(I18n.locale)
   end

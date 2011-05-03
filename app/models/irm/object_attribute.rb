@@ -24,6 +24,10 @@ class Irm::ObjectAttribute < ActiveRecord::Base
     joins("LEFT OUTER JOIN #{Irm::BusinessObject.view_name} relation_bo ON relation_bo.business_object_code = #{table_name}.relation_bo_code and relation_bo.language='#{language}'").
     select("relation_bo.name relation_bo_name")
   }
+  scope :with_lov,lambda{|language|
+    joins("LEFT OUTER JOIN #{Irm::ListOfValue.view_name} lov ON lov.lov_code = #{table_name}.lov_code and lov.language='#{language}'").
+    select("lov.name lov_name")
+  }
 
   scope :query_by_business_object_code,lambda{|business_object_code|
     where(:business_object_code=>business_object_code)
@@ -42,6 +46,22 @@ class Irm::ObjectAttribute < ActiveRecord::Base
   scope :selectable_column,lambda{
     where("#{table_name}.attribute_type='TABLE_COLUMN' OR #{table_name}.attribute_type = 'RELATION_COLUMN'")
   }
+
+  scope :filterable,lambda{
+    where(:filter_flag=>Irm::Constant::SYS_YES)
+  }
+
+
+  def select_table_name
+    t_name = ""
+    case self.attribute_type
+      when "TABLE_COLUMN"
+        t_name = self.business_object.bo_table_name
+      when "RELATION_COLUMN"
+        t_name = self.relation_table_alias_name
+    end
+    t_name
+  end
 
 
   private

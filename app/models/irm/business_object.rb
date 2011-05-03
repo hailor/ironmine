@@ -30,8 +30,8 @@ class Irm::BusinessObject < ActiveRecord::Base
     generate_scope_str(query_str,execute)
 
   end
-
-  def generate_query_by_attributes(oas=[],execute=false)
+  # 根据传入的属性字段，生成查询SQL
+  def generate_query_by_attributes(oas=[],execute=false,mini_column=false)
     return generate_query(execute) unless oas.any?
 
     query_str = {:select=>[],:joins=>[],:where=>[],:order=>[]}
@@ -39,7 +39,8 @@ class Irm::BusinessObject < ActiveRecord::Base
     join_attributes = []
     join_table_names = []
     self.object_attributes.each do |soa|
-      if(oas.include?(soa.attribute_name))
+      # filter column or need to return column
+      if(soa.filter_flag.eql?(Irm::Constant::SYS_YES)||oas.include?(soa.attribute_name.to_sym))
         select_attributes << soa
         join_table_names << soa.relation_table_alias_name if soa.attribute_type.eql?("RELATION_COLUMN")
       end
@@ -50,9 +51,10 @@ class Irm::BusinessObject < ActiveRecord::Base
         join_attributes << soa
       end
     end if join_table_names.any?
-
+    # mini column mode
+    query_str[:select]<< "#{self.bo_table_name}.*" unless mini_column
     select_attributes.each do |sa|
-      if sa.attribute_type.eql?("TABLE_COLUMN")
+      if mini_column&&sa.attribute_type.eql?("TABLE_COLUMN")
         query_str[:select] << %(#{self.bo_table_name}.#{sa.attribute_name})
       end
 
@@ -68,7 +70,7 @@ class Irm::BusinessObject < ActiveRecord::Base
     generate_scope_str(query_str,execute)
 
   end
-
+  # For LOV 根据传入的属性字段（Hash），生成查询SQL
   def generate_query_by_hash_attributes(oas,execute = false)
     return generate_query(execute) unless oas.any?&&oas.is_a?(Hash)
     query_str = {:select=>[],:joins=>[],:where=>[],:order=>[]}

@@ -136,8 +136,8 @@ body .bodyDiv .bOverviewSearch {margin:5px;padding:0 10px 10px;}
 }
 .headerSearchLeftRoundedCorner, .headerSearchContainer .headerSearchOptions {padding-left:11px;}
 .headerSearchOptions {margin-top:4px;}
-a.headerSearchOptionsLink, a.headerSearchOptionsLink:hover {color:#FFFFFF;font-size:0.92em;text-de}
-a.headerSearchOptionsLink {text-decoration:none;}
+a#headerSearchOptionsLink, a.headerSearchOptionsLink:hover {color:#FFFFFF;font-size:0.92em;text-de}
+a#headerSearchOptionsLink {text-decoration:none;}
 /*******************************************************************/
 
 .pageTitleIcon {
@@ -439,21 +439,39 @@ body .bPageBlock, body .bPageBlock .pbBody, body .bPageBlock .pbBottomButtons {
 .bPageBlock .setupOverview a, .bPageBlock .setupResource a {text-decoration:none;}
 .bPageBlock .setupOverview a:hover, .bPageBlock .setupResource a:hover {text-decoration:underline;}
 .bWizardBlock .detailList, .bPageBlock .detailList {width:100%;}
-body .bWizardBlock .labelCol, body .bDetailBlock.bPageBlock .pbBody .labelCol, body .bDetailBlock.bPageBlock .pbBody .dataCol, body .bDetailBlock.bPageBlock .pbBody .data2Col, body .bPageBlock.bEditBlock .pbBody .labelCol, body .bPageBlock.bEditBlock .pbBody .dataCol, body .bPageBlock.bEditBlock .pbBody .data2Col {
+body .bWizardBlock .labelCol,
+body .bDetailBlock.bPageBlock .pbBody .labelCol,
+body .bDetailBlock.bPageBlock .pbBody .dataCol,
+body .bDetailBlock.bPageBlock .pbBody .data2Col,
+body .bDetailBlock.bPageBlock .pbBody .data3Col,
+body .bPageBlock.bEditBlock .pbBody .labelCol,
+body .bPageBlock.bEditBlock .pbBody .dataCol,
+body .bPageBlock.bEditBlock .pbBody .data2Col,
+body .bPageBlock.bEditBlock .pbBody .data3Col{
     padding-bottom:3px;
     padding-top:3px;
 }
 
 /*.labelCol{padding-top:7px !important;}*/
 
-body .bWizardBlock.pbBody.labelCol, body .bPageBlock .pbBody .labelCol {color:#4A4A56;}
-body .bPageBlock .pbBody .labelCol, body .bPageBlock .pbBody .dataCol, body .bPageBlock .pbBody .data2Col {
+body .bWizardBlock.pbBody.labelCol, body .bPageBlock .pbBody .labelCol, body .bPageBlock .pbBody .label3Col  {color:#4A4A56;}
+body .bPageBlock .pbBody .label3Col,
+body .bPageBlock .pbBody .labelCol,
+body .bPageBlock .pbBody .dataCol,
+body .bPageBlock .pbBody .data2Col,
+body .bPageBlock .pbBody .data3Col {
     padding-bottom:5px;
     padding-top:5px;
 }
 .bWizardBlock .detailList .labelCol, .bPageBlock .detailList .labelCol {white-space:nowrap;}
 .bWizardBlock .detailList .labelCol, .bPageBlock .detailList .labelCol {width:18%;}
 .bWizardBlock .detailList .dataCol, .bPageBlock .detailList .dataCol {width:32%;}
+
+.bWizardBlock .detailList .label3Col, .bPageBlock .detailList .label3Col {white-space:nowrap;}
+.bWizardBlock .detailList .label3Col, .bPageBlock .detailList .label3Col {width:13%;}
+.bWizardBlock .detailList .data3Col, .bPageBlock .detailList .data3Col {width:20%;}
+.bWizardBlock .data3Col, .bPageBlock .data3Col {padding:2px 2px 2px 10px;text-align:left;}
+
 .bWizardBlock .detailList .dataCol, .bPageBlock .detailList .surveydataCol {width:40%;}
 .bWizardBlock .dataCol,.bPageBlock .dataCol {padding:2px 2px 2px 10px;text-align:left;}
 .bPageBlock textarea {font-size: 12px;}
@@ -465,7 +483,8 @@ body .bPageBlock .detailList tr td, body .bPageBlock .detailList tr th, body tab
     border-bottom:1px solid #E3DEB8;
 }
 .bPageBlock .detailList th, .bPageBlock .detailList td {vertical-align:top;}
-.bWizardBlock .labelCol, .bPageBlock .labelCol {
+.bWizardBlock .labelCol, .bPageBlock .labelCol,
+.bWizardBlock .label3Col, .bPageBlock .label3Col{
     color:#333333;
     font-size:91%;
     font-weight:bold;
@@ -603,8 +622,17 @@ body .bEditBlock .pbBottomButtons, body .apexp .bPageBlock.apexDefaultPageBlock 
 form .pbBottomButtons > table {border-top:1px solid #FFFFFF;padding:0 !important;}
 
 /************** error messages and input required ******************/
-.requiredInput,  .requiredInput {height:100%;position:relative;display:inline-block;}
-.requiredInput .requiredBlock, .requiredInput .requiredBlock {
+.requiredInput {
+    height:100%;
+    position:relative;
+    display:inline-block;
+    width:100%;
+}
+.mulInput .requiredInput {
+    width: auto !important;
+}
+
+.requiredInput .requiredBlock {
     background-color:#CC0000;
     bottom:1px;
     left:-4px;
@@ -711,6 +739,7 @@ div.grayButton a:hover{
 }
 .reportList .reportEntry {padding:1px 0 1px 24px;}
 
+/************** datatable paginator ******************/
 div  table.paginator{
     width: 100%;padding: 0 10px 0 10px;
 }
@@ -725,7 +754,33 @@ div  table.paginator .col4{text-align: right;}
 div  table.paginator label.prePageHolder{color: gray;}
 div  table.paginator label.nextPageHolder{color: gray;}
 
+/************** lov autocomplete ******************/
+table.lovDataTable{
+    width:100%;
+}
+table.lovDataTable tr.lovHeader{
+  background-color: #F8F8F8;
+}
 
+table.lovDataTable tr.lovHeader th{
+  font-weight: bold;
+  text-align:left;
+}
+table.lovDataTable tr.lovPaginator td{
+  background-color: #F8F8F8;
+  width: 100%;
+}
+
+table.lovDataTable tr.lovPaginator td div.displayRecord{
+    float: left;
+    text-align: left;
+    width:50%;
+}
+table.lovDataTable tr.lovPaginator td div.Page{
+    float: left;
+    text-align:left;
+    width:50%;
+}
 
 fieldset{
   border-width:1px;
@@ -736,4 +791,23 @@ fieldset{
 }
 legend{
   padding: 0 5px 0 5px;
+}
+/*cux yui css*/
+.yui-skin-sam .yui-editor-container{border:1px solid #d1d1d1 !important;}
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-subcont{border-bottom-color: #d1d1d1 !important;}
+
+#selectComapnyContent{
+    margin-top: 5px;
+    margin-bottom: 1px;
+    border: 1px solid #e8e8e8;
+    padding: 5px;
+}
+
+.bSubBlock .pbHelp {
+    padding-bottom: 1px;
+    padding-left: 1px;
+    padding-right: 5px;
+    padding-top: 1px;
+    text-align: right;
+    vertical-align: middle;
 }

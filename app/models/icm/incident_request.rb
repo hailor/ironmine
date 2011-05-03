@@ -3,15 +3,23 @@ class Icm::IncidentRequest < ActiveRecord::Base
 
   has_many :incident_journals
 
-  validates_presence_of :title,:summary,:service_code,:requested_by,:submitted_by,:impact_range_code,:urgence_code,:priority_code,:request_type_code,:incident_status_code,:report_source_code
+  validates_presence_of :title,:service_code,:requested_by,:submitted_by,:impact_range_code,:urgence_code,:priority_code,:request_type_code,:incident_status_code,:report_source_code
 
-  attr_accessor :pass_flag
+  attr_accessor :pass_flag,:close_flag
+
+  validates_presence_of :summary,:message=>I18n.t(:label_icm_incident_journal_message_body_not_blank)
+
 
   validates_presence_of :support_group_id,:support_person_id,:if=>Proc.new{|i| !i.pass_flag.nil?&&!i.pass_flag.blank?}
 
   #加入activerecord的通用方法和scope
   query_extend
   after_create :generate_request_number
+  acts_as_recently_objects(:title => "title",
+                           :target_controller => "icm/incident_journals",
+                           :target_action => "new",
+                           :target_id => "id",
+                           :target_id_column => "request_id")
 
   before_validation_on_create  :setup_priority
   # 查询当天新建的事故单，根据数量生成序列号
@@ -89,7 +97,7 @@ class Icm::IncidentRequest < ActiveRecord::Base
   scope :with_incident_status,lambda{|language|
     joins("LEFT OUTER JOIN #{Icm::IncidentStatus.view_name} incident_status ON  incident_status.incident_status_code = #{table_name}.incident_status_code AND incident_status.language= '#{language}'").
     joins("LEFT OUTER JOIN #{Icm::IncidentPhase.view_name} incident_phase ON  incident_phase.phase_code = incident_status.phase_code AND incident_phase.language= '#{language}'").
-    select(" incident_status.name incident_status_name,incident_phase.name incident_phase_name ,incident_status.close_flag incident_close_flag")
+    select(" incident_status.name incident_status_name,incident_phase.name incident_phase_name ,incident_status.close_flag close_flag")
   }
   # 查询公司
   scope :with_company,lambda{|language|
@@ -103,7 +111,7 @@ class Icm::IncidentRequest < ActiveRecord::Base
   # use with_contact with_requested_by with_submmitted_by
   scope :relate_person,lambda{|person_id|
     where("#{table_name}.requested_by = ? OR #{table_name}.submitted_by = ? OR #{table_name}.contact_id = ? OR #{table_name}.support_person_id = ? OR EXISTS(SELECT 1 FROM #{Irm::Watcher.table_name} watcher WHERE watcher.watchable_id = #{table_name}.id AND watcher.watchable_type = ? AND watcher.member_id = ? AND watcher.member_type = ? )",
-    person_id,person_id,person_id,person_id,Icm::IncidentRequest.class.name,person_id,Irm::Person.class.name)
+    person_id,person_id,person_id,person_id,Icm::IncidentRequest.name,person_id,Irm::Person.name)
   }
 
   scope :select_all,lambda{
@@ -185,7 +193,11 @@ class Icm::IncidentRequest < ActiveRecord::Base
   end
 
   def need_customer_reply
-   if (self.last_request_date||self.created_at)>(self.last_response_date||Time.now)
+  # if the request is closed
+   return "C" if self.close?
+   # other person of the incident request
+   return "O" unless Irm::Person.current.id.eql?(self.requested_by)||Irm::Person.current.id.eql?(self.support_person_id)
+   if (self.last_request_date||self.created_at)>(self.last_response_date||self.created_at)
      Irm::Constant::SYS_NO
    else
      Irm::Constant::SYS_YES
@@ -198,6 +210,23 @@ class Icm::IncidentRequest < ActiveRecord::Base
     else
       Irm::Constant::SYS_NO
     end
+  end
+
+
+  def close?
+    Irm::Constant::SYS_YES.eql?(self.status_close_flag)
+  end
+
+  # setup close flag
+  def status_close_flag
+    return self.close_flag if self.close_flag
+    if self[:close_flag]
+      self.close_flag = self[:close_flag]
+      return self.close_flag
+    end
+    status  = Icm::IncidentStatus.find_by_incident_status_code(self.incident_status_code)
+    self.close_flag = status.close_flag if status
+    return self.close_flag
   end
 
   private

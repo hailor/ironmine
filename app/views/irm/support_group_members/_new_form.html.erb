@@ -1,61 +1,49 @@
 <%= page_title %>
-<div class="filterOverview">
-    <div class="bFilterView">
-      <%= form_tag(:action => "select_person",:support_group_code=>@support_group_code,:person_name=>@person_name) do %>
-      <%= hidden_field_tag "return_url",@return_url%>
-      <span class="bFilter">
-        <label style="text-align: left; font-weight: bold; padding-right: 0.69em;"><%= t(:label_irm_person_name) %>：</label>
-        <span class="fBody">
-            <%= text_field_tag :person_name,@person_name%>
-            <%= submit_tag t(:search), :title => t(:search), :class => "btn" %>
-        </span>
-        <span class="fFooter">
-        </span>
-      </span>
-      <% end %>
-    </div>
-</div>
-<% if !@person_name.blank? %>
-<%= form_for(@support_group_member,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
-<%= hidden_field_tag "support_group_code",@support_group_code%>
-<%= hidden_field_tag "person_name",@person_name%>
-<%= hidden_field_tag "return_url",@return_url%>
-<div class="srch">
-    <div class="pbHeader">
+<script type="text/javascript">
+  GY.use(function(Y){
+      Y.on("irm:change",function(e){
+          if(e.details[2]=="Datatable"&&"supportGroupMembersDatatable"==e.details[0])
+            e.details[1].on("selectedChange",function(e){
+                var selected_code = "";
+                for(var i=0;i<e.details[0].length;i++)
+                  selected_code = selected_code + e.details[0][i].id +",";
+                Y.one("#irm_support_group_member_status_code").set("value",selected_code);
+            })
+      });
+  });
+</script>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
         <table cellpadding="0" cellspacing="0" border="0">
           <tbody>
             <tr>
               <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_select_result) %>&nbsp;<%= t(:label_detail_info) %></h2></td>
-              <td id="topButtonRow1" class="pbButton">
-                <div class="button"><%= f.submit t(:save)%></div>
-                <% if !@return_url.blank? %>
-                  <div class="button"><%= link_to t(:cancel), @return_url%></div>
-                <% else %>
-                  <div class="button"><%= link_to t(:cancel), {:action => "select_person",:support_group_code=>@support_group_code,
-                                                               :person_name=>@person_name}%></div>
+              <td id="topButtonRow" class="pbButton">
+                <%= form_for(@support_group_member,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+                  <%= f.hidden_field(:status_code) %>
+                  <div class="button"><%= f.submit t(:save)%></div>
+                  <div class="button"><%= link_to(t(:cancel),{:controller =>"irm/support_groups",:action=>"show",:id=>@support_group.id})%></div>
                 <% end %>
+              </td>
+              <td class="pbHelp">
+                <div id="selectablePersonSearchBox"></div>
               </td>
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="pbBody">
+        <%= error_for @support_group_member %>
+        <div id="supportGroupMembers" class="datatable" style="width:100%">
+        </div>
+        <%= datatable("supportGroupMembers",url_for(:action=>"get_person",:support_group_code=>@support_group.group_code),
+                  [{:key=>"id",:hidden=>true},
+                   {:key=>"person_name",:label=>t(:label_irm_support_group_person_name),:searchable=>true},
+                   {:key=>"company_name",:label=>t(:label_irm_support_group_company_name)},
+                   {:key=>"email_address",:label=>t(:label_irm_person_email_address),:searchable=>true},],
+                   {:paginator_box=>"personPaginator",:search_box=>"selectablePersonSearchBox",:select=>"multiple"})%>
+        <div id="personPaginator"></div>
+      </div>
     </div>
 </div>
-<div id="ep" class="bEditBlock bPageBlock">
-  <div class="pbBody">
-        <div id="support_group" class="datatable" style="width:100%;">
-          <div id="id" style="display:none">
-             <%= check_box_tag "irm_support_group_member[person_id][]","{id}"%>
-          </div>
-        </div>
-        <%= datatable("support_group",url_for(:action=>"get_person",:person_name=>@person_name,
-                                              :support_group_code=>@support_group_code),
-                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
-                   {:key=>"person_name",:label=>t(:label_irm_support_group_person_name),:sortable=>true},
-                   {:key=>"company_name",:label=>t(:label_irm_support_group_company_name),:sortable=>true},
-                   {:key=>"email_address",:label=>t(:label_irm_person_email_address),:sortable=>true},],
-                   {:paginator_box=>"personPaginator"})%>
-    <div id="personPaginator"></div>
-  </div>
-</div>
-<% end %>
-<% end %>

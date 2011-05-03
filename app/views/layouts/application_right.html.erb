@@ -16,8 +16,6 @@
     GY.use("irm","node-base",function(Y){
       Y.on("domready",function(){
         Y.irm.menuButton("settingMenu","TR","BR");
-        Y.irm.menuButton("pageMenu","TR","BR");
-        Y.irm.menuButton("companyMenu","TR","BR");
       });
     });
   </script>
@@ -44,7 +42,7 @@
                           </div>
                         </div>
                         <div id="searchOptionsContainer" class="headerSearchOptions">
-                          <a href="javascript:void(0);" class="headerSearchOptionsLink"><%= t(:options) %></a>
+                          <a href="javascript:void(0);" id="headerSearchOptionsLink"><%= t(:options) %></a>
                         </div>
                       </div>
                     </form>
@@ -53,17 +51,7 @@
                     <div class="multiforce">
                       <div class="messages"></div>
                       <div>
-                        <% if Irm::Role.current %>
-                        <span id="pageMenu" class="menuParent" style="float:right;">
-                          <div  class="menuLabel">
-                            <span tabindex="0" id="pageMenuTop" style=""><%= current_role_name %></span>
-                            <div id="pageMenu-arrow"></div>
-                          </div>
-                          <div class="menuContent" >
-                            <%= list_roles %>
-                          </div>
-                        </span>
-                        <% end %>
+                        <%= current_role_menu %>
                         <span class="navLinks" style="float:right">
                           <span class="linkElements">
                             <a style="margin-right:29px;" href="#" onclick="window.open ('/helpfiles/index.html', 'Ironmine Help', 'height=800px, width=870px, top=0, left=0, toolbar=no, menubar=no,scrollbars=yes, location=no, status=no');"><%= t :help %></a>
@@ -79,18 +67,7 @@
                             <div class="menuItem"><%= link_to(t(:label_irm_common_logout),logout_url) %></div>
                           </div>
                         </span>
-                        <span id="companyMenu" class="menuParent" style="float:right">
-                          <div  class="menuLabel">
-                            <span tabindex="0" id="companyMenuTop" style=""><%= t(:label_company_access_menu_label) %></span>
-                            <div id="companyMenu-arrow"></div>
-                          </div>
-                          <div class="menuContent" >
-                            <%= form_tag({:controller=>"irm/my_info",:action=>"update_company_access",:return_controller=>params[:controller]},{:method=>:put}) do %>
-                              <%= current_company_access_menu %>
-                              <%= submit_tag t(:apply)%>
-                            <% end %>
-                          </div>
-                        </span>
+                        <%= current_company_access_menu %>
                       </div>
                     </div>
                   </td>
@@ -125,7 +102,7 @@
                 <div id="bd_br"></div>
             </div>
 
-            <div id="sidebarDivRight">
+            <div id="sidebarDivRight" style="margin-top:70px;">
                 <div class="sidebarInner">
                     <%= render :partial =>"/irm/common/quick_create"%>
                     <%if has_content?(:sidebar) %>
@@ -143,5 +120,25 @@
             </table>
         </div>
     </div>
+<script type="text/javascript">
+
+  GY.use('yui2-container', function(Y){
+      var dialog;
+      dialog = new Y.YUI2.widget.Dialog("container_abc", {
+          visible: true,
+          context: [Y.one("#headerSearchOptionsLink"), "tl", "bl"],
+          draggable: false,
+          close: true
+      });
+
+      Y.one("#headerSearchOptionsLink").on("click", function(e){
+          dialog.setBody("<iframe src='/common/search_options' style='height:180px;'></iframe>");
+          dialog.setHeader('<%= t :search_options%>');
+          dialog.render(document.body);
+          dialog.center();
+          dialog.show();
+      });
+  });
+</script>
 </body>
 </html>

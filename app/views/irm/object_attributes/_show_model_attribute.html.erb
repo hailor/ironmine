@@ -8,7 +8,7 @@
       </tr>
       <tr>
         <td class="labelCol"><label for="object_attribute_lov_code"><%=t(:label_irm_object_attribute_lov_code)%></label></td>
-        <td class="dataCol"><%=@object_attribute.lov_code%>"object_attribute_lov_code"%></td>
+        <td class="dataCol"><div><%=@object_attribute[:lov_name]%></div></td>
         <td class="labelCol"><label for="object_attribute_approval_page_field_flag"><%=t(:label_irm_object_attribute_approval_page_field_flag)%></label></td>
         <td class="dataCol"><%=check_img(@object_attribute.approval_page_field_flag) %></td>
       </tr>

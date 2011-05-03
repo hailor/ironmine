@@ -1,56 +1,49 @@
 <%= page_title %>
-<div class="filterOverview">
-    <div class="bFilterView">
-      <%= form_tag(:action => "select_roles", :person_id=>@person) do %>
-      <%= hidden_field_tag "return_url",@return_url%>
-      <span class="bFilter">
-        <label style="text-align: left; font-weight: bold; padding-right: 0.69em;"><%= t(:label_irm_role_name) %>：</label>
-        <span class="fBody">
-            <%= text_field_tag :role_name, @role_name%>
-            <%= submit_tag t(:search), :title => t(:search), :class => "btn" %>
-        </span>
-        <span class="fFooter">
-        </span>
-      </span>
-      <% end %>
-    </div>
-</div>
-<% if @role_name && !@role_name.blank? %>
-<%= form_tag({:controller => "irm/people", :action => 'add_roles',:person_id => @person}) do%>
-<%= hidden_field_tag "return_url", @return_url%>
-<%= hidden_field_tag "person_id", @person.id%>
-<div class="srch">
-    <div class="pbHeader">
+<script type="text/javascript">
+  GY.use(function(Y){
+      Y.on("irm:change",function(e){
+          if(e.details[2]=="Datatable"&&"selectableRolesDatatable"==e.details[0])
+            e.details[1].on("selectedChange",function(e){
+                var selected_code = "";
+                for(var i=0;i<e.details[0].length;i++)
+                  selected_code = selected_code + e.details[0][i].id +",";
+                Y.one("#irm_person_role_status_code").set("value",selected_code);
+            })
+      });
+  });
+</script>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
         <table cellpadding="0" cellspacing="0" border="0">
           <tbody>
             <tr>
               <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_select_result) %>&nbsp;<%= t(:label_detail_info) %></h2></td>
-              <td id="topButtonRow1" class="pbButton">
-                <div class="button"><%= submit_tag t(:save)%></div>
-                <% if !@return_url.blank? %>
-                  <div class="button"><%= link_to t(:cancel), @return_url%></div>
-                <% else %>
-                  <div class="button"><%= link_to t(:cancel), {:action => "select_roles",:person_id=>@person}%></div>
+              <td id="topButtonRow" class="pbButton">
+                <%= form_for(@person_role,:url=>{:action=>"add_roles"},:builder => LabellingFormBuilder) do |f| %>
+                  <%= f.hidden_field(:status_code) %>
+                  <div class="button"><%= f.submit t(:save)%></div>
+                  <div class="button"><%= link_to(t(:cancel),{:action=>"show"})%></div>
                 <% end %>
+              </td>
+              <td class="pbHelp">
+                <div id="selectableRolesSearchBox"></div>
               </td>
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="pbBody">
+        <%= error_for @person_role %>
+        <div id="selectableRoles" class="datatable" style="width:100%">
+        </div>
+        <%= datatable("selectableRoles",url_for(:controller => "irm/people", :action=>"get_available_roles",:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:hidden=>true},
+                       {:key=>"role_code",:label=>t(:label_irm_role_code),:searchable=>true},
+                       {:key=>"name",:label=>t(:name),:searchable=>true},
+                       {:key=>"description",:label=>t(:description),:searchable=>true}],
+                      {:paginator_box=>"selectableRolesPaginator",:search_box=>"selectableRolesSearchBox",:select=>"multiple"})%>
+        <div id="selectableRolesPaginator"></div>
+      </div>
     </div>
 </div>
-<div id="ep" class="bEditBlock bPageBlock">
-  <div class="pbBody">
-        <div id="available_roles_list" class="datatable" style="width:100%;">
-          <div id="id" style="display:none">
-             <%= check_box_tag "irm_person_roles[ids][]","{id}"%>
-          </div>
-        </div>
-        <%= datatable("available_roles_list",url_for(:controller => "irm/people", :action=>"get_available_roles", :person_id => @person,:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50px"},
-                       {:key=>"role_code",:label=>t(:label_irm_role_code),:sortable=>true},
-                       {:key=>"name",:label=>t(:name),:sortable=>true},
-                       {:key=>"description",:label=>t(:description),:sortable=>true}])%>
-  </div>
-</div>
-<% end %>
-<% end %>

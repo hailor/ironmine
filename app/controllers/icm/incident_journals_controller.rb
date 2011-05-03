@@ -34,7 +34,7 @@ class Icm::IncidentJournalsController < ApplicationController
         format.html { redirect_to({:action => "new"}, :notice => 'Incident journal was successfully created.') }
         format.xml  { render :xml => @incident_journal, :status => :created, :location => @incident_journal }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :layout=>"application_right"}
         format.xml  { render :xml => @incident_journal.errors, :status => :unprocessable_entity }
       end
     end
@@ -43,7 +43,7 @@ class Icm::IncidentJournalsController < ApplicationController
   def edit_close
     @incident_journal = @incident_request.incident_journals.build()
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render :layout => "application_full"}# new.html.erb
       format.xml  { render :xml => @incident_journal }
     end
   end
@@ -64,7 +64,7 @@ class Icm::IncidentJournalsController < ApplicationController
         format.html { redirect_to({:action => "new"}) }
         format.xml  { render :xml => @incident_journal, :status => :created, :location => @incident_journal }
       else
-        format.html { render :action => "edit_close" }
+        format.html { render :action => "edit_close", :layout => "application_full" }
         format.xml  { render :xml => @incident_journal.errors, :status => :unprocessable_entity }
       end
     end
@@ -131,7 +131,7 @@ class Icm::IncidentJournalsController < ApplicationController
 
   private
   def setup_up_incident_request
-    @incident_request = Icm::IncidentRequest.list_all.find(params[:request_id])    
+    @incident_request = Icm::IncidentRequest.list_all.with_incident_status(I18n.locale).find(params[:request_id])
   end
 
   def backup_incident_request

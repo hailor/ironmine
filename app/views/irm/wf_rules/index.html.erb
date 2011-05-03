@@ -1,0 +1,37 @@
+<%= page_title %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_wf_rule_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+              </td>
+              <td class="pbHelp">
+                <div id="wf_rulesSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="wf_rules" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+          </div>
+        </div>
+        <%= datatable("wf_rules",url_for(:action=>"get_data",:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
+                       { :key => "bo_name", :label => t(:label_irm_wf_rule_bo_code),:searchable=>true },
+                       { :key => "rule_code", :label => t(:label_irm_wf_rule_rule_code),:searchable=>true },
+                       { :key => "name", :label => t(:label_irm_wf_rule_name),:searchable=>true },
+                       { :key => "evaluate_criteria_rule_name", :label => t(:label_irm_wf_rule_evaluate_criteria_rule),:searchable=>true }
+                      ],{:paginator_box=>"wf_rulesPaginatorBox",:search_box=>"wf_rulesSearchBox"})%>
+        <div id="wf_rulesPaginatorBox"></div>
+      </div>
+    </div>
+</div>
+
+

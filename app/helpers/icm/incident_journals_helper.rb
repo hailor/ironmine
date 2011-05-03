@@ -5,8 +5,18 @@ module Icm::IncidentJournalsHelper
     # file belongs to request
     files_belong_to_request = Irm::AttachmentVersion.query_incident_request_file((incident_request.id))
 
-    @request_files.merge!({0=>files_belong_to_request})
+    @request_files.merge!({0=>files_belong_to_request}) if files_belong_to_request.size > 0 #防止事故单没有附件的时候, 产生一个空的数组
 
+  end
+
+  def list_all_files
+    html = ""
+    @request_files.values.flatten.each do |e|
+      html << "<div style='padding-bottom:5px;'><a target='_blank' href='#{e.data.url}' stats="">
+              <div class='fileInfo'><div title='#{e.data.original_filename}' class='fileName'><b>#{e.data.original_filename}</b></div>
+              </div></a></div>"
+    end
+    raw(html)
   end
 
   def list_request_file
@@ -24,6 +34,10 @@ module Icm::IncidentJournalsHelper
     render :partial=>"icm/incident_journals/list_journals",:locals=>{:journals=>journals,:grouped_files=>@request_files}
   end
 
+  def journals_size(incident_request)
+    Icm::IncidentJournal.list_all(incident_request.id).size
+  end
+
   def list_journal_files(grouped_files,journal)
     return if grouped_files[journal.id].nil?||grouped_files[journal.id].size<1
     file_lists = ""
@@ -38,9 +52,9 @@ module Icm::IncidentJournalsHelper
     image_path = nil
     image_path = f.data.url(:thumb) if f.image?
     image_path = theme_image_path(Irm::AttachmentVersion.file_type_icon(f.data.original_filename)) unless image_path
-    link = "<div class='fileIcon'><a target='_blank' href='#{f.data.url}' stats=""><img src='#{image_path}'></a></div>"
-    description = "<div class='fileInfo'><div title='#{f.data.original_filename}' class='fileName'><b>#{f.data.original_filename}</b></div>
-                   <div title='#{f.description}' class='fileDesc'>#{f.description}</div></div>"
+    link = "<div class='fileIcon'><img style='width:20px;height:20px;' src='#{image_path}'></div>"
+    description = "<a target='_blank' href='#{f.data.url}' stats=""><div class='fileInfo'><div title='#{f.data.original_filename}' class='fileName'><b>#{f.data.original_filename}</b></div>
+                   <div title='#{f.description}' class='fileDesc'>#{f.description}</div></div></a>"
     content_tag(:div, (link.html_safe + description.html_safe).html_safe,{:class=>"fileItem"}).html_safe
   end
 

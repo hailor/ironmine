@@ -39,23 +39,58 @@
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
+            <% if allow_to_function?(:create_icdt_rqst_for_other) %>
+              <tr>
+                <td class="labelCol"><label for="incident_request_requested_by"><%=t(:label_icm_incident_request_requested_by)%></label></td>
+                <td class="dataCol"><%=f.select :requested_by,nullable_options_for_select(available_person, @incident_request.requested_by),
+                                                      {},{:required=>true,:id=>"incident_request_requested_by"}%></td>
+                <td class="labelCol empty">&nbsp;</td>
+                <td class="dataCol empty">&nbsp;</td>
+              </tr>
+            <% else %>
+                <%= f.hidden_field(:requested_by,:value=>Irm::Person.current.id) %>
+            <% end %>
             <tr>
-              <td class="labelCol"><label for="incident_request_service_code"><%=t(:label_icm_incident_request_service_code)%></label></td>
-              <td class="dataCol"><%=f.blank_select :service_code,available_service,
-                                                    {},{:required=>true,:id=>"incident_request_service_code"}%></td>
+              <td class="labelCol"><label for="incident_request_service_code"><%=t(:label_icm_incident_request_target_system)%></label></td>
+              <td class="dataCol">
+                <% if allow_to_function?(:create_icdt_rqst_for_other) %>
+                    <%=f.select :external_system_code,
+                                nullable_options_for_select(available_external_systems_with_person(@incident_request.requested_by).collect{|p| [p[:system_name], p.external_system_code]},@incident_request.external_system_code),{},
+                            {:id=>"ass_external_system",
+                             :depend=>"incident_request_requested_by",
+                             :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
+                             :href=>url_for(:controller=>"icm/incident_requests",:action=>"get_external_systems",:format=>"json",:requested_by=>"{incident_request_requested_by}"),
+                             :required => true}%>
+                <% else %>
+                    <%=f.select :external_system_code,
+                            nullable_options_for_select(available_external_systems_with_person(Irm::Person.current.id).collect{|p| [p[:system_name], p.external_system_code]},nil),
+                            {},
+                            {:id=>"ass_external_system",
+                             :depend=>"incident_request_requested_by",
+                             :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
+                             :href=>url_for(:controller=>"icm/incident_requests",:action=>"get_external_systems",:format=>"json",:requested_by=>"{incident_request_requested_by}"),
+                             :required => true}%>
+                <% end %>
+              </td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
 
-        </tbody>
-      </table>
-    </div>
-    <div id="head_2_ep" class="pbSubheader tertiaryPalette">
-      <h3><%= t(:label_icm_incident_requset_base_info) %></h3>
-    </div>
-    <div class="pbSubsection">
-      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
-        <tbody>
+            <tr>
+              <td class="labelCol"><label for="incident_request_service_code"><%=t(:label_icm_incident_request_service_code)%></label></td>
+              <td class="dataCol"><%=f.select :service_code,
+                                            nullable_options_for_select(available_service(@incident_request.external_system_code),@incident_request.service_code),
+                                            {},
+                                            {:id=>"incident_request_service_code",
+                                             :depend=>"ass_external_system,incident_request_requested_by",
+                                             :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---",
+                                             :href=>url_for(:controller=>"icm/incident_requests",:action=>"get_slm_services",:format=>"json",
+                                                            :external_system_code=>"{ass_external_system}", :requested_by => "{incident_request_requested_by}"),
+                                             :required => true}%>
+              </td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
             <tr>
               <td class="labelCol"><label for="incident_request_title"><%=t(:label_icm_incident_request_title)%></label></td>
               <td class="dataCol" colspan="3" style="width:82%"><%=f.text_field :title,:size=>80, :required=>true ,:id=>"incident_request_title"%></td>
@@ -63,11 +98,39 @@
 
             <tr>
               <td class="labelCol"><label for="incident_request_summary"><%=t(:label_icm_incident_request_summary)%></label></td>
-              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_area :summary,:rows=>5,:cols=>100, :required=>true ,:style=>"display:none;",:id=>"incident_request_summary"%></td>
+              <td class="dataCol" colspan="3" style="width:82%">
+                <%=f.text_area :summary,:rows=>5,:cols=>100,:required=>true ,:style=>"display:none;",:id=>"incident_request_summary"%>
+              </td>
+            </tr>
+            <tr>
+              <td class="labelCol"></td>
+              <td class="dataCol" colspan="3" style="width:82%">
+                <table width="80%">
+                  <tbody id="fileTemplate" style="display:none" seq="0">
+                  <tr id="file_{seq}" class="fileArea">
+                      <td><input type="file" name="{ref}[{seq}][file]"/></td>
+                      <td class="labelCol"><%= t(:label_icm_incident_journal_attachment_desc) %></td>
+                      <td><input type="text" name="{ref}[{seq}][description]" size="30"/></td>
+                      <td><div><a class="deleteAttach" delete_ref="file_{seq}" href="javascript:void(0)"><%= t(:delete) %></a></div></td>
+                  </tr>
+                  </tbody>
+                  <tbody id="fileContent">
+
+                  </tbody>
+                  <tbody id="fileButtons">
+                    <tr>
+                      <td><a id="addButton" href="javascript:void(0)"><%= t(:label_icm_incident_journal_add_attachment) %></a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
             </tr>
         </tbody>
       </table>
     </div>
+
+
+
     <div id="head_3_ep" class="pbSubheader tertiaryPalette">
       <h3><%= t(:label_icm_incident_requset_addition_info) %></h3>
     </div>
@@ -136,11 +199,8 @@
                 <%=f.blank_select :request_type_code,available_request_type,
                                                     {},{:required=>true,:id=>"incident_request_request_type_code"}%>
               </td>
-              <td class="labelCol"><label for="incident_request_incident_status_code"><%=t(:label_icm_incident_request_incident_status_code)%></label></td>
-              <td class="dataCol">
-                <%=f.select :incident_status_code,options_for_select(available_all_request_status_code,@incident_request.incident_status_code),
-                                                    {},{:required=>true,:id=>"incident_request_incident_status_code"}%>
-              </td>
+              <td class="labelCol"></td>
+              <td class="dataCol"></td>
             </tr>
 
             <tr>
@@ -196,6 +256,12 @@
   });
 </script>
 <script type="text/javascript">
+GY.use("cascadeselect",function(Y){
+    new Y.CascadeSelect({source: "#incident_request_requested_by",target:["#ass_external_system"]});
+    new Y.CascadeSelect({source: "#ass_external_system",target:["#incident_request_service_code"]});
+    new Y.CascadeSelect({source: "#incident_request_requested_by",target:["#incident_request_service_code"]});
+});
+
 
 GY.use('irm','node','substitute','yui2-editor', function(Y) {
   var YAHOO = Y.YUI2;
@@ -219,7 +285,7 @@ GY.use('irm','node','substitute','yui2-editor', function(Y) {
         }
     });
     editor.render();
-    Y.one(".edit_icm_incident_request").on("submit",function(){
+    Y.all(".edit_icm_incident_request input[type=submit]").on("click",function(){
       editor.saveHTML();
     });
 });

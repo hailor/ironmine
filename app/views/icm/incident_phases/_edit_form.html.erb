@@ -41,7 +41,7 @@
               <td class="labelCol"><%=t(:label_icm_incident_phase_description)%></td>
               <td class="dataCol"><%= f.text_area :description, :rows => 4%></td>
               <td class="labelCol"><%=t(:display_sequence)%></td>
-              <td class="dataCol"><%=f.text_field :display_sequence, :required=>true %></td>
+              <td class="dataCol"><%=f.text_field :display_sequence, :required=>true, :irm_number_only => true %></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_script_status_code)%></label></td>

@@ -25,6 +25,8 @@ gem "delayed_job"
 gem "event-calendar", :require => "event_calendar"
 
 gem 'ri_cal'
+
+gem 'hz2py'
 #gem 'composite_primary_keys', '=3.1.0'
 #gem "rmmseg"
 
@@ -48,7 +50,7 @@ gem 'ri_cal'
 # and rake tasks are available in development mode:
 group :development, :test do
 #gem 'ferret'
-  gem 'mysql'
+  gem 'mysql2'
 end
 
 group :production do

@@ -3,5 +3,5 @@ class Irm::ListOfValuesTl < ActiveRecord::Base
 
   belongs_to :list_of_value
 
-  validates_presence_of :name,:value_title,:desc_title
+  validates_presence_of :name,:value_title
 end

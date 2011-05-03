@@ -1,0 +1,38 @@
+<div id="ep" class="bDetailBlock bPageBlock" style="background-color:#ffffff; width:200px;border: 1px solid #b8b8b8;">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"></h2></td>
+          <td id="topButtonRow" class="pbButton">
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_todo_event_name)%></label></td>
+              <td class="dataCol" colspan="3"><%= @task.name%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_todo_event_start_at)%></label></td>
+              <td class="dataCol" colspan="3"><%= @task.start_at.strftime("%Y-%m-%d") if @task.start_at%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_todo_event_end_at)%></label></td>
+              <td class="dataCol" colspan="3"><%= @task.end_at.strftime("%Y-%m-%d") if @task.end_at%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_wf_relation_object)%></label></td>
+              <td class="dataCol" colspan="3"><%= link_to(eval(@task.source_type).find(@task.source_id).to_s, url_for(@task.url)) if @task.source_type && @task.source_id && @task.url%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

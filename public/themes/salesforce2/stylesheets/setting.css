@@ -652,6 +652,10 @@ body .bodyDiv .bFilter a:hover {text-decoration:underline;}
     padding-top:1px;
 }
 
+.mTreeSelection .parent_3 {
+    margin-left:18px;
+}
+
 .mTreeSelection a.setupFolder, .mTreeSelection a.setupHighlightFolder {
     background-color:transparent;
     margin-left:6px;

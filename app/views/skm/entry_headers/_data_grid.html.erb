@@ -20,7 +20,9 @@
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:controller => "skm/entry_headers", :action=>"edit",:id=>"{id}"}) %>&nbsp;
             <%= link_to(t(:show),{:controller => "skm/entry_headers", :action=>"show",:id=>"{id}"}) %>&nbsp;
-            <%= link_to(t(:save_page), {:controller => "skm/entry_headers", :action => "add_favorites", :id => "{id}", :person_id => Irm::Person.current.id}) %>
+            <div class="display-<%= "{is_favorite}"%>">
+                <%= link_to(t(:save_page), {:controller => "skm/entry_headers", :action => "add_favorites", :id => "{id}", :person_id => Irm::Person.current.id}) %>
+            </div>
           </div>
           <div id="full_title" style="display:none">
             <%= link_to("{full_title}",{:controller => "skm/entry_headers", :action=>"show",:id=>"{id}"}) %>
@@ -29,8 +31,9 @@
         <%= datatable("entry_headers_list",url_for(:action=>"get_data",:format=>"json"),
                   [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"120px"},
                    {:key=>"full_title",:label=>t(:label_skm_entry_header_title),:sortable=>true, :searchable => true,:formatter=>"Y.irm.template"},
-                   {:key=>"published_date_f",:label=>t(:label_skm_entry_header_published_date),:sortable=>true, :width => "180px"}],
-                   {:search_box => "entryHeadersSearchBox", :paginator_box => "entry_headers_list_paginator_box" })%>
+                   {:key=>"published_date_f",:label=>t(:label_skm_entry_header_published_date),:sortable=>true, :width => "180px"},
+                   {:key=>"is_favorite", :hidden => true}],
+                   {:search_box => "entryHeadersSearchBox", :paginator_box => "entry_headers_list_paginator_box", :not_load => true })%>
         <div id="entry_headers_list_paginator_box"></div>
       </div>
     </div>

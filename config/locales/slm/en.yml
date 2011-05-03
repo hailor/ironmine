@@ -1,0 +1,132 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  #=========================    slm service_categories_controller=======================#
+  label_slm_service_category_list: Service Category List
+  label_slm_service_category_show: Service Category Show
+  label_slm_service_category_new: New Service Category
+  label_slm_service_category_edit: Edit Service Category
+  label_slm_service_category_category_code: Code
+  label_slm_service_category_name: Name
+  label_slm_service_category_description: Description
+  label_slm_service_category_status_meaning: Status Meaning
+  label_slm_service_category_info: Service Category Info
+  #=========================    end service_categories_controller=======================#
+  #=========================    slm service_catalogs_controller=======================#
+  label_slm_service_catalog_list: Service List
+  label_slm_service_catalog_show: Service Show
+  label_slm_service_catalog_new: New Service
+  label_slm_service_catalog_edit: Edit Service
+  label_slm_service_catalog_catalog_code: Code
+  label_slm_service_catalog_name: Name
+  label_slm_service_catalog_description: Description
+  label_slm_service_catalog_status_meaning: Status Meaning
+  label_slm_service_catalog_info: Service Category Info
+  label_slm_service_catalog_service_category_code: Service Category
+  label_slm_service_catalog_priority_code: Priority
+  label_slm_service_catalog_external_system_code:  External System
+  label_slm_service_catalog_active_start_date: Start Date
+  label_slm_service_catalog_active_end_date: End Date
+  label_slm_service_catalog_service_owner: Owner
+  label_slm_service_catalog_slm_code: SLA
+  label_slm_service_catalog_statistics_api: Statistics API
+  label_slm_service_catalog_active_date: Active Date
+  label_to: To
+  label_slm_service_catalog_service_member: Member
+  label_slm_service_catalog_service_break: Break
+  label_add_service_member: Add Member
+  label_add_service_break: Add Break
+  #=========================    end service_catalogs_controller=======================#
+  #=========================    slm service_breaks_controller=======================#
+  label_slm_service_member_list: Service Member List
+  label_slm_service_member_show: Service Member Show
+  label_slm_service_member_new: New Service Member
+  label_slm_service_member_edit: Edit Service Member
+  label_slm_service_member_info: Service Member Info
+  label_slm_service_member_service_catalog: Service Catalog
+  label_slm_service_member_service_company: Service Company
+  label_slm_service_member_service_organization: Service Organization
+  label_slm_service_member_service_department: Service Department
+  label_slm_service_member_service_person: Service Person
+  label_slm_service_member_service_contract: Service Contract
+  label_slm_service_member_description: Description
+  label_slm_service_member_status_meaning: Status Meaning
+  #=========================    end service_breaks_controller=======================#
+  #=========================    slm service_breaks_controller=======================#
+  label_slm_service_break_list: Service Break List
+  label_slm_service_break_show: Service Break Show
+  label_slm_service_break_new: Service Break New
+  label_slm_service_break_edit: Service Break Edit
+  label_slm_service_break_info: Service Break Info
+  label_slm_service_break_seq_number: Seq Number
+  label_slm_service_break_start_date: Start Date
+  label_slm_service_break_end_date: End Date
+  label_slm_service_break_description: Description
+  label_slm_service_break_status_meaning: Status Meaning
+  #=========================    end service_breaks_controller=======================#
+  #=========================    slm service_agreements_controller=======================#
+  label_slm_service_agreement_list: Service Agreement List
+  label_slm_service_agreement_show: Service Agreement Show
+  label_slm_service_agreement_new: Service Agreement New
+  label_slm_service_agreement_edit: Service Agreement Edit
+  label_slm_service_agreement_info: Service Agreement Info
+  label_slm_service_agreement_agreement_code: Code
+  label_slm_service_agreement_name: Name
+  label_slm_service_agreement_description: Description
+  label_slm_service_agreement_service_company: Service Company
+  label_slm_service_agreement_active_start_date: Start Date
+  label_slm_service_agreement_active_date: Active Date
+  label_slm_service_agreement_active_end_date: End Date
+  label_slm_service_agreement_response_time: Response Time
+  label_slm_service_agreement_resolve_time: Resolve Time
+  label_slm_service_agreement_business_object_code: Business Object
+  label_slm_service_agreement_rule_filter_code: Rule Filter Code
+  label_slm_service_agreement_response_escalation_enabled: Response Escalation Enabled
+  label_slm_service_agreement_rs_first_escalation_mode: First Escalation Mode
+  label_slm_service_agreement_rs_first_elapse_time: First Elapse Time
+  label_slm_service_agreement_rs_first_assignee_type: First Assignee Type
+  label_slm_service_agreement_rs_first_escalation_assignee: Escalation Assignee
+  label_slm_service_agreement_first_escalation_enabled: First Escalation Enabled
+  label_slm_service_agreement_first_escalation_mode: First Escalation Mode
+  label_slm_service_agreement_first_elapse_time: First Elapse Time
+  label_slm_service_agreement_first_assignee_type: First Assignee Type
+  label_slm_service_agreement_first_escalation_assignee: First Escalation Assignee
+  label_slm_service_agreement_second_escalation_enabled: Second Escalation Enabled
+  label_slm_service_agreement_second_escalation_mode: Second Escalation Mode
+  label_slm_service_agreement_second_elapse_time: Second Elapse Time
+  label_slm_service_agreement_second_assignee_type: Second Assignee Type
+  label_slm_service_agreement_second_escalation_assignee: Second Escalation Assignee
+  label_slm_service_agreement_third_escalation_enabled: Third Escalation Enabled
+  label_slm_service_agreement_third_escalation_mode: Third Escalation Mode
+  label_slm_service_agreement_third_elapse_time: Third Elapse Time
+  label_slm_service_agreement_third_assignee_type: Third Assignee Type
+  label_slm_service_agreement_third_escalation_assignee: Third Escalation Assignee
+  label_slm_service_agreement_fourth_escalation_enabled: Fourth Escalation Enabled
+  label_slm_service_agreement_fourth_escalation_mode: Fourth escalation_mode
+  label_slm_service_agreement_fourth_elapse_time: Fourth Elapse Time
+  label_slm_service_agreement_fourth_assignee_type: Fourth Assignee Type
+  label_slm_service_agreement_fourth_escalation_assignee: Fourth Escalation Assignee
+  label_slm_service_agreement_response_day: Day
+  label_slm_service_agreement_response_hour: Hour
+  label_slm_service_agreement_response_minute: Minute
+  label_slm_service_agreement_solve_day: Day
+  label_slm_service_agreement_solve_hour: Hour
+  label_slm_service_agreement_solve_minute: Minute
+  label_slm_service_agreement_solve_second:  Second
+  label_slm_service_agreement_add_response_time_rule: Add Rule
+  label_slm_service_agreement_add_response_time: Upgrade when exceed response time
+  label_slm_service_agreement_add_solve_time: Upgrade when exceed solve time
+  label_slm_service_agreement_upgrade_to: Upgrade To
+  label_slm_service_agreement_save_successfully: Save Successfully
+  label_slm_service_agreement_upgrade: Upgrade
+  label_slm_service_agreement_first_grade: First Grade
+  label_slm_service_agreement_second_grade: Second Grade
+  label_slm_service_agreement_third_grade: Third Grade
+  label_slm_service_agreement_fourth_grade: Fourth Grade
+  label_slm_service_agreement_match_filter: Matching rules
+  label_slm_service_agreement_match_filter_null: Matching For All Incident Request
+  label_action_match_filter_edit: Edit Match Filter
+  label_slm_service_agreement_match_filter_edit: Edit Match Filter
+  label_action_match_filter_update: Edit Match Filter
+  #=========================    end service_agreements_controller=======================#

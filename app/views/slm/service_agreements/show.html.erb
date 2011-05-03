@@ -1,0 +1,571 @@
+<%= page_title %>
+<div>
+<%= form_tag(url_for(:controller=>"slm/service_agreements",:action=>"add_solve_time_rule",
+                          :service_agreement_id=>@service_agreement.id),
+                          :method => :put,:remote=>true) do -%>
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_slm_service_agreement_show) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @service_agreement.id}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+            <div class="button"><%= submit_tag(t(:save))%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+
+            <tr>
+              <td class="labelCol"><label for="service_agreement_service_company"><%=t(:label_slm_service_agreement_service_company)%></label></td>
+              <td class="dataCol"><%=@service_agreement[:company_name]%></td>
+              <td class="labelCol"><label for="service_agreement_active_date"><%=t(:label_slm_service_agreement_active_date)%></label></td>
+              <td class="dataCol"><%=@service_agreement.active_start_date%><%= t(:label_to) %>
+                                        <%= @service_agreement.active_end_date %></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="service_agreement_service_agreement_code"><%=t(:label_slm_service_agreement_agreement_code)%></label></td>
+              <td class="dataCol"><%=@service_agreement.agreement_code%></td>
+              <td class="labelCol"><%=t(:label_slm_service_agreement_response_time)%></td>
+              <td class="dataCol"><%=get_day_count(@service_agreement.response_time)%><%= t(:label_slm_service_agreement_response_day) %>
+                                  <%=get_hour_count(@service_agreement.response_time)%><%= t(:label_slm_service_agreement_response_hour) %>
+                                  <%=get_minute_count(@service_agreement.response_time)%><%= t(:label_slm_service_agreement_response_minute) %>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="service_agreement_system_name"><%=t(:label_slm_service_agreement_name)%></label></td>
+              <td class="dataCol"><%=@service_agreement[:name]%></td>
+              <td class="labelCol empty"><%=t(:label_slm_service_agreement_resolve_time)%></td>
+              <td class="dataCol empty"><%=get_day_count(@service_agreement.resolve_time)%><%= t(:label_slm_service_agreement_response_day) %>
+                                  <%=get_hour_count(@service_agreement.resolve_time)%><%= t(:label_slm_service_agreement_response_hour) %>
+                                  <%=get_minute_count(@service_agreement.resolve_time)%><%= t(:label_slm_service_agreement_response_minute) %>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label for="service_agreement_system_description"><%=t(:label_slm_service_agreement_description)%></label></td>
+              <td class="dataCol"><%= @service_agreement[:description]%></td>
+              <td class="labelCol"><label for="service_agreement_system_description"><%=t(:label_slm_service_catalog_status_meaning)%></label></td>
+              <td class="dataCol"><%= @service_agreement[:status_meaning]%></td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+       function ShowHide(id,e){
+          GY.use("irm",function(Y){
+          if(e.checked){
+            Y.one('#'+id).setStyle("display","block");
+          }else{
+            Y.one('#'+id).setStyle("display","none");
+          }
+          })
+       }
+</script>
+
+<div  class="bRelatedList">
+    <div class="listRelatedObject taskBlock">
+      <div class="bPageBlock secondaryPalette">
+        <div class="pbHeader">
+          <table cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+            <tr>
+              <td class="pbTitle">
+                <h3><%=t(:label_slm_service_agreement_match_filter)%></h3>
+              </td>
+              <td class="pbButton">
+                <div class="button">
+                  <div class="button"><%= link_to t(:edit), {:action => "match_filter_edit"}%></div>
+                </div>
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" class="graybgBorder">
+			<tbody><tr>
+				<td class="dataCol">
+                  <div><%= @service_agreement.match_filter_meaning %></div>
+				</td>
+			</tr>
+		</tbody>
+        </table>
+        <div class="pbFooter secondaryPalette">
+        <div class="bg"></div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div id="id_service_catalog_breaks" class="bRelatedList">
+    <a name="id_service_catalog_breaks_target">
+    </a>
+    <div class="listRelatedObject taskBlock">
+      <div class="bPageBlock secondaryPalette">
+        <div class="pbHeader">
+          <table cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+            <tr>
+              <td class="pbTitle">
+                <h3 id="id_service_catalog_breaks_title"><%=t(:label_slm_service_agreement_add_response_time)%></h3>
+              </td>
+              <td class="pbButton">
+                <div class="button">
+                  
+                </div>
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" class="graybgBorder">
+			<tbody><tr>
+				<td>
+					<table cellspacing="0" cellpadding="0" border="0">
+						<tbody><tr>
+							<td>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag(:response_escalation_enabled,@service_agreement.response_escalation_enabled||1,
+                                                  checkbox_show_flag(@service_agreement.response_escalation_enabled),
+                                                  {:onclick=>"javascript:ShowHide('level0',this);",:id=>"id_checkbox0"}) %>
+                            </td>
+							<td nowrap="" class="fontBlackBold"><span><%= t(:label_slm_service_agreement_upgrade) %></span></td>
+						</tr>
+					</tbody></table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div style="<%=div_show_flag(@service_agreement.response_escalation_enabled)%>" id="level0">
+						<table width="100%" cellspacing="0" cellpadding="3" border="0">
+							<tbody>
+                               <tr>
+								<td height="20">&nbsp;</td>
+								<td>
+                                    <table cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                        <tr width="45" class="fontBlack">
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td width="30" nowrap="">
+                                            <%= select_tag(:rs_first_escalation_mode,
+                                                             "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
+                                                             options_for_select(available_lookup_type('SLM_ESCALATION_MODE'),@service_agreement.rs_first_escalation_mode)) %>
+                                            </td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td width="30" class="alignRight">
+                                              <%= text_field_tag :rs_first_day,get_day_count(@service_agreement.rs_first_elapse_time)||0,:size=>3 %>
+                                            </td>
+                                            <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_day) %></td>
+                                            <td>
+                                               <%= select_tag(:rs_first_hour,options_for_select(available_lookup_type('SLM_SERVICE_HOUR'),get_hour_count(@service_agreement.rs_first_elapse_time))) %>
+                                            </td>
+                                            <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_hour) %></td>
+                                            <td>
+                                               <%= select_tag(:rs_first_minute,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'),get_minute_count(@service_agreement.rs_first_elapse_time))) %>
+                                            </td>
+                                            <td nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_minute) %></td>
+                                            <td>
+                                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </td>
+                                            <td nowrap=""><%= t(:label_slm_service_agreement_upgrade_to)%></td>
+                                            <td>
+                                              &nbsp;&nbsp;&nbsp;<%= select_tag(:rs_first_assignee_type,
+                                                                               "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
+                                                                                       options_for_select(available_lookup_type('SLM_CHOICE_TYPE'),@service_agreement.rs_first_assignee_type),:id=>"id_assignee_type") %>
+                                            </td>
+                                            <td>
+                                              &nbsp;&nbsp;&nbsp;
+                                              <%= select_tag(:rs_first_escalation_assignee, "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
+                                                             options_for_select(show_options(@service_agreement.rs_first_escalation_assignee,
+                                                                                             @service_agreement.rs_first_escalation_assignee),@service_agreement.rs_first_escalation_assignee),{:id=>"id_assignee",
+                                               :href=>url_for(:controller=>"slm/service_agreements",:action=>"get_by_assignee_type",
+                                                              :format=>"json",:assignee_type=>"{id_assignee_type}"),
+                                               :depend=>"id_assignee_type"
+                                               })
+                                               %>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+								</td>
+							   </tr>
+						</tbody></table>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+        </table>
+        <div class="pbFooter secondaryPalette">
+        <div class="bg"></div>
+        </div>
+      </div>
+    </div>
+</div>
+<script type="text/javascript">
+  GY.use("cascadeselect",function(Y){
+     new Y.CascadeSelect({source: "#id_assignee_type",target:["#id_assignee"]});
+  });
+</script>
+
+
+<div id="id_service_agreements_escalation_time" class="bRelatedList">
+    <a name="id_a_service_agreements_escalation_time">
+    </a>
+    <div class="listRelatedObject taskBlock">     
+      <div class="bPageBlock secondaryPalette">
+        <div class="pbHeader">
+          <table cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+            <tr>
+              <td class="pbTitle">
+                <h3 id="id_service_agreement_title"><%=t(:label_slm_service_agreement_add_solve_time)%></h3>
+              </td>
+              <td class="pbButton">
+                <div class="button">
+                </div>
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" class="graybgBorder">
+			<tbody><tr>
+				<td>
+					<table cellspacing="0" cellpadding="0" border="0">
+						<tbody><tr>
+							<td>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag(:first_escalation_enabled,@service_agreement.first_escalation_enabled||1,
+                                                  checkbox_show_flag(@service_agreement.first_escalation_enabled),
+                                                  {:onclick=>"javascript:ShowHide('level1',this);"}) %>
+                            </td>
+							<td nowrap="" class="fontBlackBold"><span><%= t(:label_slm_service_agreement_first_grade) %></span></td>
+						</tr>
+					</tbody></table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div style="<%=div_show_flag(@service_agreement.first_escalation_enabled)%>" id="level1">
+						<table width="100%" cellspacing="0" cellpadding="3" border="0">
+							<tbody>
+                               <tr>
+								<td height="20">&nbsp;</td>
+								<td>
+                                    <table cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                        <tr width="45" class="fontBlack">
+                                          <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td width="30" nowrap="">
+                                              <%= select_tag(:first_escalation_mode,
+                                                             "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
+                                                             options_for_select(available_lookup_type('SLM_ESCALATION_MODE'),@service_agreement.first_escalation_mode)) %>
+                                            </td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td width="30" class="alignRight">
+                                              <%= text_field_tag :solve_first_day,get_day_count(@service_agreement.first_elapse_time)||0,:size=>3 %>
+                                            </td>
+                                            <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_day) %></td>
+                                            <td>
+                                               <%= select_tag(:solve_first_hour,options_for_select(available_lookup_type('SLM_SERVICE_HOUR'),get_hour_count(@service_agreement.first_elapse_time))) %>
+                                            </td>
+                                            <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_hour) %></td>
+                                            <td>
+                                               <%= select_tag(:solve_first_minute,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'),get_minute_count(@service_agreement.first_elapse_time))) %>
+                                            </td>
+                                            <td nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_minute) %></td>
+                                            <td>
+                                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </td>
+                                            <td nowrap=""><%= t(:label_slm_service_agreement_upgrade_to)%></td>
+                                            <td>
+                                              &nbsp;&nbsp;&nbsp;<%= select_tag(:first_assignee_type,
+                                                                               "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
+                                                                                       options_for_select(available_lookup_type('SLM_CHOICE_TYPE'),@service_agreement.first_assignee_type),:id=>"id_assignee_type_first") %>
+                                            </td>
+                                            <td>
+                                              &nbsp;&nbsp;&nbsp;
+                                              <%= select_tag(:first_escalation_assignee, "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
+                                                             options_for_select(show_options(@service_agreement.first_assignee_type,
+                                                                                             @service_agreement.first_escalation_assignee),
+                                                                                             @service_agreement.first_escalation_assignee),{:id=>"id_assignee_first",
+                                               :href=>url_for(:controller=>"slm/service_agreements",:action=>"get_by_assignee_type",
+                                                              :format=>"json",:assignee_type=>"{id_assignee_type_first}"),
+                                               :depend=>"id_assignee_type_first"
+                                               })
+                                               %>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+								</td>
+							   </tr>
+						</tbody></table>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+        </table>
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" class="graybgBorder">
+			<tbody><tr>
+				<td>
+					<table cellspacing="0" cellpadding="0" border="0">
+						<tbody><tr>
+							<td>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag(:second_escalation_enabled,@service_agreement.second_escalation_enabled||1,
+                                                  checkbox_show_flag(@service_agreement.second_escalation_enabled),
+                                                  {:onclick=>"javascript:ShowHide('level2',this);"}) %>
+                            </td>
+							<td nowrap="" class="fontBlackBold"><span><%= t(:label_slm_service_agreement_second_grade) %></span></td>
+						</tr>
+					</tbody></table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div style="<%=div_show_flag(@service_agreement.second_escalation_enabled)%>"  id="level2">
+						<table width="100%" cellspacing="0" cellpadding="3" border="0">
+							<tbody>
+                               <tr>
+								<td height="20">&nbsp;</td>
+								<td>
+                                    <table cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                        <tr width="45" class="fontBlack">
+                                          <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td width="30" nowrap="">
+                                              <%= select_tag(:second_escalation_mode,
+                                                             "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
+                                                             options_for_select(available_lookup_type('SLM_ESCALATION_MODE'),@service_agreement.second_escalation_mode)) %>
+                                            </td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td width="30" class="alignRight">
+                                              <%= text_field_tag :solve_second_day,get_day_count(@service_agreement.second_elapse_time)||0,:size=>3 %>
+                                            </td>
+                                            <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_day) %></td>
+                                            <td>
+                                               <%= select_tag(:solve_second_hour,options_for_select(available_lookup_type('SLM_SERVICE_HOUR'),get_hour_count(@service_agreement.second_elapse_time))) %>
+                                            </td>
+                                            <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_hour) %></td>
+                                            <td>
+                                               <%= select_tag(:solve_second_minute,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'),get_minute_count(@service_agreement.second_elapse_time))) %>
+                                            </td>
+                                            <td nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_minute) %></td>
+                                            <td>
+                                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </td>
+                                            <td nowrap=""><%= t(:label_slm_service_agreement_upgrade_to)%></td>
+                                            <td>
+                                              &nbsp;&nbsp;&nbsp;<%= select_tag(:second_assignee_type,
+                                                                               "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
+                                                                                       options_for_select(available_lookup_type('SLM_CHOICE_TYPE'),
+                                                                                                          @service_agreement.second_assignee_type),:id=>"id_assignee_type_second") %>
+                                            </td>
+                                            <td>
+                                              &nbsp;&nbsp;&nbsp;
+                                              <%= select_tag(:second_escalation_assignee,"<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
+                                                             options_for_select(show_options(@service_agreement.second_assignee_type,
+                                                                                             @service_agreement.second_escalation_assignee),@service_agreement.second_escalation_assignee),{:id=>"id_assignee_second",
+                                               :href=>url_for(:controller=>"slm/service_agreements",:action=>"get_by_assignee_type",
+                                                              :format=>"json",:assignee_type=>"{id_assignee_type_second}"),
+                                               :depend=>"id_assignee_type_second"
+                                               })
+                                               %>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+								</td>
+							   </tr>
+						</tbody></table>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+        </table>
+
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" class="graybgBorder">
+			<tbody><tr>
+				<td>
+					<table cellspacing="0" cellpadding="0" border="0">
+						<tbody><tr>
+							<td>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag(:third_escalation_enabled,@service_agreement.third_escalation_enabled,
+                                                  checkbox_show_flag(@service_agreement.third_escalation_enabled),
+                                                  {:onclick=>"javascript:ShowHide('level3',this);"}) %>
+                            </td>
+							<td nowrap="" class="fontBlackBold"><span><%= t(:label_slm_service_agreement_third_grade) %></span></td>
+						</tr>
+					</tbody></table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div style="<%=div_show_flag(@service_agreement.third_escalation_enabled)%>" id="level3">
+						<table width="100%" cellspacing="0" cellpadding="3" border="0">
+							<tbody>
+                               <tr>
+								<td height="20">&nbsp;</td>
+								<td>
+                                    <table cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                        <tr width="45" class="fontBlack">
+                                          <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td width="30" nowrap="">
+                                              <%= select_tag(:third_escalation_mode,
+                                                             "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
+                                                             options_for_select(available_lookup_type('SLM_ESCALATION_MODE'),@service_agreement.third_escalation_mode)) %>
+                                            </td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td width="30" class="alignRight">
+                                              <%= text_field_tag :solve_third_day,get_day_count(@service_agreement.third_elapse_time)||0,:size=>3 %>
+                                            </td>
+                                            <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_day) %></td>
+                                            <td>
+                                               <%= select_tag(:solve_third_hour,options_for_select(available_lookup_type('SLM_SERVICE_HOUR'),get_hour_count(@service_agreement.third_elapse_time))) %>
+                                            </td>
+                                            <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_hour) %></td>
+                                            <td>
+                                               <%= select_tag(:solve_third_minute,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'),get_minute_count(@service_agreement.third_elapse_time))) %>
+                                            </td>
+                                            <td nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_minute) %></td>
+                                            <td>
+                                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </td>
+                                            <td nowrap=""><%= t(:label_slm_service_agreement_upgrade_to)%></td>
+                                            <td>
+                                              &nbsp;&nbsp;&nbsp;<%= select_tag(:third_assignee_type,
+                                                                               "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
+                                                                                       options_for_select(available_lookup_type('SLM_CHOICE_TYPE'),@service_agreement.third_assignee_type),:id=>"id_assignee_type_third") %>
+                                            </td>
+                                            <td>
+                                              &nbsp;&nbsp;&nbsp;
+                                              <%= select_tag(:third_escalation_assignee,"<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe + options_for_select(show_options(@service_agreement.third_assignee_type,
+                                                                                        @service_agreement.third_escalation_assignee),@service_agreement.third_escalation_assignee),{:id=>"id_assignee_third",
+                                               :href=>url_for(:controller=>"slm/service_agreements",:action=>"get_by_assignee_type",
+                                                              :format=>"json",:assignee_type=>"{id_assignee_type_third}"),
+                                               :depend=>"id_assignee_type_third"
+                                               })
+                                               %>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+								</td>
+							   </tr>
+						</tbody></table>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+        </table>
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" class="graybgBorder">
+			<tbody><tr>
+				<td>
+					<table cellspacing="0" cellpadding="0" border="0">
+						<tbody><tr>
+							<td>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag(:fourth_escalation_enabled,@service_agreement.fourth_escalation_enabled||1,
+                                                  checkbox_show_flag(@service_agreement.fourth_escalation_enabled),
+                                                  {:onclick=>"javascript:ShowHide('level4',this);"}) %>
+                            </td>
+							<td nowrap="" class="fontBlackBold"><span><%= t(:label_slm_service_agreement_fourth_grade) %></span></td>
+						</tr>
+					</tbody></table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div style="<%=div_show_flag(@service_agreement.fourth_escalation_enabled)%>" id="level4">
+						<table width="100%" cellspacing="0" cellpadding="3" border="0">
+							<tbody>
+                               <tr>
+								<td height="20">&nbsp;</td>
+								<td>
+                                    <table cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                        <tr width="45" class="fontBlack">
+                                          <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td width="30" nowrap="">
+                                              <%= select_tag(:fourth_escalation_mode,
+                                                             "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
+                                                             options_for_select(available_lookup_type('SLM_ESCALATION_MODE'),@service_agreement.fourth_escalation_mode)) %>
+                                            </td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td width="30" class="alignRight">
+                                              <%= text_field_tag :solve_fourth_day,get_day_count(@service_agreement.fourth_elapse_time)||0,:size=>3 %>
+                                            </td>
+                                            <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_day) %></td>
+                                            <td>
+                                               <%= select_tag(:solve_fourth_hour,options_for_select(available_lookup_type('SLM_SERVICE_HOUR'),
+                                                                                                    get_hour_count(@service_agreement.fourth_elapse_time))) %>
+                                            </td>
+                                            <td width="30" nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_hour) %></td>
+                                            <td>
+                                               <%= select_tag(:solve_fourth_minute,options_for_select(available_lookup_type('SLM_SERVICE_MINUTE'),
+                                                                                                    get_minute_count(@service_agreement.fourth_elapse_time))) %>
+                                            </td>
+                                            <td nowrap="">&nbsp;<%= t(:label_slm_service_agreement_response_minute) %></td>
+                                            <td>
+                                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </td>
+                                            <td nowrap=""><%= t(:label_slm_service_agreement_upgrade_to)%></td>
+                                            <td>
+                                              &nbsp;&nbsp;&nbsp;<%= select_tag(:fourth_assignee_type,
+                                                                               "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
+                                                                                       options_for_select(available_lookup_type('SLM_CHOICE_TYPE'),@service_agreement.fourth_assignee_type),:id=>"id_assignee_type_fourth") %>
+                                            </td>
+                                            <td>
+                                              &nbsp;&nbsp;&nbsp;
+                                              <%= select_tag(:fourth_escalation_assignee, "<option value=\"\">#{t(:actionview_instancetag_blank_option)}</option>".html_safe +
+                                                                            options_for_select(show_options(@service_agreement.fourth_escalation_assignee,
+                                                                                                                        @service_agreement.fourth_escalation_assignee),@service_agreement.fourth_escalation_assignee),{:id=>"id_assignee_fourth",
+                                               :href=>url_for(:controller=>"slm/service_agreements",:action=>"get_by_assignee_type",
+                                                              :format=>"json",:assignee_type=>"{id_assignee_type_fourth}"),
+                                               :depend=>"id_assignee_type_fourth"
+                                               })
+                                               %>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+								</td>
+							   </tr>
+						</tbody></table>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+        </table>
+        <div class="pbFooter secondaryPalette">
+        <div class="bg"></div>
+        </div>
+      </div>    
+    </div>
+</div>
+<% end -%>
+</div>
+
+<script type="text/javascript">
+  GY.use("cascadeselect",function(Y){
+     new Y.CascadeSelect({source: "#id_assignee_type_first",target:["#id_assignee_first"]});
+     new Y.CascadeSelect({source: "#id_assignee_type_second",target:["#id_assignee_second"]});
+     new Y.CascadeSelect({source: "#id_assignee_type_third",target:["#id_assignee_third"]});
+     new Y.CascadeSelect({source: "#id_assignee_type_fourth",target:["#id_assignee_fourth"]});
+  });
+</script>
+
+
+

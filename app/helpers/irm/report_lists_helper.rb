@@ -49,4 +49,8 @@ module Irm::ReportListsHelper
                                   report_entry.html_safe,:class=>"reportEntry")
      report_entry
   end
+
+  def available_report_categories
+    Irm::LookupValue.query_wrap_info(I18n.locale).query_by_lookup_type("IRM_REPORT_CATEGORY").enabled.collect{|p| [p[:meaning], p[:lookup_code]]}
+  end
 end

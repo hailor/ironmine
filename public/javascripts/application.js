@@ -11,9 +11,15 @@ GY.use('node',function(Y){
             this.set("value", this.get('value').toString().replace(pattern,''));
           }
         }
-   })
+   });
+
+    Y.all('input[jrequired]').each(function(n){
+        var parent_node = n.get('parentNode');
+        var node = Y.Node.create('<div class="requiredInput"><div class="requiredBlock"></div>' + parent_node.getContent() + '</div>');
+        parent_node.setContent(node);
+    });
 });
-function show_irm_calendar(YAHOO,Event,Dom,id_button,id_date_field,id_cal){
+function show_irm_calendar(YAHOO,Event,Dom,id_button,id_date_field,id_cal, cfg){
         var dialog, calendar;
         var showBtn = Dom.get(id_button);
         Event.on(showBtn, "click", function () {
@@ -50,14 +56,7 @@ function show_irm_calendar(YAHOO,Event,Dom,id_button,id_date_field,id_cal){
             // Lazy Calendar Creation - Wait to create the Calendar until
             // the first time the button is clicked.
             //if (!calendar) {
-                calendar = new YAHOO.widget.Calendar(id_cal, {
-                    iframe: false,
-                    // Turn iframe off,
-                    // since container has iframe support.
-                    hide_blank_weeks: true
-                    // Enable, to demonstrate how we handle changing height,
-                    //department using changeContent
-                });
+                calendar = new YAHOO.widget.Calendar(id_cal, cfg);
                 calendar.render();
 
                 calendar.selectEvent.subscribe(function () {
@@ -94,7 +93,7 @@ function show_irm_calendar(YAHOO,Event,Dom,id_button,id_date_field,id_cal){
 //记住用户名
 GY.use("cookie",function(Y){
    if(Y.Cookie.get("username")){
-      Y.Cookie.set("username", Y.Cookie.get("username"), { expires: new Date("January 12, 2025") });
+      Y.Cookie.set("username", Y.Cookie.get("username"), { path:"/",expires: new Date("January 12, 2025") });
    }
 });
 YUI(yuiConfig).use('node-base', 'node-event-delegate', 'io-form','yui2-container',function(Y){

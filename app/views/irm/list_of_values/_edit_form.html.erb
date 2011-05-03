@@ -54,7 +54,7 @@
                                                      :depend=>"list_of_value_bo_code"}%></td>
               <td class="labelCol"><label for="list_of_value_desc_column"><%=t(:label_irm_list_of_value_desc_column)%></label></td>
               <td class="dataCol"><%=f.blank_select :desc_column,available_selectable_object_attribute(@list_of_value.bo_code),{},
-                                                    {:required=>true ,
+                                                    {
                                                      :id=>"list_of_value_desc_column",
                                                      :href=>url_for(:controller=>"irm/object_attributes",:action=>"selectable_columns",:format=>"json",:business_object_code=>"{list_of_value_bo_code}"),
                                                      :depend=>"list_of_value_bo_code"}%></td>
@@ -64,13 +64,13 @@
               <td class="labelCol"><label for="list_of_value_value_title"><%=t(:label_irm_list_of_value_value_title)%></label></td>
               <td class="dataCol"><%=f.text_field :value_title, :required=>true ,:id=>"list_of_value_value_title"%></td>
               <td class="labelCol"><label for="list_of_value_description_title"><%=t(:label_irm_list_of_value_desc_title)%></label></td>
-              <td class="dataCol"><%=f.text_field :desc_title, :required=>true ,:id=>"list_of_value_description_title"%></td>
+              <td class="dataCol"><%=f.text_field :desc_title, :id=>"list_of_value_description_title"%></td>
             </tr>
             <tr>
               <td class="labelCol"><label for="list_of_value_value_column_width"><%=t(:label_irm_list_of_value_value_column_width)%></label></td>
               <td class="dataCol"><%=f.text_field :value_column_width, :required=>true ,:id=>"list_of_value_value_column_width"%></td>
               <td class="labelCol"><label for="list_of_value_desc_column_width"><%=t(:label_irm_list_of_value_desc_column_width)%></label></td>
-              <td class="dataCol"><%=f.text_field :desc_column_width, :required=>true ,:id=>"list_of_value_desc_column_width"%></td>
+              <td class="dataCol"><%=f.text_field :desc_column_width,:id=>"list_of_value_desc_column_width"%></td>
             </tr>
             <tr>
               <td class="labelCol"><label for="list_of_value_addition_column"><%=t(:label_irm_list_of_value_addition_column)%></label></td>
@@ -92,7 +92,11 @@
             </tr>
             <tr>
               <td class="labelCol"><label for="list_of_value_where_clause"><%=t(:label_irm_list_of_value_where_clause)%></label></td>
-              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_area :where_clause ,:id=>"list_of_value_where_clause",:rows=>5,:cols=>100%></td>
+              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_area :where_clause ,:id=>"list_of_value_where_clause",:rows=>3,:cols=>100%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="list_of_value_query_clause"><%=t(:label_irm_list_of_value_query_clause)%></label></td>
+              <td class="dataCol" colspan="3" style="width:82%"><%=f.text_area :query_clause ,:id=>"list_of_value_query_clause",:rows=>3,:cols=>100%></td>
             </tr>
         </tbody>
       </table>

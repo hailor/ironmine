@@ -6,21 +6,21 @@
           </div>
           <div id="title" style="display:none">
             if('{need_customer_reply}' == 'N'){
-               '<%= icon_link("btn_reply", t(:label_icm_reply),{:controller=>"icm/incident_journals",:action=>"new",:request_id=>"{id}"}) %>({incident_status_name}){title}'
+               '<%= icon_link("btn_reply", t(:label_icm_reply),{:controller=>"icm/incident_journals",:action=>"new",:request_id=>"{id}"}) %>({incident_status_name})<%= link_to( "{title}",{:controller=>"icm/incident_journals",:action=>"new",:request_id=>"{id}"}) %>'
             }
             else{
-              '({incident_status_name}){title}'
+              '({incident_status_name})<%= link_to( "{title}",{:controller=>"icm/incident_journals",:action=>"new",:request_id=>"{id}"}) %>'
             }
           </div>
         </div>
         <%= datatable("incident_requests",url_for(:action=>"get_help_desk_data",:format=>"json"),
-                              [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
+                              [{:key=>"id",:label=>t(:operation),:width=>"80px", :hidden => true},
+                               { :key => "request_number", :label => "#",:searchable=>true,:width=>"20px"},
+                               { :key => "title",:formatter=>"Y.irm.stemplate",:label => t(:label_icm_incident_request_title),:searchable=>true },
                                { :key => "company_name", :label => t(:label_icm_incident_request_company),:width=>"120px"},
                                { :key => "priority_name", :label => t(:label_icm_incident_request_priority,:searchable=>true),:width=>"60px" },
-                               { :key => "request_number", :label => "#",:searchable=>true,:width=>"20px"},
                                { :key => "incident_status_name",:hidden=>true },
                                { :key => "need_customer_reply",:hidden=>true },
-                               { :key => "title",:formatter=>"Y.irm.stemplate",:label => t(:label_icm_incident_request_title),:searchable=>true },
                                { :key => "requested_name", :label => t(:label_icm_incident_request_requested_by,:searchable=>true) },
                                { :key => "last_request_date", :label => t(:label_icm_incident_request_last_date),:width=>"180px" }
                                ],{:not_load=>true,:row_perpage=>10,:search_box=>"incident_requestsSearchBox",:paginator_box=>'incidentRequestsPaginatorBox'})%>

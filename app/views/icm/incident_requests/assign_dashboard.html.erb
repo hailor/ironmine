@@ -1,0 +1,86 @@
+<%= app_title %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_icm_incident_request_assignable_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:label_icm_incident_journal_back_to_request_list), {:controller=>"icm/incident_requests",:action => "index"}%></div>
+              </td>
+              <td class="pbHelp">
+                <div id="incident_requestsSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="incidentRequestsPaginatorBox"></div>
+        <div id="incident_requests" class="datatable" style="width:100%">
+          <div id="title" style="display:none">
+            ({incident_status_name}){title}
+          </div>
+        </div>
+        <%= datatable("incident_requests",url_for(:action=>"assignable_data",:format=>"json"),
+                              [{:key=>"id",:label=>t(:operation),:width=>"80px", :hidden => true},
+                               { :key => "request_number", :label => "#",:searchable=>true,:width=>"20px"},
+                               { :key => "title",:formatter=>"Y.irm.template",:label => t(:label_icm_incident_request_title),:searchable=>true },
+                               { :key => "company_name", :label => t(:label_icm_incident_request_company),:width=>"120px"},
+                               { :key => "priority_name", :label => t(:label_icm_incident_request_priority,:searchable=>true),:width=>"60px" },
+                               { :key => "incident_status_name",:hidden=>true },
+                               { :key => "requested_name", :label => t(:label_icm_incident_request_requested_by,:searchable=>true) }
+                               ],{:select=>"multiple",:row_perpage=>5,:paginator_box=>'incidentRequestsPaginatorBox'})%>
+
+        <div class="pbSubsection">
+          <%= form_tag({:action=>"assign_request",:format=>:js},:remote=>true) do |f|%>
+          <%= hidden_field_tag(:incident_request_ids,:id=>"incident_request_ids")  %>
+          <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+              <tr>
+                <td class="labelCol" style="width:10%"><label for="incident_request_support_group_id"><%=t(:label_icm_incident_request_support_group)%></label></td>
+                <td class="dataCol" style="width:30%">
+                  <%=blank_select_tag :support_group_id,available_support_group,
+                                                      {},{:id=>"incident_request_support_group_id"}%>
+                </td>
+                <td class="labelCol" style="width:10%"><label for="incident_request_support_person_id"><%=t(:label_icm_incident_request_support_person)%></label></td>
+                <td class="dataCol" style="width:30%"><%= blank_select_tag(:support_person_id,[],{},
+                                    {
+                                     :id=>"incident_request_support_person_id",
+                                     :href=>url_for(:controller=>"irm/support_group_members",:action=>"get_options",:format=>"json",:group_id=>"{incident_request_support_group_id}"),
+                                     :depend=>"incident_request_support_group_id",
+                                     }) %></td>
+                <td class="dataCol" style="width:20%"><div><%= submit_tag(t(:label_icm_incident_request_assign),{:id=>"formSubmit",:disabled=>true})  %></div></td>
+
+              </tr>
+            </tbody>
+          </table>
+          <% end  %>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+  GY.use("cascadeselect",function(Y){
+      Y.on("irm:change",function(e){
+          if(e.details[2]=="Datatable"&&"incident_requestsDatatable"==e.details[0])
+            e.details[1].on("selectedChange",function(e){
+                var selected_requests = e.details[0];
+                var ids = [];
+                for(var i in selected_requests){
+                  ids.push(selected_requests[i].id);
+                }
+                Y.one("#incident_request_ids").set("value",ids.join(","));
+                if(selected_requests.length>0)
+                  Y.one("#formSubmit").removeAttribute("disabled");
+                else
+                  Y.one("#formSubmit").setAttribute("disabled",true);
+
+            })
+      });
+      new Y.CascadeSelect({source: "#incident_request_support_group_id",target:["#incident_request_support_person_id"]});
+
+  });
+</script>
