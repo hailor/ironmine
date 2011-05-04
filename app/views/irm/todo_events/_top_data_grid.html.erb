@@ -26,7 +26,7 @@
       </div>
         <%= datatable("todo_events_list",url_for(:controller => "irm/todo_events", :action=>"get_top_data",:format=>"json"),
                               [{:key=>"id",:label=>t(:operation),:hidden=>true},
-                               {:key=>"name",:label=>t(:label_irm_todo_event_name),:sortable=>true, :width => "120px"},
+                               {:key=>"name",:label=>t(:label_irm_todo_event_name),:formatter=>"Y.irm.template",:sortable=>true, :width => "120px"},
                                {:key=>"start_at",:label=>t(:label_irm_todo_event_start_at),:sortable=>true, :width => "80px"},
                                {:key=>"end_at",:label=>t(:label_irm_todo_event_end_at),:sortable=>true, :width => "80px"},
                                {:key=>"priority_name",:label=>t(:label_irm_todo_event_priority),:sortable=>true, :width => "60px"},
