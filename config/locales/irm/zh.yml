@@ -1057,6 +1057,7 @@ zh:
   label_irm_todo_task: 任务
   label_irm_todo_task_new: 创建任务
   label_irm_todo_task_edit: 编辑任务
+  label_irm_todo_task_created_at: 创建日期
   label_irm_todo_task_start_at: 开始日期
   label_irm_todo_task_end_at: 结束日期
   label_irm_todo_task_due_date: 到期日期

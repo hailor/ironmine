@@ -103,11 +103,28 @@ class Irm::TodoTasksController < ApplicationController
   end
 
   def update
+    @task = Irm::TodoTask.find(params[:id])
 
+    calendar_id = Irm::Calendar.current_calendar(params[:assigned_to]).id
+    return_url = params[:return_url]
+    respond_to do |format|
+      if @task.update_attributes(params[:irm_todo_task]) && @task.update_attributes(:calendar_id => calendar_id)
+        if return_url && !return_url.blank?
+          format.html { redirect_to(return_url, :notice =>t(:successfully_created)) }
+          format.xml  { render :xml => @task, :status => :created, :location => @task }
+        else
+          format.html { redirect_to({:controller => "irm/todo_tasks", :action=>"my_tasks_index"}, :notice => t(:successfully_updated)) }
+          format.xml  { head :ok }
+        end
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }
+      end
+    end
   end
 
   def show
-
+    @task = Irm::TodoTask.with_all.with_task_status.with_calendar.with_priority.where("#{Irm::TodoTask.table_name}.id = ?", params[:id]).first
   end
 
   def my_tasks_index
@@ -120,5 +137,13 @@ class Irm::TodoTasksController < ApplicationController
     respond_to do |format|
       format.json {render :json => to_jsonp(my_tasks.to_grid_json([:name,:start_at,:end_at,:due_date, :color,:status_code, :assigned_name, :priority_name, :event_status_name], count))}
     end
+  end
+
+  def edit_recurrence
+
+  end
+
+  def update_recurrence
+
   end
 end
