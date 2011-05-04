@@ -1,0 +1,229 @@
+<%= app_title %>
+<%= form_for(@task,:url=>{:controller => "irm/todo_tasks", :action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+<%= hidden_field_tag "assigned_to", Irm::Person.current.id%>
+<%= hidden_field_tag "return_url",@return_url%>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_todo_task_new)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button">
+           <% if @return_url && !@return_url.blank?%>
+            <%= link_to t(:cancel), @return_url%>
+           <% else %>
+            <%= link_to t(:cancel), {:controller => "irm/todo_tasks", :action => "my_tasks_index"} %>
+           <% end %>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @task%>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend">
+          <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+          </span><span class="requiredText"> = <%=t(:label_is_required)%></span>
+        </span>
+      </span>
+      <h3><%= t(:label_common_info) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_todo_task_name)%></label></td>
+              <td class="dataCol"><%= f.text_field :name, :required => true%></td>
+              <td class="labelCol"><label><%=(t :label_irm_todo_task_due_date)%></label></td>
+              <td class="dataCol mulInput"><%=f.text_field :due_date, :id => "date1", :size => 12, :required => true%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=t :label_irm_todo_task_assigned_to%></label></td>
+              <td class="dataCol"><%=select_tag "assigned_to", options_for_select(Irm::Person.enabled.collect{|p| [p.name, p.id]}, Irm::Person.current.id)%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%= t :label_irm_todo_task_priority %></label></td>
+              <td class="dataCol"><%= f.select :priority, available_todo_event_priorities %></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%= t :label_irm_todo_task_task_status %></label></td>
+              <td class="dataCol"><%= f.select :task_status, available_todo_event_statuses %></td>
+
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pbSubheader first tertiaryPalette">
+      <h3><%= t(:label_description_info) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :description)%></label></td>
+              <td class="data2Col"><%=f.text_area :description, :rows => 4, :cols => 80%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pbSubheader first tertiaryPalette">
+      <h3><%= t(:label_irm_todo_task_recurrence) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><%= check_box_tag "is_recurrence", "N", false, {:id => "is_recurrence"}%><label for="is_recurrence"><%= t :label_irm_todo_task_recurrence_new%></label></td>
+              <td class="data2Col"></td>
+            </tr>
+        </tbody>
+      </table>
+      <table id="recurrences" class="detailList" cellpadding="0" cellspacing="0" border="0" style="display:none;">
+        <tbody>
+            <tr>
+              <td class="labelCol"><%= t :label_irm_todo_task_recurrence_frequency %></td>
+              <td>
+                <table class="recurrenceTable">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div style="margin-right:20px;">
+                          <div><%= radio_button_tag "rectype", "DAILY", true, :id => "rd" %><label for="rd"><%= t :label_irm_todo_task_recurrence_daily %></label></div>
+                          <div><%= radio_button_tag "rectype", "WEEKLY", false, :id => "rw"  %><label for="rw"><%= t :label_irm_todo_task_recurrence_weekly %></label></div>
+                          <div><%= radio_button_tag "rectype", "MONTHLY", false, :id => "rm"  %><label for="rm"><%= t :label_irm_todo_task_recurrence_monthly %></label></div>
+                          <div style="display:none;"><%= radio_button_tag "rectype", "YEARLY", false, :id => "ry"  %><label for="ry"><%= t :label_irm_todo_task_recurrence_yearly %></label></div>
+                        </div>
+                      </td>
+                      <td>
+                        <div id="d">
+                          <div><%= radio_button_tag "recd", "EVERYDAY", true %><%= t :label_irm_todo_task_recurrence_every_weekday %></div>
+                          <div><%= radio_button_tag "recd", "CUSTOM", false %><%= t :label_irm_todo_task_recurrence_every %><%= text_field_tag "recurrence_daily_cus_freq", 1, :size => 2%><%= t :label_irm_todo_task_recurrence_day %></div>
+                        </div>
+                        <div id="w" style="display:none;">
+                          <div><%= raw(t(:label_irm_todo_task_recurrence_every_week, :m => (text_field_tag "recurrence_every_week_interval", 1, :size => 2)))%></div>
+                          <div>
+                            <%= check_box_tag "recurrence_every_week[0]", "SU", false, :id => "recurrence_every_week_1"%><label for="recurrence_every_week_1"><%= (t "date.day_names")[0]%></label>
+                            <%= check_box_tag "recurrence_every_week[1]", "MO", false, :id => "recurrence_every_week_2"%><label for="recurrence_every_week_2"><%= (t "date.day_names")[1]%></label>
+                            <%= check_box_tag "recurrence_every_week[2]", "TU", false, :id => "recurrence_every_week_3"%><label for="recurrence_every_week_3"><%= (t "date.day_names")[2]%></label>
+                            <%= check_box_tag "recurrence_every_week[3]", "WE", false, :id => "recurrence_every_week_4"%><label for="recurrence_every_week_4"><%= (t "date.day_names")[3]%></label>
+                            <%= check_box_tag "recurrence_every_week[4]", "TH", false, :id => "recurrence_every_week_5"%><label for="recurrence_every_week_5"><%= (t "date.day_names")[4]%></label>
+                            <%= check_box_tag "recurrence_every_week[5]", "FR", false, :id => "recurrence_every_week_6"%><label for="recurrence_every_week_6"><%= (t "date.day_names")[5]%></label>
+                            <%= check_box_tag "recurrence_every_week[6]", "SA", false, :id => "recurrence_every_week_7"%><label for="recurrence_every_week_7"><%= (t "date.day_names")[6]%></label>
+                          </div>
+                        </div>
+                        <div id="m" style="display:none;">
+                          <div><%= radio_button_tag "recm", "DAY", true %><%= raw(t :label_irm_todo_task_recurrence_day_of_every_month,
+                                                                        :n => (select_tag "recurrence_on_day_of_month", options_for_select(available_month_days)),
+                                                                        :m => (text_field_tag "recurrence_on_every_month_0", 1, :size => 2)) %></div>
+                          <div><%= radio_button_tag "recm", "WEEK", false %><%= raw(t :label_irm_todo_task_recurrence_weekday_of_every_month,
+                                                                        :m => (text_field_tag "recurrence_on_every_month_1", 1, :size => 2),
+                                                                        :n => (select_tag "recurrence_week_ordinal", options_for_select(available_todo_events_ordinal)) +
+                                                                                (select_tag "recurrence_on_month_weekdays", options_for_select(available_week_days))) %></div>
+                        </div>
+                        <div id="y" style="display:none;">
+
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%= (t :label_irm_todo_task_start_at) %></label></td>
+              <td class="data2Col"><%= text_field_tag "recurrence_start_at", "", :id => "date3", :size => 12, :jrequired => true%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%= (t :label_irm_todo_task_end_at) %></label></td>
+              <td class="data2Col"><%=text_field_tag "recurrence_end_at", "", :id => "date4", :size => 12, :jrequired => true%></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button">
+           <% if @return_url && !@return_url.blank?%>
+            <%= link_to t(:cancel), @return_url%>
+           <% else %>
+            <%= link_to t(:cancel), {:controller => "irm/todo_tasks", :action => "my_tasks_index"} %>
+           <% end %>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+<% end %>
+<%= calendar_view("date1","date1","cal1")%>
+<%= calendar_view("date3","date3","cal3")%>
+<%= calendar_view("date4","date4","cal4")%>
+
+<script type="text/javascript">
+
+  GY.use('node', function(Y){
+      //显示创建重复序列的区域
+      Y.on("change", function(e){
+          recurrences_checked();
+      }, "#is_recurrence");
+
+      //创建重复序列时,结束时间不允许输入
+      function recurrences_checked(){
+        if (Y.one("#is_recurrence").get("checked"))
+        {
+          Y.one("#is_recurrence").set("value", "Y");
+          Y.one("#recurrences").setStyle("display", "");
+          Y.one("#date1").set("disabled", true);
+        }
+        else
+        {
+          Y.one("#is_recurrence").set("value", "N");
+          Y.one("#recurrences").setStyle("display", "none");
+          Y.one("#date1").set("disabled", false);
+          Y.one("#date1").set("value", "");
+        }
+      }
+
+      //控制重复序列各个输入界面的显示
+      Y.on("click", function(e){
+        show_rectype("d");
+      }, "#rd");
+
+      Y.on("click", function(e){
+        show_rectype("w");
+      }, "#rw");
+      Y.on("click", function(e){
+        show_rectype("m");
+      }, "#rm");
+      Y.on("click", function(e){
+        show_rectype("y");
+      }, "#ry");
+
+      function show_rectype(id){
+          Y.one("#m").setStyle("display", "none");
+          Y.one("#d").setStyle("display", "none");
+          Y.one("#w").setStyle("display", "none");
+          Y.one("#y").setStyle("display", "none");
+          Y.one("#" + id).setStyle("display", "");
+      }
+
+      recurrences_checked();
+  })
+</script>
+

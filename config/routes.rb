@@ -600,6 +600,18 @@ Ironmine::Application.routes.draw do
     match '/todo_events/my_events_index(.:format)' => "todo_events#my_events_index", :via => :get
     match '/todo_events/my_events_get_data(.:format)' => "todo_events#my_events_get_data"
 
+    match '/todo_tasks(/index)(.:format)' => "todo_tasks#index", :via => :get
+    match '/todo_tasks/new(.:format)' => "todo_tasks#new", :via => :get
+    match '/todo_tasks/create(.:format)' => "todo_tasks#create", :via => :post
+    match '/todo_tasks/:id/edit(.:format)' => "todo_tasks#edit", :via => :get
+    match '/todo_tasks/:id(.:format)' => "todo_tasks#update", :via => :put
+    match '/todo_tasks/get_data(.:format)' => "todo_tasks#get_data"
+    match '/todo_tasks/:id/show(.:format)' => "todo_tasks#show", :via => :get
+    match '/todo_tasks/:id/edit_recurrence(.:format)' => "todo_tasks#edit_recurrence", :via => :get
+    match '/todo_tasks/:id/update_recurrence(.:format)' => "todo_tasks#update_recurrence", :via => :put
+    match '/todo_tasks/my_tasks_index(.:format)' => "todo_tasks#my_tasks_index", :via => :get
+    match '/todo_tasks/my_tasks_get_data(.:format)' => "todo_tasks#my_tasks_get_data"
+
     match '/calendars(/:year(/:month))' => 'calendars#get_full_calendar', :as => :calendar_task, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
     # business object
     match '/business_objects(/index)(.:format)' => "business_objects#index", :via => :get

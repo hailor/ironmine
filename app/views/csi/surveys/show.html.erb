@@ -42,8 +42,6 @@
                <% if check_survey_result_exist?(@survey.id) %>
                  <div class="button"><%= link_to t(:add), {:controller=>"csi/survey_subjects",
                                                          :action=>"new",:survey_id=>@survey.id}%></div>
-               <% else %>
-                 <div class="button"><%= link_to t(:add), {}, {:href => "javascript:void(0);"}%></div>
                <% end %>
              </td>
            </tr>
@@ -58,8 +56,6 @@
                                     :survey_id=>@survey.id}) %>&nbsp;&nbsp;
               <%= link_to(t(:delete),{:controller=>"csi/survey_subjects",:action=>"destroy",:id=>"{id}",:survey_id=>@survey.id},:confirm => t(:label_are_you_sure) ,
                                       :method => :delete) %>
-            <% else %>
-              <%= t(:edit) %>&nbsp;&nbsp;<%= t(:delete) %>
             <% end %>
           </div>
     </div>

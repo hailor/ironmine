@@ -811,7 +811,7 @@ en:
   label_irm_watcher_new: Add Watcher
   label_irm_watcher_list: Watcher List
   #======================== end watcher ======================
-  #======================== calendar tasks====================
+  #======================== calendar events====================
   label_irm_todo_event: Events
   label_irm_todo_event_new: Create Event
   label_irm_todo_event_edit: Edit Event
@@ -933,3 +933,34 @@ en:
   label_irm_wf_rule_description: Description
   label_irm_wf_rule_active: Active
   #========================end wf rules====================
+
+  #======================== calendar tasks====================
+  label_irm_todo_task: Events
+  label_irm_todo_task_new: Create Event
+  label_irm_todo_task_edit: Edit Event
+  label_irm_todo_task_start_at: Start Date
+  label_irm_todo_task_end_at: End Date
+  label_irm_todo_task_due_date: Due
+  label_irm_todo_task_color: Color
+  label_irm_todo_task_name: Event Name
+  label_irm_todo_task_location: Location
+  label_irm_todo_task_percent_complete: Percent Completed
+  label_irm_todo_task_recurrence: Recurrence
+  label_irm_todo_task_recurrence_new: Create Recurring Series of Events
+  label_irm_todo_task_recurrence_frequency: Frequency
+  label_irm_todo_task_recurrence_every_weekday: Every Weekday
+  label_irm_todo_task_recurrence_every: Every
+  label_irm_todo_task_recurrence_day: Day
+  label_irm_todo_task_recurrence_daily: Daily
+  label_irm_todo_task_recurrence_weekly: Weekly
+  label_irm_todo_task_recurrence_monthly: Monthly
+  label_irm_todo_task_recurrence_yearly: Yearly
+  label_irm_todo_task_recurrence_every_week: Recurs every %{m} week(s) on
+  label_irm_todo_task_recurrence_day_of_every_month: On day %{n} of every %{m} month(s)
+  label_irm_todo_task_recurrence_weekday_of_every_month: On the %{n} of every %{m} month(s)
+  label_irm_todo_task_assigned_to: Assigned To
+  label_irm_todo_task_recurrence_edit: Edit Series
+  label_action_my_tasks_index: My Tasks
+  label_irm_todo_task_task_status: Task Status
+  label_irm_todo_task_mail: Mail
+  label_irm_todo_task_phone: Tel
