@@ -22,9 +22,10 @@
         </div>
         <%= datatable("todo_tasks_list",url_for(:controller => "irm/todo_tasks", :action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
-                       {:key=>"name",:label=>t(:label_irm_todo_task_name),:sortable=>true, :width => "150px"},
+                       {:key=>"name",:label=>t(:label_irm_todo_task_name),:sortable=>true, :width => "200px"},
                        {:key=>"due_date",:label=>t(:label_irm_todo_task_due_date),:sortable=>true, :width => "80px"},
-                       {:key=>"description",:label=>t(:description),:sortable=>true, :width => "200px"}])%>
+                       {:key=>"relation_object",:label=>t(:label_irm_wf_relation_object),:sortable=>true, :width => "100px"},
+                       {:key=>"description",:label=>t(:description),:sortable=>true, :width => "80px"}])%>
       </div>
     </div>
 </div>

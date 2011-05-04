@@ -4,11 +4,11 @@ class Irm::TodoTasksController < ApplicationController
   end
 
   def get_data
-    tasks_scope = Irm::TodoTask.with_task_status.with_priority.uncompleted.with_calendar
-
+    tasks_scope = Irm::TodoTask.with_all.with_task_status.with_priority.uncompleted.with_calendar
     tasks,count = paginate(tasks_scope)
     respond_to do |format|
-      format.json  {render :json => to_jsonp(tasks.to_grid_json([:name,:start_at,:end_at,:due_date, :color,:status_code, :assigned_name, :priority_name, :event_status_name], count)) }
+      format.json  {render :json => to_jsonp(tasks.to_grid_json([:name,:start_at,:end_at,:due_date, :color,:status_code,:description,
+                                                                 :assigned_name, :priority_name, :task_status_name], count)) }
     end
   end
 
