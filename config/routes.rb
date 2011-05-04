@@ -607,6 +607,7 @@ Ironmine::Application.routes.draw do
     match '/todo_tasks/:id/edit(.:format)' => "todo_tasks#edit", :via => :get
     match '/todo_tasks/:id(.:format)' => "todo_tasks#update", :via => :put
     match '/todo_tasks/get_data(.:format)' => "todo_tasks#get_data"
+    match '/todo_tasks/get_top_data(.:format)' => "todo_tasks#get_top_data"
     match '/todo_tasks/:id/show(.:format)' => "todo_tasks#show", :via => :get
     match '/todo_tasks/:id/edit_recurrence(.:format)' => "todo_tasks#edit_recurrence", :via => :get
     match '/todo_tasks/:id/update_recurrence(.:format)' => "todo_tasks#update_recurrence", :via => :put

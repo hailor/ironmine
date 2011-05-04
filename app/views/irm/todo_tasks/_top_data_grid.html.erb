@@ -20,7 +20,7 @@
         <%= link_to("{name}", {:controller => "irm/todo_tasks", :action => "show", :id => "{id}"})%>
       </div>
   </div>
-        <%= datatable("todo_tasks_list",url_for(:controller => "irm/todo_tasks", :action=>"get_data",:format=>"json"),
+        <%= datatable("todo_tasks_list",url_for(:controller => "irm/todo_tasks", :action=>"get_top_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:hidden=>true},
                        {:key=>"name",:label=>t(:label_irm_todo_task_name),:formatter=>"Y.irm.template",:sortable=>true, :width => "150px"},
                        {:key=>"due_date",:label=>t(:label_irm_todo_task_due_date),:sortable=>true, :width => "80px"},
