@@ -1,0 +1,86 @@
+<%= page_title %>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_ldap_syn_person_name) %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to(t(:edit),{:controller => "irm/ldap_syn_people",:action=>"edit",:id=>@ldap_syn_person}) %></div>
+            <div class="button"><%= link_to t(:back), {:controller => "irm/ldap_syn_people",:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+          <tr>
+            <td class="labelCol"><label><%=t(:label_irm_ldap_syn_person_name)%></label></td>
+            <td class="dataCol"><%=@ldap_syn_person[:ldap_name]%></td>
+            <td class="labelCol"><label><%=t(:label_icm_ldap_auth_header_name)%></label></td>
+            <td class="dataCol"><%=@ldap_syn_person[:auth_name]%></td>
+          </tr>
+          <tr>
+            <td class="labelCol"><label><%=t(:label_irm_ldap_base_dn)%></label></td>
+            <td class="dataCol"><%=@ldap_syn_person[:ldap_dn]%></td>
+            <td class="labelCol"></td>
+            <td class="dataCol"></td>
+          </tr>
+          <tr>
+            <td class="labelCol"><label><%=(t :label_irm_ldap_filter)%></label></td>
+            <td class="dataCol"><%=@ldap_syn_person[:filter]%></td>
+            <td class="labelCol"><label><%=(t :label_irm_ldap_description)%></label></td>
+            <td class="dataCol"><%=@ldap_syn_person[:description]%></td>
+          </tr>
+          <tr>
+            <td class="labelCol"><label><%=t(:label_irm_person_company)%></label></td>
+            <td class="dataCol"><%=@ldap_syn_person[:company_name]%></td>
+            <td class="labelCol"><label><%=(t :label_irm_person_region_code)%></label></td>
+            <td class="dataCol"><%=@ldap_syn_person[:region_name]%></td>
+          </tr>
+          <tr>
+            <td class="labelCol"><label><%=t(:label_irm_person_organization)%></label></td>
+            <td class="dataCol"><%=@ldap_syn_person[:organization_name]%></td>
+            <td class="labelCol"><label><%=(t :label_irm_person_site_group_code)%></label></td>
+            <td class="dataCol"><%= @ldap_syn_person[:site_group_name]%></td>
+          </tr>
+          <tr>
+            <td class="labelCol"><label><%=t(:label_irm_person_department)%></label></td>
+            <td class="dataCol"><%=@ldap_syn_person[:department_name]%></td>
+            <td class="labelCol"><label><%=(t :label_irm_person_site_code)%></label></td>
+            <td class="dataCol"><%=@ldap_syn_person[:site_name]%></td>
+          </tr>
+          <tr>
+            <td class="labelCol"><label>
+            <%=t(:label_irm_person_vip_flag)%></label></td>
+            <td class="dataCol"><%=check_img(@ldap_syn_person.vip_flag)%></td>
+            <td class="labelCol"></td>
+            <td class="dataCol"></td>
+          </tr>
+          <tr>
+            <td class="labelCol"><label>
+             <%=t(:label_irm_person_assignment_availability_flag)%></label></td>
+            <td class="dataCol"><%=check_img(@ldap_syn_person.assignment_availability_flag)%></td>
+            <td class="labelCol"><label><%=t(:label_irm_person_notification_lang)%></label>
+            </td>
+            <td class="dataCol"><%=@ldap_syn_person[:notification_lang_name]%></td>
+          </tr>
+          <tr>
+            <td class="labelCol"><label>
+             <%=t(:label_irm_person_unrestricted_access_flag)%></label></td>
+            <td class="dataCol"><%= check_img(@ldap_syn_person.unrestricted_access_flag)%></td>
+            <td class="labelCol"><label>
+             <%=t(:label_irm_person_notification_flag)%></label></td>
+            <td class="dataCol"><%= check_img(@ldap_syn_person.notification_flag)%></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <%= render 'show_peo' %>
+  </div>
+</div>

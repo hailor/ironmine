@@ -2,7 +2,7 @@ class Irm::LdapAuthAttributesController < ApplicationController
   # GET /ldap_auth_attributes
   # GET /ldap_auth_attributes.xml
   def index
-    @ldap_auth_attributes = LdapAuthAttribute.all
+    @ldap_auth_attributes = Irm::LdapAuthAttribute.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class Irm::LdapAuthAttributesController < ApplicationController
   # GET /ldap_auth_attributes/1
   # GET /ldap_auth_attributes/1.xml
   def show
-    @ldap_auth_attribute = LdapAuthAttribute.find(params[:id])
+    @ldap_auth_attribute = Irm::LdapAuthAttribute.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +24,7 @@ class Irm::LdapAuthAttributesController < ApplicationController
   # GET /ldap_auth_attributes/new
   # GET /ldap_auth_attributes/new.xml
   def new
-    @ldap_auth_attribute = LdapAuthAttribute.new
+    @ldap_auth_attribute = Irm::LdapAuthAttribute.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,17 +34,18 @@ class Irm::LdapAuthAttributesController < ApplicationController
 
   # GET /ldap_auth_attributes/1/edit
   def edit
-    @ldap_auth_attribute = LdapAuthAttribute.find(params[:id])
+    @ldap_auth_attribute = Irm::LdapAuthAttribute.find(params[:id])
   end
 
   # POST /ldap_auth_attributes
   # POST /ldap_auth_attributes.xml
   def create
-    @ldap_auth_attribute = LdapAuthAttribute.new(params[:ldap_auth_attribute])
-
+    @ldap_auth_attribute = Irm::LdapAuthAttribute.new(params[:irm_ldap_auth_attribute])
+    @ldap_auth_attribute.ldap_auth_header_id=params[:ah_id]
+    @ldap_auth_attribute.company_id=Irm::Company.current.id
     respond_to do |format|
       if @ldap_auth_attribute.save
-        format.html { redirect_to(@ldap_auth_attribute, :notice => t(:successfully_created)) }
+        format.html { redirect_to({:controller => "irm/ldap_auth_headers",:action=>"show",:id=>params[:ah_id]}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @ldap_auth_attribute, :status => :created, :location => @ldap_auth_attribute }
       else
         format.html { render :action => "new" }
@@ -56,11 +57,11 @@ class Irm::LdapAuthAttributesController < ApplicationController
   # PUT /ldap_auth_attributes/1
   # PUT /ldap_auth_attributes/1.xml
   def update
-    @ldap_auth_attribute = LdapAuthAttribute.find(params[:id])
+    @ldap_auth_attribute = Irm::LdapAuthAttribute.find(params[:id])
 
     respond_to do |format|
-      if @ldap_auth_attribute.update_attributes(params[:ldap_auth_attribute])
-        format.html { redirect_to(@ldap_auth_attribute, :notice => t(:successfully_updated)) }
+      if @ldap_auth_attribute.update_attributes(params[:irm_ldap_auth_attribute])
+        format.html { redirect_to({:controller => "irm/ldap_auth_headers",:action=>"show",:id=>params[:ah_id]}, :notice => t(:successfully_updated)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -72,21 +73,21 @@ class Irm::LdapAuthAttributesController < ApplicationController
   # DELETE /ldap_auth_attributes/1
   # DELETE /ldap_auth_attributes/1.xml
   def destroy
-    @ldap_auth_attribute = LdapAuthAttribute.find(params[:id])
+    @ldap_auth_attribute = Irm::LdapAuthAttribute.find(params[:id])
     @ldap_auth_attribute.destroy
 
     respond_to do |format|
-      format.html { redirect_to(ldap_auth_attributes_url) }
+      format.html { redirect_to({:controller => "irm/ldap_auth_headers",:action=>"show",:id=>params[:ah_id]}) }
       format.xml  { head :ok }
     end
   end
 
   def multilingual_edit
-    @ldap_auth_attribute = LdapAuthAttribute.find(params[:id])
+    @ldap_auth_attribute = Irm::LdapAuthAttribute.find(params[:id])
   end
 
   def multilingual_update
-    @ldap_auth_attribute = LdapAuthAttribute.find(params[:id])
+    @ldap_auth_attribute = Irm::LdapAuthAttribute.find(params[:id])
     @ldap_auth_attribute.not_auto_mult=true
     respond_to do |format|
       if @ldap_auth_attribute.update_attributes(params[:ldap_auth_attribute])
@@ -100,11 +101,15 @@ class Irm::LdapAuthAttributesController < ApplicationController
   end
 
   def get_data
-    ldap_auth_attributes_scope = LdapAuthAttribute.where("1=1")
-    ldap_auth_attributes_scope = ldap_auth_attributes_scope.match_value("ldap_auth_attribute.name",params[:name])
-    ldap_auth_attributes,count = paginate(ldap_auth_attributes_scope)
+    ldap_auth_attributes_scope = Irm::LdapAuthAttribute.find_all_by_ldap_auth_header_id(params[:ah_id])
+    ldap_auth_attributes = ldap_auth_attributes_scope.collect{|i| {:id=>i.id,
+                                                                   :local_attr=>i.local_attr,
+                                                                   :ldap_attr=>i.ldap_attr,
+                                                                   :description=>i.description,
+                                                                   :status_code=>i.status_code}}
+
     respond_to do |format|
-      format.json {render :json=>to_jsonp(ldap_auth_attributes.to_grid_json([:local_attr,:attr_type,:ldap_attr,:status_code],count))}
+      format.json {render :json=>to_jsonp(ldap_auth_attributes.to_grid_json([:local_attr,:ldap_attr,:description,:status_code],ldap_auth_attributes.count))}
     end
   end
 end

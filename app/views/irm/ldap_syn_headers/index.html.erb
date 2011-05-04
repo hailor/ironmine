@@ -1,0 +1,39 @@
+<%= page_title %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_ldap_syn_header_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+              </td>
+              <td class="pbHelp">
+                <div id="ldap_syn_headersSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="ldap_syn_headers" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:controller => "irm/ldap_syn_headers",:action=>"edit",:id=>"{id}"}) %>|
+            <%= link_to(t(:show),{:controller => "irm/ldap_syn_headers",:action=>"show",:id=>"{id}"}) %>
+          </div>
+          <div id="status_code" style="display:none">
+            <%= check_img("{status_code}") %>
+          </div>
+        </div>
+        <%= datatable("ldap_syn_headers",url_for(:action=>"get_data",:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
+                       { :key => "ldap_source_name", :label => t(:ldap_auth_header_ldap_source),:searchable=>true },
+                       { :key => "name", :label => t(:label_irm_ldap_syn_header_syn_name),:searchable=>true },
+                       { :key => "base_dn", :label => t(:label_irm_ldap_syn_header_syn_cn),:searchable=>true },
+                       { :key => "status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}
+                       ],{:search_box=>"ldap_syn_headersSearchBox"})%>
+
+      </div>
+    </div>
+</div>

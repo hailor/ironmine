@@ -1,0 +1,139 @@
+<%= form_for(@ldap_syn_person,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_ldap_syn_person_edit)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @ldap_syn_person %>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend">
+          <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+          </span><span class="requiredMark">*</span>
+          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+        </span>
+      </span>
+      <h3><%= t(:label_common_info) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+          <tr>
+            <td class="labelCol"><label><%=t(:label_irm_ldap_syn_person_name)%></label></td>
+            <td class="dataCol"><%=f.text_field :ldap_name,:required=>true%></td>
+            <td class="labelCol"><label><%=t(:label_icm_ldap_auth_header_name)%></label></td>
+            <td class="dataCol"><%=f.select(:auth_source_id,available_ldap_auth_headers,{},:required=>true,:id=>"auth_source_id")%></td>
+          </tr>
+          <tr>
+            <td class="labelCol"><label><%=t(:label_irm_ldap_base_dn)%></label></td>
+            <td class="dataCol"><%=f.text_field :ldap_dn,:required=>true%></td>
+            <td class="labelCol"></td>
+            <td class="dataCol"></td>
+          </tr>
+          <tr>
+            <td class="labelCol"><label><%=(t :label_irm_ldap_filter)%></label></td>
+            <td class="dataCol"><%=f.text_area :filter,:rows=>4%></td>
+            <td class="labelCol"><label><%=(t :label_irm_ldap_description)%></label></td>
+            <td class="dataCol"><%=f.text_area :description,:rows=>4%></td>
+          </tr>
+          <tr>
+            <td class="labelCol"><label><%=t(:label_irm_person_company)%></label></td>
+            <td class="dataCol"><%=f.select(:company_id,available_company,{},:required=>true,:id=>"company_id")%></td>
+            <td class="labelCol"><label><%=(t :label_irm_person_region_code)%></label></td>
+            <td class="dataCol"><%=f.blank_select :region_code,available_region,{},{:required=>true,:id=>"region_code"}%></td>
+          </tr>
+          <tr>
+            <td class="labelCol"><label><%=t(:label_irm_person_organization)%></label></td>
+            <td class="dataCol"><%= f.blank_select(:organization_id,[],{},
+                          {:required=>true,
+                           :id=>"organization_id",
+                           :href=>url_for(:controller=>"irm/organizations",:action=>"get_by_company",:format=>"json",:belonged_company_id=>"{company_id}"),
+                           :depend=>"company_id"
+                           }) %></td>
+            <td class="labelCol"><label><%=(t :label_irm_person_site_group_code)%></label></td>
+
+            <td class="dataCol"><%= f.blank_select(:site_group_code,[],{},
+                          {:required=>false,
+                           :id=>"site_group_code",
+                           :href=>url_for(:controller=>"irm/site_groups",:action=>"get_by_region_code",:format=>"json",:region_code=>"{region_code}"),
+                           :depend=>"region_code"
+                           }) %></td>
+          </tr>
+          <tr>
+            <td class="labelCol"><label><%=t(:label_irm_person_department)%></label></td>
+            <td class="dataCol"><%= f.blank_select(:department_id,[],{},
+                          {:required=>true,
+                           :id=>"department_id",
+                           :href=>url_for(:controller=>"irm/departments",:action=>"get_by_organization",:format=>"json",:organization_id=>"{organization_id}"),
+                           :depend=>"organization_id"
+                           }) %></td>
+
+            <td class="labelCol"><label><%=(t :label_irm_person_site_code)%></label></td>
+            <td class="dataCol"><%= f.blank_select(:site_code,[],{},
+                          {:required=>false,
+                           :id=>"site_code",
+                           :href=>url_for(:controller=>"irm/sites",:action=>"get_by_site_group_code",:format=>"json",:site_group_code=>"{site_group_code}"),
+                           :depend=>"site_group_code"
+                           }) %></td>
+          </tr>
+
+          <tr>
+            <td class="labelCol"><label><%=t(:label_irm_person_vip_flag)%></label></td>
+            <td class="dataCol"><%=f.check_box :vip_flag%></td>
+            <td class="labelCol"><label><%=t(:label_irm_person_notification_flag)%></label></td>
+            <td class="dataCol"><%=f.check_box :notification_flag,:checked => true%></td>
+          </tr>
+          <tr>
+            <td class="labelCol"><label><%=t(:label_irm_person_assignment_availability_flag)%></label></td>
+            <td class="dataCol"><%=f.check_box :assignment_availability_flag%></td>
+            <td class="labelCol"><label><%=t(:label_irm_person_notification_lang)%></label>
+            </td>
+            <td class="dataCol"><%=f.select :notification_lang,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
+                           options_from_collection_for_select(available_languages,:language_code,:wrap_description,@ldap_syn_person.notification_lang)%></td>
+          </tr>
+          <tr>
+            <td class="labelCol"><label><%=t(:label_irm_person_unrestricted_access_flag)%></label></td>
+            <td class="dataCol"><%=f.check_box :unrestricted_access_flag%></td>
+            <td class="labelCol"></td>
+            <td class="dataCol"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
+
+<script type="text/javascript">
+  GY.use("cascadeselect",function(Y){
+     new Y.CascadeSelect({source: "#company_id",target:["#organization_id","#department_id"]});
+     new Y.CascadeSelect({source: "#organization_id",target:["#department_id"]});
+
+     new Y.CascadeSelect({source: "#region_code",target:["#site_group_code","#site_code"]});
+     new Y.CascadeSelect({source: "#site_group_code",target:["#site_code"]});
+  });
+</script>

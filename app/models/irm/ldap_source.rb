@@ -18,7 +18,36 @@ class Irm::LdapSource < ActiveRecord::Base
   query_extend
 
   def test_auth
+    ldap = Net::LDAP.new
+    ldap.host = self.host
+    ldap.port = self.port
+    ldap.authenticate self.account,self.account_password
+    if ldap.bind
+        "The connection was authenticated successfully"
+    else
+        "The connection was authenticated failed"
+    end
+  end
 
+  def ldap
+    ldap = self.initialize_ldap_con(self.account, self.account_password)
+    ldap
+  end
+
+  def initialize_ldap_con(ldap_user, ldap_password)
+    options = { :host => self.host,
+                :port => self.port
+              }
+    options.merge!(:auth => { :method => :simple, :username => ldap_user, :password => ldap_password }) unless ldap_user.blank? && ldap_password.blank?
+    Net::LDAP.new options
+  end
+
+  # 测试LDAP连接
+  def test_connection
+    ldap_con = initialize_ldap_con(self.account, self.account_password)
+    ldap_con.open{}
+  rescue  Net::LDAP::LdapError => text
+    raise "LdapError: " + text
   end
 
 end

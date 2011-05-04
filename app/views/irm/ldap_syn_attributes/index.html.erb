@@ -1,0 +1,40 @@
+<%= page_title %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_ldap_syn_attribute_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+              </td>
+              <td class="pbHelp">
+                <div id="ldap_syn_attributesSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="ldap_syn_attributes" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+          </div>
+        </div>
+        <%= datatable("ldap_syn_attributes",url_for(:action=>"get_data",:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
+                                              { :key => "local_attr", :label => t(:label_irm_ldap_syn_attribute_local_attr),:searchable=>true },
+                                              { :key => "ldap_attr", :label => t(:label_irm_ldap_syn_attribute_ldap_attr),:searchable=>true },
+                                              { :key => "ldap_attr_type", :label => t(:label_irm_ldap_syn_attribute_ldap_attr_type),:searchable=>true },
+                                              { :key => "language_code", :label => t(:label_irm_ldap_syn_attribute_language_code),:searchable=>true },
+                                              { :key => "null_able", :label => t(:label_irm_ldap_syn_attribute_null_able),:searchable=>true },
+                                              { :key => "description", :label => t(:label_irm_ldap_syn_attribute_description),:searchable=>true },
+                                              { :key => "status_code", :label => t(:label_irm_ldap_syn_attribute_status_code),:searchable=>true }
+                                              ],{:paginator_box=>"ldap_syn_attributesPaginatorBox",:search_box=>"ldap_syn_attributesSearchBox"})%>
+        <div id="ldap_syn_attributesPaginatorBox"></div>
+      </div>
+    </div>
+</div>
+
+
