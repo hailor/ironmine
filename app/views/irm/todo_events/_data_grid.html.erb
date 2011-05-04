@@ -22,12 +22,13 @@
         </div>
         <%= datatable("todo_events_list",url_for(:controller => "irm/todo_events", :action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
-                       {:key=>"name",:label=>t(:label_irm_todo_event_name),:sortable=>true, :width => "100%"},
-                       {:key=>"start_at",:label=>t(:label_irm_todo_event_start_at),:sortable=>true, :width => "80px"},
-                       {:key=>"end_at",:label=>t(:label_irm_todo_event_end_at),:sortable=>true, :width => "80px"},
+                       {:key=>"name",:label=>t(:label_irm_todo_event_name),:sortable=>true, :width => "200px"},
+                       {:key=>"start_at",:label=>t(:label_irm_todo_event_start_at),:sortable=>true, :width => "100px"},
+                       {:key=>"end_at",:label=>t(:label_irm_todo_event_end_at),:sortable=>true, :width => "100px"},
                        {:key=>"priority_name",:label=>t(:label_irm_todo_event_priority),:sortable=>true, :width => "100px"},
-                       {:key=>"event_status_name",:label=>t(:label_irm_todo_event_event_status),:sortable=>true, :width => "80px"},
-                       {:key=>"status_code",:label=>t(:active),:sortable=>true,:formatter=>"Y.irm.template", :width => "40px"}])%>
+                       {:key=>"event_status_name",:label=>t(:label_irm_todo_event_event_status),:sortable=>true, :width => "80px"}],
+                      {:paginator_box=>"todoEventsPaginator"})%>
+        <div id="todoEventsPaginator"></div>
       </div>
     </div>
 </div>

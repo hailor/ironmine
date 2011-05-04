@@ -17,14 +17,17 @@
       <div class="pbBody">
         <div id="todo_tasks_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:controller => "irm/todo_tasks", :action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:controller => "irm/todo_tasks", :action=>"show",:id=>"{id}"}) %>
+            <%= link_to(t(:edit),{:controller => "irm/todo_tasks", :action=>"edit",:id=>"{id}"}) %>&nbsp;
+            <%= link_to(t(:show),{:controller => "irm/todo_tasks", :action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
         <%= datatable("todo_tasks_list",url_for(:controller => "irm/todo_tasks", :action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
                        {:key=>"name",:label=>t(:label_irm_todo_task_name),:sortable=>true, :width => "150px"},
                        {:key=>"due_date",:label=>t(:label_irm_todo_task_due_date),:sortable=>true, :width => "80px"},
-                       {:key=>"description",:label=>t(:description),:sortable=>true, :width => "200px"}])%>
+                       {:key=>"description",:label=>t(:description),:sortable=>true, :width => "200px"}],
+                      {:paginator_box=>"todoTasksPaginator"})%>
+        <div id="todoTasksPaginator"></div>
       </div>
     </div>
 </div>

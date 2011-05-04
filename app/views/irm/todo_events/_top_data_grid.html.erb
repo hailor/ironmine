@@ -1,0 +1,52 @@
+<% if allow_to_function?(:view_todo_events) %>
+<div class="bSubBlock">
+<h3 class="lbHeader"></h3>
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+  <tbody>
+    <tr>
+      <td class="pbTitle"><h3 class="lbHeader"><%= t(:label_irm_todo_event) %></h3></td>
+      <td id="topButtonRow" class="pbButton">
+        <div class="button"><%= link_to t(:new), :controller => "irm/todo_events", :action => "new"%></div>
+      </td>
+      <td class="pbHelp">
+        <%= link_to t(:display_all), :controller => "irm/todo_events", :action => "index" %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="lbBody">
+<table>
+  <tbody>
+    <tr>
+      <td style="width:80%;">
+      <div id="todo_events_list" class="datatable" style="width:100%">
+          <div id="name" style="display:none">
+            <%= link_to("{name}", {:controller => "irm/todo_events", :action => "show", :id => "{id}"})%>
+          </div>
+      </div>
+        <%= datatable("todo_events_list",url_for(:controller => "irm/todo_events", :action=>"get_top_data",:format=>"json"),
+                              [{:key=>"id",:label=>t(:operation),:hidden=>true},
+                               {:key=>"name",:label=>t(:label_irm_todo_event_name),:sortable=>true, :width => "120px"},
+                               {:key=>"start_at",:label=>t(:label_irm_todo_event_start_at),:sortable=>true, :width => "80px"},
+                               {:key=>"end_at",:label=>t(:label_irm_todo_event_end_at),:sortable=>true, :width => "80px"},
+                               {:key=>"priority_name",:label=>t(:label_irm_todo_event_priority),:sortable=>true, :width => "60px"},
+                               {:key=>"event_status_name",:label=>t(:label_irm_todo_event_event_status),:sortable=>true, :width => "60px"}])%>
+
+      </td>
+      <td style="width:200px"><div id="index_calendar"></div></td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+</div>
+<script type="text/javascript">
+    GY.use("yui2-calendar", "calendarlocalization<%=I18n.locale.to_s%>", function(Y){
+        var YAHOO = Y.YUI2;
+        var Event = YAHOO.util.Event,Dom = YAHOO.util.Dom;
+        calendar = new YAHOO.widget.Calendar("index_calendar", yui_calendar_custom_cfg);
+        calendar.render();
+    })
+</script>
+
+<% end %>

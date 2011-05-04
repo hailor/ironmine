@@ -593,6 +593,7 @@ Ironmine::Application.routes.draw do
     match '/todo_events/:id/edit(.:format)' => "todo_events#edit", :via => :get
     match '/todo_events/:id(.:format)' => "todo_events#update", :via => :put
     match '/todo_events/get_data(.:format)' => "todo_events#get_data"
+    match '/todo_events/get_top_data(.:format)' => "todo_events#get_top_data"
     match '/todo_events/:id/show(.:format)' => "todo_events#show", :via => :get
     match '/todo_events/:id/edit_recurrence(.:format)' => "todo_events#edit_recurrence", :via => :get
     match '/todo_events/:id/update_recurrence(.:format)' => "todo_events#update_recurrence", :via => :put

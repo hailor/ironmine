@@ -1,31 +1,30 @@
-<div class="listRelatedObject setupBlock">
-    <div class="bPageBlock">
-      <div class="pbHeader">
-        <table cellpadding="0" cellspacing="0" border="0">
-          <tbody>
-            <tr>
-              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_todo_task) %></h2></td>
-              <td id="topButtonRow" class="pbButton">
-                <div class="button"><%= link_to t(:new), {:controller => "irm/todo_tasks", :action => "new"}%></div>
-              </td>
-              <td class="pbHelp">
-              </td>
-            </tr>
-          </tbody>
-        </table>
+<% if allow_to_function?(:view_todo_tasks) %>
+<div class="bSubBlock">
+<h3 class="lbHeader"></h3>
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+  <tbody>
+    <tr>
+      <td class="pbTitle"><h3 class="lbHeader"><%= t(:label_irm_todo_task) %></h3></td>
+      <td id="topButtonRow" class="pbButton">
+        <div class="button"><%= link_to t(:new), :controller => "irm/todo_tasks", :action => "new"%></div>
+      </td>
+      <td class="pbHelp">
+        <%= link_to t(:display_all), :controller => "irm/todo_tasks", :action => "index" %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="lbBody">
+  <div id="todo_tasks_list" class="datatable" style="width:100%">
+      <div id="name" style="display:none">
+        <%= link_to("{name}", {:controller => "irm/todo_tasks", :action => "show", :id => "{id}"})%>
       </div>
-      <div class="pbBody">
-        <div id="todo_tasks_list" class="datatable" style="width:100%">
-          <div id="id" style="display:none">
-            <%= link_to(t(:edit),{:controller => "irm/todo_tasks", :action=>"edit",:id=>"{id}"}) %>&nbsp;&nbsp;<%= link_to(t(:show),{:controller => "irm/todo_tasks", :action=>"show",:id=>"{id}"}) %>
-          </div>
-        </div>
+  </div>
         <%= datatable("todo_tasks_list",url_for(:controller => "irm/todo_tasks", :action=>"get_data",:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
-                       {:key=>"name",:label=>t(:label_irm_todo_task_name),:sortable=>true, :width => "200px"},
+                      [{:key=>"id",:label=>t(:operation),:hidden=>true},
+                       {:key=>"name",:label=>t(:label_irm_todo_task_name),:formatter=>"Y.irm.template",:sortable=>true, :width => "150px"},
                        {:key=>"due_date",:label=>t(:label_irm_todo_task_due_date),:sortable=>true, :width => "80px"},
-                       {:key=>"relation_object",:label=>t(:label_irm_wf_relation_object),:sortable=>true, :width => "100px"},
-                       {:key=>"description",:label=>t(:description),:sortable=>true, :width => "80px"}])%>
-      </div>
-    </div>
+                       {:key=>"description",:label=>t(:description),:sortable=>true, :width => "250px"}])%>
 </div>
+</div>
+<% end %>

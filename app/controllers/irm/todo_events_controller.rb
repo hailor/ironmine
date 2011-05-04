@@ -207,7 +207,16 @@ class Irm::TodoEventsController < ApplicationController
   end
 
   def get_data
-    tasks_scope = Irm::TodoEvent.with_event_status.with_priority.uncompleted.with_calendar
+    tasks_scope = Irm::TodoEvent.with_all.with_event_status.with_priority.uncompleted.with_calendar
+
+    tasks,count = paginate(tasks_scope)
+    respond_to do |format|
+      format.json  {render :json => to_jsonp(tasks.to_grid_json([:name,:start_at,:end_at,:color,:status_code, :assigned_name, :priority_name, :event_status_name], count)) }
+    end
+  end
+
+  def get_top_data
+    tasks_scope = Irm::TodoEvent.with_all.with_event_status.with_priority.uncompleted.with_calendar.where("start_at >= ?", DateTime.strptime(Time.now.strftime("%F"), "%F"))
 
     tasks,count = paginate(tasks_scope)
     respond_to do |format|
