@@ -4,10 +4,25 @@ class Irm::LdapAuthHeader < ActiveRecord::Base
   has_many :ldap_auth_attributes
   query_extend
 
-  scope :query_auth_info,lambda{ select("#{table_name}.*,"+
-                                                          "v1.name ldap_source").
-                                                   joins(",irm_ldap_sources v1").
-                                                   where("v1.id=#{table_name}.ldap_source_id")}
+
+  scope :with_ldap_source,lambda{
+    joins("JOIN #{Irm::LdapSource.table_name} ON #{Irm::LdapSource.table_name}.id = #{table_name}.ldap_source_id").
+    select("#{Irm::LdapSource.table_name}.name ldap_source_name")
+  }
+
+  scope :with_template_person,lambda{
+    joins("JOIN #{Irm::Person.table_name} ON #{Irm::Person.table_name}.id = #{table_name}.template_person_id").
+    select("#{Irm::Person.table_name}.full_name template_person_name")
+  }
+
+  scope :query_by_ldap_source,lambda{|ldap_source_id|
+    where(:ldap_source_id => ldap_source_id)
+  }
+
+
+  def self.list_all
+    select("#{table_name}.*").with_ldap_source.with_template_person
+  end
 
   def self.try_to_login(login_name,password)
     self.enabled.each do |auth_header|

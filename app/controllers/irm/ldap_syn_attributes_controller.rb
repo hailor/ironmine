@@ -84,23 +84,6 @@ class Irm::LdapSynAttributesController < ApplicationController
     end
   end
 
-  def multilingual_edit
-    @ldap_syn_attribute = LdapSynAttribute.find(params[:id])
-  end
-
-  def multilingual_update
-    @ldap_syn_attribute = LdapSynAttribute.find(params[:id])
-    @ldap_syn_attribute.not_auto_mult=true
-    respond_to do |format|
-      if @ldap_syn_attribute.update_attributes(params[:rim_ldap_syn_attribute])
-        format.html { redirect_to({:action => "show"}, :notice => 'Ldap syn attribute was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @ldap_syn_attribute.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
 
   def get_data
     ldap_syn_attributes_scope =Irm::LdapSynAttribute.query_syn_info(I18n::locale,params[:ah_id],params[:type])
