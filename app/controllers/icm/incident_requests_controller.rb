@@ -219,7 +219,7 @@ class Icm::IncidentRequestsController < ApplicationController
                       :priority_name]
     bo = Irm::BusinessObject.where(:business_object_code=>"ICM_INCIDENT_REQUESTS").first
     incident_requests_scope = eval(bo.generate_query_by_attributes(return_columns,true)).query_by_company_ids(session[:accessable_companies]).order("created_at")
-    incident_requests_scope = incident_requests_scope.where("support_group_id IS NULL AND support_person_id IS NULL")
+    incident_requests_scope = incident_requests_scope.where("support_person_id IS NULL")
     incident_requests,count = paginate(incident_requests_scope)
     respond_to do |format|
       format.json {render :json=>to_jsonp(incident_requests.to_grid_json(return_columns,count))}
