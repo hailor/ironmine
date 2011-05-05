@@ -344,6 +344,9 @@ zh:
   ldap_auth_header_auth_cn: 认证方案域
   ldap_auth_header_description: 认证方案描述
   ldap_auth_header_status_code: 认证方案状态
+  ldap_auth_header_ldap_login_name_attr: LDAP登录名属性
+  ldap_auth_header_ldap_email_address_attr: LDAP邮件属性
+  ldap_auth_header_template_person: 同步人员模板
   #=========================    end ldap_auth_headers_controller=======================#
 
   label_icm_ldap_auth_attribute_new: 新建认证方案属性
@@ -363,7 +366,7 @@ zh:
   label_irm_ldap_syn_header_syn_multi_language_flag: 多语言同步
   label_irm_ldap_syn_header_ldap_filter: 过滤条件
   label_irm_ldap_syn_header_description: 同步方案描述
-  label_irm_ldap_syn_header_status_code: 是否可用
+  label_irm_ldap_syn_header_status_code: 启用
   label_irm_ldap_syn_header_comp_title: 公司同步信息
   label_irm_ldap_syn_header_org_title: 组织同步信息
   label_irm_ldap_syn_header_dept_title: 部门同步信息
@@ -411,6 +414,7 @@ zh:
   label_irm_ldap_syn_person_new: 新建人员默认值
   label_irm_ldap_syn_person_edit: 编辑人员默认值
   label_irm_ldap_syn_person_name: 默认值方案名称
+  label_irm_ldap_syn_people_role: 默认角色
 
   #=========================    irm scripts_controller=======================#
   label_irm_script_script_code: 编码
@@ -767,6 +771,7 @@ zh:
   label_action_select_roles: 选择角色
   label_action_add_roles: 选择角色
   label_irm_person_add_to_support_group: 加入支持组
+  label_irm_person_template_flag: 模板用户
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: 弹性域

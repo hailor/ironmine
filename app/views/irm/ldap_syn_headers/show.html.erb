@@ -37,7 +37,7 @@
               <td class="labelCol"><label ><%=t(:label_irm_ldap_syn_header_peo_syn_flag)%></label></td>
               <td class="dataCol"><%= check_img(@ldap_syn_header.peo_syn_flag) %></td>
               <td class="labelCol"><label ><%=t(:label_irm_ldap_syn_header_peo_header)%></label></td>
-              <td class="dataCol"><div><%= @ldap_syn_header.peo_level %></div></td>
+              <td class="dataCol"><div><%= @ldap_syn_header[:ldap_syn_people_name] %></div></td>
             </tr>
          </tbody>
       </table>

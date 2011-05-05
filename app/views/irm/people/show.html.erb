@@ -94,8 +94,8 @@
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_identity_last_login_at)%></label></td>
               <td class="dataCol"><%=@person.last_login_at%></td>
-              <td class="labelCol"><div></div></td>
-              <td class="dataCol"><div></div></td>
+              <td class="labelCol"><label><%=(t :label_irm_person_template_flag)%></label></td>
+              <td class="dataCol"><div><%=check_img(@person.is_a?(Irm::TemplatePerson) ? "Y":"N")%></div></td>
             </tr>
         </tbody>
       </table>

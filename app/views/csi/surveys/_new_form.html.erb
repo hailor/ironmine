@@ -135,8 +135,7 @@
                                               nullable_options_for_select(available_lookup_type("CSI_SURVEY_RANGE_TYPE"), ""),
                                               {:id=>"range_type"}%></td>
               <td class="labelCol"><label for="survey_range_role_id"><%=t(:label_csi_survey_range_role)%></label></td>
-              <td class="dataCol"><%=select_tag "role_id",
-                                              nullable_options_for_select(available_roles.collect{|p| [p.wrap_name, p.id]}, ""),
+              <td class="dataCol"><%=blank_select_tag "role_id",available_roles,
                                               {:id=>"role_id"}%></td>
 
             </tr>

@@ -29,7 +29,7 @@
             <tr>
               <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_ldap_syn_attribute_comp_list) %></h2></td>
               <td id="topButtonRow" class="pbButton">
-                <div class="button"><%= link_to t(:new), {:controller => "irm/ldap_syn_attributes", :action => "new", :ah_id => @ldap_syn_header.id,:type=>@ldap_syn_header.comp_object,:back_url=>url_for({})}%></div>
+                <div class="button"></div>
               </td>
               <td class="pbHelp">
                 <div id="ldap_syn_attributesSearchBox"></div>
@@ -42,19 +42,19 @@
         <div id="comp_syn_attributes" class="datatable" style="width:100%">
           <div id="id" style="display:none">
             <%= link_to(t(:edit),{:controller => "irm/ldap_syn_attributes", :action => "edit", :ah_id => @ldap_syn_header.id,:id=>"{id}",:back_url=>url_for({})}) %>
-
-            <%= link_to(t(:delete),{:controller => "irm/ldap_syn_attributes", :action => "destroy", :ah_id => @ldap_syn_header.id,:id=>"{id}",:back_url=>url_for({})},{:method => :delete,:confirm => t(:label_are_you_sure)}) %>
-
+          </div>
+          <div id="null_able" style="display:none">
+            <%= check_img("{null_able}") %>
           </div>
         </div>
         <%= datatable("comp_syn_attributes",url_for(:controller => "irm/ldap_syn_attributes", :action=>"get_data",:ah_id => @ldap_syn_header.id,:type=>@ldap_syn_header.comp_object,:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
-                       { :key => "local_attr", :label => t(:label_irm_ldap_syn_attribute_local_attr),:searchable=>true },
-                       { :key => "ldap_attr", :label => t(:label_irm_ldap_syn_attribute_ldap_attr),:searchable=>true },
-                       { :key => "value_type_name", :label => t(:label_irm_ldap_syn_attribute_ldap_attr_type),:searchable=>true },
-                       { :key => "null_able", :label => t(:label_irm_ldap_syn_attribute_null_able),:searchable=>true },
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"50px"},
+                       { :key => "local_attr", :label => t(:label_irm_ldap_syn_attribute_local_attr),:width=>"100px" },
+                       { :key => "null_able",:formatter=>"Y.irm.template", :label => t(:label_irm_ldap_syn_attribute_null_able),:width=>"50px"},
+                       { :key => "value_type_name", :label => t(:label_irm_ldap_syn_attribute_ldap_attr_type),:width=>"100px" },
+                       { :key => "ldap_attr", :label => t(:label_irm_ldap_syn_attribute_ldap_attr),:width=>"100px" },
                        { :key => "description", :label => t(:label_irm_ldap_syn_attribute_description),:searchable=>true },
-                       ],{:search_box=>"ldap_syn_attributesSearchBox"})%>
+                       ],{})%>
 
       </div>
     </div>

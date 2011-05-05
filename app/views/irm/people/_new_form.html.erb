@@ -1,5 +1,5 @@
 <%= setting_title %>
-<%= form_for(@person,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+<%= form_for(@person,:url=>{:action=>"create"},:as=>"irm_person",:builder => LabellingFormBuilder) do |f| %>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -46,16 +46,23 @@
             <tr>
               <td class="labelCol"><label><%= t(:label_irm_identity_password)%></label></td>
               <td class="dataCol"><%=f.password_field(:password, :size=>40,:required=>true)%></td>
-              <td class="labelCol"><label><%= t(:label_irm_identity_password_confirmation)%></label></td>
-              <td class="dataCol"><%=f.password_field(:password_confirmation, :size=>40,:required=>true)%></td>
-            </tr>
-            <tr>
               <td class="labelCol"><%= t(:label_irm_identity_language_code) %></td>
               <td class="dataCol"><%= f.select(:language_code, selectable_languages) %></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%= t(:label_irm_identity_password_confirmation)%></label></td>
+              <td class="dataCol"><%=f.password_field(:password_confirmation, :size=>40,:required=>true)%></td>
+
               <td class="labelCol"><%=(t :label_irm_person_title)%></td>
               <td class="dataCol">
                 <%=f.select :title,options_for_select(person_title,@person.title),
                                                     {},{:required=>true,:id=>"irm_person_title"}%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><%= t(:label_irm_person_template_flag) %></td>
+              <td class="dataCol"><%= f.check_box(:template_flag) %></td>
+              <td class="labelCol"></td>
+              <td class="dataCol"></td>
             </tr>
         </tbody>
       </table>
@@ -70,7 +77,7 @@
         <tbody>
              <tr>
                  <td class="labelCol"><label><%=t(:label_irm_person_company)%></label></td>
-                 <td class="dataCol"><%=@person[:company_name]%></td>
+                 <td class="dataCol"><%= f.blank_select(:company_id,available_company,{},{:required=>true})%></td>
                   <td class="labelCol"><label><%=(t :label_irm_person_region_code)%></label></td>
                   <td class="dataCol"><%=f.blank_select :region_code,available_region,{},{:required=>true,:id=>"region_code"}%></td>
              </tr>

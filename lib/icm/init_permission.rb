@@ -15,7 +15,7 @@ Irm::AccessControl.map do |map|
   # 关闭事故单
   map.function :close_incident_request,{"icm/incident_journals"=>[:edit_close,:update_close]}
   # 转交事故单
-  map.function :pass_incident_request,{}
+  map.function :pass_incident_request,{"icm/incident_journals"=>[:edit_pass,:update_pass]}
   # 分配事故单
   map.function :assign_incident_request,{"icm/incident_requests"=>[:assign_dashboard,:assignable_data,:assign_request]}
   # 查看所有事故单

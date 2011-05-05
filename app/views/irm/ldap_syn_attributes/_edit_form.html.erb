@@ -32,7 +32,7 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=t(:label_irm_ldap_syn_attribute_local_attr)%></label></td>
-              <td class="dataCol"><%=f.blank_select(:local_attr, available_syn_object_attribute(@object_type),{},:required=>true)%></td>
+              <td class="dataCol"><%=@ldap_syn_attribute.local_attr%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
@@ -50,7 +50,7 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=t(:label_irm_ldap_syn_attribute_null_able)%></label></td>
-              <td class="dataCol"><%=f.check_box :null_able%></td>
+              <td class="dataCol"><%=check_img(@ldap_syn_attribute.null_able)%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>

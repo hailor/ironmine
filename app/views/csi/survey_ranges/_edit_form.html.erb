@@ -38,11 +38,7 @@
               <td class="labelCol"><label for="survey_range_range_type"><%=t(:label_csi_survey_range_range_type)%></label></td>
               <td class="dataCol"><%= @survey_range[:range_type_meaning] %></td>
               <td class="labelCol"><label for="survey_range_role_id"><%=t(:label_csi_survey_range_role)%></label></td>
-              <td class="dataCol"><%=f.select :role_id,
-                                              "<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                              options_from_collection_for_select(available_roles,:id,:wrap_name,@survey_range.role_id),
-                                              {},
-                                              {:id=>"range_type"}%></td>
+              <td class="dataCol"><%=f.blank_select :role_id,available_roles,{},{:id=>"range_type"}%></td>
 
             </tr>
 

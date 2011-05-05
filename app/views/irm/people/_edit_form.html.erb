@@ -1,5 +1,5 @@
 <%= setting_title %>
-<%= form_for(@person,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+<%= form_for(@person,:url=>{:action=>"update"},:as=>"irm_person",:builder => LabellingFormBuilder) do |f| %>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">

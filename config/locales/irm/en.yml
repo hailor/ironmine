@@ -652,6 +652,7 @@ en:
   label_action_select_roles: Select Roles
   label_action_add_roles: Select Roles
   label_irm_person_add_to_support_group: Add to Support Group
+  label_irm_person_template_flag: Template
   #=========================end irm people_controller=======================#
   #=========================irm id_flexes_controller=======================#
   label_irm_id_flex: Flex
