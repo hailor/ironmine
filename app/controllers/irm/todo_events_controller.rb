@@ -23,6 +23,7 @@ class Irm::TodoEventsController < ApplicationController
 
   def new
     @task = Irm::TodoEvent.new
+    @default_start = params[:default_start] if params[:default_start]
     #防止在新建页面, 从侧边栏又选择新建任务时,完成后又回到新建页面
     @return_url=request.env['HTTP_REFERER'] if request.env['HTTP_REFERER'] != url_for(:controller => "todo_events", :action => "new")
     respond_to do |format|
@@ -32,6 +33,9 @@ class Irm::TodoEventsController < ApplicationController
 
   def create
     @task = Irm::TodoEvent.new(params[:irm_todo_event])
+
+    @task.start_at = Time.now if !@task.start_at
+
     @task.start_at = @task.start_at.strftime("%F") + " " + params[:start_at_h]
     @task.end_at = @task.end_at.strftime("%F") + " " + params[:end_at_h]  if @task.end_at && !@task.end_at.blank?
     #如果没有填结束时间,默认当天结束
@@ -101,7 +105,7 @@ class Irm::TodoEventsController < ApplicationController
         end
 
       else
-        format.html { redirect_to({:action=>"new"})}
+        format.html { render ({:action=>"new"})}
         format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }
       end
     end
