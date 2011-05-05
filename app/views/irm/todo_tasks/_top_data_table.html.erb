@@ -18,7 +18,7 @@
             </tr>
           </thead>
           <tbody class="yui3-datatable-data">
-          <% tasks.each do |task| %>
+          <% tasks.limit(5).each do |task| %>
           <tr id="<%=task%>" class="yui3-datatable-even">
             <td class="yui3-column">
               <div class='yui3-datatable-liner'>
