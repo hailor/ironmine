@@ -8,9 +8,9 @@
       <td class="pbTitle"><h3 class="lbHeader"><%= t(:label_irm_todo_task) %></h3></td>
       <td id="topButtonRow" class="pbButton">
         <div class="button"><%= link_to t(:new), :controller => "irm/todo_tasks", :action => "new"%></div>
+        <div class="button"><%= link_to t(:display_all), :controller => "irm/todo_tasks", :action => "index"%></div>
       </td>
       <td class="pbHelp">
-        <%= link_to t(:display_all), {:controller => "irm/todo_tasks", :action => "index"}, :style => "float:right; margin-left:5px;" %>
         <%= form_tag url_for({:controller => "irm/todo_tasks", :action => "get_top_data", :format => "js"}), {:id => "task_display_opts", :remote => true} do %>
         <%= select_tag "opts", options_for_select(available_tasks_list_options, "open"), :id => "opts"%>
             <%= submit_tag "submit", :style => "display:none;", :id => "submit_opts"%>
