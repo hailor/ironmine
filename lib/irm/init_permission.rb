@@ -253,4 +253,36 @@ Irm::AccessControl.map do |map|
   map.function :view_wf_rules,{"irm/wf_rules"=>["index", "show"]}
   map.function :create_wf_rules,{"irm/wf_rules"=>["new", "create"]}
   map.function :edit_wf_rules,{"irm/wf_rules"=>["edit", "update"]}
+
+  #===================irm/ldap_sources============================
+  #["index", "edit", "execute_test", "active", "update", "new", "create", "get_data", "show"]
+  map.function :view_ldap_sources,{"irm/ldap_sources"=>["index", "show"]}
+  map.function :create_ldap_sources,{"irm/ldap_sources"=>["new", "create"]}
+  map.function :edit_ldap_sources,{"irm/ldap_sources"=>["edit", "update","active"]}
+
+  #===================irm/ldap_auth_headers============================
+  #["index", "edit", "update", "new", "create", "get_data", "show", "get_by_ldap_source"]
+  #===================irm/ldap_auth_attributes============================
+  #["index", "new", "create", "get_data", "edit", "update", "show", "destroy"]
+  map.function :view_ldap_auth_headers,{"irm/ldap_auth_headers"=>["index", "show","get_by_ldap_source"],
+                                        "irm/ldap_auth_attributes"=>["index", "show"]}
+  map.function :create_ldap_auth_headers,{"irm/ldap_auth_headers"=>["new", "create"],
+                                          "irm/ldap_auth_attributes"=>["new", "create"]}
+  map.function :edit_ldap_auth_headers,{"irm/ldap_auth_headers"=>["edit", "update"],
+                                        "irm/ldap_auth_attributes"=>["edit", "update"]}
+
+
+  #===================irm/ldap_syn_headers============================
+  #["index", "edit", "execute_test", "execute_test", "update", "new", "create",  "get_data", "show", "active"]
+    #===================irm/ldap_syn_attributes============================
+  #["index", "new", "create", "get_data", "edit", "show", "update", "destroy"]
+  map.function :view_ldap_syn_headers,{"irm/ldap_syn_headers"=>["index", "show"],
+                                       "irm/ldap_syn_attributes"=>["index", "show"]}
+  map.function :create_ldap_syn_headers,{"irm/ldap_syn_headers"=>["new", "create"],
+                                         "irm/ldap_auth_headers"=>["get_by_ldap_source"],
+                                         "irm/ldap_syn_attributes"=>["new", "create"]}
+  map.function :edit_ldap_syn_headers,{"irm/ldap_syn_headers"=>["edit", "update","active"],
+                                       "irm/ldap_auth_headers"=>["get_by_ldap_source"],
+                                       "irm/ldap_syn_attributes"=>["edit", "update"]}
+
 end
