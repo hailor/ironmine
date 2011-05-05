@@ -4,7 +4,7 @@ class Irm::TodoTasksController < ApplicationController
   end
 
   def get_data
-    tasks_scope = Irm::TodoTask.with_all.with_task_status.with_priority.uncompleted.with_calendar
+    tasks_scope = Irm::TodoTask.with_all.with_task_status.with_priority.uncompleted.with_calendar.assigned_to(Irm::Person.current.id)
     tasks_scope = tasks_scope.with_open#只查询打开的
     tasks,count = paginate(tasks_scope)
     respond_to do |format|
@@ -15,7 +15,7 @@ class Irm::TodoTasksController < ApplicationController
 
   def get_top_data
 
-    tasks_scope = Irm::TodoTask.with_all.with_task_status.with_priority.uncompleted.with_calendar
+    tasks_scope = Irm::TodoTask.with_all.with_task_status.with_priority.uncompleted.with_calendar.assigned_to(Irm::Person.current.id)
     if params[:opts] && params[:opts] == "open"
       tasks_scope = tasks_scope.with_open
     elsif params[:opts] && params[:opts] == "overdue"
