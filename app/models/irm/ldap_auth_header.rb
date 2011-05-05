@@ -77,9 +77,7 @@ class Irm::LdapAuthHeader < ActiveRecord::Base
     template_person.person_roles.each do |pr|
       person.person_roles.create(:role_id=>pr.role_id)
     end
-    template_person.person_roles.each do |pr|
-      person.person_roles.create(:role_id=>pr.role_id)
-    end
+
     template_person.company_accesses.each do |ca|
       person.company_accesses.create(:accessable_company_id=>ca.accessable_company_id,:company_access_flag=>ca.company_access_flag,:support_stuff_flag=>ca.support_stuff_flag)
     end
