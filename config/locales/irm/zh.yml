@@ -931,7 +931,7 @@ zh:
   label_irm_watcher_new: 添加跟踪者
   label_irm_watcher_list: 跟踪者列表
   #======================== end watcher ======================
-  #======================== calendar tasks====================
+  #======================== calendar events====================
   label_irm_todo_event: 事件
   label_irm_todo_event_new: 创建事件
   label_irm_todo_event_edit: 编辑事件
@@ -1057,3 +1057,37 @@ zh:
   label_irm_wf_rule_description: 描述
   label_irm_wf_rule_active: 启用
   #========================end wf rules====================
+
+  #======================== calendar tasks====================
+  label_irm_todo_task: 任务
+  label_irm_todo_task_new: 创建任务
+  label_irm_todo_task_edit: 编辑任务
+  label_irm_todo_task_created_at: 创建日期
+  label_irm_todo_task_start_at: 开始日期
+  label_irm_todo_task_end_at: 结束日期
+  label_irm_todo_task_due_date: 到期日期
+  label_irm_todo_task_color: 显示颜色
+  label_irm_todo_task_name: 任务名称
+  label_irm_todo_task_location: 地点
+  label_irm_todo_task_percent_complete: 完成度
+  label_irm_todo_task_recurrence: 周期
+  label_irm_todo_task_recurrence_new: 创建任务的重复序列
+  label_irm_todo_task_recurrence_frequency: 频率
+  label_irm_todo_task_recurrence_every_weekday: 每个工作日
+  label_irm_todo_task_recurrence_every: 每
+  label_irm_todo_task_recurrence_day: 天
+  label_irm_todo_task_recurrence_daily: 每天
+  label_irm_todo_task_recurrence_weekly: 每周
+  label_irm_todo_task_recurrence_monthly: 每月
+  label_irm_todo_task_recurrence_yearly: 每年
+  label_irm_todo_task_recurrence_every_week: 每 %{m} 个星期重复
+  label_irm_todo_task_recurrence_day_of_every_month: 在每 %{m} 个月的第 %{n} 天
+  label_irm_todo_task_recurrence_weekday_of_every_month: 在每 %{m} 个月的第 %{n}
+  label_irm_todo_task_assigned_to: 分配给
+  label_irm_todo_task_recurrence_edit: 编辑重复序列
+  label_irm_todo_task_priority: 优先级
+  label_irm_todo_task_task_status: 任务状态
+  label_irm_todo_task_mail: 电子邮件
+  label_irm_todo_task_phone: 联系电话
+  label_action_my_tasks_index: 我的任务
+

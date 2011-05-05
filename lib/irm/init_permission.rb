@@ -159,7 +159,7 @@ Irm::AccessControl.map do |map|
 
   #===================irm/reports============================
   #["index", "edit", "update", "new", "create", "get_data", "show", "multilingual_edit", "multilingual_update"]
-  map.function :view_reports,{"irm/reports"=>["index", "show", "get_data"]}
+  map.function :view_reports,{"irm/reports"=>["index", "show", "get_data"], "irm/report_lists" => ["index"]}
   map.function :create_reports,{"irm/reports"=>["new", "create"]}
   map.function :edit_reports,{"irm/reports"=>["edit", "update", "multilingual_edit", "multilingual_update"]}
   #===================irm/actions============================
@@ -195,9 +195,17 @@ Irm::AccessControl.map do |map|
   #===================irm/wf_tasks============================
   #["index", "show_permissions", "show_permissions_data", "show_missed_permissions", "missed_permissions_data"]
   map.function :view_todo_events,{"irm/todo_events"=>["index", "show", "quick_show",
-                                                "my_events_index", "get_data", "my_events_get_data"]}
+                                                "my_events_index", "get_data", "get_top_data", "my_events_get_data"]}
   map.function :create_todo_events,{"irm/todo_events"=>["new", "create"]}
   map.function :edit_todo_events,{"irm/todo_events"=>["edit", "update",
+                                                "edit_recurrence", "update_recurrence"]}
+
+  #===================irm/wf_tasks============================
+  #["index", "show_permissions", "show_permissions_data", "show_missed_permissions", "missed_permissions_data"]
+  map.function :view_todo_tasks,{"irm/todo_tasks"=>["index", "show",
+                                                    "my_tasks_index", "get_data","get_top_data", "my_tasks_get_data"]}
+  map.function :create_todo_tasks,{"irm/todo_tasks"=>["new", "create"]}
+  map.function :edit_todo_tasks,{"irm/todo_tasks"=>["edit", "update",
                                                 "edit_recurrence", "update_recurrence"]}
 
   #===================irm/business_objects============================
