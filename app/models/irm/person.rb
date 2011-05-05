@@ -5,7 +5,7 @@ class Irm::Person < ActiveRecord::Base
 
   set_table_name :irm_people
 
-  attr_accessor :old_password,:password, :password_confirmation
+  attr_accessor :old_password,:password, :password_confirmation,:template_flag
 
   PERSON_NAME_FORMATS = {
     :lastname_firstname => '#{first_name} #{last_name}',
@@ -26,11 +26,11 @@ class Irm::Person < ActiveRecord::Base
   validates_uniqueness_of :login_name, :if => Proc.new { |i| !i.login_name.blank? }
   validates_format_of :login_name, :with => /^[a-z0-9_\-@\.]*$/
   validates_length_of :login_name, :maximum => 30
-  validates_presence_of :password,:if=> Proc.new{|i| i.hashed_password.blank?&&!i.is_a?(Irm::AnonymousPerson)}
+  validates_presence_of :password,:if=> Proc.new{|i| i.hashed_password.blank?&&i.validate_as_person?}
   validates_confirmation_of :password, :allow_nil => true,:if=> Proc.new{|i|i.hashed_password.blank?||!i.password.blank?}
   validates_length_of :password, :maximum => 30,:minimum=>6,:if=> Proc.new{|i|!i.password.blank?}
 
-  validates_presence_of :title,:if => Proc.new { |i| !i.is_a?(Irm::AnonymousPerson) }
+  validates_presence_of :title,:if => Proc.new { |i| i.validate_as_person? }
   validates_uniqueness_of :email_address, :if => Proc.new { |i| !i.email_address.blank? }
   validates_format_of :email_address, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
   has_many :person_roles
@@ -68,7 +68,7 @@ class Irm::Person < ActiveRecord::Base
       select("CONCAT(#{table_name}.last_name,#{table_name}.first_name) person_name,#{Irm::Identity.table_name}.login_name,#{table_name}.id")
 
 
-    scope :query_wrap_info,lambda{|language| select("#{table_name}.id,irm_identities.login_name,#{table_name}.mobile_phone,CONCAT(#{table_name}.last_name,#{table_name}.first_name) person_name,"+
+  scope :query_wrap_info,lambda{|language| select("#{table_name}.id,irm_identities.login_name,#{table_name}.mobile_phone,CONCAT(#{table_name}.last_name,#{table_name}.first_name) person_name,"+
                                                       "#{table_name}.email_address,v1.meaning status_meaning, v2.name company_name").
                                                    joins("left outer join irm_identities on #{table_name}.identity_id=irm_identities.id").
                                                    joins(",irm_lookup_values_vl v1").
@@ -323,6 +323,10 @@ class Irm::Person < ActiveRecord::Base
     self[:person_name]
   end
 
+  def real?; true end
+
+  def validate_as_person?;true end
+
   def process_full_name
       self.full_name = eval('"' + (PERSON_NAME_FORMATS[:firstname_lastname]) + '"')
       self.full_name_pinyin= Hz2py.do(self.full_name).downcase.gsub(/\s|[^a-z]/,"")
@@ -336,6 +340,15 @@ class Irm::Person < ActiveRecord::Base
 end
 
 
+class Irm::TemplatePerson < Irm::Person
+
+  # Overrides a few properties
+  def logged?; false end
+  def real?; false end
+  def validate_as_person?;false end
+end
+
+
 class Irm::AnonymousPerson < Irm::Person
   self.record_who = false
   def validate_on_create
@@ -343,11 +356,9 @@ class Irm::AnonymousPerson < Irm::Person
     errors.add_to_base 'An anonymous person already exists.' if Irm::AnonymousPerson.first
   end
 
-  def available_custom_fields
-    []
-  end
 
   # Overrides a few properties
+  def validate_as_person?;false end
   def logged?; false end
   def admin; false end
   def name(*args); ::I18n.t(:label_identity_anonymous) end
