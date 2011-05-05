@@ -21,7 +21,7 @@
 </table>
 <div class="lbBody">
   <% if @tasks.nil? %>
-    <% @tasks = Irm::TodoTask.with_all.with_task_status.with_priority.uncompleted.with_calendar.assigned_to(Irm::Person.current.id)%>
+    <% @tasks = Irm::TodoTask.with_all.with_task_status.with_priority.uncompleted.with_calendar.with_open.assigned_to(Irm::Person.current.id)%>
   <% end %>
   <div id="todo_tasks_list">
     <%= render :partial => "irm/todo_tasks/top_data_table", :locals => {:tasks => @tasks}%>
