@@ -7,7 +7,6 @@
         <tr>
           <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_ldap_source_new)%></h2></td>
           <td id="topButtonRow" class="pbButton">
-            <div class="button"><%= link_to t(:test), {:action => "execute_test",:format=>:js},{:remote=>true}%></div>
             <div class="button"><%= f.submit t(:save)%></div>
             <div class="button"><%= link_back t(:cancel)%></div>
           </td>
@@ -49,12 +48,6 @@
               <td class="dataCol"><%=f.text_field :port,:irm_numberonly=>true,:required=>true%></td>
               <td class="labelCol"><%=t(:label_irm_ldap_source_base_dn)%></td>
               <td class="dataCol"><%= f.text_field :base_dn,:required=>true%></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :active)%></label></td>
-              <td class="dataCol"><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
             </tr>
         </tbody>
       </table>

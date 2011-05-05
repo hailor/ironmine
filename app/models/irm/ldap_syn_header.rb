@@ -3,12 +3,30 @@ class Irm::LdapSynHeader < ActiveRecord::Base
   belongs_to :ldap_source,:foreign_key=>:ldap_source_id,:primary_key=>:id
   has_many :ldap_syn_attributes
 
+  after_create :create_syn_attribute
+
   query_extend
 
-  scope :query_syn_info,lambda{|language| select("#{table_name}.*,"+
-                                                          "ils.name ldap_source_name").
-                                            joins(",irm_ldap_sources ils").
-                                            where("ils.id=#{table_name}.ldap_source_id ")}
+  scope :query_syn_info,lambda{|language| select("#{table_name}.*,ils.name ldap_source_name").
+                                          joins(",irm_ldap_sources ils").
+                                          where("ils.id=#{table_name}.ldap_source_id ")}
+
+
+  scope :with_ldap_auth_sources,lambda{
+    joins("JOIN #{Irm::LdapSource.table_name} ON #{Irm::LdapSource.table_name}.id = #{table_name}.ldap_source_id").
+    select("#{Irm::LdapSource.table_name}.name ldap_source_name")
+  }
+
+  scope :with_ldap_syn_person,lambda{
+    joins("LEFT OUTER JOIN #{Irm::LdapSynPerson.table_name} ON #{Irm::LdapSynPerson.table_name}.id = #{table_name}.syn_people_id").
+    select("#{Irm::LdapSynPerson.table_name}.ldap_name s")
+  }
+
+
+
+  def self.list_all
+    select("#{table_name}.*").with_ldap_auth_sources.with_ldap_syn_person
+  end
   #
   def ldap_attr(object_type)
      attr_h={}
@@ -229,6 +247,23 @@ class Irm::LdapSynHeader < ActiveRecord::Base
            @department.destroy
          end
        end
+    end
+  end
+
+  private
+  def create_syn_attribute
+    Irm::LdapSynAttribute::SYN_ATTRS.each do |key,value|
+      value[:attrs].each do |attr|
+        bo_attr = Irm::ObjectAttribute.multilingual.where(:business_object_code=>value[:bo_code],:attribute_name=>attr.to_s).first
+        self.ldap_syn_attributes.create(:object_type=>value[:bo_code],
+                                        :ldap_attr_type=>"LDAP",
+                                        :local_attr=>attr.to_s,
+                                        :local_attr_type=>bo_attr.data_type,
+                                        :ldap_attr=>attr.to_s,
+                                        :null_able=> bo_attr.nullable_flag.eql?(Irm::Constant::SYS_NO) ? Irm::Constant::SYS_YES : Irm::Constant::SYS_NO,
+                                        :description=>bo_attr[:name])
+      end
+
     end
   end
 end

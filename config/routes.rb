@@ -184,13 +184,11 @@ Ironmine::Application.routes.draw do
     #ldap_sources
     match '/ldap_sources(/index)(.:format)' => "ldap_sources#index", :via => :get
     match '/ldap_sources/:id/edit(.:format)' => "ldap_sources#edit", :via => :get
-    match '/ldap_sources/execute_test(.:format)' => "ldap_sources#execute_test", :via => :get
     match '/ldap_sources/:id/execute_test(.:format)' => "ldap_sources#execute_test", :via => :get
+    match '/ldap_sources/:id/active(.:format)' => "ldap_sources#active", :via => :get
     match '/ldap_sources/:id(.:format)' => "ldap_sources#update", :via => :put
     match '/ldap_sources/new(.:format)' => "ldap_sources#new", :via => :get
     match '/ldap_sources/create(.:format)' => "ldap_sources#create", :via => :post
-    match '/ldap_sources/:id/multilingual_edit(.:format)' => "ldap_sources#multilingual_edit", :via => :get
-    match '/ldap_sources/:id/multilingual_update(.:format)' => "ldap_sources#multilingual_update", :via => :put
     match '/ldap_sources/get_data(.:format)' => "ldap_sources#get_data"
     match '/ldap_sources/:id/show(.:format)' => "ldap_sources#show", :via => :get
 

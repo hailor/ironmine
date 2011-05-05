@@ -26,13 +26,13 @@ class Irm::CommonController < ApplicationController
   #成功,则转向用户的默认页面
   #失败,返回原来的页面,并显示登录出错的消息
   def password_authentication(session_id)
-    identity = Irm::Person.try_to_login(params[:username], params[:password])
-    if identity.nil?
+    person = Irm::Person.try_to_login(params[:username], params[:password])
+    if person.nil?||!person.logged?
       #失败
       invalid_credentials
     else
       # 成功
-      successful_authentication(identity,session_id)
+      successful_authentication(person,session_id)
     end
   end
 

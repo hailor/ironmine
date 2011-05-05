@@ -1,8 +1,10 @@
 class Irm::LdapSynPerson < ActiveRecord::Base
   set_table_name :irm_ldap_syn_people
-  belongs_to :Ldap_Auth_Header,:foreign_key=>:auth_source_id,:primary_key=>:id
+  belongs_to :ldap_auth_header,:foreign_key=>:auth_source_id,:primary_key=>:id
 
   query_extend
+
+  PERSON_ATTRS = [:auth_source_id,:company_id,:organization_id,:department_id,:vip_flag,:unrestricted_access_flag,:assignment_availability_flag,:region_code,:site_group_code,:site_code,:notification_flag]
 
   scope :query_show_wrap_info,lambda{|language| select("#{table_name}.*,auth.name auth_name, icv.name company_name," +
                                                         "iov.name organization_name,idv.name department_name," +
@@ -107,6 +109,15 @@ class Irm::LdapSynPerson < ActiveRecord::Base
       @people = Irm::LdapSynPeoInterface.where(:login_name=>peo["login_name"],:process_id=>peo["process_id"])
       @people.first.destroy
     end
+  end
+
+
+  def default_attributes
+    attrs = {}
+    Irm::LdapSynPerson::PERSON_ATTRS.each do |attr|
+      attrs[attr] = self.send(attr)
+    end
+    attrs
   end
 
 end

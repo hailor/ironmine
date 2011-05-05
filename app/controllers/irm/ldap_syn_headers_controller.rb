@@ -13,7 +13,7 @@ class Irm::LdapSynHeadersController < ApplicationController
   # GET /ldap_syn_headers/1
   # GET /ldap_syn_headers/1.xml
   def show
-    @ldap_syn_header = Irm::LdapSynHeader.query_syn_info(I18n::locale).find(params[:id])
+    @ldap_syn_header = Irm::LdapSynHeader.list_all.find(params[:id])
     #@ldap_syn_header = Irm::LdapSynHeader.find(params[:id])
 
     respond_to do |format|
@@ -25,7 +25,7 @@ class Irm::LdapSynHeadersController < ApplicationController
   # GET /ldap_syn_headers/new
   # GET /ldap_syn_headers/new.xml
   def new
-    @ldap_syn_header = Irm::LdapSynHeader.new
+    @ldap_syn_header = Irm::LdapSynHeader.new(:status_code=>"OFFLINE")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,11 +42,9 @@ class Irm::LdapSynHeadersController < ApplicationController
   # POST /ldap_syn_headers.xml
   def create
     @ldap_syn_header = Irm::LdapSynHeader.new(params[:irm_ldap_syn_header])
-    @ldap_syn_header.company_id = Irm::Company.current.id
     @ldap_syn_header.comp_object="IRM_COMPANIES_VL"
     @ldap_syn_header.org_object="IRM_ORGANIZATIONS_VL"
     @ldap_syn_header.dept_object="IRM_DEPARTMENTS_VL"
-    @ldap_syn_header.peo_object="IRM_PEOPLE"
 
     respond_to do |format|
       if @ldap_syn_header.save

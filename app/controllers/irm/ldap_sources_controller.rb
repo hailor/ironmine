@@ -16,7 +16,7 @@ class Irm::LdapSourcesController < ApplicationController
   end
 
   def new
-    @ldap_source = Irm::LdapSource.new
+    @ldap_source = Irm::LdapSource.new(:status_code=>"OFFLINE")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -25,8 +25,8 @@ class Irm::LdapSourcesController < ApplicationController
   end
 
   def execute_test
-      @ldap_source = Irm::LdapSource.find(params[:id])
-      @result_message =@ldap_source.test_connection
+    @ldap_source = Irm::LdapSource.find(params[:id])
+    @result_message =@ldap_source.test_connection
   end
 
   def edit
@@ -69,6 +69,27 @@ class Irm::LdapSourcesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(ldap_source_url) }
       format.xml  { head :ok }
+    end
+  end
+
+
+  def active
+    @ldap_source = Irm::LdapSource.find(params[:id])
+    attrs = {}
+    if(Irm::Constant::SYS_YES.eql?(params[:active]))
+      attrs =  {:status_code=>"ENABLED"}
+    else
+      attrs =  {:status_code=>"OFFLINE"}
+    end
+
+    respond_to do |format|
+      if @ldap_source.update_attributes(attrs)
+        format.html { redirect_to({:action=>"show",:id=>@ldap_source.id}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
+      else
+        format.html { redirect_to({:action=>"show",:id=>@ldap_source.id}) }
+        format.xml  { render :xml => @ldap_source.errors, :status => :unprocessable_entity }
+      end
     end
   end
 

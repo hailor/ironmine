@@ -3,7 +3,6 @@ class Irm::LdapSource < ActiveRecord::Base
   set_table_name :irm_ldap_sources
 
   #多个帐号使用同一个认证源认证
-  has_many :identities
   has_many :ldap_auth_attribute
 
   validates_presence_of :name, :host, :port, :account,:account_password,:base_dn
@@ -23,9 +22,11 @@ class Irm::LdapSource < ActiveRecord::Base
     ldap.port = self.port
     ldap.authenticate self.account,self.account_password
     if ldap.bind
-        "The connection was authenticated successfully"
+      "The connection was authenticated successfully"
+      return true
     else
-        "The connection was authenticated failed"
+     "The connection was authenticated failed"
+      return false
     end
   end
 
@@ -44,10 +45,17 @@ class Irm::LdapSource < ActiveRecord::Base
 
   # 测试LDAP连接
   def test_connection
-    ldap_con = initialize_ldap_con(self.account, self.account_password)
-    ldap_con.open{}
+    ldap = Net::LDAP.new
+    ldap.host = self.host
+    ldap.port = self.port
+    ldap.authenticate self.account,self.account_password
+    if ldap.bind
+      "The connection was authenticated successfully"
+    else
+     "The connection was authenticated failed"
+    end
   rescue  Net::LDAP::LdapError => text
-    raise "LdapError: " + text
+    return "LdapError: " + text
   end
 
 end

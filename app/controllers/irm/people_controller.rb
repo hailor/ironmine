@@ -31,13 +31,17 @@ class Irm::PeopleController < ApplicationController
 
   # GET /people/1/edit
   def edit
-    @person = Irm::Person.query_by_company_id(I18n::locale).query_show_wrap_info(I18n::locale).find(params[:id])
+    @person = Irm::Person.list_all.find(params[:id])
   end
 
   # POST /people
   # POST /people.xml
   def create
     @person = Irm::Person.new(params[:irm_person])
+
+    if @person.template_flag.eql?(Irm::Constant::SYS_YES)
+      @person = Irm::TemplatePerson.new(params[:irm_person])
+    end
 
     respond_to do |format|
       if @person.save

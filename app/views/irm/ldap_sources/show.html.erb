@@ -8,6 +8,11 @@
           <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_ldap_source) %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:test), {:action => "execute_test",:id=>@ldap_source.id,:format=>:js},{:remote=>true}%></div>
+            <% if @ldap_source.enabled?  %>
+              <div class="button"><%= link_to t(:disable), {:action => "active",:id=>@ldap_source.id,:active=>Irm::Constant::SYS_NO}%></div>
+            <% else %>
+              <div class="button"><%= link_to t(:active), {:action => "active",:id=>@ldap_source.id,:active=>Irm::Constant::SYS_YES}%></div>
+            <% end %>
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @ldap_source}%></div>
             <div class="button"><%= link_to t(:back), {:action => "index"} %></div>
           </td>
@@ -29,7 +34,7 @@
               <td class="labelCol"><label><%=(t :label_irm_ldap_source_host)%></label></td>
               <td class="dataCol"><%= @ldap_source.host%></td>
               <td class="labelCol"><%=t(:label_irm_ldap_source_account_password)%></td>
-              <td class="dataCol"><%= @ldap_source.account_password%></td>
+              <td class="dataCol">******</td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_ldap_source_port)%></label></td>
@@ -39,7 +44,7 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :active)%></label></td>
-              <td class="dataCol"><%= @ldap_source.status_code%></td>
+              <td class="dataCol"><%= check_img(@ldap_source.status_code)%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>

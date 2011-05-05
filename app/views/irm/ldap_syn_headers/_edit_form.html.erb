@@ -50,12 +50,6 @@
               <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=t(:label_irm_ldap_syn_header_status_code)%></label></td>
-              <td class="dataCol"><%=f.select :status_code, available_active_status, {:include_blank => false}%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
-            </tr>
-               <tr>
               <td class="labelCol"><label><%=t(:label_irm_ldap_syn_header_peo_syn_flag)%></label></td>
               <td class="dataCol"><%=f.check_box :peo_syn_flag  , :required=>true%></td>
               <td class="labelCol empty">&nbsp;</td>
