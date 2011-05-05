@@ -38,19 +38,27 @@ class Irm::TodoTask < ActiveRecord::Base
   }
 
   scope :with_open, lambda{
-    where("#{table_name}.task_status <> ? AND #{table_name}.task_status <> ?", "COMPLETED", "NOT_STARTED")
+    where("#{table_name}.task_status <> ?", "COMPLETED")
   }
 
   scope :with_overdue, lambda{
-    where("#{table_name}.due_date < ?", Time.now)
+    where("#{table_name}.due_date < ?", Time.strptime(Time.now.strftime("%F"), "%F"))
   }
 
   scope :with_in7day, lambda{
-    where("#{table_name}.due_date >= ? AND #{table_name}.start_at > ? AND #{table_name}.start_at < ?", Time.now, Time.now, Time.now + 7.days)
+    where("#{table_name}.due_date >= ? AND #{table_name}.due_date < ?",
+          Time.strptime(Time.now.strftime("%F"), "%F"),
+          Time.strptime(Time.now.strftime("%F"), "%F") + 7.days)
   }
 
   scope :uncompleted, lambda{
     where("#{table_name}.task_status <> ?", "COMPLETED")
+  }
+
+  scope :with_today, lambda{
+    where("#{table_name}.due_date >= ? AND #{table_name}.due_date < ?",
+          Time.strptime(Time.now.strftime("%F"), "%F"),
+          Time.strptime(Time.now.strftime("%F"), "%F") + 1.day)
   }
 
   scope :assigned_to, lambda{|person_id|

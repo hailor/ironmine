@@ -22,6 +22,8 @@ class Irm::TodoTasksController < ApplicationController
       tasks_scope = tasks_scope.with_overdue
     elsif params[:opts] && params[:opts] == "in7day"
       tasks_scope = tasks_scope.with_in7day
+    elsif params[:opts] && params[:opts] == "today"
+      tasks_scope = tasks_scope.with_today
     end
 
     @tasks = tasks_scope

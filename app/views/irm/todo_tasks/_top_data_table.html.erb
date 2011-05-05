@@ -15,10 +15,6 @@
                 <div class="yui3-datatable-liner"><%= t(:label_irm_todo_task_due_date) %>
                 </div>
               </th>
-              <th class="yui3-column">
-                <div class="yui3-datatable-liner"><%= t(:description) %>
-                </div>
-              </th>
             </tr>
           </thead>
           <tbody class="yui3-datatable-data">
@@ -32,11 +28,6 @@
             <td class="yui3-column">
               <div class='yui3-datatable-liner'>
                 <%=task[:due_date].strftime("%F")%>
-              </div>
-            </td>
-            <td class="yui3-column">
-              <div class='yui3-datatable-liner'>
-                <%=task[:description]%>
               </div>
             </td>
           </tr>
