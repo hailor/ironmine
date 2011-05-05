@@ -36,6 +36,7 @@
             <tr class="yui3-datatable-even">
                 <%= hidden_field_tag "irm_company_access[#{company.id}][accessable_company_id]",company.id %>
                 <%= hidden_field_tag "irm_company_access[#{company.id}][person_id]",@person_id%>
+                <%= hidden_field_tag "irm_company_access[#{@person.company_id}][company_access_flag]","Y"%>
                 <td class="yui3-column"><div class='yui3-datatable-liner'><%= company[:name] %></div></td>
                 <td class="yui3-column">
                     <div class='yui3-datatable-liner'><%= check_box_tag "irm_company_access[#{company.id}][company_access_flag]",'Y',
