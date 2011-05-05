@@ -932,6 +932,7 @@ zh:
   label_irm_watcher_list: 跟踪者列表
   #======================== end watcher ======================
   #======================== calendar events====================
+  label_action_calendar_view: 工作日历
   label_irm_todo_event: 事件
   label_irm_todo_event_new: 创建事件
   label_irm_todo_event_edit: 编辑事件
@@ -971,6 +972,8 @@ zh:
   recurrence_weekly: week(s)
   recurrence_monthly: month(s)
   recurrence_interval: every %{m}
+  label_irm_calendar_view: 日历视图
+  label_irm_todo_event_list_view: 事件列表视图
   #======================== end calendar tasks====================
   #======================== business objects====================
   label_business_object_list: 业务对像
@@ -1090,4 +1093,8 @@ zh:
   label_irm_todo_task_mail: 电子邮件
   label_irm_todo_task_phone: 联系电话
   label_action_my_tasks_index: 我的任务
+  label_irm_todo_task_display_opts_open: 所有打开
+  label_irm_todo_task_display_opts_today: 今天
+  label_irm_todo_task_display_opts_over_due: 逾期
+  label_irm_todo_task_display_opts_next_7_days: 未来7天内
 

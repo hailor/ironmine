@@ -37,8 +37,28 @@ class Irm::TodoTask < ActiveRecord::Base
         where("lv.lookup_code = #{table_name}.task_status")
   }
 
+  scope :with_open, lambda{
+    where("#{table_name}.task_status <> ?", "COMPLETED")
+  }
+
+  scope :with_overdue, lambda{
+    where("#{table_name}.due_date < ?", Time.strptime(Time.now.strftime("%F"), "%F"))
+  }
+
+  scope :with_in7day, lambda{
+    where("#{table_name}.due_date >= ? AND #{table_name}.due_date < ?",
+          Time.strptime(Time.now.strftime("%F"), "%F"),
+          Time.strptime(Time.now.strftime("%F"), "%F") + 7.days)
+  }
+
   scope :uncompleted, lambda{
     where("#{table_name}.task_status <> ?", "COMPLETED")
+  }
+
+  scope :with_today, lambda{
+    where("#{table_name}.due_date >= ? AND #{table_name}.due_date < ?",
+          Time.strptime(Time.now.strftime("%F"), "%F"),
+          Time.strptime(Time.now.strftime("%F"), "%F") + 1.day)
   }
 
   scope :assigned_to, lambda{|person_id|

@@ -577,6 +577,7 @@ Ironmine::Application.routes.draw do
     match '/todo_events/:id/quick_show(.:format)' => "todo_events#quick_show", :via => :get
     match '/todo_events/my_events_index(.:format)' => "todo_events#my_events_index", :via => :get
     match '/todo_events/my_events_get_data(.:format)' => "todo_events#my_events_get_data"
+    match '/todo_events/calendar_view(.:format)' => "todo_events#calendar_view"
 
     match '/todo_tasks(/index)(.:format)' => "todo_tasks#index", :via => :get
     match '/todo_tasks/new(.:format)' => "todo_tasks#new", :via => :get

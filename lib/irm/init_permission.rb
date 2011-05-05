@@ -195,7 +195,7 @@ Irm::AccessControl.map do |map|
 
   #===================irm/wf_tasks============================
   #["index", "show_permissions", "show_permissions_data", "show_missed_permissions", "missed_permissions_data"]
-  map.function :view_todo_events,{"irm/todo_events"=>["index", "show", "quick_show",
+  map.function :view_todo_events,{"irm/todo_events"=>["index", "show", "quick_show", "calendar_view",
                                                 "my_events_index", "get_data", "get_top_data", "my_events_get_data"]}
   map.function :create_todo_events,{"irm/todo_events"=>["new", "create"]}
   map.function :edit_todo_events,{"irm/todo_events"=>["edit", "update",

@@ -813,6 +813,7 @@ en:
   label_irm_watcher_list: Watcher List
   #======================== end watcher ======================
   #======================== calendar events====================
+  label_action_calendar_view: Calendar
   label_irm_todo_event: Events
   label_irm_todo_event_new: Create Event
   label_irm_todo_event_edit: Edit Event
@@ -848,6 +849,8 @@ en:
   recurrence_weekly: week(s)
   recurrence_monthly: month(s)
   recurrence_interval: every %{m}
+  label_irm_calendar_view: Calendar View
+  label_irm_todo_event_list_view: Events List View
   #======================== end calendar tasks====================
   #======================== business objects====================
   label_business_object_list: Business Object
@@ -966,3 +969,7 @@ en:
   label_irm_todo_task_task_status: Task Status
   label_irm_todo_task_mail: Mail
   label_irm_todo_task_phone: Tel
+  label_irm_todo_task_display_opts_open: All Open
+  label_irm_todo_task_display_opts_today: Today
+  label_irm_todo_task_display_opts_over_due: Overdue
+  label_irm_todo_task_display_opts_next_7_days: Next 7 Days
