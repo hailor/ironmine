@@ -246,8 +246,27 @@ class Irm::Person < ActiveRecord::Base
      person = find(:first, :conditions => ["login_name=?", login])
      if person
        # user is already in local database
+       # user is disabled
        return nil if !person.enabled?
-       return nil unless Irm::Person.hash_password(password) == person.hashed_password
+       # ldap user login
+       if person.auth_source_id.present?
+         ldap_auth_header = Irm::LdapAuthHeader.find(person.auth_source_id)
+         person_id = ldap_auth_header.authenticate(login,password)
+         if person_id
+           person = Irm::Person.find(person_id)
+         else
+           return nil
+         end
+       else
+         return nil unless Irm::Person.hash_password(password) == person.hashed_password
+       end
+     else
+       person_id = Irm::LdapAuthHeader.try_to_login(login,password)
+       if person_id
+         person = Irm::Person.find(person_id)
+       else
+         return nil
+       end
      end
 
      person.update_attribute(:last_login_at, Time.now) if person && !person.new_record?

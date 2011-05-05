@@ -2,7 +2,6 @@ class Irm::LdapAuthHeader < ActiveRecord::Base
   set_table_name :irm_ldap_auth_headers
   belongs_to :ldap_source,:foreign_key=>:ldap_source_id,:primary_key=>:id
   has_many :ldap_auth_attributes
-  has_many :ldap_syn_people
   query_extend
 
   scope :query_auth_info,lambda{ select("#{table_name}.*,"+
@@ -11,7 +10,7 @@ class Irm::LdapAuthHeader < ActiveRecord::Base
                                                    where("v1.id=#{table_name}.ldap_source_id")}
 
   def self.try_to_login(login_name,password)
-    self.class.enabled.each do |auth_header|
+    self.enabled.each do |auth_header|
       begin
         attrs = auth_header.authenticate(login_name, password)
       rescue => e
@@ -25,13 +24,10 @@ class Irm::LdapAuthHeader < ActiveRecord::Base
 
 
   def authenticate(login_name,password)
-    ldap_syn_person = self.ldap_syn_people.first
-    return nil unless ldap_syn_person
     login_filter = Net::LDAP::Filter.eq( self.ldap_login_name_attr, login_name )
-    return_attrs = {:login_name=>self.ldap_login_name_attr}
-    person_attr = ldap_syn_person.default_attributes
-    # set password
-    person_attr.merge!({:password=>password,:password_confirmation=>password})
+    return_attrs = {:login_name=>self.ldap_login_name_attr,:email_address=>self.ldap_email_address_attr}
+    # setup person and password
+    person_attr = {:password=>password,:password_confirmation=>password}
     self.ldap_auth_attributes.each do |attr|
       return_attrs[attr.local_attr.to_sym] = attr.ldap_attr
     end
@@ -51,20 +47,43 @@ class Irm::LdapAuthHeader < ActiveRecord::Base
                             :password => password)
       if result
         puts "Authenticated #{result.first.dn}"
+        exists_person = Irm::Person.where(:login_name=>login_name).first
+        return exists_person.id if exists_person
         return_entry = result.first
         return_attrs.each do |key,value|
           return_value  = self.class.get_attr(return_entry,value)
           person_attr[key]= return_value if return_value
         end
-        person = Irm::Person.new(person_attr)
-        person.save
-        return person.id unless person.errors.any?
+        person_attr[:auth_source_id] = self.id
+        person_attr[:email_address] = "#{person_attr[:login_name]}@ironmine.com" unless person_attr[:email_address].present?
+        person = create_ldap_person(person_attr)
+        return person.id if person
       else
         return nil
       end
     end
     return nil
 
+  end
+
+
+
+  def create_ldap_person(person_attr)
+    template_person = Irm::Person.find(self.template_person_id)
+    person = template_person.attributes.merge(person_attr.stringify_keys!)
+    person = Irm::Person.new(person)
+    person.save
+    return nil if person.errors.any?
+    template_person.person_roles.each do |pr|
+      person.person_roles.create(:role_id=>pr.role_id)
+    end
+    template_person.person_roles.each do |pr|
+      person.person_roles.create(:role_id=>pr.role_id)
+    end
+    template_person.company_accesses.each do |ca|
+      person.company_accesses.create(:accessable_company_id=>ca.accessable_company_id,:company_access_flag=>ca.company_access_flag,:support_stuff_flag=>ca.support_stuff_flag)
+    end
+    person
   end
 
 
