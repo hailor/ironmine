@@ -1,0 +1,26 @@
+<%= app_title%>
+<%= stylesheet_link_tag "event_calendar" %>
+
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_todo_event) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:controller => "irm/todo_events", :action => "new"}%></div>
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+
+        <%= render :partial => "irm/calendars/calendar_panel" %>
+        <div id="todoEventsPaginator"></div>
+      </div>
+    </div>
+</div>

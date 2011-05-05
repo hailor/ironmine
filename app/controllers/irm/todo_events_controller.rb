@@ -239,5 +239,14 @@ class Irm::TodoEventsController < ApplicationController
       format.json {render :json => to_jsonp(my_tasks.to_grid_json([:name,:start_at,:end_at,:color,:status_code, :priority_name, :event_status_name], count))}
     end
   end
+
+  def calendar_view
+    @month = (params[:month] || (Time.zone || Time).now.month).to_i
+    @year = (params[:year] || (Time.zone || Time).now.year).to_i
+
+    @shown_month = Date.civil(@year, @month)
+
+    @event_strips = Irm::TodoEvent.event_strips_for_month(@shown_month, Irm::Calendar.current_calendar(Irm::Person.current.id))
+  end
   
 end

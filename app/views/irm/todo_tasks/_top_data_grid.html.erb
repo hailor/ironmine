@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag "/javascripts/yui3.3/datatable/assets/skins/sam/datatable.css"%>
 <% if allow_to_function?(:view_todo_tasks) %>
 <div class="bSubBlock">
 <h3 class="lbHeader"></h3>
@@ -9,22 +10,32 @@
         <div class="button"><%= link_to t(:new), :controller => "irm/todo_tasks", :action => "new"%></div>
       </td>
       <td class="pbHelp">
-        <%= link_to t(:display_all), :controller => "irm/todo_tasks", :action => "index" %>
+        <%= link_to t(:display_all), {:controller => "irm/todo_tasks", :action => "index"}, :style => "float:right; margin-left:5px;" %>
+        <%= form_tag url_for({:controller => "irm/todo_tasks", :action => "get_top_data", :format => "js"}), {:id => "task_display_opts", :remote => true} do %>
+        <%= select_tag "opts", options_for_select(available_tasks_list_options), :id => "opts"%>
+            <%= submit_tag "submit", :style => "display:none;", :id => "submit_opts"%>
+        <% end %>
       </td>
     </tr>
   </tbody>
 </table>
 <div class="lbBody">
-  <div id="todo_tasks_list" class="datatable" style="width:100%">
-      <div id="name" style="display:none">
-        <%= link_to("{name}", {:controller => "irm/todo_tasks", :action => "show", :id => "{id}"})%>
-      </div>
+  <% if @tasks.nil? %>
+    <% @tasks = Irm::TodoTask.with_all.with_task_status.with_priority.uncompleted.with_calendar%>
+  <% end %>
+  <div id="todo_tasks_list">
+    <%= render :partial => "irm/todo_tasks/top_data_table", :locals => {:tasks => @tasks}%>
   </div>
-        <%= datatable("todo_tasks_list",url_for(:controller => "irm/todo_tasks", :action=>"get_top_data",:format=>"json"),
-                      [{:key=>"id",:label=>t(:operation),:hidden=>true},
-                       {:key=>"name",:label=>t(:label_irm_todo_task_name),:formatter=>"Y.irm.template",:sortable=>true, :width => "150px"},
-                       {:key=>"due_date",:label=>t(:label_irm_todo_task_due_date),:sortable=>true, :width => "80px"},
-                       {:key=>"description",:label=>t(:description),:sortable=>true, :width => "250px"}])%>
 </div>
 </div>
+<script type="text/javascript">
+
+  GY.use(function(Y){
+    Y.one('#opts').on("change", function(e){
+//        document.forms["task_display_opts"].submit();
+        Y.one("#submit_opts").simulate("click");
+    });
+  });
+</script>
+
 <% end %>

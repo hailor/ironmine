@@ -37,6 +37,18 @@ class Irm::TodoTask < ActiveRecord::Base
         where("lv.lookup_code = #{table_name}.task_status")
   }
 
+  scope :with_open, lambda{
+    where("#{table_name}.task_status <> ? AND #{table_name}.task_status <> ?", "COMPLETED", "NOT_STARTED")
+  }
+
+  scope :with_overdue, lambda{
+    where("#{table_name}.due_date < ?", Time.now)
+  }
+
+  scope :with_in7day, lambda{
+    where("#{table_name}.due_date >= ? AND #{table_name}.start_at > ? AND #{table_name}.start_at < ?", Time.now, Time.now, Time.now + 7.days)
+  }
+
   scope :uncompleted, lambda{
     where("#{table_name}.task_status <> ?", "COMPLETED")
   }

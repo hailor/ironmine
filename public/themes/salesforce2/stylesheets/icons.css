@@ -336,6 +336,47 @@ a:hover .addNewEventIcon{
     width: 13px;
 }
 
+.listViewIconOff{
+    background-image: url("../images/calendar.gif");
+    background-position: 0 -58px;
+    display: block;
+    height: 18px;
+    width: 24px;
+}
+a:hover .listViewIconOff{
+    background-position: -26px -58px;
+}
+
+.listViewIconOn{
+    background-image: url("../images/calendar.gif");
+    background-position: -26px -58px;
+    display: block;
+    height: 18px;
+    width: 24px;
+}
+
+.monthViewIconOn {
+    background-image: url("../images/calendar.gif");
+    background-position: -26px -80px;
+    display: block;
+    height: 18px;
+    width: 24px;
+}
+
+.monthViewIconOff {
+    background-image: url("../images/calendar.gif");
+    background-position: 0 -80px;
+    display: block;
+    height: 18px;
+    width: 24px;
+}
+
+a:hover .monthViewIconOff {
+    background-image: url("../images/calendar.gif");
+    background-position: -26px -80px;
+    display: block;
+}
+
 .sidebarModule .sidebarModuleBody>table a[href*="surveys"] > img{background-image:url("/images/master.png");background-position:0 -341px;height:16px;width:16px;}/*img17*/
 .sidebarModule .sidebarModuleBody>table a[href*="entry_headers"] > img{background-image:url("/images/master.png");background-position:0 -182px;height:16px;width:16px;}/*img10*/
 a img{border:none;}

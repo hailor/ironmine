@@ -1,6 +1,7 @@
 module EventCalendar::CalendarHelperEx
   def self.included(base)
     base.class_eval do
+      include ActionView::Helpers::UrlHelper
       def calendar(options = {}, &block)
         block ||= Proc.new {|d| nil}
 
@@ -77,6 +78,9 @@ module EventCalendar::CalendarHelperEx
         if options[:show_header]
           cal << %(<table class="ec-calendar-header" cellpadding="0" cellspacing="0">)
           cal << %(<thead><tr>)
+          cal << %(<th class="ec-month-nav" style="padding-left:10px;">)
+          cal << %(<a style="display:inline-block;float:left;margin-left:3px;" href="#{url_for :controller => "todo_events", :action => "index"}" title="#{I18n.t(:label_irm_todo_event_list_view)}"><img src="/images/s.gif" class="listViewIconOff"/></a>)
+          cal << %(<a style="display:inline-block;float:left;margin-left:3px;" href="#{url_for :controller => "todo_events", :action => "calendar_view"}" title="#{I18n.t(:label_irm_calendar_view)}"><img src="/images/s.gif" class="monthViewIconOn"/></a></th>)
           if options[:previous_month_text] or options[:next_month_text]
             cal << %(<th colspan="2" class="ec-month-nav ec-previous-month">#{options[:previous_month_text]}</th>)
             colspan = 3

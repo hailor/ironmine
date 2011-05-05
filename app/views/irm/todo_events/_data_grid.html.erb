@@ -1,3 +1,12 @@
+
+<div>
+  <a style="display:inline-block;" href="<%= url_for :controller => "todo_events", :action => "index"%>" title="<%= t(:label_irm_todo_event_list_view)%>">
+    <img src="/images/s.gif" class="listViewIconOn"/>
+  </a>
+  <a style="display:inline-block;" href="<%= url_for :controller => "todo_events", :action => "calendar_view"%>" title="<%= t(:label_irm_calendar_view)%>">
+    <img src="/images/s.gif" class="monthViewIconOff"/>
+  </a>
+</div>
 <div class="listRelatedObject setupBlock">
     <div class="bPageBlock">
       <div class="pbHeader">

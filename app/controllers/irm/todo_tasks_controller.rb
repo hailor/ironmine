@@ -5,6 +5,7 @@ class Irm::TodoTasksController < ApplicationController
 
   def get_data
     tasks_scope = Irm::TodoTask.with_all.with_task_status.with_priority.uncompleted.with_calendar
+    tasks_scope = tasks_scope.with_open#只查询打开的
     tasks,count = paginate(tasks_scope)
     respond_to do |format|
       format.json  {render :json => to_jsonp(tasks.to_grid_json([:name,:start_at,:end_at,:due_date, :color,:status_code,:description,
@@ -13,11 +14,21 @@ class Irm::TodoTasksController < ApplicationController
   end
 
   def get_top_data
+
     tasks_scope = Irm::TodoTask.with_all.with_task_status.with_priority.uncompleted.with_calendar
-    tasks,count = paginate(tasks_scope)
+    if params[:opts] && params[:opts] == "open"
+      tasks_scope = tasks_scope.with_open
+    elsif params[:opts] && params[:opts] == "overdue"
+      tasks_scope = tasks_scope.with_overdue
+    elsif params[:opts] && params[:opts] == "in7day"
+      tasks_scope = tasks_scope.with_in7day
+    end
+
+    @tasks = tasks_scope
+
     respond_to do |format|
-      format.json  {render :json => to_jsonp(tasks.to_grid_json([:name,:start_at,:end_at,:due_date, :color,:status_code,:description,
-                                                                 :assigned_name, :priority_name, :task_status_name], count)) }
+      format.html
+      format.js  {render :get_data_table}
     end
   end
 
