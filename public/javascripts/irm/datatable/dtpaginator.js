@@ -110,7 +110,6 @@ Y.extend(IrmDTPaginator, Y.Plugin.Base, {
             recordend = this._paginateOptions.total;
           Y.one("#"+this.get("paginatorDom")).one(".record").setContent((this._paginateOptions.start+1)+"-"+recordend+"/"+this._paginateOptions.total);
           Y.one("#"+this.get("paginatorDom")).one(".rowPerPage").set("value",this._paginateOptions.count);
-          alert(this._paginateOptions.count);
           Y.one("#"+this.get("paginatorDom")).one(".goToPage").set("value",this._paginateOptions.currentPage);
           Y.one("#"+this.get("paginatorDom")).one(".totalPage").setContent("/"+this._paginateOptions.totalPage);
           if(this._paginateOptions.currentPage>=this._paginateOptions.totalPage)
