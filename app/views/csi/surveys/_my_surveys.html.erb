@@ -1,0 +1,58 @@
+<%= stylesheet_link_tag "/javascripts/yui3.3/datatable/assets/skins/sam/datatable.css"%>
+<div class="bSubBlock">
+    <h3 class="lbHeader"></h3>
+    <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h3 class="lbHeader"><%= t(:label_csi_survey) %></h3></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:new), :controller => "csi/surveys", :action => "new"%></div>
+          </td>
+          <td class="pbHelp">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="lbBody">
+        <div class="datatable">
+          <div class="yui3-widget yui3-datatable">
+            <div class="yui3-datatable-content">
+                <table id='rows' cellspacing="0" cellpadding="0" class='grid'>
+                  <thead class="yui3-datatable-columns">
+                    <tr class="yui3-datatable-first yui3-datatable-last">
+                      <th class="yui3-column" style="width:220px">
+                        <div class="yui3-datatable-liner"><%= t(:label_csi_survey_title) %>
+                        </div>
+                      </th>
+                      <th class="yui3-column" style="width:180px;">
+                        <div class="yui3-datatable-liner"><%= t(:label_csi_survey_closed_datetime) %>
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="yui3-datatable-data">
+                  <% my_todo_surveys.each do |survey| %>
+                  <tr id="<%=survey[:survey_id]%>" class="yui3-datatable-even">
+                    <td class="yui3-column">
+                      <div class='yui3-datatable-liner'>
+                        <% if survey.respond?%>
+                          <%=link_to survey[:title], {:controller => "csi/surveys", :action => "show_reply", :id => survey[:survey_id],:survey_member_id=>survey.id,:back_url=>url_for({})}%>
+                        <% else %>
+                            <%=link_to survey[:title], {:controller => "csi/surveys", :action => "reply", :id => survey[:survey_id],:survey_member_id=>survey.id,:back_url=>url_for({})}%>
+                        <% end %>
+                       </div>
+                    </td>
+                    <td class="yui3-column">
+                      <div class='yui3-datatable-liner'>
+                        <%=survey[:end_date_active].strftime("%F")%>
+                      </div>
+                    </td>
+                  </tr>
+                  <% end -%>
+                  </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

@@ -17,7 +17,7 @@
         <tr>
           <td class="pbTitle"></td>
           <td id="bottomButtonRow" class="pbButtonb">
-            <div class="button"><%= link_to t(:return), @return_url%></div>
+            <div class="button"><%= link_to t(:return), back_url_default({:action=>"index"})%></div>
           </td>
         </tr>
       </tbody>

@@ -34,7 +34,16 @@ class Csi::SurveyResult < ActiveRecord::Base
                                                      "#{table_name}.person_id = ?",
                                                      survey_id,person_id)}
 
+  scope :with_survey_subject,lambda{
+    joins("JOIN #{Csi::SurveySubject.table_name} ON #{Csi::SurveySubject.table_name}.id = #{table_name}.subject_id").
+    select("#{Csi::SurveySubject.table_name}.name subject_name")
+  }
+
   acts_as_recently_objects(:title => "title",
                          :target_controller => "csi/surveys",
                          :target => "survey_subject.survey")
+
+  def self.list_all
+    select("#{table_name}.*").with_survey_subject
+  end
 end

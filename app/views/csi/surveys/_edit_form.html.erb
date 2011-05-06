@@ -68,9 +68,9 @@
     <div class="pbSubsection">
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
-            <tr>
-              <td class="labelCol"><%=f.check_box :with_incident_request, :id=>"with_incident_request"%></td>
-              <td class="dataCol"><label for="with_incident_request"><%=(t :label_csi_survey_with_incident_request)%></label></td>
+           <tr>
+              <td class="labelCol"><label><%=(t :label_csi_survey_with_incident_request)%></label></td>
+              <td class="dataCol"><%= check_img(@survey.with_incident_request)%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>

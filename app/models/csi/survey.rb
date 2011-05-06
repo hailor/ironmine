@@ -8,11 +8,13 @@ class Csi::Survey < ActiveRecord::Base
   validates_presence_of :title
   validates_uniqueness_of :title
 
-  validates_presence_of :title
+  validates_presence_of :due_dates,:if=>Proc.new{|i| i.with_incident_request.eql?(Irm::Constant::SYS_YES)}
+  validates_presence_of :closed_datetime,:if=>Proc.new{|i| i.with_incident_request.eql?(Irm::Constant::SYS_NO)}
 
 
   has_many :todo_events, :as => :source
   has_many :survey_subjects
+  has_many :survey_members
   has_many :survey_ranges
   scope :query_by_person_id,lambda{|person_id| where(:person_id=>person_id)}
   scope :query_wrap_info,lambda{|language| select("#{table_name}.*,v1.meaning status_meaning, DATE_FORMAT(#{table_name}.created_at, '%Y-%m-%d') published_at").
@@ -90,6 +92,29 @@ class Csi::Survey < ActiveRecord::Base
 
   def to_s
     self.title
+  end
+
+
+  def generate_member
+    return if Irm::Constant::SYS_YES.eql?(self.with_incident_request)
+    exists_member_ids = survey_members.collect{|i| i.person_id}
+    self.survey_ranges.sort_by{|i| i.required_flag}.each do |sr|
+      person_ids = sr.person_ids
+      person_ids.each do |pid|
+        if exists_member_ids.include?(pid)
+          sm = Csi::SurveyMember.where(:survey_id=>self.id,:person_id=>pid).first
+          sm.update_attributes(:required_flag=>sr.required_flag,:end_date_active=>self.closed_datetime) if sm
+        else
+          Csi::SurveyMember.create(:survey_id=>self.id,:person_id=>pid,:required_flag=>sr.required_flag,:response_flag=>Irm::Constant::SYS_NO,:end_date_active=>self.closed_datetime)
+        end
+      end
+      exists_member_ids = exists_member_ids + person_ids
+      exists_member_ids.uniq
+    end
+  end
+
+  def clear_member
+    Csi::SurveyMember.delete_all(["survey_id = ? AND response_flag = ?",self.id,Irm::Constant::SYS_NO])
   end
 
   private

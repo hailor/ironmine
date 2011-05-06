@@ -1,7 +1,7 @@
 <tr>
    <td class="labelCol"><label><%=subject.name%></label></td>
    <td class="dataCol">
-    <%= select_tag "result[#{subject.id}]", options_for_select(subject.options.map(&:value)) %>
+    <%= select_tag "result[#{subject.id}]", options_for_select(subject.subject_options.map(&:value)) %>
     <span id="id_<%=subject.id%>" style="color:#FF0000;"></span>
     <br />
     <span class="prompt"><%=h subject.prompt %></span>

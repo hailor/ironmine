@@ -16,6 +16,14 @@ module Irm::CommonHelper
     hidden_field_tag('back_url', CGI.escape(back_url)) unless back_url.blank?
   end
 
+  def back_url_default(default_options={})
+    if params[:back_url].present?
+      CGI.unescape(params[:back_url].to_s)
+    else
+      default_options
+    end
+  end
+
   def show_recently_object_list
 
     html_content = ""

@@ -2,6 +2,7 @@
 <%= stylesheet_link_tag "/javascripts/yui3.3/datatable/assets/skins/sam/datatable.css"%>
 <%= form_for(@survey,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
 <%= hidden_field_tag :return_url,:value=>@return_url %>
+<%= f.hidden_field :status_code %>
 <%= f.hidden_field :author_id, :value => Irm::Person.current.id%>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
@@ -11,7 +12,7 @@
           <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_csi_survey_new)%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_to t(:cancel), @return_url%></div>
+            <div class="button"><%= link_to t(:cancel), {:action => "index"}%></div>
           </td>
         </tr>
       </tbody>
