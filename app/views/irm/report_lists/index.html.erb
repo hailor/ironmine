@@ -26,7 +26,7 @@
               <td id="topButtonRow" class="pbButton">
               </td>
               <td class="pbHelp">
-                <div id="permissionsSearchBox"></div>
+                <div id="reportListSearchBox"></div>
               </td>
             </tr>
           </tbody>
@@ -40,12 +40,13 @@
         </div>
         <%= datatable("report_list",url_for(:action=>"get_data", :report_category => @report_category,:format=>"json"),
                   [{:key=>"id",:label=>t(:operation),:hidden => true},
-                   {:key=>"name",:label=>t(:label_irm_report_name),:formatter=>"Y.irm.template", :sortable=>true,:searchable=>true,:width=>"40%"},
+                   {:key=>"name",:label=>t(:label_irm_report_name),:formatter=>"Y.irm.template", :sortable=>true,:searchable=>true,:width=>"250px"},
+                   {:key=>"category_name",:label=>t(:label_irm_report_category),:sortable=>true, :width => "100px"},
                    {:key=>"description",:label=>t(:label_irm_report_description),:sortable=>true},
                    {:key=>"page_controller",:label=>t(:label_irm_report_page_controller),:hidden=>true},
                    {:key=>"page_action",:label=>t(:label_irm_report_page_action),:hidden=>true},
                    {:key=>"url",:label=> "#",:hidden=>true}],
-                   {:search_box=>"permissionsSearchBox",:paginator_box=>"regionPaginator"})%>
+                   {:search_box=>"reportListSearchBox",:paginator_box=>"regionPaginator"})%>
         <div id="regionPaginator"></div>
       </div>
     </div>
