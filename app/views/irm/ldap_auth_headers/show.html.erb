@@ -1,4 +1,4 @@
-<%= setting_show_title(:show_data =>@ldap_auth_header.status_code ) %>
+<%= setting_show_title(:show_data =>@ldap_auth_header.name ) %>
 
 <div id="ep" class="bDetailBlock bPageBlock">
   <div class="pbHeader">
@@ -19,26 +19,50 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <td class="labelCol"><label ><%=t(:ldap_auth_header_ldap_source)%></label></td>
-              <td class="dataCol"><%= @ldap_auth_header.ldap_source.name %></td>
-              <td class="labelCol"><label ><%=t(:ldap_auth_header_auth_code)%></label></td>
-              <td class="dataCol"><%= @ldap_auth_header.name %></td>
+              <td class="labelCol"><label><%=(t :ldap_auth_header_auth_code)%></label></td>
+              <td class="dataCol"><div><%=@ldap_auth_header.name%></div></td>
+              <td class="labelCol empty"><div>&nbsp;</div></td>
+              <td class="dataCol empty"><div>&nbsp;</div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :ldap_auth_header_ldap_source)%></label></td>
+              <td class="dataCol"><div><%=@ldap_auth_header[:ldap_source_name]%></div></td>
+              <td class="labelCol empty"><div>&nbsp;</div></td>
+              <td class="dataCol empty"><div>&nbsp;</div></td>
             </tr>
 
             <tr>
-              <td class="labelCol"><label ><%=t(:ldap_auth_header_auth_cn)%></label></td>
-              <td class="dataCol"><%= @ldap_auth_header.auth_cn %></td>
-             <td class="labelCol"><label ><%=t(:ldap_auth_header_description)%></label></td>
-              <td class="dataCol"><%= @ldap_auth_header.description %></td>
+              <td class="labelCol"><label><%=(t :ldap_auth_header_auth_cn)%></label></td>
+              <td class="dataCol"><div><%=@ldap_auth_header.auth_cn%></div></td>
+              <td class="labelCol empty"><div>&nbsp;</div></td>
+              <td class="dataCol empty"><div>&nbsp;</div></td>
             </tr>
 
             <tr>
-              <td class="labelCol"><label ><%=t(:ldap_auth_header_status_code)%></label></td>
-              <td class="dataCol"><%= check_img(@ldap_auth_header.status_code) %></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><label><%=(t :ldap_auth_header_ldap_login_name_attr)%></label></td>
+              <td class="dataCol"><div><%=@ldap_auth_header.ldap_login_name_attr%></div></td>
+              <td class="labelCol empty"><div>&nbsp;</div></td>
+              <td class="dataCol empty"><div>&nbsp;</div></td>
             </tr>
-                  </tbody>
+            <tr>
+              <td class="labelCol"><label><%=(t :ldap_auth_header_ldap_email_address_attr)%></label></td>
+              <td class="dataCol"><div><%=@ldap_auth_header.ldap_email_address_attr%></div></td>
+              <td class="labelCol empty"><div>&nbsp;</div></td>
+              <td class="dataCol empty"><div>&nbsp;</div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :ldap_auth_header_template_person)%></label></td>
+              <td class="dataCol"><div><%=@ldap_auth_header.template_person_name%></div></td>
+              <td class="labelCol empty"><div>&nbsp;</div></td>
+              <td class="dataCol empty"><div>&nbsp;</div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :ldap_auth_header_description)%></label></td>
+              <td class="dataCol"><div><%=@ldap_auth_header.description%></div></td>
+              <td class="labelCol empty"><div>&nbsp;</div></td>
+              <td class="dataCol empty"><div>&nbsp;</div></td>
+            </tr>
+        </tbody>
       </table>
     </div>
   </div>

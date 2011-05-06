@@ -2,7 +2,7 @@ class Icm::IncidentRequestsController < ApplicationController
   # GET /incident_requests
   # GET /incident_requests.xml
   def index
-    
+    session[:_view_filter_id] = params[:filter_id] if params[:filter_id]
     respond_to do |format|
       format.html # index.html.erb
     end

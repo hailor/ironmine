@@ -5,9 +5,14 @@
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr>
-          <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_ldap_syn_header) %></h2></td>
+          <td class="pbTitle"><h2 class="mainTitle"><%= @ldap_syn_header.name %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:controller =>"irm/ldap_syn_headers",:action => "edit", :id => @ldap_syn_header}%></div>
+            <% if @ldap_syn_header.enabled?  %>
+              <div class="button"><%= link_to t(:disable), {:action => "active",:id=>@ldap_syn_header.id,:active=>Irm::Constant::SYS_NO}%></div>
+            <% else %>
+              <div class="button"><%= link_to t(:active), {:action => "active",:id=>@ldap_syn_header.id,:active=>Irm::Constant::SYS_YES}%></div>
+            <% end %>
             <div class="button"><%= link_to t(:back), {:controller =>"irm/ldap_syn_headers",:action => "index"}%></div>
           </td>
         </tr>
@@ -36,8 +41,8 @@
             <tr>
               <td class="labelCol"><label ><%=t(:label_irm_ldap_syn_header_peo_syn_flag)%></label></td>
               <td class="dataCol"><%= check_img(@ldap_syn_header.peo_syn_flag) %></td>
-              <td class="labelCol"><label ><%=t(:label_irm_ldap_syn_header_peo_header)%></label></td>
-              <td class="dataCol"><div><%= @ldap_syn_header[:ldap_syn_people_name] %></div></td>
+              <td class="labelCol"><label ><%=t(:label_irm_ldap_syn_header_ldap_auth_header)%></label></td>
+              <td class="dataCol"><div><%= @ldap_syn_header[:ldap_auth_header_name] %></div></td>
             </tr>
          </tbody>
       </table>

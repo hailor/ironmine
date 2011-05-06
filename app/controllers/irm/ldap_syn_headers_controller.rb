@@ -85,23 +85,26 @@ class Irm::LdapSynHeadersController < ApplicationController
     end
   end
 
-  def multilingual_edit
+  def active
     @ldap_syn_header = Irm::LdapSynHeader.find(params[:id])
-  end
+    attrs = {}
+    if(Irm::Constant::SYS_YES.eql?(params[:active]))
+      attrs =  {:status_code=>"ENABLED"}
+    else
+      attrs =  {:status_code=>"OFFLINE"}
+    end
 
-  def multilingual_update
-    @ldap_syn_header = Irm::LdapSynHeader.find(params[:id])
-    @ldap_syn_header.not_auto_mult=true
     respond_to do |format|
-      if @ldap_syn_header.update_attributes(params[:ldap_syn_header])
-        format.html { redirect_to({:action => "show"}, :notice => 'Ldap syn header was successfully updated.') }
+      if @ldap_syn_header.update_attributes(attrs)
+        format.html { redirect_to({:action=>"show",:id=>@ldap_syn_header.id}, :notice => t(:successfully_updated)) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @ldap_syn_header.errors, :status => :unprocessable_entity }
+        format.html { redirect_to({:action=>"show",:id=>@ldap_syn_header.id}) }
+        format.xml  { render :xml => @ldap_source.errors, :status => :unprocessable_entity }
       end
     end
   end
+
 
   #同步方法
   def syn_execute

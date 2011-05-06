@@ -17,15 +17,15 @@ class Irm::LdapSynHeader < ActiveRecord::Base
     select("#{Irm::LdapSource.table_name}.name ldap_source_name")
   }
 
-  scope :with_ldap_syn_person,lambda{
-    joins("LEFT OUTER JOIN #{Irm::LdapSynPerson.table_name} ON #{Irm::LdapSynPerson.table_name}.id = #{table_name}.syn_people_id").
-    select("#{Irm::LdapSynPerson.table_name}.ldap_name s")
+  scope :with_ldap_auth_headers,lambda{
+    joins("LEFT OUTER JOIN #{Irm::LdapAuthHeader.table_name} ON #{Irm::LdapAuthHeader.table_name}.id = #{table_name}.ldap_auth_header_id").
+    select("#{Irm::LdapAuthHeader.table_name}.name ldap_auth_header_name")
   }
 
 
 
   def self.list_all
-    select("#{table_name}.*").with_ldap_auth_sources.with_ldap_syn_person
+    select("#{table_name}.*").with_ldap_auth_sources.with_ldap_auth_headers
   end
   #
   def ldap_attr(object_type)

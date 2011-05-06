@@ -56,17 +56,17 @@
               <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=t(:label_irm_ldap_syn_header_peo_header)%></label></td>
-              <td class="dataCol"><%= f.blank_select(:syn_people_id,[],{},
+              <td class="labelCol"><label><%=t(:label_irm_ldap_syn_header_ldap_auth_header)%></label></td>
+              <td class="dataCol"><%= f.blank_select(:ldap_auth_header_id,available_ldap_auth_headers(@ldap_syn_header.ldap_source_id),{},
                                   {
                                    :id=>"syn_people_id",
-                                   :href=>url_for(:controller=>"irm/ldap_syn_people",:action=>"get_by_ldap_source",:format=>"json",:belonged_ldap_source_id=>"{ldap_source_id}"),
+                                   :href=>url_for(:controller=>"irm/ldap_auth_headers",:action=>"get_by_ldap_source",:format=>"json",:belonged_ldap_source_id=>"{ldap_source_id}"),
                                    :depend=>"ldap_source_id"
                                    }) %></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
-          </tr>
-            </tbody>
+            </tr>
+          </tbody>
       </table>
     </div>
 

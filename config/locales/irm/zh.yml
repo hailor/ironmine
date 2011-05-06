@@ -390,7 +390,7 @@ zh:
   label_irm_ldap_syn_header_org_syn_flag: 是否同步组织
   label_irm_ldap_syn_header_dept_syn_flag: 是否同步部门
   label_irm_ldap_syn_header_peo_syn_flag: 是否同步人员
-  label_irm_ldap_syn_header_peo_header: 人员同步属性
+  label_irm_ldap_syn_header_ldap_auth_header: 人员同步属性
   label_irm_ldap_syn_attribute_comp_list: 公司同步属性列表
   label_irm_ldap_syn_attribute_org_list: 组织同步属性列表
   label_irm_ldap_syn_attribute_dept_list: 部门同步属性列表

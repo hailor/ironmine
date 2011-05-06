@@ -28,7 +28,7 @@
         </div>
         <%= datatable("ldap_auth_headers",url_for(:action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
-                                              { :key => "ldap_source", :label => t(:ldap_auth_header_ldap_source),:searchable=>true },
+                                              { :key => "ldap_source_name", :label => t(:ldap_auth_header_ldap_source),:searchable=>true },
                                               { :key => "name", :label => t(:ldap_auth_header_auth_code),:searchable=>true },
                                               { :key => "auth_cn", :label => t(:ldap_auth_header_auth_cn),:searchable=>true },
                                               { :key => "description", :label => t(:ldap_auth_header_description),:searchable=>true },
