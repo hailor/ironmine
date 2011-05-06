@@ -2,6 +2,7 @@ Irm::AccessControl.map do |map|
   #============= 系统主页==============================
   # 主页
   map.function :home_page,{"irm/home"=>[:index], "irm/calendars" => ["get_full_calendar"]}
+  map.function :view_report_lists,{"irm/report_lists"=>["index","get_data"]}
   map.function :public_function,{"irm/common"=>[:login, :forgot_password], "irm/navigations" => ["access_deny", "combo"]}
   map.function :login_function,{ "irm/filters" => ["edit", "new", "create", "update", "index", "operator_value"],
                                  "irm/setting" => ["common"],
@@ -160,7 +161,7 @@ Irm::AccessControl.map do |map|
 
   #===================irm/reports============================
   #["index", "edit", "update", "new", "create", "get_data", "show", "multilingual_edit", "multilingual_update"]
-  map.function :view_reports,{"irm/reports"=>["index", "show", "get_data"], "irm/report_lists" => ["index"]}
+  map.function :view_reports,{"irm/reports"=>["index", "show", "get_data"]}
   map.function :create_reports,{"irm/reports"=>["new", "create"]}
   map.function :edit_reports,{"irm/reports"=>["edit", "update", "multilingual_edit", "multilingual_update"]}
   #===================irm/actions============================
