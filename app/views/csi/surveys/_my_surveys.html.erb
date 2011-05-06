@@ -36,9 +36,9 @@
                     <td class="yui3-column">
                       <div class='yui3-datatable-liner'>
                         <% if survey.respond?%>
-                          <%=link_to survey[:title], {:controller => "csi/surveys", :action => "show_reply", :id => survey[:survey_id],:survey_member_id=>survey.id,:return_url=>url_for({})}%>
+                          <%=link_to survey[:title], {:controller => "csi/surveys", :action => "show_reply", :id => survey[:survey_id],:survey_member_id=>survey.id,:back_url=>url_for({})}%>
                         <% else %>
-                            <%=link_to survey[:title], {:controller => "csi/surveys", :action => "reply", :id => survey[:survey_id],:survey_member_id=>survey.id,:return_url=>url_for({})}%>
+                            <%=link_to survey[:title], {:controller => "csi/surveys", :action => "reply", :id => survey[:survey_id],:survey_member_id=>survey.id,:back_url=>url_for({})}%>
                         <% end %>
                        </div>
                     </td>

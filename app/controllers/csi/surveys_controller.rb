@@ -153,7 +153,7 @@ class Csi::SurveysController < ApplicationController
     @survey_results = params[:result]
     @survey_id = params[:survey_id]
     @survey= Csi::Survey.find(@survey_id)
-    @return_url = params[:return_url]
+    @back_url = params[:back_url]
     @error = Array.new
     @response_batch = params[:survey_member_id]
     if params[:survey_member_id].present?
@@ -231,7 +231,7 @@ class Csi::SurveysController < ApplicationController
         if save_flag
           #回答完成后, 看是否有该问卷调查的任务,有的话把任务变为完成状态
           Irm::TodoEvent.complete_task(@survey, Irm::Person.current.id)
-          format.html { redirect_to({:action=>"thanks",:survey_id=>@survey_id,:return_url=>@return_url},
+          format.html { redirect_to({:action=>"thanks",:survey_id=>@survey_id,:back_url=>@back_url},
                                      :notice => @thank_message) }
           format.xml  { render :xml => @survey, :status => :created, :location => @survey }
           format.js   {
@@ -258,7 +258,7 @@ class Csi::SurveysController < ApplicationController
 
   def thanks
     @survey = Csi::Survey.find(params[:survey_id])
-    @return_url=params[:return_url]
+    @back_url=params[:back_url]
   end
 
   def show_result
