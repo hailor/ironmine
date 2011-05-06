@@ -42,7 +42,7 @@ Y.extend(IrmDTPaginator, Y.Plugin.Base, {
            Y.one("#"+this.get("paginatorDom")).setStyle("display","none")
            Y.one("#"+this.get("paginatorDom")).delegate('click',this._prePage,'.prePage',this);
            Y.one("#"+this.get("paginatorDom")).delegate('click',this._nextPage,'.nextPage',this);
-           Y.one("#"+this.get("paginatorDom")).delegate('change',this._changeRowPerPage,'.rowPerPage',this);
+           Y.on('change',this._changeRowPerPage,"#"+this.get("paginatorDom")+' .rowPerPage',this);
            Y.one("#"+this.get("paginatorDom")).delegate('keyup',this._changePage,'.goToPage',this);
            var dt = this.get("host");
            dt.on("metaDataChange", Y.bind(this._onMetaDataChange,this));
@@ -110,6 +110,7 @@ Y.extend(IrmDTPaginator, Y.Plugin.Base, {
             recordend = this._paginateOptions.total;
           Y.one("#"+this.get("paginatorDom")).one(".record").setContent((this._paginateOptions.start+1)+"-"+recordend+"/"+this._paginateOptions.total);
           Y.one("#"+this.get("paginatorDom")).one(".rowPerPage").set("value",this._paginateOptions.count);
+          alert(this._paginateOptions.count);
           Y.one("#"+this.get("paginatorDom")).one(".goToPage").set("value",this._paginateOptions.currentPage);
           Y.one("#"+this.get("paginatorDom")).one(".totalPage").setContent("/"+this._paginateOptions.totalPage);
           if(this._paginateOptions.currentPage>=this._paginateOptions.totalPage)
@@ -134,6 +135,12 @@ Y.extend(IrmDTPaginator, Y.Plugin.Base, {
               Y.one("#"+this.get("paginatorDom")).one(".prePageHolder").setStyle("display","none");
           }
 
+        },
+        _setSelectValue:function(select,value){
+            if(select)
+            {
+
+            }
         }
     });
 
