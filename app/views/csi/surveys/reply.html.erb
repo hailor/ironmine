@@ -12,6 +12,8 @@
           <div id='errors' class='error'></div>
           <%= form_tag({:controller=>"csi/surveys",:action=>"create_result"},:remote => true) do %>
              <%= hidden_field_tag :format,"js" %>
+             <%= hidden_field_tag :survey_member_id,@survey_member_id  %>
+             <%= back_url_hidden_field_tag %>
             <% i = 0%>
             <% @subjects.each do |subject| %>
               <% i=i+1 %>

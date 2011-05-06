@@ -122,4 +122,10 @@ module Csi::SurveysHelper
     end
     raw(html_content)
   end
+
+
+
+  def my_todo_surveys
+    Csi::SurveyMember.list_all.query_by_person(Irm::Person.current.id)
+  end
 end

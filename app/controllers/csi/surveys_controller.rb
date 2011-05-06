@@ -131,8 +131,8 @@ class Csi::SurveysController < ApplicationController
 
   def reply
     @survey = Csi::Survey.find(params[:id]) rescue nil
-    @return_url=request.env['HTTP_REFERER']
-    
+    @survey_member_id = params[:survey_member_id]
+
     respond_to do |format|
       if @survey && !@survey.password.blank? &&
         session[:survey_password] != @survey.password
@@ -155,7 +155,11 @@ class Csi::SurveysController < ApplicationController
     @survey= Csi::Survey.find(@survey_id)
     @return_url = params[:return_url]
     @error = Array.new
-    @response_batch = Time.now.to_i.to_s+Irm::Person.current.id.to_s+rand(9).to_s
+    @response_batch = params[:survey_member_id]
+    if params[:survey_member_id].present?
+      Csi::SurveyMember.find(params[:survey_member_id]).update_attribute(:response_flag,Irm::Constant::SYS_YES)
+    end
+    @response_batch ||= Time.now.to_i.to_s+Irm::Person.current.id.to_s+rand(9).to_s
     @response_time = Time.now
     @thank_message = Csi::Survey.find(@survey_id).thanks_message
     #得到当前调查的ip
@@ -246,6 +250,12 @@ class Csi::SurveysController < ApplicationController
     end
   end
 
+
+  def show_reply
+    @survey = Csi::Survey.find(params[:id])
+    @survey_results = Csi::SurveyResult.list_all.where(:response_batch=>params[:survey_member_id])
+  end
+
   def thanks
     @survey = Csi::Survey.find(params[:survey_id])
     @return_url=params[:return_url]
@@ -313,6 +323,33 @@ class Csi::SurveysController < ApplicationController
     @survey_code = survey.survey_code
     @survey_title = survey.title
     @return_url=request.env['HTTP_REFERER']
+  end
+
+
+
+  def active
+    @survey = Csi::Survey.find(params[:id])
+    attrs = {}
+    if(Irm::Constant::SYS_YES.eql?(params[:active]))
+      attrs =  {:status_code=>"ENABLED"}
+    else
+      attrs =  {:status_code=>"OFFLINE"}
+    end
+
+    respond_to do |format|
+      if @survey.update_attributes(attrs)
+        if @survey.enabled?
+          @survey.generate_member
+        else
+          @survey.clear_member
+        end
+        format.html { redirect_to({:action=>"show",:id=>@survey.id}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
+      else
+        format.html { redirect_to({:action=>"show",:id=>@survey.id}) }
+        format.xml  { render :xml => @survey.errors, :status => :unprocessable_entity }
+      end
+    end
   end
 
   private

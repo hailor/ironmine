@@ -57,6 +57,29 @@ class Csi::SurveyRange < ActiveRecord::Base
     people.size
   end
 
+
+  def person_ids
+    person_ids = []
+    if self.range_type == "ORGANIZATION"
+      if self.range_department_id.present?
+        person_ids << Irm::Person.enabled.select("id").where("department_id = ?", self.range_department_id).collect{|i| i.id}
+      elsif self.range_organization_id.present?
+        person_ids << Irm::Person.enabled.select("id").where("organization_id = ?", self.range_organization_id).collect{|i| i.id}
+      elsif self.range_company_id.present?
+        person_ids << Irm::Person.enabled.select("id").where("company_id = ?", self.range_company_id).collect{|i| i.id}
+      end
+    elsif self.range_type == "ROLE"&&self.role_id.present?
+      person_ids << Irm::PersonRole.select("person_id").where(:role_id=>self.role_id).collect{|i| i.person_id}
+    #elsif self.range_type == "SITE"
+    #  Irm::Location.where("department_id IS NULL").where("organization_id IS NULL").each do |loc|
+    #    people << Irm::Person.where("company_id = ?", loc.company_id)
+    #  end
+    end
+    person_ids.flatten!
+    person_ids.uniq!
+    person_ids
+  end
+
   acts_as_recently_objects(:title => "title",
                            :target_controller => "csi/surveys",
                            :target => "survey")

@@ -43,6 +43,7 @@ zh:
    label_csi_survey_incident_request_from: 事故单创建日期从
    label_csi_survey_incident_request_to: 到
    label_csi_survey: 调查问卷
+   label_csi_survey_subject_result: 结果
    #========================= end   csi surveys_controller=======================#
    #========================= start csi survey_subjects_controller=======================#
    label_csi_survey_subject: 题目

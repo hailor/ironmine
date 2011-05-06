@@ -8,6 +8,11 @@
           <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_csi_survey_show) %>&nbsp;<%= t(:label_detail_info) %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @survey}%></div>
+            <% if @survey.enabled?  %>
+              <div class="button"><%= link_to t(:disable), {:action => "active",:id=>@survey.id,:active=>Irm::Constant::SYS_NO}%></div>
+            <% else %>
+              <div class="button"><%= link_to t(:active), {:action => "active",:id=>@survey.id,:active=>Irm::Constant::SYS_YES}%></div>
+            <% end %>
             <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
             <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
           </td>
@@ -141,7 +146,11 @@
             <tr>
               <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_csi_survey_range_list) %></h2></td>
               <td class="pbButton">
-                <div class="button"><%= link_to t(:new), {:controller => "csi/survey_ranges", :action => "new", :survey_id => @survey.id}%></div>
+                <div class="button">
+                  <% unless @survey.enabled? %>
+                    <%= link_to t(:new), {:controller => "csi/survey_ranges", :action => "new", :survey_id => @survey.id}%>
+                  <% end %>
+                </div>
               </td>
             </tr>
           </tbody>
@@ -149,10 +158,14 @@
      </div>
     <div id="survey_range" class="datatable" style="width:100%;">
           <div id="id" style="display:none">
-            <%= icon_link_edit({:controller=>"csi/survey_ranges",:action=>"edit",:survey_id => @survey.id,:id=>"{id}"}) %>&nbsp;
+            <% unless @survey.enabled?  %>
+              <%= icon_link_edit({:controller=>"csi/survey_ranges",:action=>"edit",:survey_id => @survey.id,:id=>"{id}"}) %>&nbsp;
+            <% end %>
             <%= icon_link_show({:controller=>"csi/survey_ranges",:action=>"show",:survey_id => @survey.id,:id=>"{id}"}) %>&nbsp;
-            <%= icon_link_delete({:controller=>"csi/survey_ranges",:action=>"destroy",:survey_id => @survey.id,:id=>"{id}"},:confirm => t(:label_are_you_sure) ,
+            <% unless @survey.enabled?  %>
+              <%= icon_link_delete({:controller=>"csi/survey_ranges",:action=>"destroy",:survey_id => @survey.id,:id=>"{id}"},:confirm => t(:label_are_you_sure) ,
                                       :method => :delete) %>
+            <% end %>
           </div>
           <div id="required_flag" style="display:none">
             <%= check_img("{required_flag}") %>
