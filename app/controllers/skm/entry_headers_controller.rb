@@ -257,7 +257,7 @@ class Skm::EntryHeadersController < ApplicationController
     entry_headers_scope = Skm::EntryHeader.list_all.published.current_entry.with_favorite_flag(Irm::Person.current.id)
     entry_headers_scope = entry_headers_scope.match_value("#{Skm::EntryHeader.table_name}.doc_number",params[:doc_number]) if params[:doc_number]
     entry_headers_scope = entry_headers_scope.match_value("#{Skm::EntryHeader.table_name}.keyword_tags",params[:keyword_tags]) if params[:keyword_tags]
-    entry_headers_scope = entry_headers_scope.match_value("#{Skm::EntryHeader.table_name}.entry_title",params[:entry_title]) if params[:entry_title]
+    entry_headers_scope = entry_headers_scope.match_value("#{Skm::EntryHeader.table_name}.entry_title",params[:full_title]) if params[:full_title]
     entry_headers,count = paginate(entry_headers_scope)
     respond_to do |format|
       format.json  {render :json => to_jsonp(entry_headers.to_grid_json(['0',:is_favorite, :entry_status_code, :full_title, :entry_title, :keyword_tags,:doc_number,:version_number, :published_date_f], count)) }
