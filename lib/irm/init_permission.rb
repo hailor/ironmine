@@ -203,7 +203,7 @@ Irm::AccessControl.map do |map|
 
   #===================irm/wf_tasks============================
   #["index", "show_permissions", "show_permissions_data", "show_missed_permissions", "missed_permissions_data"]
-  map.function :view_todo_tasks,{"irm/todo_tasks"=>["index", "show", "",
+  map.function :view_todo_tasks,{"irm/todo_tasks"=>["index", "show",
                                                     "my_tasks_index", "get_data","get_top_data", "my_tasks_get_data"]}
   map.function :create_todo_tasks,{"irm/todo_tasks"=>["new", "create"]}
   map.function :edit_todo_tasks,{"irm/todo_tasks"=>["edit", "update",
