@@ -20,6 +20,7 @@ en:
    label_csi_survey_edit: Edit Survey
    label_csi_survey_show: Survey
    label_csi_survey_list: Survey List
+   label_csi_survey_due_dates: Due Dates(Hour)
    label_csi_survey_closed: Survey Closed
    label_csi_survey_required_input: Required Input
    reply: Reply

@@ -31,4 +31,6 @@ Irm::AccessControl.map do |map|
   map.function :create_skm_entries, {"skm/entry_headers" => ["new", "create", "new_step_1", "new_step_2", "new_step_3", "new_step_4", "new_from_icm_request"]}
   map.function :edit_skm_entries, {"skm/entry_headers" => ["edit", "update"]}
 
+  map.function :login_function,{ "skm/entry_reports" => ["get_rpt_apply_data", "get_rpt_show_data", "get_search_history_data"]}
+
 end

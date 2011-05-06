@@ -24,10 +24,28 @@
               <td class="dataCol"><%=@survey.title%></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=(t :label_csi_survey_description)%></label></td>
-              <td class="dataCol"><%= @survey.description%></td>
+              <td class="labelCol"><label><%=(t :label_csi_survey_email_notify)%></label></td>
+              <td class="dataCol"><%= check_img(@survey.email_notify)%></td>
+              <td class="labelCol"><label><%=(t :label_csi_survey_publish_response)%></label></td>
+              <td class="dataCol"><%= check_img(@survey.publish_response)%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_csi_survey_comment_flag)%></label></td>
+              <td class="dataCol"><%= check_img(@survey.comment_flag)%></td>
+              <td class="labelCol"><label><%=(t :label_csi_survey_result_only_author)%></label></td>
+              <td class="dataCol"><%= check_img(@survey.result_only_author)%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :active)%></label></td>
+              <td class="dataCol" colspan="3" width="82%"><div><%= check_img(@survey.status_code)%></div></td>
+            </tr>
+            <tr>
               <td class="labelCol"><label><%=(t :label_csi_survey_thanks_message)%></label></td>
-              <td class="dataCol"><%= @survey.thanks_message%></td>
+              <td class="dataCol" colspan="3" width="82%"><div><%= @survey.thanks_message%></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_csi_survey_description)%></label></td>
+              <td class="dataCol" colspan="3" width="82%"><div><%= @survey.description%></div></td>
             </tr>
         </tbody>
       </table>
@@ -60,7 +78,7 @@
           </div>
     </div>
         <%= datatable("survey_subject",url_for(:controller=>"csi/survey_subjects",:action=>"get_data",:id=>@survey.id,:survey_id=>@survey.id),
-                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
+                  [{:key=>"id",:label=>t(:operation),:hidden=>!check_survey_result_exist?(@survey.id),:formatter=>"Y.irm.template",:width=>"80px"},
                    {:key=>"seq_num",:label=>t(:label_csi_survey_subject_seq_num),:sortable=>true,:width=>"70px"},
                    {:key=>"name",:label=>t(:label_csi_survey_subject_title),:sortable=>true},
                    {:key=>"prompt",:label=>t(:label_csi_survey_subject_prompt),:sortable=>true},
@@ -74,29 +92,18 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
            <tr>
-              <td class="labelCol"><label><%=(t :label_csi_survey_email_notify)%></label></td>
-              <td class="dataCol"><%= check_img(@survey.email_notify)%></td>
               <td class="labelCol"><label><%=(t :label_csi_survey_with_incident_request)%></label></td>
               <td class="dataCol"><%= check_img(@survey.with_incident_request)%></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :label_csi_survey_publish_response)%></label></td>
-              <td class="dataCol"><%= check_img(@survey.publish_response)%></td>
-              <td class="labelCol"><label><%=(t :label_csi_survey_incident_request_from)%></label></td>
-              <td class="dataCol"><%=@survey.with_incident_request_from%></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :label_csi_survey_comment_flag)%></label></td>
-              <td class="dataCol"><%= check_img(@survey.comment_flag)%></td>
-              <td class="labelCol"><label><%=(t :label_csi_survey_incident_request_to)%></label></td>
-              <td class="dataCol"><%=@survey.with_incident_request_to%></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%=(t :label_csi_survey_result_only_author)%></label></td>
-              <td class="dataCol"><%= check_img(@survey.result_only_author)%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_csi_survey_due_dates)%></label></td>
+              <td class="dataCol"><%=@survey.due_dates%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+
         </tbody>
       </table>
     </div>
