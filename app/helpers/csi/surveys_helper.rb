@@ -25,7 +25,7 @@ module Csi::SurveysHelper
   end
 
   def get_survey_person(person_id)
-    Irm::Person.query_person_name(person_id).query_by_id(person_id).first[:person_name]
+    Irm::Person.query_person_name(person_id).query(person_id).first[:person_name]
   end
 
   #提供构建pie chart 传入的参数width,height
