@@ -179,20 +179,18 @@ class Icm::IncidentRequestsController < ApplicationController
 
     #按人员查找
     r1 = Slm::ServiceMember.where("1=1").query_by_service_person(requested_by).with_service_catalog
-
     #按部门查找
     r1 += Slm::ServiceMember.where(:service_person_id=>nil).query_by_service_department(requested_by.department_id).with_service_catalog
-
     #按组织查找
     r1 += Slm::ServiceMember.where(:service_person_id=>nil).
                               where(:service_department_id=>nil).
                               query_by_service_organization(requested_by.organization_id).with_service_catalog
-
     #按公司查找
     r1 += Slm::ServiceMember.where(:service_person_id=>nil).
                               where(:service_department_id=>nil).
                               where(:service_organization_id=>nil).
                               query_by_service_company(requested_by.company_id).with_service_catalog
+
     services_scope = Slm::ServiceCatalog.multilingual.enabled.where("external_system_code = ? AND catalog_code IN (?)",
                                                                     params[:external_system_code], r1.collect(&:catalog_code))
     services = services_scope.collect{|i| {:label => i[:name], :value => i.catalog_code, :id => i.id}}
