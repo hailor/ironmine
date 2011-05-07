@@ -30,6 +30,12 @@ class Irm::SupportGroupMember < ActiveRecord::Base
     joins("JOIN #{Irm::Person.table_name} ON #{Irm::Person.table_name}.id = #{table_name}.person_id").
     select("#{Irm::Person.table_name}.id person_id,#{Irm::Person.name_to_sql(nil,Irm::Person.table_name,'person_name')}")
   }
+
+
+  scope :with_assignable_person,lambda{
+    joins("JOIN #{Irm::Person.table_name} ON #{Irm::Person.table_name}.id = #{table_name}.person_id AND #{Irm::Person.table_name}.assignment_availability_flag = '#{Irm::Constant::SYS_YES}'").
+    select("#{Irm::Person.table_name}.id person_id,#{Irm::Person.name_to_sql(nil,Irm::Person.table_name,'person_name')}")
+  }
   scope :with_support_group,lambda{|language|
     joins("JOIN #{Irm::SupportGroup.view_name} ON #{Irm::SupportGroup.view_name}.group_code = #{table_name}.support_group_code").
     select("#{Irm::SupportGroup.view_name}.name group_name,#{Irm::SupportGroup.view_name}.id group_id").
