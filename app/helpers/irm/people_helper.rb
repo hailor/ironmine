@@ -4,6 +4,6 @@ module Irm::PeopleHelper
    end
 
    def available_uid_person
-     Irm::Person.query_all_person.collect{|p| ["#{p[:login_name]}(#{p[:person_name]})",p[:id]]}
+     Irm::Person.real.collect{|p| ["#{p[:login_name]}(#{p[:full_name]})",p[:id]]}
    end
 end
