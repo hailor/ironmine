@@ -9,7 +9,7 @@ module Icm::IncidentRequestsHelper
   end
 
   def available_person
-    people = Irm::Person.real.query_by_company_ids(Irm::Person.current.accessable_company_ids).query_by_support_staff_flag(Irm::Constant::SYS_NO).order_id.collect{|p|[p.name,p[:id]]}
+    people = Irm::Person.real.query_by_company_ids(Irm::Person.current.accessable_company_ids).query_by_support_staff_flag(Irm::Constant::SYS_NO).collect{|p|[p.name,p[:id]]}
     needed_to_replace = people.detect{|person| Irm::Person.current.id.eql?(person[1])}
     if needed_to_replace
       people.delete_if{|person| Irm::Person.current.id.eql?(person[1])}
@@ -19,7 +19,7 @@ module Icm::IncidentRequestsHelper
   end
 
   def available_contact
-    people = Irm::Person.real.query_by_support_staff_flag(Irm::Constant::SYS_NO).order_id.all.collect{|p|[p.name,p[:id],{:phone=>p.bussiness_phone}]}
+    people = Irm::Person.real.query_by_company_ids(Irm::Person.current.accessable_company_ids).query_by_support_staff_flag(Irm::Constant::SYS_NO).collect{|p|[p.name,p[:id],{:phone=>p.bussiness_phone}]}
     needed_to_replace = people.detect{|person| Irm::Person.current.id.eql?(person[1])}
     if needed_to_replace
       people.delete_if{|person| Irm::Person.current.id.eql?(person[1])}
