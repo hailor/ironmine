@@ -71,7 +71,7 @@ class Slm::ServiceMembersController < ApplicationController
 
   def get_data
     service_members_scope = Slm::ServiceMember.query_by_company_id(I18n::locale).
-                            query_wrap_info(I18n::locale)
+                            query_wrap_info(I18n::locale).where("#{Slm::ServiceMember.table_name}.service_catalog_id = ?", params[:service_catalog_id])
     service_members,count = paginate(service_members_scope)
     respond_to do |format|
       format.json {render :json=>to_jsonp(service_members.to_grid_json([:service_company_name,:service_organization_name,
