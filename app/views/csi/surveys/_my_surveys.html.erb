@@ -38,6 +38,7 @@
                         <% if survey.respond?%>
                           <%=link_to survey[:title], {:controller => "csi/surveys", :action => "show_reply", :id => survey[:survey_id],:survey_member_id=>survey.id,:back_url=>url_for({})}%>
                         <% else %>
+                            <%= icon_link("btn_reply", survey[:title],{:controller => "csi/surveys", :action => "show_reply", :id => survey[:survey_id],:survey_member_id=>survey.id,:back_url=>url_for({})}) %>
                             <%=link_to survey[:title], {:controller => "csi/surveys", :action => "reply", :id => survey[:survey_id],:survey_member_id=>survey.id,:back_url=>url_for({})}%>
                         <% end %>
                        </div>
