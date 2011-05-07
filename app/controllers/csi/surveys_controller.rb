@@ -165,7 +165,7 @@ class Csi::SurveysController < ApplicationController
     #得到当前调查的ip
     @ip_address =request.remote_ip
     #得到当前的person_id
-    @current_person_id = Irm::Person.current
+    @current_person_id = Irm::Person.current.id
     if @thank_message.blank?
       @thank_message = t(:label_csi_default_thanks_message)
     end
