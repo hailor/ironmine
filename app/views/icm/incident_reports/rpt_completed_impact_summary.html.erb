@@ -13,11 +13,6 @@
                 <%=select_tag :company_id,nullable_options_for_select(available_company,@company_id),:required=>true %>
               </td>
               <td>
-                <label for="subtotalBy1"><%=t(:label_icm_incident_request_service_code)%>：</label>
-                <%=select_tag :service_code,nullable_options_for_select(available_service,@service_code),
-                                                    {:required=>true,:id=>"incident_request_service_code"}%>
-              </td>
-              <td>
                 <fieldset>
                   <legend>
                     <strong><%= t(:label_icm_report_time_frame) %></strong>
