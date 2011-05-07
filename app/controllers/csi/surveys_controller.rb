@@ -100,7 +100,7 @@ class Csi::SurveysController < ApplicationController
   end
 
   def get_data
-    @surveys= Csi::Survey.query_wrap_info(I18n::locale).with_joined_count.with_person_count.with_allow_author
+    @surveys= Csi::Survey.query_wrap_info(I18n::locale).with_person_count.with_allow_author
     @surveys = @surveys.match_value("#{Csi::Survey.table_name}.title",params[:title])
     @surveys,count = paginate(@surveys)
     @surveys_new = []

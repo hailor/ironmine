@@ -103,10 +103,10 @@ class Csi::SurveyRangesController < ApplicationController
   end
 
   def get_data
-    survey_ranges_scope = Csi::SurveyRange.query_wrap_info(::I18n.locale).where("survey_id = ?", params[:survey_id])
+    survey_ranges_scope = Csi::SurveyRange.query_range_meaning(::I18n.locale).query_status_meaning(::I18n.locale).query_all_info.where("survey_id = ?", params[:survey_id])
     survey_ranges,count = paginate(survey_ranges_scope)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(survey_ranges.to_grid_json([:required_flag,:range_type,:range_type_meaning,:status_meaning],count))}
+      format.json {render :json=>to_jsonp(survey_ranges.to_grid_json([:required_flag,:range_type,:range_type_meaning,:company_name,:organization_name,:department_name,:role_name,:status_meaning],count))}
     end
   end
 

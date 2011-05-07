@@ -21,10 +21,7 @@ class Csi::Survey < ActiveRecord::Base
                                                    joins(",irm_lookup_values_vl v1").
                                                    where("v1.lookup_type='SYSTEM_STATUS_CODE' AND v1.lookup_code = #{table_name}.status_code AND "+
                                                          "v1.language=?",language)}
-  scope :with_joined_count, lambda{
-    select("(SELECT COUNT(1) FROM (SELECT csr.person_id person_id, css.survey_id survey_id FROM #{Csi::SurveySubject.table_name} css, #{Csi::SurveyResult.table_name} csr
-            WHERE csr.subject_id = css.id GROUP BY css.survey_id, csr.person_id) counter WHERE counter.survey_id = #{table_name}.id) joined_count")
-  }
+
 
   scope :with_person_count, lambda{
     select(" 0 person_count")
@@ -92,6 +89,10 @@ class Csi::Survey < ActiveRecord::Base
 
   def to_s
     self.title
+  end
+
+  def joined_count
+    Csi::SurveyMember.query_by_survey_id(self.id).where(:response_flag=>Irm::Constant::SYS_YES).count
   end
 
 

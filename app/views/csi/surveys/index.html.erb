@@ -20,7 +20,6 @@
       <div class="pbBody">
         <div id="survey" class="datatable" style="width:100%;">
           <div id="id" style="display:none">
-            <%= link_to(t(:reply),{:action=>"reply",:id=>"{id}"}) %>&nbsp;
             <%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>&nbsp;
             <div class="display-<%= "{allow_author_only}"%>">
                 <%= link_to(t(:result),{:action=>"show_result",:id=>"{id}"}) %>&nbsp;
@@ -34,7 +33,7 @@
           </div>
         </div>
         <%= datatable("survey",url_for(:action=>"get_data"),
-                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"120px"},
+                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
                    {:key=>"title",:label=>t(:label_csi_survey_title),:sortable=>true,:searchable=>true},
                    {:key=>"joined_count",:label=>t(:label_csi_survey_joined_count),:sortable=>true,:formatter=>"Y.irm.template", :width=>"35px"},
                    {:key=>"person_count",:label=>t(:label_csi_survey_person_count),:sortable=>true,:formatter=>"Y.irm.template", :width=>"35px"},
