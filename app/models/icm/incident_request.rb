@@ -21,6 +21,11 @@ class Icm::IncidentRequest < ActiveRecord::Base
                            :target_id => "id",
                            :target_id_column => "request_id")
 
+
+  acts_as_searchable(:direct =>"query_by_request_number",
+                     :all=>"search",
+                     :show_url  => {:controller=>"icm/incident_journals",:action=>"new",:request_id=>:id})
+
   before_validation_on_create  :setup_priority
   # 查询当天新建的事故单，根据数量生成序列号
   scope :created_at_today,lambda{|cid|
@@ -50,6 +55,7 @@ class Icm::IncidentRequest < ActiveRecord::Base
   scope :query_by_requested,lambda{|requested_by|
     where(:requested_by=>requested_by)
   }
+
 
   # 查询出提交人
   scope :with_submitted_by,lambda{
@@ -183,6 +189,14 @@ class Icm::IncidentRequest < ActiveRecord::Base
   end
 
 
+  def self.search(query)
+    self.list_all.where(:title=>query)
+  end
+
+  def self.query_by_request_number(query)
+    self.list_all.where(:request_number=>query)
+  end
+
   def concat_journals
     return_val = ""
     self.incident_journals.each do |i|
@@ -231,7 +245,7 @@ class Icm::IncidentRequest < ActiveRecord::Base
 
   private
   def generate_request_number
-    count = self.class.where(:company_id=>self.company_id).count
+    count = self.class.count
     self.request_number = count
     self.save
   end

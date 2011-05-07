@@ -7,6 +7,7 @@ Ironmine::Application.routes.draw do
     match 'logout'=>'common#logout',:as=>:logout
     match 'forgot_password' => "common#forgot_password"
     match 'common/search_options' => "common#search_options"
+    match 'search(/index)(.:format)'=>"search#index",:via=>[:get,:post]
     #lookup_types
     match '/lookup_types/new(.:format)'=>"lookup_types#new",:via=>:get
     match '/lookup_types/create(.:format)'=>"lookup_types#create",:via=>:post

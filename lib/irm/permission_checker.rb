@@ -30,6 +30,8 @@ class Irm::PermissionChecker
   def self.allow_to_function?(function_code)
     function_code = function_code.to_s.upcase
     return true if Irm::MenuManager.public_functions.include?(function_code)
+    return false unless Irm::Person.current.logged?
+    return true if Irm::MenuManager.login_functions.include?(function_code)
     Irm::Person.current.allowed_to?([function_code])
   end
 

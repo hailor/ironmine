@@ -31,10 +31,10 @@ module Irm::CommonHelper
     obs.each do |ob|
       title = eval(ob.source_type).find(ob.source_id).recently_object_name
       url_ops = eval(ob.source_type).find(ob.source_id).recently_object_url_options
-      puts("+++++++++++" + url_ops.to_json)
       html_content << content_tag(:tr, content_tag(:td, link_to(get_list_icon + title, url_ops, {:title => title})))
     end
 
     raw(html_content)
   end
+
 end

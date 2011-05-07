@@ -7,7 +7,7 @@ Irm::AccessControl.map do |map|
   map.function :login_function,{ "irm/filters" => ["edit", "new", "create", "update", "index", "operator_value"],
                                  "irm/setting" => ["common"],
                                  "irm/navigations" => ["change_role", "index"],
-                                 "irm/support_group_members"=>["get_options"]}
+                                 "irm/support_group_members"=>["get_options"],"irm/search"=>[:index]}
   #=====common setting===================
   #===================irm/global_settings============================
   #["index", "edit", "update", "crop"]

@@ -1,0 +1,40 @@
+<%=form_tag({:controller=>"irm/search",:action=>"index"},{:id=>"phSearchForm"})  do |f| %>
+  <div id="phSearchContainer" class="headerSearchContainer">
+    <div class="headerSearchLeftRoundedCorner">
+      <div class="searchBoxClearContainer">
+        <input id="phSearchInput" name="query" class="headerSearchBoxGhostText" type="text" size="20" maxlength="100">
+      </div>
+      <div id="searchButtonContainer" class="headerSearchRightRoundedCorner">
+        <%= submit_tag(t(:search),:id=>"phSearchButton") %>
+      </div>
+    </div>
+    <div id="searchOptionsContainer" class="headerSearchOptions">
+      <a href="javascript:void(0);" id="headerSearchOptionsLink" class="headerSearchOptionsLink"><%= t(:options) %></a>
+    </div>
+  </div>
+<% end %>
+<link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/custom_yui_container_skin.css"></link>
+<script type="text/javascript">
+
+  GY.use('yui2-container',"node-event-simulate", function(Y){
+      var dialog;
+      dialog = new Y.YUI2.widget.Dialog("container_abc", {
+          visible: true,
+          context: [Y.one("#headerSearchOptionsLink"), "tl", "bl"],
+          draggable: false,
+          close: true
+      });
+
+      Y.one("#headerSearchOptionsLink").on("click", function(e){
+          dialog.setBody("<iframe src='/common/search_options' style='height:180px;'></iframe>");
+          dialog.setHeader('<%= t :search_options%>');
+          dialog.render(document.body);
+          dialog.center();
+          dialog.show();
+      });
+      Y.one("#phSearchInput").on("keydown",function(e){
+                  if(e.keyCode==13)
+                    Y.one("#phSearchButton").simulate("click");
+                });
+  });
+</script>

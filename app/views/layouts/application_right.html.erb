@@ -31,21 +31,7 @@
                     <img width="175" height="65" title="salesforce.com" id="phHeaderLogoImage" src="/themes/salesforce2/images/logo2.png">
                   </td>
                   <td class="searchCell">
-                    <form id="phSearchForm">
-                      <div id="phSearchContainer" class="headerSearchContainer">
-                        <div class="headerSearchLeftRoundedCorner">
-                          <div class="searchBoxClearContainer">
-                            <input id="phSearchInput" class="headerSearchBoxGhostText" type="text" size="20" maxlength="100">
-                          </div>
-                          <div id="searchButtonContainer" class="headerSearchRightRoundedCorner">
-                            <input id="phSearchButton" type="button" value="<%= t(:search) %>">
-                          </div>
-                        </div>
-                        <div id="searchOptionsContainer" class="headerSearchOptions">
-                          <a href="javascript:void(0);" id="headerSearchOptionsLink"><%= t(:options) %></a>
-                        </div>
-                      </div>
-                    </form>
+                    <%= render :partial =>"irm/search/box"%>
                   </td>
                   <td class="right vtop">
                     <div class="multiforce">
