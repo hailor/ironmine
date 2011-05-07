@@ -3,6 +3,10 @@ class Skm::EntryHeader < ActiveRecord::Base
 
   has_many :entry_subjects
   has_many :entry_details
+
+  acts_as_searchable
+
+
   validates_presence_of :entry_title
   scope :published, where("#{table_name}.entry_status_code = ?", "PUBLISHED")
   scope :draft, where("#{table_name}.entry_status_code = ?", "DRAFT")
@@ -33,6 +37,11 @@ class Skm::EntryHeader < ActiveRecord::Base
     select("if(ef.id is null, 'Y', 'N') is_favorite").
     joins("LEFT OUTER JOIN #{Skm::EntryFavorite.table_name} ef ON ef.person_id = #{person_id} AND ef.entry_header_id = #{table_name}.id")
   }
+
+  def self.search(query)
+    Skm::EntryHeader.list_all.published.current_entry.where("#{table_name}.entry_title like ? OR #{table_name}.doc_number like ?","%#{query}%","%#{query}%")
+  end
+
   def self.generate_doc_number(prefix = "")
       num = Time.now.strftime("%y%m%d").to_i * 1000000 + rand(10)
       return prefix + num.to_s

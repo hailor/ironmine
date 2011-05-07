@@ -190,7 +190,7 @@ class Icm::IncidentRequest < ActiveRecord::Base
 
 
   def self.search(query)
-    self.list_all.where(:title=>query)
+    self.list_all.where("#{table_name}.title like ?","%#{query}%")
   end
 
   def self.query_by_request_number(query)

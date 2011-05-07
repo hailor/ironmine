@@ -3,7 +3,7 @@
     <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
       <tbody>
         <tr>
-          <td class="pbTitle"><h3 class="lbHeader"><%= t(:label_icm_incident_request_list) %></h3></td>
+          <td class="pbTitle"><h3 class="lbHeader"><%= t(:label_csi_survey) %></h3></td>
           <td id="topButtonRow" class="pbButton">
           </td>
           <td class="pbHelp">
@@ -22,15 +22,11 @@
                         <div class="yui3-datatable-liner">#</div>
                       </th>
                       <th class="yui3-column" style="width:180px;">
-                        <div class="yui3-datatable-liner"><%= t(:label_icm_incident_request_title) %>
+                        <div class="yui3-datatable-liner"><%= t(:label_csi_survey_title) %>
                         </div>
                       </th>
                       <th class="yui3-column" style="width:180px;">
-                        <div class="yui3-datatable-liner"><%= t(:label_icm_incident_request_company) %>
-                        </div>
-                      </th>
-                      <th class="yui3-column" style="width:180px;">
-                        <div class="yui3-datatable-liner"><%= t(:label_icm_incident_request_requested_by) %>
+                        <div class="yui3-datatable-liner"><%= t(:label_csi_survey_created_at) %>
                         </div>
                       </th>
                     </tr>
@@ -40,22 +36,17 @@
                   <tr id="<%=r.id%>" class="yui3-datatable-even">
                     <td class="yui3-column">
                       <div class='yui3-datatable-liner'>
-                        <%= r[:request_number] %>
+                        <%= r.id %>
                        </div>
                     </td>
                     <td class="yui3-column">
                       <div class='yui3-datatable-liner'>
-                          <%=link_to r[:title], {:controller => "icm/incident_journals", :action => "new", :request_id =>r[:id]}%>
+                          <%=link_to r[:title], {:controller => "csi/surveys", :action => "show", :id =>r[:id]}%>
                        </div>
                     </td>
                     <td class="yui3-column">
                       <div class='yui3-datatable-liner'>
-                        <%=r[:company_name]%>
-                      </div>
-                    </td>
-                    <td class="yui3-column">
-                      <div class='yui3-datatable-liner'>
-                        <%=r[:requested_name]%>
+                        <%=r[:created_at].strftime("%Y-%m-%d %H:%M:%S")%>
                       </div>
                     </td>
                   </tr>
