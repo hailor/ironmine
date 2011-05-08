@@ -59,7 +59,7 @@ class Csi::SurveyRange < ActiveRecord::Base
     person_ids
   end
 
-  acts_as_recently_objects(:title => "title",
-                           :target_controller => "csi/surveys",
-                           :target => "survey")
+  #acts_as_recently_objects(:title => "title",
+  #                         :target_controller => "csi/surveys",
+  #                         :target => "survey")
 end

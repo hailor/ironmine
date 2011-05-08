@@ -39,9 +39,9 @@ class Csi::SurveyResult < ActiveRecord::Base
     select("#{Csi::SurveySubject.table_name}.name subject_name")
   }
 
-  acts_as_recently_objects(:title => "title",
-                         :target_controller => "csi/surveys",
-                         :target => "survey_subject.survey")
+  #acts_as_recently_objects(:title => "title",
+  #                       :target_controller => "csi/surveys",
+  #                       :target => "survey_subject.survey")
 
   def self.list_all
     select("#{table_name}.*").with_survey_subject
