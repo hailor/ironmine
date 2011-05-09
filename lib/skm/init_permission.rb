@@ -19,7 +19,9 @@ Irm::AccessControl.map do |map|
   map.function :edit_entry_template_elements,{"skm/entry_template_elements"=>["edit", "update"]}
 
   #===================skm/settings ====================================
-  map.function :view_skm_settings, {"skm/settings" => ["index"]}
+  map.function :view_skm_settings, {"skm/settings" => ["index"],
+                                    "skm/file_managements" => ["index", "new", "create", "batch_create", "edit", "update",
+                                                               "get_data", "destroy", "get_version_files", "remove_version_file"]}
   map.function :edit_skm_settings, {"skm/settings" => ["edit", "update"]}
 
 
