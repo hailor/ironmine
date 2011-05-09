@@ -640,6 +640,7 @@ Ironmine::Application.routes.draw do
     match '/wf_rules/create(.:format)' => "wf_rules#create", :via => :post
     match '/wf_rules/get_data(.:format)' => "wf_rules#get_data"
     match '/wf_rules/:id/edit(.:format)' => "wf_rules#edit", :via => :get
+    match '/wf_rules/:id/active(.:format)' => "wf_rules#active", :via => :get
     match '/wf_rules/:id(.:format)' => "wf_rules#update", :via => :put
     match '/wf_rules/:id/show(.:format)' => "wf_rules#show", :via => :get
   end
