@@ -103,7 +103,7 @@ class Slm::ServiceAgreementsController < ApplicationController
     service_agreement = Slm::ServiceAgreement.find(params[:id])
     @rule_filter = Irm::RuleFilter.query_by_source(service_agreement.class.name,service_agreement.id).first
     if @rule_filter.nil?
-      @rule_filter = Irm::RuleFilter.create_for_source("INCIDENT_REQUESTS",service_agreement.class.name,service_agreement.id)
+      @rule_filter = Irm::RuleFilter.create_for_source("ICM_INCIDENT_REQUESTS",service_agreement.class.name,service_agreement.id)
       @rule_filter.save
     end
     respond_to do |format|
