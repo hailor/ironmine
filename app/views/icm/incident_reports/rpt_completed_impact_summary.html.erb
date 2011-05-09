@@ -20,12 +20,6 @@
                       <tbody>
                           <tr>
                             <td>
-                              <label for="interval_c"><%= t(:label_icm_report_time_frame_column) %></label>
-                              <%=select_tag :table_column,options_from_collection_for_select(get_current_report_column("ICM_ALL_URGENCY"),
-                                                                                             :wrap_table_column,:wrap_column_name),
-                                                    {:required=>true,:id=>"incident_request_service_code"}%>
-                            </td>
-                            <td>
                               <label for="interval_s"><%= t(:label_icm_report_time_frame_start_time) %></label>
                               <span class="dateInput dateOnlyInput">
                                 <%= text_field_tag :timeframes_start_date, @timeframes_start_date||show_date(:months_advance=>-1),:id=>"interval_s",:size=>12%>

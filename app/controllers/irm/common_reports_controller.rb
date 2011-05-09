@@ -1,4 +1,5 @@
 class Irm::CommonReportsController < ApplicationController
+  layout "application_full"
   def index
   end
 
@@ -18,5 +19,6 @@ class Irm::CommonReportsController < ApplicationController
     end
     @report_result = @person_login.to_grid_json([:created_day,:login_count], 3)
     @data_provider = to_chart_json(person_login_array)
+
   end
 end
