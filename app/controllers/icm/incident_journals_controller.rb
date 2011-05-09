@@ -81,7 +81,7 @@ class Icm::IncidentJournalsController < ApplicationController
 
   def update_pass
     @incident_journal = @incident_request.incident_journals.build(params[:icm_incident_journal])
-    perform_create
+    perform_create(true)
     respond_to do |format|
       if @incident_journal.valid?&&@incident_request.update_attributes(params[:icm_incident_request])
         process_change_attributes([:support_group_id,:support_person_id],@incident_request,@incident_request_bak,@incident_journal)
@@ -138,13 +138,13 @@ class Icm::IncidentJournalsController < ApplicationController
     @incident_request_bak = @incident_request.dup  
   end
 
-  def perform_create
+  def perform_create(pass=false)
     @incident_journal.replied_by=Irm::Person.current.id
     if Irm::Person.current.id.eql?(@incident_request.requested_by)
       @incident_request.last_request_date = Time.now
     end
     if Irm::Person.current.id.eql?(@incident_request.support_person_id)
-      @incident_request.last_response_date = Time.now
+      @incident_request.last_response_date = Time.now unless pass
     end
   end
 

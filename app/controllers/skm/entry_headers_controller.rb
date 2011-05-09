@@ -360,7 +360,7 @@ class Skm::EntryHeadersController < ApplicationController
                                         :source_id => incident_request.id)
     elements.each do |e|
       if e.entry_template_element_code.include?("INCIDENT_REQUEST_INFO_")
-        t = Skm::EntryDetail.new(:entry_content => incident_request.summary,
+        t = Skm::EntryDetail.new(:entry_content =>Irm::Sanitize.sanitize(incident_request.summary.gsub(/<(br)(| [^>]*)>/i, "\n"),""),
                                  :default_rows => e.default_rows,
                                  :entry_template_element_id => e.id,
                                  :element_name => e.element_name,

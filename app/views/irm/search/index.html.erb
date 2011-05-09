@@ -1,1 +1,5 @@
+<%= stylesheet_link_tag "/javascripts/yui3.3/datatable/assets/skins/sam/datatable.css"%>
 <%= show_search_result(params[:query]) %>
+<% content_for :sidebar do %>
+    <%= render :partial =>"/irm/common/recently_objects" %>
+<% end %>

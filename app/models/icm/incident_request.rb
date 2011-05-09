@@ -43,8 +43,8 @@ class Icm::IncidentRequest < ActiveRecord::Base
   }
   # 查询出服务
   scope :with_service,lambda{|language|
-    joins("LEFT OUTER JOIN #{Irm::LookupValue.view_name} service ON service.lookup_type='ICM_SERVICE_CODE' AND service.lookup_code = #{table_name}.service_code AND service.language= '#{language}'").
-    select(" service.meaning service_name")
+    joins("LEFT OUTER JOIN #{Slm::ServiceCatalog.view_name} service ON service.catalog_code = #{table_name}.service_code AND service.language= '#{language}'").
+    select(" service.name service_name")
   }
   # 查询出客户
   scope :with_requested_by,lambda{
@@ -190,7 +190,7 @@ class Icm::IncidentRequest < ActiveRecord::Base
 
 
   def self.search(query)
-    self.list_all.where(:title=>query)
+    self.list_all.where("#{table_name}.title like ?","%#{query}%")
   end
 
   def self.query_by_request_number(query)
@@ -203,7 +203,8 @@ class Icm::IncidentRequest < ActiveRecord::Base
       return_val << i.message_body.to_s
       return_val << "  "
     end
-    Irm::Sanitize.sanitize(return_val.to_s)
+    return_val.gsub!(/<(br)(| [^>]*)>/i, "\n")
+    Irm::Sanitize.sanitize(return_val.to_s,"")
   end
 
   def need_customer_reply

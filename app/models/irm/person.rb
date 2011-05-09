@@ -51,6 +51,8 @@ class Irm::Person < ActiveRecord::Base
 
   after_update :reprocess_avatar, :if => :cropping?
 
+  after_create :access_default_company
+
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
   end
@@ -353,6 +355,11 @@ class Irm::Person < ActiveRecord::Base
   private
   def reprocess_avatar
       avatar.reprocess!
+  end
+
+
+  def access_default_company
+    Irm::CompanyAccess.create({:person_id=>self.id,:accessable_company_id=>self.company_id,:company_access_flag=>Irm::Constant::SYS_YES})
   end
 
 

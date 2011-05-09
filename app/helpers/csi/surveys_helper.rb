@@ -126,6 +126,6 @@ module Csi::SurveysHelper
 
 
   def my_todo_surveys
-    Csi::SurveyMember.list_all.query_by_person(Irm::Person.current.id)
+    Csi::SurveyMember.list_all.query_by_person(Irm::Person.current.id).order("response_flag,created_at  desc")
   end
 end

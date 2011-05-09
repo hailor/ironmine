@@ -34,7 +34,7 @@ class Csi::SurveySubject < ActiveRecord::Base
      next_seq_num
   end
 
-  acts_as_recently_objects(:title => "title",
-                           :target_controller => "csi/surveys",
-                           :target => "survey")
+  #acts_as_recently_objects(:title => "title",
+  #                         :target_controller => "csi/surveys",
+  #                         :target => "survey")
 end

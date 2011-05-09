@@ -62,7 +62,7 @@ class Csi::SurveysController < ApplicationController
                                     :site_id => r[:site_id]})
           t.save
         end
-        format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_created)) }
+        format.html { redirect_to({:action=>"show",:id=>@survey.id}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @survey, :status => :created, :location => @survey }
       else
         format.html { render :action => "new" }
@@ -100,7 +100,7 @@ class Csi::SurveysController < ApplicationController
   end
 
   def get_data
-    @surveys= Csi::Survey.query_wrap_info(I18n::locale).with_person_count.with_allow_author
+    @surveys= Csi::Survey.query_wrap_info(I18n::locale).with_person_count.with_allow_author.order("created_at desc")
     @surveys = @surveys.match_value("#{Csi::Survey.table_name}.title",params[:title])
     @surveys,count = paginate(@surveys)
     @surveys_new = []

@@ -22,7 +22,7 @@ class Csi::Survey < ActiveRecord::Base
                                                    where("v1.lookup_type='SYSTEM_STATUS_CODE' AND v1.lookup_code = #{table_name}.status_code AND "+
                                                          "v1.language=?",language)}
 
-
+  acts_as_searchable
   scope :with_person_count, lambda{
     select(" 0 person_count")
   }
@@ -46,6 +46,11 @@ class Csi::Survey < ActiveRecord::Base
   }
 
   after_create :generate_survey_code
+
+
+  def self.search(query)
+    self.where("#{table_name}.title like ?","%#{query}%")
+  end
 
   def total_page
     @total_page ||= (self.survey_subjects.select{|f| f.input_type == 'page'}.length + 1)

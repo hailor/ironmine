@@ -10,6 +10,8 @@ class Csi::SurveyMember < ActiveRecord::Base
   validates_uniqueness_of :person_id,:scope=>[:survey_id,:source_id],:if=>Proc.new{|i| !i.source_id.nil?}
 
 
+  after_create :send_mail_to_member
+
   scope :query_by_survey_id,lambda{|survey_id| where(:survey_id => survey_id)}
   scope :query_by_person_id,lambda{|person_id| where(:person_id => person_id)}
   scope :query_by_response_flag,lambda{|response_flag| where(:response_flag=>response_flag)}
@@ -35,5 +37,8 @@ class Csi::SurveyMember < ActiveRecord::Base
     Irm::Constant::SYS_YES.eql?(self.response_flag)
   end
 
-
+  private
+  def send_mail_to_member
+    Delayed::Job.enqueue(Csi::Jobs::SurveyMailJob.new(self.id))
+  end
 end
