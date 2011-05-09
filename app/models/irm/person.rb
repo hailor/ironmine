@@ -135,7 +135,7 @@ class Irm::Person < ActiveRecord::Base
   }
 
   scope :with_department,lambda{|language|
-    joins("LEFT OUTER JOIN #{Irm::Department.view_name} ON #{Irm::Department.view_name}.id = #{table_name}.organization_id AND #{Irm::Department.view_name}.language = '#{language}'").
+    joins("LEFT OUTER JOIN #{Irm::Department.view_name} ON #{Irm::Department.view_name}.id = #{table_name}.department_id AND #{Irm::Department.view_name}.language = '#{language}'").
     select("#{Irm::Department.view_name}.name department_name")
   }
 
