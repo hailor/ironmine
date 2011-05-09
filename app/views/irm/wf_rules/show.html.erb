@@ -8,6 +8,11 @@
           <td class="pbTitle"><h2 class="mainTitle"><%= @wf_rule.name %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @wf_rule}%></div>
+            <% if @wf_rule.enabled?  %>
+              <div class="button"><%= link_to t(:disable), {:action => "active",:id=>@wf_rule.id,:active=>Irm::Constant::SYS_NO}%></div>
+            <% else %>
+              <div class="button"><%= link_to t(:active), {:action => "active",:id=>@wf_rule.id,:active=>Irm::Constant::SYS_YES}%></div>
+            <% end %>
             <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
           </td>
         </tr>
