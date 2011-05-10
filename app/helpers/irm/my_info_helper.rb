@@ -10,9 +10,9 @@ module Irm::MyInfoHelper
     menu = ""
     menu_script = <<-BEGIN_SCRIPT
     <script type="text/javascript">
-      GY.use("irm","node-base",function(Y){
+      GY.use("menubutton","node-base",function(Y){
         Y.on("domready",function(){
-          Y.irm.menuButton("companyMenu","TR","BR");
+          new Y.MenuButton({menuNode:"#companyMenu",dropAlign:["TR","BR"]});
         });
         Y.one("#selectAll").on('click', function(e){
            var checkbox = e.currentTarget;
@@ -95,9 +95,9 @@ module Irm::MyInfoHelper
     role = ""
     role_script = <<-BEGIN_SCRIPT
     <script type="text/javascript">
-      GY.use("irm","node-base",function(Y){
+      GY.use("menubutton",function(Y){
         Y.on("domready",function(){
-          Y.irm.menuButton("pageMenu","TR","BR");
+          new Y.MenuButton({menuNode:"#pageMenu",dropAlign:["TR","BR"]});
         });
       });
     </script>
