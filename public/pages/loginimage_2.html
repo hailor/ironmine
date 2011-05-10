@@ -1,0 +1,60 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Ironmine - Login</title>
+    <style type="text/css">
+        a {
+            text-decoration:none;
+        }
+        img {
+            border:none;
+        }
+        .shoutout .promo {
+            height:410px;
+            position:relative;
+            width:492px;
+        }
+        .shoutout .promo .overlay {
+            background:url("/images/bk_promo_overlay3.png") no-repeat scroll 0 0 transparent;
+            display:block;
+            height:411px;
+            position:absolute;
+            width:489px;
+        }
+        #shoutoutcontent .shoutout {
+            margin:0;
+            overflow:hidden;
+            padding:0 0 1px;
+        }
+        .shoutout {
+            float:left;
+            margin-bottom:10px;
+            padding-left:8px;
+        }
+        #shoutoutcontent {
+            background-color:transparent;
+            margin:0;
+            padding:0;
+        }
+        body {
+            background:none repeat scroll 0 0 white;
+            color:black;
+            line-height:1;
+        }
+    </style>
+</head>
+<body id="shoutoutcontent">
+    <div class="shoutout">
+      <div class="promo" style="position:relative;">
+          <div id="goDemo" class="floatButton" style="height: 50px; width: 150px; position: absolute; top: 300px; left: 320px; background:transparent; z-index: 5; display:block;cursor:pointer;"
+                  onclick="window.parent.location.href='/demo';">
+          </div>
+          <div id="goIntro" class="floatButton" style="height: 50px; width: 210px; position: absolute; top: 195px; left: 260px; background:transparent; z-index: 5; display: block; cursor: pointer;"
+                  onclick="window.parent.location.href='/demo';">
+          </div>          
+          <img alt="shoutout" src="/images/loginbackground_478_400_4_mod.png" class="primary"
+             style="background-color:white;display:block;left:6px;position:absolute;top:5px;">
+          <span class="overlay"></span>
+      </div>
+    </div>
+</body>
+</html>
