@@ -234,6 +234,65 @@ a#headerSearchOptionsLink {text-decoration:none;}
 .menuParent div.menuLabelClick #settingMenu-arrow{background-position: 0 -145px;}
 .messages{height:22px;}
 
+/*******************************************************************/
+.menuButton {
+    text-align: left;
+}
+.menuButton div.menuLabel {
+    height: 20px;
+    line-height: 20px;
+ }
+
+.menuButton div.menuLabel a {
+    background: url("../images/btn_mutton_sprite.png") repeat-x scroll right top #E8E8E9;
+    border-color: #B5B5B5 #B5B5B5 #7F7F7F;
+	border-width: 1px;
+    border-style: solid;
+	text-decoration: none;
+	color:#333333;
+	display: inline-block;
+	padding: 0 25px 0 8px;
+	height: 20px;
+    font-size: 11px;
+    font-weight: bold;
+	line-height: 20px;
+}
+.menuButton div.menuLabel a:hover{background-position: right -30px;}
+
+
+.menuButton div.menuLabel .menuButtonArrow{
+     float:right;
+     padding-right:10px;
+ }
+
+
+.menuButton div.menuContent{
+    display:none;
+    padding: 3px;
+    background-color: #F8F8F8;
+    border: 1px solid #7D7D7D;
+ }
+.menuButton div.menuContentVisual{
+    display:block;
+    background:white;
+    min-width: 150px;
+ }
+
+.menuButton div.menuContent a {
+    color: #333435;
+    margin: 0 0;
+    padding: 4px 15px;
+    text-decoration: none;
+    z-index:10000;
+    display: block;
+}
+
+.menuButton div.menuContent a:hover {background-color:#E3F3FF;}
+.menuButton .menuLabel {
+    color: #fff;
+    cursor: pointer;
+}
+.menuButton .menuItem {font-weight: normal;}
 
 /*************************************************************************************/
 div.srch {
