@@ -325,6 +325,7 @@ body .bPageFooter a, body .bPageFooter {
     border-top-style: none;
     border-top-width: medium;
     color: #cbcbcb;
+    font-size: 12px;
 }
 div.noTableFooter {
     margin-left: 0;
