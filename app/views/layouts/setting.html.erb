@@ -11,9 +11,9 @@
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/tabbar.css"></link>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/icons.css"></link>
   <script type="text/javascript">
-    GY.use("irm","node-base",function(Y){
+    GY.use("menubutton","node-base",function(Y){
       Y.on("domready",function(){
-        Y.irm.menuButton("settingMenu","TR","BR");
+        new Y.MenuButton({menuNode:"#settingMenu",dropAlign:["TR","BR"]});
       });
     });
   </script>

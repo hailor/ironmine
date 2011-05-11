@@ -47,61 +47,7 @@ YUI.add('irm', function(Y) {
     Y.irm.rownum = function(o){
       return o.rowindex;
     };
-    //菜单式按钮
-    Y.irm.menuButton = function(domid,calign,lalign){
-      var menuNode = Y.one("#"+domid);
-      if(!menuNode)
-        return;
-      var menuContent = menuNode.one(".menuContent");
-      var menuLabel = menuNode.one(".menuLabel");
-      var overlay = new Y.Overlay({srcNode:menuContent,visible:false,zIndex:1000});
-      overlay.set("align", {node:menuLabel,
-        points:[Y.WidgetPositionAlign[calign||"TL"], Y.WidgetPositionAlign[lalign||"BL"]]
-      });
-      overlay.render();
 
-      menuNode.delegate("mouseenter",function(e){
-        if(!this.hasClass("menuLabelHover"))
-          this.addClass("menuLabelHover");
-      },".menuLabel");
-
-     menuNode.delegate("mouseleave",function(e){
-      if(this.hasClass("menuLabelHover"))
-          this.removeClass("menuLabelHover");
-      },".menuLabel");
-
-      menuLabel.on("click",function(e){
-        if(!e.currentTarget.hasClass("menuLabelClick"))
-        {  e.currentTarget.addClass("menuLabelClick"); }
-         else
-        {  e.currentTarget.removeClass("menuLabelClick");}
-        if(!menuContent.hasClass("menuContentVisual"))
-        {
-          menuContent.addClass("menuContentVisual");
-          if(parseInt(menuLabel.getComputedStyle("width"))>parseInt(menuContent.getComputedStyle("width")))
-            menuContent.setStyle("width",menuLabel.getComputedStyle("width"));
-          overlay.set("align", {node:menuLabel,
-             points:[Y.WidgetPositionAlign[calign||"TL"], Y.WidgetPositionAlign[lalign||"BL"]]
-          });
-          overlay.set("visible",true);
-        }
-        else{
-          menuContent.removeClass("menuContentVisual");
-          overlay.set("visible",false);
-        }
-      },"*");
-
-      Y.one("document").on("click",function(e){
-          if(menuNode&&!menuNode.one("#"+e.target.get('id'))){
-            if(menuLabel.hasClass("menuLabelClick"))
-              menuLabel.removeClass("menuLabelClick");
-            if(menuContent.hasClass("menuContentVisual")){
-                menuContent.removeClass("menuContentVisual");
-                overlay.set("visible",false);
-            }
-          }
-      });
-    };
     //设置页面导航树
     Y.irm.navTree = function(domid,p_current_permissions,p_current_menus){
         var current_permissions = p_current_permissions;

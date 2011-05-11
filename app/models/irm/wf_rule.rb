@@ -15,7 +15,7 @@ class Irm::WfRule < ActiveRecord::Base
   }
 
   scope :with_evaluate_criteria_mode,lambda{|language|
-    joins("LEFT OUTER JOIN #{Irm::LookupValue.view_name} evaluate_rule_mode ON evaluate_rule_mode.lookup_type='WORKFLOW_RULE_EVALUATE_TYPE' AND evaluate_rule_mode.lookup_code = #{table_name}.evaluate_rule_mode AND evaluate_rule_mode.language= '#{language}'").
+    joins("LEFT OUTER JOIN #{Irm::LookupValue.view_name} evaluate_rule_mode ON evaluate_rule_mode.lookup_type='WORKFLOW_RULE_EVALUATE_MODE' AND evaluate_rule_mode.lookup_code = #{table_name}.evaluate_rule_mode AND evaluate_rule_mode.language= '#{language}'").
     select(" evaluate_rule_mode.meaning evaluate_rule_mode_name")
   }
 
@@ -24,6 +24,15 @@ class Irm::WfRule < ActiveRecord::Base
     select("#{Irm::BusinessObject.view_name}.name bo_name")
   }
 
+  scope :not_applied_before,lambda{|bo_id|
+    where("NOT EXISTS(SELECT 1 FROM #{Irm::WfRuleHistory.table_name} WHERE #{Irm::WfRuleHistory.table_name}.rule_id=#{table_name}.id AND #{Irm::WfRuleHistory.table_name}.bo_code=#{table_name}.bo_code AND #{Irm::WfRuleHistory.table_name}.bo_id=?)",bo_id)
+  }
+
+  scope :create_edit_first_time,lambda{where(:evaluate_criteria_rule=>"CREATE_EDIT_FIRST_TIME")}
+
+  scope :only_create,lambda{where(:evaluate_criteria_rule=>"ONLY_CREATE")}
+
+  scope :create_edit_every_time,lambda{where(:evaluate_criteria_rule=>"CREATE_EDIT_EVERY_TIME")}
 
   def self.list_all
     select("#{table_name}.*").with_bo(I18n.locale).with_evaluate_criteria_rule(I18n.locale).with_evaluate_criteria_mode(I18n.locale)
@@ -33,6 +42,17 @@ class Irm::WfRule < ActiveRecord::Base
 
   def check_step(stp)
     self.step.nil?||self.step>=stp
+  end
+
+  # is the event match the filter or formula ?
+  def match(event)
+    rule_filter = Irm::RuleFilter.query_by_source(Irm::WfRule.name,self.id).first
+    business_object = rule_filter.generate_scope.where(:id=>event.business_object_id).first
+    business_object
+  end
+  # apply the workflow
+  def apply(business_object)
+    logger.debug(business_object)
   end
 
 end

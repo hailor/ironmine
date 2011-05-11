@@ -278,8 +278,8 @@ var Escape  = Y.Escape,
             id  : Y.stamp(listNode),
             role: 'listbox'
         });
-        listNode.delegate("click",Y.bind(this._nextPage,this),".lovPaginator .Page a.NextPage")
-        listNode.delegate("click",Y.bind(this._prePage,this),".lovPaginator .Page a.PrePage")
+        listNode.delegate("click",Y.bind(this._nextPage,this),".lovPaginator .Page a.nextPage")
+        listNode.delegate("click",Y.bind(this._prePage,this),".lovPaginator .Page a.prePage")
         return listNode;
     },
     _prePage:function(e){

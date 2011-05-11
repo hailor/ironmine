@@ -1,5 +1,15 @@
 class Irm::EventManager
   class << self
+    def publish_bo(bo_model_name,bo_model_id,event_type="UPDATE")
+      puts "#{bo_model_name}======================="
+      return if Irm::Event.name.eql?(bo_model_name)||Delayed::Backend::ActiveRecord::Job.name.eql?(bo_model_name)
+      bo = Irm::BusinessObject.where(:bo_model_name=>bo_model_name).first
+      #raise(ArgumentError, "Missing Business Object: #{bo_model_name}")
+      return unless bo
+      event = Irm::Event.create(:bo_code=>bo.business_object_code,:business_object_id=>bo_model_id,:event_code=>"WORKFLOW_EVENT",:event_type=>event_type)
+      Delayed::Job.enqueue(Irm::Jobs::RuleProcessJob.new(event.id))
+    end
+
     def publish(event_options)
       # 确认发布的事件，是否是系统内置的事件
       condition = Irm::Condition.query_by_condition_code(event_options[:event_code]).first

@@ -49,6 +49,10 @@ var yuiConfig = {
             fullpath:"/javascripts/irm/cascadeselect.js",
             requires: ["io-base","substitute","json-parse"]
         },
+        menubutton:{
+            fullpath:"/javascripts/irm/menubutton.js",
+            requires: ["base","node-base","overlay"]
+        },
         irmac:{
             fullpath:"/javascripts/irm/autocomplete/autocomplete-base.js",
             requires:['autocomplete-list', 'node-pluginhost','substitute']

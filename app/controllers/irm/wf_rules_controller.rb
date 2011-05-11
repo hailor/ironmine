@@ -109,6 +109,26 @@ class Irm::WfRulesController < ApplicationController
     end
   end
 
+  def active
+    @wf_rule = Irm::WfRule.find(params[:id])
+    attrs = {}
+    if(Irm::Constant::SYS_YES.eql?(params[:active]))
+      attrs =  {:status_code=>"ENABLED"}
+    else
+      attrs =  {:status_code=>"OFFLINE"}
+    end
+
+    respond_to do |format|
+      if @wf_rule.update_attributes(attrs)
+        format.html { redirect_to({:action=>"show",:id=>@wf_rule.id}, :notice => t(:successfully_updated)) }
+        format.xml  { head :ok }
+      else
+        format.html { redirect_to({:action=>"show",:id=>@wf_rule.id}) }
+        format.xml  { render :xml => @wf_rule.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
   def get_data
     wf_rules_scope = Irm::WfRule.list_all.status_meaning
     #wf_rules_scope = wf_rules_scope.match_value("wf_rule.name",params[:name])

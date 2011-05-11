@@ -21,7 +21,7 @@ class Icm::IncidentRequest < ActiveRecord::Base
                            :target_id => "id",
                            :target_id_column => "request_id")
 
-
+  acts_as_event
   acts_as_searchable(:direct =>"query_by_request_number",
                      :all=>"search",
                      :show_url  => {:controller=>"icm/incident_journals",:action=>"new",:request_id=>:id})

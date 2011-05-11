@@ -66,4 +66,22 @@ class Hash
   def attributes
     self
   end
+
+  def recursive_symbolize_keys(hash)
+    return unless hash.is_a?(Hash)
+    hash.values.each do |v|
+      next unless v.is_a?(Hash)
+      recursive_symbolize_keys(v)
+    end
+    hash.symbolize_keys!
+  end
+
+  def recursive_stringify_keys(hash)
+    return unless hash.is_a?(Hash)
+    hash.values.each do |v|
+      next unless v.is_a?(Hash)
+      recursive_stringify_keys(v)
+    end
+    hash.stringify_keys!
+  end
 end
