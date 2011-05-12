@@ -60,24 +60,24 @@
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_site_country)%></label></td>
               <td class="dataCol"><%=f.select :country,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                        options_from_collection_for_select(available_country,:lookup_code,:meaning,@site.country)%></td>
+                                                        options_for_select(available_country,@site.country)%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_site_state)%></label></td>
               <td class="dataCol"><%=f.select :state_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                        options_from_collection_for_select(available_province,:lookup_code,:meaning,@site.state_code)%></td>
+                                                        options_for_select(available_province,@site.state_code)%></td>
               <td class="labelCol"><label><%=(t :label_irm_site_postal_code)%></label></td>
               <td class="dataCol"><%=f.text_field :postal_code,:size=>10%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_site_city)%></label></td>
               <td class="dataCol"><%=f.select :city,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                        options_from_collection_for_select(available_city,:lookup_code,:meaning,@site.city)%></td>
+                                                        options_for_select(available_city,@site.city)%></td>
               <td class="labelCol"><label><%=(t :label_irm_site_timezone_code)%></label></td>
               <td class="dataCol"><%=f.select :timezone_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_time_zone,:lookup_code,:meaning,@site.timezone_code)%></td>
+                                                options_for_select(available_time_zone,@site.timezone_code)%></td>
             </tr>
             <tr>
               <td class="labelCol" ><label><%=(t :label_irm_site_address_line)%></label></td>

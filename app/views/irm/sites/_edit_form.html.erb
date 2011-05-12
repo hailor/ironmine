@@ -56,7 +56,7 @@
               <td class="labelCol"><label><%=(t :label_irm_site_country)%></label></td>
               <td class="dataCol"><%=f.blank_select :country,available_country%></td>
               <td class="labelCol"><label><%=(t :label_irm_site_status_code)%></label></td>
-              <td class="dataCol"><%=f.select :status_code,options_from_collection_for_select(available_status,:lookup_code,:meaning,@site.status_code)%>
+              <td class="dataCol"><%=f.select :status_code,options_for_select(available_status,@site.status_code)%>
               </td>
             </tr>
             <tr>
