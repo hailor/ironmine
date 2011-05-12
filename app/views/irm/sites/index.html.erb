@@ -8,10 +8,6 @@
             <%= select_tag(:site_group_code,nullable_options_for_select(available_site_group,"@site_group.group_code")) %>
             <%= submit_tag t(:jump), :title => t(:jump), :class => "btn" %>
         </span>
-        <span class="fFooter">
-          <a href="javascript:void(0);">编辑</a> |
-          <a href="javascript:void(0);">创建新视图</a>
-        </span>
       </span>
       <% end %>
     </div>
@@ -70,8 +66,9 @@
       <div class="pbBody">
         <div id="site" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= icon_link_edit({:action=>"edit",:id=>"{id}"}) %>
-            <%= icon_link_show({:action=>"show",:id=>"{id}"}) %>          </div>
+            <%= link_to t(:edit), {:action=>"edit",:id=>"{id}"} %>&nbsp;
+            <%= link_to t(:show), {:action=>"show",:id=>"{id}"} %>
+          </div>
         </div>
         <%= datatable("site",url_for(:action=>"get_data",:site_group_code => @site_group.group_code),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
