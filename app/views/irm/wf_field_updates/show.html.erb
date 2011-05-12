@@ -1,0 +1,69 @@
+<%= page_title %>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= @wf_field_update.name %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit"}%></div>
+            <div class="button"><%= link_to t(:delete), {:action => "destroy"},{:method  =>:delete}%></div>
+            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_field_update_name)%></label></td>
+              <td class="dataCol"><div><%= @wf_field_update.name %></div></td>
+              <td class="labelCol empty"><div>&nbsp;</div></td>
+              <td class="dataCol empty"><div>&nbsp;</div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_field_update_field_update_code)%></label></td>
+              <td class="dataCol"><div><%= @wf_field_update.field_update_code %></div></td>
+              <td class="labelCol empty"><div>&nbsp;</div></td>
+              <td class="dataCol empty"><div>&nbsp;</div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_field_update_description)%></label></td>
+              <td class="dataCol"><div><%= @wf_field_update.description %></div></td>
+              <td class="labelCol empty"><div>&nbsp;</div></td>
+              <td class="dataCol empty"><div>&nbsp;</div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_field_update_bo_code)%></label></td>
+              <td class="dataCol"><div><%= @wf_field_update[:bo_name] %></div></td>
+              <td class="labelCol empty"><div>&nbsp;</div></td>
+              <td class="dataCol empty"><div>&nbsp;</div></td>
+            </tr>
+
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_field_update_object_attribute)%></label></td>
+              <td class="dataCol"><div><%= @wf_field_update[:object_attribute_name] %></div></td>
+              <td class="labelCol empty"><div>&nbsp;</div></td>
+              <td class="dataCol empty"><div>&nbsp;</div></td>
+            </tr>
+                      <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_field_update_value_type)%></label></td>
+              <td class="dataCol"><div><%= @wf_field_update[:value_type_name] %></div></td>
+              <td class="labelCol empty"><div>&nbsp;</div></td>
+              <td class="dataCol empty"><div>&nbsp;</div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_field_update_value)%></label></td>
+              <td class="dataCol"><div><%= @wf_field_update.value %></div></td>
+              <td class="labelCol empty"><div>&nbsp;</div></td>
+              <td class="dataCol empty"><div>&nbsp;</div></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

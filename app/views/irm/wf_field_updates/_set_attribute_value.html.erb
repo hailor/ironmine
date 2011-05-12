@@ -1,0 +1,57 @@
+<% if object_attribute %>
+<div class="pbSubheader">
+  <h3><%=t(:label_irm_wf_field_update_set_value)%>(<%=t("label_irm_wf_field_update_object_attribute_type_#{object_attribute.data_type}")%>)</h3>
+</div>
+<div class="pbSubsection">
+  <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+    <tbody>
+        <% if Irm::Constant::SYS_YES.eql?(object_attribute.nullable_flag)  %>
+          <tr>
+            <td class="labelCol"><%=f.radio_button(:value_type,"NULL_VALUE",:id=>"nullValueButton",:class=>"typeButton")%></td>
+            <td class="dataCol"><label for="nullValueButton"><%=t(:label_irm_wf_field_update_value_type_null_value)%></label></td>
+            <td class="labelCol"></td>
+            <td class="dataCol"></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td class="labelCol"><%=f.radio_button(:value_type,"FORMULA_VALUE",:id=>"formulaValueButton",:class=>"typeButton")%></td>
+          <td class="dataCol"><label for="formulaValueButton"><%=t(:label_irm_wf_field_update_value_type_formula_value)%></label></td>
+          <td class="labelCol"></td>
+          <td class="dataCol"></td>
+        </tr>
+        <tr id="formulaValue" refValue="FORMULA_VALUE" class="updateValueTR" style="display:none">
+          <td class="labelCol"><label for="wf_field_update_value"><%=t(:label_irm_wf_field_update_value)%></label></td>
+          <td class="dataCol" colspan="3" width="82%"><%=f.text_area :value, :required=>true ,:class=>"updateValue",:cols=>60,:rows=>1,:id=>"wf_field_update_value"%></td>
+        </tr>
+        <% if object_attribute.lov_code.present?  %>
+          <tr>
+            <td class="labelCol"><%=f.radio_button(:value_type,"OPTIONS_VALUE",:id=>"optionsValueButton",:class=>"typeButton")%></td>
+            <td class="dataCol"><label for="optionsValueButton"><%=t(:label_irm_wf_field_update_value_type_options_value)%></label></td>
+            <td class="labelCol"></td>
+            <td class="dataCol"></td>
+          </tr>
+          <tr id="optionsValue" refValue="OPTIONS_VALUE" class="updateValueTR" style="display:none">
+            <td class="labelCol"><label for="wf_field_update_value"><%=t(:label_irm_wf_field_update_value)%></label></td>
+            <td class="dataCol"><%=f.lov_field :value,object_attribute.lov_code, {},:required=>true ,:class=>"updateValue",:id=>"wf_field_update_value"%></td>
+            <td class="labelCol empty">&nbsp;</td>
+            <td class="dataCol empty">&nbsp;</td>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div>
+<script type="text/javascript">
+    GY.use(function(Y){
+      Y.all("input.typeButton").on("click",function(e){
+        Y.all(".updateValueTR").setStyle("display","none");
+        Y.all(".updateValueTR .updateValue").setAttribute("disabled","true");
+        var showTR = Y.one(".updateValueTR[refValue="+e.target.get("value")+"]");
+        if(showTR){
+            showTR.setStyle("display","");
+            showTR.all(".updateValue").removeAttribute("disabled");
+        }
+      });
+      Y.one("input.typeButton").simulate("click");
+    });
+</script>
+<% end %>

@@ -1098,3 +1098,24 @@ zh:
   label_irm_todo_task_display_opts_over_due: 逾期
   label_irm_todo_task_display_opts_next_7_days: 未来7天内
 
+  #======================== wf field updates====================
+  label_irm_wf_field_update_list: 字段更新列表
+  label_irm_wf_field_update_bo_code: 业务对像
+  label_irm_wf_field_update_name: 名称
+  label_irm_wf_field_update_field_update_code: 编码
+  label_irm_wf_field_update_description: 描述
+  label_irm_wf_field_update_object_attribute: 更新字段
+  label_irm_wf_field_update_value_type: 值类型
+  label_irm_wf_field_update_value: 值
+  label_irm_wf_field_update_new: 新建字段更新
+  label_irm_wf_field_update_edit: 编辑字段更新
+  label_irm_wf_field_update_set_value: 指定新字段值
+  label_irm_wf_field_update_value_type_null_value: 空值(null)
+  label_irm_wf_field_update_value_type_formula_value: 使用公式设置新值
+  label_irm_wf_field_update_value_type_options_value: 从列中选择新值
+  label_irm_wf_field_update_object_attribute_type_int: 数字类型
+  label_irm_wf_field_update_object_attribute_type_varchar: 文本类型
+  label_irm_wf_field_update_object_attribute_type_datetime: 日期类型
+  #======================== end wf field updates====================
+
+
