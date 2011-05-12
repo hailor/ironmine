@@ -60,14 +60,14 @@
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_site_country)%></label></td>
               <td class="dataCol"><%=f.select :country,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                        options_from_collection_for_select(available_country,:lookup_code,:wrap_meaning,@site.country)%></td>
+                                                        options_from_collection_for_select(available_country,:lookup_code,:meaning,@site.country)%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_site_state)%></label></td>
               <td class="dataCol"><%=f.select :state_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                        options_from_collection_for_select(available_province,:lookup_code,:wrap_meaning,@site.state_code)%></td>
+                                                        options_from_collection_for_select(available_province,:lookup_code,:meaning,@site.state_code)%></td>
               <td class="labelCol"><label><%=(t :label_irm_site_postal_code)%></label></td>
               <td class="dataCol"><%=f.text_field :postal_code,:size=>10%></td>
             </tr>
