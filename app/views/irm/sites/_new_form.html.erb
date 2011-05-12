@@ -74,10 +74,10 @@
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_site_city)%></label></td>
               <td class="dataCol"><%=f.select :city,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                        options_from_collection_for_select(available_city,:lookup_code,:wrap_meaning,@site.city)%></td>
+                                                        options_from_collection_for_select(available_city,:lookup_code,:meaning,@site.city)%></td>
               <td class="labelCol"><label><%=(t :label_irm_site_timezone_code)%></label></td>
               <td class="dataCol"><%=f.select :timezone_code,"<option value=\"\">--- #{t(:actionview_instancetag_blank_option)} ---</option>".html_safe +
-                                                options_from_collection_for_select(available_time_zone,:lookup_code,:wrap_meaning,@site.timezone_code)%></td>
+                                                options_from_collection_for_select(available_time_zone,:lookup_code,:meaning,@site.timezone_code)%></td>
             </tr>
             <tr>
               <td class="labelCol" ><label><%=(t :label_irm_site_address_line)%></label></td>
