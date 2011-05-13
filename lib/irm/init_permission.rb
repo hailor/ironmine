@@ -286,4 +286,16 @@ Irm::AccessControl.map do |map|
                                        "irm/ldap_auth_headers"=>["get_by_ldap_source"],
                                        "irm/ldap_syn_attributes"=>["edit", "update"]}
 
+  #===================irm/wf_field_updates============================
+  #["index", "edit", "update", "new", "create", "get_data", "show", "destroy", "set_value"]
+  #===================irm/formula_functions============================
+  #["formula_function_options", "check_syntax"]
+
+  map.function :view_wf_field_updates,{"irm/wf_field_updates"=>["index", "show","get_data"]}
+  map.function :create_wf_field_updates,{"irm/wf_field_updates"=>["new", "create","destroy","set_value"],
+                                         "irm/formula_functions"=>["formula_function_options", "check_syntax"]}
+  map.function :edit_wf_field_updates,{"irm/wf_field_updates"=>["edit", "update"],
+                                       "irm/formula_functions"=>["formula_function_options", "check_syntax"]}
+
+
 end
