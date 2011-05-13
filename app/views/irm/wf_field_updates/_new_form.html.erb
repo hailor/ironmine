@@ -73,7 +73,7 @@
         </tbody>
       </table>
     </div>
-    <div  id="fieldUpdateValue" href="<%= url_for(:action=>"set_value",:bo_code=>"{bo_code}",:object_attribute=>"{object_attribute}") %>">
+    <div  id="fieldUpdateValue" href="<%= url_for(:action=>"set_value",:bo_code=>"{bo_code}",:object_attribute=>"{object_attribute}",:format=>:js) %>">
       <% if(@wf_field_update.bo_code.present?&&@wf_field_update.object_attribute.present?&&@wf_field_update.value.present?) %>
           <%= render :partial => "edit_update_value",:locals => {:object_attribute=>bo_attribute(@wf_field_update.bo_code,@wf_field_update.object_attribute),:f=>f} %>
       <% end %>
