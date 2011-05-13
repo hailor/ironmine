@@ -1,6 +1,7 @@
 class Irm::FormulaContext
   attr_accessor :bo
-  def validate(formula)
+  def validate(formula,data_type)
+    formula = formula.upcase
     text = ""
     value = nil
     begin
@@ -8,15 +9,36 @@ class Irm::FormulaContext
       rescue StandardError,SyntaxError=>text
           info = text
     end
-    [text,nil]
+    if text.present?
+      return [text,nil]
+    end
+    case data_type
+      when "varchar"
+        unless value.nil?||value.is_a?(String)
+          text = I18n.t('activerecord.errors.messages.invalid')
+        end
+      when "text"
+        unless value.nil?||value.is_a?(String)
+          text = I18n.t('activerecord.errors.messages.invalid')
+        end
+      when "datetime"
+        unless value.nil?||value.is_a?(Time)||value.is_a?(Date)
+          text = I18n.t('activerecord.errors.messages.invalid')
+        end
+      when "int"
+        if value.to_s.scan(/\D/).length>0
+          text = I18n.t('activerecord.errors.messages.invalid')
+        end
+    end
+    [text,value]
   end
 
   private
   def TODAY
-    Time.now
+    Time.now.to_date
   end
 
-  def CURRENT_PERSON
+  def CURRENTPERSON
     Irm::Person.current.id
   end
 
@@ -24,7 +46,12 @@ class Irm::FormulaContext
     value
   end
 
-  def TO_DATE(date_string)
+  def DATEVALUE(date_string)
     Date.parse(date_string)
+  end
+
+
+  def NOW
+    Time.now
   end
 end
