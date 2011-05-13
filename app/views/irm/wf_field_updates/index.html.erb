@@ -1,0 +1,38 @@
+<%= page_title %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_wf_field_update_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+              </td>
+              <td class="pbHelp">
+                <div id="wf_field_updatesSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="wf_field_updates" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+          </div>
+        </div>
+        <%= datatable("wf_field_updates",url_for(:action=>"get_data",:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
+                       { :key => "name", :label => t(:label_irm_wf_field_update_name),:searchable=>true },
+                       { :key => "field_update_code", :label => t(:label_irm_wf_field_update_field_update_code),:searchable=>true },
+                       { :key => "bo_name", :label => t(:label_irm_wf_field_update_bo_code),:searchable=>true },
+                       { :key => "object_attribute_name", :label => t(:label_irm_wf_field_update_object_attribute),:searchable=>true },
+                       { :key => "value_type_name", :label => t(:label_irm_wf_field_update_value_type)},
+                      ],{:paginator_box=>"wf_field_updatesPaginatorBox",:search_box=>"wf_field_updatesSearchBox"})%>
+        <div id="wf_field_updatesPaginatorBox"></div>
+      </div>
+    </div>
+</div>
+
+

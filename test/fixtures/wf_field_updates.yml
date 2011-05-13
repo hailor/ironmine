@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  bo_code: MyString
+  name: MyString
+  field_update_code: MyString
+  description: MyString
+  relation_bo: MyString
+  object_attribute: MyString
+  value_type: MyString
+  value: MyString
+
+two:
+  bo_code: MyString
+  name: MyString
+  field_update_code: MyString
+  description: MyString
+  relation_bo: MyString
+  object_attribute: MyString
+  value_type: MyString
+  value: MyString

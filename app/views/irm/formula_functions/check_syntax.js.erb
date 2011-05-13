@@ -1,0 +1,4 @@
+GY.use(function(Y){
+    if(Y.one("#<%=params[:result_div] %>"))
+        Y.one("#<%=params[:result_div] %>").setContent("<%= escape_javascript(@message)%>");
+});

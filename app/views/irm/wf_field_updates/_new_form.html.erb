@@ -1,0 +1,129 @@
+<%= form_for(@wf_field_update,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+  <%= hidden_params_field(:source_str)%>
+  <%= back_url_hidden_field_tag%>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_wf_field_update_new)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:save_and_new), {:action => "create",:save_and_new=>"Y"},{:class=>"submit"} %></div>
+            <div class="button"><%= link_to t(:cancel),back_url_default({:action=>"index"})%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @wf_field_update %>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend">
+          <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+          </span><span class="requiredMark">*</span>
+          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+        </span>
+      </span>
+      <h3><%= t(:label_common_info) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label for="wf_field_update_name"><%=t(:label_irm_wf_field_update_name)%></label></td>
+              <td class="dataCol"><%=f.text_field :name, :required=>true ,:id=>"wf_field_update_name"%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="wf_field_update_field_update_code"><%=t(:label_irm_wf_field_update_field_update_code)%></label></td>
+              <td class="dataCol"><%=f.text_field :field_update_code ,:irm_uppercase=>true,:required=>true ,:id=>"wf_field_update_field_update_code"%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="wf_field_update_description"><%=(t :label_irm_wf_field_update_description)%></label></td>
+              <td class="dataCol" colspan="3" width="82%"><%=f.text_area :description,:rows=>4,:cols=>60,:id=>"wf_field_update_description"%></td>
+            </tr>
+            <% if @wf_field_update.bo_code.present? %>
+              <td class="labelCol"><label for="bo_code"><%=t(:label_irm_wf_field_update_bo_code)%></label></td>
+              <td class="dataCol"><%= bo_name(@wf_field_update.bo_code)%></td>
+              <td class="labelCol empty">&nbsp;<%= f.hidden_field(:bo_code,:id=>"bo_code") %></td>
+              <td class="dataCol empty">&nbsp;</td>
+            <% else %>
+            <tr>
+              <td class="labelCol"><label for="bo_code"><%=t(:label_irm_wf_field_update_bo_code)%></label></td>
+              <td class="dataCol"><%=f.blank_select :bo_code,available_business_object,{}, {:id=>"bo_code",:required=>true}%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <% end %>
+            <tr>
+              <td class="labelCol"><label for="object_attribute"><%=t(:label_irm_wf_field_update_object_attribute)%></label></td>
+              <td class="dataCol"><%=f.blank_select :object_attribute,available_relationable_object_attribute(@wf_field_update.bo_code), {},{:id=>"object_attribute",
+                                                                          :required=>true,
+                                                                          :href=>url_for(:controller=>"irm/object_attributes",:action=>"relation_columns",:format=>"json",:business_object_code=>"{bo_code}"),
+                                                                          :depend=>"bo_code"}%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <div  id="fieldUpdateValue" href="<%= url_for(:action=>"set_value",:bo_code=>"{bo_code}",:object_attribute=>"{object_attribute}",:format=>:js) %>">
+      <% if(@wf_field_update.bo_code.present?&&@wf_field_update.object_attribute.present?&&@wf_field_update.value.present?) %>
+          <%= render :partial => "edit_update_value",:locals => {:object_attribute=>bo_attribute(@wf_field_update.bo_code,@wf_field_update.object_attribute),:f=>f} %>
+      <% end %>
+    </div>
+
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+             <div class="button"><%= link_to t(:save_and_new), {:action => "create",:save_and_new=>"Y"},{:class=>"submit"} %></div>
+            <div class="button"><%= link_back t(:cancel)%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
+
+
+<script type="text/javascript">
+  GY.use("node-base","cascadeselect","gallerydispatcher",function(Y){
+    new Y.CascadeSelect({source: "#bo_code",target:["#object_attribute"]});
+
+    Y.on('change', function(e) {
+      var obj;
+      if(e.currentTarget.getData("dispatcher")){
+        obj = e.currentTarget.getData("dispatcher")
+      }else{
+        obj = new Y.Dispatcher({node:"#fieldUpdateValue"});
+        e.currentTarget.setData("dispatcher",obj);
+      }
+
+      var object_attribute = Y.one("#object_attribute").get("value");
+      var bo_code = Y.one("#bo_code").get("value");
+      var url = unescape(Y.one("#fieldUpdateValue").getAttribute("href"));
+      url = Y.Lang.substitute(url,{object_attribute:object_attribute,bo_code:bo_code});
+      obj.set('uri', url);
+	}, '#object_attribute');
+
+    Y.one("form.new_irm_wf_field_update").delegate("click",function(e){
+        e._currentTarget.setAttribute("action",e.target.getAttribute("href"));
+        e.preventDefault();
+        e._currentTarget.submit();
+      },"a.submit");
+     if(!Y.one("#fieldUpdateValue input"))
+         Y.one("#object_attribute").simulate("change");
+  });
+</script>

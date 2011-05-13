@@ -24,6 +24,11 @@ module Irm::CommonHelper
     end
   end
 
+
+  def hidden_params_field(key)
+    hidden_field_tag(key, params[key.to_sym]) if params[key.to_sym].present?
+  end
+
   def show_recently_object_list
 
     html_content = ""

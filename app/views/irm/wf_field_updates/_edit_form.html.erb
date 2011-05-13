@@ -1,0 +1,94 @@
+<%= form_for(@wf_field_update,:url=>{:action=>"update"},:builder => LabellingFormBuilder) do |f| %>
+  <%= hidden_params_field(:source_str)%>
+  <%= back_url_hidden_field_tag%>
+<div id="ep" class="bEditBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_wf_field_update_edit)%></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:save_and_new), {:action => "update",:save_and_new=>"Y"},{:class=>"submit"} %></div>
+            <div class="button"><%= link_to t(:cancel),back_url_default({:action=>"index"})%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <%= error_for @wf_field_update %>
+    <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+      <span class="pbSubExtra">
+        <span class="requiredLegend">
+          <span class="requiredExampleOuter">
+            <span class="requiredExample">&nbsp;</span>
+          </span><span class="requiredMark">*</span>
+          <span class="requiredText"> = <%=t(:label_is_required)%></span>
+        </span>
+      </span>
+      <h3><%= t(:label_common_info) %></h3>
+    </div>
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label for="wf_field_update_name"><%=t(:label_irm_wf_field_update_name)%></label></td>
+              <td class="dataCol"><%=f.text_field :name, :required=>true ,:id=>"wf_field_update_name"%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="wf_field_update_field_update_code"><%=t(:label_irm_wf_field_update_field_update_code)%></label></td>
+              <td class="dataCol"><%=f.text_field :field_update_code ,:irm_uppercase=>true,:required=>true ,:id=>"wf_field_update_field_update_code"%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="wf_field_update_description"><%=(t :label_irm_wf_field_update_description)%></label></td>
+              <td class="dataCol" colspan="3" width="82%"><%=f.text_area :description,:rows=>4,:cols=>60,:id=>"wf_field_update_description"%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="bo_code"><%=t(:label_irm_wf_field_update_bo_code)%></label></td>
+              <td class="dataCol"><%=@wf_field_update[:bo_name]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label for="object_attribute"><%=t(:label_irm_wf_field_update_object_attribute)%></label></td>
+              <td class="dataCol"><%=@wf_field_update[:object_attribute_name]%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <%= render :partial => "edit_update_value",:locals => {:object_attribute=>bo_attribute(@wf_field_update.bo_code,@wf_field_update.object_attribute),:f=>f} %>
+
+  </div>
+  <div class="pbBottomButtons">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"></td>
+          <td id="bottomButtonRow" class="pbButtonb">
+            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= link_to t(:save_and_new), {:action => "update",:save_and_new=>"Y"},{:class=>"submit"} %></div>
+            <div class="button"><%= link_to t(:cancel),back_url_default({:action=>"index"})%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
+
+<script type="text/javascript">
+  GY.use("cascadeselect","gallerydispatcher",function(Y){
+    Y.one("form.edit_irm_wf_field_update").delegate("click",function(e){
+        e._currentTarget.setAttribute("action",e.target.getAttribute("href"));
+        e.preventDefault();
+        e._currentTarget.submit();
+      },"a.submit");
+  });
+</script>
