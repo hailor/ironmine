@@ -973,3 +973,28 @@ en:
   label_irm_todo_task_display_opts_today: Today
   label_irm_todo_task_display_opts_over_due: Overdue
   label_irm_todo_task_display_opts_next_7_days: Next 7 Days
+
+
+  #======================== wf field updates====================
+  label_irm_wf_field_update_list: Field Update List
+  label_irm_wf_field_update_bo_code: Business Object
+  label_irm_wf_field_update_name: Name
+  label_irm_wf_field_update_field_update_code: Code
+  label_irm_wf_field_update_description: Description
+  label_irm_wf_field_update_object_attribute: Update Field
+  label_irm_wf_field_update_value_type: Data Type
+  label_irm_wf_field_update_value: Value
+  label_irm_wf_field_update_new: New Field Update
+  label_irm_wf_field_update_edit: Edit Field Update
+  label_irm_wf_field_update_set_value: Set Value of Field Update
+  label_irm_wf_field_update_value_type_null_value: Null Value(null)
+  label_irm_wf_field_update_value_type_formula_value: Formula Value
+  label_irm_wf_field_update_value_type_options_value: Select from list of value
+  label_irm_wf_field_update_object_attribute_type_int: Integer
+  label_irm_wf_field_update_object_attribute_type_varchar: String
+  label_irm_wf_field_update_object_attribute_type_datetime: DateTime
+  label_irm_insert_selected_formula_function: Insert Selected Function
+  check_syntax: Check Syntax
+  label_irm_formula_function_syntax_miss_parameter: Please fill formula textarea
+  label_irm_formula_function_syntax_return_value: The syntax of formula is right,return value is
+  #======================== end wf field updates====================

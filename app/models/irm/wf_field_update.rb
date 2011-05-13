@@ -34,32 +34,12 @@ class Irm::WfFieldUpdate < ActiveRecord::Base
 
   private
   def validate_value
-    puts "==========================#{self.value_type}======================"
     object_attribute = Irm::ObjectAttribute.where(:business_object_code=>self.bo_code,:attribute_name=>self.object_attribute).first
     if("FORMULA_VALUE".eql?(self.value_type))
-      message,formula_value = Irm::FormulaContext.new.validate(value)
+      message,formula_value = Irm::FormulaContext.new.validate(value,object_attribute.data_type)
       if(message.present?||(Irm::Constant::SYS_NO.eql?(object_attribute.nullable_flag)&&!value.present?))
         self.errors.add(:value,I18n.t('activerecord.errors.messages.invalid'))
         return
-      else
-        case object_attribute.data_type
-          when "varchar"
-            unless formula_value.nil?||formula_value.is_a?(String)
-              self.errors.add(:value,I18n.t('activerecord.errors.messages.invalid'))
-            end
-          when "text"
-            unless formula_value.nil?||formula_value.is_a?(String)
-              self.errors.add(:value,I18n.t('activerecord.errors.messages.invalid'))
-            end
-          when "datetime"
-            unless formula_value.nil?||formula_value.is_a?(DateTime)||formula_value.is_a?(Date)
-              self.errors.add(:value,I18n.t('activerecord.errors.messages.invalid'))
-            end
-          when "int"
-            if formula_value.to_s.scan(/\D/).length>0
-              errors.add(:value,I18n.t('activerecord.errors.messages.invalid'))
-            end
-        end
       end
     end
   end

@@ -1116,6 +1116,10 @@ zh:
   label_irm_wf_field_update_object_attribute_type_int: 数字类型
   label_irm_wf_field_update_object_attribute_type_varchar: 文本类型
   label_irm_wf_field_update_object_attribute_type_datetime: 日期类型
+  label_irm_insert_selected_formula_function: 插入选中函数
+  check_syntax: 检查语法
+  label_irm_formula_function_syntax_miss_parameter: 请在公式输入框中写入公式
+  label_irm_formula_function_syntax_return_value: 语法正确，返回值为
   #======================== end wf field updates====================
 
 
