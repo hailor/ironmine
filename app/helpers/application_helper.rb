@@ -459,5 +459,10 @@ module ApplicationHelper
     select_tag(name, choices,html_options)
   end
 
+  def select_tag_alias(name, collection,selected=nil, options = {})
+    choices = options_for_select(collection, selected = nil)
+    select_tag(name, choices,options)
+  end
+
 
 end
