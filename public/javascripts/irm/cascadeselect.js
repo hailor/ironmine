@@ -28,7 +28,7 @@ YUI.add('cascadeselect', function(Y) {
            var targets = this.get("target");
            for(var i=0;i<targets.length;i++){
                var target = Y.one(targets[i]);
-               if(target.all("option").length>1)
+               if(target.all("option").size()>1)
                     continue;
                var href = target.getAttribute("href");
                var depends = target.getAttribute("depend");
