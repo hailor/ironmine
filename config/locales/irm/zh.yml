@@ -987,6 +987,7 @@ zh:
   label_irm_business_object_new: 复制业务对像
   label_irm_business_object_edit: 编辑业务对像
   label_irm_business_object_description: 描述
+  label_irm_business_object_workflow_flag: 启用工作流
   #======================== business objects====================
   #======================== object attributes====================
   label_irm_object_attributes: 属性

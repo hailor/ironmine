@@ -864,6 +864,7 @@ en:
   label_irm_business_object_new: Copy Business Object
   label_irm_business_object_new: Copy Business Object
   label_irm_business_object_description: Description
+  label_irm_business_object_workflow_flag: Workflow
   #======================== end business objects====================
   #======================== object attributes====================
   label_irm_object_attributes: Object Attributes
