@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  bo_code: MyString
+  name: MyString
+  mail_alert_code: MyString
+  description: MyString
+  mail_template_code: MyString
+  additional_email: MyString
+  from_email: MyString
+
+two:
+  bo_code: MyString
+  name: MyString
+  mail_alert_code: MyString
+  description: MyString
+  mail_template_code: MyString
+  additional_email: MyString
+  from_email: MyString

@@ -233,6 +233,15 @@ a#headerSearchOptionsLink {text-decoration:none;}
 .menuParent div.menuLabelHover #settingMenu-arrow,
 .menuParent div.menuLabelClick #settingMenu-arrow{background-position: 0 -145px;}
 .messages{height:22px;}
+.message{
+    border-radius: 4px 4px 4px 4px;
+    border-color: #3399FF;
+    background-color: #FFFFCC;
+    border-style: solid;
+    border-width: 1px;
+    color: #000000;
+    padding: 6px 8px 6px 6px;
+}
 
 /*******************************************************************/
 .menuButton {

@@ -618,6 +618,7 @@ Ironmine::Application.routes.draw do
     match '/business_objects/:bo_id/object_attributes/:id/multilingual_update(.:format)' => "object_attributes#multilingual_update", :via => :put
     match '/object_attributes/relation_columns(.:format)' => "object_attributes#relation_columns", :via => :get
     match '/object_attributes/selectable_columns(.:format)' => "object_attributes#selectable_columns", :via => :get
+    match '/object_attributes/all_columns(.:format)' => "object_attributes#all_columns", :via => :get
     # list of values
     match '/list_of_values(/index)(.:format)' => "list_of_values#index", :via => :get
     match '/list_of_values/new(.:format)' => "list_of_values#new", :via => :get
@@ -658,6 +659,18 @@ Ironmine::Application.routes.draw do
     #formula_functions
     match '/formula_functions/formula_function_options(.:format)'=>"formula_functions#formula_function_options", :via => :get
     match '/formula_functions/check_syntax(.:format)'=>"formula_functions#check_syntax", :via => :get
+
+    #wf_mail_alerts
+    match '/wf_mail_alerts(/index)(.:format)' => "wf_mail_alerts#index", :via => :get
+    match '/wf_mail_alerts/:id/edit(.:format)' => "wf_mail_alerts#edit", :via => :get
+    match '/wf_mail_alerts/:id(.:format)' => "wf_mail_alerts#update", :via => :put
+    match '/wf_mail_alerts/new(.:format)' => "wf_mail_alerts#new", :via => :get
+    match '/wf_mail_alerts/create(.:format)' => "wf_mail_alerts#create", :via => :post
+    match '/wf_mail_alerts/get_data(.:format)' => "wf_mail_alerts#get_data"
+    match '/wf_mail_alerts/:id/show(.:format)' => "wf_mail_alerts#show", :via => :get
+    match '/wf_mail_alerts/:id/destroy(.:format)' => "wf_mail_alerts#destroy", :via => :delete
+    match '/wf_mail_alerts/recipient_source(.:format)' => "wf_mail_alerts#recipient_source", :via => :get
+
   end
 
   scope :module => "icm" do

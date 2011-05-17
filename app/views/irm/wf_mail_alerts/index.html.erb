@@ -1,0 +1,38 @@
+<%= page_title %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_wf_mail_alert_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+              </td>
+              <td class="pbHelp">
+                <div id="wf_mail_alertsSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="wf_mail_alerts" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+          </div>
+        </div>
+        <%= datatable("wf_mail_alerts",url_for(:action=>"get_data",:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
+                       { :key => "bo_name", :label => t(:label_irm_wf_mail_alert_bo_code),:searchable=>true },
+                       { :key => "name", :label => t(:label_irm_wf_mail_alert_name),:searchable=>true },
+                       { :key => "mail_alert_code", :label => t(:label_irm_wf_mail_alert_mail_alert_code),:searchable=>true },
+                       { :key => "mail_template_name", :label => t(:label_irm_wf_mail_alert_mail_template_code),:searchable=>true },
+                       { :key => "from_email", :label => t(:label_irm_wf_mail_alert_from_email),:searchable=>true }
+                      ],{:paginator_box=>"wf_mail_alertsPaginatorBox",:search_box=>"wf_mail_alertsSearchBox"})%>
+        <div id="wf_mail_alertsPaginatorBox"></div>
+      </div>
+    </div>
+</div>
+
+
