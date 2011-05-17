@@ -5,7 +5,7 @@ module Irm::LogosManager
     end
 
     def login_page_logo
-      logos[:app_top_logo]
+      logos[:login_page_logo]
     end
 
     def address_bar_logo
