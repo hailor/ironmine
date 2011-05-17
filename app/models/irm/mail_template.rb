@@ -15,16 +15,12 @@ class Irm::MailTemplate < ActiveRecord::Base
   has_many :mail_templates_tls,:class_name=>"Irm::MailTemplatesTl",:foreign_key=>"template_id",:order => "language"
   acts_as_multilingual({:columns =>[:name,:description,:subject,:mail_body],:required=>[:name,:subject,:mail_body]})
 
-  validates_presence_of :context_code,:template_code,:from
+  validates_presence_of :template_code
   validates_uniqueness_of :template_code, :if => Proc.new { |i| !i.template_code.blank? }
   validates_format_of :template_code, :with => /^[A-Z0-9_]*$/ ,:if=>Proc.new{|i| !i.template_code.blank?}
 
   scope :query_by_template_code,lambda{|template_code| where("template_code =?",template_code)}
 
-  scope :with_context,lambda{|language|
-    joins("LEFT OUTER JOIN #{Irm::ScriptContext.view_name}  ON  #{Irm::ScriptContext.view_name}.context_code = #{table_name}.context_code AND  #{Irm::ScriptContext.view_name}.language = '#{language}'").
-    select("#{Irm::ScriptContext.view_name}.id context_id,#{Irm::ScriptContext.view_name}.name context_name,#{Irm::ScriptContext.view_name}.description context_description")
-  }
 
   #扩展查询方法
   query_extend
@@ -36,13 +32,8 @@ class Irm::MailTemplate < ActiveRecord::Base
 
   scope :select_all,lambda{select("#{table_name}.*")}
 
-  scope :query_by_condition_code,lambda{|condition_code|
-    joins("JOIN #{Irm::Condition.table_name} ON #{Irm::Condition.table_name}.context_code = #{table_name}.context_code ").
-    where("#{Irm::Condition.table_name}.condition_code = ?",condition_code)
-  }
-
   def self.list_all
-    select_all.multilingual.with_context(I18n.locale).status_meaning
+    select_all.multilingual.status_meaning
   end
 
   #
@@ -98,7 +89,7 @@ class Irm::MailTemplate < ActiveRecord::Base
   # Usable string representation
   #
   def to_s
-    "[MailTemplate] From: #{from}, '#{subject}': #{body}"
+    "[MailTemplate]  '#{subject}': #{body}"
   end
 
  private

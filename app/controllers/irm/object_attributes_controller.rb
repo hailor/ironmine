@@ -142,6 +142,16 @@ class Irm::ObjectAttributesController < ApplicationController
     end
   end
 
+  def all_columns
+    object_attributes_scope = Irm::ObjectAttribute.multilingual.query_by_business_object_code(params[:business_object_code]).order(:attribute_name)
+    object_attributes_scope = object_attributes_scope.match_value("#{Irm::ObjectAttribute.view_name}.name",params[:name])
+
+    object_attributes = object_attributes_scope.collect{|i| {:label=>i[:name],:business_object_code=>i.business_object_code, :value=>i.attribute_name,:id=>i.id}}
+    respond_to do |format|
+      format.json {render :json=>object_attributes.to_grid_json([:label,:value,:business_object_code], object_attributes.count)}
+    end
+  end
+
   private
   def setup_business_object
     @business_object = Irm::BusinessObject.find(params[:bo_id]) if params[:bo_id]

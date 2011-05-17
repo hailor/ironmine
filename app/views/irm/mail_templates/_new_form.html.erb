@@ -55,18 +55,9 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
-              <td class="labelCol"><label><%=t(:label_irm_mail_template_entity_code)%></label></td>
-              <td class="data2Col"><%=f.select :context_code,nullable_options_for_select(available_script_contexts,@mail_template.context_code),
-                                                    {},{:id=>"context_code",:required=>true}%></td>
-            </tr>
-            <tr>
               <td class="labelCol"><label><%=t(:label_irm_mail_template_template_code)%></label></td>
               <td class="data2Col"><%=f.text_field :template_code,:size=>30,:required=>true,:irm_uppercase=>true %></td>
             </tr>
-            <tr>
-              <td class="labelCol"><label><%=t(:label_irm_mail_template_from)%></label></td>
-              <td class="data2Col"><%=f.text_field :from ,:size=>45,:required=>true%></td>
-            </tr>            
             <tr>
               <td class="labelCol"><label><%=t(:label_irm_mail_template_name)%></label></td>
               <td class="data2Col"><%=f.text_field :name ,:size=>45,:required=>true%></td>
@@ -85,21 +76,23 @@
               <td class="data2Col">
                 <div class="controls">
 	              <div class="controlTitle">
-	              	<%= t(:label_irm_scirpt_context_query_field) %>
+	              	<%= t(:label_irm_mail_template_parameter_field) %>
 	              </div>
                   <div class="controlItems">
                     <table>
                       <tr>
-                        <th><%= t(:label_irm_scirpt_context_field_name) %></th><th><%= t(:label_irm_scirpt_context_field_key) %></th>
+                        <th><%= t(:label_irm_mail_template_parameter_bo) %></th>
+                        <th><%= t(:label_irm_mail_template_parameter_field_name) %></th>
+                        <th><%= t(:label_irm_mail_template_parameter_field_key) %></th>
                       </tr>
                       <tr>
-                        <td><%= select_tag(:field_key,nullable_options_for_select([],nil),
-                                  {:id=>"script_context_field",
-                                   :href=>url_for(:action=>"get_script_context_fields",:format=>"json",:context_code=>"{context_code}"),
-                                   :depend=>"context_code",
-                                   :blank=> "--- #{t(:actionview_instancetag_blank_option)} ---"
+                        <td><%=blank_select_tag :parameter_bo,available_business_object,{}, {:id=>"parameter_bo",:required=>true}%></td>
+                        <td><%=blank_select_tag(:parameter_field_name,[],nil,
+                                  {:id=>"parameter_field_name",
+                                   :href=>url_for(:controller=>"irm/object_attributes",:action=>"all_columns",:format=>"json",:business_object_code=>"{parameter_bo}"),
+                                   :depend=>"parameter_bo",
                                    }) %></td>
-                        <td><%= text_field_tag(:field_key,{},{:id=>"script_context_field_key",:size=>40}) %></td>
+                        <td><%= text_field_tag(:parameter_field_key,"",{:id=>"parameter_field_key",:size=>40}) %></td>
                       </tr>
                     </table>
                   </div>
@@ -108,7 +101,7 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=t(:label_irm_mail_template_subject)%></label></td>
-              <td class="data2Col"><%=f.text_field :subject ,:size=>45,:required=>true%></td>
+              <td class="data2Col"><%=f.text_field :subject ,:size=>80,:required=>true%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=t(:label_irm_mail_template_mail_body)%></label></td>
@@ -135,9 +128,14 @@
 <% end %>
 <script type="text/javascript">
   GY.use("cascadeselect",function(Y){
-     new Y.CascadeSelect({source: "#context_code",target:["#script_context_field"]});
-     Y.one("#script_context_field").on("change",function(e){
-         Y.one("#script_context_field_key").set("value",e.target.get("value"))
+     new Y.CascadeSelect({source: "#parameter_bo",target:["#parameter_field_name"]});
+     Y.one("#parameter_field_name").on("change",function(e){
+         if(e.target.get("value")&&e.target.get("value")!=""){
+           var option = e.target.one("option[value="+e.target.get("value")+"]");
+           Y.one("#parameter_field_key").set("value","{{"+option.getAttribute("business_object_code").toLowerCase()+"."+e.target.get("value")+"}}")
+         }
+         else
+           Y.one("#parameter_field_key").set("value","")
      });
   });
 </script>
