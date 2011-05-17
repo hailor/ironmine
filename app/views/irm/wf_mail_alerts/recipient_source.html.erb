@@ -1,5 +1,5 @@
 <% if "RELATED_PERSON".eql?(params[:recipient_type])%>
-    <%=blank_select_tag :recipient,available_object_attribute(params[:bo_code]),{},:id=>"recipientValue"%>
+    <%=blank_select_tag :recipient,available_bo_person_attribute(params[:bo_code]),{},:id=>"recipientValue"%>
 <% elsif "PERSON".eql?(params[:recipient_type]) %>
     <%= lov_field_tag :recipient, "PEOPLE_LIST", :id => "recipientValue" %>
 <% elsif "ROLE".eql?(params[:recipient_type]) %>

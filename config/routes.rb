@@ -619,6 +619,8 @@ Ironmine::Application.routes.draw do
     match '/object_attributes/relation_columns(.:format)' => "object_attributes#relation_columns", :via => :get
     match '/object_attributes/selectable_columns(.:format)' => "object_attributes#selectable_columns", :via => :get
     match '/object_attributes/all_columns(.:format)' => "object_attributes#all_columns", :via => :get
+    match '/object_attributes/updateable_columns(.:format)' => "object_attributes#updateable_columns", :via => :get
+    match '/object_attributes/person_columns(.:format)' => "object_attributes#person_columns", :via => :get
     # list of values
     match '/list_of_values(/index)(.:format)' => "list_of_values#index", :via => :get
     match '/list_of_values/new(.:format)' => "list_of_values#new", :via => :get

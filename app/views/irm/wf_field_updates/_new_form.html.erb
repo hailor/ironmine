@@ -65,7 +65,7 @@
               <td class="labelCol"><label for="object_attribute"><%=t(:label_irm_wf_field_update_object_attribute)%></label></td>
               <td class="dataCol"><%=f.blank_select :object_attribute,available_relationable_object_attribute(@wf_field_update.bo_code), {},{:id=>"object_attribute",
                                                                           :required=>true,
-                                                                          :href=>url_for(:controller=>"irm/object_attributes",:action=>"relation_columns",:format=>"json",:business_object_code=>"{bo_code}"),
+                                                                          :href=>url_for(:controller=>"irm/object_attributes",:action=>"updateable_columns",:format=>"json",:business_object_code=>"{bo_code}"),
                                                                           :depend=>"bo_code"}%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>

@@ -47,6 +47,14 @@ class Irm::ObjectAttribute < ActiveRecord::Base
     where("#{table_name}.attribute_type='TABLE_COLUMN' OR #{table_name}.attribute_type = 'RELATION_COLUMN'")
   }
 
+  scope :person_column,lambda{
+    where("#{table_name}.person_flag=?",Irm::Constant::SYS_YES)
+  }
+
+  scope :updateable_column,lambda{
+    where("#{table_name}.update_flag=?",Irm::Constant::SYS_YES)
+  }
+
   scope :filterable,lambda{
     where(:filter_flag=>Irm::Constant::SYS_YES)
   }
