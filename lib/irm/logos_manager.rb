@@ -17,13 +17,13 @@ module Irm::LogosManager
     end
 
     def prepare_logos_cache
-      login_page_logo = Irm::SystemParameter.query_by_code("LOGIN_PAGE_LOGO").first.img
-      app_top_logo = Irm::SystemParameter.query_by_code("APP_TOP_LOGO").first.img
-      address_bar_logo = Irm::SystemParameter.query_by_code("ADDRESS_BAR_LOGO").first.img
+      login_page_logo = Irm::SystemParameter.query_by_code("LOGIN_PAGE_LOGO").first
+      app_top_logo = Irm::SystemParameter.query_by_code("APP_TOP_LOGO").first
+      address_bar_logo = Irm::SystemParameter.query_by_code("ADDRESS_BAR_LOGO").first
 
-      map.merge!({:app_top_logo => app_top_logo.url})
-      map.merge!({:login_page_logo => login_page_logo.url})
-      map.merge!({:address_bar_logo => address_bar_logo})
+      map.merge!({:app_top_logo => app_top_logo.img.url}) if app_top_logo
+      map.merge!({:login_page_logo => login_page_logo.img.url}) if login_page_logo
+      map.merge!({:address_bar_logo => address_bar_logo.img.url}) if address_bar_logo
       puts(map.to_json)
     end
 
