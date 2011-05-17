@@ -133,8 +133,10 @@ Irm::AccessControl.map do |map|
   #["new", "get_data", "create", "copy", "copy_template", "test_mail_template", "index", "edit", "update", "destroy", "show", "get_script_context_fields", "get_mail_templates"]
   map.function :view_mail_templates,{"irm/mail_templates"=>["index", "show", "get_data", "get_script_context_fields",
                                                             "get_mail_templates"]}
-  map.function :create_mail_templates,{"irm/mail_templates"=>["new", "create"]}
-  map.function :edit_mail_templates,{"irm/mail_templates"=>["edit", "update"]}
+  map.function :create_mail_templates,{"irm/mail_templates"=>["new", "create"],
+                                       "irm/object_attributes"=>["all_columns"]}
+  map.function :edit_mail_templates,{"irm/mail_templates"=>["edit", "update"],
+                                     "irm/object_attributes"=>["all_columns"]}
 
   #===================irm/menus============================
   #["index", "new", "create", "get_data", "edit", "update", "show", "remove_entry", "multilingual_edit", "multilingual_update"]
@@ -293,9 +295,16 @@ Irm::AccessControl.map do |map|
 
   map.function :view_wf_field_updates,{"irm/wf_field_updates"=>["index", "show","get_data"]}
   map.function :create_wf_field_updates,{"irm/wf_field_updates"=>["new", "create","destroy","set_value"],
-                                         "irm/formula_functions"=>["formula_function_options", "check_syntax"]}
+                                         "irm/formula_functions"=>["formula_function_options", "check_syntax"],
+                                         "irm/object_attributes"=>["updateable_columns"]}
   map.function :edit_wf_field_updates,{"irm/wf_field_updates"=>["edit", "update"],
-                                       "irm/formula_functions"=>["formula_function_options", "check_syntax"]}
+                                       "irm/formula_functions"=>["formula_function_options", "check_syntax"],
+                                       "irm/object_attributes"=>["updateable_columns"]}
 
+  #===================irm/wf_mail_alerts============================
+  #["index", "edit", "update", "new", "create", "get_data", "show", "destroy", "recipient_source"]
+  map.function :view_wf_mail_alerts,{"irm/wf_mail_alerts"=>["index", "show","get_data"]}
+  map.function :create_wf_mail_alerts,{"irm/wf_mail_alerts"=>["new", "create","recipient_source","destroy"]}
+  map.function :edit_wf_mail_alerts,{"irm/wf_mail_alerts"=>["edit", "update","recipient_source"]}
 
 end
