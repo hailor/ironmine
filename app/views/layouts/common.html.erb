@@ -6,7 +6,7 @@
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
   <link rel="stylesheet" type="text/css" href="/themes/salesforce2/stylesheets/login.css"></link>
-  <link rel="shortcut icon" href="/images/mini-logo.png" type="image/x-icon"/>
+  <%= render :partial => "irm/common/address_bar_logo" %>
 </head>
  <%= yield %>
 </html>

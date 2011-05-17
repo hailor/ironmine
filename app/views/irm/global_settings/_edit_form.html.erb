@@ -82,6 +82,16 @@
               <td class="data2Col">
               <%= image_tag @settings.query_by_code("LOGIN_PAGE_LOGO").first.img.url, :style => "width: 300px; height:124px; border: 1px solid #c9c9c9 !important" %></td>
             </tr>
+            <tr>
+              <td class="labelCol"><label><%=(@settings.query_by_code("ADDRESS_BAR_LOGO").first[:name])%></label></td>
+              <td class="data2Col"><%= file_field_tag @settings.query_by_code("ADDRESS_BAR_LOGO").first[:parameter_code],
+                                                      :accept => 'image/png,image/gif,image/jpeg'%>&nbsp;<%= t :recommended_size%>:&nbsp;16px * 16px</td>
+            </tr>
+            <tr>
+              <td class="labelCol"></td>
+              <td class="data2Col">
+              <%= image_tag @settings.query_by_code("ADDRESS_BAR_LOGO").first.img.url, :style => "width: 16px; height:16px; border: 1px solid #c9c9c9 !important" %></td>
+            </tr>
         </tbody>
       </table>
     </div>

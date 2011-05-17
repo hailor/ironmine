@@ -22,20 +22,25 @@ class Irm::GlobalSettingsController < ApplicationController
   # PUT /global_settings/1.xml
   def update
     @global_setting = Irm::GlobalSetting.find(params[:id])
-#    respond_to do |format|
-#      if @global_setting.update_attributes(params[:irm_global_setting])
-#        nil
-#      else
-#        @error = @global_setting
-#        format.html { render "error_message"}
-#      end
-#    end
     login_page_logo = Irm::SystemParameter.query_by_code("LOGIN_PAGE_LOGO").first
     app_top_logo = Irm::SystemParameter.query_by_code("APP_TOP_LOGO").first
+    address_bar_logo = Irm::SystemParameter.query_by_code("ADDRESS_BAR_LOGO").first
+
     respond_to do |format|
-      if @global_setting.update_attributes(params[:irm_global_setting]) &&
-          login_page_logo.update_attribute(:img, params[:LOGIN_PAGE_LOGO]) &&
+      if @global_setting.update_attributes(params[:irm_global_setting])
+
+        if params[:LOGIN_PAGE_LOGO] && !params[:LOGIN_PAGE_LOGO].blank?
+          login_page_logo.update_attribute(:img, params[:LOGIN_PAGE_LOGO])
+        end
+        if params[:APP_TOP_LOGO] && !params[:APP_TOP_LOGO].blank?
           app_top_logo.update_attribute(:img, params[:APP_TOP_LOGO])
+        end
+        if params[:ADDRESS_BAR_LOGO] && !params[:ADDRESS_BAR_LOGO].blank?
+          address_bar_logo.update_attribute(:img, params[:ADDRESS_BAR_LOGO])
+        end
+        #重置缓存图标
+        Irm::LogosManager.reset_logos
+
         format.html { redirect_to({:action=>"index"}, :notice => t(:successfully_updated)) }
         format.xml  { head :ok }
       else

@@ -97,3 +97,9 @@ ActiveRecord::XmlSerializer::Attribute.send(:include,Irm::XmlAttribute)
 Ironmine::Acts::Searchable::SEARCHABLE_ENTITY = {Icm::IncidentRequest.name=>"view_incident_request",
                                                  Csi::Survey.name=>"view_survey",
                                                  Skm::EntryHeader.name=>"view_skm_entries"}
+
+
+
+
+#初始化系统图标
+Irm::LogosManager.prepare_logos_cache
