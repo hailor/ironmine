@@ -1,6 +1,6 @@
 class Irm::SystemParameter < ActiveRecord::Base
   set_table_name :irm_system_parameters
-
+  has_attached_file :img
   #多语言关系
   attr_accessor :name, :description
   has_many :system_parameters_tls, :dependent => :destroy

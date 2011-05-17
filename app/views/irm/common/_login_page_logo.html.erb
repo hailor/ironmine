@@ -1,0 +1,13 @@
+<a id="main-logo"></a>
+<style type="text/css">
+#main-logo {
+background:url('<%= Irm::SystemParameter.query_by_code("LOGIN_PAGE_LOGO").first.img.url%>') no-repeat scroll left top transparent;
+    display:block;
+    height:124px;
+    margin:4px 0 0 16px;
+    overflow:hidden;
+    position:absolute;
+    width:300px;
+    z-index:10;
+}
+</style>

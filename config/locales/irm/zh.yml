@@ -294,6 +294,7 @@ zh:
   label_irm_global_setting_timezone: 时区
   label_irm_global_setting_upload_file_limit: 上传文件大小(KB)
   label_irm_global_setting_logo: 图标
+  recommended_size: 推荐分辨率
   #=========================    end global_settings_controller=======================#
   #=========================    irm auth_sources_controller=======================#
   label_irm_auth_source_type: 认证源类型

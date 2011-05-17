@@ -296,6 +296,7 @@ en:
   label_irm_global_setting_timezone: Timezone
   label_irm_global_setting_upload_file_limit: Upload File Size Limit(KB)
   label_irm_global_setting_logo: Logo
+  recommended_size: Recommended Resolution
   #=========================    end global_settings_controller=======================#  
   #=========================    irm scripts_controller=======================#
   label_irm_script_script_code: Code
