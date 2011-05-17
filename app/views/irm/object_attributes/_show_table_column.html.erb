@@ -18,6 +18,13 @@
         <td class="labelCol"><label for="object_attribute_approval_page_field_flag"><%=t(:label_irm_object_attribute_approval_page_field_flag)%></label></td>
         <td class="dataCol"><div><%=check_img(@object_attribute.approval_page_field_flag)%></div></td>
       </tr>
+
+      <tr>
+        <td class="labelCol"><label for="object_attribute_person_flag"><%=t(:label_irm_object_attribute_person_flag)%></label></td>
+        <td class="dataCol"><%=check_img(@object_attribute.person_flag)%></td>
+        <td class="labelCol"><label for="object_attribute_update_flag"><%=t(:label_irm_object_attribute_update_flag)%></label></td>
+        <td class="dataCol"><%=check_img(@object_attribute.update_flag)%></td>
+      </tr>
       <tr>
         <td class="labelCol"><label for="object_attribute_data_type"><%=t(:label_irm_object_attribute_data_type)%></label></td>
         <td class="dataCol"><div><%=@object_attribute.data_type%></div></td>

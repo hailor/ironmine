@@ -1013,6 +1013,8 @@ zh:
   label_irm_object_attributes_test_information: 测试信息
   label_irm_object_attribute_invalid_exists_relation_table: 请填写已经存在的表别名
   label_irm_object_attribute_invalid_model_attribute: BO对像中无该属性
+  label_irm_object_attribute_person_flag: 人员属性
+  label_irm_object_attribute_update_flag: 可更新
   #======================== object attributes====================
   #======================== list of values====================
   label_irm_list_of_value_list: 值列表

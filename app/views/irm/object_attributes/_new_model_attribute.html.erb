@@ -26,6 +26,12 @@
                     <td class="dataCol empty">&nbsp;</td>
                   </tr>
                   <tr>
+                    <td class="labelCol"><label for="object_attribute_person_flag"><%=t(:label_irm_object_attribute_person_flag)%></label></td>
+                    <td class="dataCol"><%=f.check_box :person_flag,{:id=>"object_attribute_person_flag"}%></td>
+                    <td class="labelCol"></td>
+                    <td class="dataCol"></td>
+                  </tr>
+                  <tr>
                     <td class="labelCol"><label for="object_attribute_attribute_type"><%=t(:label_irm_object_attribute_attribute_name)%></label></td>
                     <td class="dataCol"><%=f.text_field :attribute_name, {:required=>true}%></td>
                     <td class="labelCol empty">&nbsp;</td>

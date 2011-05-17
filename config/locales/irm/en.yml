@@ -890,6 +890,8 @@ en:
   label_irm_object_attributes_test_information: Test Infomation
   label_irm_object_attribute_invalid_exists_relation_table: Please use exists table alias
   label_irm_object_attribute_invalid_model_attribute: Missing Attribute In BO
+  label_irm_object_attribute_person_flag: Person Attribute
+  label_irm_object_attribute_update_flag: Updateable
   #======================== object attributes====================
   #======================== list of values====================
   label_irm_list_of_value_list: List of Value
