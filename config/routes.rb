@@ -643,6 +643,21 @@ Ironmine::Application.routes.draw do
     match '/wf_rules/:id/active(.:format)' => "wf_rules#active", :via => :get
     match '/wf_rules/:id(.:format)' => "wf_rules#update", :via => :put
     match '/wf_rules/:id/show(.:format)' => "wf_rules#show", :via => :get
+
+    #wf_field_updates
+    match '/wf_field_updates(/index)(.:format)' => "wf_field_updates#index", :via => :get
+    match '/wf_field_updates/:id/edit(.:format)' => "wf_field_updates#edit", :via => :get
+    match '/wf_field_updates/:id(.:format)' => "wf_field_updates#update", :via => :put
+    match '/wf_field_updates/new(.:format)' => "wf_field_updates#new", :via => :get
+    match '/wf_field_updates/create(.:format)' => "wf_field_updates#create", :via => :post
+    match '/wf_field_updates/get_data(.:format)' => "wf_field_updates#get_data"
+    match '/wf_field_updates/:id/show(.:format)' => "wf_field_updates#show", :via => :get
+    match '/wf_field_updates/:id/destroy(.:format)' => "wf_field_updates#destroy", :via => :delete
+    match '/wf_field_updates/set_value(.:format)' => "wf_field_updates#set_value", :via => :get
+
+    #formula_functions
+    match '/formula_functions/formula_function_options(.:format)'=>"formula_functions#formula_function_options", :via => :get
+    match '/formula_functions/check_syntax(.:format)'=>"formula_functions#check_syntax", :via => :get
   end
 
   scope :module => "icm" do

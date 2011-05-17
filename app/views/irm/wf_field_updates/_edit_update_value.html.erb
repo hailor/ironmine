@@ -1,0 +1,94 @@
+<% if object_attribute %>
+<div class="pbSubheader">
+  <h3><%=t(:label_irm_wf_field_update_set_value)%>(<%=t("label_irm_wf_field_update_object_attribute_type_#{object_attribute.data_type}")%>)</h3>
+</div>
+<div class="pbSubsection">
+  <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+    <tbody>
+        <% if Irm::Constant::SYS_YES.eql?(object_attribute.nullable_flag)  %>
+          <tr>
+            <td class="labelCol"><%=f.radio_button(:value_type,"NULL_VALUE",:id=>"nullValueButton",:class=>"typeButton")%></td>
+            <td class="dataCol"><label for="nullValueButton"><%=t(:label_irm_wf_field_update_value_type_null_value)%></label></td>
+            <td class="labelCol"></td>
+            <td class="dataCol"></td>
+          </tr>
+        <% end %>
+
+        <% if object_attribute.lov_code.present?  %>
+          <tr>
+            <td class="labelCol"><%=f.radio_button(:value_type,"OPTIONS_VALUE",:id=>"optionsValueButton",:class=>"typeButton")%></td>
+            <td class="dataCol"><label for="optionsValueButton"><%=t(:label_irm_wf_field_update_value_type_options_value)%></label></td>
+            <td class="labelCol"></td>
+            <td class="dataCol"></td>
+          </tr>
+          <tr id="optionsValue" refValue="OPTIONS_VALUE" class="updateValueTR" style="display:none">
+            <td class="labelCol"><label for="wf_field_update_value"><%=t(:label_irm_wf_field_update_value)%></label></td>
+            <td class="dataCol" colspan="3" width="82%"><%=f.lov_field :value,object_attribute.lov_code, {:value=>("OPTIONS_VALUE".eql?(@wf_field_update.value_type)? @wf_field_update.value : "")},:required=>true ,:class=>"updateValue",:id=>"wf_field_update_value"%></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td class="labelCol"><%=f.radio_button(:value_type,"FORMULA_VALUE",:id=>"formulaValueButton",:class=>"typeButton")%></td>
+          <td class="dataCol"><label for="formulaValueButton"><%=t(:label_irm_wf_field_update_value_type_formula_value)%></label></td>
+          <td class="labelCol"></td>
+          <td class="dataCol"></td>
+        </tr>
+        <tr id="formulaValue" refValue="FORMULA_VALUE" class="updateValueTR" style="display:none">
+          <td class="labelCol"><label for="wf_field_update_value"><%=t(:label_irm_wf_field_update_value)%></label></td>
+          <td class="dataCol" colspan="3" width="82%">
+            <div style="float:left">
+               <div><%=f.text_area :value, :required=>true ,:class=>"updateValue",:cols=>60,:rows=>12,:id=>"wf_field_update_formula_value"%></div>
+               <div><div class="button"><%= link_to t(:check_syntax), {:controller => "irm/formula_functions",:action => "check_syntax",:formula_value=>"{formula_value}",:result_div=>"formulaSyntaxMessage",:data_type=>object_attribute.data_type,:format=>:js},{:id=>"formulaCheckSyntax",:remote=>true}%></div><div id="formulaSyntaxMessage"></div></div>
+
+            </div>
+            <div style="float:left;padding:3px;">
+               <div><%= select_tag_alias(:formula_function_type,available_formula_function_type,nil,:style=>"width: 14em;",:id=>"formula_function_type")%></div>
+               <div><%= blank_select_tag(:formula_function,[],nil,:href=>url_for(:controller=>"irm/formula_functions",:action=>"formula_function_options",:format=>"json",:formula_function_type=>"{formula_function_type}"),
+                                                              :depend=>"formula_function_type",:size=>5,:style=>"width: 14em;",:multiple => true,:id=>"formula_function")%></div>
+               <div style="width: 14em;word-wrap:break-word; overflow:hidden;clear:both">
+                 <div class="button"><%= link_to t(:label_irm_insert_selected_formula_function), {},{:href=>"javascript:void(0)",:id=>"addFunction",:class=>"submit"} %></div>
+               </div>
+               <div id="functionGuide" style="width: 14em;word-wrap:break-word; overflow:hidden;">
+
+               </div>
+              <div id="functionsDescription" style="width: 14em;word-wrap:break-word; overflow:hidden;">
+
+              </div>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+<script type="text/javascript">
+    GY.use("substitute","cascadeselect",function(Y){
+      Y.all("input.typeButton").on("click",function(e){
+        Y.all(".updateValueTR").setStyle("display","none");
+        Y.all(".updateValueTR .updateValue").setAttribute("disabled","true");
+        var showTR = Y.one(".updateValueTR[refValue="+e.target.get("value")+"]");
+        if(showTR){
+            showTR.setStyle("display","");
+            showTR.all(".updateValue").removeAttribute("disabled");
+        }
+      });
+      Y.one("input.typeButton[checked=checked]").simulate("click");
+      // formula editor
+      new Y.CascadeSelect({source: "#formula_function_type",target:["#formula_function"]});
+      Y.one("#formula_function").on("change",function(e){
+          var option = e.target.one("option[value="+e.target.get("value")+"]");
+          Y.one("#functionGuide").setContent(option.getAttribute("guide"));
+          Y.one("#functionsDescription").setContent(option.getAttribute("description"));
+      });
+      Y.one("#addFunction").on("click",function(e){
+        var guide = Y.one("#wf_field_update_formula_value").get("value")+" "+Y.one("#functionGuide").getContent()+" ";
+        Y.one("#wf_field_update_formula_value").set("value",guide);
+      });
+      Y.one("#formulaCheckSyntax").on("click",function(e){
+        if(!e.target.getAttribute("thref"))
+          e.target.setAttribute("thref",e.target.getAttribute("href"));
+
+        var href = Y.Lang.substitute(unescape(e.target.getAttribute("thref")),{formula_value:Y.one("#wf_field_update_formula_value").get("value")});
+        e.target.setAttribute("href",href);
+      });
+    });
+</script>
+<% end %>
