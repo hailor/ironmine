@@ -24,7 +24,6 @@ module Irm::LogosManager
       map.merge!({:app_top_logo => app_top_logo.img.url}) if app_top_logo
       map.merge!({:login_page_logo => login_page_logo.img.url}) if login_page_logo
       map.merge!({:address_bar_logo => address_bar_logo.img.url}) if address_bar_logo
-      puts(map.to_json)
     end
 
     # =====================================生成logo缓存===============================================
