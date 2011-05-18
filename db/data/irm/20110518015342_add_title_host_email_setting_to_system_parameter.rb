@@ -4,7 +4,7 @@ class AddTitleHostEmailSettingToSystemParameter < ActiveRecord::Migration
     app_title = Irm::SystemParameter.new(:parameter_code=>'APPLICATION_TITLE',
                                                :content_type=>'GLOBAL_SETTING',
                                                :data_type=>'TEXT',
-                                               :value => "",
+                                               :value => "Ironmine",
                                                :status_code=>'ENABLED',
                                                :not_auto_mult=>true)
     app_title.system_parameters_tls.build(:system_parameter_id=>app_title.id,
@@ -24,7 +24,7 @@ class AddTitleHostEmailSettingToSystemParameter < ActiveRecord::Migration
     host_name = Irm::SystemParameter.new(:parameter_code=>'HOST_NAME',
                                                :content_type=>'GLOBAL_SETTING',
                                                :data_type=>'TEXT',
-                                               :value => "",
+                                               :value => "IRONMINE_SERVER",
                                                :status_code=>'ENABLED',
                                                :not_auto_mult=>true)
     host_name.system_parameters_tls.build(:system_parameter_id=>host_name.id,
@@ -64,7 +64,7 @@ class AddTitleHostEmailSettingToSystemParameter < ActiveRecord::Migration
     emission_email_address = Irm::SystemParameter.new(:parameter_code=>'EMISSION_EMAIL_ADDRESS',
                                                :content_type=>'GLOBAL_SETTING',
                                                :data_type=>'TEXT',
-                                               :value => "",
+                                               :value => "ironmine.root@gmail.com",
                                                :status_code=>'ENABLED',
                                                :not_auto_mult=>true)
     emission_email_address.system_parameters_tls.build(:system_parameter_id=>emission_email_address.id,
