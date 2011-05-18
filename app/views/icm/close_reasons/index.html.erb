@@ -16,18 +16,17 @@
         </table>
       </div>
       <div class="pbBody">
-        <div id="pizza" class="datatable" style="width:100%">
+        <div id="close_reason_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
             <%= link_to(t(:edit), {:action=>"edit",:id=>"{id}"}) %>&nbsp;
             <%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
           </div>
         </div>
-        <%= datatable("pizza",url_for(:action=>"get_data",:format=>"json"),
+        <%= datatable("close_reason_list",url_for(:action=>"get_data",:format=>"json"),
                       [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"80px"},
-                       {:key=>"product_module_name",:label=>t(:label_icm_close_reason_company),:sortable=>true},
-                       {:key=>"permission_code",:label=>t(:label_icm_close_reason_name),:sortable=>true},
-                       {:key=>"name",:label=>t(:label_icm_close_reason_close_code),:sortable=>true},
-                       {:key=>"page_controller",:label=>t(:label_icm_close_reason_category),:sortable=>true}
+                       {:key=>"company_name",:label=>t(:label_icm_close_reason_company),:sortable=>true},
+                       {:key=>"name",:label=>t(:label_icm_close_reason_name),:sortable=>true},
+                       {:key=>"close_code",:label=>t(:label_icm_close_reason_close_code),:sortable=>true}
                        ],{:paginator_box=>"closePaginator"})%>
         <div id="closePaginator"></div>
       </div>

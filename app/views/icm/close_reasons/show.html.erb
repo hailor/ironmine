@@ -20,7 +20,7 @@
         <tbody>
             <tr>
               <td class="labelCol"><label><%=t(:label_icm_close_reason_company)%></label></td>
-              <td class="dataCol"><%= Irm::Company.multilingual.find(@close_reason.company_id).name%></td>
+              <td class="dataCol"><%= @close_reason.company_name%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>
@@ -32,7 +32,7 @@
             </tr>
             <tr>
               <td class="labelCol"><label><%=t(:label_icm_close_reason_name)%></label></td>
-              <td class="dataCol"><%= @close_reason.name%></td>
+              <td class="dataCol"><%= @close_reason[:name]%></td>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty">&nbsp;</td>
             </tr>

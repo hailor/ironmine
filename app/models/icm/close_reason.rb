@@ -13,6 +13,9 @@ class Icm::CloseReason < ActiveRecord::Base
   #加入activerecord的通用方法和scope
   query_extend
 
-
-
+  scope :with_company,lambda{
+    joins("LEFT OUTER JOIN #{Irm::Company.view_name} ON #{Irm::Company.view_name}.id = #{table_name}.company_id
+      AND #{Irm::Company.view_name}.language = '#{I18n.locale}'").
+    select("#{Irm::Company.view_name}.name company_name")
+  }
 end
