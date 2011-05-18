@@ -35,15 +35,12 @@
 
     <script>
       GY.use(function(Y){
-        Y.one("#createNewButton").on("mouseout", function(){
+        Y.on("click", function(e){
+          var el = e.target;
+          if (Y.one("#createNewButton") && !Y.one("#createNewButton").contains(el)) {
             Y.one("#createNewMenu").setStyle("display", "none");
-        });
-        Y.one("#createNewMenu").on("mouseout", function(){
-            Y.one("#createNewMenu").setStyle("display", "none");
-        });
-        Y.one("#createNewMenu").on("mouseover", function(){
-            Y.one("#createNewMenu").setStyle("display", "block");
-        });
+          }
+        }, document);
         Y.one("#createNewButton").on("click", function(){
             Y.one("#createNewMenu").setStyle("display", "block");
         });
