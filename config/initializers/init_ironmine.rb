@@ -101,5 +101,5 @@ Ironmine::Acts::Searchable::SEARCHABLE_ENTITY = {Icm::IncidentRequest.name=>"vie
 
 
 
-#初始化系统图标
-Irm::LogosManager.prepare_logos_cache
+#初始化系统参数
+Irm::SystemParametersManager.prepare_system_parameters_cache

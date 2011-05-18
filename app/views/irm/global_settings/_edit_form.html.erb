@@ -32,6 +32,34 @@
       <table class="detailList" cellpadding="0" cellspacing="0" border="0">
         <tbody>
             <tr>
+              <td class="labelCol"><label><%=(@settings.query_by_code("APPLICATION_TITLE").first[:name])%></label></td>
+              <td class="data2Col"><%= text_field_tag @settings.query_by_code("APPLICATION_TITLE").first[:parameter_code],
+                                                      @settings.query_by_code("APPLICATION_TITLE").first[:value],
+                                                      :jrequired => true%>
+              </td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(@settings.query_by_code("HOST_NAME").first[:name])%></label></td>
+              <td class="data2Col"><%= text_field_tag @settings.query_by_code("HOST_NAME").first[:parameter_code],
+                                                      @settings.query_by_code("HOST_NAME").first[:value],
+                                                      :jrequired => true%>
+              </td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(@settings.query_by_code("HOST_PATH").first[:name])%></label></td>
+              <td class="data2Col"><%= text_field_tag @settings.query_by_code("HOST_PATH").first[:parameter_code],
+                                                      @settings.query_by_code("HOST_PATH").first[:value],
+                                                      :jrequired => true%>
+              </td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(@settings.query_by_code("EMISSION_EMAIL_ADDRESS").first[:name])%></label></td>
+              <td class="data2Col"><%= text_field_tag @settings.query_by_code("EMISSION_EMAIL_ADDRESS").first[:parameter_code],
+                                                      @settings.query_by_code("EMISSION_EMAIL_ADDRESS").first[:value],
+                                                      :jrequired => true%>
+              </td>
+            </tr>
+            <tr>
               <td class="labelCol"><label><%= t(:label_irm_global_setting_theme_name)%></label></td>
               <td class="data2Col"><%=f.select :theme_name, available_themes, {:include_blank => false}%></td>
             </tr>
@@ -39,11 +67,6 @@
               <td class="labelCol"><label><%= t(:label_irm_global_setting_upload_file_limit) %></label></td>
               <td class="data2Col"><%=f.text_field :upload_file_limit, :irm_numberonly => true, :required => true%></td>
             </tr>
-            <tr>
-              <td class="labelCol"><label><%= t(:label_irm_global_setting_timezone)%></label></td>
-              <td class="data2Col"><%=f.select :timezone, available_timezone, {:include_blank => false}%></td>
-            </tr>
-
             <tr>
               <td class="labelCol"><label><%= t(:label_irm_global_setting_timezone)%></label></td>
               <td class="data2Col"><%=f.select :timezone, available_timezone, {:include_blank => false}%></td>
