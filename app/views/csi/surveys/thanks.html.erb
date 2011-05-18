@@ -1,4 +1,4 @@
-<div id="ep" class="bEditBlock bPageBlock">
+<div id="ep" class="bDetailBlock bPageBlock">
   <div class="pbBody">
     <div class="pbSubsection">
       <br>
@@ -24,3 +24,6 @@
     </table>
   </div>
 </div>
+<% content_for :sidebar do %>
+    <%= render :partial =>"/irm/common/recently_objects" %>
+<% end %>

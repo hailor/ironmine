@@ -235,7 +235,7 @@ class Csi::SurveysController < ApplicationController
                                      :notice => @thank_message) }
           format.xml  { render :xml => @survey, :status => :created, :location => @survey }
           format.js   {
-            render 'thanks'
+            render :thanks
           }
         else
           if @survey
