@@ -109,6 +109,17 @@ class Irm::WfRulesController < ApplicationController
     end
   end
 
+  def destroy_action
+    @wf_rule_action = Irm::WfRuleAction.find(params[:id]);
+    @wf_rule_action.destroy
+
+    respond_to do |format|
+      format.html { redirect_back_or_default({:action=>"show",:id=>params[:id]})
+ }
+      format.xml  { head :ok }
+    end
+  end
+
   def active
     @wf_rule = Irm::WfRule.find(params[:id])
     attrs = {}

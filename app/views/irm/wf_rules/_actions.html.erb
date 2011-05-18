@@ -1,0 +1,47 @@
+<div class="datatable">
+  <div class="yui3-widget yui3-datatable">
+    <div class="yui3-datatable-content">
+        <table id='rows' cellspacing="0" cellpadding="0" class='grid'>
+          <thead class="yui3-datatable-columns">
+            <tr class="yui3-datatable-first yui3-datatable-last">
+              <th class="yui3-column" style="width:80px;">
+                <div class="yui3-datatable-liner"><%= t(:operation) %>
+                </div>
+              </th>
+              <th class="yui3-column" style="width:180px;">
+                <div class="yui3-datatable-liner"><%= t(:label_irm_wf_rule_action_type) %>
+                </div>
+              </th>
+              <th class="yui3-column" style="width:180px;">
+                <div class="yui3-datatable-liner"><%= t(:label_irm_wf_rule_action_description) %>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="yui3-datatable-data">
+          <% actions.each do |action| %>
+          <tr id="<%=action[:action].id%>" class="yui3-datatable-even">
+            <td class="yui3-column">
+              <div class='yui3-datatable-liner'>
+
+                <%= link_to(t(:edit),action[:edit_url_options].merge(:source_str=>"WF_RULE,#{action[:action].rule_id}",:back_url=>url_for({}))) %>
+                <%= link_to(t(:delete),{:action=>"destroy_action",:id=>action[:action].id,:back_url=>url_for({})},{:confirm => t(:label_are_you_sure) ,:method => :delete} )%>
+               </div>
+            </td>
+            <td class="yui3-column">
+              <div class='yui3-datatable-liner'>
+                  <%= action[:action_type_name] %>
+               </div>
+            </td>
+            <td class="yui3-column">
+              <div class='yui3-datatable-liner'>
+                <%= link_to(action[:ref_action].name,action[:show_url_options].merge(:source_str=>"WF_RULE,#{action[:action].rule_id}",:back_url=>url_for({}))) %>
+              </div>
+            </td>
+          </tr>
+          <% end -%>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>

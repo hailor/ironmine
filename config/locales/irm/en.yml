@@ -940,6 +940,12 @@ en:
   label_irm_wf_rule_config: Config Workflow Rule
   label_irm_wf_rule_description: Description
   label_irm_wf_rule_active: Active
+  label_irm_wf_rule_actions: Workflow Actions
+  label_irm_wf_rule_add_actions: Add Workflow Action
+  label_irm_wf_rule_immediate_actions: Immediate Action
+  label_irm_wf_rule_time_dependent_actions: Time Dependent
+  label_irm_wf_rule_action_type: Action Type
+  label_irm_wf_rule_action_description: Description
   #========================end wf rules====================
 
   #======================== calendar tasks====================

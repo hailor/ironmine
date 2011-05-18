@@ -646,6 +646,8 @@ Ironmine::Application.routes.draw do
     match '/wf_rules/:id/active(.:format)' => "wf_rules#active", :via => :get
     match '/wf_rules/:id(.:format)' => "wf_rules#update", :via => :put
     match '/wf_rules/:id/show(.:format)' => "wf_rules#show", :via => :get
+    match '/wf_rules/:id/destroy_action(.:format)' => "wf_rules#destroy_action", :via => :delete
+
 
     #wf_field_updates
     match '/wf_field_updates(/index)(.:format)' => "wf_field_updates#index", :via => :get

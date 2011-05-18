@@ -245,7 +245,9 @@ a#headerSearchOptionsLink {text-decoration:none;}
 
 /*******************************************************************/
 .menuButton {
+    margin-top: 10px;
     text-align: left;
+    display:inline-block;
 }
 .menuButton div.menuLabel {
     height: 20px;
@@ -257,6 +259,7 @@ a#headerSearchOptionsLink {text-decoration:none;}
     border-color: #B5B5B5 #B5B5B5 #7F7F7F;
 	border-width: 1px;
     border-style: solid;
+    border-radius: 3px 3px 3px 3px;
 	text-decoration: none;
 	color:#333333;
 	display: inline-block;

@@ -1063,6 +1063,12 @@ zh:
   label_irm_wf_rule_config: 设置工作流规则
   label_irm_wf_rule_description: 描述
   label_irm_wf_rule_active: 启用
+  label_irm_wf_rule_actions: 工作流操作
+  label_irm_wf_rule_add_actions: 添加工作流操作
+  label_irm_wf_rule_immediate_actions: 立即执行的操作
+  label_irm_wf_rule_time_dependent_actions: 信赖于时间的操作
+  label_irm_wf_rule_action_type: 类型
+  label_irm_wf_rule_action_description: 描述
   #========================end wf rules====================
 
   #======================== calendar tasks====================
@@ -1103,6 +1109,7 @@ zh:
   label_irm_todo_task_display_opts_next_7_days: 未来7天内
 
   #======================== wf field updates====================
+  label_irm_wf_field_update: 字段更新
   label_irm_wf_field_update_list: 字段更新列表
   label_irm_wf_field_update_bo_code: 业务对像
   label_irm_wf_field_update_name: 名称
@@ -1126,6 +1133,7 @@ zh:
   label_irm_formula_function_syntax_return_value: 语法正确，返回值为
   #======================== end wf field updates====================
   #======================== wf mail alert====================
+  label_irm_wf_mail_alert: 邮件警告
   label_irm_wf_mail_alert_list: 邮件警告列表
   label_irm_wf_mail_alert_bo_code: 业务对像
   label_irm_wf_mail_alert_name: 名称
