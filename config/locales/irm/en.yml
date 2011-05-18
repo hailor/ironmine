@@ -947,7 +947,12 @@ en:
   label_irm_wf_rule_action_type: Action Type
   label_irm_wf_rule_action_description: Description
   #========================end wf rules====================
-
+  #======================== wf_rule_time_triggers====================
+  label_irm_wf_rule_time_trigger_new: New time trigger
+  label_irm_wf_rule_time_trigger_edit: Edit time trigger
+  label_irm_wf_rule_time_trigger_rule: Workflow rule
+  label_irm_wf_rule_trigger_datetime: Tigger Date
+  #========================end wf_rule_time_triggers====================
   #======================== calendar tasks====================
   label_irm_todo_task: Events
   label_irm_todo_task_new: Create Event

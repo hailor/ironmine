@@ -1,5 +1,45 @@
 <%= stylesheet_link_tag "/javascripts/yui3.3/datatable/assets/skins/sam/datatable.css"%>
+<style type="text/css">
+  div.minBlock{
+    background-color: #DAE0E2;
+    border: 1px solid #999999;
+    padding: 10px;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 1px 1px 2px #333333;
+    margin-top: 20px;
+  }
+  div.minBlockHeader{
+    border-bottom: 1px solid #999999;
+    border-width: 0 0 1px;
+    margin: -10px -10px 10px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background-color: #FFFFFF;
+    border-color: #D4DADC;
+    border-style: solid;
+    padding: 5px;
 
+  }
+  div.minBlockHeader .minTitle{
+    display: inline-block;
+    vertical-align: middle;
+    color: #333333;
+    font-weight: bold;
+    margin-left: 5px;
+  }
+  div.minBlockHeader img{
+      vertical-align: middle;
+  }
+  div.minBlockHeader .minLink{
+    vertical-align: middle;
+    margin-left: 25px;
+  }
+   div.minBlockHeader .minLink a{
+  }
+  div.minBlockBody{
+
+  }
+</style>
 <%= page_title %>
 
 <div id="ep" class="bDetailBlock bPageBlock">
@@ -82,7 +122,7 @@
         </div>
         <div class="pbSubsection" style="padding: 0 12px;">
           <div>
-            <%= render(:partial =>"actions",:locals => {:actions=>wf_rule_immediate_actions(@wf_rule.id)}) %>
+            <%= render(:partial =>"immediate_actions",:locals => {:actions=>wf_rule_immediate_actions(@wf_rule.id)}) %>
           </div>
           <div>
             <span id="createAction" class="menuButton">
@@ -107,6 +147,12 @@
           <h3><%= t(:label_irm_wf_rule_time_dependent_actions) %></h3>
         </div>
         <div class="pbSubsection" style="padding: 0 12px;">
+          <div>
+            <%= render(:partial =>"time_triggers",:locals => {:time_triggers=>wf_rule_time_triggers(@wf_rule.id)}) %>
+          </div>
+          <div style="display:inline-block;margin-top:10px;">
+            <div class="button"><%= link_to t(:label_irm_wf_rule_add_time_trigger), {:controller=>"irm/wf_rule_time_triggers",:action => "new", :rule_id => @wf_rule.id}%></div>
+          </div>
         </div>
       </div>
     </div>

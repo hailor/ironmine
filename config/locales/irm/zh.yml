@@ -1069,7 +1069,14 @@ zh:
   label_irm_wf_rule_time_dependent_actions: 信赖于时间的操作
   label_irm_wf_rule_action_type: 类型
   label_irm_wf_rule_action_description: 描述
+  label_irm_wf_rule_add_time_trigger: 添加时间触发器
   #========================end wf rules====================
+  #======================== wf_rule_time_triggers====================
+  label_irm_wf_rule_time_trigger_new: 新建时间触发器
+  label_irm_wf_rule_time_trigger_edit: 编辑时间触发器
+  label_irm_wf_rule_time_trigger_rule: 工作流规则
+  label_irm_wf_rule_trigger_datetime: 规则触发时间
+  #========================end wf_rule_time_triggers====================
 
   #======================== calendar tasks====================
   label_irm_todo_task: 任务

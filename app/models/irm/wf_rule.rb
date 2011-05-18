@@ -9,6 +9,8 @@ class Irm::WfRule < ActiveRecord::Base
 
   query_extend
 
+  has_many :wf_rule_time_triggers,:foreign_key => :rule_id
+
   scope :with_evaluate_criteria_rule,lambda{|language|
     joins("LEFT OUTER JOIN #{Irm::LookupValue.view_name} evaluate_criteria_rule ON evaluate_criteria_rule.lookup_type='WORKFLOW_RULE_EVALUATE_TYPE' AND evaluate_criteria_rule.lookup_code = #{table_name}.evaluate_criteria_rule AND evaluate_criteria_rule.language= '#{language}'").
     select(" evaluate_criteria_rule.meaning evaluate_criteria_rule_name")
