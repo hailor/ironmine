@@ -11,6 +11,8 @@
   }
 </style>
 <%= form_for(@wf_mail_alert,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+  <%= hidden_params_field(:source_str)%>
+  <%= back_url_hidden_field_tag%>
 <div id="ep" class="bEditBlock bPageBlock">
   <div class="pbHeader">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -19,7 +21,8 @@
           <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_wf_mail_alert_new)%></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_back t(:cancel)%></div>
+            <div class="button"><%= link_to t(:save_and_new), {:action => "create",:save_and_new=>"Y"},{:class=>"submit"} %></div>
+            <div class="button"><%= link_to t(:cancel),back_url_default({:action=>"index"})%></div>
           </td>
         </tr>
       </tbody>
@@ -83,7 +86,7 @@
                 <div class="recipient  recipientLabel">
                   <label for="wf_mail_alert_recipient_type"><%=t(:label_irm_wf_mail_available_recipient)%></label>
                 </div>
-                <div class="recipient" id="recipientSource" href="<%= url_for(:controller=>"irm/wf_mail_alerts",:action=>"recipient_source",:bo_code=>'{bo_code}',:recipient_type=>'{recipient_type}') %>">
+                <div class="recipient" id="recipientSource" href="<%= url_for(:controller=>"irm/wf_mail_alerts",:action=>"recipient_source",:bo_code=>'{bo_code}',:recipient_type=>'{recipient_type}',:format=>:js) %>">
                   <%=text_field_tag :default,t(:label_irm_wf_mail_default_recipient),:id=>"recipientValue",:readonly=>true%>
                 </div>
                 <div class="recipient">
@@ -116,7 +119,8 @@
           <td class="pbTitle"></td>
           <td id="bottomButtonRow" class="pbButtonb">
             <div class="button"><%= f.submit t(:save)%></div>
-            <div class="button"><%= link_back t(:cancel)%></div>
+            <div class="button"><%= link_to t(:save_and_new), {:action => "create",:save_and_new=>"Y"},{:class=>"submit"} %></div>
+            <div class="button"><%= link_to t(:cancel),back_url_default({:action=>"index"})%></div>
           </td>
         </tr>
       </tbody>
@@ -204,6 +208,10 @@
     });
     // init recipient
     Y.one("#wf_mail_alert_recipient").simulate("change");
-
+    Y.one("form.new_irm_wf_mail_alert").delegate("click",function(e){
+        e._currentTarget.setAttribute("action",e.target.getAttribute("href"));
+        e.preventDefault();
+        e._currentTarget.submit();
+      },"a.submit");
   });
 </script>

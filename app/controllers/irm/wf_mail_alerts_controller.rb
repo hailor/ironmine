@@ -1,4 +1,4 @@
-class Irm::WfMailAlertsController < ApplicationController
+class Irm::WfMailAlertsController < Irm::WfActionController
   # GET /wf_mail_alerts
   # GET /wf_mail_alerts.xml
   def index
@@ -24,7 +24,7 @@ class Irm::WfMailAlertsController < ApplicationController
   # GET /wf_mail_alerts/new
   # GET /wf_mail_alerts/new.xml
   def new
-    @wf_mail_alert = Irm::WfMailAlert.new
+    @wf_mail_alert = Irm::WfMailAlert.new(:bo_code=>get_bo_code_from_source_str(params[:source_str]))
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,7 +44,15 @@ class Irm::WfMailAlertsController < ApplicationController
     @wf_mail_alert.sync_mail_recipients(params[:recipients]) if params[:recipients].present?
     respond_to do |format|
       if @wf_mail_alert.save
-        format.html { redirect_to({:action => "index"}, :notice => t(:successfully_created)) }
+        create_for_source(params[:source_str],@wf_mail_alert)
+        format.html {
+          if(params[:save_and_new])
+            redirect_to(({:action => "new"}).merge(get_default_url_options([:back_url,:source_str])), :notice => t(:successfully_created))
+          else
+            redirect_back_or_default({:action=>"index"})
+          end
+
+        }
         format.xml  { render :xml => @wf_mail_alert, :status => :created, :location => @wf_mail_alert }
       else
         format.html { render :action => "new" }
@@ -63,7 +71,13 @@ class Irm::WfMailAlertsController < ApplicationController
     end
     respond_to do |format|
       if @wf_mail_alert.update_attributes(params[:irm_wf_mail_alert])
-        format.html { redirect_to({:action => "index"}, :notice => t(:successfully_updated)) }
+        format.html {
+          if(params[:save_and_new])
+            redirect_to(({:action => "new"}).merge(get_default_url_options([:back_url,:source_str])), :notice => t(:successfully_updated))
+          else
+            redirect_back_or_default({:action=>"index"})
+          end
+        }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -93,4 +107,5 @@ class Irm::WfMailAlertsController < ApplicationController
       format.json {render :json=>to_jsonp(wf_mail_alerts.to_grid_json([:name,:bo_name,:mail_template_name,:mail_alert_code,:from_email],count))}
     end
   end
+
 end

@@ -8,7 +8,7 @@
           <td class="pbTitle"><h2 class="mainTitle"><%= @wf_mail_alert.name %></h2></td>
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @wf_mail_alert}%></div>
-            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+            <div class="button"><%= link_to t(:cancel),back_url_default({:action=>"index"})%></div>
           </td>
         </tr>
       </tbody>
