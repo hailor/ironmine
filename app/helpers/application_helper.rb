@@ -464,5 +464,14 @@ module ApplicationHelper
     select_tag(name, choices,options)
   end
 
-
+  def get_default_url_options(keys)
+    return {} unless keys.is_a?(Array)&&keys.any?
+    options =  {}
+    keys.each do |key|
+      if params[key.to_sym].present?
+        options.merge!(key.to_sym=>params[key.to_sym])
+      end
+    end
+    options
+  end
 end
