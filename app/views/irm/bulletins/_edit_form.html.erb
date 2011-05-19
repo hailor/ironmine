@@ -8,7 +8,7 @@
         <tr>
           <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_bulletin_edit)%></h2></td>
           <td id="topButtonRow" class="pbButton">
-            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= f.submit t(:save), :id => "new_bulletin_submit_top"%></div>
             <% if @return_url %>
               <div class="button"><%= link_to t(:cancel), @return_url%></div>
             <% else %>
@@ -106,7 +106,7 @@
         <tr>
           <td class="pbTitle"></td>
           <td id="bottomButtonRow" class="pbButton">
-            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= f.submit t(:save), :id => "new_bulletin_submit"%></div>
             <% if @return_url %>
               <div class="button"><%= link_to t(:cancel), @return_url%></div>
             <% else %>
@@ -127,7 +127,7 @@
      new Y.CascadeSelect({source: "#ava_organizations",target:["#ava_departments"]});
   });
 
-  var line_count = <%= @bulletin.bulletin_accesses.size%>;
+  var line_count = <%= @bulletin.bulletin_accesses.size%> ;
 
   function addCompanyRule(){
       GY.use(function(Y)
