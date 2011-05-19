@@ -22,25 +22,27 @@
               <td class="labelCol"><label><%=(t :label_icm_rule_setting_company)%></label></td>
               <td class="dataCol"><%=@rule_setting[:company_name]%></td>
               <td class="labelCol"><label><%=(t :label_icm_rule_setting_report_date_changable)%></label></td>
-              <td class="dataCol"><%=@rule_setting.report_date_changable%></td>
+              <td class="dataCol"><%= check_img(@rule_setting.report_date_changable)%></td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%=(t :label_icm_rule_setting_respond_date_changable)%></label></td>
-              <td class="dataCol"><%= @rule_setting.respond_date_changable%></td>
+              <td class="labelCol"><label><%=(t :label_icm_rule_setting_auto_closure_days)%></label></td>
+              <td class="dataCol"><%= @rule_setting.auto_closure_days%></td>
               <td class="labelCol"><label><%=(t :label_icm_rule_setting_slove_date_changable)%></label></td>
-              <td class="dataCol"><%= @rule_setting.slove_date_changable%></td>
+              <td class="dataCol"><%= check_img(@rule_setting.slove_date_changable)%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_icm_rule_setting_assignment_process_code)%></label></td>
               <td class="dataCol"><%= @rule_setting.assignment_process_code%></td>
-              <td class="labelCol"><label><%=(t :label_icm_rule_setting_auto_closure_days)%></label></td>
-              <td class="dataCol"><%= @rule_setting.auto_closure_days%></td>
+              <td class="labelCol"><label><%=(t :label_icm_rule_setting_respond_date_changable)%></label></td>
+              <td class="dataCol"><%= check_img(@rule_setting.respond_date_changable)%></td>
+            </tr>
+            <tr>
+               <td class="labelCol"><label><%=(t :label_icm_rule_setting_status_code)%></label></td>
+              <td class="dataCol"><%= check_img(@rule_setting[:status_code])%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_icm_rule_setting_description)%></label></td>
               <td class="dataCol"><%= @rule_setting.description%></td>
-               <td class="labelCol"><label><%=(t :label_icm_rule_setting_status_code)%></label></td>
-              <td class="dataCol"><%= @rule_setting[:status_meaning]%></td>
             </tr>
         </tbody>
       </table>
