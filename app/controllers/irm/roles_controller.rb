@@ -6,7 +6,7 @@ class Irm::RolesController < ApplicationController
   end
 
   def show
-    @role = Irm::Role.multilingual.find(params[:id])
+    @role = Irm::Role.multilingual.with_role_type.with_report_group.with_menu.find(params[:id])
     @fgs = Irm::FunctionGroup.multilingual.enabled
     @fs = @role.functions.multilingual.group_by{|i| i.group_code}
     respond_to do |format|

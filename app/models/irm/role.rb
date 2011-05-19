@@ -62,6 +62,30 @@ class Irm::Role < ActiveRecord::Base
   scope :hidden,lambda { where(:hidden_flag=>Irm::Constant::SYS_YES)}
   scope :not_hidden,lambda { where(:hidden_flag=>Irm::Constant::SYS_NO)}
 
+  scope :with_menu, lambda{
+    select("mnt.name menu_name").
+        joins(",#{Irm::Menu.table_name} mn, #{Irm::MenusTl.table_name} mnt").
+        where("mn.menu_code = #{table_name}.menu_code").
+        where("mnt.menu_id = mn.id").
+        where("mnt.language = ?", I18n.locale)
+  }
+
+  scope :with_report_group, lambda{
+    select("rgt.name report_group_name").
+        joins(",#{Irm::ReportGroup.table_name} rg, #{Irm::ReportGroupsTl.table_name} rgt").
+        where("#{table_name}.report_group_code = rg.group_code").
+        where("rg.id = rgt.report_group_id").
+        where("rgt.language = ?", I18n.locale)
+  }
+
+  scope :with_role_type, lambda{
+    select("rtlvt.meaning role_type_name").
+        joins(",#{Irm::LookupValue.table_name} rtlv, #{Irm::LookupValuesTl.table_name} rtlvt").
+        where("#{table_name}.service_role_type = rtlv.lookup_code").
+        where("rtlvt.language = ?", I18n.locale).
+        where("rtlvt.lookup_value_id = rtlv.id").
+        where("rtlv.lookup_type = ?", "IRM_ROLE_TYPE")
+  }
   def self.current
     @current_role
   end

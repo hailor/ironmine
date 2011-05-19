@@ -27,6 +27,14 @@
               <td class="data2Col"><div><%= @function[:name]%></div></td>
             </tr>
             <tr>
+              <td class="labelCol"><label><%=(t :label_irm_function_default_flag)%></label></td>
+              <td class="dataCol"><%= check_img(@function[:default_flag])%></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label><%=(t :label_irm_function_public_flag)%></label></td>
+              <td class="dataCol"><%= check_img(@function[:public_flag])%></td>
+            </tr>
+            <tr>
               <td class="labelCol"><label><%=t(:label_irm_function_description)%></label></td>
               <td class="data2Col"><div><%= @function[:description]%></div></td>
             </tr>
