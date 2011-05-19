@@ -3,7 +3,6 @@ class Icm::IncidentJournal < ActiveRecord::Base
 
   belongs_to :incident_request
 
-  acts_as_event
 
   has_many :incident_histories,:foreign_key => "journal_id"
 

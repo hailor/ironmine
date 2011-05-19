@@ -5,7 +5,7 @@ class Irm::EventManager
       return if Irm::Event.name.eql?(bo_model_name)||Delayed::Backend::ActiveRecord::Job.name.eql?(bo_model_name)
       bo = Irm::BusinessObject.where(:bo_model_name=>bo_model_name).first
       #raise(ArgumentError, "Missing Business Object: #{bo_model_name}")
-      return unless bo
+      return unless bo&&bo.workflow_flag.eql?(Irm::Constant::SYS_YES)
       event = Irm::Event.create(:bo_code=>bo.business_object_code,:business_object_id=>bo_model_id,:event_code=>"WORKFLOW_EVENT",:event_type=>event_type)
       Delayed::Job.enqueue(Irm::Jobs::RuleProcessJob.new(event.id))
     end
