@@ -8,7 +8,7 @@
         <tr>
           <td class="pbTitle"><h2 class="mainTitle"><%=t(:label_irm_bulletin_new)%></h2></td>
           <td id="topButtonRow" class="pbButton">
-            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= f.submit t(:save), :id => "new_bulletin_submit_top"%></div>
             <% if @return_url%>
               <div class="button"><%= link_to t(:cancel), @return_url%></div>
             <% else %>
@@ -39,9 +39,12 @@
               <td class="labelCol"><label><%=(t :label_irm_bulletin_title)%></label></td>
               <td class="data2Col"><%=f.text_field :title, :required=>true,:style => "width:80%;min-with:200px;"%></td>
             </tr>
+
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_bulletin_content)%></label></td>
-              <td class="data2Col"><%=f.text_area :content,:style => "width:80%;min-with:200px;", :rows => 10%></td>
+              <td class="dataCol" colspan="4" width="100%">
+                <%= f.text_area :content ,:id=>"msgEditor",:value=>"  ",:style=>"display:none;"%>
+              </td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_bulletin_sticky_flag)%></label></td>
@@ -101,7 +104,7 @@
         <tr>
           <td class="pbTitle"></td>
           <td id="bottomButtonRow" class="pbButton">
-            <div class="button"><%= f.submit t(:save)%></div>
+            <div class="button"><%= f.submit t(:save), :id => "new_bulletin_submit"%></div>
             <% if @return_url %>
               <div class="button"><%= link_to t(:cancel), @return_url%></div>
             <% else %>
@@ -257,4 +260,39 @@
           Y.one("#tr_" + l).remove();
       })
   }
+</script>
+
+<script type="text/javascript">
+
+GY.use('irm','node','substitute','yui2-editor', function(Y) {
+  var YAHOO = Y.YUI2;
+  var editor = new YAHOO.widget.Editor('msgEditor', {
+        height:'100px',
+        width:'80%',
+        toolbar: {
+            buttons: [
+                { group: 'textstyle',
+                    buttons: [
+                        { type: 'push', label: 'Bold', value: 'bold' },
+                        { type: 'push', label: 'Italic', value: 'italic' },
+                        { type: 'push', label: 'Underline', value: 'underline' },
+                        { type: 'push', label: 'Create an Unordered List', value: 'insertunorderedlist' },
+	                    { type: 'push', label: 'Create an Ordered List', value: 'insertorderedlist' },
+                        { type: 'color', label: 'Font Color', value: 'forecolor', disabled: true },
+                        { type: 'color', label: 'Background Color', value: 'backcolor', disabled: true }
+                    ]
+                }
+            ]
+        }
+    });
+    editor.render();
+
+    Y.all("#new_bulletin_submit").on("click",function(){
+      editor.saveHTML();
+    });
+
+    Y.all("#new_bulletin_submit_top").on("click",function(){
+      editor.saveHTML();
+    });
+});
 </script>
