@@ -34,7 +34,7 @@
               <td class="labelCol"><label><%=(t :label_icm_incident_status_description)%></label></td>
               <td class="dataCol"><%= @incident_status[:description]%></td>
               <td class="labelCol"><label><%=(t :default_flag)%></label></td>
-              <td class="dataCol"><%= @incident_status.default_flag%></td>
+              <td class="dataCol"><%= check_img(@incident_status.default_flag)%></td>
             </tr>
             <tr>
               <td class="labelCol"><label><%=(t :label_irm_script_status_code)%></label></td>

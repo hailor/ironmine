@@ -28,9 +28,9 @@
           </div>               
         </div>
         <%= datatable("entry_statuses_list",url_for(:action=>"get_data",:format=>"json"),
-                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"40px"},
-                   {:key=>"entry_status_code",:label=>t(:label_skm_entry_status_code),:sortable=>true, :searchable => true,:width=>"15%"},
-                   {:key=>"name",:label=>t(:name),:sortable=>true, :searchable => true,:width=>"25%"},
+                  [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"60px"},
+                   {:key=>"entry_status_code",:label=>t(:label_skm_entry_status_code),:sortable=>true, :searchable => true,:width=>"100px"},
+                   {:key=>"name",:label=>t(:name),:sortable=>true, :searchable => true,:width=>"150px"},
                    {:key=>"description",:label=>t(:description),:sortable=>true},
                    {:key=>"visiable_flag",:label=>t(:label_skm_entry_status_visiable),:formatter=>"Y.irm.template",:sortable=>true,:width=>"40px"},
                    {:key=>"status_code",:label=>t(:active),:formatter=>"Y.irm.template",:sortable=>true, :width => "40px"}], {:search_box => "statusesSearchBox"})%>
