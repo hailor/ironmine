@@ -54,7 +54,17 @@ class Irm::WfRule < ActiveRecord::Base
   end
   # apply the workflow
   def apply(business_object)
-    logger.debug(business_object)
+    immediate_actions  = Irm::WfRuleAction.where(:rule_id=>self.id,:time_trigger_id=>nil)
+    immediate_actions.each do |action|
+      Delayed::Job.enqueue(Irm::Jobs::ActionProcessJob.new({:bo_id=>business_object.id,:bo_code=>self.bo_code,:action_id=>action.action_reference_id,:action_type=>action.action_type}))
+    end
+
+    self.wf_rule_time_triggers.each do |time_trigger|
+      time_actions  = Irm::WfRuleAction.where(:rule_id=>self.id,:time_trigger_id=>time_trigger)
+      time_actions.each do |action|
+        Delayed::Job.enqueue(Irm::Jobs::ActionProcessJob.new({:bo_id=>business_object.id,:bo_code=>self.bo_code,:action_id=>action.action_reference_id,:action_type=>action.action_type}),0,time_trigger.date_time(business_object))
+      end
+    end
   end
 
 end

@@ -33,4 +33,27 @@ class Irm::WfRuleTimeTrigger < ActiveRecord::Base
     end
     message = "#{self.time_lead} #{self[:time_unit_name]} #{self[:trigger_mode_name]} #{attribute_name}"
   end
+
+  def date_time(bo)
+    ref_datetime = Time.now
+    unless self.trigger_data_object.eql?("wf_rule_trigger_datetime")
+      ref_datetime = Irm::BusinessObject.attribute_of(bo,self.trigger_data_object)
+    end
+    ref_datetime||= Time.now
+    script_str = "#{self.time_lead}"
+    if(time_unit.eql?("HOUR"))
+      script_str +=".hours"
+    else
+      script_str +=".days"
+    end
+
+    if(self.trigger_mode.eql?("BEFORE"))
+      script_str +=".ago(ref_datetime)"
+    else
+      script_str +=".from_now(ref_datetime)"
+    end
+
+    eval(script_str)
+
+  end
 end

@@ -166,4 +166,13 @@ class Irm::BusinessObject < ActiveRecord::Base
     end
     model_query
   end
+
+  def self.attribute_of(bo,attribute_name)
+    value = nil
+    value = bo.send(attribute_name.to_sym) if bo.respond_to?(attribute_name.to_sym)
+    unless value
+      value = bo.attributes[attribute_name.to_sym]
+    end
+    value
+  end
 end
