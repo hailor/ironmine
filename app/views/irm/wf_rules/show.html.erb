@@ -1,3 +1,45 @@
+<%= stylesheet_link_tag "/javascripts/yui3.3/datatable/assets/skins/sam/datatable.css"%>
+<style type="text/css">
+  div.minBlock{
+    background-color: #DAE0E2;
+    border: 1px solid #999999;
+    padding: 10px;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 1px 1px 2px #333333;
+    margin-top: 20px;
+  }
+  div.minBlockHeader{
+    border-bottom: 1px solid #999999;
+    border-width: 0 0 1px;
+    margin: -10px -10px 10px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background-color: #FFFFFF;
+    border-color: #D4DADC;
+    border-style: solid;
+    padding: 5px;
+
+  }
+  div.minBlockHeader .minTitle{
+    display: inline-block;
+    vertical-align: middle;
+    color: #333333;
+    font-weight: bold;
+    margin-left: 5px;
+  }
+  div.minBlockHeader img{
+      vertical-align: middle;
+  }
+  div.minBlockHeader .minLink{
+    vertical-align: middle;
+    margin-left: 25px;
+  }
+   div.minBlockHeader .minLink a{
+  }
+  div.minBlockBody{
+
+  }
+</style>
 <%= page_title %>
 
 <div id="ep" class="bDetailBlock bPageBlock">
@@ -13,7 +55,7 @@
             <% else %>
               <div class="button"><%= link_to t(:active), {:action => "active",:id=>@wf_rule.id,:active=>Irm::Constant::SYS_YES}%></div>
             <% end %>
-            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+            <div class="button"><%= link_to t(:cancel),back_url_default({:action=>"index"})%></div>
           </td>
         </tr>
       </tbody>
@@ -56,4 +98,63 @@
       </table>
     </div>
   </div>
+</div>
+
+
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_wf_rule_actions) %></h2></td>
+              <td class="pbButton">
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+          <h3><%= t(:label_irm_wf_rule_immediate_actions) %></h3>
+        </div>
+        <div class="pbSubsection" style="padding: 0 12px;">
+          <div>
+            <%= render(:partial =>"immediate_actions",:locals => {:actions=>wf_rule_immediate_actions(@wf_rule.id)}) %>
+          </div>
+          <div>
+            <span id="createAction" class="menuButton">
+              <div  class="menuLabel">
+                <span><a><%= t(:label_irm_wf_rule_add_actions)  %></a></span>
+              </div>
+              <div class="menuContent" >
+                <div class="menuItem"><%= link_to(t(:label_irm_wf_mail_alert_new),{:controller => "irm/wf_mail_alerts",:action => "new",:source_str=>"WF_RULE,#{@wf_rule.id}",:back_url=>url_for({})}) %></div>
+                <div class="menuItem"><%= link_to(t(:label_irm_wf_field_update_new),{:controller => "irm/wf_field_updates",:action => "new",:source_str=>"WF_RULE,#{@wf_rule.id}",:back_url=>url_for({})}) %></div>
+                <div class="menuItem"><%= link_to(t(:label_action_add_exists_action),{:action => "add_exists_action",:back_url=>url_for({})}) %></div>
+              </div>
+            </span>
+            <script type="text/javascript">
+              GY.use("menubutton",function(Y){
+                Y.on("domready",function(){
+                  new Y.MenuButton({menuNode:"#createAction",dropAlign:["TL","BL"]});
+                });
+              });
+            </script>
+          </div>
+        </div>
+        <div id="head_2_ep" class="pbSubheader  tertiaryPalette">
+          <h3><%= t(:label_irm_wf_rule_time_dependent_actions) %></h3>
+        </div>
+        <div class="pbSubsection" style="padding: 0 12px;">
+          <div>
+            <%= render(:partial =>"time_triggers",:locals => {:time_triggers=>wf_rule_time_triggers(@wf_rule.id)}) %>
+          </div>
+          <div style="display:inline-block;margin-top:10px;">
+            <div class="button"><%= link_to t(:label_irm_wf_rule_add_time_trigger), {:controller=>"irm/wf_rule_time_triggers",:action => "new", :rule_id => @wf_rule.id}%></div>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>

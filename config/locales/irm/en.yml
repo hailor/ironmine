@@ -377,9 +377,10 @@ en:
   label_irm_mail_template_content: Mail Template Content
   label_irm_mail_template_show: Mail Template
   label_irm_mail_template_edit: Edit Template
-  label_irm_scirpt_context_query_field: Mail template parameters
-  label_irm_scirpt_context_field_name: Parameter name
-  label_irm_scirpt_context_field_key: Parameter value
+  label_irm_mail_template_parameter_field: Mail template parameters
+  label_irm_mail_template_parameter_bo: Business Object
+  label_irm_mail_template_parameter_field_name: Parameter name
+  label_irm_mail_template_parameter_field_key: Parameter value
   #==================end irm mail_templates_controller=======================#
   #=========================    irm currencies_controller=======================#
   label_irm_currency_currency_code: Code
@@ -864,6 +865,7 @@ en:
   label_irm_business_object_new: Copy Business Object
   label_irm_business_object_new: Copy Business Object
   label_irm_business_object_description: Description
+  label_irm_business_object_workflow_flag: Workflow
   #======================== end business objects====================
   #======================== object attributes====================
   label_irm_object_attributes: Object Attributes
@@ -889,6 +891,8 @@ en:
   label_irm_object_attributes_test_information: Test Infomation
   label_irm_object_attribute_invalid_exists_relation_table: Please use exists table alias
   label_irm_object_attribute_invalid_model_attribute: Missing Attribute In BO
+  label_irm_object_attribute_person_flag: Person Attribute
+  label_irm_object_attribute_update_flag: Updateable
   #======================== object attributes====================
   #======================== list of values====================
   label_irm_list_of_value_list: List of Value
@@ -937,8 +941,19 @@ en:
   label_irm_wf_rule_config: Config Workflow Rule
   label_irm_wf_rule_description: Description
   label_irm_wf_rule_active: Active
+  label_irm_wf_rule_actions: Workflow Actions
+  label_irm_wf_rule_add_actions: Add Workflow Action
+  label_irm_wf_rule_immediate_actions: Immediate Action
+  label_irm_wf_rule_time_dependent_actions: Time Dependent
+  label_irm_wf_rule_action_type: Action Type
+  label_irm_wf_rule_action_description: Description
   #========================end wf rules====================
-
+  #======================== wf_rule_time_triggers====================
+  label_irm_wf_rule_time_trigger_new: New time trigger
+  label_irm_wf_rule_time_trigger_edit: Edit time trigger
+  label_irm_wf_rule_time_trigger_rule: Workflow rule
+  label_irm_wf_rule_trigger_datetime: Tigger Date
+  #========================end wf_rule_time_triggers====================
   #======================== calendar tasks====================
   label_irm_todo_task: Events
   label_irm_todo_task_new: Create Event

@@ -30,4 +30,13 @@ module Irm::ObjectAttributesHelper
     end
     object_attributes.collect{|i|[i.attribute_name,i.attribute_name,{:attribute_name=>i.attribute_name}]}
   end
+
+  # only table column
+  def available_updatedable_object_attribute(business_object_code=nil)
+    object_attributes =[]
+    if business_object_code
+      object_attributes = Irm::ObjectAttribute.updateable_column.enabled.multilingual.where(:business_object_code=>business_object_code)
+    end
+    object_attributes.collect{|i|[i.attribute_name,i.attribute_name,{:attribute_name=>i.attribute_name}]}
+  end
 end

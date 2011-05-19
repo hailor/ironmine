@@ -1,0 +1,60 @@
+<%= page_title %>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%= @wf_mail_alert.name %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @wf_mail_alert}%></div>
+            <div class="button"><%= link_to t(:cancel),back_url_default({:action=>"index"})%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_mail_alert_name)%></label></td>
+              <td class="dataCol"><div><%= @wf_mail_alert.name %></div></td>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_mail_alert_mail_template_code)%></label></td>
+              <td class="dataCol"><div><%= @wf_mail_alert[:mail_template_name] %></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_mail_alert_mail_alert_code)%></label></td>
+              <td class="dataCol"><div><%= @wf_mail_alert.mail_alert_code %></div></td>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_mail_alert_bo_code)%></label></td>
+              <td class="dataCol"><div><%= @wf_mail_alert[:bo_name] %></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_mail_recipients)%></label></td>
+              <td class="dataCol" colspan="3" width="82%">
+                  <% if @wf_mail_alert.wf_mail_recipients.any? %>
+                    <% @wf_mail_alert.wf_mail_recipients.each_with_index do |r,index| %>
+                        <div><%= r.label %></div>
+                    <% end %>
+                  <% end %>
+
+              </td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_mail_alert_description)%></label></td>
+              <td class="dataCol" colspan="3" width="82%"><div><%= @wf_mail_alert.description %></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_mail_alert_additional_email)%></label></td>
+              <td class="dataCol" colspan="3" width="82%"><div><%= @wf_mail_alert.additional_email %></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_mail_alert_from_email)%></label></td>
+              <td class="dataCol" colspan="3" width="82%"><div><%= @wf_mail_alert.from_email %></div></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

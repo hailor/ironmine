@@ -48,6 +48,12 @@
               <td class="dataCol"><%=f.check_box :approval_page_field_flag ,:id=>"object_attribute_approval_page_field_flag"%></td>
             </tr>
             <tr>
+              <td class="labelCol"><label for="object_attribute_person_flag"><%=t(:label_irm_object_attribute_person_flag)%></label></td>
+              <td class="dataCol"><%=f.check_box :person_flag,{:id=>"object_attribute_person_flag"}%></td>
+              <td class="labelCol"><label for="object_attribute_update_flag"><%=t(:label_irm_object_attribute_update_flag)%></label></td>
+              <td class="dataCol"><%=f.check_box :update_flag ,:id=>"object_attribute_update_flag"%></td>
+            </tr>
+            <tr>
               <td class="labelCol"><label for="object_attribute_data_type"><%=t(:label_irm_object_attribute_data_type)%></label></td>
               <td class="dataCol"><%=@object_attribute.data_type%></td>
               <td class="labelCol"><label for="object_attribute_data_length"><%=t(:label_irm_object_attribute_data_length)%></label></td>

@@ -25,7 +25,7 @@
               <td class="labelCol"><label ><%=t(:label_irm_business_object_name)%></label></td>
               <td class="dataCol"><%= @business_object[:name] %></td>
             </tr>
-                      <tr>
+            <tr>
               <td class="labelCol"><label ><%=t(:label_irm_business_object_bo_table_name)%></label></td>
               <td class="dataCol"><%= @business_object.bo_table_name %></td>
               <td class="labelCol"><label ><%=t(:label_irm_business_object_bo_model_name)%></label></td>
@@ -36,6 +36,12 @@
               <td class="dataCol"><%= check_img(@business_object.auto_generate_flag) %></td>
               <td class="labelCol"><label ><%=t(:label_irm_business_object_multilingual_flag)%></label></td>
               <td class="dataCol"><%= check_img(@business_object.multilingual_flag) %></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_business_object_workflow_flag)%></label></td>
+              <td class="dataCol"><%= check_img(@business_object.workflow_flag) %></td>
+              <td class="labelCol"><div></div></td>
+              <td class="dataCol"><div></div></td>
             </tr>
         </tbody>
       </table>

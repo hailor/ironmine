@@ -9,8 +9,8 @@
     <tr>
       <td class="labelCol"><label for="object_attribute_lov_code"><%=t(:label_irm_object_attribute_lov_code)%></label></td>
       <td class="dataCol"><div><%=@object_attribute.lov_code%></div></td>
-      <td class="labelCol"><div></div></td>
-      <td class="dataCol"><div></div></td>
+        <td class="labelCol"><label for="object_attribute_person_flag"><%=t(:label_irm_object_attribute_person_flag)%></label></td>
+        <td class="dataCol"><%=check_img(@object_attribute.person_flag) %></td>
     </tr>
     <tr>
       <td class="labelCol"><label for="object_attribute_filter_flag"><%=t(:label_irm_object_attribute_filter_flag)%></label></td>

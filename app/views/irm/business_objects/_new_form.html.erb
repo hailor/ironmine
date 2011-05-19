@@ -43,6 +43,12 @@
               <td class="dataCol empty"><%=f.hidden_field :bo_table_name%></td>
             </tr>
             <tr>
+              <td class="labelCol"><label for="business_object_workflow_flag"><%=t(:label_irm_business_object_workflow_flag)%></label></td>
+              <td class="dataCol"><%=f.check_box(:workflow_flag,:id=>"business_object_workflow_flag")%></td>
+              <td class="labelCol empty">&nbsp;</td>
+              <td class="dataCol empty">&nbsp;</td>
+            </tr>
+            <tr>
               <td class="labelCol empty">&nbsp;</td>
               <td class="dataCol empty"><%=f.hidden_field :auto_generate_flag%></td>
               <td class="labelCol empty">&nbsp;</td>

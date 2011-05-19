@@ -233,10 +233,21 @@ a#headerSearchOptionsLink {text-decoration:none;}
 .menuParent div.menuLabelHover #settingMenu-arrow,
 .menuParent div.menuLabelClick #settingMenu-arrow{background-position: 0 -145px;}
 .messages{height:22px;}
+.message{
+    border-radius: 4px 4px 4px 4px;
+    border-color: #3399FF;
+    background-color: #FFFFCC;
+    border-style: solid;
+    border-width: 1px;
+    color: #000000;
+    padding: 6px 8px 6px 6px;
+}
 
 /*******************************************************************/
 .menuButton {
+    margin-top: 10px;
     text-align: left;
+    display:inline-block;
 }
 .menuButton div.menuLabel {
     height: 20px;
@@ -248,6 +259,7 @@ a#headerSearchOptionsLink {text-decoration:none;}
     border-color: #B5B5B5 #B5B5B5 #7F7F7F;
 	border-width: 1px;
     border-style: solid;
+    border-radius: 3px 3px 3px 3px;
 	text-decoration: none;
 	color:#333333;
 	display: inline-block;
@@ -917,4 +929,34 @@ div.noTableFooter {
     padding-right: 0;
     padding-top: 10px;
     text-align: center;
+}
+/*****************************duel**************************************/
+table.duel tr.duelList select{
+    min-width:180px;
+}
+table.duel tr th{
+    font-weight:bold;
+}
+table.duel tr.duelList td{
+    text-align: center;
+    vertical-align: middle;
+}
+.rightArrowIcon{
+    background: url("../images/combobox_arrows_sprite.gif") no-repeat scroll 0 0 transparent;
+    height: 20px;
+    margin: 0 2px;
+    width: 24px;
+}
+a:hover .rightArrowIcon{
+    background-position: left -20;
+}
+.leftArrowIcon{
+    background: url("../images/combobox_arrows_sprite.gif") no-repeat scroll 0 0 transparent;
+    background-position: left -60;
+    height: 20px;
+    margin: 0 2px;
+    width: 24px;
+}
+a:hover .leftArrowIcon{
+    background-position: left -80;
 }

@@ -75,6 +75,8 @@ zh:
   select_all: 全选
   null_string: 空
   test: 测试
+  duel_selectable: 可选项
+  duel_selected: 已选择项
   #常用语句
   notice_account_invalid_creditentials: 用户名或密码错误
   successfully_updated: 已经成功更新数据
@@ -496,9 +498,10 @@ zh:
   label_irm_mail_template_info: 邮件模板信息
   label_irm_mail_template_content: 模板内容
   label_irm_mail_template_show: 邮件模板
-  label_irm_scirpt_context_query_field: 邮件模板参数查询
-  label_irm_scirpt_context_field_name: 参数名称
-  label_irm_scirpt_context_field_key: 参数值
+  label_irm_mail_template_parameter_field: 邮件模板参数查询
+  label_irm_mail_template_parameter_bo: 参数业务对像
+  label_irm_mail_template_parameter_field_name: 参数名称
+  label_irm_mail_template_parameter_field_key: 参数值
   #==================end irm mail_templates_controller=======================#
   #=========================    irm currencies_controller=======================#
   label_irm_currency_currency_code: 编码
@@ -987,6 +990,7 @@ zh:
   label_irm_business_object_new: 复制业务对像
   label_irm_business_object_edit: 编辑业务对像
   label_irm_business_object_description: 描述
+  label_irm_business_object_workflow_flag: 启用工作流
   #======================== business objects====================
   #======================== object attributes====================
   label_irm_object_attributes: 属性
@@ -1012,6 +1016,8 @@ zh:
   label_irm_object_attributes_test_information: 测试信息
   label_irm_object_attribute_invalid_exists_relation_table: 请填写已经存在的表别名
   label_irm_object_attribute_invalid_model_attribute: BO对像中无该属性
+  label_irm_object_attribute_person_flag: 人员属性
+  label_irm_object_attribute_update_flag: 可更新
   #======================== object attributes====================
   #======================== list of values====================
   label_irm_list_of_value_list: 值列表
@@ -1060,7 +1066,21 @@ zh:
   label_irm_wf_rule_config: 设置工作流规则
   label_irm_wf_rule_description: 描述
   label_irm_wf_rule_active: 启用
+  label_irm_wf_rule_actions: 工作流操作
+  label_irm_wf_rule_add_actions: 添加工作流操作
+  label_irm_wf_rule_immediate_actions: 立即执行的操作
+  label_irm_wf_rule_time_dependent_actions: 信赖于时间的操作
+  label_irm_wf_rule_action_type: 类型
+  label_irm_wf_rule_action_description: 描述
+  label_irm_wf_rule_add_time_trigger: 添加时间触发器
+  label_action_add_exists_action: 选择现有的操作
   #========================end wf rules====================
+  #======================== wf_rule_time_triggers====================
+  label_irm_wf_rule_time_trigger_new: 新建时间触发器
+  label_irm_wf_rule_time_trigger_edit: 编辑时间触发器
+  label_irm_wf_rule_time_trigger_rule: 工作流规则
+  label_irm_wf_rule_trigger_datetime: 规则触发时间
+  #========================end wf_rule_time_triggers====================
 
   #======================== calendar tasks====================
   label_irm_todo_task: 任务
@@ -1100,6 +1120,7 @@ zh:
   label_irm_todo_task_display_opts_next_7_days: 未来7天内
 
   #======================== wf field updates====================
+  label_irm_wf_field_update: 字段更新
   label_irm_wf_field_update_list: 字段更新列表
   label_irm_wf_field_update_bo_code: 业务对像
   label_irm_wf_field_update_name: 名称
@@ -1122,5 +1143,24 @@ zh:
   label_irm_formula_function_syntax_miss_parameter: 请在公式输入框中写入公式
   label_irm_formula_function_syntax_return_value: 语法正确，返回值为
   #======================== end wf field updates====================
-
+  #======================== wf mail alert====================
+  label_irm_wf_mail_alert: 邮件警告
+  label_irm_wf_mail_alert_list: 邮件警告列表
+  label_irm_wf_mail_alert_bo_code: 业务对像
+  label_irm_wf_mail_alert_name: 名称
+  label_irm_wf_mail_alert_mail_alert_code: 编码
+  label_irm_wf_mail_alert_description: 描述
+  label_irm_wf_mail_alert_mail_template_code: 邮件模板
+  label_irm_wf_mail_recipients: 收件人
+  label_irm_wf_mail_recipient: 收件人
+  label_irm_wf_mail_alert_additional_email: 其他电子邮件
+  label_irm_wf_mail_alert_from_email: 发件人
+  label_irm_wf_mail_alert_new: 新建邮件警告
+  label_irm_wf_mail_alert_edit: 编辑邮件警告
+  label_irm_wf_mail_alert_recipient_and_send: 收发人员
+  label_irm_wf_mail_default_recipient: 请选择收件人类型
+  label_irm_wf_mail_available_recipient: 可选收件人
+  label_irm_wf_mail_alert_selected_recipients: 已添加的收件人
+  label_irm_wf_mail_alert_recipient_notice: 请选收件人类型，并选择收件人，添加到收件人列表；注意：请不要重复添加！
+  #========================  end wf mail alert====================
 

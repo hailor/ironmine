@@ -27,7 +27,7 @@ class Irm::MailTemplatesController < ApplicationController
 
   # GET /mail_templates/1/edit
   def edit
-    @mail_template = Irm::MailTemplate.select_all.with_context(I18n.locale).find(params[:id])
+    @mail_template = Irm::MailTemplate.list_all.find(params[:id])
   end
 
   # POST /mail_templates
@@ -70,17 +70,10 @@ class Irm::MailTemplatesController < ApplicationController
     mail_templates_scope = mail_templates_scope.match_value("#{Irm::MailTemplatesTl.table_name}.name",params[:name])
     mail_templates,count = paginate(mail_templates_scope)
     respond_to do |format|
-      format.json {render :json=>to_jsonp(mail_templates.to_grid_json([:context_name,:template_code,:name,:description,:status_meaning],count))}
+      format.json {render :json=>to_jsonp(mail_templates.to_grid_json([:template_code,:name,:description,:status_meaning],count))}
     end
   end
 
-  def get_script_context_fields
-    context_fields_scope = Irm::ScriptContextField.multilingual.query_by_context_code(params[:context_code])
-    context_fields = context_fields_scope.collect{|i| {:label=>i[:name],:value=>"{{#{i.field_key}}}",:id=>i.id}}
-    respond_to do |format|
-      format.json {render :json=>context_fields.to_grid_json([:label,:value],context_fields.count)}
-    end
-  end
 
   def get_mail_templates
     mail_templates_scope = Irm::MailTemplate.multilingual.query_by_condition_code(params[:condition_code])

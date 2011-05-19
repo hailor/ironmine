@@ -1,0 +1,36 @@
+<% time_triggers.each do |time_trigger|%>
+  <div class="minBlock">
+    <div class="minBlockHeader">
+      <img width="16" height="16" src="<%= theme_image_path("alarmClock16.gif") %>"/>
+      <span class="minTitle"><%=time_trigger.meaning%></span>
+      <span class="minLink">
+        <%= link_to(t(:edit),:controller=>"irm/wf_rule_time_triggers",:action=>"edit",:id=>time_trigger.id,:rule_id=>time_trigger.rule_id,:back_url=>url_for({}))%> |
+        <%= link_to(t(:delete),{:controller=>"irm/wf_rule_time_triggers",:action=>"destroy",:id=>time_trigger.id,:rule_id=>time_trigger.rule_id,:back_url=>url_for({})},{:confirm => t(:label_are_you_sure) ,:method => :delete})%>
+      </span>
+    </div>
+    <div class="minBlockBody">
+         <div>
+           <%= render(:partial =>"time_trigger_actions",:locals => {:actions=>wf_rule_time_trigger_actions(time_trigger.rule_id,time_trigger.id)}) %>
+         </div>
+         <div>
+            <span id="createActionForTrigger<%= time_trigger.id%>" class="menuButton">
+              <div  class="menuLabel">
+                <span><a><%= t(:label_irm_wf_rule_add_actions)  %></a></span>
+              </div>
+              <div class="menuContent" >
+                <div class="menuItem"><%= link_to(t(:label_irm_wf_mail_alert_new),{:controller => "irm/wf_mail_alerts",:action => "new",:source_str=>"WF_RULE_TIME_TRIGGER,#{time_trigger.rule_id},#{time_trigger.id}",:back_url=>url_for({})}) %></div>
+                <div class="menuItem"><%= link_to(t(:label_irm_wf_field_update_new),{:controller => "irm/wf_field_updates",:action => "new",:source_str=>"WF_RULE_TIME_TRIGGER,#{time_trigger.rule_id},#{time_trigger.id}",:back_url=>url_for({})}) %></div>
+                <div class="menuItem"><%= link_to(t(:label_action_add_exists_action),{:action => "add_exists_action",:trigger_id=>time_trigger.id,:back_url=>url_for({})}) %></div>
+              </div>
+            </span>
+            <script type="text/javascript">
+              GY.use("menubutton",function(Y){
+                Y.on("domready",function(){
+                  new Y.MenuButton({menuNode:"#createActionForTrigger<%= time_trigger.id%>",dropAlign:["TL","BL"]});
+                });
+              });
+            </script>
+          </div>
+    </div>
+  </div>
+<%end%>

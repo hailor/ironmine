@@ -45,8 +45,8 @@
             <tr>
               <td class="labelCol"><label for="business_object_multilingual_flag"><%=t(:label_irm_business_object_multilingual_flag)%></label></td>
               <td class="dataCol"><%=check_img(@business_object.multilingual_flag)%></td>
-              <td class="labelCol empty">&nbsp;</td>
-              <td class="dataCol empty">&nbsp;</td>
+              <td class="labelCol"><label for="business_object_workflow_flag"><%=t(:label_irm_business_object_workflow_flag)%></label></td>
+              <td class="dataCol"><%=f.check_box(:workflow_flag,:id=>"business_object_workflow_flag")%></td>
             </tr>
            </tbody>
         <% else %>

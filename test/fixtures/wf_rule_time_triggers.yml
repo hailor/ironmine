@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  time_lead: 1
+  time_unit: MyString
+  trigger_data_object: MyString
+
+two:
+  time_lead: 1
+  time_unit: MyString
+  trigger_data_object: MyString

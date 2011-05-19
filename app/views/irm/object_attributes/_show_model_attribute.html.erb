@@ -13,6 +13,12 @@
         <td class="dataCol"><%=check_img(@object_attribute.approval_page_field_flag) %></td>
       </tr>
       <tr>
+        <td class="labelCol"><label for="object_attribute_person_flag"><%=t(:label_irm_object_attribute_person_flag)%></label></td>
+        <td class="dataCol"><%=check_img(@object_attribute.person_flag) %></td>
+        <td class="labelCol"></td>
+        <td class="dataCol"></td>
+      </tr>
+      <tr>
         <td class="labelCol"><label for="object_attribute_data_type"><%=t(:label_irm_object_attribute_data_type)%></label></td>
         <td class="dataCol"><%=@object_attribute.data_type%></td>
         <td class="labelCol"><label for="object_attribute_data_length"><%=t(:label_irm_object_attribute_data_length)%></label></td>

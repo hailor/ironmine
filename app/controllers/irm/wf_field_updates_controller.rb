@@ -1,4 +1,4 @@
-class Irm::WfFieldUpdatesController < ApplicationController
+class Irm::WfFieldUpdatesController < Irm::WfActionController
   # GET /wf_field_updates
   # GET /wf_field_updates.xml
   def index
@@ -43,11 +43,12 @@ class Irm::WfFieldUpdatesController < ApplicationController
 
     respond_to do |format|
       if @wf_field_update.save
+        create_for_source(params[:source_str],@wf_field_update)
         format.html {
           if(params[:save_and_new])
             redirect_to(({:action => "new"}).merge(get_default_url_options([:back_url,:source_str])), :notice => t(:successfully_created))
           else
-            redirect_to({:action => "index"}, :notice => t(:successfully_created))
+            redirect_back_or_default({:action=>"index"})
           end
 
         }
@@ -70,7 +71,7 @@ class Irm::WfFieldUpdatesController < ApplicationController
           if(params[:save_and_new])
             redirect_to(({:action => "new"}).merge(get_default_url_options([:back_url,:source_str])), :notice => t(:successfully_updated))
           else
-            redirect_to({:action => "index"}, :notice => t(:successfully_updated))
+            redirect_back_or_default({:action=>"index"})
           end
         }
         format.xml  { head :ok }
@@ -107,19 +108,5 @@ class Irm::WfFieldUpdatesController < ApplicationController
     end
   end
 
-
-  private
-  def get_bo_code_from_source_str(source_str)
-    return nil unless source_str.present?
-    source_info = source_str.split(",")
-    if source_info.size>1&&"WF_RULE".eql?(source_info[0])
-      return Irm::WfRule.find(source_info[1]).bo_code
-    elsif source_info.size>1&&"APPROVAL_STEP".eql?(source_info[0])
-    end
-  end
-
-  def create_for_source(source_str)
-
-  end
 
 end

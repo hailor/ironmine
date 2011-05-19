@@ -71,7 +71,7 @@ class Irm::WfRulesController < ApplicationController
          @rule_filter.save
          session[:irm_rule_filter] = nil
          session[:irm_wf_rule] = nil
-        format.html { redirect_to({:action => "index"}, :notice => t(:successfully_created)) }
+        format.html { redirect_to({:action => "show",:id=>@wf_rule.id}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @wf_rule, :status => :created, :location => @wf_rule }
       else
         format.html { render :action => "new" }
@@ -109,6 +109,17 @@ class Irm::WfRulesController < ApplicationController
     end
   end
 
+  def destroy_action
+    @wf_rule_action = Irm::WfRuleAction.find(params[:id]);
+    @wf_rule_action.destroy
+
+    respond_to do |format|
+      format.html { redirect_back_or_default({:action=>"show",:id=>params[:id]})
+ }
+      format.xml  { head :ok }
+    end
+  end
+
   def active
     @wf_rule = Irm::WfRule.find(params[:id])
     attrs = {}
@@ -135,6 +146,39 @@ class Irm::WfRulesController < ApplicationController
     wf_rules,count = paginate(wf_rules_scope)
     respond_to do |format|
       format.json {render :json=>to_jsonp(wf_rules.to_grid_json([:name,:bo_name,:rule_code,:evaluate_criteria_rule_name],count))}
+    end
+  end
+
+  def add_exists_action
+
+  end
+
+  def save_exists_action
+    action_types = [[Irm::WfFieldUpdate,"F"],[Irm::WfMailAlert,"M"]]
+    selected_actions = params[:selected_actions].split(",")
+    exists_actions = Irm::WfRuleAction.where(:rule_id=>params[:id],:time_trigger_id=>params[:trigger_id])
+    exists_actions.each do |action|
+      action_type = action_types.detect{|i| i[0].name.eql?(action.action_type)}
+      if selected_actions.include?("#{action_type[1]}##{action.action_reference_id}")
+        selected_actions.delete("#{action_type[1]}##{action.action_reference_id}")
+      else
+        action.destroy
+      end
+    end
+
+    selected_actions.each do |action_str|
+      next unless action_str.strip.present?
+      action = action_str.split("#")
+      action_type = action_types.detect{|i| i[1].eql?(action[0])}
+      Irm::WfRuleAction.create(:rule_id=>params[:id],
+                               :time_trigger_id=>params[:trigger_id],
+                               :action_type=>action_type[0].name,
+                               :action_reference_id=>action[1])
+    end if selected_actions.any?
+
+    respond_to do |format|
+      format.html { redirect_back_or_default({:action=>"show",:id=>params[:id]}) }
+      format.xml  { head :ok }
     end
   end
 end
