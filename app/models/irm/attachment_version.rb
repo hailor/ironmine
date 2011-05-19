@@ -8,7 +8,7 @@ class Irm::AttachmentVersion < ActiveRecord::Base
                                       :url => Irm::Constant::ATTACHMENT_URL,
                                       :path => Irm::Constant::ATTACHMENT_PATH }
   validates_attachment_presence :data
-  validates_attachment_size :data, :less_than => 10.megabytes
+  validates_attachment_size :data, :less_than => Irm::SystemParametersManager.upload_file_limit.kilobytes
 
   before_data_post_process :allow_only_images
 

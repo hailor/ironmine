@@ -25,7 +25,7 @@ class Irm::GlobalSettingsController < ApplicationController
     system_parameters = Irm::SystemParameter.query_by_type("GLOBAL_SETTING")
 
     respond_to do |format|
-      if @global_setting.update_attributes(params[:irm_global_setting])
+      if true
 
         system_parameters.each do |s|
           if s.data_type == "IMAGE"
@@ -34,6 +34,10 @@ class Irm::GlobalSettingsController < ApplicationController
 
             end
           elsif s.data_type == "TEXT"
+            if params[s[:parameter_code].to_sym]
+              s.update_attribute(:value, params[s[:parameter_code].to_sym])
+            end
+          else
             if params[s[:parameter_code].to_sym]
               s.update_attribute(:value, params[s[:parameter_code].to_sym])
             end

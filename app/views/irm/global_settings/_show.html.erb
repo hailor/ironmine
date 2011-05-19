@@ -41,16 +41,14 @@
               </td>
             </tr>
             <tr>
-              <td class="labelCol"><%= t(:label_irm_global_setting_theme_name)%></td>
-              <td class="data2Col"><div><%= @global_setting.theme_name %></div></td>
+              <td class="labelCol"><label><%=(@settings.query_by_code("UPLOAD_FILE_LIMIT").first[:name])%></label></td>
+              <td class="data2Col"><%= @settings.query_by_code("UPLOAD_FILE_LIMIT").first[:value]%>
+              </td>
             </tr>
             <tr>
-              <td class="labelCol"><%= t(:label_irm_global_setting_upload_file_limit) %></td>
-              <td class="data2Col"><div><%= @global_setting.upload_file_limit %></div></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><%= t(:label_irm_global_setting_timezone)%></td>
-              <td class="data2Col"><div><%= @global_setting[:timezone_meaning] %></div></td>
+              <td class="labelCol"><label><%=(@settings.query_by_code("TIMEZONE").first[:name])%></label></td>
+              <td class="data2Col"><%= Irm::LookupValue.multilingual.query_by_lookup_code(@settings.query_by_code("TIMEZONE").first[:value]).first.wrap_meaning%>
+              </td>
             </tr>
         </tbody>
       </table>

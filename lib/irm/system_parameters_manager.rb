@@ -28,6 +28,14 @@ module Irm::SystemParametersManager
       system_params[:emission_email_address]
     end
 
+    def upload_file_limit
+      system_params[:upload_file_limit].to_f
+    end
+
+    def timezone
+      system_params[:timezone]
+    end
+
     def reset_system_parameters
       prepare_system_parameters_cache
     end
@@ -42,6 +50,8 @@ module Irm::SystemParametersManager
       host_path = Irm::SystemParameter.query_by_code("HOST_PATH").first
       emission_email_address = Irm::SystemParameter.query_by_code("EMISSION_EMAIL_ADDRESS").first
 
+      upload_file_limit = Irm::SystemParameter.query_by_code("UPLOAD_FILE_LIMIT").first
+      timezone = Irm::SystemParameter.query_by_code("TIMEZONE").first
 
       map.merge!({:app_top_logo => app_top_logo.img.url}) if app_top_logo
       map.merge!({:login_page_logo => login_page_logo.img.url}) if login_page_logo
@@ -51,6 +61,9 @@ module Irm::SystemParametersManager
       map.merge!({:host_name => host_name.value}) if host_name
       map.merge!({:host_path => host_path.value}) if host_path
       map.merge!({:emission_email_address => emission_email_address.value}) if emission_email_address
+
+      map.merge!({:upload_file_limit => upload_file_limit.value}) if upload_file_limit
+      map.merge!({:timezone => timezone.value}) if timezone
     end
 
     # =====================================生成logo缓存===============================================

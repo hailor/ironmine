@@ -60,16 +60,18 @@
               </td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%= t(:label_irm_global_setting_theme_name)%></label></td>
-              <td class="data2Col"><%=f.select :theme_name, available_themes, {:include_blank => false}%></td>
+              <td class="labelCol"><label><%=(@settings.query_by_code("UPLOAD_FILE_LIMIT").first[:name])%></label></td>
+              <td class="data2Col"><%= text_field_tag @settings.query_by_code("UPLOAD_FILE_LIMIT").first[:parameter_code],
+                                                      @settings.query_by_code("UPLOAD_FILE_LIMIT").first[:value],
+                                                      :jrequired => true%>
+              </td>
             </tr>
             <tr>
-              <td class="labelCol"><label><%= t(:label_irm_global_setting_upload_file_limit) %></label></td>
-              <td class="data2Col"><%=f.text_field :upload_file_limit, :irm_numberonly => true, :required => true%></td>
-            </tr>
-            <tr>
-              <td class="labelCol"><label><%= t(:label_irm_global_setting_timezone)%></label></td>
-              <td class="data2Col"><%=f.select :timezone, available_timezone, {:include_blank => false}%></td>
+              <td class="labelCol"><label><%=(@settings.query_by_code("TIMEZONE").first[:name])%></label></td>
+              <td class="data2Col"><%= select_tag @settings.query_by_code("TIMEZONE").first[:parameter_code],
+                                                      options_for_select(available_timezone,@settings.query_by_code("TIMEZONE").first[:value]),
+                                                      :jrequired => true%>
+              </td>
             </tr>
         </tbody>
       </table>
