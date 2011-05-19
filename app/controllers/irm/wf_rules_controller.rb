@@ -148,4 +148,37 @@ class Irm::WfRulesController < ApplicationController
       format.json {render :json=>to_jsonp(wf_rules.to_grid_json([:name,:bo_name,:rule_code,:evaluate_criteria_rule_name],count))}
     end
   end
+
+  def add_exists_action
+
+  end
+
+  def save_exists_action
+    action_types = [[Irm::WfFieldUpdate,"F"],[Irm::WfMailAlert,"M"]]
+    selected_actions = params[:selected_actions].split(",")
+    exists_actions = Irm::WfRuleAction.where(:rule_id=>params[:id],:time_trigger_id=>params[:trigger_id])
+    exists_actions.each do |action|
+      action_type = action_types.detect{|i| i[0].name.eql?(action.action_type)}
+      if selected_actions.include?("#{action_type[1]}##{action.action_reference_id}")
+        selected_actions.delete("#{action_type[1]}##{action.action_reference_id}")
+      else
+        action.destroy
+      end
+    end
+
+    selected_actions.each do |action_str|
+      next unless action_str.strip.present?
+      action = action_str.split("#")
+      action_type = action_types.detect{|i| i[1].eql?(action[0])}
+      Irm::WfRuleAction.create(:rule_id=>params[:id],
+                               :time_trigger_id=>params[:trigger_id],
+                               :action_type=>action_type[0].name,
+                               :action_reference_id=>action[1])
+    end if selected_actions.any?
+
+    respond_to do |format|
+      format.html { redirect_back_or_default({:action=>"show",:id=>params[:id]}) }
+      format.xml  { head :ok }
+    end
+  end
 end

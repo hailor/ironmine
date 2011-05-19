@@ -58,4 +58,28 @@ module Irm::WfRulesHelper
     end
     actions
   end
+
+  def wf_rule_exists_actions(wf_rule_id)
+    bo_code = Irm::WfRule.find(wf_rule_id).bo_code
+    selectable_options = []
+    action_types = [[Irm::WfFieldUpdate,"F"],[Irm::WfMailAlert,"M"]]
+    action_types.each do |ac|
+      actions = ac[0].where(:bo_code=>bo_code)
+      actions.each do |a|
+        selectable_options << ["#{t("label_"+ac[0].name.underscore.gsub("\/","_"))}:#{a.name}","#{ac[1]}##{a.id}",{:query=>a.name,:type=>ac[1]}]
+      end
+    end
+    selectable_options
+  end
+
+  def wf_rule_belongs_actions(wf_rule_id,time_trigger_id=nil)
+    action_types = [[Irm::WfFieldUpdate,"F"],[Irm::WfMailAlert,"M"]]
+    wf_rule_actions = Irm::WfRuleAction.where(:rule_id=>wf_rule_id,:time_trigger_id=>time_trigger_id)
+    actions = []
+    wf_rule_actions.each do |action|
+      action_type = action_types.detect{|i| i[0].name.eql?(action.action_type)}
+      actions<<"#{action_type[1]}##{action.action_reference_id}"
+    end
+    actions.join(",")
+  end
 end

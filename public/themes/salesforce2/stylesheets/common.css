@@ -930,3 +930,33 @@ div.noTableFooter {
     padding-top: 10px;
     text-align: center;
 }
+/*****************************duel**************************************/
+table.duel tr.duelList select{
+    min-width:180px;
+}
+table.duel tr th{
+    font-weight:bold;
+}
+table.duel tr.duelList td{
+    text-align: center;
+    vertical-align: middle;
+}
+.rightArrowIcon{
+    background: url("../images/combobox_arrows_sprite.gif") no-repeat scroll 0 0 transparent;
+    height: 20px;
+    margin: 0 2px;
+    width: 24px;
+}
+a:hover .rightArrowIcon{
+    background-position: left -20;
+}
+.leftArrowIcon{
+    background: url("../images/combobox_arrows_sprite.gif") no-repeat scroll 0 0 transparent;
+    background-position: left -60;
+    height: 20px;
+    margin: 0 2px;
+    width: 24px;
+}
+a:hover .leftArrowIcon{
+    background-position: left -80;
+}

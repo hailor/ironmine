@@ -49,6 +49,10 @@ var yuiConfig = {
             fullpath:"/javascripts/irm/cascadeselect.js",
             requires: ["io-base","substitute","json-parse"]
         },
+        duelselect:{
+            fullpath:"/javascripts/irm/duelselect.js",
+            requires: []
+        },
         menubutton:{
             fullpath:"/javascripts/irm/menubutton.js",
             requires: ["base","node-base","overlay"]
