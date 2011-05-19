@@ -273,9 +273,9 @@
         <div id="id_support_group" class="pbBody">
           <div id="support_group" class="datatable" style="width:100%;">
             <div id="id" style="display:none">
-              <%= icon_link_remove({:controller=>"irm/support_group_members",:action=>"delete_from_person",:id=>"{id}",
+              <%= link_to t(:remove), {:controller=>"irm/support_group_members",:action=>"delete_from_person",:id=>"{id}",
                                       :person_id=>@person.id},:confirm => t(:label_are_you_sure) ,
-                                      :method => :delete) %>
+                                      :method => :delete %>
             </div>
           </div>
           <!-- Begin company access table -->
@@ -310,8 +310,8 @@
       <div class="pbBody">
         <div id="roles_list" class="datatable" style="width:100%">
           <div id="id" style="display:none">
-            <%= icon_link_remove({:action=>"remove_role",:role_id=>"{id}", :person_id => @person,
-                                  }) %>
+            <%= link_to t(:remove), {:action=>"remove_role",:role_id=>"{id}", :person_id => @person.id},:confirm => t(:label_are_you_sure) ,
+                                      :method => :delete %>
           </div>
         </div>
         <%= datatable("roles_list",url_for(:controller => "irm/people", :action=>"get_owned_roles", :person_id => @person,:format=>"json"),
