@@ -71,7 +71,7 @@ class Irm::WfRulesController < ApplicationController
          @rule_filter.save
          session[:irm_rule_filter] = nil
          session[:irm_wf_rule] = nil
-        format.html { redirect_to({:action => "index"}, :notice => t(:successfully_created)) }
+        format.html { redirect_to({:action => "show",:id=>@wf_rule.id}, :notice => t(:successfully_created)) }
         format.xml  { render :xml => @wf_rule, :status => :created, :location => @wf_rule }
       else
         format.html { render :action => "new" }

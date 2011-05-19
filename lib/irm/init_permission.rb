@@ -254,8 +254,8 @@ Irm::AccessControl.map do |map|
   #===================irm/wf_rules============================
   #["index", "new", "create", "get_data", "edit", "update", "show"]
   map.function :view_wf_rules,{"irm/wf_rules"=>["index", "show"]}
-  map.function :create_wf_rules,{"irm/wf_rules"=>["new", "create"]}
-  map.function :edit_wf_rules,{"irm/wf_rules"=>["edit", "update","active"]}
+  map.function :create_wf_rules,{"irm/wf_rules"=>["new", "create","add_exists_action","save_exists_action"]}
+  map.function :edit_wf_rules,{"irm/wf_rules"=>["edit", "update","active","add_exists_action","save_exists_action"]}
 
   #===================irm/ldap_sources============================
   #["index", "edit", "execute_test", "active", "update", "new", "create", "get_data", "show"]
