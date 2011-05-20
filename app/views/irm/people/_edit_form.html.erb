@@ -17,6 +17,7 @@
   <div class="pbBody">
     <%= error_for @person%>
     <%= @person.errors.to_json%>
+    <%= Irm::SystemParametersManager.upload_file_limit%>
     <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
       <span class="pbSubExtra">
         <span class="requiredLegend"><span class="requiredExampleOuter">
