@@ -48,7 +48,7 @@ class Icm::IncidentRequestsController < ApplicationController
     respond_to do |format|
       if @incident_request.save
         process_files(@incident_request)
-        publish_create_incident_request(@incident_request)
+        #publish_create_incident_request(@incident_request)
 
         #add watchers
         if params[:cwatcher] && params[:cwatcher].size > 0
