@@ -1,2 +1,0 @@
-module Irm::AuthSourcesHelper
-end

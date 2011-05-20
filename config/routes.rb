@@ -102,16 +102,7 @@ Ironmine::Application.routes.draw do
     match '/permissions/get_data(.:format)' => "permissions#get_data"
     match '/permissions/:id/show(.:format)' => "permissions#show", :via => :get
     match '/permissions/data_grid(.:format)' => "permissions#data_grid", :via => :get
-    #conditions
-    match '/conditions(/index)(.:format)' => "conditions#index", :via => :get
-    match '/conditions/get_data(.:format)' => "conditions#get_data"
-    match '/conditions/:id/edit(.:format)' => "conditions#edit", :via => :get
-    match '/conditions/:id(.:format)' => "conditions#update", :via => :put
-    match '/conditions/new(.:format)' => "conditions#new", :via => :get
-    match '/conditions/:id(.:format)' => "conditions#show", :via => :get
-    match '/conditions/create(.:format)' => "conditions#create", :via => :post
-    match '/conditions/:id/multilingual_edit(.:format)' => "conditions#multilingual_edit", :via => :get
-    match '/conditions/:id/multilingual_update(.:format)' => "conditions#multilingual_update", :via => :put
+
     #lookup_values
     match '/lookup_values(/index)(.:format)' => "lookup_values#index", :via => :get
     match '/lookup_values/get_data(.:format)' => "lookup_values#get_data"
@@ -124,25 +115,6 @@ Ironmine::Application.routes.draw do
     match '/lookup_values/:id/multilingual_update(.:format)' => "lookup_values#multilingual_update", :via => :put    
     match '/lookup_values/select_lookup_type(.:format)' => "lookup_values#select_lookup_type"
     match '/lookup_values/:id(.:format)' => "lookup_values#show", :via => :get
-
-    #actions
-    match '/actions(/index)(.:format)' => "actions#index", :via => :get
-    match '/actions/get_data(.:format)' => "actions#get_data"
-    match '/actions/:id/edit(.:format)' => "actions#edit", :via => :get
-    match '/actions/:id(.:format)' => "actions#update", :via => :put
-    match '/actions/new(.:format)' => "actions#new", :via => :get
-    match '/actions/:id(.:format)' => "actions#show", :via => :get    
-    match '/actions/create(.:format)' => "actions#create", :via => :post
-    match '/actions/:id/multilingual_edit(.:format)' => "actions#multilingual_edit", :via => :get
-    match '/actions/:id/multilingual_update(.:format)' => "actions#multilingual_update", :via => :put
-    #identities
-    match '/identities(/index)(.:format)' => "identities#index", :via => :get
-    match '/identities/:id/edit(.:format)' => "identities#edit", :via => :get
-    match '/identities/:id/update(.:format)' => "identities#update", :via => :put
-    match '/identities/new(.:format)' => "identities#new", :via => :get
-    match '/identities/create(.:format)' => "identities#create", :via => :post
-    match '/identities/get_data(.:format)' => "identities#get_data", :via => :get
-    match '/identities/:id/show(.:format)' => "identities#show", :via => :get
 
     #my_info
     match '/my_info(/index)(.:format)' => "my_info#index", :via => :get
@@ -236,17 +208,6 @@ Ironmine::Application.routes.draw do
     match '/ldap_syn_headers/:ah_id/ldap_syn_attributes/:id(.:format)' => "ldap_syn_attributes#update", :via => :put
     match '/ldap_syn_headers/:ah_id/ldap_syn_attributes/:id/delete(.:format)' => "ldap_syn_attributes#destroy", :via => :delete
 
-    #scripts
-    match '/scripts(/index)(.:format)' => "scripts#index", :via => :get
-    match '/scripts/get_data(.:format)' => "scripts#get_data"
-    match '/scripts/:id/edit(.:format)' => "scripts#edit", :via => :get
-    match '/scripts/:id(.:format)' => "scripts#update", :via => :put
-    match '/scripts/:id(.:format)' => "scripts#update", :via => :put
-    match '/scripts/new(.:format)' => "scripts#new", :via => :get
-    match '/scripts/:id(.:format)' => "scripts#show", :via => :get
-    match '/scripts/create(.:format)' => "scripts#create", :via => :post
-    match '/scripts/:id/multilingual_edit(.:format)' => "scripts#multilingual_edit", :via => :get
-    match '/scripts/:id/multilingual_update(.:format)' => "scripts#multilingual_update", :via => :put
     # navigations
     match '/navigations/change_role(.:format)'=>"navigations#change_role",:via=>:get
     #mail_templates
