@@ -52,7 +52,11 @@ module Ironmine
 #   PERSON_NAME_FORMAT = :lastname_firstname
 
    #应用程序应用的host
-#   HOST = "zj.hand-china.com:8282"
+   HOST = "zj.hand-china.com"
+
+   PORT = "8282"
+
+   EMAIL_FROM = "root.ironmine@gmail.com"
 
    #attachment url,path
 #   ATTACHMENT_URL = "/upload/:class/:id/:style/:basename.:extension"
