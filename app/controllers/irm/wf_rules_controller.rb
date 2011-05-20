@@ -87,7 +87,7 @@ class Irm::WfRulesController < ApplicationController
     @rule_filter = Irm::RuleFilter.query_by_source(Irm::WfRule.name,@wf_rule.id).first
 
     respond_to do |format|
-      if @wf_rule.update_attributes(params[:wf_rule])&&@rule_filter.update_attributes(params[:irm_rule_filter])
+      if @wf_rule.update_attributes(params[:irm_wf_rule])&&@rule_filter.update_attributes(params[:irm_rule_filter])
         format.html { redirect_to({:action => "index"}, :notice => t(:successfully_updated)) }
         format.xml  { head :ok }
       else
