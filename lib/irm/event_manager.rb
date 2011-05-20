@@ -6,7 +6,9 @@ class Irm::EventManager
       #raise(ArgumentError, "Missing Business Object: #{bo_model_name}")
       return unless bo&&bo.workflow_flag.eql?(Irm::Constant::SYS_YES)
       event = Irm::Event.create(:bo_code=>bo.business_object_code,:business_object_id=>bo_model_id,:event_code=>"WORKFLOW_EVENT",:event_type=>event_type)
-      Delayed::Job.enqueue(Irm::Jobs::RuleProcessJob.new(event.id))
+      timestamp = Time.now
+      timestamp = 1.minutes.from_now  if "UPDATE".eql?(event_type)
+      Delayed::Job.enqueue(Irm::Jobs::RuleProcessJob.new(event.id),0,timestamp)
     end
 
     def publish(event_options)
