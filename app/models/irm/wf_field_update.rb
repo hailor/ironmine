@@ -32,6 +32,19 @@ class Irm::WfFieldUpdate < ActiveRecord::Base
     select("#{table_name}.*").with_bo(I18n.locale).with_object_attribute(I18n.locale).with_value_type(I18n.locale)
   end
 
+
+  def perform(bo)
+    bo.ignore_event = true
+    case self.value_type
+      when "FORMULA_VALUE"
+        bo.update_attribute(self.object_attribute,self.formula_value)
+      when "NULL_VALUE"
+        bo.update_attribute(self.object_attribute,self.formula_value)
+      when "OPTIONS_VALUE"
+        bo.update_attribute(self.object_attribute,self.value)
+    end
+  end
+
   private
   def validate_value
     object_attribute = Irm::ObjectAttribute.where(:business_object_code=>self.bo_code,:attribute_name=>self.object_attribute).first
@@ -42,5 +55,14 @@ class Irm::WfFieldUpdate < ActiveRecord::Base
         return
       end
     end
+  end
+
+  def formula_value
+    object_attribute = Irm::ObjectAttribute.where(:business_object_code=>self.bo_code,:attribute_name=>self.object_attribute).first
+    message,formula_value = Irm::FormulaContext.new.validate(value,object_attribute.data_type)
+    if(message.present?||(Irm::Constant::SYS_NO.eql?(object_attribute.nullable_flag)&&!value.present?))
+      raise(ArgumentError, "Formula value error: #{message} value: #{formula_value}")
+    end
+    formula_value
   end
 end
