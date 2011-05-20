@@ -57,7 +57,7 @@ class Irm::PeopleController < ApplicationController
   # PUT /people/1
   # PUT /people/1.xml
   def update
-    @person = Irm::Person.find(params[:id])
+    @person = Irm::Person.list_all.find(params[:id])
     @attributes = params[:irm_person]
     @attributes.merge!({:identity_id=>params[:identity_id]}) if params[:identity_id]
     @attributes.merge!({:unrestricted_access_flag=>params[:unrestricted_access_flag]}) if params[:unrestricted_access_flag]
@@ -72,7 +72,6 @@ class Irm::PeopleController < ApplicationController
           format.xml  { head :ok }
         end
       else
-        @person = Irm::Person.list_all.find(params[:id])
         @error = @person
         format.html { render "edit" }
         format.xml  { render :xml => @person.errors, :status => :unprocessable_entity }
