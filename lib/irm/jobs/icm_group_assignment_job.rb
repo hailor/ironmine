@@ -116,14 +116,14 @@ module Irm
       def publish_pass_incident_request(incident_journal)
         incident_journal.reload
         incident_journal = Icm::IncidentJournal.select_all.with_replied_by.find(incident_journal.id)
-        incident_request = Icm::IncidentRequest.list_all.find(incident_journal.incident_request_id)
-        person_ids = [incident_request.submitted_by,incident_request.requested_by,incident_journal.replied_by,incident_request.support_person_id]+incident_request.person_watchers.collect{|i| i.id}
-        person_ids.uniq!
-        journal_url = url_for({:host=>Irm::Constant::DEFAULT_HOST,
-                 :controller=>"icm/incident_journals",
-                 :action =>"new",
-                 :request_id=>incident_request.id,
-                 :anchor=>"journal_#{incident_journal.id}"})
+        #incident_request = Icm::IncidentRequest.list_all.find(incident_journal.incident_request_id)
+        #person_ids = [incident_request.submitted_by,incident_request.requested_by,incident_journal.replied_by,incident_request.support_person_id]+incident_request.person_watchers.collect{|i| i.id}
+        #person_ids.uniq!
+        #journal_url = url_for({:host=>Irm::Constant::DEFAULT_HOST,
+        #         :controller=>"icm/incident_journals",
+        #         :action =>"new",
+        #         :request_id=>incident_request.id,
+        #         :anchor=>"journal_#{incident_journal.id}"})
         #Irm::EventManager.publish(:event_code=>"INCIDENT_REQUEST_PASS",
         #                          :params=>{:to_person_ids=>person_ids,
         #                                    :journal=>incident_journal.attributes.merge(:url=>journal_url,:change_message=>"not change"),
