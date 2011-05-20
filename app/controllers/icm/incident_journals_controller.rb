@@ -30,7 +30,6 @@ class Icm::IncidentJournalsController < ApplicationController
       if @incident_reply.valid? && @incident_request.update_attributes(@incident_reply.attributes)
         process_change_attributes(@incident_reply.attributes.keys,@incident_request,@incident_request_bak,@incident_journal)
         process_files(@incident_journal)
-        publish_create_incident_journal(@incident_journal)
         format.html { redirect_to({:action => "new"}, :notice => 'Incident journal was successfully created.') }
         format.xml  { render :xml => @incident_journal, :status => :created, :location => @incident_journal }
       else
@@ -58,7 +57,6 @@ class Icm::IncidentJournalsController < ApplicationController
         process_change_attributes([:incident_status_code,:close_reason_code],@incident_request,@incident_request_bak,@incident_journal)
         process_files(@incident_journal)
 
-        publish_close_incident_request(@incident_journal)
         #关闭事故单时，产生一个与之关联的投票任务
         Delayed::Job.enqueue(Irm::Jobs::IcmIncidentRequestSurveyTaskJob.new(@incident_request.id))
         format.html { redirect_to({:action => "new"}) }
@@ -86,7 +84,6 @@ class Icm::IncidentJournalsController < ApplicationController
       if @incident_journal.valid?&&@incident_request.update_attributes(params[:icm_incident_request])
         process_change_attributes([:support_group_id,:support_person_id],@incident_request,@incident_request_bak,@incident_journal)
         process_files(@incident_journal)
-        publish_pass_incident_request(@incident_journal)
         format.html { redirect_to({:action => "new"}) }
         format.xml  { render :xml => @incident_journal, :status => :created, :location => @incident_journal }
       else

@@ -124,10 +124,10 @@ module Irm
                  :action =>"new",
                  :request_id=>incident_request.id,
                  :anchor=>"journal_#{incident_journal.id}"})
-        Irm::EventManager.publish(:event_code=>"INCIDENT_REQUEST_PASS",
-                                  :params=>{:to_person_ids=>person_ids,
-                                            :journal=>incident_journal.attributes.merge(:url=>journal_url,:change_message=>"not change"),
-                                            :request=>incident_request.attributes})
+        #Irm::EventManager.publish(:event_code=>"INCIDENT_REQUEST_PASS",
+        #                          :params=>{:to_person_ids=>person_ids,
+        #                                    :journal=>incident_journal.attributes.merge(:url=>journal_url,:change_message=>"not change"),
+        #                                    :request=>incident_request.attributes})
         incident_journal
       end
 
