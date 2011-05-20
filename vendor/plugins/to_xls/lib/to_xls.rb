@@ -67,7 +67,7 @@ class Hash
     self
   end
 
-  def recursive_symbolize_keys(hash)
+  def self.recursive_symbolize_keys(hash)
     return unless hash.is_a?(Hash)
     hash.values.each do |v|
       next unless v.is_a?(Hash)
@@ -76,7 +76,7 @@ class Hash
     hash.symbolize_keys!
   end
 
-  def recursive_stringify_keys(hash)
+  def self.recursive_stringify_keys(hash)
     return unless hash.is_a?(Hash)
     hash.values.each do |v|
       next unless v.is_a?(Hash)
