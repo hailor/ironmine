@@ -1,7 +1,6 @@
 class Irm::EventManager
   class << self
     def publish_bo(bo_model_name,bo_model_id,event_type="UPDATE")
-      puts "#{bo_model_name}======================="
       return if Irm::Event.name.eql?(bo_model_name)||Delayed::Backend::ActiveRecord::Job.name.eql?(bo_model_name)
       bo = Irm::BusinessObject.where(:bo_model_name=>bo_model_name).first
       #raise(ArgumentError, "Missing Business Object: #{bo_model_name}")
