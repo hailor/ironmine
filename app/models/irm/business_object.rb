@@ -175,4 +175,20 @@ class Irm::BusinessObject < ActiveRecord::Base
     end
     value
   end
+
+  def self.to_hash(bo_instance)
+    bo_attributes = Irm::ObjectAttribute.query_by_model_name(bo_instance.class.name)
+    attributes_hash = {}
+    bo_attributes.each do |boa|
+      attributes_hash.merge!(boa.attribute_name.to_sym=>self.attribute_of(bo_instance,boa.attribute_name))
+    end
+    attributes_hash
+  end
+
+  def self.mail_message_id(bo_instance)
+    timestamp = bo_instance.send(bo_instance.respond_to?(:created_at) ? :created_at : :updated_at)
+    hash = "ironmine.#{bo_instance.class.name.underscore}.#{bo_instance.id}.#{timestamp.strftime("%Y%m%d%H%M%S")}"
+    host = Irm::SystemParametersManager.emission_email_address.to_s.gsub(%r{^.*@}, '')
+    "<#{hash}@#{host}>"
+  end
 end

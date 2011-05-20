@@ -33,4 +33,33 @@ class Irm::WfMailAlert < ActiveRecord::Base
       recipient.destroy  unless  recipient.valid?
     end
   end
+
+  def all_recipients(bo)
+    person_ids = []
+    self.wf_mail_recipients.each do |recipient|
+      person_ids+=recipient.person_ids(bo)
+    end
+    person_ids.uniq
+  end
+
+  def perform(bo)
+    recipient_ids = self.all_recipients(bo)
+
+    params = {:object_params=>{self.bo_code.downcase.to_sym=>Irm::BusinessObject.to_hash(bo)}}
+
+    mail_options = {}
+    mail_options.merge!(:from=>self.from_email) if self.from_email.present?
+    mail_options.merge!(:message_id=>Irm::BusinessObject.mail_message_id(bo))
+    params.merge!(:mail_options=>mail_options)
+    header_options = {}
+    header_options.merge!({"References"=>Irm::BusinessObject.mail_message_id(self)})
+    params.merge!(:header_options=>header_options)
+    mail_template = Irm::MailTemplate.query_by_template_code(self.mail_template_code).first
+    # loop send mail
+    recipient_ids.each do |pid|
+      mail_template.deliver_to(params.merge(:to_person_ids=>[pid]))
+    end
+  end
+
+
 end

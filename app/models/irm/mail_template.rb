@@ -54,23 +54,59 @@ class Irm::MailTemplate < ActiveRecord::Base
 
   ### Methods
 
-  #
-  # 发送邮件
-  # email_adress 表示收件人地址
-  # language_code 发送邮件选择的语言
-  # options 邮件模板使用的参数
-  # mail_options 发送邮件方法mail的参数，可以从外面传入
-  #
-  def deliver_to(params,mail_options={})
+  # params
+  #   mail_options => :from  邮件发关参数
+  #   header_options  邮件头参数，用来传递隐藏信息
+  #   mail_mode   邮件模式，默认为SPLIT,可以选择MERGE模式
+  #   object_params  邮件的Liquid参数
+  #   to_person_ids  收件人ID
+  #   to_emails
+  #   cc_person_ids  抄送人ID
+  #   bcc_person_ids 密送人员ID
+  def deliver_to(params)
     # 将所有symbol的key转化为string类型
-    recursive_stringify_keys(params)
+    #recursive_stringify_keys(params)
     params_dup = params.dup
-    to_people = Irm::Person.query_by_ids(params_dup["to_person_ids"])
-    to_people.each do |p|
-      next unless Irm::Constant::SYS_YES.eql?(p.notification_flag)
-      email_template  = self.class.query_by_language(p.language_code).find(self.id)
-      TemplateMailer.email_template(p.email_address, email_template, params_dup,mail_options).deliver
+
+    mail_options = {}
+    mail_options = params_dup[:mail_options] if params_dup[:mail_options]
+
+    header_options = {}
+    header_options = params_dup[:header_options] if  params_dup[:header_options]
+
+    template_params = {}
+    template_params = params_dup[:object_params] if  params_dup[:object_params]
+    Hash.recursive_stringify_keys(template_params)
+
+    to_people = Irm::Person.query_by_ids(params_dup[:to_person_ids])
+
+    # crash when no people
+    return unless to_people.any?
+
+    additional_emails = []
+    additional_emails = params_dup[:to_emails] if  params_dup[:to_emails]
+
+    cc_people = []
+    cc_people = Irm::Person.query_by_ids(params_dup[:cc_person_ids]) if params_dup[:cc_person_ids]
+    cc_emails = cc_people.collect{|p| p.email_address if Irm::Constant::SYS_YES.eql?(p.notification_flag)}.compact.join(",")
+
+    bcc_people = []
+    bcc_people = Irm::Person.query_by_ids(params_dup[:bcc_person_ids]) if params_dup[:bcc_person_ids]
+    bcc_emails = bcc_people.collect{|p| p.email_address if Irm::Constant::SYS_YES.eql?(p.notification_flag)}.compact.join(",")
+
+    to_emails = to_people.collect{|p| p.email_address if Irm::Constant::SYS_YES.eql?(p.notification_flag)}.compact.join(",")
+    to_emails = to_emails + additional_emails.join(",")
+    email_template = nil
+    if to_people.first
+      email_template  = self.class.query_by_language(to_people.first.language_code).find(self.id)
+    else
+      email_template  = self.class.query_by_language(Irm::Person.current.language_code).find(self.id)
     end
+
+    mail_options.merge!(:to=>to_emails,:cc=>cc_emails,:bcc=>bcc_emails)
+    TemplateMailer.template_email(mail_options,email_template,template_params,header_options).deliver
+
+
   end
 
 

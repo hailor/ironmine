@@ -59,6 +59,11 @@ class Irm::ObjectAttribute < ActiveRecord::Base
     where(:filter_flag=>Irm::Constant::SYS_YES)
   }
 
+  scope :query_by_model_name,lambda{|model_name|
+    joins("JOIN #{Irm::BusinessObject.table_name} ON #{Irm::BusinessObject.table_name}.business_object_code = #{table_name}.business_object_code").
+    where("#{Irm::BusinessObject.table_name}.bo_model_name = ?",model_name)
+  }
+
 
   def select_table_name
     t_name = ""

@@ -33,4 +33,25 @@ class Irm::WfMailRecipient < ActiveRecord::Base
     end
     "#{type_name}: #{recipient_name}"
   end
+
+  def person_ids(bo)
+    person_ids = []
+    case self.recipient_type
+      when "RELATED_PERSON"
+        if bo
+          value = Irm::BusinessObject.attribute_of(bo,self.recipient_id)
+          if value.present?
+            if value.is_a?(Array)
+              person_ids = value
+            else
+              person_ids = [value.to_i]
+            end
+          end
+        end
+      when "ROLE"
+        person_ids = Irm::PersonRole.where(:role_id=>self.recipient_id).collect{|i| i.person_id}
+      when "PERSON"
+        person_ids = [self.recipient_id]
+    end
+  end
 end
