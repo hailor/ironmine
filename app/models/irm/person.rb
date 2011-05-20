@@ -391,4 +391,5 @@ class Irm::AnonymousPerson < Irm::Person
   def name(*args); ::I18n.t(:label_identity_anonymous) end
   def email; nil end
   def real?; false end
+  def language_code; "en" end
 end
