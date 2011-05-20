@@ -72,6 +72,7 @@ class Irm::PeopleController < ApplicationController
           format.xml  { head :ok }
         end
       else
+        @person = Irm::Person.list_all.find(params[:id])
         @error = @person
         format.html { render "edit" }
         format.xml  { render :xml => @person.errors, :status => :unprocessable_entity }
