@@ -47,11 +47,21 @@
                         <span id="settingMenu" class="menuParent" style="float:right">
                           <div  class="menuLabel">
                             <span tabindex="0" style="" id="userNavTop" ><%= Irm::Person.current.name %></span>
+                            <div class="menuLabel-tr"></div>
+                            <div class="menuLabel-tl"></div>
                             <div id="settingMenu-arrow"></div>
                           </div>
                           <div class="menuContent" >
+                            <div class="tsidMenu-tr"></div>
+                            <div class="tsidMenu-tl"></div>
+                            <div class="tsidMenu-tc"></div>
+                            <div class="menuItems">
                             <%= setting_menu%>
                             <div class="menuItem"><%= link_to(t(:label_irm_common_logout),logout_url) %></div>
+                            </div>
+                            <div class="tsidMenu-br"></div>
+                            <div class="tsidMenu-bl"></div>
+                            <div class="tsidMenu-bc"></div>
                           </div>
                         </span>
                         <%= current_company_access_menu %>
