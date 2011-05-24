@@ -135,7 +135,7 @@
     min-height:331px;
     overflow:hidden;
     padding:39px 10px 13px 41px;
-    +padding:39px 10px 102px 41px;
+    /*+padding:39px 10px 102px 41px;*/
     width:395px;
 }
 
