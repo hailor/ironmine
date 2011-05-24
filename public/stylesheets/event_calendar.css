@@ -186,7 +186,7 @@ a.ec-day-link {
 
 .ec-event-no-bg a {
   /* isn't implemented in all browsers */
-  color: inherit;
+  color: black;
 }
 
 .ec-event-time {
