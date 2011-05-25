@@ -1,0 +1,56 @@
+<%= form_for(@wf_approval_process,:url=>{:action=>"edit"},:builder => LabellingFormBuilder) do |f| %>
+<%= f.hidden_field(:step) %>
+<div  class="bWizardBlock">
+    <div class="pbWizardTitle tertiaryPalette">
+        <div class="ptRightTitle">
+            <%= t(:step_n_total_m, :n => "2", :m => "2") %>
+        </div>
+        <h2>
+            <%= t(:step_n, :n => "2") %><%= t(:label_irm_wf_approval_process_filter) %>
+        </h2>
+    </div>
+  <div class="pbBody">
+    <div class="pbDescription ">
+    </div>
+    <div class="pbWizardBody">
+      <div class="secondaryPalette">
+        <div class="pbBody ">
+            <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+              <span class="pbSubExtra">
+                <span class="requiredLegend">
+                  <span class="requiredExampleOuter">
+                    <span class="requiredExample">&nbsp;</span>
+                  </span><span class="requiredMark">*</span>
+                  <span class="requiredText"> = <%=t(:label_is_required)%></span>
+                </span>
+              </span>
+              <h3><%= t(:label_irm_wf_approval_process_filter) %></h3>
+            </div>
+            <div class="pbSubsection">
+              <%=f.hidden_field(:evaluate_entry_mode,:value=>"FILTER")%>
+              <% if @rule_filter %>
+                <%= render "rule_filter" %>
+              <% end %>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="pbWizardFooter">
+        <div class="pbBottomButtons">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tbody>
+                <tr>
+                  <td class="pbTitle"></td>
+                  <td id="bottomButtonRow" class="pbButtonb">
+                    <div class="button"><%= link_to t(:last), {:action => "new",:pre_step=>true},{:class=>"submit"} %></div>
+                    <div class="button"><%= f.submit t :next%></div>
+                    <div class="button"><%= link_to t(:cancel), {:action => "index"} %></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+</div>
+<%end%>

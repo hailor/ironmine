@@ -1,0 +1,58 @@
+<% if processes.any? %>
+<div class="datatable">
+  <div class="yui3-widget yui3-datatable">
+    <div class="yui3-datatable-content">
+        <table id='rows' cellspacing="0" cellpadding="0" class='grid'>
+          <thead class="yui3-datatable-columns">
+            <tr class="yui3-datatable-first yui3-datatable-last">
+              <th class="yui3-column" style="width:60px;">
+                <div class="yui3-datatable-liner"><%= t(:operation) %>
+                </div>
+              </th>
+              <th class="yui3-column" style="width:60px;">
+                <div class="yui3-datatable-liner"><%= t(:label_irm_wf_approval_process_process_order) %>
+                </div>
+              </th>
+              <th class="yui3-column" style="width:60px;">
+                <div class="yui3-datatable-liner"><%= t(:label_irm_wf_approval_process_name) %>
+                </div>
+              </th>
+              <th class="yui3-column" style="width:180px;">
+                <div class="yui3-datatable-liner"><%= t(:label_irm_wf_approval_process_description) %>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="yui3-datatable-data">
+          <% processes.each do |process| %>
+          <tr id="<%=process.id%>" class="yui3-datatable-even">
+            <td class="yui3-column">
+              <div class='yui3-datatable-liner'>
+                <%= link_to(t(:edit),{:action=>"edit",:id=>process.id},:back_url=>url_for({})) %>
+                <%= link_to(t(:active),{:action=>"edit",:id=>process.id},:back_url=>url_for({})) %>
+                <%= link_to(t(:delete),{:action=>"destroy",:id=>process.id,:back_url=>url_for({})},{:confirm => t(:label_are_you_sure) ,:method => :delete} )%>
+               </div>
+            </td>
+            <td class="yui3-column">
+              <div class='yui3-datatable-liner'>
+                  <%= text_field_tag(:process_order[process.id],:value=>process.process_order) %>
+               </div>
+            </td>
+            <td class="yui3-column">
+              <div class='yui3-datatable-liner'>
+                  <%= link_to(process.name,{:action=>"destroy",:id=>process.id},:back_url=>url_for({})) %>
+               </div>
+            </td>
+            <td class="yui3-column">
+              <div class='yui3-datatable-liner'>
+                <%= process.description %>
+              </div>
+            </td>
+          </tr>
+          <% end -%>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+<% end %>

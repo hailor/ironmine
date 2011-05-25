@@ -1,0 +1,82 @@
+<%= form_for(@wf_approval_process,:url=>{:action=>"edit"},:builder => LabellingFormBuilder) do |f| %>
+<%= f.hidden_field(:step) %>
+<div  class="bWizardBlock">
+    <div class="pbWizardTitle tertiaryPalette">
+        <div class="ptRightTitle">
+            <%= t(:step_n_total_m, :n => "3", :m => "4") %>
+        </div>
+        <h2>
+            <%= t(:step_n, :n => "3") %><%= t(:label_irm_wf_approval_process_editable_and_next_approver) %>
+        </h2>
+    </div>
+  <div class="pbBody">
+    <div class="pbDescription ">
+    </div>
+    <div class="pbWizardBody">
+      <div class="secondaryPalette">
+        <div class="pbBody ">
+            <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+              <span class="pbSubExtra">
+                <span class="requiredLegend">
+                  <span class="requiredExampleOuter">
+                    <span class="requiredExample">&nbsp;</span>
+                  </span><span class="requiredMark">*</span>
+                  <span class="requiredText"> = <%=t(:label_is_required)%></span>
+                </span>
+              </span>
+              <h3><%= t(:label_irm_wf_approval_process_next_approver) %></h3>
+            </div>
+            <div class="pbSubsection">
+              <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                    <tr>
+                      <td class="labelCol"><label for="wf_approval_process_next_approver_mode"><%=t(:label_irm_wf_approval_process_next_approver_mode)%></label></td>
+                      <td class="dataCol"><%=f.blank_select :next_approver_mode,available_next_approver_mode, :required=>true ,:id=>"wf_approval_process_next_approver_mode"%></td>
+                      <td class="labelCol empty">&nbsp;</td>
+                      <td class="dataCol empty">&nbsp;</td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+            <div id="head_2_ep" class="pbSubheader tertiaryPalette">
+              <h3><%= t(:label_irm_wf_approval_process_record_editability) %></h3>
+            </div>
+            <div class="pbSubsection">
+              <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                  <tr>
+                    <td class="labelCol"><label for="wf_rule_evaluate_criteria_rule"></label></td>
+                    <td class="dataCol" colspan="3" style="width:82%">
+                      <% available_wf_process_editability.each_with_index do |ability,index| %>
+                        <div>
+                          <%=f.radio_button :record_editability, ability[1],{:id=>"editability_#{index}"}%>
+                          <label for="editability_<%= index %>"> <%= ability[0] %> </label>
+                        </div>
+                      <% end %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="pbWizardFooter">
+        <div class="pbBottomButtons">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tbody>
+                <tr>
+                  <td class="pbTitle"></td>
+                  <td id="bottomButtonRow" class="pbButtonb">
+                    <div class="button"><%= link_to t(:last), {:action => "new",:pre_step=>true},{:class=>"submit"} %></div>
+                    <div class="button"><%= f.submit t :next%></div>
+                    <div class="button"><%= link_to t(:cancel), {:action => "index"} %></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+</div>
+<%end%>

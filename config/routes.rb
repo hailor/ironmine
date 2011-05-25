@@ -1,4 +1,5 @@
 Ironmine::Application.routes.draw do
+
   scope :module => "irm" do
     root :to => "navigations#index"
     match 'login'=>'common#login',:as=>:login
@@ -643,7 +644,19 @@ Ironmine::Application.routes.draw do
     match '/wf_mail_alerts/:id/show(.:format)' => "wf_mail_alerts#show", :via => :get
     match '/wf_mail_alerts/:id/destroy(.:format)' => "wf_mail_alerts#destroy", :via => :delete
     match '/wf_mail_alerts/recipient_source(.:format)' => "wf_mail_alerts#recipient_source", :via => :get
-
+    # wf_approval_processes
+    match '/wf_approval_processes(/index)(.:format)' => "wf_approval_processes#index", :via => :get
+    match '/wf_approval_processes/new(.:format)' => "wf_approval_processes#new", :via => [:get,:post,:put]
+    match '/wf_approval_processes/create(.:format)' => "wf_approval_processes#create", :via => :post
+    match '/wf_approval_processes/get_data(.:format)' => "wf_approval_processes#get_data"
+    match '/wf_approval_processes/:id/edit(.:format)' => "wf_approval_processes#edit", :via => [:get,:post,:put]
+    match '/wf_approval_processes/:id/active(.:format)' => "wf_approval_processes#active", :via => :get
+    match '/wf_approval_processes/:id(.:format)' => "wf_approval_processes#update", :via => :put
+    match '/wf_approval_processes/:id/destroy(.:format)' => "wf_approval_processes#destroy", :via => :delete
+    match '/wf_approval_processes/:id/show(.:format)' => "wf_approval_processes#show", :via => :get
+    match '/wf_approval_processes/:id/destroy_action(.:format)' => "wf_approval_processes#destroy_action", :via => :delete
+    match '/wf_approval_processes/:id/add_exists_action(.:format)' => "wf_approval_processes#add_exists_action", :via => :get
+    match '/wf_approval_processes/:id/save_exists_action(.:format)' => "wf_approval_processes#save_exists_action", :via => :post
   end
 
   scope :module => "icm" do

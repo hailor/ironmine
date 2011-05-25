@@ -1,0 +1,69 @@
+<%= page_title %>
+
+<div id="ep" class="bDetailBlock bPageBlock">
+  <div class="pbHeader">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td class="pbTitle"><h2 class="mainTitle"><%=bo_name(@wf_approval_process.bo_code)+":"+@wf_approval_process.name %></h2></td>
+          <td id="topButtonRow" class="pbButton">
+            <div class="button"><%= link_to t(:edit), {:action => "edit", :id => @wf_approval_process.id}%></div>
+            <div class="button"><%= link_to t(:cancel),back_url_default({:action=>"index"})%></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pbBody">
+    <div class="pbSubsection">
+      <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_approval_process_name)%></label></td>
+              <td class="dataCol"><div><%= @wf_approval_process.name %></div></td>
+              <td class="labelCol empty"><div><%= t(:active) %></div></td>
+              <td class="dataCol empty"><div><%= check_img(@wf_approval_process.status_code) %></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_approval_process_process_code)%></label></td>
+              <td class="dataCol"><div><%= @wf_approval_process.process_code %></div></td>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_approval_process_next_approver_mode)%></label></td>
+              <td class="dataCol"><div><%= @wf_approval_process.next_approver_mode %></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_approval_process_description)%></label></td>
+              <td class="dataCol" colspan="3" width="82%"><div><%= @wf_approval_process.description %></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_approval_process_evaluate)%></label></td>
+              <td class="dataCol" colspan="3" width="82%"><div><%= @rule_filter.meaning %></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_approval_process_record_editability)%></label></td>
+              <td class="dataCol"><div><%= @wf_approval_process[:record_editability_name] %></div></td>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_approval_process_allow_submitter_recal)%></label></td>
+              <td class="dataCol"><div><%= check_img(@wf_approval_process.allow_submitter_recall) %></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_approval_process_mail_template)%></label></td>
+              <td class="dataCol"><div><%= @wf_approval_process[:mail_template_name] %></div></td>
+              <td class="labelCol"><label ><%=t(:label_irm_wf_approval_process_display_history_flag)%></label></td>
+              <td class="dataCol"><div><%= check_img(@wf_approval_process.display_history_flag) %></div></td>
+            </tr>
+            <tr>
+              <td class="labelCol"><label ><%= t(:label_irm_wf_approval_process_init_submiter) %></label></td>
+              <td class="dataCol" colspan="3" width="82%"><div>
+                <% if @wf_approval_process.wf_approval_submitters.any? %>
+                    <% @wf_approval_process.wf_approval_submitters.each_with_index do |r,index| %>
+                        <div><%= r.label %></div>
+                    <% end %>
+                <% end %>
+              </div></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+

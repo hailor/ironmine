@@ -1,0 +1,13 @@
+<%= page_title %>
+<%= render "edit_step_#{@wf_approval_process.step}"%>
+<script type="text/javascript">
+  GY.use("node-base",function(Y){
+      Y.one("form.edit_irm_wf_approval_process").delegate("click",function(e){
+          e._currentTarget.setAttribute("action",e.target.getAttribute("href"));
+
+          e.preventDefault();
+          e._currentTarget.submit();
+      },"a.submit");
+  });
+
+</script>

@@ -1,0 +1,77 @@
+<%= stylesheet_link_tag "/javascripts/yui3.3/datatable/assets/skins/sam/datatable.css"%>
+<%= page_title %>
+<style type="text/css">
+  .processTitle {
+      margin-bottom:15px;
+  }
+  .processTitle h6{
+      background-color: #333333;
+    border-radius: 4px 4px 4px 4px;
+    color: #FFFFFF;
+    display: block;
+    padding: 5px 0;
+    text-align: center;
+  }
+</style>
+<div class="processTitle">
+   <h6 class="processTitle">
+     <%= t(:label_irm_wf_approval_process_manage) %> <%=select_tag_alias :bo_code, available_workflow_business_object,nil,{:id=>"boCode"}%>
+   </h6>
+</div>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_wf_approval_process_active_list) %></h2></td>
+              <td  class="pbButton">
+                <div class="button"><%= link_to t(:new), {:action => "new",:bo_code=>@bo_code}%></div>
+              </td>
+              <td class="pbHelp">
+                <div ></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <%= render :partial => "active_processes",:locals =>{:processes=>active_approval_process(@bo_code)}%>
+      </div>
+    </div>
+</div>
+
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_wf_approval_process_disable_list) %></h2></td>
+              <td  class="pbButton">
+                <div class="button"><%= link_to t(:label_irm_wf_approval_process_new), {:action => "new",:bo_code=>"{bo_code}"},{:id=>"newButton"}%></div>
+              </td>
+              <td class="pbHelp">
+                <div ></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <%= render :partial => "disable_processes",:locals =>{:processes=>disable_approval_process(@bo_code)}%>
+      </div>
+    </div>
+</div>
+<script type="text/javascript">
+  GY.use("substitute",function(Y){
+     Y.one("#newButton").on("click",function(e){
+      if(!e.target.getAttribute("thref"))
+        e.target.setAttribute("thref",e.target.getAttribute("href"))
+      var url = decodeURIComponent(e.target.getAttribute("thref"));
+      url = Y.Lang.substitute(url,{bo_code:Y.one("#boCode").get("value")});
+      e.target.setAttribute("href",encodeURI(url));
+
+     });
+  });
+</script>

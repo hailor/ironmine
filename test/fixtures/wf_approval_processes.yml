@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  bo_code: MyString
+  process_order: 1
+  name: MyString
+  process_code: MyString
+  description: MyString
+  evaluate_entry_mode: MyString
+  next_approver_mode: MyString
+  mail_template_id: 1
+  display_history_flag: MyString
+  allow_submitter_recal: MyString
+
+two:
+  bo_code: MyString
+  process_order: 1
+  name: MyString
+  process_code: MyString
+  description: MyString
+  evaluate_entry_mode: MyString
+  next_approver_mode: MyString
+  mail_template_id: 1
+  display_history_flag: MyString
+  allow_submitter_recal: MyString

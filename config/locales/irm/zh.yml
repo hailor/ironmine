@@ -1163,4 +1163,31 @@ zh:
   label_irm_wf_mail_alert_selected_recipients: 已添加的收件人
   label_irm_wf_mail_alert_recipient_notice: 请选收件人类型，并选择收件人，添加到收件人列表；注意：请不要重复添加！
   #========================  end wf mail alert====================
-
+  #======================== wf approval process====================
+  label_irm_wf_approval_process_info: 审批流程信息
+  label_irm_wf_approval_process_name: 名称
+  label_irm_wf_approval_process_process_order: 过程顺序
+  label_irm_wf_approval_process_process_code: 编码
+  label_irm_wf_approval_process_mail_template: 审批通知邮件模板
+  label_irm_wf_approval_process_allow_submitter_recal: 允许提交人调回批准请求
+  label_irm_wf_approval_process_description: 描述
+  label_irm_wf_approval_process_filter: 指定条目条件
+  label_irm_wf_approval_process_editable_and_next_approver: 指定批准人字段和记录可编辑性属性
+  label_irm_wf_approval_process_next_approver: 选择用于自动传送批准的字段
+  label_irm_wf_approval_process_next_approver_mode: 下一个批准人的自动确定方式
+  label_irm_wf_approval_process_record_editability: 记录可编辑性属性
+  label_irm_wf_approval_process_submit: 指定初始提交人
+  label_irm_wf_approval_process_init_submiter: 初始提交人
+  label_irm_wf_approval_process_submit_config: 提交设置
+  label_irm_wf_approval_process: 审批流程
+  label_irm_wf_approval_process_new: 创建新的审批流程
+  label_irm_wf_approval_process_manage: 管理审批流程
+  label_irm_wf_approval_process_active_list: 已启用的批准过程
+  label_irm_wf_approval_process_disable_list: 未启用的批准过程
+  label_irm_wf_approval_process_bo_code: 业务对像
+  label_irm_person: 人员
+  label_irm_role: 角色
+  label_related_person: 相关人员
+  label_irm_wf_approval_process_display_history_flag: 审批页面显示审批历史
+  label_irm_wf_approval_process_evaluate: 条件
+  #========================end  wf approval process====================

@@ -1,0 +1,150 @@
+<style type="text/css">
+  div.submitterType{
+      float:left;
+  }
+</style>
+<%= form_for(@wf_approval_process,:url=>{:action=>"create"},:builder => LabellingFormBuilder) do |f| %>
+<%= f.hidden_field(:step) %>
+<div  class="bWizardBlock">
+    <div class="pbWizardTitle tertiaryPalette">
+        <div class="ptRightTitle">
+            <%= t(:step_n_total_m, :n => "4", :m => "4") %>
+        </div>
+        <h2>
+            <%= t(:step_n, :n => "4") %><%= t(:label_irm_wf_approval_process_submit) %>
+        </h2>
+    </div>
+  <div class="pbBody">
+    <div class="pbDescription ">
+    </div>
+    <div class="pbWizardBody">
+      <div class="secondaryPalette">
+        <div class="pbBody ">
+            <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+              <span class="pbSubExtra">
+                <span class="requiredLegend">
+                  <span class="requiredExampleOuter">
+                    <span class="requiredExample">&nbsp;</span>
+                  </span><span class="requiredMark">*</span>
+                  <span class="requiredText"> = <%=t(:label_is_required)%></span>
+                </span>
+              </span>
+              <h3><%= t(:label_irm_wf_approval_process_init_submiter) %></h3>
+            </div>
+            <div class="pbSubsection">
+              <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                  <tr>
+                    <td class="labelCol empty">&nbsp;</td>
+                    <td class="dataCol empty">&nbsp;</td>
+                    <td class="labelCol empty">&nbsp;</td>
+                    <td class="dataCol empty">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td class="labelCol"><label for="submitterType"><%=t(:label_irm_wf_rule_action_type)%></label></td>
+                    <td class="dataCol" colspan="3" style="width:82%">
+                      <div class="submitterType">
+                           <label><%= t(:search) %></label>
+                      </div>
+                      <div class="submitterType">
+                         <%=select_tag_alias :submitter_type,available_mail_alert_recipient_type,{},:id=>"submitterType"%>
+                      </div>
+                      <div class="submitterType">
+                        <input type="text" size="30" id="duelQuery"/>
+                      </div>
+                      <div class="submitterType">
+                         <div class="button"><a href="javascript:void(0)" id="duelSearch"><%=t(:search) %></a></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr id="actions">
+                    <td class="labelCol"></td>
+                    <td class="dataCol" colspan="3" width="82%">
+                      <table class="duel">
+                        <tr class="duelTitle">
+                          <th><%= t(:duel_selectable)%></th>
+                          <th></th>
+                          <th><%= t(:duel_selected)%></th>
+                        </tr>
+                        <tr class="duelList">
+                          <td class="sourceCell">
+                            <%= select_tag_alias(:source,available_approval_submitter(@wf_approval_process.bo_code),nil,{:id=>"source",:multiple=>true,:size=>14}) %>
+                          </td>
+                          <td class="buttonCell">
+                            <div class="text"><%= t(:add) %></div>
+                            <div class="text">
+                              <a href="javascript:void(0)" id="duelAdd"><img title="<%= t(:add) %>" class="rightArrowIcon" alt="<%= t(:add) %>" src="<%= theme_image_path("s.gif") %>"></a>
+                            </div>
+                            <div class="text">
+                              <a href="javascript:void(0)" id="duelRemove"><img title="<%= t(:delete) %>" class="leftArrowIcon" alt="<%= t(:delete) %>" src="<%= theme_image_path("s.gif") %>"></a>
+                            </div>
+                            <div class="duelingText"><%= t(:delete) %></div>
+                          </td>
+                          <td class="targetCell">
+                            <%= f.hidden_field(:submitter_value_str,:value=>@wf_approval_process.submitter_value_str||process_submitter_value(@wf_approval_process.id),:id=>"submitters") %>
+                            <%= select_tag_alias(:target,[],nil,{:id=>"target",:multiple=>true,:size=>14}) %>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div id="head_2_ep" class="pbSubheader tertiaryPalette">
+              <h3><%= t(:label_irm_wf_approval_process_submit_config) %></h3>
+            </div>
+            <div class="pbSubsection">
+              <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                  <tr>
+                    <tr>
+                      <td class="labelCol"><label for="wf_approval_process_allow_submitter_recal"><%=t(:label_irm_wf_approval_process_allow_submitter_recal)%></label></td>
+                      <td class="dataCol"><%=f.check_box :allow_submitter_recall, :id=>"wf_approval_process_allow_submitter_recal"%></td>
+                      <td class="labelCol empty">&nbsp;</td>
+                      <td class="dataCol empty">&nbsp;</td>
+                    </tr>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="pbWizardFooter">
+        <div class="pbBottomButtons">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tbody>
+                <tr>
+                  <td class="pbTitle"></td>
+                  <td id="bottomButtonRow" class="pbButtonb">
+                    <div class="button"><%= link_to t(:last), {:action => "new",:pre_step=>true},{:class=>"submit"} %></div>
+                    <div class="button"><%= f.submit t :save%></div>
+                    <div class="button"><%= link_to t(:cancel), {:action => "index"} %></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+</div>
+<%end%>
+<script type="text/javascript">
+  GY.use("duelselect",function(Y){
+    var duelselect = new Y.DuelSelect({source:"#source",target:"#target",valueNode:"#submitters",type:Y.one("#submitterType").get("value"),addButton:"#duelAdd",removeButton:"#duelRemove"});
+    Y.one("#submitterType").on("change",function(e){
+      Y.one("#duelQuery").set("value","");
+      duelselect.filter(Y.one("#submitterType").get("value"),Y.one("#duelQuery").get("value"));
+    });
+    Y.one("#duelSearch").on("click",function(e){
+      duelselect.filter(Y.one("#submitterType").get("value"),Y.one("#duelQuery").get("value"));
+    });
+    Y.one("#duelQuery").on("keydown",function(e){
+      if(e.keyCode==13){
+          e.preventDefault();
+          duelselect.filter(Y.one("#submitterType").get("value"),Y.one("#duelQuery").get("value"));
+      }
+    });
+  });
+</script>
