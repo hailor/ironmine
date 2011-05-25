@@ -11,6 +11,7 @@ module Irm::QueryExtend
 
           class_eval do
             scope :enabled,where("#{table_name}.status_code = ?",Irm::Constant::ENABLED)
+            scope :disabled,where("#{table_name}.status_code = 'OFFLINE'")
 
             scope :query ,lambda{|id|
               where("#{table_name}.id = ?",id)
