@@ -9,7 +9,7 @@ class Irm::WfFieldUpdate < ActiveRecord::Base
   validates_format_of :field_update_code, :with => /^[A-Z0-9_]*$/ ,:if=>Proc.new{|i| i.field_update_code.present?}
   validate :validate_value, :if => Proc.new { |i| i.value_type.present?}
 
-
+  acts_as_urlable
   query_extend
 
   scope :with_bo,lambda{|language|

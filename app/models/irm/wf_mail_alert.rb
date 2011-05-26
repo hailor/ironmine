@@ -9,6 +9,7 @@ class Irm::WfMailAlert < ActiveRecord::Base
   validates_uniqueness_of :name, :if => Proc.new { |i| !i.name.present? }
   validates_format_of :mail_alert_code, :with => /^[A-Z0-9_]*$/ ,:if=>Proc.new{|i| i.mail_alert_code.present?}
 
+  acts_as_urlable
   query_extend
 
   scope :with_bo,lambda{|language|
