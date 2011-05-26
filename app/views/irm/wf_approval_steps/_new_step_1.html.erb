@@ -1,0 +1,78 @@
+<div  class="bWizardBlock">
+    <div class="pbWizardTitle tertiaryPalette">
+        <div class="ptRightTitle">
+            <%= t(:step_n_total_m, :n => "1", :m => "3") %>
+        </div>
+        <h2>
+            <%= t(:step_n, :n => "1") %><%= t(:label_common_info) %>
+        </h2>
+    </div>
+  <div class="pbBody">
+  <%= error_for @wf_approval_step%>
+  <%= form_for(@wf_approval_step,:url=>{:action=>"new"},:builder => LabellingFormBuilder) do |f| %>
+  <%= f.hidden_field(:step) %>
+    <div class="pbDescription ">
+    </div>
+    <div class="pbWizardBody">
+      <div class="secondaryPalette">
+        <div class="pbBody ">
+            <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+              <span class="pbSubExtra">
+                <span class="requiredLegend">
+                  <span class="requiredExampleOuter">
+                    <span class="requiredExample">&nbsp;</span>
+                  </span><span class="requiredMark">*</span>
+                  <span class="requiredText"> = <%=t(:label_is_required)%></span>
+                </span>
+              </span>
+              <h3><%= t(:label_common_info) %></h3>
+            </div>
+            <div class="pbSubsection">
+                <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+                  <tbody>
+                    <tr>
+                      <td class="labelCol"><label for="wf_approval_step_name"><%=t(:label_irm_wf_approval_step_name)%></label></td>
+                      <td class="dataCol"><%=f.text_field :name, :required=>true ,:id=>"wf_approval_step_name"%></td>
+                      <td class="labelCol empty">&nbsp;</td>
+                      <td class="dataCol empty">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td class="labelCol"><label for="wf_approval_step_step_code"><%=t(:label_irm_wf_approval_step_step_code)%></label></td>
+                      <td class="dataCol"><%=f.text_field :step_code, :required=>true ,:irm_uppercase=>true,:id=>"wf_approval_step_step_code"%></td>
+                      <td class="labelCol empty">&nbsp;</td>
+                      <td class="dataCol empty">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td class="labelCol"><label for="wf_approval_step_description"><%=t(:label_irm_wf_approval_step_description)%></label></td>
+                      <td class="dataCol" colspan="3" width="82%"><%=f.text_area :description, :cols=>60,:rows=>5,:id=>"wf_approval_step_description"%></td>
+                    </tr>
+                    <tr>
+                      <td class="labelCol"><label for="wf_approval_step_step_number"><%=t(:label_irm_wf_approval_step_step_number)%></label></td>
+                      <td class="dataCol"><%=f.text_field :step_number,:value=>@wf_approval_step.init_step_number, :required=>true ,:size=>3,:id=>"wf_approval_step_step_number"%></td>
+                      <td class="labelCol empty">&nbsp;</td>
+                      <td class="dataCol empty">&nbsp;</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="pbWizardFooter">
+        <div class="pbBottomButtons">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tbody>
+                <tr>
+                  <td class="pbTitle"></td>
+                  <td id="bottomButtonRow" class="pbButtonb">
+                    <div class="button"><%= f.submit t :next%></div>
+                    <div class="button"><%= link_to t(:cancel), {:controller => "irm/wf_approval_processes",:action => "show",:id=>params[:process_id]} %></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+    <%end%>
+  </div>
+</div>

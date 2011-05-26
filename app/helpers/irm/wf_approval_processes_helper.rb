@@ -33,4 +33,9 @@ module Irm::WfApprovalProcessesHelper
     end
     values
   end
+
+
+  def showable_steps(process_id)
+    Irm::WfApprovalStep.list_all.where(:process_id=>process_id).order("step_number")
+  end
 end

@@ -77,6 +77,7 @@ zh:
   test: 测试
   duel_selectable: 可选项
   duel_selected: 已选择项
+  else: 否则
   #常用语句
   notice_account_invalid_creditentials: 用户名或密码错误
   successfully_updated: 已经成功更新数据
@@ -1191,3 +1192,30 @@ zh:
   label_irm_wf_approval_process_display_history_flag: 审批页面显示审批历史
   label_irm_wf_approval_process_evaluate: 条件
   #========================end  wf approval process====================
+  #======================== wf approval step====================
+  label_irm_wf_approval_step: 审批步骤
+  label_irm_wf_approval_step_new: 创建审批步骤
+  label_irm_wf_approval_step_process: 审批流程
+  label_irm_wf_approval_step_name: 名称
+  label_irm_wf_approval_step_step_code: 编码
+  label_irm_wf_approval_step_description: 描述
+  label_irm_wf_approval_step_step_number: 步骤编号
+  label_irm_wf_approval_step_filter_config: 指定步骤条件
+  label_irm_wf_approval_step_filter: 条件
+  label_irm_wf_approval_step_evaluate_mode_all: 所有记录都应进入此步骤。
+  label_irm_wf_approval_step_evaluate_mode_all_filter: 如果满足以下条件，则进入此步骤,否则
+  label_irm_wf_approval_step_validate_step_number: 必须大于%{min}小于%{max}
+  label_irm_wf_approval_step_select_approver: 选择批准人
+  label_irm_wf_approval_ste_approver_type: 审批人类型
+  label_irm_wf_approval_step_approver: 审批人
+  label_irm_wf_approval_step_allow_delegation_approve: 允许代理审批
+  label_irm_wf_approval_step_approver_mode_by_approver: 允许提交人手动选择批准人
+  label_irm_wf_approval_step_approver_mode_process_default: 使用之前审批人的用户字段自动分配
+  label_irm_wf_approval_step_approver_mode_auto: 自动分配至批准人
+  label_irm_wf_approval_step_multiple_approver_mode: 当选择多个批准人时
+  label_irm_wf_approval_step_multiple_approver_mode_first_approved: 基于 首次 回复的批准或拒绝
+  label_irm_wf_approval_step_multiple_approver_mode_all_approved: 要求所有选定批准人的 一致 批准
+  label_irm_wf_approval_step_reject_behavior: 拒绝行为
+  label_irm_wf_approval_step_reject_behavior_step_reject: 只执行此步骤的拒绝操作并将批准请求发回到最近的批准人。（返回 1 步）
+  label_irm_wf_approval_step_reject_behavior_process_reject: 执行此步骤的所有拒绝操作和所有最终拒绝操作。（最终拒绝）
+  #======================== wf approval step====================

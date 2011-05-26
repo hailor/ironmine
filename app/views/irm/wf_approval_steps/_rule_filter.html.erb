@@ -1,0 +1,47 @@
+<%= fields_for @rule_filter,:builder => LabellingFormBuilder do |f|%>
+  <div class="pbSubsection" id="filterContent" href="<%= url_for(:controller=>"irm/filters",:action=>"operator_value",:seq_num=>"{seq_num}",:attribute_id=>"{attribute_id}") %>">
+    <%= f.hidden_field(:source_id) %>
+    <%= f.hidden_field(:source_type) %>
+    <%= f.hidden_field(:filter_type) %>
+    <%= f.hidden_field(:bo_code) %>
+    <table cellpadding="0" cellspacing="0" border="0" style="display:inline-block;">
+      <thead>
+        <tr>
+          <th style="width:10px;"></th>
+          <th><%=t(:irm_filter_criterions_column_code)%></th>
+          <th><div style="width:30%;float:left;"><%=t(:irm_filter_criterions_operator_code)%></div> <div style="width:70%;float:left;"><%=t(:irm_filter_criterions_filter_value)%></div></th>
+        </tr>
+      </thead>
+      <tbody>
+      <%= f.fields_for :rule_filter_criterions,:normal=>true do |sub_f|%>
+          <tr>
+            <td ><%=sub_f.object.seq_num%>.</td>
+            <td >
+              <%=sub_f.hidden_field(:seq_num)%>
+              <%=sub_f.hidden_field(:bo_code,:value=>@rule_filter.bo_code)%>
+              <%=sub_f.blank_select(:attribute_name,available_view_column(@rule_filter.bo_code),{:required=>true,:size=>10},{:class=>"filterColumnSelect",:ref=>sub_f.object.seq_num})%>
+            </td>
+            <td  id="filter<%=sub_f.object.seq_num%>">
+              <%= render_exists_operator_and_value(@rule_filter.bo_code,sub_f.object.attribute_name,sub_f)  %>
+            </td>
+          </tr>
+      <%end %>
+      <tr>
+        <td colspan="3"><%=(t :label_irm_view_filter_view_condition_clause)%></td>
+      </tr>
+      <tr>
+        <td colspan="3"><%=f.text_field :raw_condition_clause, :size=>60,:id=>"rawConditionClause"%></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+<%end%>
+<script type="text/javascript">
+  GY.use("irm","gallerydispatcher","substitute",function(Y){
+      Y.on("domready",function(){
+        Y.on('change',Y.irm.rawConditionClause,".filterColumnSelect");
+        Y.on('change',Y.irm.refreshFilterOptions, '.filterColumnSelect');
+      });
+
+  });
+</script>

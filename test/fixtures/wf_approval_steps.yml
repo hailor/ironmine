@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  step_number: 1
+  name: MyString
+  step_code: MyString
+  description: MyString
+  evaluate_mode: MyString
+  evaluate_result: MyString
+  approver_mode: MyString
+  multiple_approver_mode: MyString
+  allow_delegation_approve: MyString
+  reject_behavior: MyString
+
+two:
+  step_number: 1
+  name: MyString
+  step_code: MyString
+  description: MyString
+  evaluate_mode: MyString
+  evaluate_result: MyString
+  approver_mode: MyString
+  multiple_approver_mode: MyString
+  allow_delegation_approve: MyString
+  reject_behavior: MyString

@@ -657,6 +657,14 @@ Ironmine::Application.routes.draw do
     match '/wf_approval_processes/:id/destroy_action(.:format)' => "wf_approval_processes#destroy_action", :via => :delete
     match '/wf_approval_processes/:id/add_exists_action(.:format)' => "wf_approval_processes#add_exists_action", :via => :get
     match '/wf_approval_processes/:id/save_exists_action(.:format)' => "wf_approval_processes#save_exists_action", :via => :post
+    # wf_approval_steps
+    match '/wf_approval_steps(/index)(.:format)' => "wf_approval_steps#index", :via => :get
+    match '/wf_approval_processes/:process_id/wf_approval_steps/new(.:format)' => "wf_approval_steps#new", :via => [:get,:post,:put]
+    match '/wf_approval_processes/:process_id/wf_approval_steps/create(.:format)' => "wf_approval_steps#create", :via => :post
+    match '/wf_approval_processes/:process_id/wf_approval_steps/:id/edit(.:format)' => "wf_approval_steps#edit", :via => [:get,:post,:put]
+    match '/wf_approval_processes/:process_id/wf_approval_steps/:id(.:format)' => "wf_approval_steps#update", :via => :put
+    match '/wf_approval_processes/:process_id/wf_approval_steps/:id/destroy(.:format)' => "wf_approval_steps#destroy", :via => :delete
+
   end
 
   scope :module => "icm" do

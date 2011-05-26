@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag "/javascripts/yui3.3/datatable/assets/skins/sam/datatable.css"%>
+
 <%= page_title %>
 
 <div id="ep" class="bDetailBlock bPageBlock">
@@ -65,5 +67,6 @@
     </div>
   </div>
 </div>
+<%= render :partial => "show_steps",:locals => {:steps=>showable_steps(@wf_approval_process.id)} %>
 
 

@@ -960,3 +960,13 @@ a:hover .rightArrowIcon{
 a:hover .leftArrowIcon{
     background-position: left -80;
 }
+
+/*****************************align middle**************************************/
+td.dataCol{
+    vertical-align:middle;
+}
+td.labelCol{
+    vertical-align:middle;
+}
+
+

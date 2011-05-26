@@ -1,0 +1,100 @@
+<style type="text/css">
+  .floatLeft{
+      float:left;
+  }
+</style>
+<%= form_for(@wf_approval_step,:url=>{:action=>"new"},:builder => LabellingFormBuilder) do |f| %>
+<%= f.hidden_field(:step) %>
+<div  class="bWizardBlock">
+    <div class="pbWizardTitle tertiaryPalette">
+        <div class="ptRightTitle">
+            <%= t(:step_n_total_m, :n => "2", :m => "3") %>
+        </div>
+        <h2>
+            <%= t(:step_n, :n => "2") %><%= t(:label_irm_wf_approval_step_filter_config) %>
+        </h2>
+    </div>
+  <div class="pbBody">
+    <div class="pbDescription ">
+    </div>
+    <div class="pbWizardBody">
+      <div class="secondaryPalette">
+        <div class="pbBody ">
+            <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
+              <h3><%= t(:label_irm_wf_approval_step_filter_config) %></h3>
+            </div>
+            <div class="pbSubsection">
+                <table class="detailList" cellpadding="0" cellspacing="0" border="0">
+                  <tbody>
+                    <tr>
+                      <td class="labelCol empty">&nbsp;</td>
+                      <td class="dataCol empty">&nbsp;</td>
+                      <td class="labelCol empty">&nbsp;</td>
+                      <td class="dataCol empty">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td class="labelCol"><%=f.radio_button(:evaluate_mode,"",:id=>"allValue",:class=>"typeButton")%></td>
+                      <td class="dataCol" colspan="3" width="82%"><label for="allValue"><%=t(:label_irm_wf_approval_step_evaluate_mode_all)%></label></td>
+                    </tr>
+                    <tr>
+                      <td class="labelCol"><%=f.radio_button(:evaluate_mode,"FILTER",:id=>"filterValue",:class=>"typeButton")%></td>
+                      <td class="dataCol" colspan="3" width="82%">
+                        <div class="floatLeft">
+                            <label for="filterValue"><%=t(:label_irm_wf_approval_step_evaluate_mode_all_filter)%></label>
+                        </div>
+                        <div class="floatLeft">
+                            <%= f.select(:evaluate_result,available_wf_step_evaluate_result) %>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="showTR" refValue="FILTER" style="display:none">
+                      <td class="labelCol"></td>
+                      <td class="dataCol" colspan="3" width="82%">
+                          <% if @rule_filter %>
+                              <%= render "rule_filter" %>
+                          <% end %>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="pbWizardFooter">
+        <div class="pbBottomButtons">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tbody>
+                <tr>
+                  <td class="pbTitle"></td>
+                  <td id="bottomButtonRow" class="pbButtonb">
+                    <div class="button"><%= link_to t(:last), {:action => "new",:pre_step=>true},{:class=>"submit"} %></div>
+                    <div class="button"><%= f.submit t :next%></div>
+                    <div class="button"><%= link_to t(:cancel), {:controller => "irm/wf_approval_processes",:action => "show",:id=>params[:process_id]} %></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+</div>
+<%end%>
+<script type="text/javascript">
+    GY.use("",function(Y){
+      Y.all("input.typeButton").on("click",function(e){
+        Y.all(".showTR").setStyle("display","none");
+        Y.all(".showTR .updateValue").setAttribute("disabled","true");
+        var showTR = Y.one(".showTR[refValue="+e.target.get("value")+"]");
+        if(showTR){
+            showTR.setStyle("display","");
+            showTR.all(".updateValue").removeAttribute("disabled");
+        }
+      });
+      if(Y.one("input.typeButton[checked=checked]"))
+        Y.one("input.typeButton[checked=checked]").simulate("click");
+      else
+        Y.one("input.typeButton").simulate("click");
+    });
+</script>

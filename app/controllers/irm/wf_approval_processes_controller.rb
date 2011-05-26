@@ -122,7 +122,7 @@ class Irm::WfApprovalProcessesController < ApplicationController
   # POST /wf_approval_processes
   # POST /wf_approval_processes.xml
   def create
-    session[:irm_wf_approval_process].merge!(params[:irm_wf_approval_process])
+    session[:irm_wf_approval_process].merge!(params[:irm_wf_approval_process].symbolize_keys)
     @wf_approval_process = Irm::WfApprovalProcess.new(session[:irm_wf_approval_process])
     @rule_filter =Irm::RuleFilter.new(session[:irm_rule_filter])
 

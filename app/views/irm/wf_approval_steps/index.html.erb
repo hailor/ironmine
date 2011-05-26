@@ -1,0 +1,43 @@
+<%= page_title %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_wf_approval_step_list) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+                <div class="button"><%= link_to t(:new), {:action => "new"}%></div>
+              </td>
+              <td class="pbHelp">
+                <div id="wf_approval_stepsSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="wf_approval_steps" class="datatable" style="width:100%">
+          <div id="id" style="display:none">
+            <%= link_to(t(:edit),{:action=>"edit",:id=>"{id}"}) %>|<%= link_to(t(:show),{:action=>"show",:id=>"{id}"}) %>
+          </div>
+        </div>
+        <%= datatable("wf_approval_steps",url_for(:action=>"get_data",:format=>"json"),
+                      [{:key=>"id",:label=>t(:operation),:formatter=>"Y.irm.template",:width=>"70px"},
+                                              { :key => "step_number", :label => t(:label_irm_wf_approval_step_step_number),:searchable=>true },
+                                              { :key => "name", :label => t(:label_irm_wf_approval_step_name),:searchable=>true },
+                                              { :key => "step_code", :label => t(:label_irm_wf_approval_step_step_code),:searchable=>true },
+                                              { :key => "description", :label => t(:label_irm_wf_approval_step_description),:searchable=>true },
+                                              { :key => "evaluate_mode", :label => t(:label_irm_wf_approval_step_evaluate_mode),:searchable=>true },
+                                              { :key => "evaluate_result", :label => t(:label_irm_wf_approval_step_evaluate_result),:searchable=>true },
+                                              { :key => "approver_mode", :label => t(:label_irm_wf_approval_step_approver_mode),:searchable=>true },
+                                              { :key => "multiple_approver_mode", :label => t(:label_irm_wf_approval_step_multiple_approver_mode),:searchable=>true },
+                                              { :key => "allow_delegation_approve", :label => t(:label_irm_wf_approval_step_allow_delegation_approve),:searchable=>true },
+                                              { :key => "reject_behavior", :label => t(:label_irm_wf_approval_step_reject_behavior),:searchable=>true }
+                                              ],{:paginator_box=>"wf_approval_stepsPaginatorBox",:search_box=>"wf_approval_stepsSearchBox"})%>
+        <div id="wf_approval_stepsPaginatorBox"></div>
+      </div>
+    </div>
+</div>
+
+

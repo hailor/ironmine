@@ -1,0 +1,64 @@
+<table class="detailList" cellpadding="0" cellspacing="0" border="0">
+  <tbody>
+
+    <tr>
+      <td class="dataCol" colspan="4">
+        <div class="floatLeft">
+             <label><%= t(:search) %></label>
+        </div>
+        <div class="floatLeft">
+           <%=select_tag_alias :approver_type,available_mail_alert_recipient_type,{},:id=>"approverType"%>
+        </div>
+        <div class="floatLeft">
+          <input type="text" size="30" id="duelQuery"/>
+        </div>
+        <div class="floatLeft">
+           <div class="button"><a href="javascript:void(0)" id="duelSearch"><%=t(:search) %></a></div>
+        </div>
+      </td>
+    </tr>
+    <tr id="actions">
+      <td class="dataCol" colspan="4">
+        <table class="duel">
+          <tr class="duelTitle">
+            <th><%= t(:duel_selectable)%></th>
+            <th></th>
+            <th><%= t(:duel_selected)%></th>
+          </tr>
+          <tr class="duelList">
+            <td class="sourceCell">
+              <%= select_tag_alias(:source,available_step_approver(@wf_approval_process.bo_code),nil,{:id=>"source",:multiple=>true,:size=>7}) %>
+            </td>
+            <td class="buttonCell">
+              <div class="text"><%= t(:add) %></div>
+              <div class="text">
+                <a href="javascript:void(0)" id="duelAdd"><img title="<%= t(:add) %>" class="rightArrowIcon" alt="<%= t(:add) %>" src="<%= theme_image_path("s.gif") %>"></a>
+              </div>
+              <div class="text">
+                <a href="javascript:void(0)" id="duelRemove"><img title="<%= t(:delete) %>" class="leftArrowIcon" alt="<%= t(:delete) %>" src="<%= theme_image_path("s.gif") %>"></a>
+              </div>
+              <div class="duelingText"><%= t(:delete) %></div>
+            </td>
+            <td class="targetCell">
+              <%= f.hidden_field(:approver_value_str,:value=>@wf_approval_step.approver_value_str||step_approver_value(@wf_approval_step.id),:id=>"approvers") %>
+              <%= select_tag_alias(:target,[],nil,{:id=>"target",:multiple=>true,:size=>7}) %>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td class="dataCol" colspan="4"><b><%= t(:label_irm_wf_approval_step_multiple_approver_mode) %></b></td>
+    </tr>
+    <tr>
+      <td class="dataCol" colspan="4"><%=f.radio_button(:multiple_approver_mode,"FIRST_APPROVED",:id=>"firstApproved",:class=>"multipleApproveModeButton")%>
+        <label for="firstApproved"><%=t(:label_irm_wf_approval_step_multiple_approver_mode_first_approved)%></label></td>
+    </tr>
+    <tr>
+      <td class="dataCol" colspan="4">
+        <%=f.radio_button(:multiple_approver_mode,"ALL_APPROVED",:id=>"allApproved",:class=>"multipleApproveModeButton")%>
+        <label for="allApproved"><%=t(:label_irm_wf_approval_step_multiple_approver_mode_all_approved)%></label>
+      </td>
+    </tr>
+  </tbody>
+</table>

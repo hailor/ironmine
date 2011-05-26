@@ -27,8 +27,8 @@ class CreateWfApprovalProcesses < ActiveRecord::Migration
       t.string    :name, :limit => 60, :null => false
       t.string    :step_code,:limit=>30, :null => false
       t.string    :description, :limit => 150
-      t.string    :step_evaluate_mode,:limit=>30
-      t.string    :step_evaluate_result,:limit=>30
+      t.string    :evaluate_mode,:limit=>30
+      t.string    :evaluate_result,:limit=>30
       t.string    :approver_mode,:limit=>30, :null => false
       t.string    :multiple_approver_mode,:limit=>30, :null => false
       t.string    :allow_delegation_approve,:limit=>1, :null => false, :default => "N"
