@@ -239,8 +239,6 @@ a#headerSearchOptionsLink {text-decoration:none;}
     float:right;
 }
 .menuLabel span{float:left;padding:0 18px 0 3px\9; }
-.menuLabelHover span{background:white\9; padding:0 18px 0 3px\9; line-height: 22px\9; border-top:1px solid #8ec3d4\9;border-bottom:1px solid #8ec3d4\9;}
-.menuLabelClick span{background:white\9; padding:0 18px 0 3px\9; line-height: 24px\9; border-top:1px solid #8ec3d4\9;}
 
 .menuParent div.menuLabelHover #pageMenu-arrow,
 .menuParent div.menuLabelClick #pageMenu-arrow,
@@ -284,8 +282,6 @@ a#headerSearchOptionsLink {text-decoration:none;}
 	line-height: 20px;
 }
 .menuButton div.menuLabel a:hover{background-position: right -30px;}
-
-
 .menuButton div.menuLabel .menuButtonArrow{
      float:right;
      padding-right:10px;
@@ -982,7 +978,9 @@ a:hover .leftArrowIcon{
 .tsidMenu-bl{float:left\9;display:inline\9;height:12px\9;width: 12px\9;background-image:url("../images/header_mutton.png")\9;background-position:-3px -84px\9; }
 .tsidMenu-bc{margin-left:12px\9; margin-right:12px\9;height:11px\9;border-bottom: 1px solid #86b8c8\9;background-color:white;}
 .menuItems{border-left: 1px solid #86b8c8\9;border-right: 1px solid #86b8c8\9;background-color:white\9;}
-.menuLabelHover .menuLabel-tr{width:15px\9; height: 24px\9; position:absolute\9; right:0\9; top: 0\9;background-image:url("../images/header_mutton.png")\9;background-position:right -72px\9; }
-.menuLabelHover .menuLabel-tl{width:15px\9; height: 24px\9; position:absolute\9; left:0\9; top: 0\9;background-image:url("../images/header_mutton.png")\9;background-position:left -72px\9; }
-.menuLabelClick .menuLabel-tr{width:12px\9; height: 24px\9; position:absolute\9; right:0\9; top: 0\9;background-image:url("../images/header_mutton.png")\9;background-position:right -200px\9; }
-.menuLabelClick .menuLabel-tl{width:12px\9; height: 24px\9; position:absolute\9; left:0\9; top: 0\9;background-image:url("../images/header_mutton.png")\9;background-position:left -200px\9; }
+.menuParent .menuLabelHover .menuLabel-tr{width:15px\9; height: 24px\9; position:absolute\9; right:0\9; top: 0\9;background-image:url("../images/header_mutton.png")\9;background-position:right -72px\9; }
+.menuParent .menuLabelHover .menuLabel-tl{width:15px\9; height: 24px\9; position:absolute\9; left:0\9; top: 0\9;background-image:url("../images/header_mutton.png")\9;background-position:left -72px\9; }
+.menuParent .menuLabelClick .menuLabel-tr{width:12px\9; height: 24px\9; position:absolute\9; right:0\9; top: 0\9;background-image:url("../images/header_mutton.png")\9;background-position:right -200px\9; }
+.menuParent .menuLabelClick .menuLabel-tl{width:12px\9; height: 24px\9; position:absolute\9; left:0\9; top: 0\9;background-image:url("../images/header_mutton.png")\9;background-position:left -200px\9; }
+.menuParent .menuLabelHover span{background:white\9; padding:0 18px 0 3px\9; line-height: 22px\9; border-top:1px solid #8ec3d4\9;border-bottom:1px solid #8ec3d4\9;}
+.menuParent .menuLabelClick span{background:white\9; padding:0 18px 0 3px\9; line-height: 24px\9; border-top:1px solid #8ec3d4\9;}

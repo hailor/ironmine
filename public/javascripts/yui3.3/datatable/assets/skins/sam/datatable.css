@@ -59,6 +59,7 @@
     border:none;
     border-bottom:1px solid #CBCBCB;
     text-align:left;
+    +background-color: #fff;
 }
 .yui3-skin-sam .yui3-datatable-list td {
     border-right:none; /* disable inner column border in list mode */
@@ -138,7 +139,7 @@ tbody .yui3-datatable-editable {
 }
 
 /* striping */
-.yui3-skin-sam td { background-color:transparent; } /* none */
+.yui3-skin-sam td { background-color:transparent;} /* none */
 .yui3-skin-sam tr.yui3-datatable-even {
     border-bottom:1px solid #CBCBCB;
     border-style:solid;
