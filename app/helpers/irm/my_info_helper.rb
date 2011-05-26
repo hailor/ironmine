@@ -39,7 +39,7 @@ module Irm::MyInfoHelper
 
     #如果公司数目大于5个则显示搜索
     menu <<  form_tag({:controller=>"irm/my_info",:action=>"filter_company",:format=>"js"},{:remote=>true})  do
-       %(<div class="menuItem"><input name="query" type="text" size="10" style="margin-left:10px\\9;"/>#{submit_tag  t(:search)}</div>).html_safe
+       %(<div class="menuItem"><input name="query" type="text" size="10" style="margin-left:10px\\9; width:75px\\0;"/>#{submit_tag  t(:search)}</div>).html_safe
     end if accessable_companies.size>4
 
     menu << form_tag({:controller=>"irm/my_info",:action=>"update_company_access",:return_controller=>params[:controller]},{:method=>:put})
@@ -53,7 +53,7 @@ module Irm::MyInfoHelper
       select_all_content = check_box_tag("select_all","all",tmp_cids.size==0,{:id=>"selectAll", :style => "margin-left:10px\\9;"}) + label_tag("selectAll",t(:select_all))
       menu << content_tag(:div,select_all_content,{:class=>"menuItem", :style => "float:left;"})
     end
-    menu << submit_tag(t(:apply), :style => "float:right;float:none\\9;margin-left:50px\\9;")
+    menu << submit_tag(t(:apply), :style => "float:right;float:none\\9;margin-left:50px\\9;margin-left:40px\\0;")
     menu << "&nbsp;"
     menu << "</form>"
     menu << %(</div><div class="tsidMenu-br"></div><div class="tsidMenu-bl"></div><div class="tsidMenu-bc"></div></div>)
