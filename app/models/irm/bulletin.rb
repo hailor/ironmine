@@ -112,4 +112,9 @@ class Irm::Bulletin < ActiveRecord::Base
     rec_sticky.uniq.sort{|x, y| y[:published_date] <=> x[:published_date] } +
         rec.uniq.sort{|x, y| y[:published_date] <=> x[:published_date] }
   end
+
+  def self.current_accessible(companies = [])
+    bulletins = Irm::Bulletin.select_all.list_accessible(Irm::Person.current.id).collect(&:id)
+    bulletins
+  end
 end

@@ -123,6 +123,11 @@ class Csi::Survey < ActiveRecord::Base
     Csi::SurveyMember.delete_all(["survey_id = ? AND response_flag = ?",self.id,Irm::Constant::SYS_NO])
   end
 
+  def self.current_accessible(companies = [])
+    Csi::SurveyMember.list_all.query_by_person(Irm::Person.current.id).collect(&:survey_id)
+  end
+
+
   private
   def generate_survey_code
     self.survey_code = "CSI"+ 1000000.to_s + (id % 1000000).to_s
