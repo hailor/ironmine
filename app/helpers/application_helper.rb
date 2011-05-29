@@ -460,7 +460,7 @@ module ApplicationHelper
   end
 
   def select_tag_alias(name, collection,selected=nil, options = {})
-    choices = options_for_select(collection, selected = nil)
+    choices = options_for_select(collection, selected)
     select_tag(name, choices,options)
   end
 

@@ -82,6 +82,7 @@ class Irm::WfApprovalStep < ActiveRecord::Base
 
   def delete_self
     Irm::WfApprovalStepApprover.where(:step_id=>self.id).delete_all
+    Irm::WfApprovalAction.where(:step_id=>self.id).delete_all
     rule_filter = Irm::RuleFilter.query_by_source(self.class.name,self.id).first
     rule_filter.destroy if rule_filter
     # recalculate step number
@@ -102,9 +103,9 @@ class Irm::WfApprovalStep < ActiveRecord::Base
   def setup_process_step_number
     need_order_step_number ||=true
     return unless need_order_step_number
-    same_number_step = self.class.where("id != ? AND step_number = ?",self.id,self.step_number).first
+    same_number_step = self.class.where("process_id=? AND id != ? AND step_number = ?",self.process_id,self.id,self.step_number).first
     return unless same_number_step
-    need_order_steps = self.class.where("id != ? AND step_number >= ?",self.id,self.step_number).order("step_number")
+    need_order_steps = self.class.where("process_id=? AND id != ? AND step_number >= ?",self.process_id,self.id,self.step_number).order("step_number")
     start_number = self.step_number+1
     need_order_steps.each do |step|
       step.update_attributes(:step_number=>start_number,:need_order_step_number=>false) unless start_number.eql?(step.step_number)
@@ -114,7 +115,7 @@ class Irm::WfApprovalStep < ActiveRecord::Base
   private  :setup_process_step_number
 
   def prepare_deleted_step_number
-    need_order_steps = self.class.where("id != ? AND step_number >= ?",self.id,self.step_number).order("step_number")
+    need_order_steps = self.class.where("process_id=? AND id != ? AND step_number >= ?",self.process_id,self.id,self.step_number).order("step_number")
     start_number = self.step_number
     need_order_steps.each do |step|
       step.update_attributes(:step_number=>start_number,:need_order_step_number=>false) unless start_number.eql?(step.step_number)

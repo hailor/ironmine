@@ -37,6 +37,9 @@ module Irm::WfApprovalStepsHelper
       case step.approver_mode
         when "SELECT_BY_SUMBITTER"
           return step[:approver_mode_name]
+        when "PROCESS_DEFAULT"
+          oa = Irm::ObjectAttribute.multilingual.where(:business_object_code=>"IRM_PEOPLE",:attribute_name=>Irm::WfApprovalProcess.query_by_step(step.id).first.next_approver_mode).first
+          approver_name = oa[:name] if oa
         when "AUTO_APPROVER"
           labels = []
           step.wf_approval_step_approvers.each{|i| labels<<i.label}

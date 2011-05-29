@@ -1191,6 +1191,15 @@ zh:
   label_related_person: 相关人员
   label_irm_wf_approval_process_display_history_flag: 审批页面显示审批历史
   label_irm_wf_approval_process_evaluate: 条件
+  label_irm_wf_approval_action_ap_submit_actions: 初始提交操作
+  label_irm_wf_approval_action_ap_final_approval_actions: 最终批准操作
+  label_irm_wf_approval_action_ap_final_reject_actions: 最终拒绝操作
+  label_irm_wf_approval_action_ap_recall_actions: 调回操作
+  label_irm_wf_approval_process_add_exists_action: 添加现有的
+  label_irm_wf_approval_add_actions: 添加新的
+  label_irm_wf_approval_action_ap_step_approval_actions: 批准操作
+  label_irm_wf_approval_action_ap_step_reject_actions: 拒绝操作
+  label_irm_wf_approval_process_reorder: 重新排序
   #========================end  wf approval process====================
   #======================== wf approval step====================
   label_irm_wf_approval_step: 审批步骤

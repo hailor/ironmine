@@ -25,13 +25,13 @@
             <td class="yui3-column">
               <div class='yui3-datatable-liner'>
                 <%= link_to(t(:edit),{:action=>"edit",:id=>process.id},:back_url=>url_for({})) %>
-                <%= link_to(t(:active),{:action=>"edit",:id=>process.id},:back_url=>url_for({})) %>
+                <%= link_to(t(:active),{:action=>"active",:id=>process.id,:active=>Irm::Constant::SYS_YES,:back_url=>url_for({})}) %>
                 <%= link_to(t(:delete),{:action=>"destroy",:id=>process.id,:back_url=>url_for({})},{:confirm => t(:label_are_you_sure) ,:method => :delete} )%>
                </div>
             </td>
             <td class="yui3-column">
               <div class='yui3-datatable-liner'>
-                  <%= link_to(process.name,{:action=>"destroy",:id=>process.id},:back_url=>url_for({})) %>
+                  <%= link_to(process.name,{:action=>"show",:id=>process.id},:back_url=>url_for({})) %>
                </div>
             </td>
             <td class="yui3-column">

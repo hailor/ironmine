@@ -32,6 +32,12 @@
                       <td class="labelCol"><%=f.radio_button(:approver_mode,"SELECT_BY_SUMBITTER",:id=>"bySubmitter",:class=>"typeButton")%></td>
                       <td class="dataCol" colspan="3" width="82%"><label for="bySubmitter"><%=t(:label_irm_wf_approval_step_approver_mode_by_approver)%></label></td>
                     </tr>
+                    <% if @wf_approval_process.next_approver_mode.present? %>
+                    <tr>
+                      <td class="labelCol"><%=f.radio_button(:approver_mode,"PROCESS_DEFAULT",:id=>"processDefault",:class=>"typeButton")%></td>
+                      <td class="dataCol" colspan="3" width="82%"><label for="processDefault"><%=t(:label_irm_wf_approval_step_approver_mode_process_default)%> (<%=@wf_approval_process[:next_approver_mode_name]%>)  </label></td>
+                    </tr>
+                    <% end %>
                     <tr>
                       <td class="labelCol"><%=f.radio_button(:approver_mode,"AUTO_APPROVER",:id=>"autoApprover",:class=>"typeButton")%></td>
                       <td class="dataCol" colspan="3" width="82%">
@@ -54,6 +60,7 @@
                 </table>
 
             </div>
+          <% unless 1.eql?(@wf_approval_step.step_number.to_i) %>
             <div id="head_2_ep" class="pbSubheader tertiaryPalette">
               <h3><%= t(:label_irm_wf_approval_step_reject_behavior) %></h3>
             </div>
@@ -79,6 +86,7 @@
                 </tbody>
               </table>
             </div>
+          <% end %>
         </div>
       </div>
     </div>

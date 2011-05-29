@@ -9,7 +9,7 @@
           <td id="topButtonRow" class="pbButton">
             <div class="button"><%= link_to t(:edit), {:action => "edit"}%></div>
             <div class="button"><%= link_to t(:delete), {:action => "destroy"},{:method  =>:delete}%></div>
-            <div class="button"><%= link_to t(:back), {:action => "index"}%></div>
+            <div class="button"><%= link_to t(:cancel),back_url_default({:action=>"index"})%></div>
           </td>
         </tr>
       </tbody>

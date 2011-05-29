@@ -10,11 +10,11 @@ module Irm::WfApprovalProcessesHelper
 
 
   def active_approval_process(bo_code)
-     Irm::WfApprovalProcess.where(:bo_code=>bo_code).enabled
+     Irm::WfApprovalProcess.where(:bo_code=>bo_code).enabled.order("process_order")
   end
 
   def disable_approval_process(bo_code)
-    Irm::WfApprovalProcess.where(:bo_code=>bo_code).disabled
+    Irm::WfApprovalProcess.where(:bo_code=>bo_code).disabled.order("id")
   end
 
 
@@ -37,5 +37,52 @@ module Irm::WfApprovalProcessesHelper
 
   def showable_steps(process_id)
     Irm::WfApprovalStep.list_all.where(:process_id=>process_id).order("step_number")
+  end
+
+
+  def wf_process_actions(action_mode,wf_process_id,wf_step_id = nil)
+    wf_process_actions = Irm::WfApprovalAction.where(:action_mode=>action_mode,:process_id=>wf_process_id,:step_id=>wf_step_id)
+    actions = []
+    wf_process_actions.each do |action|
+      ref_action =  action.action_type.constantize.query(action.action_id).first
+      next unless ref_action
+      source_str = "#{action_mode},#{wf_process_id}"
+      source_str = "#{source_str},#{wf_step_id}" if wf_step_id
+      actions << {:action_type_name=>Irm::BusinessObject.class_name_to_meaning(action.action_type),
+       :edit_url_options=>ref_action.urlable_url_options(:edit).merge({:source_str=>source_str,:back_url=>url_for({})}),
+       :show_url_options=>ref_action.urlable_url_options(:show).merge({:source_str=>source_str,:back_url=>url_for({})}),
+       :delete_url_options=>{:controller=>"irm/wf_approval_processes",:action=>"destroy_action",:id=>action.id,:back_url=>url_for({})},
+       :ref_action=>ref_action ,:action=>action
+      }
+    end
+    actions
+  end
+
+
+  # =========== for add_exists_action ==================================
+  def available_action_type
+    [Irm::WfMailAlert.name,Irm::WfFieldUpdate.name].collect{|i| [Irm::BusinessObject.class_name_to_meaning(i),Irm::BusinessObject.class_name_to_code(i)]}
+  end
+
+  def wf_approval_addable_actions(wf_process_id)
+    action_types = [Irm::WfMailAlert,Irm::WfFieldUpdate]
+    bo_code = Irm::WfApprovalProcess.find(wf_process_id).bo_code
+    selectable_options = []
+    action_types.each do |ac|
+      actions = ac.where(:bo_code=>bo_code)
+      actions.each do |a|
+        selectable_options << ["#{Irm::BusinessObject.class_name_to_meaning(ac.name)}:#{a.name}","#{Irm::BusinessObject.class_name_to_code(ac.name)}##{a.id}",{:query=>a.name,:type=>Irm::BusinessObject.class_name_to_code(ac.name)}]
+      end
+    end
+    selectable_options
+  end
+
+  def wf_approval_exists_actions(action_mode,wf_process_id,wf_step_id = nil)
+    wf_approval_actions = Irm::WfApprovalAction.where(:action_mode=>action_mode,:process_id=>wf_process_id,:step_id=>wf_step_id)
+    actions = []
+    wf_approval_actions.each do |action|
+      actions<<"#{Irm::BusinessObject.class_name_to_code(action.action_type)}##{action.action_id}"
+    end
+    actions.join(",")
   end
 end

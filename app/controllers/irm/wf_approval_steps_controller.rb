@@ -60,6 +60,10 @@ class Irm::WfApprovalStepsController < ApplicationController
       end
     end
 
+    if @wf_approval_process.next_approver_mode.present?
+      @wf_approval_step.approver_mode ||= "PROCESS_DEFAULT"
+    end
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @wf_approval_process }
@@ -187,6 +191,6 @@ class Irm::WfApprovalStepsController < ApplicationController
 
   private
   def setup_process
-    @wf_approval_process = Irm::WfApprovalProcess.find(params[:process_id])
+    @wf_approval_process = Irm::WfApprovalProcess.list_all.find(params[:process_id])
   end
 end

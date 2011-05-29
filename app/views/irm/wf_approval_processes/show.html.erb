@@ -1,5 +1,12 @@
 <%= stylesheet_link_tag "/javascripts/yui3.3/datatable/assets/skins/sam/datatable.css"%>
-
+<style type="text/css">
+  .pbTitle{
+      vertical-align:middle;
+  }
+  .pbTitle img{
+      float: left;
+  }
+</style>
 <%= page_title %>
 
 <div id="ep" class="bDetailBlock bPageBlock">
@@ -67,6 +74,28 @@
     </div>
   </div>
 </div>
+<%= render :partial => "ap_sumit_actions" %>
 <%= render :partial => "show_steps",:locals => {:steps=>showable_steps(@wf_approval_process.id)} %>
-
+<%= render :partial => "ap_final_approval_actions" %>
+<%= render :partial => "ap_final_reject_actions" %>
+<%= render :partial => "ap_recall_actions" %>
+<script type="text/javascript">
+  GY.use(function(Y){
+      Y.all(".showStepAction").on("click",function(e){
+          var step = e.target.getAttribute("step");
+          if(Y.one("tr#stepApprovalActions"+step)){
+              if(Y.one("tr#stepApprovalActions"+step).getStyle("display")!="none")
+                Y.one("tr#stepApprovalActions"+step).setStyle("display","none");
+              else
+                Y.one("tr#stepApprovalActions"+step).setStyle("display","");
+          }
+          if(Y.one("tr#stepRejectActions"+step)){
+              if(Y.one("tr#stepRejectActions"+step).getStyle("display")!="none")
+                Y.one("tr#stepRejectActions"+step).setStyle("display","none");
+              else
+                Y.one("tr#stepRejectActions"+step).setStyle("display","");
+          }
+      });
+  });
+</script>
 

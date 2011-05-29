@@ -1,0 +1,39 @@
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_wf_approval_action_ap_submit_actions) %></h2></td>
+              <td class="pbButton">
+                <div class="button"><%= link_to(t(:label_irm_wf_approval_process_add_exists_action),{:action => "add_exists_action",:source_str=>"AP_SUBMIT,#{@wf_approval_process.id}",:back_url=>url_for({})}) %></div>
+                <div class="asButton">
+                    <span id="createApSubmitAction" class="menuButton">
+                      <div  class="menuLabel">
+                        <span><a><%= t(:label_irm_wf_approval_add_actions)  %></a></span>
+                      </div>
+                      <div class="menuContent" >
+                        <div class="menuItem"><%= link_to(t(:label_irm_wf_mail_alert_new),{:controller => "irm/wf_mail_alerts",:action => "new",:source_str=>"AP_SUBMIT,#{@wf_approval_process.id}",:back_url=>url_for({})}) %></div>
+                        <div class="menuItem"><%= link_to(t(:label_irm_wf_field_update_new),{:controller => "irm/wf_field_updates",:action => "new",:source_str=>"AP_SUBMIT,#{@wf_approval_process.id}",:back_url=>url_for({})}) %></div>
+                      </div>
+                    </span>
+                    <script type="text/javascript">
+                      GY.use("menubutton",function(Y){
+                        Y.on("domready",function(){
+                          new Y.MenuButton({menuNode:"#createApSubmitAction",dropAlign:["TL","BL"]});
+                        });
+                      });
+                    </script>
+                </div>
+              </td>
+              <td class="pbHelp">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <%= render :partial => "show_process_actions",:locals => {:actions=>wf_process_actions("AP_SUBMIT",@wf_approval_process.id)} %>
+      </div>
+    </div>
+</div>

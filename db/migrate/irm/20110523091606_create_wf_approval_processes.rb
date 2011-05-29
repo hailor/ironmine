@@ -44,7 +44,7 @@ class CreateWfApprovalProcesses < ActiveRecord::Migration
       t.integer   "company_id",:null => false
       t.integer   :step_id,:null=>false
       t.string    :approver_type,:limit=>30, :null => false
-      t.integer   :approver_id, :null => false
+      t.string   :approver_id,:limit=>30,:null => false
       t.string    "status_code",:limit => 30, :null => false, :default => "ENABLED"
       t.integer   "created_by"
       t.integer   "updated_by"
@@ -55,7 +55,7 @@ class CreateWfApprovalProcesses < ActiveRecord::Migration
     create_table :irm_wf_approval_actions,:force=>true do |t|
       t.integer   "company_id",:null => false
       t.integer   :process_id,:limit=>30,:null=>false
-      t.integer   :action_mode,:limit=>30,:null=>false
+      t.string   :action_mode,:limit=>30,:null=>false
       t.integer   :step_id
       t.string    :action_type,:limit=>60, :null => false
       t.integer   :action_id, :null => false

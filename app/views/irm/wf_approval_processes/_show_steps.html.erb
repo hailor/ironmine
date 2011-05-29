@@ -23,7 +23,7 @@
                   <table id='rows' cellspacing="0" cellpadding="0" class='grid'>
                     <thead class="yui3-datatable-columns">
                       <tr class="yui3-datatable-first yui3-datatable-last">
-                        <th class="yui3-column" style="width:80px;">
+                        <th class="yui3-column" style="width:100px;">
                           <div class="yui3-datatable-liner"><%= t(:operation) %>
                           </div>
                         </th>
@@ -58,6 +58,7 @@
                     <tr id="<%=step.id%>" class="yui3-datatable-even">
                       <td class="yui3-column">
                         <div class='yui3-datatable-liner'>
+                          <%= link_to(t(:operation),{},:href=>"javascript:void(0)",:class=>"showStepAction",:step=>step.id) %>
                           <%= link_to(t(:edit),{:controller => "irm/wf_approval_steps",:process_id=>step.process_id,:action=>"edit",:id=>step.id},:back_url=>url_for({})) %>
                           <%= link_to(t(:delete),{:controller => "irm/wf_approval_steps",:process_id=>step.process_id,:action=>"destroy",:id=>step.id,:back_url=>url_for({})},{:confirm => t(:label_are_you_sure) ,:method => :delete} )%>
                          </div>
@@ -91,6 +92,22 @@
                         <div class='yui3-datatable-liner'>
                           <%= step[:reject_behavior_name] %>
                         </div>
+                      </td>
+                    </tr>
+                    <tr id="stepApprovalActions<%=step.id%>" class="yui3-datatable-even" style="display:none">
+                      <td class="yui3-column">
+
+                      </td>
+                      <td class="yui3-column" colspan="6">
+                        <%= render :partial => "ap_step_approval_actions",:locals => {:step_id=>step.id} %>
+                      </td>
+                    </tr>
+                    <tr id="stepRejectActions<%=step.id%>" class="yui3-datatable-even" style="display:none">
+                      <td class="yui3-column">
+
+                      </td>
+                      <td class="yui3-column" colspan="6">
+                        <%= render :partial => "ap_step_reject_actions",:locals => {:step_id=>step.id} %>
                       </td>
                     </tr>
                     <% end -%>

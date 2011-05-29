@@ -13,9 +13,10 @@
     text-align: center;
   }
 </style>
+<%= form_tag({:action=>"reorder"})  do %>
 <div class="processTitle">
    <h6 class="processTitle">
-     <%= t(:label_irm_wf_approval_process_manage) %> <%=select_tag_alias :bo_code, available_workflow_business_object,nil,{:id=>"boCode"}%>
+     <%= t(:label_irm_wf_approval_process_manage) %> <%=select_tag_alias :bo_code, available_workflow_business_object,@bo_code,{:id=>"boCode",:href=>url_for({:bo_code=>"{bo_code}"})}%>
    </h6>
 </div>
 <div class="listRelatedObject setupBlock">
@@ -26,7 +27,7 @@
             <tr>
               <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_wf_approval_process_active_list) %></h2></td>
               <td  class="pbButton">
-                <div class="button"><%= link_to t(:new), {:action => "new",:bo_code=>@bo_code}%></div>
+                <div class="button"><%= submit_tag t(:label_irm_wf_approval_process_reorder)%></div>
               </td>
               <td class="pbHelp">
                 <div ></div>
@@ -40,6 +41,7 @@
       </div>
     </div>
 </div>
+<% end %>
 
 <div class="listRelatedObject setupBlock">
     <div class="bPageBlock">
@@ -72,6 +74,13 @@
       url = Y.Lang.substitute(url,{bo_code:Y.one("#boCode").get("value")});
       e.target.setAttribute("href",encodeURI(url));
 
+     });
+
+     Y.one("#boCode").on("change",function(e){
+         var url = decodeURIComponent(e.target.getAttribute("href"));
+         var boCode = e.target.get("value");
+         url = Y.Lang.substitute(url,{bo_code:boCode});
+         window.location = url;
      });
   });
 </script>

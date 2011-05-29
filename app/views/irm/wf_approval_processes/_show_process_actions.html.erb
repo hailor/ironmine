@@ -5,11 +5,11 @@
         <table id='rows' cellspacing="0" cellpadding="0" class='grid'>
           <thead class="yui3-datatable-columns">
             <tr class="yui3-datatable-first yui3-datatable-last">
-              <th class="yui3-column" style="width:60px;">
+              <th class="yui3-column" style="width:40px;">
                 <div class="yui3-datatable-liner"><%= t(:operation) %>
                 </div>
               </th>
-              <th class="yui3-column" style="width:60px;">
+              <th class="yui3-column" style="width:40px;">
                 <div class="yui3-datatable-liner"><%= t(:label_irm_wf_rule_action_type) %>
                 </div>
               </th>
@@ -25,8 +25,8 @@
             <td class="yui3-column">
               <div class='yui3-datatable-liner'>
 
-                <%= link_to(t(:edit),action[:edit_url_options].merge(:source_str=>"WF_RULE,#{action[:action].rule_id}",:back_url=>url_for({}))) %>
-                <%= link_to(t(:delete),{:action=>"destroy_action",:id=>action[:action].id,:back_url=>url_for({})},{:confirm => t(:label_are_you_sure) ,:method => :delete} )%>
+                <%= link_to(t(:edit),action[:edit_url_options]) %>
+                <%= link_to(t(:delete),action[:delete_url_options],{:confirm => t(:label_are_you_sure) ,:method => :delete} )%>
                </div>
             </td>
             <td class="yui3-column">
@@ -36,7 +36,7 @@
             </td>
             <td class="yui3-column">
               <div class='yui3-datatable-liner'>
-                <%= link_to(action[:ref_action].name,action[:show_url_options].merge(:source_str=>"WF_RULE,#{action[:action].rule_id}",:back_url=>url_for({}))) %>
+                <%= link_to(action[:ref_action].name,action[:show_url_options]) %>
               </div>
             </td>
           </tr>

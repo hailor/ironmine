@@ -2,7 +2,12 @@ class Irm::WfApprovalProcessesController < ApplicationController
   # GET /wf_approval_processes
   # GET /wf_approval_processes.xml
   def index
-    @bo_code = params[:bo_code]||Irm::BusinessObject.enabled.multilingual.where(:workflow_flag=>Irm::Constant::SYS_YES).first.business_object_code
+    if params[:bo_code]
+      session[:bo_code] = params[:bo_code]
+      @bo_code = params[:bo_code]
+    else
+      @bo_code = session[:bo_code]||Irm::BusinessObject.enabled.multilingual.where(:workflow_flag=>Irm::Constant::SYS_YES).first.business_object_code
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -176,9 +181,77 @@ class Irm::WfApprovalProcessesController < ApplicationController
     @wf_approval_process.destroy
 
     respond_to do |format|
-      format.html { redirect_to(wf_approval_processes_url) }
+      format.html { redirect_back_or_default({:action=>"index"}) }
       format.xml  { head :ok }
     end
+  end
+
+
+  def destroy_action
+    @wf_approval_action = Irm::WfApprovalAction.find(params[:id])
+    process_id =  @wf_approval_action.process_id
+    @wf_approval_action.destroy
+
+    respond_to do |format|
+      format.html { redirect_back_or_default({:action=>"show",:id=>process_id})}
+      format.xml  { head :ok }
+    end
+  end
+
+
+  def add_exists_action
+    source_info = params[:source_str].split(",")
+    @source = source_info
+  end
+
+  def save_exists_action
+    source_info = params[:source_str].split(",")
+    selected_actions = params[:selected_actions].split(",")
+    exists_actions = Irm::WfApprovalAction.where(:action_mode=>source_info[0],:process_id=>source_info[1],:step_id=>source_info[2])
+    exists_actions.each do |action|
+      if selected_actions.include?("#{action.action_type}##{action.action_id}")
+        selected_actions.delete("#{action.action_type}##{action.action_id}")
+      else
+        action.destroy
+      end
+    end
+
+    selected_actions.each do |action_str|
+      next unless action_str.strip.present?
+      action = action_str.strip.split("#")
+      Irm::WfApprovalAction.create(:action_mode=>source_info[0],
+                               :process_id=>source_info[1],
+                               :step_id=>source_info[2],
+                               :action_type=>Irm::BusinessObject.code_to_class_name(action[0]),
+                               :action_id=>action[1])
+    end if selected_actions.any?
+
+    respond_to do |format|
+      format.html { redirect_back_or_default({:action=>"show",:id=>params[:id]}) }
+      format.xml  { head :ok }
+    end
+  end
+
+  def active
+    @wf_approval_process = Irm::WfApprovalProcess.find(params[:id])
+    if(Irm::Constant::SYS_YES.eql?(params[:active]))
+      @wf_approval_process.change_active(true)
+    else
+      @wf_approval_process.change_active(false)
+    end
+
+    respond_to do |format|
+        format.html { redirect_back_or_default({:action=>"show",:id=>@wf_approval_process.id}) }
+        format.xml  { head :ok }
+    end
+  end
+
+  def reorder
+    process_orders = params[:process_orders]
+    process_orders.to_a.sort{|a,b| a[1]<=>b[1]}.each_with_index do |pair,index|
+      Irm::WfApprovalProcess.find(pair[0]).update_attribute(:process_order,index+1)
+    end
+    redirect_to({:action=>"index"})
   end
 
 end

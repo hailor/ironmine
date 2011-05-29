@@ -2,10 +2,13 @@ class Irm::WfApprovalStepApprover < ActiveRecord::Base
   set_table_name :irm_wf_approval_step_approvers
 
   belongs_to :wf_approval_step,:foreign_key => :step_id
+
+
   query_extend
   
-  
- def self.approver_types
+  attr_accessor :bo_code
+
+  def self.approver_types
     return @approver_types if @approver_types
     @approver_types = Irm::LookupValue.query_by_lookup_type("WF_MAIL_ALERT_RECIPIENT_TYPE").multilingual.order_id.collect{|p|[p[:meaning],p[:lookup_code]]}
   end
@@ -19,7 +22,7 @@ class Irm::WfApprovalStepApprover < ActiveRecord::Base
     approver_name = ""
     case self.approver_type
       when "RELATED_PERSON"
-        oa = Irm::ObjectAttribute.multilingual.where(:business_object_code=>self.bo_code||self.wf_approval_process.bo_code,:attribute_name=>self.approver_id).first
+        oa = Irm::ObjectAttribute.multilingual.where(:business_object_code=>self.bo_code||Irm::WfApprovalProcess.query_by_step(self.step_id).first.bo_code,:attribute_name=>self.approver_id).first
         approver_name = oa[:name] if oa
       when "ROLE"
         role = Irm::Role.multilingual.query(self.approver_id).first
