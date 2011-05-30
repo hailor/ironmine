@@ -136,7 +136,7 @@ body .bodyDiv .bOverviewSearch {margin:5px;padding:0 10px 10px;}
 }
 .headerSearchLeftRoundedCorner, .headerSearchContainer .headerSearchOptions {padding-left:11px;}
 .headerSearchOptions {margin-top:4px;}
-a#headerSearchOptionsLink, a.headerSearchOptionsLink:hover {color:#FFFFFF;font-size:0.92em;text-de}
+a#headerSearchOptionsLink, a.headerSearchOptionsLink:hover {color:#FFFFFF;font-size:0.92em;text-decoration:none;}
 a#headerSearchOptionsLink {text-decoration:none;}
 /*******************************************************************/
 
@@ -155,6 +155,7 @@ a#headerSearchOptionsLink {text-decoration:none;}
     -moz-border-radius: 11px 11px 11px 11px;
     -webkit-border-radius: 11px;
     padding: 0 30px 0 15px;
+    padding: 0 12px 0 12px\9;
     height: 24px;
     line-height: 24px;
  }
@@ -166,8 +167,10 @@ a#headerSearchOptionsLink {text-decoration:none;}
 .menuParent div.menuLabelHover{
     -moz-border-radius: 11px 11px 11px 11px;
     -webkit-border-radius: 11px;
-    background:white;
+    background: white;
+    background: transparent\9;
     color: #1797C0;
+    position: relative\9;
  }
 .menuParent div.menuLabelClick{
     -moz-border-radius: 11px 11px 0 0;
@@ -176,14 +179,18 @@ a#headerSearchOptionsLink {text-decoration:none;}
     -webkit-border-bottom-right-radius: 0;
     -webkit-border-bottom-left-radius: 0;
     background:white;
+    background: transparent\9;
     color: #1797C0;
+    position: relative\9;
  }
 
 .menuParent div.menuContent{
     display:none;
     padding: 3px 15px 3px 15px;
+    padding: 0 \9;
     -moz-box-shadow: 0 2px 4px rgba(127, 127, 127, 0.3);
     -webkit-box-shadow:rgba(127, 127, 127, 0.292969) 0 2px 4px;
+    box-shadow: 0 2px 4px rgba(127, 127, 127, 0.292969);
  }
 .menuParent div.menuContentVisual{
     display:block;
@@ -192,6 +199,7 @@ a#headerSearchOptionsLink {text-decoration:none;}
     -webkit-border-bottom-right-radius: 11px;
     -webkit-border-bottom-left-radius: 11px;
     background:white;
+    background:transparent\9;
     min-width: 150px;
  }
 
@@ -201,6 +209,8 @@ a#headerSearchOptionsLink {text-decoration:none;}
     color: #333435;
     margin: 0 0;
     padding: 4px 15px;
+    margin-left: 12px\9;
+    margin-right: 12px\9;
     text-decoration: none;
     z-index:10000;
     display: block;
@@ -210,6 +220,7 @@ a#headerSearchOptionsLink {text-decoration:none;}
 .menuLabel {
     color: #fff;
     cursor: pointer;
+    background-color: transparent;
 }
 .menuItem {font-weight: normal;}
 
@@ -227,7 +238,8 @@ a#headerSearchOptionsLink {text-decoration:none;}
     width:8px;
     float:right;
 }
-.menuLabel span{float:left;}
+.menuLabel span{float:left;padding:0 18px 0 3px\9; }
+
 .menuParent div.menuLabelHover #pageMenu-arrow,
 .menuParent div.menuLabelClick #pageMenu-arrow,
 .menuParent div.menuLabelHover #settingMenu-arrow,
@@ -270,8 +282,6 @@ a#headerSearchOptionsLink {text-decoration:none;}
 	line-height: 20px;
 }
 .menuButton div.menuLabel a:hover{background-position: right -30px;}
-
-
 .menuButton div.menuLabel .menuButtonArrow{
      float:right;
      padding-right:10px;
@@ -961,12 +971,16 @@ a:hover .leftArrowIcon{
     background-position: left -80;
 }
 
-/*****************************align middle**************************************/
-td.dataCol{
-    vertical-align:middle;
-}
-td.labelCol{
-    vertical-align:middle;
-}
-
-
+.tsidMenu-tr{float:right\9;height:12px\9;border-top: 1px solid #f9f9f9\9;border-right: 1px solid #86b8c8\9;width: 12px\9;background-color:white\9}
+.tsidMenu-tl{height:13px\9;float:left\9;width: 12px\9;background-image:url("../images/header_mutton.png")\9;background-position:-3px -72px\9;}
+.tsidMenu-tc{margin-left:12px\9; margin-right:12px\9;height:12px\9;border-top: 1px solid #f9f9f9\9;background-color:white;}
+.tsidMenu-br{float:right\9;display:inline\9;height:12px\9;background-image:url("../images/header_mutton.png")\9;width: 12px\9;background-position:15px -84px\9; background-color: transparent;}
+.tsidMenu-bl{float:left\9;display:inline\9;height:12px\9;width: 12px\9;background-image:url("../images/header_mutton.png")\9;background-position:-3px -84px\9; }
+.tsidMenu-bc{margin-left:12px\9; margin-right:12px\9;height:11px\9;border-bottom: 1px solid #86b8c8\9;background-color:white;}
+.menuItems{border-left: 1px solid #86b8c8\9;border-right: 1px solid #86b8c8\9;background-color:white\9;}
+.menuParent .menuLabelHover .menuLabel-tr{width:15px\9; height: 24px\9; position:absolute\9; right:0\9; top: 0\9;background-image:url("../images/header_mutton.png")\9;background-position:right -72px\9; }
+.menuParent .menuLabelHover .menuLabel-tl{width:15px\9; height: 24px\9; position:absolute\9; left:0\9; top: 0\9;background-image:url("../images/header_mutton.png")\9;background-position:left -72px\9; }
+.menuParent .menuLabelClick .menuLabel-tr{width:12px\9; height: 24px\9; position:absolute\9; right:0\9; top: 0\9;background-image:url("../images/header_mutton.png")\9;background-position:right -200px\9; }
+.menuParent .menuLabelClick .menuLabel-tl{width:12px\9; height: 24px\9; position:absolute\9; left:0\9; top: 0\9;background-image:url("../images/header_mutton.png")\9;background-position:left -200px\9; }
+.menuParent .menuLabelHover span{background:white\9; padding:0 18px 0 3px\9; line-height: 22px\9; border-top:1px solid #8ec3d4\9;border-bottom:1px solid #8ec3d4\9;}
+.menuParent .menuLabelClick span{background:white\9; padding:0 18px 0 3px\9; line-height: 24px\9; border-top:1px solid #8ec3d4\9;}

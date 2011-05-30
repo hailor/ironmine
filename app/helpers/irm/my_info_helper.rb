@@ -26,31 +26,37 @@ module Irm::MyInfoHelper
       <span id="companyMenu" class="menuParent" style="float:right">
          <div  class="menuLabel">
            <span tabindex="0" id="companyMenuTop" style="">#{t(:label_company_access_menu_label)}</span>
+           <div class="menuLabel-tr"></div>
+           <div class="menuLabel-tl"></div>
            <div id="companyMenu-arrow"></div>
          </div>
-         <div class="menuContent" style="padding-bottom:12px;">
+         <div class="menuContent" style="padding:10px 15px;padding:0\\9;">
+         <div class="tsidMenu-tr"></div>
+         <div class="tsidMenu-tl"></div>
+         <div class="tsidMenu-tc"></div>
+         <div style="display:block;" class="menuItems">
     BEGIN_HEML
 
     #如果公司数目大于5个则显示搜索
     menu <<  form_tag({:controller=>"irm/my_info",:action=>"filter_company",:format=>"js"},{:remote=>true})  do
-       %(<div class="menuItem"><input name="query" type="text" size="10" />#{submit_tag t(:search)}</div>).html_safe
+       %(<div class="menuItem"><input name="query" type="text" size="10" style="margin-left:10px\\9; width:75px\\0;"/>#{submit_tag  t(:search)}</div>).html_safe
     end if accessable_companies.size>4
 
     menu << form_tag({:controller=>"irm/my_info",:action=>"update_company_access",:return_controller=>params[:controller]},{:method=>:put})
-    menu << %(<div id="selectComapnyContent">)
+    menu << %(<div id="selectComapnyContent" style="margin:0 10px\\9;">)
     menu << access_company_checkbox(accessable_companies)
     menu << %(</div>)
 
     if accessable_companies.size>1
       tmp_cids = accessable_companies.collect{|ac| ac.id}
       tmp_cids.delete_if{|ci| session[:accessable_companies].include?(ci)}
-      select_all_content = check_box_tag("select_all","all",tmp_cids.size==0,{:id=>"selectAll"}) + label_tag("selectAll",t(:select_all))
+      select_all_content = check_box_tag("select_all","all",tmp_cids.size==0,{:id=>"selectAll", :style => "margin-left:10px\\9;"}) + label_tag("selectAll",t(:select_all))
       menu << content_tag(:div,select_all_content,{:class=>"menuItem", :style => "float:left;"})
     end
-    menu << submit_tag(t(:apply), :style => "float:right;")
+    menu << submit_tag(t(:apply), :style => "float:right;float:none\\9;margin-left:50px\\9;margin-left:40px\\0;")
     menu << "&nbsp;"
     menu << "</form>"
-    menu << %(</div>)
+    menu << %(</div><div class="tsidMenu-br"></div><div class="tsidMenu-bl"></div><div class="tsidMenu-bc"></div></div>)
     menu << "</span>"
 
     menu.html_safe

@@ -57,11 +57,19 @@ YUI.add('menubutton', function(Y) {
               if(!this._menuContent.hasClass("menuContentVisual"))
               {
                 this._menuContent.addClass("menuContentVisual");
-                if(parseInt(this._menuLabel.getComputedStyle("width"))>parseInt(this._menuContent.getComputedStyle("width")))
-                  this._menuContent.setStyle("width",this._menuLabel.getComputedStyle("width"));
-                  this._menuOverlay.set("align", {node:this._menuLabel,
-                      points:[Y.WidgetPositionAlign[this.get("dropAlign")[0]], Y.WidgetPositionAlign[this.get("dropAlign")[1]]]
-                  });
+
+                var browserName=navigator.userAgent.toLowerCase();
+                if(/msie/i.test(browserName) && !/opera/.test(browserName)){
+                    this._menuContent.setStyle("width", (parseInt(this._menuLabel.getComputedStyle("width")) + 60).toString());
+                }
+                else
+                {
+                    this._menuContent.setStyle("width", (parseInt(this._menuLabel.getComputedStyle("width")) + 30).toString());
+                }
+
+                this._menuOverlay.set("align", {node:this._menuLabel,
+                    points:[Y.WidgetPositionAlign[this.get("dropAlign")[0]], Y.WidgetPositionAlign[this.get("dropAlign")[1]]]
+                });
                 this._menuOverlay.set("visible",true);
                 this._globalClickHandle = Y.one("document").on("click",Y.bind(this._hiddenOverlay,this))
               }

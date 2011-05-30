@@ -16,6 +16,8 @@
   </div>
   <div class="pbBody">
     <%= error_for @person%>
+    <%= @person.errors.to_json%>
+    <%= Irm::SystemParametersManager.upload_file_limit%>
     <div id="head_1_ep" class="pbSubheader first tertiaryPalette">
       <span class="pbSubExtra">
         <span class="requiredLegend"><span class="requiredExampleOuter">
@@ -74,10 +76,7 @@
              <td class="labelCol"><label><%=t(:label_irm_person_organization)%></label></td>
              <td class="dataCol"><%= f.blank_select(:organization_id,available_organization(@person.company_id),{},
                                   {:required=>true,
-                                   :id=>"organization_id",
-                                   :href=>url_for(:controller=>"irm/organizations",:action=>"get_by_company",:format=>"json",:belonged_company_id=>"{company_id}"),
-                                   :depend=>"company_id"
-                                   }) %></td>
+                                   :id=>"organization_id"}) %></td>
              <td class="labelCol"><label><%=(t :label_irm_person_site_group_code)%></label></td>
 
              <td class="dataCol"><%= f.blank_select(:site_group_code,available_site_group(@person.region_code),{},
@@ -203,7 +202,6 @@
 
 <script type="text/javascript">
   GY.use("cascadeselect",function(Y){
-     new Y.CascadeSelect({source: "#company_id",target:["#organization_id","#department_id"]});
      new Y.CascadeSelect({source: "#organization_id",target:["#department_id"]});
 
      new Y.CascadeSelect({source: "#region_code",target:["#site_group_code","#site_code"]});

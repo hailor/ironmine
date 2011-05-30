@@ -37,6 +37,9 @@ module Ironmine
 
           class_eval do
             after_save :save_as_recently
+            def self.current_accessible(companies=[])
+              []
+            end
           end
 
           send :include, Ironmine::Acts::RecentlyObjects::InstanceMethods

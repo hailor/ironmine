@@ -101,10 +101,17 @@
 .login_form_box .grow_button:hover .rightside, #forgotpasswordbox .grow_button:hover .rightside {background-position: 100% -34px;}
 .login_form_box .grow_button:hover .container, #forgotpasswordbox .grow_button:hover .container {background-position: 0 -34px;}
 /*****************************************************************/
+*#loginpage{
+    text-align:center;
+    margin: 0;
+}
+
 #loginpage #gradientwrap {
     background:url("../images/bk_bluegradient_top.png") no-repeat scroll 0 0 transparent;
     width:956px;
+    text-align:left;
 }
+
 #gradientwrap {
     overflow:visible;
 }
@@ -117,7 +124,8 @@
 }
 .login_form_box {
     float:left;
-    margin-bottom:9px;
+    margin-bottom: 9px;
+    padding-bottom: 10px;
     width:395px;
 }
 .login_form_box .content_new {
@@ -127,6 +135,7 @@
     min-height:331px;
     overflow:hidden;
     padding:39px 10px 13px 41px;
+    /*+padding:39px 10px 102px 41px;*/
     width:395px;
 }
 
@@ -177,7 +186,7 @@
     line-height:14px;
     min-height:2.833em;
     padding:0 0 0 10px;
-    width:auto;
+    width:100%;
 
 }
 .login_form_box #login_form .rememberme_txt input {float:left;}
@@ -186,7 +195,7 @@
     line-height:20px;
 }
 .login_form_box #login_form .rememberme_txt {font-size:12px;line-height:14px;}
-div.login_button a[type=submit] {
+div.login_button a[type="submit"] {
     -moz-border-radius: 3px 3px 3px 3px;
     -webkit-border-radius: 3px;
     background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
@@ -204,6 +213,26 @@ div.login_button a[type=submit] {
     float:left;
     margin:4px 9px 5px 12px;
 }
+
+*#sumbitlogin {
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px;
+    background: url("../images/btn_sprite.png") repeat-x scroll right top #E8E8E9;
+    border-color: #B5B5B5 #B5B5B5 #7F7F7F;
+	border-width: 1px;
+    border-style: solid;
+	text-decoration: none;
+	color:#333333;
+	display: inline-block;
+	padding: 0 12px;
+	height: 22px;
+    font-size: 1em;
+    font-weight: bold;
+	line-height: 22px;
+    float:left;
+    margin:4px 9px 5px 12px;
+}
+
 div.login_button a:hover[type=submit]{background-position: right -30px;}
 .login_form_box #login_form .login_button {
     height:2.833em;
@@ -246,13 +275,17 @@ width:990px;
 }
 
 #shoutoutframe {
-    border:medium none;
+    border-style: none;
+    border-width: 0;
     border-collapse:collapse;
     float:left;
     height:420px;
+    height:410px\9;
     margin-bottom:0;
     margin-left:8px;
     width:520px;
+    width:489px\9;
+    overflow:hidden\9;
 }
 .infobar {
     background:url("../images/bk_infobar.gif") no-repeat scroll 0 0 transparent;

@@ -28,12 +28,20 @@
   padding: 5px 0;
   width: 100%;
   table-layout: fixed;
+  +margin: 5px 0;
+}
+
+.calendar-event-preview img{
+  vertical-align: text-bottom;
 }
 
 .ec-month-name {
   font-size: 16px;
+  +font-size: 15px;
   font-weight: bold;
 }
+
+
 
 .ec-month-nav {
 
@@ -60,6 +68,7 @@
 
 .ec-day-name {
   font-weight: normal;
+  +vertical-align: bottom;
 }
 
 /* Rows container and Row */
@@ -186,7 +195,7 @@ a.ec-day-link {
 
 .ec-event-no-bg a {
   /* isn't implemented in all browsers */
-  color: inherit;
+  color: black;
 }
 
 .ec-event-time {

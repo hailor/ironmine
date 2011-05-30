@@ -243,6 +243,17 @@ class Icm::IncidentRequest < ActiveRecord::Base
     return self.close_flag
   end
 
+  def self.current_accessible(companies = [])
+    bo = Irm::BusinessObject.where(:business_object_code=>"ICM_INCIDENT_REQUESTS").first
+    incident_requests_scope = eval(bo.generate_query_by_attributes([:id], true)).query_by_company_ids(companies).order("close_flag ,last_response_date desc,last_request_date desc,weight_value,company_id")
+
+    if !Irm::PermissionChecker.allow_to_function?(:view_all_incident_request)
+      incident_requests_scope = incident_requests_scope.relate_person(Irm::Person.current.id)
+    end
+
+    incident_requests_scope.collect(&:id)
+  end
+
   private
   def generate_request_number
     count = self.class.count
