@@ -307,4 +307,16 @@ Irm::AccessControl.map do |map|
   map.function :create_wf_mail_alerts,{"irm/wf_mail_alerts"=>["new", "create","recipient_source","destroy"]}
   map.function :edit_wf_mail_alerts,{"irm/wf_mail_alerts"=>["edit", "update","recipient_source"]}
 
+  #===================irm/wf_approval_processes============================
+  #["index", "new", "create", "get_data", "edit", "active", "update", "destroy", "show", "destroy_action", "add_exists_action", "save_exists_action", "destroy_action", "reorder"]
+  #===================irm/wf_approval_steps============================
+  #["index", "new", "create", "edit", "update", "destroy"]
+  map.function :view_wf_approval_processes,{"irm/wf_approval_processes"=>["index", "show"],"irm/wf_approval_steps"=>["index"]}
+  map.function :create_wf_approval_processes,{"irm/wf_approval_processes"=>["new", "create"],"irm/wf_approval_steps"=>["new", "create"]}
+  map.function :edit_wf_approval_processes,{"irm/wf_approval_processes"=>["edit", "update", "destroy_action", "add_exists_action", "save_exists_action", "reorder"],
+                                            "irm/wf_approval_steps"=>["edit", "update"]}
+
+  #map.function :view_wf_approval_steps,{}
+  #map.function :create_wf_approval_steps,{}
+  #map.function :edit_wf_approval_steps,{}
 end
