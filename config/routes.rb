@@ -1,5 +1,7 @@
 Ironmine::Application.routes.draw do
 
+  get "delayed/index"
+
   scope :module => "irm" do
     root :to => "navigations#index"
     match 'login'=>'common#login',:as=>:login

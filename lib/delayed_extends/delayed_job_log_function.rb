@@ -1,4 +1,6 @@
 require 'active_record'
+require 'jobs/delayed_job_record'
+require 'jobs/delayed_job_record_item'
 class Delayed::Backend::ActiveRecord::Job
    after_save  :after_deal
    module RecordLog
