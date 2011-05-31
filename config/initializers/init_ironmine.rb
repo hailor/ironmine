@@ -64,7 +64,10 @@ module Ironmine
 
 #   SCHEDULER = Rufus::Scheduler.start_new
 end
+#require File.expand_path('../../../lib/delayed_extends/delayed_job_log_function.rb', __FILE__)
 
+Delayed::Backend::ActiveRecord::Job.send(:include,DelayedExtends::ExtendsLogDelayedJob)
+Delayed::Worker.send(:include,DelayedExtends::ExtendsLogDelayedWorker)
 #配置delayed_job
 #当job执行失败,是否从队列中删除
 Delayed::Worker.destroy_failed_jobs = false

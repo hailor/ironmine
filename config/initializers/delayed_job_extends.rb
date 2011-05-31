@@ -1,1 +1,0 @@
-require File.expand_path('../../../lib/delayed_extends/delayed_job_log_function.rb', __FILE__)
