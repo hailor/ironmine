@@ -1,12 +1,10 @@
 require 'active_record'
-require 'jobs/delayed_job_record'
-require 'jobs/delayed_job_record_item'
 class Delayed::Backend::ActiveRecord::Job
    after_save  :after_deal
    module RecordLog
         def after_deal
           if @recordBool == true
-             @djr = DelayedJobRecord.new
+             @djr = Irm::DelayedJobRecord.new
              @djr.delayed_job_id = self.id
              @djr.priority = self.priority
              @djr.status = 0
@@ -34,13 +32,13 @@ class Delayed::Worker
   alias run_ run
   alias reschedule_ reschedule
 
-  module RecordLog
+ # module RecordLog
 
     def run(job)
       runtime =  Benchmark.realtime do
         Timeout.timeout(self.class.max_run_time.to_i) { job.invoke_job }
         #-----------------------------------------
-        @record = DelayedJobRecord.find job.id
+        @record = Irm::DelayedJobRecord.find_by_delayed_job_id job.id
         if @record != nil
           @record.end_at = Time.now
           @record.status = 1
@@ -60,7 +58,7 @@ class Delayed::Worker
     end
 
     def  reschedule(job, time = nil)
-      @item = DelayedJobRecordItem.new
+      @item = Irm::DelayedJobRecordItem.new
       @item.attempt = job.attempts
       @item.pid = job.id
       @item.record_at = Time.now
@@ -74,7 +72,7 @@ class Delayed::Worker
       else
         say "PERMANENTLY removing #{job.name} because of #{job.attempts} consecutive failures.", Logger::INFO
         #----------------------------------------
-        @record = DelayedJobRecord.find job.id
+        @record = Irm::DelayedJobRecord.find_by_delayed_job_id job.id
         if @record != nil
           @record.end_at = Time.now
           @record.status = 2
@@ -85,8 +83,8 @@ class Delayed::Worker
       end
     end
 
-  end
+ # end
 
-  include RecordLog
+  #include RecordLog
 
 end
