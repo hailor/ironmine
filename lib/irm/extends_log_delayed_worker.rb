@@ -1,4 +1,4 @@
- module DelayedExtends::ExtendsLogDelayedWorker
+ module Irm::ExtendsLogDelayedWorker
   def self.included(base)
     base.class_eval do
        def run(job)
