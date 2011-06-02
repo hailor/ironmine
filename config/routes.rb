@@ -667,7 +667,13 @@ Ironmine::Application.routes.draw do
     match '/wf_approval_processes/:process_id/wf_approval_steps/:id/edit(.:format)' => "wf_approval_steps#edit", :via => [:get,:post,:put]
     match '/wf_approval_processes/:process_id/wf_approval_steps/:id(.:format)' => "wf_approval_steps#update", :via => :put
     match '/wf_approval_processes/:process_id/wf_approval_steps/:id/destroy(.:format)' => "wf_approval_steps#destroy", :via => :delete
-
+    #
+    #delayed_jobs
+    match '/delayed_jobs(/index)(.:format)' => "delayed_jobs#index", :via => :get
+    match '/delayed_jobs/:id/item_list(.:format)' => "delayed_jobs#item_list", :via => [:get,:post]
+    match '/delayed_jobs/:id/item_view(.:format)' => "delayed_jobs#item_view", :via => [:get,:post]
+    match '/delayed_jobs/get_data(.:format)' => "delayed_jobs#get_data"
+    match '/delayed_jobs/get_item_data(.:format)' => "delayed_jobs#get_item_data"
   end
 
   scope :module => "icm" do

@@ -1228,3 +1228,20 @@ zh:
   label_irm_wf_approval_step_reject_behavior_step_reject: 只执行此步骤的拒绝操作并将批准请求发回到最近的批准人。（返回 1 步）
   label_irm_wf_approval_step_reject_behavior_process_reject: 执行此步骤的所有拒绝操作和所有最终拒绝操作。（最终拒绝）
   #======================== wf approval step====================
+
+  #======================= delayed_jobs step ====================
+  label_irm_delayed_jobs_record: Delayed_jobs日志记录
+  label_irm_delayed_jobs_record_priority: 优先级
+  label_irm_delayed_jobs_record_handler: 保存yaml格式数据
+  label_irm_delayed_jobs_record_run_by: 执行者
+  label_irm_delayed_jobs_record_run_at: 开始执行时间
+  label_irm_delayed_jobs_record_end_at: 执行结束时间
+  label_irm_delayed_jobs_record_status: 执行状态
+  label_irm_delayed_jobs_record_status_0: 执行中...
+  label_irm_delayed_jobs_record_status_1: 成功结束
+  label_irm_delayed_jobs_record_status_2: 失败结束
+  label_irm_delayed_jobs_record_item: 错误日志记录
+  label_irm_delayed_jobs_record_item_error_info: 错误信息
+  label_irm_delayed_jobs_record_item_attempt: 尝试次数
+  label_irm_delayed_jobs_record_item_record_at: 记录时间
+  #======================= delayed_jobs step ====================
