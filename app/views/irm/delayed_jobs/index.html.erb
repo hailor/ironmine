@@ -1,0 +1,50 @@
+<%= app_title %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_delayed_jobs_record) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+
+              </td>
+              <td class="pbHelp">
+                <div id="permissionsSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="delayed_job" class="datatable" style="width:100%;">
+          <div id="delayed_job_id" style="display:none">
+            <%= link_to(t(:list),{:action=>"item_list",:id=>"{delayed_job_id}"}) %>
+           </div>
+          <div id="status" style="display:none">
+            <div id="status_{delayed_job_id}"></div>
+            <script>
+            <!--
+               document.getElementById("status_{delayed_job_id}").innerHTML =[
+                  "<%=t(:label_irm_delayed_jobs_record_status_0)%>",
+                  "<font color='blue'><%=t(:label_irm_delayed_jobs_record_status_1)%></font>",
+                  "<font color='red'><%=t(:label_irm_delayed_jobs_record_status_2)%></font>"
+              ][parseInt("{status}")];
+            //-->
+            </script>
+            </div>
+        </div>
+      </div>
+        <%= datatable("delayed_job",url_for(:action=>"get_data"),
+                  [{:key=>"delayed_job_id",:label=>t(:edit),:formatter=>"Y.irm.template",:width=>"40px"},
+                   {:key=>"status",:label=>t(:label_irm_delayed_jobs_record_status),:sortable=>true,:formatter=>"Y.irm.template",:width=>"10%"},
+                   {:key=>"priority",:label=>t(:label_irm_delayed_jobs_record_priority),:sortable=>true,:width=>"10%"},
+                   {:key=>"handler",:label=>t(:label_irm_delayed_jobs_record_handler),:sortable=>true,:width=>"15%"},
+                   {:key=>"run_by",:label=>t(:label_irm_delayed_jobs_record_run_by),:sortable=>true,:searchable=>true,:width=>"25%"},
+                   {:key=>"run_at",:label=>t(:label_irm_delayed_jobs_record_run_at),:sortable=>true,:width=>"40px"},
+                   {:key=>"end_at",:label=>t(:label_irm_delayed_jobs_record_end_at),:sortable=>true,:width=>"40px"}],
+                   {:search_box=>"permissionsSearchBox",:paginator_box=>"companiesPaginatorBox"})%>
+        <div id="companiesPaginatorBox"></div>
+      </div>
+    </div>
+</div>

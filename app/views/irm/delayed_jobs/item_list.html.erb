@@ -1,0 +1,45 @@
+<%= app_title %>
+<div class="listRelatedObject setupBlock">
+    <div class="bPageBlock">
+      <div class="pbHeader">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr>
+              <td class="pbTitle"><h2 class="mainTitle"><%= t(:label_irm_delayed_jobs_record_item) %></h2></td>
+              <td id="topButtonRow" class="pbButton">
+
+              </td>
+              <td class="pbHelp">
+                <div id="permissionsSearchBox"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pbBody">
+        <div id="delayed_job" class="datatable" style="width:100%;">
+          <div id="id" style="display:none">
+             <%= link_to(t(:show),{:action=>"item_view",:controller => "irm/delayed_jobs",:id=>"{id}"}) %>
+          </div>
+          <div id="error_info" style="display:none">
+            <div id="error_info_{attempt}">{error_info}</div>
+            <script>
+              <!--
+              var vobj =  document.getElementById("error_info_{attempt}");
+              vobj.innerHTML =  vobj.innerHTML.length > 30 ? vobj.innerHTML.toString().substring(0,29)+ "..." :
+                      vobj.innerHTML
+               //-->
+            </script>
+          </div>
+         </div>
+      </div>
+        <%= datatable("delayed_job",url_for(:action=>"get_item_data",:controller => "irm/delayed_jobs",:id => params[:id]),
+                  [{:key=>"id",:label=>t(:edit),:sortable=>true,:formatter=>"Y.irm.template",:width=>"10%"},
+                   {:key=>"attempt",:label=>t(:label_irm_delayed_jobs_record_item_attempt),:sortable=>true,:width=>"10%"},
+                   {:key=>"error_info",:label=>t(:label_irm_delayed_jobs_record_item_error_info),:formatter=>"Y.irm.template",:sortable=>true,:width=>"70%"},
+                   {:key=>"record_at",:label=>t(:label_irm_delayed_jobs_record_item_record_at),:sortable=>true,:width=>"10%"}],
+                   {:search_box=>"permissionsSearchBox",:paginator_box=>"companiesPaginatorBox"})%>
+        <div id="companiesPaginatorBox"></div>
+      </div>
+    </div>
+</div>
