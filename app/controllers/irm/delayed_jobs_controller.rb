@@ -16,7 +16,7 @@ class Irm::DelayedJobsController < ApplicationController
 
   def get_data
     @record = Irm::DelayedJobRecord.query_wrap_info()
-   # @record = @record.match_value("#{Irm::DelayedJobRecord.run_by}.run_by",params[:run_by])
+    @record = @record.match_value("#{Irm::DelayedJobRecord.table_name}.run_by",params[:run_by])
     #@record = @record.match_value("#{Irm::DelayedJobRecord.table_name}.name",params[:name])
     @record,count = paginate(@record)
     respond_to do |format|
