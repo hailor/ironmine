@@ -25,11 +25,17 @@
             <div id="status_{delayed_job_id}"></div>
             <script>
             <!--
-               document.getElementById("status_{delayed_job_id}").innerHTML =[
-                  "<%=t(:label_irm_delayed_jobs_record_status_0)%>",
-                  "<font color='blue'><%=t(:label_irm_delayed_jobs_record_status_1)%></font>",
-                  "<font color='red'><%=t(:label_irm_delayed_jobs_record_status_2)%></font>"
-              ][parseInt("{status}")];
+               //document.getElementById("status_{delayed_job_id}").innerHTML =[
+            YUI({filter: 'raw'}).use("node",function(Y){
+                var v =  Y.one("#status_{delayed_job_id}");
+                if(v){
+                    Y.one("#status_{delayed_job_id}").setContent([
+                      "<%=t(:label_irm_delayed_jobs_record_status_0)%>",
+                      "<font color='blue'><%=t(:label_irm_delayed_jobs_record_status_1)%></font>",
+                      "<font color='red'><%=t(:label_irm_delayed_jobs_record_status_2)%></font>"
+                  ][parseInt("{status}")]   );
+                }
+            });
             //-->
             </script>
             </div>
@@ -50,7 +56,16 @@
 </div>
 <script>
   <!--
-     document.getElementById("")
+//  setTimeout(function(){
+//     var tag = document.getElementById("permissionsSearchBox").getElementsByTagName("select")[0];
+//   // alert(tag)
+//     tag.addEventListener("change",function(event){
+//         var opts = tag.options;
+//         for(var i = 0 ; i < opts.length; i ++){
+//             alert(tag.value);
+//         }
+//     },false);
+//     },4000);
 
   //-->
 </script>

@@ -25,9 +25,14 @@
             <div id="error_info_{attempt}">{error_info}</div>
             <script>
               <!--
-              var vobj =  document.getElementById("error_info_{attempt}");
-              vobj.innerHTML =  vobj.innerHTML.length > 30 ? vobj.innerHTML.toString().substring(0,29)+ "..." :
-                      vobj.innerHTML
+               YUI({filter: 'raw'}).use("node",function(Y){
+                var v =  Y.one("#error_info_{attempt}");
+                if(v){
+                    var str = v.getContent();
+                    v.setContent(str.length > 30 ? str.substring(0,29) + "..." : str);
+                }
+            });
+
                //-->
             </script>
           </div>
